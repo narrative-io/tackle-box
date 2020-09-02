@@ -9,6 +9,7 @@
 </script>
 
 <style lang="sass">
+  @import '../../styles/global/_variables.sass'
   .button
-    color: red
+    color: $c-primary
 </style>
