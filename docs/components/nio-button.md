@@ -4,8 +4,7 @@ Narrative's button component
 
 ## Example
 
-<Demo componentName="nio-button"/>
-<Demo componentName="nio-button"/>
+<Demo componentName="examples-nio-button-doc"/>
 
 ## Slots
 

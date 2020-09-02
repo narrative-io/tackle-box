@@ -1,5 +1,4 @@
 <template lang="pug">
   div
-    nio-button
-    nio-button(:size="large")
+    nio-button(:size="'small'") Primary Small
 </template>

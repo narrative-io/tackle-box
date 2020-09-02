@@ -2,7 +2,7 @@
   v-btn.nio-button.extra-large(
     :ripple="false" 
     :class="[size, variant]"
-  ) Button Text
+  )
     slot
 </template>
 

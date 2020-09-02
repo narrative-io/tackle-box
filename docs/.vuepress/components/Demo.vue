@@ -7,7 +7,7 @@
 <script>
   export default {
     props: {
-      componentName: { type: String, required: true }
-    }
+			componentName: { type: String, required: true }
+		}
   }
 </script>
