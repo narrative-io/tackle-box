@@ -1,19 +1,19 @@
 <template lang="pug">
   div.buttons
-    h3 Variant
-    nio-button(:variant="'primary'") Primary
-    nio-button(:variant="'secondary'") Secondary
-    nio-button(:variant="'selected'") Selected
-    nio-button(:variant="'error'") Error
-    h3 Size
-    nio-button(:size="'extra-large'") Extra-Large
-    nio-button(:size="'large'") Large
-    nio-button(:size="'normal'") Normal
-    nio-button(:size="'small'") Small
-    nio-button(:size="'extra-small'") Extra-Small
-    h3 Caps
-    nio-button(:caps="false") No caps
-    nio-button(:caps="true") All Caps
+    h3 variant
+    nio-button(:variant="'primary'") primary
+    nio-button(:variant="'secondary'") secondary
+    nio-button(:variant="'selected'") selected
+    nio-button(:variant="'error'") error
+    h3 size
+    nio-button(:size="'extra-large'") extra-Large
+    nio-button(:size="'large'") large
+    nio-button(:size="'normal'") normal
+    nio-button(:size="'small'") small
+    nio-button(:size="'extra-small'") extra-small
+    h3 caps
+    nio-button(:caps="false") false
+    nio-button(:caps="true") true
 </template>
 
 <style lang="sass">
@@ -21,7 +21,7 @@
     padding: 30px 0px
     h3
       margin: 30px 0px
-      text-decoration: underline
+      color: #888
     & > *
       margin-top: 20px
 </style>
