@@ -1,8 +1,5 @@
-<template>
-  <div>
-		I'm a button
-    <slot></slot>
-  </div>
+<template lang="pug">
+  div	I'm a button
 </template>
 
 <script>
