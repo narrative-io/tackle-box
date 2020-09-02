@@ -39,7 +39,7 @@ module.exports = {
             {
               title: 'Components',
               collapsable: false,
-              children: ['nio-button', 'nio-tabs']
+              children: ['standard-component']
             }
           ]
         }
