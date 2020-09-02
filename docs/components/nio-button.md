@@ -10,13 +10,18 @@ Narrative's button component
 | size                  | string  | extra-large \| large \| normal \| small \| extra-small  | extra-large
 | caps                  | boolean | true \| false                                           | false
 
-### Prop details:
+#### Prop details:
 
-##### variant: the stylistic variant of the button
-##### size: the size of the button
-##### caps: whether the text in the default slot will be converted to uppercase
+##### variant
+> the stylistic variant of the button
 
-## Example
+##### size
+> the size of the button
+
+##### caps
+> whether the text in the default slot will be converted to uppercase
+
+## Examples
 
 <Demo componentName="examples-nio-button-doc"/>
 

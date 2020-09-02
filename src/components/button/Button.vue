@@ -1,7 +1,7 @@
 <template lang="pug">
   v-btn.nio-button.extra-large(
     :ripple="false" 
-    :class="[size, variant]"
+    :class="[size, variant, {caps: caps}]"
   )
     slot
 </template>
@@ -146,7 +146,7 @@
         height: 24px
     // $caps
     text-transform: none  
-    &.true
+    &.caps
       text-transform: uppercase
 
 </style>
