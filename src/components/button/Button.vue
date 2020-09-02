@@ -1,5 +1,5 @@
 <template lang="pug">
-  div	I'm a button
+  div.button i'm a button
 </template>
 
 <script>
@@ -8,4 +8,7 @@
   }
 </script>
 
-<style></style>
+<style lang="sass">
+  .button
+    color: red
+</style>
