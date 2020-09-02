@@ -1,10 +1,13 @@
 <template lang="pug">
-  div.button i'm a button
+  v-btn.nio-button.extra-large(:ripple="false") Extra-large 
 </template>
 
 <script>
+  import { VBtn } from 'vuetify/lib'
+  
   export default {
-    name: 'nio-button'
+    name: 'nio-button',
+    components: { VBtn }
   }
 </script>
 
