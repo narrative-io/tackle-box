@@ -5,7 +5,7 @@
 	"bugs": {
 		"url": "https://github.com/narrative-io/narrative-ui-library/issues"
 	},
-	"license": "GNU LESSER GENERAL PUBLIC LICENSE",
+	"license": "GNU GPL v3.0",
 	"main": "dist/narrative-ui-library.umd.min.js",
 	"unpkg": "dist/narrative-ui-library.umd.min.js",
 	"jsdelivr": "dist/narrative-ui-library.umd.min.js",
