@@ -8,14 +8,18 @@
 
 <script>
   import { VBtn } from 'vuetify/lib'
-
-  export default {
+	console.log("button main")
+	
+	export default {
     name: 'nio-button',
     props: {
       "variant": { type: String, required: false, default: "primary" },
       "size": { type: String, required: false, default: "extra-large" },
       "caps": { type: Boolean, required: false, default: false }
-    },
+		},
+		mounted() {
+			console.log("mounted")
+		},
     components: { VBtn }
   }
 </script>

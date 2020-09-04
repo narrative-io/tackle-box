@@ -289,12 +289,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3e22f670-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Button/Button.vue?vue&type=template&id=026d8e26&lang=pug&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6fc0253c-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Button/Button.vue?vue&type=template&id=f5146da8&lang=pug&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-btn',{staticClass:"nio-button extra-large",class:[_vm.size, _vm.variant, {caps: _vm.caps}],attrs:{"ripple":false}},[_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Button/Button.vue?vue&type=template&id=026d8e26&lang=pug&
+// CONCATENATED MODULE: ./src/components/Button/Button.vue?vue&type=template&id=f5146da8&lang=pug&
 
 // EXTERNAL MODULE: ./node_modules/vuetify/src/components/VBtn/VBtn.sass
 var VBtn = __webpack_require__("86cc");
@@ -3840,6 +3840,7 @@ const baseMixins = mixins(components_VSheet, routable, positionable, sizeable, f
 //
 //
 
+console.log("button main");
 /* harmony default export */ var Buttonvue_type_script_lang_js_ = ({
   name: 'nio-button',
   props: {
@@ -3860,7 +3861,7 @@ const baseMixins = mixins(components_VSheet, routable, positionable, sizeable, f
     }
   },
   mounted: function mounted() {
-    console.log("hi");
+    console.log("mounted");
   },
   components: {
     VBtn: VBtn_VBtn
@@ -3998,9 +3999,8 @@ var component = normalizeComponent(
 var ComponentLibrary = {
   install: function install(Vue) {
     Vue.component('nio-button', Button.default); // for (const componentName in components) {
-    //   const component = components[componentName]
-    // 	console.log(component)
-    //   Vue.component(component.name, component)
+    // const component = components[componentName]
+    // Vue.component(component.name, component)
     // }
   }
 };

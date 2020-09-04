@@ -1,17 +1,19 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld></HelloWorld>
+		<NioButton>Hello</NioButton>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { HelloWorld, NioButton } from "../../library/dist/component-library.umd";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+		HelloWorld,
+		NioButton
   }
 }
 </script>
