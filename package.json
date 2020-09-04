@@ -2,27 +2,27 @@
   "name": "narrative-ui-library",
   "version": "0.1.2",
   "private": false,
-	"bugs": {
-		"url": "https://github.com/narrative-io/narrative-ui-library/issues"
-	},
-	"license": "GNU GPL v3.0",
-	"main": "dist/narrative-ui-library.umd.min.js",
-	"unpkg": "dist/narrative-ui-library.umd.min.js",
-	"jsdelivr": "dist/narrative-ui-library.umd.min.js",
-	"author": "Narrative, Inc.",
-	"description": "The Narrative Data Stream library of user interface components and styles, written for use in Vue.js projects",
-	"files": [
-		"dist/*",
-		"src/*"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/narrative-io/narrative-ui-library"
-	},
-	"scripts": {
+  "bugs": {
+    "url": "https://github.com/narrative-io/narrative-ui-library/issues"
+  },
+  "license": "GNU GPL v3.0",
+  "main": "dist/narrative-ui-library.umd.min.js",
+  "unpkg": "dist/narrative-ui-library.umd.min.js",
+  "jsdelivr": "dist/narrative-ui-library.umd.min.js",
+  "author": "Narrative, Inc.",
+  "description": "The Narrative Data Stream library of user interface components and styles, written for use in Vue.js projects",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/narrative-io/narrative-ui-library"
+  },
+  "scripts": {
     "serve": "vue-cli-service serve",
-		"build": "vue-cli-service build --target lib --name narrative-ui-library src/main.js",
-		"prepublishOnly": "$npm_execpath run build",
+    "build": "vue-cli-service build --target lib --name narrative-ui-library src/main.js",
+    "prepublishOnly": "$npm_execpath run build",
     "lint": "vue-cli-service lint",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
@@ -31,7 +31,8 @@
     "core-js": "^3.6.5",
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
-    "vuetify": "^2.2.11"
+    "vuetify": "^2.2.11",
+    "vue": "^2.6.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -44,7 +45,7 @@
     "sass-loader": "^7.2.0",
     "vue-template-compiler": "^2.6.11",
     "vuepress": "^1.0.0-rc.1"
-	},
+  },
   "eslintConfig": {
     "root": true,
     "env": {
@@ -63,9 +64,9 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-	],
-	"keywords": [
-		"Narrative",
-		"Data Stream"
-	]
+  ],
+  "keywords": [
+    "Narrative",
+    "Data Stream"
+  ]
 }
