@@ -1,18 +1,16 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld></HelloWorld>
 		<NioButton>Hello</NioButton>
   </div>
 </template>
 
 <script>
-import { HelloWorld, NioButton } from "../../library/dist/component-library.umd";
+import { NioButton } from "../../library/dist/component-library.umd";
 
 export default {
   name: 'App',
   components: {
-		HelloWorld,
 		NioButton
   }
 }

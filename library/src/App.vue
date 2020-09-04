@@ -10,9 +10,7 @@
 export default {
   name: "App",
   components: {
-    Footer: () => import("./components/Footer.vue"),
-    HelloWorld: () => import("./components/HelloWorld.vue"),
-    Selection: () => import("./components/Selection.vue"),
+    NioButton: () => import("./components/Button.vue")
   },
   data() {
     return {};
@@ -20,4 +18,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
