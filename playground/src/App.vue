@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { NioButton } from "../../library/dist/component-library.umd";
+import { NioButton } from "narrative-ui-library";
 
 export default {
   name: 'App',

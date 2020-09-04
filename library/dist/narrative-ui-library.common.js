@@ -9649,12 +9649,12 @@ framework_Vuetify.version = "2.3.8";
 framework_Vuetify.config = {
   silent: false
 };
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"302bcfb1-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Button.vue?vue&type=template&id=468651a8&lang=pug&
-var Buttonvue_type_template_id_468651a8_lang_pug_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-btn',{staticClass:"nio-button extra-large",class:[_vm.size, _vm.variant, {caps: _vm.caps}],attrs:{"ripple":false}},[_vm._t("default")],2)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"302bcfb1-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Button.vue?vue&type=template&id=02185f04&lang=pug&
+var Buttonvue_type_template_id_02185f04_lang_pug_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-btn',{staticClass:"nio-button extra-large",class:[_vm.size, _vm.variant, {caps: _vm.caps}],attrs:{"ripple":false}},[_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Button.vue?vue&type=template&id=468651a8&lang=pug&
+// CONCATENATED MODULE: ./src/components/Button.vue?vue&type=template&id=02185f04&lang=pug&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.fixed.js
 var es_string_fixed = __webpack_require__("c7cd");
@@ -11109,7 +11109,6 @@ var baseMixins = mixins(components_VSheet, routable, positionable, sizeable, fac
 //
 //
 
-console.log("button main");
 /* harmony default export */ var Buttonvue_type_script_lang_js_ = ({
   name: 'nio-button',
   props: {
@@ -11128,9 +11127,6 @@ console.log("button main");
       required: false,
       "default": false
     }
-  },
-  mounted: function mounted() {
-    console.log("mounted");
   },
   components: {
     VBtn: VBtn_VBtn
@@ -11256,7 +11252,7 @@ var installComponents_default = /*#__PURE__*/__webpack_require__.n(installCompon
 
 var component = normalizeComponent(
   components_Buttonvue_type_script_lang_js_,
-  Buttonvue_type_template_id_468651a8_lang_pug_render,
+  Buttonvue_type_template_id_02185f04_lang_pug_render,
   staticRenderFns,
   false,
   null,
@@ -11431,4 +11427,4 @@ module.exports = global.Promise;
 /***/ })
 
 /******/ });
-//# sourceMappingURL=component-library.common.js.map
+//# sourceMappingURL=narrative-ui-library.common.js.map
