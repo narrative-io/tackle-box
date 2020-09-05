@@ -32,6 +32,6 @@ Only a default content slot is supported by this component
 ## Source Code
 
 <SourceCode>
-<<< @/src/components/Button/Button.vue
+<<< @/src/components/Button.vue
 </SourceCode>
 
