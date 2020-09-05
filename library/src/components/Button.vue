@@ -21,7 +21,6 @@
 </script>
 
 <style lang="sass">
-  @import '@/styles/global/_variables.sass'
   @import '@/styles/mixins/_button.sass'
 
   .nio-button

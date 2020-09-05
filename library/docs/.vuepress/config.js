@@ -30,9 +30,9 @@ module.exports = {
         },
         nav: [
           { text: 'Getting Started', link: '/guide' },
-          { text: 'Components', link: '/components/' },
-          // external link to git repo...again
-          { text: 'GitHub', link: '' }
+					{ text: 'Components', link: '/components/' },
+					{ text: 'Styles', link: '/styles/' },
+          { text: 'GitHub', link: 'https://github.com/narrative-io/narrative-ui-library' }
         ],
         sidebar: {
           '/components/': [
@@ -41,6 +41,18 @@ module.exports = {
               collapsable: false,
               children: [
 								'nio-button'
+							]
+            }
+					],
+					'/styles/': [
+            {
+              title: 'Styles',
+              collapsable: false,
+              children: [
+								'variables',
+								'colors',
+								'typography',
+								'button'
 							]
             }
           ]
