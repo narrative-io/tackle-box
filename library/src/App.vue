@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    <hello-world />
-    <Footer />
-    <Selection />
+		<NioButton></NioButton>
   </v-app>
 </template>
 

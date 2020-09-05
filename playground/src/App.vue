@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-		<NioButton>Hello</NioButton>
+		<NioButton :variant="'secondary'" :size="'extra-large'">Hello</NioButton>
   </div>
 </template>
 
