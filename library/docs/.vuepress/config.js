@@ -49,7 +49,6 @@ module.exports = {
               title: 'Styles',
               collapsable: false,
               children: [
-								'variables',
 								'colors',
 								'typography',
 								'button'
