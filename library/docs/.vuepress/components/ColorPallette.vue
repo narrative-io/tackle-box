@@ -1,7 +1,7 @@
 <template>
   <div class="color-pallette">
     <section class="primary-section">
-      <h2>Primary Colors</h2>
+      <h3>Primary Colors</h3>
       <div class="color-instances primary-main">
         <ColorInstance
           :variableName="colors.primaryMain.variableName"
@@ -18,7 +18,7 @@
     </section>
 
     <section class="secondary-section">
-      <h2>Secondary Colors</h2>
+      <h3>Secondary Colors</h3>
       <div class="color-instances">
         <ColorInstance
           v-for="color of colors.secondary"
@@ -29,7 +29,7 @@
     </section>
 
     <section class="utility-section">
-      <h2>Utility Colors</h2>
+      <h3>Utility Colors</h3>
       <div class="color-instances">
         <ColorInstance
           v-for="color of colors.utility"
@@ -187,8 +187,8 @@ export default {
 <style lang="sass" scoped>
   .color-pallette
     section
-      h2
-        margin: 60px 0px 20px 0px
+      h3
+        margin: 40px 0px 30px 0px
       .color-instances
         display: grid
         grid-gap: 10px

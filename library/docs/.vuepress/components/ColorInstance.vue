@@ -36,7 +36,7 @@ export default {
     box-shadow: 0rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.1)
     border-radius: 8px
     .mask 
-      height: 200px
+      height: 150px
       background-color: blue
       border-top-left-radius: 8px
       border-top-right-radius: 8px
