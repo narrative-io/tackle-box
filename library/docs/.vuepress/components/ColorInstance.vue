@@ -33,13 +33,16 @@ export default {
 
 <style lang="sass" scoped>
   .color
-    border: 1px solid #DDD
+    box-shadow: 0rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.1)
+    border-radius: 8px
     .mask 
       height: 200px
       background-color: blue
+      border-top-left-radius: 8px
+      border-top-right-radius: 8px
     .details
       height: 100px
-      padding: 10px 20px
+      padding: 10px 15px
       display: flex
       flex-direction: column
       justify-content: space-around
@@ -48,8 +51,10 @@ export default {
         .label
           color: #010A28
           font-weight: bold
-          width: 120px
+          width: 110px
+          font-size: 14px
         .value 
-          color: #010A28
+          color: #031553
+          font-size: 14px
 </style>
 
