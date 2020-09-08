@@ -6,10 +6,18 @@
     <div class="details">
       <div class="entry">
         <div class="label">
-          SASS variable:
+          CSS Class:
         </div>
         <div class="value">
-          {{ variableName }}
+          .{{ variableName }}
+        </div>
+      </div>	
+      <div class="entry">
+        <div class="label">
+          Font Family:
+        </div>
+        <div class="value">
+          {{ !fontFamily ? 'Euclid Circular A' : fontFamily }}
         </div>
       </div>	
       <div class="entry">
@@ -44,6 +52,14 @@
           {{ letterSpacing }}px
         </div>
       </div>	
+      <div class="entry">
+        <div class="label">
+          Text transform:
+        </div>
+        <div class="value">
+          {{ !textTransform ? 'none' : textTransform }}
+        </div>
+      </div>	
     </div>
   </div>
 </template>
@@ -69,16 +85,16 @@ export default {
       align-items: center
     .details
       padding: 10px 15px
+      height: 205px
       display: flex
       flex-direction: column
       justify-content: space-around
       .entry
         display: flex
-        margin-bottom: 10px
         .label
           color: #010A28
           font-weight: bold
-          width: 110px
+          width: 120px
           font-size: 14px
         .value 
           color: #031553

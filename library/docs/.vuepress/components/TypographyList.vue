@@ -8,6 +8,7 @@
       :lineHeight="instance.lineHeight"
       :letterSpacing="instance.letterSpacing"
       :fontWeight="instance.fontWeight"
+      :textTransform="instance.textTransform"
     ></TypographyInstance>
   </div>
 </template>
@@ -42,7 +43,7 @@ export default {
         fontWeight: 600
       },
       {
-        variableName: "nio-hi",
+        variableName: "nio-h1",
         exampleText: "Sell Orders",
         fontSize: "28",
         lineHeight: "36",
@@ -50,7 +51,7 @@ export default {
         fontWeight: 600
       },
       {
-        variableName: "nio-h1",
+        variableName: "nio-h2",
         exampleText: "Product Summary",
         fontSize: "24",
         lineHeight: "30",
@@ -130,7 +131,7 @@ export default {
         lineHeight: "12",
         letterSpacing: "1",
         fontWeight: 600,
-        textTransorm: "uppercase"
+        textTransform: "uppercase"
       },
     ]
   }),
