@@ -111,11 +111,11 @@ export default {
       secondary: [
         {
           variableName: '$nio-c-turquoise-dark',
-          colorValue: '#4DB26A'
+          colorValue: '#10668B'
         },
         {
           variableName: '$nio-c-turquoise-light',
-          colorValue: '#68E08A'
+          colorValue: '#08B5C4'
         },
         {
           variableName: '$nio-c-tangerine-dark',

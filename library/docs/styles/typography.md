@@ -23,6 +23,6 @@ or used inline on any textual HTML element:
 <p class="nio-p-large">Lorem ipsum</p>
 ```
 
-## Variables
+## Class details & examples
 
 <TypographyList></TypographyList>
