@@ -1,6 +1,6 @@
 <template>
   <div class="color">
-    <div class="example" :style="{fontSize: `${fontSize}px`, fontWeight: fontWeight, color: '#031553', backgroundColor: '#F4F7FB', textAlign: 'center'}">
+    <div class="example" :style="{fontSize: `${fontSize}px`, fontWeight: fontWeight, color: '#031553', backgroundColor: '#F4F7FB', textAlign: 'center', textTransform: textTransform === 'uppercase' ? 'uppercase' : 'none', fontFamily: fontFamily && fontFamily !== 'Euclid Circular A' ? 'Sans Serif' : 'Euclid Circular A'}">
       {{ exampleText }}
     </div>
     <div class="details">
@@ -50,11 +50,12 @@
 
 <script>
 export default {
-  props: ['variableName', 'exampleText', 'fontSize', 'lineHeight', 'letterSpacing', 'fontWeight']
+  props: ['variableName', 'exampleText', 'fontSize', 'lineHeight', 'letterSpacing', 'fontWeight', 'fontFamily', 'textTransform']
 };
 </script>
 
 <style lang="sass" scoped>
+  @import '../../../src/styles/global/_fonts'
   .color
     box-shadow: 0rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.1)
     border-radius: 8px
@@ -73,6 +74,7 @@ export default {
       justify-content: space-around
       .entry
         display: flex
+        margin-bottom: 10px
         .label
           color: #010A28
           font-weight: bold

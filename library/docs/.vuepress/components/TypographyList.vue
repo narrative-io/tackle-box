@@ -23,7 +23,7 @@ export default {
         fontSize: "52",
         lineHeight: "68",
         letterSpacing: "-0.8",
-        fontWeight: "600"
+        fontWeight: 600
       },
       {
         variableName: "nio-jumbo-2",
@@ -31,7 +31,7 @@ export default {
         fontSize: "42",
         lineHeight: "50",
         letterSpacing: "-0.6",
-        fontWeight: "600"
+        fontWeight: 600
       },
       {
         variableName: "nio-jumbo-1",
@@ -39,7 +39,7 @@ export default {
         fontSize: "34",
         lineHeight: "44",
         letterSpacing: "-0.4",
-        fontWeight: "600"
+        fontWeight: 600
       },
       {
         variableName: "nio-hi",
@@ -47,7 +47,7 @@ export default {
         fontSize: "28",
         lineHeight: "36",
         letterSpacing: "-0.2",
-        fontWeight: "600"
+        fontWeight: 600
       },
       {
         variableName: "nio-h1",
@@ -55,7 +55,7 @@ export default {
         fontSize: "24",
         lineHeight: "30",
         letterSpacing: "-0",
-        fontWeight: "600"
+        fontWeight: 600
       },
       {
         variableName: "nio-h3",
@@ -63,7 +63,7 @@ export default {
         fontSize: "20",
         lineHeight: "26",
         letterSpacing: "0.2",
-        fontWeight: "600"
+        fontWeight: 600
       },
       {
         variableName: "nio-h4",
@@ -71,7 +71,7 @@ export default {
         fontSize: "16",
         lineHeight: "20",
         letterSpacing: "0.2",
-        fontWeight: "600"
+        fontWeight: 600
       },
       {
         variableName: "nio-h5",
@@ -79,7 +79,7 @@ export default {
         fontSize: "14",
         lineHeight: "20",
         letterSpacing: "0.4",
-        fontWeight: "600"
+        fontWeight: 600
       },
       {
         variableName: "nio-h6",
@@ -88,15 +88,15 @@ export default {
         lineHeight: "15",
         letterSpacing: "1",
         textTransorm: "uppercase",
-        fontWeight: "600"
+        fontWeight: 600
       },
       {
         variableName: "nio-p-large",
-        exampleText: "The data streaming platform that",
+        exampleText: "The data streaming platform",
         fontSize: "20",
         lineHeight: "28",
         letterSpacing: "0.8",
-        fontWeight: "400"
+        fontWeight: 400
       },
       {
         variableName: "nio-p",
@@ -104,7 +104,7 @@ export default {
         fontSize: "14",
         lineHeight: "20",
         letterSpacing: "0.4",
-        fontWeight: "400"
+        fontWeight: 400
       },
       {
         variableName: "nio-p-small",
@@ -112,7 +112,7 @@ export default {
         fontSize: "12",
         lineHeight: "18",
         letterSpacing: "0.4",
-        fontWeight: "400"
+        fontWeight: 400
       },
       {
         variableName: "nio-mono-small",
@@ -120,7 +120,7 @@ export default {
         fontSize: "14",
         lineHeight: "20",
         letterSpacing: "0",
-        fontWeight: "400",
+        fontWeight: 400,
         fontFamily: "Roboto Mono"
       },
       {
@@ -129,7 +129,7 @@ export default {
         fontSize: "14",
         lineHeight: "12",
         letterSpacing: "1",
-        fontWeight: "600",
+        fontWeight: 600,
         textTransorm: "uppercase"
       },
     ]
@@ -140,17 +140,8 @@ export default {
 
 <style lang="sass" scoped>
   .typography-list
-    padding: 40px 0px
-    display: grid
-    grid-gap: 10px
-    margin-bottom: 10px
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))    
+    padding: 40px 0px 
     & > * + *
       margin-top: 10px    
-    .typography-instance
-      
-      
 
-      
-      
 </style>
