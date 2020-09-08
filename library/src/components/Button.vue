@@ -1,7 +1,7 @@
 <template lang="pug">
   v-btn.nio-button(
     :ripple="false" 
-    :class="[size, variant, {caps: caps}]"
+    :class="[`nio-button-${size}`, `nio-button-${variant}`, {'nio-button-caps': caps}]"
   )
     slot
 </template>
@@ -13,7 +13,7 @@
     name: 'nio-button',
     props: {
       "variant": { type: String, required: false, default: "primary" },
-      "size": { type: String, required: false},
+      "size": { type: String, required: false, default: "extra-large"},
       "caps": { type: Boolean, required: false, default: false }
 		},
     components: { VBtn }
@@ -26,27 +26,27 @@
   .nio-button
     +nio-button
 
-    &.primary
+    &.nio-button-primary
       +nio-button-primary
-    &.secondary
+    &.nio-button-secondary
       +nio-button-secondary
-    &.selected
+    &.nio-button-selected
       +nio-button-selected
-    &.error
+    &.nio-button-error
       +nio-button-error   
 
-    &.extra-large
+    &.nio-button-extra-large
       +nio-button-extra-large
-    &.large
+    &.nio-button-large
       +nio-button-large
-    &.normal
+    &.nio-button-normal
       +nio-button-normal
-    &.small
+    &.nio-button-small
       +nio-button-small
-    &.extra-small
+    &.nio-button-extra-small
       +nio-button-extra-small
 
-    &.caps
+    &.nio-button-caps
       +nio-button-caps           
       
 </style>

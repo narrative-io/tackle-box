@@ -6,6 +6,13 @@ module.exports = {
         additionalData: `@import "@/styles/index.scss";`,
       },
     },
+	},
+	configureWebpack:{
+		resolve: {
+			alias: {
+				'vue$': 'vue/dist/vue.esm.js'
+			}
+		}
   },
   transpileDependencies: ["vuetify"],
 };

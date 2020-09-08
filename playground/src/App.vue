@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { NioButton } from "narrative-ui-library";
+import { NioButton } from "@narrative.io/tackle-box";
 
 export default {
   name: 'App',
