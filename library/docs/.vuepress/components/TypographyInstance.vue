@@ -1,6 +1,8 @@
 <template>
   <div class="color">
-    <div class="mask" :style="{backgroundColor: colorValue}"></div>
+    <div class="example" :style="{fontSize: `${fontSize}px`, fontWeight: fontWeight, color: '#031553', backgroundColor: '#F4F7FB', textAlign: 'center'}">
+      {{ exampleText }}
+    </div>
     <div class="details">
       <div class="entry">
         <div class="label">
@@ -12,10 +14,34 @@
       </div>	
       <div class="entry">
         <div class="label">
-          Color value:
+          Font size:
         </div>
         <div class="value">
-          {{ colorValue }}
+          {{ fontSize }}px
+        </div>
+      </div>	
+      <div class="entry">
+        <div class="label">
+          Font weight: 
+        </div>
+        <div class="value">
+          {{ fontWeight }}
+        </div>
+      </div>	
+      <div class="entry">
+        <div class="label">
+          Line height: 
+        </div>
+        <div class="value">
+          {{ lineHeight }}px
+        </div>
+      </div>	
+      <div class="entry">
+        <div class="label">
+          Letter spacing: 
+        </div>
+        <div class="value">
+          {{ letterSpacing }}px
         </div>
       </div>	
     </div>
@@ -24,7 +50,7 @@
 
 <script>
 export default {
-  props: ['colorValue', 'variableName']
+  props: ['variableName', 'exampleText', 'fontSize', 'lineHeight', 'letterSpacing', 'fontWeight']
 };
 </script>
 
@@ -32,13 +58,11 @@ export default {
   .color
     box-shadow: 0rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.1)
     border-radius: 8px
-    .mask 
-      height: 150px
-      background-color: blue
+    .example
+      background-color: white
       border-top-left-radius: 8px
       border-top-right-radius: 8px
     .details
-      height: 100px
       padding: 10px 15px
       display: flex
       flex-direction: column

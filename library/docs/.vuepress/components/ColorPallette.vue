@@ -177,10 +177,7 @@ export default {
         }
       ]
     }
-  }),	
-  components: {
-    NioButton: () => import("./components/Button.vue")
-  }
+  })
 };
 </script>
 

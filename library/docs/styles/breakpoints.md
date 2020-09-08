@@ -3,7 +3,7 @@
 Narrative's responsive breakpoints 
 
 ::: warning
-Importing this file overrwrites the default Vuetify breakpoints contained in the $grid-breakpoints SASS variable
+Importing this file will globally overrwrite the default Vuetify breakpoints contained in Vuetify's **$grid-breakpoints** SASS variable
 :::
 
 ## Usage
