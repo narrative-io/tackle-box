@@ -62,6 +62,10 @@ export default {
       background-color: white
       border-top-left-radius: 8px
       border-top-right-radius: 8px
+      padding: 30px 15%
+      display: flex
+      justify-content: center
+      align-items: center
     .details
       padding: 10px 15px
       display: flex
