@@ -31,21 +31,22 @@ Helper variables are generated to provide a method for inline styling of text co
 ##### $nio-border-{color}
 > sets the _border-color_ property of the element to the respective color
 
-For example, the following code
+For example, the following HTML code
 
 ```html
 	<div class="nio-bg-canvas nio-border-primary-darker">
-		<h2 class="nio-text-primary-dark">I'm a header</h2>
+		<p class="nio-text-primary-dark">Lorem ipsum</p>
 	</div>	
 ```
 
 would result in the following element colors:
 
 <div class="nio-bg-canvas nio-border-primary-darker" style="width: 150px; text-align: center; margin: 30px auto; border: 1px solid #031553; border-radius: 5px; background-color: #F4F7FB; color: #4B5FA7; padding: 15px;">
-	<p class="nio-text-primary-dark">Lorem Ipsum</p>
+	<p class="nio-text-primary-dark">Lorem ipsum</p>
 </div>	
 
-
 ## Color pallette
+
+Below is a full list of colors contained in the Narrative color pallette
 
 <ColorPallette></ColorPallette>

@@ -51,6 +51,7 @@ module.exports = {
               children: [
 								'colors',
 								'typography',
+								'breakpoints',
 								'button'
 							]
             }
