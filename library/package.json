@@ -1,21 +1,23 @@
 {
-  "name": "narrative-ui-library",
-  "version": "0.1.3",
-  "description": "The Narrative Data Stream library of user interface components and styles, written for use in Vue.js projects",
+  "name": "tackle-box",
+  "version": "0.0.1",
+  "description": "The Narrative Data Stream UI library of user interface components and styles, written for use in Vue.js projects",
   "author": "Narrative, Inc.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/narrative-io/narrative-ui-library"
+    "url": "https://github.com/narrative-io/tackle-box"
   },
   "license": "GNU GPL v3.0",
   "keywords": [
     "Narrative",
-    "Data Stream"
+		"Data Stream",
+		"tacklebox",
+		"tackle-box"
   ],
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name narrative-ui-library src/index.js",
+    "build": "vue-cli-service build --target lib --name tackle-box src/index.js",
     "lint": "vue-cli-service lint --fix",
     "prepublishOnly": "$npm_execpath run build",
     "build-storybook": "build-storybook",
@@ -29,11 +31,11 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
-  "main": "dist/narrative-ui-library.common.js",
-  "unpkg": "dist/narrative-ui-library.umd.min.js",
-  "cdn": "dist/narrative-ui-library.umd.min.js",
-  "browser": "dist/narrative-ui-library.umd.min.js",
-  "jsdelivr": "dist/narrative-ui-library.umd.min.js",
+  "main": "dist/tackle-box.common.js",
+  "unpkg": "dist/tackle-box.umd.min.js",
+  "cdn": "dist/tackle-box.umd.min.js",
+  "browser": "dist/tackle-box.umd.min.js",
+  "jsdelivr": "dist/tackle-box.umd.min.js",
   "files": [
     "src/components",
     "src/styles",

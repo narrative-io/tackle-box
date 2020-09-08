@@ -4,10 +4,10 @@ CSS classes representing Narrative's typographical styling
 
 ## Usage
 
-Import the **_typography.sass** stylesheet from the _styles_ directory of the _narrative-ui-library_ package
+Import the **_typography.sass** stylesheet from the _src/styles_ directory of the _tackle-box_ package
 
 ```sass
-import 'narrative-ui-library/styles/global/_typography.sass'
+import 'tackle-box/src/styles/global/_typography.sass'
 ```
 
 The classes can then be used in your stylesheets where desired:

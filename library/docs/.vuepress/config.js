@@ -32,7 +32,7 @@ module.exports = {
           { text: 'Getting Started', link: '/guide' },
 					{ text: 'Components', link: '/components/' },
 					{ text: 'Styles', link: '/styles/' },
-          { text: 'GitHub', link: 'https://github.com/narrative-io/narrative-ui-library' }
+          { text: 'GitHub', link: 'https://github.com/narrative-io/tackle-box' }
         ],
         sidebar: {
           '/components/': [

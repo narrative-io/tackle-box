@@ -4,10 +4,10 @@ SASS variables representing Narrative's color pallette
 
 ## Usage
 
-Import the **_colors.sass** stylesheet from the _styles_ directory of the _narrative-ui-library_ package
+Import the **_colors.sass** stylesheet from the _src/styles_ directory of the _tackle-box_ package
 
 ```sass
-import 'narrative-ui-library/styles/global/_colors.sass'
+import 'tackle-box/src/styles/global/_colors.sass'
 ```
 
 The SASS variables can then be used in your code where desired:

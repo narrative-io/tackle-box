@@ -8,10 +8,10 @@ Importing this file will globally overrwrite the default Vuetify breakpoints con
 
 ## Usage
 
-Import the **_breakpoints.sass** stylesheet from the _styles_ directory of the _narrative-ui-library_ package
+Import the **_breakpoints.sass** stylesheet from the _src/styles_ directory of the _tackle-box_ package
 
 ```sass
-import 'narrative-ui-library/styles/global/_breakpoints.sass'
+import 'tackle-box/src/styles/global/_breakpoints.sass'
 ```
 
 ### Details
