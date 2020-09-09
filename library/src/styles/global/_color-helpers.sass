@@ -1,0 +1,20 @@
+=text-color-modifiers
+  @each $name, $hex in $all-colors
+    &-#{$name}
+      color: $hex
+=bg-color-modifiers
+  @each $name, $hex in $all-colors
+    &-#{$name}
+      background-color: $hex
+=border-color-modifiers
+  @each $name, $hex in $all-colors
+    &-#{$name}
+      border: 2px solid $hex
+      border-radius: 12px
+  
+.text
+  @include text-color-modifiers
+.bg
+  @include bg-color-modifiers
+.border
+  @include border-color-modifiers
