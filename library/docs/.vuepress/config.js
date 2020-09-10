@@ -5,7 +5,7 @@ module.exports = {
     '/': {
       lang: 'en-US',
       title: 'Component Library 🥂',
-      description: 'Documentation site for the Vue component library plugin'
+      description: 'Documentation site for Narrative.inc\'s Tacklebox component library plugin'
     }
   },
   themeConfig: {
