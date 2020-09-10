@@ -17,6 +17,7 @@
 </template>
 
 <style lang="sass">
+  @import '../../../../src/styles/mixins/_button'
   .buttons
     padding: 0px 0px 40px 0px
     h3

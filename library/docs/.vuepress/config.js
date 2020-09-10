@@ -1,3 +1,5 @@
+const path = require("path")
+
 module.exports = {
   locales: {
     '/': {
@@ -6,7 +8,6 @@ module.exports = {
       description: 'Documentation site for the Vue component library plugin'
     }
   },
-
   themeConfig: {
     repoLabel: 'Contribute!',
     // git repo here... gitlab, github
@@ -59,5 +60,5 @@ module.exports = {
         }
       }
     }
-  }
+	}
 }
