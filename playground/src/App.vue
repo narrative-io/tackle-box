@@ -23,6 +23,8 @@ export default {
 </script>
 
 <style>
+@import "../../library/dist/tackle-box.css"
+/* 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -30,5 +32,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
+} */
 </style>

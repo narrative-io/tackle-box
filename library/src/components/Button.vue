@@ -29,7 +29,7 @@
 <style lang="sass">
   @import '@/styles/mixins/_button.sass'
 
-  .nio-button
+  .nio-button.v-btn
     +nio-button
 
     &.nio-button-primary
