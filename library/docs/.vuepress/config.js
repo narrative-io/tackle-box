@@ -4,8 +4,8 @@ module.exports = {
   locales: {
     '/': {
       lang: 'en-US',
-      title: 'Component Library 🥂',
-      description: 'Documentation site for Narrative.inc\'s Tacklebox component library plugin'
+      title: 'Tacklebox',
+      description: 'Documentation for Narrative.inc\'s Tacklebox component library plugin'
     }
   },
   themeConfig: {
