@@ -7,7 +7,6 @@
 
 <script>
 import { NioButton } from "../../library/dist/tackle-box.umd";
-
 export default {
   name: 'App',
   components: {
@@ -22,15 +21,8 @@ export default {
 }
 </script>
 
-<style>
-@import "../../library/dist/tackle-box.css"
-/* 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
+<style lang="sass">
+
+@import '../../library/src/styles/mixins/_button'
+
 </style>

@@ -15,7 +15,7 @@
     props: {
       "variant": { type: String, required: false, default: "primary" },
       "size": { type: String, required: false, default: "extra-large"},
-      "caps": { type: Boolean, required: false, default: false }
+      "caps": { type: Boolean, required: false, default: false } 
     },
     methods: {
       click() {
@@ -27,32 +27,5 @@
 </script>
 
 <style lang="sass">
-  @import '@/styles/mixins/_button.sass'
-
-  .nio-button.v-btn
-    +nio-button
-
-    &.nio-button-primary
-      +nio-button-primary
-    &.nio-button-secondary
-      +nio-button-secondary
-    &.nio-button-selected
-      +nio-button-selected
-    &.nio-button-error
-      +nio-button-error   
-
-    &.nio-button-extra-large
-      +nio-button-extra-large
-    &.nio-button-large
-      +nio-button-large
-    &.nio-button-normal
-      +nio-button-normal
-    &.nio-button-small
-      +nio-button-small
-    &.nio-button-extra-small
-      +nio-button-extra-small
-
-    &.nio-button-caps
-      +nio-button-caps           
-      
+  @import '@/styles/mixins/_button.sass'    
 </style>
