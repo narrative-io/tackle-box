@@ -1,4 +1,4 @@
-# nio-button
+# Buttons
 
 Narrative's button component
 

@@ -41,7 +41,7 @@ module.exports = {
               title: 'Components',
               collapsable: false,
               children: [
-								'nio-button'
+								'Buttons'
 							]
             }
 					],
@@ -50,10 +50,10 @@ module.exports = {
               title: 'Styles',
               collapsable: false,
               children: [
-								'colors',
-								'typography',
-								'breakpoints',
-								'button'
+								'Colors',
+								'Typography',
+								'Breakpoints',
+								'Buttons'
 							]
             }
           ]
