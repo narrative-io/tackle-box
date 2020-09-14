@@ -2,17 +2,17 @@ import Vue from "vue"
 import Vuetify from "vuetify/lib"
 
 import NioButton from "./components/Button.vue"
-import NioTextInput from "./components/TextInput.vue"
+import NioTexField from "./components/TextField.vue"
 
 Vue.use(Vuetify)
 
 const Components = {
 	NioButton,
-	NioTextInput
+	NioTextField
 }
 
 Vue.component("NioButton", NioButton)
-Vue.component("NioTextInput", NioTextInput)
+Vue.component("NioTextField", NioTextField)
 
 export { NioButton }
 

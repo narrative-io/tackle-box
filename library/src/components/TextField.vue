@@ -5,7 +5,7 @@
 <script>
   
   export default {
-    name: 'nio-text-input',
+    name: 'nio-text-field',
     props: {
 			"label": { type: String, required: false, default: "" },
     },

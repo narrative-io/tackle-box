@@ -51,7 +51,7 @@ module.exports = {
               collapsable: false,
               children: [
 								'Buttons',
-								'TextInput'
+								'TextField'
 							]
             }
 					],

@@ -1,6 +1,6 @@
 <template lang="pug">
   div.text-field
-    nio-text-input(v-model="input" :label="'Label'")
+    nio-text-field(v-model="input" :label="'Label'")
     .result Value: {{ input }}
 </template>
 
