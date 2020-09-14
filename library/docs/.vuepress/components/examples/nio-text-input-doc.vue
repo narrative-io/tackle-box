@@ -1,15 +1,15 @@
 <template lang="pug">
   div.text-field
-    nio-text-input(:model="input" :label="'Label'")
+    nio-text-input(v-model="input" :label="'Label'")
+    .result Value: {{ input }}
 </template>
-
 
 <script>
 
 export default {
   data: () => ({
     input: ""
-	})
+  })
 }	
 </script>
 

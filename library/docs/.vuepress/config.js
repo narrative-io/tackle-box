@@ -7,7 +7,16 @@ module.exports = {
       title: 'Tacklebox',
       description: 'Documentation for Narrative.inc\'s Tacklebox component library plugin'
     }
-  },
+	},
+	head: [
+		[
+			"link",
+			{
+				rel: "stylesheet",
+				href: "https://cdnjs.cloudflare.com/ajax/libs/vuetify/2.3.10/vuetify.min.css"
+			}
+		]
+	],
   themeConfig: {
     repoLabel: 'Contribute!',
     // git repo here... gitlab, github
