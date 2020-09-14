@@ -41,7 +41,8 @@ module.exports = {
               title: 'Components',
               collapsable: false,
               children: [
-								'Buttons'
+								'Buttons',
+								'TextInput'
 							]
             }
 					],
