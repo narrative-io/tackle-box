@@ -15,7 +15,7 @@
     props: {
       "variant": { type: String, required: false, default: "primary" },
       "size": { type: String, required: false, default: "extra-large"},
-      "caps": { type: Boolean, required: false, default: false } 
+      "caps": { type: Boolean, required: false, default: false }
     },
     methods: {
       click() {
@@ -27,5 +27,5 @@
 </script>
 
 <style lang="sass">
-  @import '@/styles/mixins/_button.sass'    
+  @import '../styles/mixins/_button'  
 </style>

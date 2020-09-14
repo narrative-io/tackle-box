@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import { NioButton } from "../../library/dist/tackle-box.umd";
+// import { NioButton } from "../../library/dist/tackle-box.umd";
 export default {
   name: 'App',
   components: {
-		NioButton
+		// NioButton
 	},
 	methods: {
 		clicked(arg) {
