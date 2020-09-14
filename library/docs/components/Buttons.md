@@ -6,19 +6,19 @@ Narrative's button component
 
 | Prop name             | Type    | Supported values                                        | Default value
 | --------------------- | ------- | ------------------------------------------------------- | ----------
-| variant               | string  | primary \| secondary \| selected \| error               | primary
-| size                  | string  | extra-large \| large \| normal \| small \| extra-small  | extra-large
-| caps                  | boolean | true \| false                                           | false
+| :variant               | string  | primary \| secondary \| selected \| error               | primary
+| :size                  | string  | extra-large \| large \| normal \| small \| extra-small  | extra-large
+| :caps                  | boolean | true \| false                                           | false
 
 #### Prop details:
 
-##### variant
+##### :variant
 > the stylistic variant of the button
 
-##### size
+##### :size
 > the size of the button
 
-##### caps
+##### :caps
 > whether the text in the default slot will be converted to uppercase
 
 ## Examples
