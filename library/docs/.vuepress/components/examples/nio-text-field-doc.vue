@@ -1,6 +1,6 @@
 <template lang="pug">
-  div.text-field
-    nio-text-field(v-model="input" :label="'Label'")
+  .component-content
+    nio-text-field.text-field(v-model="input" :label="'Label'")
     .result Value: {{ input }}
 </template>
 
@@ -13,13 +13,10 @@ export default {
 }	
 </script>
 
-<style lang="sass">
-  @import '../../../../src/styles/mixins/_button'
-  .buttons
-    padding: 0px 0px 40px 0px
-    h3
-      margin: 30px 0px
-      // color: #888
-    & > *
-      margin-top: 20px
+<style lang="sass" scoped>
+  @import '../../../../src/styles/mixins/_text-field.sass'
+  .component-content
+    padding: 0px 0px 40px 0px // TODO refactor this to global scope for all pages
+    .text-field
+      max-width: 300px
 </style>

@@ -8,7 +8,6 @@
 </template>
 
 <script>
-  import { VBtn } from 'vuetify/lib'
   
   export default {
     name: 'nio-button',
@@ -21,8 +20,7 @@
       click() {
         this.$emit('click')
       }
-    },
-    components: { VBtn }
+    }
   }
 </script>
 

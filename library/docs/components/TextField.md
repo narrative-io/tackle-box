@@ -6,7 +6,7 @@ Narrative's text iu component
 
 ## Examples
 
-<Demo componentName="examples-nio-text-input-doc"/>
+<Demo componentName="examples-nio-text-field-doc"/>
 
 ## Slots
 
@@ -15,6 +15,6 @@ Only a default content slot is supported by this component
 ## Source Code
 
 <SourceCode>
-<<< @/src/components/TextInput.vue
+<<< @/src/components/TextField.vue
 </SourceCode>
 

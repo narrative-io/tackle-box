@@ -1,0 +1,60 @@
+@import '../global/_colors'
+
+=nio-text-field
+  ::v-deep .v-input    
+    height: 3.375rem
+    margin-bottom: 1.25rem
+  ::v-deep  .v-text-field.v-text-field--enclosed:not(.v-text-field--rounded) > .v-input__control > .v-input__slot, .v-text-field.v-text-field--enclosed .v-text-field__details
+    padding: 0rem
+  ::v-deep .v-input__control    
+    height: 3.375rem
+  ::v-deep .v-input__slot
+    align-items: left
+    background-color: transparent
+    border: 0.0625rem solid darken($c-primary-lightest, 5)
+    border-radius: 0.5rem
+    input
+      color: $c-primary-darker
+      background-color: transparent
+      max-height: unset
+      height: 100%
+      padding: 0rem 1rem
+      padding-top: 1.0rem
+      letter-spacing: 0.0375rem
+      font-size: 0.875rem
+    label
+      color: $c-primary-dark
+      left: 1rem !important
+      right: unset !important
+    .v-text-field__slot  
+      .v-label--active  
+        letter-spacing: 0.0375rem
+        font-size: 0.75rem
+        top: 2.1875rem   
+        color: $c-primary-dark !important 
+    fieldset
+      display: none
+  ::v-deep input:-internal-autofill-selected 
+    background-color: transparent !important
+  
+  ::v-deep .v-text-field--solo
+    input
+      padding-left: 16px
+      max-height: initial
+      height: unset
+      padding: unset
+      padding-top: unset
+      padding-left: 16px
+      letter-spacing: 0.0375rem
+      font-size: 0.875rem
+    ::placeholder
+      color: $c-primary-dark !important
+    .v-input__append-inner	
+      margin-right: 16px
+      i
+        color: $c-primary-dark
+    .v-input__slot
+      height: 100%  
+    
+.nio-text-field
+  +nio-text-field
