@@ -1,6 +1,7 @@
 <template lang="pug">
   v-app
-    nio-text-field.text-field(v-model="model" :label="'Label'")
+    .wrapper
+      nio-text-field.text-field(v-model="model" :label="'Label'")
 </template>
 
 <script>
@@ -16,4 +17,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="sass" scoped>
+  .wrapper
+    padding: 30px  
+</style>

@@ -25,4 +25,6 @@ export default {
 @import '../../library/src/styles/mixins/_text-field.sass'
 * 
   font-family: 'Euclid Circular A'
+.v-application--wrap
+  padding: 30px  
 </style>

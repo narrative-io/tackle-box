@@ -1,9 +1,8 @@
 @import '../global/_colors'
 
 =nio-text-field
-  ::v-deep .v-input    
-    height: 3.375rem
-    margin-bottom: 1.25rem
+  height: 3.375rem
+  margin-bottom: 1.25rem
   ::v-deep  .v-text-field.v-text-field--enclosed:not(.v-text-field--rounded) > .v-input__control > .v-input__slot, .v-text-field.v-text-field--enclosed .v-text-field__details
     padding: 0rem
   ::v-deep .v-input__control    
@@ -55,6 +54,11 @@
         color: $c-primary-dark
     .v-input__slot
       height: 100%  
-    
+  ::v-deep .v-input--is-focused
+    .v-input__slot
+      border: 0.0625rem solid $c-primary
+  &.v-input--is-focused 
+    ::v-deep .v-input__slot
+      border: 0.0625rem solid $c-primary
 .nio-text-field
   +nio-text-field
