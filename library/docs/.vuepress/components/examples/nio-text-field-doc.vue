@@ -1,14 +1,14 @@
 <template lang="pug">
   .component-content
-    nio-text-field.text-field(v-model="input" :label="'Label'")
-    .result Value: {{ input }}
+    nio-text-field.text-field(v-model="model" :label="'Label'" @click="click" @change="change($event)" @input="input($event)")
+    .result Value: {{ model }}
 </template>
 
 <script>
 
 export default {
   data: () => ({
-    input: ""
+    model: ""
   })
 }	
 </script>
