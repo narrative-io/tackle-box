@@ -1,5 +1,5 @@
 <template lang="pug">
-	.nio-text-field.nio-form-field
+	.nio-text-field.nio-form-field(:class="{'has-error': hasError}")
 		v-text-field(
 			:label="label" 
 			outlined 
@@ -19,7 +19,8 @@
 			"model": { required: true },
 			"value": { type: String, required: false },
 			"label": { type: String, required: false, default: "" },
-			"errorMsg": { type: String, required: false }
+			"errorMsg": { type: String, required: false },
+			"hasError": { type: Boolean, required: false, default: false }
     },
     model: {
       prop: "model",
