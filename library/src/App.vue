@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     .wrapper
-      nio-text-field.text-field(v-model="model" :label="'Label'")
+      nio-text-field.text-field(v-model="model" :label="'Label'" required)
 </template>
 
 <script>
