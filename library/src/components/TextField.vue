@@ -7,7 +7,7 @@
 			:model="model" 
 			:value="value"
 			:disabled="disabled"
-			:rules="[rules.counter]"
+			:rules="[...parsedRules]"
 		)
 </template>
 
@@ -21,22 +21,22 @@
 			"label": { type: String, required: false, default: "" },
 			"errorMsg": { type: String, required: false },
 			"disabled": { type: Boolean, required: false, default: false },
-			// "rules": { type: Array, required: false, default: [] },
+			"rules": { required: false, default: [] },
     },
     model: {
       prop: "model",
       event: "update"
 		},
 		data: () => ({
-			rules: {
-				required: value => false,
-				counter: value => value.length > 3 || 'Min 3 characters',
-				email: value => {
-					const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-					return pattern.test(value) || 'Invalid e-mail.'
-				},
-			},
-		})
+			parsedRules: [],
+		}),
+		mounted() {	
+			this.rules.map((rule, index) => {
+				let func = rule.toString()
+				let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
+				this.parsedRules[index] = new Function("value", funcBody)
+			});
+		}
   }
 </script>
 
