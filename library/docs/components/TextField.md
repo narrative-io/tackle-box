@@ -6,10 +6,11 @@ Narrative's text input component
 
 | Prop name      | Type    | Supported values  | Required | Default value
 | -------------- | ------- | ----------------- | -------- | -------------
-| v-model        | string  | any valid variable| Yes      |
-| :label          | string  | any string        | No       |
-| :required       | boolean | true \| false     | No       | false
-| :errorMesssage  | string  | any string        | No       |
+| v-model        | string  | any variable      | Yes      |
+| :value 				 | string  | any string        | No       |
+| :label         | string  | any string        | No       |
+| :errorMsg  		 | string  | any string        | No       |
+| :hasError      | boolean | true \| false     | No       | false
 
 #### Prop details:
 
@@ -19,42 +20,33 @@ Narrative's text input component
 ##### :label
 > Label for the button
 
-##### :required
-> Whether the input is required. When set to true, if there no user input or the input equals "", will return a default error message of "required" and emit a **valid** event with the value **false**
-
 ##### :errorMsg
-> A custom error message which will be displayed in the .error container element. Ovverrides the __required__ prop if used.
+> A custom error message which will be displayed in the .error container element. 
 
 ::: tip
 Tacklebox does not provide custom validation and error handling at this time, so you will need to pass this prop if the input does not validate according to your business logic
 :::
 
+##### :hasError
+> Whether the text field renders with the .nio-text-field-error class, which applies a red border and label color. Automatically set to true when :errorMsg is provuded
+
 ## Events
 
-##### change
-> Emits the new input value whenever the input has changed and the field loses focus.
-
-##### input
-> Emits the new input value whenever the input has changed.
-
-##### focus
-> Emitted when the component is focused
-
-##### click
-> Emitted when input is clicked
-
-##### keydown
-> Emitted when any key is pressed
-
-##### mousedown
-> Emitted when click is pressed
-
-##### mouseup
-Emitted when click is released
+This component supports all events emitted by Vuetify's v-text-field component. For a list of these events, see Vuetify's documentation: <a href="https://vuetifyjs.com/en/components/text-fields/">https://vuetifyjs.com/en/components/text-fields/</a>
 
 ## Examples
 
-<Demo componentName="examples-nio-text-field-doc"/>
+#### Default
+<Demo componentName="examples-text-fields-default-doc"/>
+
+#### Disabled
+<Demo componentName="examples-text-fields-disabled-doc"/>
+
+#### Error
+<Demo componentName="examples-text-fields-error-doc"/>
+
+#### Error with errorMsg
+<Demo componentName="examples-text-fields-error-msg-doc"/>
 
 ## Slots
 
