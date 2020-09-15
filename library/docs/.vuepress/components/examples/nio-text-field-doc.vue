@@ -1,6 +1,6 @@
 <template lang="pug">
   .component-content
-    nio-text-field.text-field(v-model="model" :label="'Label'" @click="click" @change="change($event)" @input="input($event)")
+    nio-text-field.text-field(v-model="model" :label="'Label'")
     .result Value: {{ model }}
 </template>
 
