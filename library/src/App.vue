@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     .wrapper
-      nio-text-field.text-field(v-model="model" :label="'Label'" disabled)
+      nio-text-field.text-field(v-model="model" :label="'Label'" )
 </template>
 
 <script>
@@ -12,7 +12,15 @@ export default {
     NioTextField: () => import("./components/TextField.vue")
   },
   data: () => ({
-    model: ""
+		model: "",
+		rules: {
+			required: value => true,
+			counter: value => value.length > 3 || 'Min 3 characters',
+			email: value => {
+				const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+				return pattern.test(value) || 'Invalid e-mail.'
+			},
+		},
   })
 };
 </script>

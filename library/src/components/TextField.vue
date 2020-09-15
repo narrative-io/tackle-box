@@ -1,6 +1,5 @@
 <template lang="pug">
-	.nio-text-field.nio-form-field(:class="{'has-error': hasError}")
-		v-text-field(
+		v-text-field.nio-text-field(
 			:label="label" 
 			outlined 
 			v-on="$listeners" 
@@ -8,8 +7,8 @@
 			:model="model" 
 			:value="value"
 			:disabled="disabled"
+			:rules="[rules.counter]"
 		)
-		.nio-form-error(v-if="errorMsg") {{ errorMsg }}
 </template>
 
 <script>
@@ -21,13 +20,23 @@
 			"value": { type: String, required: false },
 			"label": { type: String, required: false, default: "" },
 			"errorMsg": { type: String, required: false },
-			"hasError": { type: Boolean, required: false, default: false },
-			"disabled": { type: Boolean, required: false, default: false }
+			"disabled": { type: Boolean, required: false, default: false },
+			// "rules": { type: Array, required: false, default: [] },
     },
     model: {
       prop: "model",
       event: "update"
-		}
+		},
+		data: () => ({
+			rules: {
+				required: value => false,
+				counter: value => value.length > 3 || 'Min 3 characters',
+				email: value => {
+					const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+					return pattern.test(value) || 'Invalid e-mail.'
+				},
+			},
+		})
   }
 </script>
 
