@@ -3,7 +3,7 @@
 =nio-text-field
   height: 3.375rem
   margin-bottom: 1.25rem
-  ::v-deep  .v-text-field.v-text-field--enclosed:not(.v-text-field--rounded) > .v-input__control > .v-input__slot, .v-text-field.v-text-field--enclosed .v-text-field__details
+  ::v-deep .v-text-field.v-text-field--enclosed:not(.v-text-field--rounded) > .v-input__control > .v-input__slot, .v-text-field.v-text-field--enclosed .v-text-field__details
     padding: 0rem
   ::v-deep .v-input__control    
     height: 3.375rem
@@ -53,15 +53,12 @@
         color: $c-primary-dark
     .v-input__slot
       height: 100%  
+
+  // focused state
   ::v-deep .v-input--is-focused
     .v-input__slot
       border: 0.0625rem solid $c-primary
-
-  // focused state    
-  &.v-input--is-focused 
-    ::v-deep .v-input__slot
-      border: 0.0625rem solid $c-primary
-    ::v-deep .v-label--active
+    .v-label--active
       color: $c-primary !important
 
   // error state    
@@ -70,6 +67,11 @@
       border: 0.0625rem solid $c-error
       label, .v-label--active
         color: $c-error !important
+
+  // disabled state
+  ::v-deep .v-input--is-disabled
+    .v-input__slot
+      background-color: $c-canvas !important
 
 .nio-text-field
   +nio-text-field
