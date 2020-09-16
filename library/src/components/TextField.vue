@@ -19,7 +19,6 @@
 			"model": { required: true },
 			"value": { type: String, required: false },
 			"label": { type: String, required: false, default: "" },
-			"errorMsg": { type: String, required: false },
 			"disabled": { type: Boolean, required: false, default: false },
 			"rules": { required: false, default: [] },
     },
