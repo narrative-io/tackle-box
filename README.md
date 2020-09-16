@@ -1,6 +1,8 @@
 # Tacklebox
 
-## Development Environment Setup
+## /library
+
+The Tacklbox library and Vuepress docs codebase
 
 ### Install Node / NPM
 `brew install node`
@@ -14,6 +16,7 @@ git clone https://github.com/narrative-io/tackle-box.git
 ### Before you begin
 
 ```
+cd library
 npm install
 ```
 
@@ -57,3 +60,12 @@ npm run docs:dev
 #### Deploy static site
 
 Coming soon
+
+## Playground
+
+Local development stratchpad to test and debug issues in external environment
+
+```
+cd playground
+npm run serve
+```
