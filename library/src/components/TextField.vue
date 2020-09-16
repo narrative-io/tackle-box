@@ -29,12 +29,22 @@
 		data: () => ({
 			parsedRules: [],
 		}),
+		methods: {
+			parseRules() {
+				this.rules.map((rule, index) => {
+					let func = rule.toString()
+					let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
+					this.parsedRules[index] = new Function("value", funcBody)
+				});
+			}
+		},
 		mounted() {	
-			this.rules.map((rule, index) => {
-				let func = rule.toString()
-				let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
-				this.parsedRules[index] = new Function("value", funcBody)
-			});
+			this.parseRules()
+		},
+		watch: {
+			rules() {
+				this.parseRules()
+			}
 		}
   }
 </script>
