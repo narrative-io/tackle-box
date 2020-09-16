@@ -3,6 +3,8 @@
 =nio-text-field
   height: 3.375rem
   margin-bottom: 1.25rem
+  border-radius: 0.5rem
+  background-color: $c-white
   ::v-deep &.v-text-field--enclosed:not(.v-text-field--rounded) > .v-input__control > .v-input__slot, .v-text-field.v-text-field--enclosed .v-text-field__details
     padding: 0rem
   ::v-deep .v-input__control    
@@ -35,6 +37,8 @@
       color: $c-primary-dark !important 
     fieldset
       display: none
+    .v-input__prepend-inner
+      margin-left: 0.625rem
   ::v-deep input:-internal-autofill-selected 
     background-color: transparent !important
   
