@@ -8,6 +8,7 @@
 			:value="value"
 			:disabled="disabled"
 			:rules="[...parsedRules]"
+			:placeholder="placeholder ? placeholder : ''"
 		)
 </template>
 
@@ -20,6 +21,7 @@
 			"value": { type: String, required: false },
 			"label": { type: String, required: false, default: "" },
 			"disabled": { type: Boolean, required: false, default: false },
+			"placeholder": { type: String, required: false },
 			"rules": { required: false },
     },
     model: {

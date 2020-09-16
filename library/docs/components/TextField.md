@@ -11,6 +11,7 @@ Narrative's text input component
 | :label         | string       | any string        | No       |
 | :disabled      | boolean      | true \| false     | No       | false
 | :rules  		 	 | see below    |                   | No       | 
+| :placeholder   | string       | any string        | No       |
 
 #### Prop details:
 
@@ -29,6 +30,9 @@ Narrative's text input component
 ::: tip
 For more information about **rules**, see Vuetify's documentation: <a href="https://vuetifyjs.com/en/components/text-fields/">https://vuetifyjs.com/en/components/text-fields/</a>
 :::
+
+##### :placeholder
+> Text field's placeholder text
 
 ## Events
 
