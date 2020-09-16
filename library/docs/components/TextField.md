@@ -48,6 +48,23 @@ This component emits all events emitted by Vuetify's v-text-field component. For
 #### With rules
 <Demo componentName="examples-text-fields-rules-doc"/>
 
+Rules value (in component's **data** function):
+
+```javascript
+	rules: {
+		required: value => !!value || 'Required',
+		counter(value) {
+			return value.length > 3 || 'Minimun 3 characters'
+		}
+	}
+```
+
+Implementation in template:
+
+```html
+<nio-text-field v-model="model" :rules="[rules.required, rules.counter]"></nio-text-field>
+```
+
 #### With placeholder
 <Demo componentName="examples-text-fields-placeholder-doc"/>
 
