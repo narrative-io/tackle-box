@@ -1,6 +1,7 @@
 <template lang="pug">
     v-text-field.nio-text-field(
       outlined 
+      flat
       @input="$emit('update', $event)"
       :model="model" 
       :rules="parsedRules"

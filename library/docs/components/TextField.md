@@ -15,6 +15,9 @@ This component preserves all events emitted by Vuetify's v-text-field component.
 #### Default
 <Demo componentName="examples-text-fields-default-doc"/>
 
+#### Solo
+<Demo componentName="examples-text-fields-solo-doc"/>
+
 #### With initial value
 <Demo componentName="examples-text-fields-initial-value-doc"/>
 

@@ -13,7 +13,8 @@
   ::v-deep .v-input__slot
     position: a
     background-color: transparent
-    border: 0.0625rem solid darken($c-primary-lightest, 5)
+    border: 0.0625rem solid
+    border-color: darken($c-primary-lightest, 5)
     border-radius: 0.5rem
     height: 100%
     input
@@ -26,6 +27,7 @@
       letter-spacing: 0.0375rem
       font-size: 0.875rem
       border-radius: 0.5rem
+
     label
       color: $c-primary-dark
       left: 1rem !important
@@ -40,11 +42,12 @@
       display: none
     .v-input__prepend-inner
       margin-left: 0.625rem
-  ::v-deep input:-internal-autofill-selected 
-    background-color: transparent !important
+    input:-internal-autofill-selected 
+      background-color: transparent !important
   
-  ::v-deep &.v-text-field--solo
-    input
+  // solo
+  &.v-text-field--solo
+    ::v-deep input
       padding-left: 16px
       max-height: initial
       height: unset
@@ -55,24 +58,25 @@
       font-size: 0.875rem
     ::placeholder
       color: $c-primary-dark !important
-    .v-input__append-inner	
+    ::v-deep .v-input__append-inner	
       margin-right: 16px
       i
         color: $c-primary-dark
-    .v-input__slot
+    ::v-deep .v-input__slot
       height: 100%  
+      border-width: 2px
 
   // focused state
   &.v-input--is-focused
     ::v-deep .v-input__slot
-      border: 0.0625rem solid $c-primary
+      border-color: $c-primary
     ::v-deep .v-label--active
       color: $c-primary !important
 
   // error state    
   &.error--text 
     ::v-deep .v-input__slot
-      border: 0.0625rem solid $c-error !important
+      border-color: $c-error !important
     ::v-deep label, ::v-deep .v-label--active, ::v-deep .v-messages__message
       color: $c-error !important
     ::v-deep .v-text-field__details
