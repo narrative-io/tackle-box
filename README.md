@@ -1,9 +1,5 @@
 # Tacklebox
 
-## Library
-
-The Tacklbox library and Vuepress docs codebase
-
 ### Install Node / NPM
 `brew install node`
 
@@ -12,6 +8,10 @@ The Tacklbox library and Vuepress docs codebase
 cd <projec>
 git clone https://github.com/narrative-io/tackle-box.git
 ```
+
+## Library
+
+The Tacklbox library and Vuepress docs codebase
 
 ### Before you begin
 
