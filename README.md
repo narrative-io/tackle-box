@@ -1,6 +1,6 @@
 # Tacklebox
 
-## /library
+## Library
 
 The Tacklbox library and Vuepress docs codebase
 
