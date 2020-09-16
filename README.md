@@ -5,13 +5,13 @@
 
 ### Clone the marketplace repo
 ```
-cd <projec>
+cd <project>
 git clone https://github.com/narrative-io/tackle-box.git
 ```
 
 ## Library
 
-The Tacklbox library and Vuepress docs codebase
+The Tacklebox library and Vuepress docs codebase
 
 ### Before you begin
 
@@ -42,7 +42,7 @@ npm run docs:build
 
 ##### Publish to npm
 
-Make asure you have an NPM account and have been added to the __developer__ team
+Make asure you have an NPM account and have been added to the __Narrative.io__ orgg and the __developers__ team
 
 ```
 npm login
