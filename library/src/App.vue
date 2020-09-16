@@ -27,10 +27,6 @@ export default {
 };
 </script>
 
-<style>
-  /* @import '../node_modules/material-design-icons-iconfont/dist/material-design-icons.css'; */
-</style>
-
 <style lang="sass" scoped>
   .wrapper
     padding: 30px  

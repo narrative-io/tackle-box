@@ -1,49 +1,49 @@
 <template lang="pug">
-		v-text-field.nio-text-field(
-			outlined 
-			v-on="$listeners" 
-			@input="$emit('update', $event)"
-			:model="model" 
-			v-bind="$attrs"
-			:rules="parsedRules"
-		)
+    v-text-field.nio-text-field(
+      outlined 
+      @input="$emit('update', $event)"
+      :model="model" 
+      :rules="parsedRules"
+      v-bind="$attrs"
+      v-on="$listeners" 
+    )
 </template>
 
 <script>
   export default {
     name: 'nio-text-field',
     props: {
-			"model": { required: true },
-			"rules": { required: false },
+      "model": { required: true },
+      "rules": { required: false },
     },
     model: {
       prop: "model",
       event: "update"
-		},
-		data: () => ({
-			parsedRules: []
-		}),
-		methods: {
-			parseRules() {
-				if (this.rules) {
-						this.rules.map((rule, index) => {
-						let func = rule.toString()
-						let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
-						this.parsedRules[index] = new Function("value", funcBody)
-					});
-				} else {
-					return [new Function("value", "return true")]
-				}
-			}
-		},
-		mounted() {	
-			this.parseRules()
-		},
-		watch: {
-			rules() {
-				this.parseRules()
-			}
-		}
+    },
+    data: () => ({
+      parsedRules: []
+    }),
+    methods: {
+      parseRules() {
+        if (this.rules) {
+            this.rules.map((rule, index) => {
+            let func = rule.toString()
+            let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
+            this.parsedRules[index] = new Function("value", funcBody)
+          });
+        } else {
+          return [new Function("value", "return true")]
+        }
+      }
+    },
+    mounted() {	
+      this.parseRules()
+    },
+    watch: {
+      rules() {
+        this.parseRules()
+      }
+    }
   }
 </script>
 
