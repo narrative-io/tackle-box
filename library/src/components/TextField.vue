@@ -1,27 +1,19 @@
 <template lang="pug">
 		v-text-field.nio-text-field(
-			:label="label" 
 			outlined 
 			v-on="$listeners" 
 			@input="$emit('update', $event)"
 			:model="model" 
-			:value="value"
-			:disabled="disabled"
-			:rules="[...parsedRules]"
-			:placeholder="placeholder ? placeholder : ''"
+			v-bind="$attrs"
+			:rules="parsedRules"
 		)
 </template>
 
 <script>
-  
   export default {
     name: 'nio-text-field',
     props: {
 			"model": { required: true },
-			"value": { type: String, required: false },
-			"label": { type: String, required: false, default: "" },
-			"disabled": { type: Boolean, required: false, default: false },
-			"placeholder": { type: String, required: false },
 			"rules": { required: false },
     },
     model: {
@@ -58,3 +50,4 @@
 <style lang="sass" scoped>
   @import '../styles/mixins/_text-field'  
 </style>
+
