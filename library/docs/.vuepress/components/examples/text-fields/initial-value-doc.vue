@@ -1,6 +1,7 @@
 <template lang="pug">
   .component-content
-    nio-text-field.text-field(v-model="model" :label="'Type text'" disabled)
+    nio-text-field.text-field(v-model="model" :label="'Type text'" value="someone beat you here")
+    .result You typed: {{ model }}
 </template>
 
 <script>

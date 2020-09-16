@@ -1,14 +1,20 @@
 <template lang="pug">
   .component-content
-    nio-text-field.text-field(v-model="model" :label="'Label'")
-    .result Value: {{ model }}
+    nio-text-field.text-field(v-model="model" :label="'Type text'" :rules="[rules.required, rules.counter]")
+    .result You typed: {{ model }}
 </template>
 
 <script>
 
 export default {
-  data: () => ({
-    model: ""
+	data: () => ({
+		model: "",
+		rules: {
+			required: value => !!value || 'Required',
+			counter(value) {
+				return value.length > 3 || 'Minimun 3 characters'
+			}
+		}
   })
 }	
 </script>

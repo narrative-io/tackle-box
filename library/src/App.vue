@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     .wrapper
-      nio-text-field.text-field(v-model="model" :label="'Label'" :rules="[rules.counter]")
+      nio-text-field.text-field(v-model="model" :label="'Label'")
 </template>
 
 <script>
@@ -16,13 +16,11 @@ export default {
 		rules: {
 			required: value => false,
 			counter(value) {
-				console.log(3)
-				return value.length > 3 || 'Min 3 characters'
+				return value.length > 3 || 'Minimun 3 characters'
 			},
-			email: value => {
-				const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-				return pattern.test(value) || 'Invalid e-mail.'
-			},
+			minValue(value) {
+				return value === "true" || value === "false" || "Must be 'true' or 'false'"
+			}
 		},
   })
 };

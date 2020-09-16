@@ -20,22 +20,26 @@
 			"value": { type: String, required: false },
 			"label": { type: String, required: false, default: "" },
 			"disabled": { type: Boolean, required: false, default: false },
-			"rules": { required: false, default: [] },
+			"rules": { required: false },
     },
     model: {
       prop: "model",
       event: "update"
 		},
 		data: () => ({
-			parsedRules: [],
+			parsedRules: []
 		}),
 		methods: {
 			parseRules() {
-				this.rules.map((rule, index) => {
-					let func = rule.toString()
-					let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
-					this.parsedRules[index] = new Function("value", funcBody)
-				});
+				if (this.rules) {
+						this.rules.map((rule, index) => {
+						let func = rule.toString()
+						let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
+						this.parsedRules[index] = new Function("value", funcBody)
+					});
+				} else {
+					return [new Function("value", "return true")]
+				}
 			}
 		},
 		mounted() {	

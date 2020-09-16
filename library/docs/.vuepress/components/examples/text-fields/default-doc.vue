@@ -1,7 +1,7 @@
 <template lang="pug">
   .component-content
-    nio-text-field.text-field(v-model="model" :label="'Label'")
-    .result Value: {{ model }}
+    nio-text-field.text-field(v-model="model" :label="'Type text'")
+    .result You typed: {{ model }}
 </template>
 
 <script>

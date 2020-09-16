@@ -39,14 +39,17 @@ This component emits all events emitted by Vuetify's v-text-field component. For
 #### Default
 <Demo componentName="examples-text-fields-default-doc"/>
 
+#### With initial value
+<Demo componentName="examples-text-fields-initial-value-doc"/>
+
 #### Disabled
 <Demo componentName="examples-text-fields-disabled-doc"/>
 
-#### Error
-<Demo componentName="examples-text-fields-error-doc"/>
+#### With rules
+<Demo componentName="examples-text-fields-rules-doc"/>
 
-#### Error with errorMsg
-<Demo componentName="examples-text-fields-error-msg-doc"/>
+#### With placeholder
+<Demo componentName="examples-text-fields-placeholder-doc"/>
 
 ## Slots
 
