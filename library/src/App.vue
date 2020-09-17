@@ -1,8 +1,15 @@
 <template lang="pug">
   v-app
     .wrapper
-      nio-select.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" appendIcon="fab fa-twitter" :rules="[rules.counter]")
-      v-icon mdi-magnify
+      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" appendIcon="fab fa-twitter")
+      nio-select.select(
+        v-model="selectedItems" 
+        :items="items"
+        @mounted="childMounted" 
+        :ref="'text'" 
+        :label="'Label'"
+      )
+      .selected Selected: {{ selectedItems }}
 </template>
 
 <script>
@@ -15,20 +22,11 @@ export default {
   },
   data: () => ({
     model: "",
-    rules: {
-      required: value => false,
-      counter(value) {
-        return value.length > 3 || 'Minimun 3 characters'
-      },
-      minValue(value) {
-        return value === "true" || value === "false" || "Must be 'true' or 'false'"
-      }
-    }
+    items: ['item 1', 'item 2', 'item 3'],
+    selectedItems: null
   }),
   methods: {
-    childMounted() {
-      this.$refs['text'].focus()
-    }
+    childMounted() {}
   },
   mounted() {
     
@@ -39,4 +37,5 @@ export default {
 <style lang="sass" scoped>
   .wrapper
     padding: 30px  
+    width: 500px
 </style>
