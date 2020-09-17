@@ -1,5 +1,5 @@
 <template lang="pug">
-    v-select(
+    v-select.nio-select(
       :model="model"
       outlined
       v-bind="$attrs"
@@ -36,6 +36,6 @@
 </script>
 
 <style lang="sass" scoped>
-  @import '../styles/mixins/_text-field'  
+  @import '../styles/mixins/_select'  
 </style>
 
