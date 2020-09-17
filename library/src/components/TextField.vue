@@ -14,7 +14,7 @@
   export default {
     name: 'nio-text-field',
     props: {
-      "model": { required: true },
+      "model": { required: false },
       "rules": { required: false },
     },
     model: {
