@@ -12,7 +12,28 @@
         :ref="'text'" 
         :label="'Label'"
       )
-      .selected Selected: {{ selectedItems }}
+      nio-select.select(
+        multiple
+        v-model="selectedItems" 
+        :items="items"
+        @mounted="childMounted" 
+        :ref="'text'" 
+        :label="'Label'"
+      )
+      NioSelect(
+        label="Preferred Data Regions"
+        v-model="selectedRegions"
+        :items="regions"
+        item-text="name"
+        item-value="value" 
+        multiple 
+      )
+        template(v-slot:selection="{ item, index }")
+          span.v-select__selection(v-if="index === 0") {{ item.name }}
+          span.v-select__selection(v-if="index === 1") , {{ item.name }}
+          span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
+          span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
+      .selected Selected: {{ selectedRegions }}
 </template>
 
 <script>
@@ -26,7 +47,26 @@ export default {
   data: () => ({
     model: "",
     items: ['item 1', 'item 2', 'item 3'],
-    selectedItems: null
+    selectedItems: null,
+    selectedRegions: [],
+    regions: [
+      {
+        name: 'US',
+        value: 1
+      },  
+      {
+        name: 'UK',
+        value: 2
+      },  
+      {
+        name: 'AU',
+        value: 3
+      },  
+      {
+        name: 'G',
+        value: 4
+      }
+    ]  
   }),
   methods: {
     childMounted() {}
