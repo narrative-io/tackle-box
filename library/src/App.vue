@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     .wrapper
-      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" appendIcon="fab fa-twitter" :rules="[rules.counter]")
+      nio-select.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" appendIcon="fab fa-twitter" :rules="[rules.counter]")
       v-icon mdi-magnify
 </template>
 
@@ -10,7 +10,8 @@ export default {
   name: "App",
   components: {
     NioButton: () => import("./components/Button.vue"),
-    NioTextField: () => import("./components/TextField.vue")
+    NioTextField: () => import("./components/TextField.vue"),
+    NioSelect: () => import("./components/Select.vue")
   },
   data: () => ({
     model: "",
