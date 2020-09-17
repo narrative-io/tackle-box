@@ -50,8 +50,9 @@ module.exports = {
               title: 'Components',
               collapsable: false,
               children: [
-								'Buttons',
-								'TextField'
+								'Button',
+								'TextField',
+								'Select'
 							]
             }
 					],

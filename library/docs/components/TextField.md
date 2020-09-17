@@ -12,7 +12,7 @@ This component preserves all of the props available on Vuetify's v-text-field co
 
 ## Events
 
-This component preserves all events emitted by Vuetify's v-text-field component. For a list of these events, see Vuetify's documentation: <a href="https://vuetifyjs.com/en/components/text-fields/">https://vuetifyjs.com/en/components/text-fields/</a>
+This component preserves all events emitted by Vuetify's v-text-field component. See Vuetify's documentation form more details.
 
 Additionally, nio-text-field component provides the following event emitters:
 
@@ -21,6 +21,10 @@ Additionally, nio-text-field component provides the following event emitters:
 
 ##### @destroyed
 > Emits when the component's __destroyed__ lifecycle method is executed
+
+## Slots
+
+Only a default content slot is supported by this component
 
 ## Examples
 
@@ -58,10 +62,6 @@ Implementation in template:
 
 #### With placeholder
 <Demo componentName="examples-text-fields-placeholder-doc"/>
-
-## Slots
-
-Only a default content slot is supported by this component
 
 ## Source Code
 
