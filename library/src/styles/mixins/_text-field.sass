@@ -17,7 +17,7 @@
     border-color: darken($c-primary-lightest, 5)
     border-radius: 0.5rem
     height: 100%
-    margin-bottom: 0px
+    margin-bottom: 0rem
     input
       color: $c-primary-dark
       background-color: transparent
@@ -35,11 +35,11 @@
       transform-origin: top left   
       height: unset
       line-height: unset
-      top: 14px
+      top: 0.875rem
     .v-label--active  
       letter-spacing: 0.0375rem
       font-size: 0.75rem
-      top: 2.1875rem   
+      top: 2.125rem   
       color: $c-primary-dark !important 
     fieldset
       display: none
@@ -51,23 +51,23 @@
   // solo
   &.v-text-field--solo
     ::v-deep input
-      padding-left: 16px
+      padding-left: 1rem
       max-height: initial
       height: unset
       padding: unset
       padding-top: unset
-      padding-left: 16px
+      padding-left: 1rem
       letter-spacing: 0.0375rem
       font-size: 0.875rem
     ::placeholder
       color: $c-primary-dark !important
     ::v-deep .v-input__append-inner	
-      margin-right: 16px
+      margin-right: 1rem
       i
         color: $c-primary-dark
     ::v-deep .v-input__slot
       height: 100%  
-      border-width: 2px
+      border-width: 0.125rem
 
   // focused state
   &.v-input--is-focused
@@ -85,9 +85,9 @@
     ::v-deep .v-text-field__details
       position: absolute
       overflow: visible
-      bottom: -32px
-      left: 0px
-      padding-left: 0px
+      bottom: -2rem
+      left: 0rem
+      padding-left: 0rem
   // disabled state
   &.v-input--is-disabled
     ::v-deep .v-input__slot
