@@ -1,6 +1,7 @@
 <template lang="pug">
     v-select.nio-select(
       :model="model"
+      :menu-props="{ offsetY: true, nudgeBottom: 10  }"
       outlined
       v-bind="$attrs"
       v-on="$listeners"
