@@ -4,6 +4,7 @@
     :class="[`nio-button-${size}`, `nio-button-${variant}`, {'nio-button-caps': caps}]"
     v-bind="$attrs"
     v-on="$listeners" 
+    ref="nio-button-ref"
   )
     slot
 </template>

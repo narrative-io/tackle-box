@@ -7,6 +7,7 @@
       :rules="parsedRules"
       v-bind="$attrs"
       v-on="$listeners" 
+      ref="nio-text-field-ref"
     )
 </template>
 
@@ -25,6 +26,9 @@
       parsedRules: []
     }),
     methods: {
+      focus() {
+        this.$refs['nio-text-field-ref'].focus()
+      },
       parseRules() {
         if (this.rules) {
             this.rules.map((rule, index) => {
@@ -39,6 +43,7 @@
     },
     mounted() {	
       this.parseRules()
+      this.$emit('mounted')
     },
     watch: {
       rules() {
