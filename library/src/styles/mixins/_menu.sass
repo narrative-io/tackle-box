@@ -2,9 +2,20 @@
 @import './_checkbox'
 
 =nio-menu
-	.v-list
-		padding-top: 1.875rem	
-		padding-bottom: 1.375rem
-		.v-list-item
-			.v-list-item__action
-			
+  border-radius: 0.3125rem
+  background-color: $c-white
+  .v-list
+    .v-list-item
+      padding-left: 1.875rem
+      &:not(.v-list-item--active):not(.v-list-item--disabled)	
+        color: $c-primary	!important 
+      &:hover:not(.v-list-item--active):not(.v-list-item--disabled)	  
+        color: $c-black !important
+      .v-list-item__action
+        .v-simple-checkbox
+          +nio-checkbox
+      &.v-list-item--active
+        .v-list-item__action
+          .v-simple-checkbox     
+            @extend .nio-checked
+          
