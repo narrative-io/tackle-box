@@ -1,7 +1,10 @@
 <template lang="pug">
   v-app
     .wrapper
-      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" appendIcon="fab fa-twitter")
+      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'")
+      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
+      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
+      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
       nio-select.select(
         v-model="selectedItems" 
         :items="items"
