@@ -1,5 +1,6 @@
 @import '../global/_colors'
 @import './_input'
+@import './_menu'
 
 =nio-select
   +nio-input
@@ -32,5 +33,8 @@
   ::v-deep .v-input__append-inner  
     margin-right: 0px
   
+  ::v-deep .v-menu__content
+    +nio-menu
+
 .nio-select
   +nio-select

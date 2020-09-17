@@ -6,6 +6,8 @@
       v-bind="$attrs"
       v-on="$listeners"
       @input="$emit('update', $event)"
+      ref="nio-select-ref"
+      :attach="node" 
     )
       template(v-slot:append)
         svg(style="width:24px;height:24px" viewBox="0 0 24 24")
@@ -26,13 +28,14 @@
       event: "update"
     },
     data: () => ({
-
+      node: null
     }),
     methods: {
       
     },
     mounted() {	
       this.$emit('mounted')
+      this.node = this.$refs['nio-select-ref'].$vnode.elm
     },
     destroyed() {
       this.$emit('destroyed')
