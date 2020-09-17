@@ -26,10 +26,11 @@ export default {
   }),
   methods: {
     childMounted() {
+      this.$refs['text'].focus()
     }
   },
   mounted() {
-    this.$refs['text'].focus()
+    
   }
 };
 </script>

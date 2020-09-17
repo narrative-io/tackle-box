@@ -31,19 +31,20 @@
       },
       parseRules() {
         if (this.rules) {
-            this.rules.map((rule, index) => {
+          this.rules.map((rule, index) => {
             let func = rule.toString()
             let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
             this.parsedRules[index] = new Function("value", funcBody)
           });
-        } else {
-          return [new Function("value", "return true")]
         }
       }
     },
     mounted() {	
       this.parseRules()
       this.$emit('mounted')
+    },
+    destroyed() {
+      this.$emit('destroyed')
     },
     watch: {
       rules() {

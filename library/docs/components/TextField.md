@@ -2,6 +2,10 @@
 
 Narrative's text input component
 
+## Selector
+
+nio-text-field
+
 ## Props
 
 This component preserves all of the props available on Vuetify's v-text-field component. For a full list, see Vuetify's documentation: <a href="https://vuetifyjs.com/en/components/text-fields/">https://vuetifyjs.com/en/components/text-fields/</a>
@@ -9,6 +13,14 @@ This component preserves all of the props available on Vuetify's v-text-field co
 ## Events
 
 This component preserves all events emitted by Vuetify's v-text-field component. For a list of these events, see Vuetify's documentation: <a href="https://vuetifyjs.com/en/components/text-fields/">https://vuetifyjs.com/en/components/text-fields/</a>
+
+Additionally, nio-text-field component provides the following event emitters:
+
+##### @mounted
+> Emits when the component's __mounted__ lifecycle method is executed
+
+##### @destroyed
+> Emits when the component's __destroyed__ lifecycle method is executed
 
 ## Examples
 
