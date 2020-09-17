@@ -1,7 +1,12 @@
 @import '../global/_colors'
-@import './_text-field'
+@import './_input'
 
 =nio-select
+  +nio-input
+  height: 3.375rem
+  margin-bottom: 1.25rem
+  border-radius: 0.5rem
+  background-color: $c-white
   &.v-select--is-menu-active 
     ::v-deep .v-input__slot
       border-color: $c-primary
