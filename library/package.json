@@ -27,9 +27,7 @@
     "storybook": "start-storybook -p 6006",
     "test": "vue-cli-service test:unit",
     "prerelease": "npm run lint --fix && npm run build:all",
-    "release": "standard-version",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "release": "standard-version"
   },
   "main": "dist/tackle-box.common.js",
   "unpkg": "dist/tackle-box.umd.min.js",

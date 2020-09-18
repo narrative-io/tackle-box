@@ -2,12 +2,12 @@
     v-select.nio-select(
       :model="model"
       :menu-props="{ offsetY: true, nudgeBottom: 10  }"
+      :attach="node"
       outlined
       v-bind="$attrs"
       v-on="$listeners"
       @input="$emit('update', $event)"
       ref="nio-select-ref"
-      :attach="node" 
     )
       template(v-slot:append)
         svg(style="width:24px;height:24px" viewBox="0 0 24 24")
