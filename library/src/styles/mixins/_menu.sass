@@ -3,15 +3,24 @@
 
 =nio-menu
   border-radius: 0.3125rem
-  background-color: $c-white
   .v-list
+    padding: 10px
     .v-list-item
-      padding-left: 1.875rem
-      &:not(.v-list-item--active):not(.v-list-item--disabled)	
-        color: $c-primary	!important 
+      padding: 0px 20px
+      &:hover
+        background-color: $c-canvas
+      &.v-list-item--active 
+        background-color: darken($c-canvas, 5) 
+        &:hover
+          background-color: $c-canvas
+      .v-list-item__title
+        color: $c-primary-darker	!important 
       &:hover:not(.v-list-item--active):not(.v-list-item--disabled)	  
         color: $c-black !important
       .v-list-item__action
+        margin-right: 5px
+        .v-list-item__icon
+          min-width: unset
         .v-simple-checkbox
           +nio-checkbox
       &.v-list-item--active
