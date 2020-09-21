@@ -5,6 +5,7 @@
       nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
       nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
       nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
+      .typed Types: {{ model }}
       nio-select.select(
         v-model="selectedItems" 
         :items="items"
@@ -41,7 +42,9 @@
           span.v-select__selection(v-if="index === 1") , {{ item.name }}
           span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
           span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-      NioCheckbox
+      NioCheckbox(v-model="checkbox")
+      v-checkbox(v-model="checkbox")
+      .checkbox {{ checkbox }}
 </template>
 
 <script>
@@ -58,6 +61,7 @@ export default {
     items: ['item 1', 'item 2', 'item 3'],
     selectedItems: null,
     selectedRegions: [],
+    checkbox: false,
     regions: [
       {
         name: 'US',
