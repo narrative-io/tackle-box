@@ -1,11 +1,11 @@
 <template lang="pug">
   v-app
     .wrapper
-      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
-      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
-      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
-      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
-      .typed Types: {{ model }}
+      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
+      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
+      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
+      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
+      //- .typed Types: {{ model }}
       //- nio-select.select(
       //-   v-model="selectedItems" 
       //-   :items="items"
@@ -52,6 +52,28 @@
       //- NioCheckbox(v-model="checkbox")
       //- v-checkbox(v-model="checkbox")
       //- .checkbox {{ checkbox }}
+      NioAutocomplete.autocomplete(
+        v-model="selectedItems" 
+        :items="items"
+        @mounted="childMounted" 
+        :value="'banana'"
+        :ref="'text'" 
+        :label="'Label'"
+      )
+      NioAutocomplete(
+        label="Preferred Data Regions"
+        v-model="selectedRegions"
+        :items="regions"
+        item-text="name"
+        item-value="value" 
+        multiple 
+      )
+        template(v-slot:selection="{ item, index }")
+          span.v-select__selection(v-if="index === 0") {{ item.name }}
+          span.v-select__selection(v-if="index === 1") , {{ item.name }}
+          span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
+          span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
+      
 </template>
 
 <script>
@@ -61,12 +83,13 @@ export default {
     NioButton: () => import("./components/Button.vue"),
     NioTextField: () => import("./components/TextField.vue"),
     NioSelect: () => import("./components/Select.vue"),
-    NioCheckbox: () => import("./components/Checkbox.vue")
+    NioCheckbox: () => import("./components/Checkbox.vue"),
+    NioAutocomplete: () => import("./components/Autocomplete.vue")
   },
   data: () => ({
     model: "",
-    items: ['item 1', 'item 2', 'item 3'],
-    selectedItems: 'Item 1',
+    items: ['apple', 'banana', 'orange', 'your mom'],
+    selectedItems: 'apple',
     selectedRegions: [],
     checkbox: false,
     regions: [

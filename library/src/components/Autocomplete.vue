@@ -1,5 +1,5 @@
 <template lang="pug">
-    v-select.nio-select(
+    v-autocomplete.nio-autocomplete(
       :model="model"
       :menu-props="{ offsetY: true, nudgeBottom: 10  }"
       :attach="node"
@@ -7,7 +7,7 @@
       v-bind="$attrs"
       v-on="$listeners"
       @input="$emit('update', $event)"
-      ref="nio-select-ref"
+      ref="nio-autocomplete-ref"
     )
       template(v-slot:append)
         svg(style="width:24px;height:24px" viewBox="0 0 24 24")
@@ -35,7 +35,7 @@
     },
     mounted() {	
       this.$emit('mounted')
-      this.node = this.$refs['nio-select-ref'].$vnode.elm
+      this.node = this.$refs['nio-autocomplete-ref'].$vnode.elm
     },
     destroyed() {
       this.$emit('destroyed')
@@ -44,6 +44,6 @@
 </script>
 
 <style lang="sass" scoped>
-  @import '../styles/mixins/_select'  
+  @import '../styles/mixins/_autocomplete'  
 </style>
 
