@@ -50,7 +50,8 @@ export default {
   components: {
     NioButton: () => import("./components/Button.vue"),
     NioTextField: () => import("./components/TextField.vue"),
-    NioSelect: () => import("./components/Select.vue")
+		NioSelect: () => import("./components/Select.vue"),
+		NioCheckbox: () => import("./components/Checkbox.vue")
   },
   data: () => ({
     model: "",
