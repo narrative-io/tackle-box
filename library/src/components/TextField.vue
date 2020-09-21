@@ -2,20 +2,25 @@
     v-text-field.nio-text-field(
       outlined 
       flat
+      @input="$emit('update', $event)"
+      :model="model" 
       :rules="parsedRules"
       v-bind="$attrs"
       v-on="$listeners" 
       ref="nio-text-field-ref"
     )
-      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data") 
 </template>
 
 <script>
   export default {
     name: 'nio-text-field',
     props: {
+      "model": { required: false },
       "rules": { required: false }
+    },
+    model: {
+      prop: "model",
+      event: "update"
     },
     data: () => ({
       parsedRules: []

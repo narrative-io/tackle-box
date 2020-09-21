@@ -1,17 +1,25 @@
 <template lang="pug">
     v-checkbox.nio-checkbox(
+      @change="$emit('update', $event)"
+      :model="model" 
       :rules="parsedRules"
       v-bind="$attrs"
       v-on="$listeners" 
       ref="nio-checkbox-ref"
     )
-      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data")    
 </template>
 
 <script>
   export default {
     name: 'nio-checkbox',
+    props: {
+      "model": { required: false },
+      "rules": { required: false }
+    },
+    model: {
+      prop: "model",
+      event: "update"
+    },
     data: () => ({
       parsedRules: []
     }),
@@ -31,6 +39,11 @@
     },
     destroyed() {
       this.$emit('destroyed')
+    },
+    watch: {
+      model(val) {
+        
+      }
     }
   }
 </script>

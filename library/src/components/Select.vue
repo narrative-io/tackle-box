@@ -1,10 +1,12 @@
 <template lang="pug">
     v-select.nio-select(
+      :model="model"
       :menu-props="{ offsetY: true, nudgeBottom: 10  }"
       :attach="node"
       outlined
       v-bind="$attrs"
       v-on="$listeners"
+      @input="$emit('update', $event)"
       ref="nio-select-ref"
     )
       template(v-slot:append)
@@ -18,11 +20,19 @@
   export default {
     name: 'nio-select',
     props: {
+      "model": { required: false },
       "rules": { required: false },
-    }, 
+    },
+    model: {
+      prop: "model",
+      event: "update"
+    },
     data: () => ({
       node: null
     }),
+    methods: {
+      
+    },
     mounted() {	
       this.$emit('mounted')
       this.node = this.$refs['nio-select-ref'].$vnode.elm

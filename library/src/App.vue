@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     .wrapper
-      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'")
+      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
       nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
       nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
       nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
@@ -10,6 +10,7 @@
         v-model="selectedItems" 
         :items="items"
         @mounted="childMounted" 
+        value="item 1"
         :ref="'text'" 
         :label="'Label'"
       )
