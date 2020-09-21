@@ -41,7 +41,7 @@
           span.v-select__selection(v-if="index === 1") , {{ item.name }}
           span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
           span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-      .selected Selected: {{ selectedRegions }}
+      NioCheckbox
 </template>
 
 <script>
@@ -50,8 +50,8 @@ export default {
   components: {
     NioButton: () => import("./components/Button.vue"),
     NioTextField: () => import("./components/TextField.vue"),
-		NioSelect: () => import("./components/Select.vue"),
-		NioCheckbox: () => import("./components/Checkbox.vue")
+    NioSelect: () => import("./components/Select.vue"),
+    NioCheckbox: () => import("./components/Checkbox.vue")
   },
   data: () => ({
     model: "",

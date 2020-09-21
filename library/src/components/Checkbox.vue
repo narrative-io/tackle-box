@@ -1,5 +1,12 @@
 <template lang="pug">
-    v-checkbox.nio-checkbox
+    v-checkbox.nio-checkbox(
+      @input="$emit('update', $event)"
+      :model="model" 
+      :rules="parsedRules"
+      v-bind="$attrs"
+      v-on="$listeners" 
+      ref="nio-checkbox-ref"
+    )
 </template>
 
 <script>
