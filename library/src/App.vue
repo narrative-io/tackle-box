@@ -66,8 +66,8 @@
       //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
       //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
       //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-      v-checkbox(v-model="selected" label="John" value="John")
-      v-checkbox(v-model="selected" label="Jacob" value="Jacob")
+      NioCheckbox(v-model="selected" label="John")
+      NioCheckbox(v-model="selected" label="Jacob")
       .a selected: {{ selected }}
       NioSwitch(v-model="switch1" :input-value="switch1") 
       .value value: {{ switch1 }}

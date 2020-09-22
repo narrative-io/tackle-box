@@ -1,4 +1,5 @@
 @import '../global/_colors'
+@import './_form-label'
 
 =nio-simple-checkbox
   margin: 0rem
@@ -16,6 +17,8 @@
     ::v-deep i
       color: $c-primary !important
       caret-color: $c-primary !important
+  ::v-deep .v-label
+    +nio-form-label 
   ::v-deep .v-input--selection-controls__ripple
     display: none
       

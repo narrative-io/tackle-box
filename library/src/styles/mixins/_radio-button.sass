@@ -1,9 +1,17 @@
 @import '../global/_colors'
+@import './_form-label'
 
 =nio-radio-button
+  ::v-deep .v-label
+    +nio-form-label
   ::v-deep .v-icon
-    color: $c-primary !important
-    font-size: 1.25rem !important
+    color: $c-primary-light !important
+    font-size: 20px !important
+  ::v-deep .v-icon.v-icon::after
+    transition: none  
+  &.v-item--active  
+    ::v-deep .v-icon
+      color: $c-primary !important
 
 .nio-radio-button
   +nio-radio-button
