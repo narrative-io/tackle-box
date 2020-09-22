@@ -3,15 +3,11 @@
 ### Install Node / NPM
 `brew install node`
 
-### Clone the marketplace repo
+### Clone the tackle-box repo
 ```
 cd <project>
 git clone https://github.com/narrative-io/tackle-box.git
 ```
-
-## Library
-
-The Tacklebox library and Vuepress docs codebase
 
 ### Before you begin
 
@@ -29,7 +25,6 @@ The Tacklebox library codebase and App for local development.
 ```
 npm run serve
 ```
-
 
 #### Deploy
 
@@ -60,12 +55,3 @@ npm run docs:dev
 #### Deploy static site
 
 Coming soon
-
-## Playground
-
-Local development stratchpad to test and debug issues in external environment
-
-```
-cd playground
-npm run serve
-```
