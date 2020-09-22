@@ -6,13 +6,13 @@
       :value="model"
       v-bind="$attrs"
       v-on="$listeners" 
-      ref="nio-checkbox-ref"
+      ref="nio-radio-button-ref"
     )
 </template>
 
 <script>
   export default {
-    name: 'nio-checkbox',
+    name: 'nio-radio-button',
     props: {
       "model": { required: false },
       "rules": { required: false }

@@ -1,18 +1,18 @@
 <template lang="pug">
-    v-checkbox.nio-checkbox(
+    v-switch.nio-switch(
       @change="$emit('update', $event)"
       :model="model" 
       :rules="parsedRules"
       :value="model"
       v-bind="$attrs"
       v-on="$listeners" 
-      ref="nio-checkbox-ref"
+      ref="nio-switch-ref"
     )
 </template>
 
 <script>
   export default {
-    name: 'nio-checkbox',
+    name: 'nio-switch',
     props: {
       "model": { required: false },
       "rules": { required: false }

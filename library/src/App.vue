@@ -78,8 +78,10 @@ export default {
     NioButton: () => import("./components/Button.vue"),
     NioTextField: () => import("./components/TextField.vue"),
     NioSelect: () => import("./components/Select.vue"),
+    NioAutocomplete: () => import("./components/Autocomplete.vue"),
     NioCheckbox: () => import("./components/Checkbox.vue"),
-    NioAutocomplete: () => import("./components/Autocomplete.vue")
+    NioSwitch: () => import("./components/Switch.vue"),
+    NioRadioButton: () => import("./components/RadioButton.vue"),
   },
   data: () => ({
     model: "",
