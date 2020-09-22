@@ -43,15 +43,3 @@ Make asure you have an NPM account and have been added to the __Narrative.io__ o
 npm login
 npm publish -access public
 ```
-
-### Vuepress Docs Site
-
-#### Develop locally
-
-```
-npm run docs:dev
-```
-
-#### Deploy static site
-
-Coming soon
