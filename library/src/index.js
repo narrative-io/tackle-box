@@ -7,6 +7,7 @@ import NioSelect from "./components/Select.vue"
 import NioAutocomplete from "./components/Autocomplete.vue"
 import NioCheckbox from "./components/Checkbox.vue"
 import NioSwitch from "./components/Switch.vue"
+import NioRadioGroup from "./components/RadioGroup"
 import NioRadioButton from "./components/RadioButton"
 
 Vue.use(Vuetify)
@@ -18,6 +19,7 @@ const Components = {
 	NioAutocomplete,
 	NioCheckbox,
 	NioSwitch,
+	NioRadioGroup,
 	NioRadioButton
 }
 
@@ -27,6 +29,7 @@ Vue.component("NioSelect", NioSelect)
 Vue.component("NioAutocomplete", NioAutocomplete)
 Vue.component("NioCheckbox", NioCheckbox)
 Vue.component("NioSwitch", NioSwitch)
+Vue.component("NioRadioGroup", NioRadioGroup)
 Vue.component("NioRadioButton", NioRadioButton)
 
 export { NioButton }
@@ -35,6 +38,7 @@ export { NioSelect }
 export { NioAutocomplete }
 export { NioCheckbox }
 export { NioSwitch }
+export { NioRadioGroup }
 export { NioRadioButton }
 
 export default Components

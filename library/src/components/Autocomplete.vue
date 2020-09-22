@@ -14,6 +14,7 @@
           path(fill="#425290" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z")
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data")    
+      slot  
 </template>
 
 <script>

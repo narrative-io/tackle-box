@@ -9,6 +9,9 @@
       v-on="$listeners" 
       ref="nio-text-field-ref"
     )
+      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+        slot(:name="name" v-bind="data")   
+      slot  
 </template>
 
 <script>

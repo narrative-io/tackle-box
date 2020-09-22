@@ -74,6 +74,10 @@
       NioSwitch(v-model="switch2" :input-value="switch2" value="John")
       NioSwitch(v-model="switch2" :input-value="switch2" value="Jacob")       
       .value value: {{ switch2 }}
+      NioRadioGroup(v-model="radio")
+        NioRadioButton(value="John" label="John")
+        NioRadioButton(value="Jacob" label="Jacob")
+      .value value: {{ radio }}
 </template>
 
 <script>
@@ -86,7 +90,8 @@ export default {
     NioAutocomplete: () => import("./components/Autocomplete.vue"),
     NioCheckbox: () => import("./components/Checkbox.vue"),
     NioSwitch: () => import("./components/Switch.vue"),
-    NioRadioButton: () => import("./components/RadioButton.vue"),
+    NioRadioGroup: () => import("./components/RadioGroup.vue"),
+    NioRadioButton: () => import("./components/RadioButton.vue")
   },
   data: () => ({
     model: "",
@@ -96,6 +101,7 @@ export default {
     checkbox: false,
     selected: ['John'],
     switch1: true,
+    radio: 'Jacob',
     switch2: ['Jacob', 'John'],
     regions: [
       {

@@ -1,21 +1,22 @@
 <template lang="pug">
-    v-checkbox.nio-checkbox(
+    v-radio-group.nio-radio-group(
       @change="$emit('update', $event)"
       :model="model" 
       :rules="parsedRules"
       :value="model"
+      :ripple="false"
       v-bind="$attrs"
       v-on="$listeners" 
-      ref="nio-checkbox-ref"
+      ref="nio-radio-group-ref"
     )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data")  
-      slot   
+        slot(:name="name" v-bind="data")
+      slot  
 </template>
 
 <script>
   export default {
-    name: 'nio-checkbox',
+    name: 'nio-radio-group',
     props: {
       "model": { required: false },
       "rules": { required: false }
@@ -48,5 +49,4 @@
 </script>
 
 <style lang="sass" scoped>
-  @import '../styles/mixins/_checkbox'  
 </style>
