@@ -66,7 +66,9 @@
           span.v-select__selection(v-if="index === 1") , {{ item.name }}
           span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
           span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-      
+      v-checkbox(v-model="selected" label="John" value="John")
+      v-checkbox(v-model="selected" label="Jacob" value="Jacob")
+      .a selected: {{ selected }}
 </template>
 
 <script>
@@ -85,6 +87,7 @@ export default {
     selectedItems: 'apple',
     selectedRegions: [],
     checkbox: false,
+    selected: ['John'],
     regions: [
       {
         name: 'US',

@@ -3,6 +3,7 @@
       @change="$emit('update', $event)"
       :model="model" 
       :rules="parsedRules"
+      :value="model"
       v-bind="$attrs"
       v-on="$listeners" 
       ref="nio-checkbox-ref"
