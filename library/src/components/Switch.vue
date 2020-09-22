@@ -7,6 +7,7 @@
       v-bind="$attrs"
       v-on="$listeners" 
       ref="nio-switch-ref"
+      :ripple="false"
     )
 </template>
 
@@ -45,5 +46,5 @@
 </script>
 
 <style lang="sass" scoped>
-  @import '../styles/mixins/_checkbox'  
+  @import '../styles/mixins/_switch'  
 </style>

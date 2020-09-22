@@ -1,0 +1,27 @@
+@import '../global/_colors'
+
+=nio-switch
+	::v-deep .v-input--selection-controls__input
+		height: 28px
+		width: 48px
+		.v-input--switch__track
+			height: 28px
+			top: 0px
+			left: 0px	
+			width: 48px
+			border-radius: 14px
+		.v-input--switch__thumb
+			width: 22px
+			height: 22px
+			box-shadow: none
+			top: 3px	
+			margin-left: 3px
+	&.v-input--is-label-active
+		::v-deep .v-input--switch__track
+			background-color: $c-primary
+			opacity: 1
+		::v-deep .v-input--switch__thumb
+			background-color: white
+
+.nio-switch
+	+nio-switch
