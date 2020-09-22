@@ -69,7 +69,11 @@
       v-checkbox(v-model="selected" label="John" value="John")
       v-checkbox(v-model="selected" label="Jacob" value="Jacob")
       .a selected: {{ selected }}
-      NioSwitch
+      NioSwitch(v-model="switch1" :input-value="switch1") 
+      .value value: {{ switch1 }}
+      NioSwitch(v-model="switch2" :input-value="switch2" value="John")
+      NioSwitch(v-model="switch2" :input-value="switch2" value="Jacob")       
+      .value value: {{ switch2 }}
 </template>
 
 <script>
@@ -91,6 +95,8 @@ export default {
     selectedRegions: [],
     checkbox: false,
     selected: ['John'],
+    switch1: true,
+    switch2: ['Jacob', 'John'],
     regions: [
       {
         name: 'US',

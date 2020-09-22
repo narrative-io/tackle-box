@@ -1,9 +1,7 @@
 <template lang="pug">
     v-switch.nio-switch(
       @change="$emit('update', $event)"
-      :model="model" 
       :rules="parsedRules"
-      :value="model"
       v-bind="$attrs"
       v-on="$listeners" 
       ref="nio-switch-ref"
