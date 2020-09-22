@@ -1,5 +1,6 @@
 <template lang="pug">
     v-checkbox.nio-checkbox(
+      v-if="Array.isArray(this.model)"
       @change="updateModel($event)"
       :model="model" 
       :rules="parsedRules"
@@ -7,8 +8,21 @@
       v-on="$listeners" 
       ref="nio-checkbox-ref"
       :value="value"
-      :input-value="model.find(val => val === value)"
+      :input-value="this.model.find(val => val === this.value)"
     )
+      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+        slot(:name="name" v-bind="data")  
+      slot   
+    v-checkbox.nio-checkbox(
+      v-else
+      @change="$emit('update', $event)"
+      :model="model" 
+      :rules="parsedRules"
+      v-bind="$attrs"
+      v-on="$listeners" 
+      ref="nio-checkbox-ref"
+      :input-value="model"
+    )  
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data")  
       slot   
@@ -38,11 +52,8 @@
             this.model.push(state)
             this.$emit('update', this.model)
           }
-          // if (this.model.indexOf(state) === -1) {
-          //   this.$emit('update', [...this.model, value])
-          // }
         } else {
-          this.$emit('update', this.state)
+          this.$emit('update', this.state === true ? true : false)
         }
       },
       parseRules() {

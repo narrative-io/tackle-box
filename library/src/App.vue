@@ -66,6 +66,8 @@
       //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
       //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
       //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
+      NioCheckbox(v-model="selected2" label="hello" )
+      .value value: {{ selected2 }}
       NioCheckbox(v-model="selected" label="John" value="John")
       NioCheckbox(v-model="selected" label="Jacob" value="Jacob")
       .a selected: {{ selected }}
@@ -99,7 +101,8 @@ export default {
     selectedItems: 'apple',
     selectedRegions: [],
     checkbox: false,
-    selected: [],
+    selected: ['John'],
+    selected2: true,
     switch1: true,
     radio: 'Jacob',
     switch2: ['Jacob', 'John'],
@@ -129,7 +132,7 @@ export default {
     
   },
   watch: {
-    selected(value) {
+    selected2(value) {
       console.log(value)
     }
   }
