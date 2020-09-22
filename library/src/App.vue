@@ -66,8 +66,8 @@
       //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
       //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
       //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-      NioCheckbox(v-model="selected" label="John")
-      NioCheckbox(v-model="selected" label="Jacob")
+      NioCheckbox(v-model="selected" label="John" value="John")
+      NioCheckbox(v-model="selected" label="Jacob" value="Jacob")
       .a selected: {{ selected }}
       NioSwitch(v-model="switch1" :input-value="switch1") 
       .value value: {{ switch1 }}
@@ -99,7 +99,7 @@ export default {
     selectedItems: 'apple',
     selectedRegions: [],
     checkbox: false,
-    selected: ['John'],
+    selected: [],
     switch1: true,
     radio: 'Jacob',
     switch2: ['Jacob', 'John'],
@@ -127,6 +127,11 @@ export default {
   },
   mounted() {
     
+  },
+  watch: {
+    selected(value) {
+      console.log(value)
+    }
   }
 };
 </script>

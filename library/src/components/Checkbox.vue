@@ -1,11 +1,13 @@
 <template lang="pug">
     v-checkbox.nio-checkbox(
-      @change="$emit('update', $event)"
+      @change="updateModel($event)"
       :model="model" 
       :rules="parsedRules"
       v-bind="$attrs"
       v-on="$listeners" 
       ref="nio-checkbox-ref"
+      :value="value"
+      :input-value="model.find(val => val === value)"
     )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data")  
@@ -17,7 +19,8 @@
     name: 'nio-checkbox',
     props: {
       "model": { required: false },
-      "rules": { required: false }
+      "rules": { required: false },
+      "value": { required: false}
     },
     model: {
       prop: "model",
@@ -27,7 +30,22 @@
       parsedRules: []
     }),
     methods: {
-     parseRules() {
+      updateModel(state) {
+        if (Array.isArray(this.model)) {
+          if (state === null) {
+            this.$emit('update', this.model.filter(val => val !== this.value))
+          } else {
+            this.model.push(state)
+            this.$emit('update', this.model)
+          }
+          // if (this.model.indexOf(state) === -1) {
+          //   this.$emit('update', [...this.model, value])
+          // }
+        } else {
+          this.$emit('update', this.state)
+        }
+      },
+      parseRules() {
         if (this.rules) {
           this.rules.map((rule, index) => {
             let func = rule.toString()
