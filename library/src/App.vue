@@ -1,10 +1,11 @@
 <template lang="pug">
   v-app
     .wrapper
-      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
-      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
-      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
-      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
+      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
+      nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
+      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
+      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
+      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
       //- .typed Types: {{ model }}
       //- nio-select.select(
       //-   v-model="selectedItems" 
@@ -66,20 +67,20 @@
       //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
       //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
       //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-      NioCheckbox(v-model="selected2" label="hello" )
-      .value value: {{ selected2 }}
-      NioCheckbox(v-model="selected" label="John" value="John")
-      NioCheckbox(v-model="selected" label="Jacob" value="Jacob")
-      .a selected: {{ selected }}
-      NioSwitch(v-model="switch1" :input-value="switch1") 
-      .value value: {{ switch1 }}
-      NioSwitch(v-model="switch2" :input-value="switch2" value="John")
-      NioSwitch(v-model="switch2" :input-value="switch2" value="Jacob")       
-      .value value: {{ switch2 }}
-      NioRadioGroup(v-model="radio")
-        NioRadioButton(value="John" label="John")
-        NioRadioButton(value="Jacob" label="Jacob")
-      .value value: {{ radio }}
+      //- NioCheckbox(v-model="selected2" label="hello" )
+      //- .value value: {{ selected2 }}
+      //- NioCheckbox(v-model="selected" label="John" value="John")
+      //- NioCheckbox(v-model="selected" label="Jacob" value="Jacob")
+      //- .a selected: {{ selected }}
+      //- NioSwitch(v-model="switch1" :input-value="switch1") 
+      //- .value value: {{ switch1 }}
+      //- NioSwitch(v-model="switch2" :input-value="switch2" value="John")
+      //- NioSwitch(v-model="switch2" :input-value="switch2" value="Jacob")       
+      //- .value value: {{ switch2 }}
+      //- NioRadioGroup(v-model="radio")
+      //-   NioRadioButton(value="John" label="John")
+      //-   NioRadioButton(value="Jacob" label="Jacob")
+      //- .value value: {{ radio }}
 </template>
 
 <script>
