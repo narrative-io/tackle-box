@@ -32,7 +32,7 @@ npm run serve
 ##### Build the project
 
 ```
-npm run docs:build
+npm run build
 ```
 
 ##### Publish to npm
@@ -41,5 +41,5 @@ Make asure you have an NPM account and have been added to the __Narrative.io__ o
 
 ```
 npm login
-npm publish -access public
+npm run release
 ```
