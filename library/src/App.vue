@@ -1,11 +1,11 @@
 <template lang="pug">
   v-app
     .wrapper
-      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
-      nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
-      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
-      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
-      nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
+      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
+      //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
+      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
+      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
+      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
       //- .typed Types: {{ model }}
       //- nio-select.select(
       //-   v-model="selectedItems" 
@@ -81,6 +81,9 @@
       //-   NioRadioButton(value="John" label="John")
       //-   NioRadioButton(value="Jacob" label="Jacob")
       //- .value value: {{ radio }}
+      NioButton(:variant="'primary'") Primary
+      NioButton(:variant="'secondary'") Secondary
+      NioButton(:variant="'tertiary'") Tertiary
 </template>
 
 <script>

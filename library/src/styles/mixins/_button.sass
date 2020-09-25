@@ -91,6 +91,18 @@
     border: 1px solid $c-primary-light   !important 
     color: $c-primary !important
 
+=nio-button-tertiary
+  +nio-button-secondary
+  &.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
+    border: none !important
+    background-color: rgba(0,0,0,0)
+  &:hover
+    &.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)  
+      border: none !important
+      background-color: rgba(0,0,0,0)
+      &:before
+        opacity: 0
+        
 =nio-button-selected
   pointer-events: none
   border: none
@@ -159,6 +171,8 @@
     +nio-button-primary
   &.nio-button-secondary
     +nio-button-secondary
+  &.nio-button-tertiary
+    +nio-button-tertiary	
   &.nio-button-selected
     +nio-button-selected
   &.nio-button-error
