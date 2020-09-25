@@ -6,7 +6,9 @@
     v-on="$listeners" 
     ref="nio-button-ref"
   )
+    v-icon(v-if="prependAttr") {{ icon }}
     slot
+    v-icon(v-if="appendAttr") {{ icon }}
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
       slot(:name="name" v-bind="data") 
 </template>
@@ -18,8 +20,8 @@
     props: {
       "variant": { type: String, required: false, default: "primary" },
       "size": { type: String, required: false, default: "extra-large"},
-      "caps": { type: Boolean, required: false, default: true }
-
+      "caps": { type: Boolean, required: false, default: true },
+      "icon": { type: String, required: false, default: null }
     },
     methods: {
       applyHelperAttributes() {
@@ -44,11 +46,23 @@
           this.variantAttr = 'secondary'
           this.sizeAttr = 'extra-large'
         }
+        if (attributes.getNamedItem('normal-primary-prepend')) {
+          this.variantAttr = 'primary'
+          this.sizeAttr = 'normal'
+          this.prependAttr = true
+        }
+        if (attributes.getNamedItem('normal-primary-append')) {
+          this.variantAttr = 'primary'
+          this.sizeAttr = 'normal'
+          this.appendAttr = true
+        }
       }
     },
     data: () => ({
       sizeAttr: null,
       variantAttr: null,
+      prependAttr: false,
+      appendAttr: false
     }),
     mounted() {
       this.applyHelperAttributes()
