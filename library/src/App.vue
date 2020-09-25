@@ -84,6 +84,7 @@
       NioButton(:variant="'primary'") Primary
       NioButton(:variant="'secondary'") Secondary
       NioButton(:variant="'tertiary'") Tertiary
+      NioButton(normal-primary) Normal Primary
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 @import '../global/_colors'
 
-=nio-button($variant: primary, $size: extra-large, $caps: false)
+=nio-button($variant: primary, $size: extra-large, $caps: true)
   display: block
  
   ::v-deep .v-btn__content
@@ -10,7 +10,7 @@
   font-size: 0.75rem
   color: #ffffff
   box-shadow: none
-  border-radius: 2.5rem	
+  border-radius: 2.5rem
   letter-spacing: 0.6px
   text-transform: none
 
@@ -102,7 +102,7 @@
       background-color: rgba(0,0,0,0)
       &:before
         opacity: 0
-        
+
 =nio-button-selected
   pointer-events: none
   border: none

@@ -8,7 +8,7 @@
   )
     slot
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data") 
+      slot(:name="name" v-bind="data") 
 </template>
 
 <script>
@@ -18,7 +18,20 @@
     props: {
       "variant": { type: String, required: false, default: "primary" },
       "size": { type: String, required: false, default: "extra-large"},
-      "caps": { type: Boolean, required: false, default: false }
+      "caps": { type: Boolean, required: false, default: true }
+
+    },
+    methods: {
+      applyHelperAttributes() {
+        const attributes = this.$el.attributes
+        if (attributes.getNamedItem('normal-primary')) {
+          this.variant = 'primary'
+          this.size = 'normal'
+        }
+      }
+    },
+    mounted() {
+      this.applyHelperAttributes()
     }
   }
 </script>
