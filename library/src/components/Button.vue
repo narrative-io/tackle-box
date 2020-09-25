@@ -1,14 +1,14 @@
 <template lang="pug">
   v-btn.nio-button(
     :ripple="false" 
-    :class="[`nio-button-${sizeAttr ? sizeAttr : size}`, `nio-button-${variantAttr ? variantAttr : variant}`, {'nio-button-caps': caps}]"
+    :class="[`nio-button-${ sizeAttr ? sizeAttr : size }`, `nio-button-${ variantAttr ? variantAttr : variant }`, { 'nio-button-caps': caps }, { 'nio-button-prepend': prependAttr }, { 'nio-button-append': appendAttr }]"
     v-bind="$attrs"
     v-on="$listeners" 
     ref="nio-button-ref"
   )
-    v-icon(v-if="prependAttr") {{ icon }}
+    v-icon(v-if="prependAttr" size="20") {{ icon }}
     slot
-    v-icon(v-if="appendAttr") {{ icon }}
+    v-icon(v-if="appendAttr" size="20") {{ icon }}
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
       slot(:name="name" v-bind="data") 
 </template>
@@ -51,16 +51,36 @@
           this.sizeAttr = 'normal'
           this.prependAttr = true
         }
+        if (attributes.getNamedItem('normal-secondary-prepend')) {
+          this.variantAttr = 'secondary'
+          this.sizeAttr = 'normal'
+          this.prependAttr = true
+        }
+        if (attributes.getNamedItem('normal-tertiary-prepend')) {
+          this.variantAttr = 'tertiary'
+          this.sizeAttr = 'normal'
+          this.prependAttr = true
+        }
         if (attributes.getNamedItem('normal-primary-append')) {
           this.variantAttr = 'primary'
+          this.sizeAttr = 'normal'
+          this.appendAttr = true
+        }
+         if (attributes.getNamedItem('normal-secondary-append')) {
+          this.variantAttr = 'secondary'
+          this.sizeAttr = 'normal'
+          this.appendAttr = true
+        }
+         if (attributes.getNamedItem('normal-tertiary-append')) {
+          this.variantAttr = 'tertiary'
           this.sizeAttr = 'normal'
           this.appendAttr = true
         }
       }
     },
     data: () => ({
-      sizeAttr: null,
-      variantAttr: null,
+      sizeAttr: undefined,
+      variantAttr: undefined,
       prependAttr: false,
       appendAttr: false
     }),

@@ -89,8 +89,12 @@
       NioButton(normal-tertiary) Normal Tertiary
       NioButton(jumbo-primary) Jumbo Primary
       NioButton(jumbo-secondary) Jumbo Secondary
-      NioButton(normal-primary-prepend icon="md-alarm") Icon Prepend
-      NioButton(normal-primary-append icon="md-alarm") Icon Append
+      NioButton(normal-primary-prepend icon="mdi-plus") Icon Prepend
+      NioButton(normal-secondary-prepend icon="mdi-delete") Icon Prepend
+      NioButton(normal-tertiary-prepend icon="mdi-chevron-right") Icon Prepend
+      NioButton(normal-primary-append icon="mdi-alarm") Icon Append
+      NioButton(normal-secondary-append icon="mdi-alarm") Icon Append
+      NioButton(normal-tertiary-append icon="mdi-alarm") Icon Append
 </template>
 
 <script>
