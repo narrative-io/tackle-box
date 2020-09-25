@@ -15,46 +15,49 @@
 </template>
 
 <script>
-  export default {
-    name: 'nio-text-field',
-    props: {
-      "model": { required: false },
-      "rules": { required: false }
-    },
-    model: {
-      prop: "model",
-      event: "update"
-    },
-    data: () => ({
-      parsedRules: []
-    }),
-    methods: {
-      focus() {
-        this.$refs['nio-text-field-ref'].focus()
-      },
-      parseRules() {
-        if (this.rules) {
-          this.rules.map((rule, index) => {
-            let func = rule.toString()
-            let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
-            this.parsedRules[index] = new Function("value", funcBody)
-          });
-        }
-      }
-    },
-    mounted() {	
-      this.parseRules()
-      this.$emit('mounted')
-    },
-    destroyed() {
-      this.$emit('destroyed')
-    },
-    watch: {
-      rules() {
-        this.parseRules()
-      }
-    }
-  }
+import { VTextField } from 'vuetify/lib'
+
+export default {
+	name: 'nio-text-field',
+	props: {
+		"model": { required: false },
+		"rules": { required: false }
+	},
+	model: {
+		prop: "model",
+		event: "update"
+	},
+	data: () => ({
+		parsedRules: []
+	}),
+	methods: {
+		focus() {
+			this.$refs['nio-text-field-ref'].focus()
+		},
+		parseRules() {
+			if (this.rules) {
+				this.rules.map((rule, index) => {
+					let func = rule.toString()
+					let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
+					this.parsedRules[index] = new Function("value", funcBody)
+				});
+			}
+		}
+	},
+	mounted() {	
+		this.parseRules()
+		this.$emit('mounted')
+	},
+	destroyed() {
+		this.$emit('destroyed')
+	},
+	watch: {
+		rules() {
+			this.parseRules()
+		}
+	},
+	components: { VTextField }
+}
 </script>
 
 <style lang="sass" scoped>
