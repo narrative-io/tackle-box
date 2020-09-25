@@ -85,6 +85,10 @@
       NioButton(:variant="'secondary'") Secondary
       NioButton(:variant="'tertiary'") Tertiary
       NioButton(normal-primary) Normal Primary
+      NioButton(normal-secondary) Normal Secondary
+      NioButton(normal-tertiary) Normal Tertiary
+      NioButton(jumbo-primary) Jumbo Primary
+      NioButton(jumbo-secondary) Normal Secondary
 </template>
 
 <script>
@@ -111,6 +115,7 @@ export default {
     switch1: true,
     radio: 'Jacob',
     switch2: ['Jacob', 'John'],
+    size: null,
     regions: [
       {
         name: 'US',
@@ -134,7 +139,7 @@ export default {
     childMounted() {}
   },
   mounted() {
-    
+    setTimeout(function(){ this.size = 'extra-large' }, 1000);
   },
   watch: {
     selected2(value) {

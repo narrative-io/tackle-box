@@ -1,7 +1,7 @@
 <template lang="pug">
   v-btn.nio-button(
     :ripple="false" 
-    :class="[`nio-button-${size}`, `nio-button-${variant}`, {'nio-button-caps': caps}]"
+    :class="[`nio-button-${sizeAttr ? sizeAttr : size}`, `nio-button-${variantAttr ? variantAttr : variant}`, {'nio-button-caps': caps}]"
     v-bind="$attrs"
     v-on="$listeners" 
     ref="nio-button-ref"
@@ -25,11 +25,31 @@
       applyHelperAttributes() {
         const attributes = this.$el.attributes
         if (attributes.getNamedItem('normal-primary')) {
-          this.variant = 'primary'
-          this.size = 'normal'
+          this.variantAttr = 'primary'
+          this.sizeAttr = 'normal'
+        }
+        if (attributes.getNamedItem('normal-secondary')) {
+          this.variantAttr = 'secondary'
+          this.sizeAttr = 'normal'
+        }
+        if (attributes.getNamedItem('normal-tertiary')) {
+          this.variantAttr = 'tertiary'
+          this.sizeAttr = 'normal'
+        }
+        if (attributes.getNamedItem('jumbo-primary')) {
+          this.variantAttr = 'primary'
+          this.sizeAttr = 'extra-large'
+        }
+        if (attributes.getNamedItem('jumbo-secondary')) {
+          this.variantAttr = 'secondary'
+          this.sizeAttr = 'extra-large'
         }
       }
     },
+    data: () => ({
+      sizeAttr: null,
+      variantAttr: null,
+    }),
     mounted() {
       this.applyHelperAttributes()
     }
