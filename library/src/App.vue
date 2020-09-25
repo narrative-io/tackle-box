@@ -84,17 +84,15 @@
       NioButton(:variant="'primary'") Primary
       NioButton(:variant="'secondary'") Secondary
       NioButton(:variant="'tertiary'") Tertiary
-      NioButton(normal-primary) Normal Primary
-      NioButton(normal-secondary) Normal Secondary
-      NioButton(normal-tertiary) Normal Tertiary
-      NioButton(jumbo-primary) Jumbo Primary
-      NioButton(jumbo-secondary) Jumbo Secondary
-      NioButton(normal-primary-prepend icon="mdi-plus") Icon Prepend
-      NioButton(normal-secondary-prepend icon="mdi-delete") Icon Prepend
-      NioButton(normal-tertiary-prepend icon="mdi-chevron-right") Icon Prepend
-      NioButton(normal-primary-append icon="mdi-alarm") Icon Append
-      NioButton(normal-secondary-append icon="mdi-alarm") Icon Append
-      NioButton(normal-tertiary-append icon="mdi-alarm") Icon Append
+      NioButton(normal-primary) Quick Add
+      NioButton(normal-secondary) View Details
+      NioButton(normal-tertiary) Forgot Password
+      NioButton(normal-primary-prepend icon="mdi-plus") New Onboarding
+      NioButton(normal-secondary-prepend icon="mdi-chevron-left") Previous
+      NioButton(normal-tertiary-prepend icon="mdi-arrow-left") Back to Main
+      NioButton(normal-primary-append icon="mdi-plus") Checkout
+      NioButton(normal-secondary-append icon="mdi-chevron-right") More Options
+      NioButton(normal-tertiary-append icon="mdi-arrow-right") View All Suppliers
 </template>
 
 <script>
