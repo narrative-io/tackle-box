@@ -2,11 +2,12 @@
   v-btn.nio-button(
     :ripple="false" 
     :class="[`nio-button-${ sizeAttr ? sizeAttr : size }`, `nio-button-${ variantAttr ? variantAttr : variant }`, { 'nio-button-caps': caps }, { 'nio-button-prepend': prependAttr }, { 'nio-button-append': appendAttr }]"
+    :icon="iconAttr"
     v-bind="$attrs"
     v-on="$listeners" 
     ref="nio-button-ref"
   )
-    v-icon(v-if="prependAttr" size="20") {{ icon }}
+    v-icon(v-if="prependAttr || iconAttr" :size="iconSize") {{ icon }}
     slot
     v-icon(v-if="appendAttr" size="20") {{ icon }}
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
@@ -23,6 +24,32 @@
       "caps": { type: Boolean, required: false, default: true },
       "icon": { type: String, required: false, default: null }
     },
+    computed: {
+      iconSize() {
+        const size = this.sizeAttr ? this.sizeAttr : this.size
+        
+        switch (size) {
+          case 'extra-large':
+            return this.iconAttr ? '30' : '20'
+            break;
+          case 'large':  
+            return this.iconAttr ? '30' : '20'
+            break;
+          case 'normal':  
+            return this.iconAttr ? '30' : '20'
+            break;  
+          case 'small':  
+            return this.iconAttr ? '30' : '20'
+            break;
+          case 'extra-small':  
+            return this.iconAttr ? '30' : '20'
+            break;    
+          default:
+            return '20'
+            break;
+        }
+      }
+    },
     methods: {
       applyHelperAttributes() {
         const attributes = this.$el.attributes
@@ -37,14 +64,6 @@
         if (attributes.getNamedItem('normal-tertiary')) {
           this.variantAttr = 'tertiary'
           this.sizeAttr = 'normal'
-        }
-        if (attributes.getNamedItem('jumbo-primary')) {
-          this.variantAttr = 'primary'
-          this.sizeAttr = 'extra-large'
-        }
-        if (attributes.getNamedItem('jumbo-secondary')) {
-          this.variantAttr = 'secondary'
-          this.sizeAttr = 'extra-large'
         }
         if (attributes.getNamedItem('normal-primary-prepend')) {
           this.variantAttr = 'primary'
@@ -76,13 +95,29 @@
           this.sizeAttr = 'normal'
           this.appendAttr = true
         }
+        if (attributes.getNamedItem('jumbo-primary')) {
+          this.variantAttr = 'primary'
+          this.sizeAttr = 'extra-large'
+        }
+        if (attributes.getNamedItem('jumbo-secondary')) {
+          this.variantAttr = 'secondary'
+          this.sizeAttr = 'extra-large'
+        }
+        if (attributes.getNamedItem('jumbo-icon')) {
+          this.iconAttr = true
+        }
+        if (attributes.getNamedItem('normal-icon')) {
+          this.iconAttr = true
+        }
+
       }
     },
     data: () => ({
       sizeAttr: undefined,
       variantAttr: undefined,
       prependAttr: false,
-      appendAttr: false
+      appendAttr: false,
+      iconAttr: false
     }),
     mounted() {
       this.applyHelperAttributes()
