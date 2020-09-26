@@ -38,54 +38,51 @@
     +nio-button-caps
   
 =nio-button-primary
-  &.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
-    background-color: $c-primary
-    color: $c-white
-    border: 1px solid $c-primary      
-    &:focus
-      border: 1px solid $c-primary   
-    &:not(.v-btn--text):not(.v-btn--outlined):focus:before
-        opacity: 0    
-  &:hover
-    &.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
-      background-color: $c-primary-dark
-      border: 1px solid $c-primary-dark !important
-  &:disabled.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)	
-    opacity: 0.5 !important
-    background-color: $c-primary !important
+  background-color: $c-primary !important
+  color: $c-white !important
+  border: 1px solid $c-primary !important
+  &:focus
+    border: 1px solid $c-primary   
+  &:focus:before
+    opacity: 0 !important
+  &:hover   
+    background-color: $c-primary-dark !important
+    border: 1px solid $c-primary-dark !important
+  &:disabled
+    opacity: 0.5 !important   
     color: $c-white !important
     border: 1px solid rgba($c-primary, 0.5) !important
-    pointer-events: none
-    cursor: initial
-  
+    pointer-events: none !important
+    cursor: initial !important
+    &.theme--light.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
+      background-color: $c-primary !important
   &.v-btn--contained:active
     box-shadow: none !important
     background-color: $c-primary-darker !important
     border: 1px solid $c-primary-darker !important
 
 =nio-button-secondary
-  &.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
-    background-color: $c-white
-    border: 1px solid $c-primary-light
-    color: $c-primary
-    &:focus
-      border: 1px solid $c-primary    
-      background-color: $c-canvas
-      color: $c-primary-dark
-    &:not(.v-btn--text):not(.v-btn--outlined):focus:before
-      opacity: 0
-  &:hover
-    &.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
-      background-color: $c-canvas
-      color: $c-primary-dark
-      border: 1px solid rgba($c-primary-light, 0.5)
-  &:disabled.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)	
-    opacity: 0.5 !important
+  background-color: $c-white !important
+  border: 1px solid $c-primary-light !important
+  color: $c-primary !important
+  &:focus
+    border: 1px solid $c-primary !important
     background-color: $c-canvas !important
+    color: $c-primary-dark !important
+  &:focus:before
+    opacity: 0 !important
+  &:hover
+    background-color: $c-canvas !important
+    color: $c-primary-dark !important
+    border: 1px solid rgba($c-primary-light, 0.5) !important
+  &:disabled	
+    opacity: 0.5 !important
     color: $c-primary !important
     border: 1px solid rgba($c-primary-light, 0.5) !important
-    pointer-events: none
-    cursor: initial
+    pointer-events: none !important
+    cursor: initial !important
+    &.theme--light.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
+      background-color: $c-canvas !important
   &:active
     background-color: $c-white !important
     border: 1px solid $c-primary-light   !important 
@@ -93,43 +90,38 @@
 
 =nio-button-tertiary
   +nio-button-secondary
-  &.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
-    border: none !important
-    background-color: rgba(0,0,0,0)
+  border: none !important
+  background-color: rgba(0,0,0,0) !important
   &:hover
-    &.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)  
-      border: none !important
-      background-color: rgba(0,0,0,0)
-      &:before
-        opacity: 0
+    border: none !important
+    background-color: rgba(0,0,0,0) !important
+    &:before
+      opacity: 0 !important
 
 =nio-button-selected
-  pointer-events: none
-  border: none
-  &.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
-    background-color: $c-primary-darker
-    color: $c-white
+  pointer-events: none !important
+  border: none !important
+  background-color: $c-primary-darker !important
+  color: $c-white !important
 
 =nio-button-error
-  &.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
-    background-color: $c-white
-    border: 1px solid $c-error
-    color: $c-error
-    &:focus
-      background-color: lighten($c-error, 80)
-      color: $c-error
-    &:not(.v-btn--text):not(.v-btn--outlined):focus:before
-      opacity: 0
+  background-color: $c-white !important
+  border: 1px solid $c-error !important
+  color: $c-error !important
+  &:focus
+    background-color: lighten($c-error, 80) !important
+    color: $c-error !important
+  &:focus:before
+    opacity: 0 !important
   &:hover
-    &.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
-      background-color: darken($c-white, 5)
-      color: lighten($c-error, 5)
-      border: 1px solid lighten($c-error, 5)
-  &:disabled.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)	
+    background-color: darken($c-white, 5) !important
+    color: lighten($c-error, 5) !important
+    border: 1px solid lighten($c-error, 5) !important
+  &:disabled	
     opacity: 0.5 !important
     border: 1px solid rgba($c-error, 0.5) !important
-    pointer-events: none
-    cursor: initial
+    pointer-events: none !important
+    cursor: initial !important
   &:active
     background-color: lighten($c-error, 90) !important
     border: 1px solid $c-error   !important 

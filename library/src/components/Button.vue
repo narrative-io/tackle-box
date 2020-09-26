@@ -2,14 +2,14 @@
   v-btn.nio-button(
     :ripple="false" 
     :class="[`nio-button-${ sizeAttr ? sizeAttr : size }`, `nio-button-${ variantAttr ? variantAttr : variant }`, { 'nio-button-caps': caps }, { 'nio-button-prepend': prependAttr }, { 'nio-button-append': appendAttr }]"
-    :icon="iconAttr"
+    :icon="icon || iconAttr"
     v-bind="$attrs"
     v-on="$listeners" 
     ref="nio-button-ref"
   )
-    v-icon(v-if="prependAttr || iconAttr" :size="iconSize") {{ icon }}
+    v-icon(v-if="prependAttr || iconAttr" :size="iconSize") {{ iconName }}
     slot
-    v-icon(v-if="appendAttr" size="20") {{ icon }}
+    v-icon(v-if="appendAttr" :size="iconSize") {{ iconName }}
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
       slot(:name="name" v-bind="data") 
 </template>
@@ -22,7 +22,8 @@
       "variant": { type: String, required: false, default: "primary" },
       "size": { type: String, required: false, default: "extra-large"},
       "caps": { type: Boolean, required: false, default: true },
-      "icon": { type: String, required: false, default: null }
+      "icon": { type: Boolean, required: false, default: false },
+      "iconName": { type: String, required: false, default: null }
     },
     computed: {
       iconSize() {
@@ -30,22 +31,22 @@
         
         switch (size) {
           case 'extra-large':
-            return this.iconAttr ? '30' : '20'
+            return this.iconAttr ? '16' : '24'
             break;
           case 'large':  
-            return this.iconAttr ? '30' : '20'
+            return this.iconAttr ? '16' : '20'
             break;
           case 'normal':  
-            return this.iconAttr ? '30' : '20'
+            return '16'
             break;  
           case 'small':  
-            return this.iconAttr ? '30' : '20'
+            return '14'
             break;
           case 'extra-small':  
-            return this.iconAttr ? '30' : '20'
+            return '12'
             break;    
           default:
-            return '20'
+            return '16'
             break;
         }
       }
@@ -105,11 +106,14 @@
         }
         if (attributes.getNamedItem('jumbo-icon')) {
           this.iconAttr = true
+          this.sizeAttr = 'extra-large'
+          this.variantAttr = 'primary'
         }
         if (attributes.getNamedItem('normal-icon')) {
           this.iconAttr = true
+          this.sizeAttr = 'normal'
+          this.variantAttr = 'secondary'
         }
-
       }
     },
     data: () => ({

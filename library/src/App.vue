@@ -82,17 +82,23 @@
       //-   NioRadioButton(value="Jacob" label="Jacob")
       //- .value value: {{ radio }}
       NioButton(:variant="'primary'") Primary
+      NioButton(:variant="'primary'" disabled) Primary
       NioButton(:variant="'secondary'") Secondary
+      NioButton(:variant="'secondary'" disabled) Secondary
       NioButton(:variant="'tertiary'") Tertiary
+      NioButton(:variant="'tertiary'" disabled) Tertiary
       NioButton(normal-primary) Quick Add
       NioButton(normal-secondary) View Details
       NioButton(normal-tertiary) Forgot Password
-      NioButton(normal-primary-prepend icon="mdi-plus") New Onboarding
-      NioButton(normal-secondary-prepend icon="mdi-chevron-left") Previous
-      NioButton(normal-tertiary-prepend icon="mdi-arrow-left") Back to Main
-      NioButton(normal-primary-append icon="mdi-plus") Checkout
-      NioButton(normal-secondary-append icon="mdi-chevron-right") More Options
-      NioButton(normal-tertiary-append icon="mdi-arrow-right") View All Suppliers
+      NioButton(normal-primary-prepend iconName="mdi-plus") New Onboarding
+      NioButton(normal-secondary-prepend iconName="mdi-chevron-left") Previous
+      NioButton(normal-tertiary-prepend iconName="mdi-arrow-left") Back to Main
+      NioButton(normal-primary-append iconName="mdi-plus") Checkout
+      NioButton(normal-secondary-append iconName="mdi-chevron-right") More Options
+      NioButton(normal-tertiary-append iconName="mdi-arrow-right") View All Suppliers
+      NioButton(jumbo-icon iconName="mdi-plus")
+      NioButton(normal-icon iconName="mdi-plus")
+      NioButton(:variant="'selected'") Primary
 </template>
 
 <script>
