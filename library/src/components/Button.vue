@@ -1,7 +1,7 @@
 <template lang="pug">
   v-btn.nio-button(
     :ripple="false" 
-    :class="[`nio-button-${ sizeAttr ? sizeAttr : size }`, `nio-button-${ variantAttr ? variantAttr : variant }`, { 'nio-button-caps': caps }, { 'nio-button-prepend': prependAttr }, { 'nio-button-append': appendAttr }]"
+    :class="[`nio-button-${ sizeAttr ? sizeAttr : size }`, `nio-button-${ variantAttr ? variantAttr : variant }`, { 'nio-button-caps': caps }, { 'nio-button-prepend': prependAttr }, { 'nio-button-append': appendAttr }, { 'nio-button-icon': icon || iconAttr}]"
     :icon="icon || iconAttr"
     v-bind="$attrs"
     v-on="$listeners" 
