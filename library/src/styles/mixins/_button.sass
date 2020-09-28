@@ -52,6 +52,8 @@
     border: 0.0625rem solid rgba($c-primary, 0.5) !important
     pointer-events: none !important
     cursor: initial !important
+    & .v-icon
+      color: white !important
     &.theme--light.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
       background-color: $c-primary !important
   &.v-btn--contained:active
@@ -79,6 +81,8 @@
     border: 0.0625rem solid rgba($c-primary-light, 0.5) !important
     pointer-events: none !important
     cursor: initial !important
+    & .v-icon
+      color: $c-primary !important
     &.theme--light.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
       background-color: $c-canvas !important
   &:active
@@ -96,6 +100,9 @@
     background-color: rgba(0,0,0,0) !important
     &:before
       opacity: 0 !important
+  &:disabled 
+    border: none !important
+    opacity: 0.5 !important          
 
 =nio-button-selected
   pointer-events: none !important

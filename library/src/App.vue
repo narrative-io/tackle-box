@@ -90,9 +90,9 @@
       NioButton(normal-primary) Quick Add
       NioButton(normal-secondary) View Details
       NioButton(normal-tertiary) Forgot Password
-      NioButton(normal-primary-prepend iconName="mdi-plus") New Onboarding
-      NioButton(normal-secondary-prepend iconName="mdi-chevron-left") Previous
-      NioButton(normal-tertiary-prepend iconName="mdi-arrow-left") Back to Main
+      NioButton(normal-primary-prepend disabled iconName="mdi-plus") New Onboarding
+      NioButton(normal-secondary-prepend disabled iconName="mdi-chevron-left") Previous
+      NioButton(normal-tertiary-prepend disabled iconName="mdi-arrow-left") Back to Main
       NioButton(normal-primary-append iconName="mdi-plus") Checkout
       NioButton(normal-secondary-append iconName="mdi-chevron-right") More Options
       NioButton(normal-tertiary-append iconName="mdi-arrow-right") View All Suppliers
