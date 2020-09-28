@@ -1,17 +1,15 @@
 @import '../global/_colors'
 
-=nio-button($variant: primary, $size: extra-large, $caps: true)
-  display: block
- 
+=nio-button($variant: primary, $size: extra-large, $caps: true) 
   ::v-deep .v-btn__content
     z-index: 1
 
+  display: block
+  padding-top: 1px !important
+  letter-spacing: 0.05rem
   font-weight: 600
-  font-size: 0.75rem
-  color: #ffffff
   box-shadow: none
   border-radius: 2.5rem
-  letter-spacing: 0.0375rem
   text-transform: none
 
   @if $variant == primary
