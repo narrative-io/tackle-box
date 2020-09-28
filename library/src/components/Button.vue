@@ -99,6 +99,11 @@
         if (attributes.getNamedItem('jumbo-primary')) {
           this.variantAttr = 'primary'
           this.sizeAttr = 'extra-large'
+				}
+				if (attributes.getNamedItem('jumbo-primary-append')) {
+          this.variantAttr = 'primary'
+					this.sizeAttr = 'extra-large'
+					this.appendAttr = true
         }
         if (attributes.getNamedItem('jumbo-secondary')) {
           this.variantAttr = 'secondary'
