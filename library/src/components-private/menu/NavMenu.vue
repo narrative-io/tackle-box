@@ -1,12 +1,22 @@
 <template lang="pug"> 
-  v-menu.nav-menu(open-on-click offset-y v-model="showMenu" :close-on-content-click="false")
+  v-menu.nav-menu(
+    open-on-click 
+    offset-y 
+    v-model="showMenu" 
+    :close-on-content-click="false"
+  )
     template(v-slot:activator="{ on }")
       .activator(@click="open")
         .h3.text-white.button-label-small {{ userInitials }}
     div
       v-card(style="position: relative")
-        UserMenu(:companies="companies" @navItemClicked="close" @close="close" keep-alive)  
-    
+        UserMenu(
+          :companies="companies" 
+          ref="nio-nav-menu-ref"
+          @navItemClicked="close" 
+          @close="close" 
+          keep-alive
+        )
 </template>
 
 

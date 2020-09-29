@@ -6,7 +6,6 @@
       .user-info
         h3.text-primary-darker {{ user.name }} 
         .body.text-primary-dark {{ user.email }}
-    v-divider
     .submenu.viewing-as(v-if="isAdmin")
       NioAutocomplete.viewing-as-menu(
         label="Viewing As"
@@ -17,7 +16,6 @@
         item-text="name"
         outlined
       )
-    v-divider(v-if="isAdmin")
     .pages
       v-list.pages-list(nav dense)
         v-list-item(@click="navItemClicked" to="/products")
@@ -35,7 +33,6 @@
         v-list-item(@click="navItemClicked" to="/subscriptions")
           v-list-item-content    
             .item.button-label-small.text-primary-dark Subscriptions
-    v-divider        
     .submenu.manage
       h3.h6.text-primary-darker Manage
       v-list(nav dense)
@@ -54,7 +51,6 @@
             img(src="https://cdn.narrative.io/images/data-stream/images/icon-apps.svg" alt="app installs icon")
           v-list-item-content
             .item.body.text-primary-dark App Installs				
-    v-divider
     .submenu.settings(v-if="user !== null")
       h3.h6.text-primary-darker Account Settings
       v-list(nav dense)
@@ -192,19 +188,14 @@ export default {
 
 <style lang="sass" scoped>
 @import '../../styles/global/_colors'
+@import '../../styles/global/_color-helpers'
 @import '../../styles/mixins/utility/_center-content'
-.v-list-item
-  padding-left: 0.5rem
-  justify-content: flex-start
-  margin-bottom: 0rem !important
-  &:hover
-    background-color: $c-footer 
-    .v-list-item__content .item
-      color: $c-primary-darker !important
-  .v-list-item__icon
-    margin-right: 1rem
+@import '../../styles/mixins/_menu'
+
 .user-menu
+  +nio-menu
   width: 23.75rem
+  padding: 32px 24px
   .pages
     padding: 1rem 0rem
     .pages-list
@@ -213,58 +204,60 @@ export default {
       .v-list-item
         border-radius: 0rem
         padding-left: 1.875rem
-  .submenu
-    padding: 1.25rem 1.875rem 1.25rem 1.875rem
-    ::v-deep
-      .v-list
-        padding: 0.5rem 0rem 0rem 0rem
-        .v-list-item
-          padding-left: 0.5rem
-          justify-content: flex-start
-          margin-bottom: 0rem !important
-          &:hover
-            background-color: $c-footer 
-            .v-list-item__content .item
-              color: $c-primary-darker !important
-          .v-list-item__icon
-            margin-right: 1rem
-    .item
-      white-space: nowrap
-  .submenu.user
-    display: flex
-    overflow: hidden
-    .avatar, .user-info
-      height: 4rem
-    .avatar
-      background-color: $c-tangerine-dark
-      border-radius: 0.25rem  
-      width: 4rem
-      height: 4rem
-      display: flex
-      margin-right: 1.25rem
-      flex-shrink: 0
-      +nio-center-content
-    .user-info
-      display: flex
-      flex-direction: column
-      align-items: flex-start
-      padding: 0.3125rem 0rem
-      *
-        white-space: nowrap
-  .submenu.viewing-as
-    padding: 1.25rem 1.875rem 1.25rem 1.875rem
-    ::v-deep .v-input
-      margin-bottom: 0rem
-    .viewing-anchor
-      position: relative  
-      ::v-deep .v-menu__content
-        background-color: $c-white
-        top: 0.1875rem !important
-  .submenu.misc
-    .v-list
-      padding-top: 0rem     
-a:hover
-  text-decoration: none
+
+
+//   .submenu
+//     padding: 1.25rem 1.875rem 1.25rem 1.875rem
+//     ::v-deep
+//       .v-list
+//         padding: 0.5rem 0rem 0rem 0rem
+//         .v-list-item
+//           padding-left: 0.5rem
+//           justify-content: flex-start
+//           margin-bottom: 0rem !important
+//           &:hover
+//             background-color: $c-footer 
+//             .v-list-item__content .item
+//               color: $c-primary-darker !important
+//           .v-list-item__icon
+//             margin-right: 1rem
+//     .item
+//       white-space: nowrap
+//   .submenu.user
+//     display: flex
+//     overflow: hidden
+//     .avatar, .user-info
+//       height: 4rem
+//     .avatar
+//       background-color: $c-tangerine-dark
+//       border-radius: 0.25rem  
+//       width: 4rem
+//       height: 4rem
+//       display: flex
+//       margin-right: 1.25rem
+//       flex-shrink: 0
+//       +nio-center-content
+//     .user-info
+//       display: flex
+//       flex-direction: column
+//       align-items: flex-start
+//       padding: 0.3125rem 0rem
+//       *
+//         white-space: nowrap
+//   .submenu.viewing-as
+//     padding: 1.25rem 1.875rem 1.25rem 1.875rem
+//     ::v-deep .v-input
+//       margin-bottom: 0rem
+//     .viewing-anchor
+//       position: relative  
+//       ::v-deep .v-menu__content
+//         background-color: $c-white
+//         top: 0.1875rem !important
+//   .submenu.misc
+//     .v-list
+//       padding-top: 0rem     
+// a:hover
+//   text-decoration: none
 
 
 </style>
