@@ -99,6 +99,7 @@
       NioButton(jumbo-icon iconName="mdi-plus")
       NioButton(normal-icon iconName="mdi-plus")
       NioButton(:variant="'selected'") Primary
+      NioButton.test(jumbo-primary) Test Me
 </template>
 
 <script>
@@ -160,7 +161,13 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .wrapper
-    padding: 30px  
-    width: 500px
+@import '../src/styles/mixins/_button'
+
+.wrapper
+  padding: 30px  
+  width: 500px
+
+.test
+  @media (max-width: 800px)
+    +nio-button($variant: primary, $size: small)
 </style>
