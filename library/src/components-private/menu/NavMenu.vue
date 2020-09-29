@@ -1,48 +1,63 @@
-<template lang="pug">
-    .nav-menu
-			v-menu(open-on-click offset-y v-model="showMenu" :close-on-content-click="false")
-				template(v-slot:activator="{ on }")
-					.avatar(@click="open")
-						.h3.text-white.button-label-small {{ userInitials }}
-				div
-					v-card(style="position: relative")
-						UserMenu(:companies="companies" @navItemClicked="close" @close="close" keep-alive)  
+<template lang="pug"> 
+  v-menu.nav-menu(open-on-click offset-y v-model="showMenu" :close-on-content-click="false")
+    template(v-slot:activator="{ on }")
+      .activator(@click="open")
+        .h3.text-white.button-label-small {{ userInitials }}
+    div
+      v-card(style="position: relative")
+        UserMenu(:companies="companies" @navItemClicked="close" @close="close" keep-alive)  
 </template>
 
 <script>
 
-import { UserMenu } from './UserMenu'
+import UserMenu from './UserMenu'
 
 export default {
-	props: {
-		"companies": { type: Array, required: false, default: [] },
-		"user": { type: Object, required: true }
-	},
-	data: () => ({
-		showMenu: false
-	}),
-	computed: {
-		userInitials() {
-			let nameSplit = this.user.name.split(' ')
-			let initials = ''
-			nameSplit.forEach(el => {
-				initials = initials + el.substring(0, 1)
-			})
-			return initials !== '' ? initials : 'U'
-		}
-	},
-	methods: {
-		open() {
-			this.showMenu = true
+  props: {
+    "companies": { type: Array, required: false, default: [] },
+    "user": { type: Object, required: true }
+  },
+  data: () => ({
+    showMenu: false
+  }),
+  computed: {
+    userInitials() {
+      let nameSplit = this.user.name.split(' ')
+      let initials = ''
+      nameSplit.forEach(el => {
+        initials = initials + el.substring(0, 1)
+      })
+      return initials !== '' ? initials : 'U'
+    }
+  },
+  methods: {
+    open() {
+      this.showMenu = true
     },
     close() {
       this.showMenu = false
     },
-	},
-	components: { UserMenu }
+  },
+  components: { UserMenu }
 }
 </script>
 
 <style lang="sass" scoped>
-  @import '../styles/mixins/_nav-menu'  
+  @import '../../styles-private/_nav-menu'  
+  .activator
+    width: 2rem
+    height: 2rem
+    margin-left: 1.25rem
+    padding: 0.3125rem
+    padding: 0rem
+    position: relative
+    transition: opacity 0.1s ease
+    border-radius: 0.25rem  
+    background-color: $c-tangerine-dark
+    +nio-center-content  
+    .h3
+      letter-spacing: 0rem
+    &:hover
+      cursor: pointer
+      opacity: 0.8
 </style>

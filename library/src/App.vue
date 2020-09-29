@@ -2,7 +2,8 @@
   v-app
     div.menu-container(style="background-color: #010A28").d-flex.align-center
       div.container
-        .d-none.d-lg-flex.align-center.justify-space-between
+        .links
+          NavMenu(:companies="[]" :user="{name: 'Chris Woodward'}")
     .wrapper
       //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
       //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
@@ -106,6 +107,8 @@
 </template>
 
 <script>
+import NavMenu from './components-private/menu/NavMenu'
+
 export default {
   name: "App",
   components: {
@@ -116,7 +119,8 @@ export default {
     NioCheckbox: () => import("./components/Checkbox.vue"),
     NioSwitch: () => import("./components/Switch.vue"),
     NioRadioGroup: () => import("./components/RadioGroup.vue"),
-    NioRadioButton: () => import("./components/RadioButton.vue")
+    NioRadioButton: () => import("./components/RadioButton.vue"),
+    NavMenu
   },
   data: () => ({
     model: "",
@@ -170,6 +174,10 @@ export default {
   background-color: #010A28
   height: 4.3125rem
   color: white
+
+.links
+  display: flex
+  justify-content: flex-end
 
 .wrapper
   padding: 30px  

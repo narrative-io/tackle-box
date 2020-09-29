@@ -1,5 +1,5 @@
 <template lang="pug">
-	.user-menu
+  .user-menu
 </template>
 
 <script>
