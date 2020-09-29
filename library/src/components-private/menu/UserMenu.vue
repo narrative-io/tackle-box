@@ -2,10 +2,10 @@
   .user-menu
     .submenu.user(v-if="user !== null")
       .avatar 
-        .h3.text-white {{ userInitials }}
+        img(src="https://picsum.photos/96/96")
       .user-info
         h3.text-primary-darker {{ user.name }} 
-        .body.text-primary-dark {{ user.email }}
+        .p-small.text-primary-dark By {{ user.email }}
     .submenu.viewing-as(v-if="isAdmin")
       NioAutocomplete.viewing-as-menu(
         label="Viewing As"
@@ -141,7 +141,7 @@ export default {
   }),
   computed: {
     isAdmin() {
-      return this.user !== null && user.role === 99
+      return this.user !== null && this.user.role === 99
     }
   },
   methods: {
@@ -188,8 +188,10 @@ export default {
 
 <style lang="sass" scoped>
 @import '../../styles/global/_colors'
+@import '../../styles/global/_typography'
 @import '../../styles/global/_color-helpers'
 @import '../../styles/mixins/utility/_center-content'
+@import '../../styles/mixins/utility/_image'
 @import '../../styles/mixins/_menu'
 
 .user-menu
@@ -204,6 +206,10 @@ export default {
       .v-list-item
         border-radius: 0rem
         padding-left: 1.875rem
+  .submenu
+    &.user
+      .avatar
+        +nio-image($size: large)
 
 
 //   .submenu

@@ -12,6 +12,7 @@
       v-card(style="position: relative")
         UserMenu(
           :companies="companies" 
+          :user="user ? user : null"
           ref="nio-nav-menu-ref"
           @navItemClicked="close" 
           @close="close" 
