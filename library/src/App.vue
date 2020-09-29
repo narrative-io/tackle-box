@@ -1,5 +1,8 @@
 <template lang="pug">
   v-app
+    div.menu-container(style="background-color: #010A28").d-flex.align-center
+      div.container
+        .d-none.d-lg-flex.align-center.justify-space-between
     .wrapper
       //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
       //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
@@ -162,6 +165,11 @@ export default {
 
 <style lang="sass" scoped>
 @import '../src/styles/mixins/_button'
+
+.menu-container
+  background-color: #010A28
+  height: 4.3125rem
+  color: white
 
 .wrapper
   padding: 30px  
