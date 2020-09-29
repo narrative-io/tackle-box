@@ -38,7 +38,9 @@
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
     "vue": "^2.6.10",
-    "vuetify": "^2.2.11"
+    "vuetify": "^2.2.11",
+    "@streamlinehq/streamline-icons-vue": "^0.6.1",
+    "@streamlinehq/streamline-light": "^0.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",

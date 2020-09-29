@@ -3,7 +3,7 @@
     div.menu-container(style="background-color: #010A28").d-flex.align-center
       div.container
         .links
-          NavMenu(:companies="[]" :user="{name: 'Chris Woodward'}")
+          NavMenu(:companies="[]" :user="{name: 'Chris Woodward', role: 1}")
     .wrapper
       //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
       //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")

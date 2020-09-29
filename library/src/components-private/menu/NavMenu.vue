@@ -6,7 +6,9 @@
     div
       v-card(style="position: relative")
         UserMenu(:companies="companies" @navItemClicked="close" @close="close" keep-alive)  
+    
 </template>
+
 
 <script>
 
@@ -15,7 +17,7 @@ import UserMenu from './UserMenu'
 export default {
   props: {
     "companies": { type: Array, required: false, default: [] },
-    "user": { type: Object, required: true }
+    "user": { type: Object, required: false, default: null }
   },
   data: () => ({
     showMenu: false
