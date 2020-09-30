@@ -3,10 +3,10 @@
     .submenu.user(v-if="user !== null")
       NioImageTile(
         src="https://picsum.photos/96/96"
-        :size="'large'"
-      ) 
+        size="large"
+      )
       .user-info
-        h3.text-primary-darker {{ user.name }} 
+        h3.text-primary-darker {{ appName }} 
         .p-small.text-primary-dark By {{ user.email }}
     .submenu.viewing-as(v-if="isAdmin")
       NioAutocomplete.viewing-as-menu(
@@ -119,10 +119,11 @@ import * as Alerts from "@streamlinehq/streamline-light/lib/interface-essential/
 import * as  View from "@streamlinehq/streamline-light/lib/interface-essential/View"
 import * as Edit from "@streamlinehq/streamline-light/lib/interface-essential/Edit"
 import * as HumanResources from "@streamlinehq/streamline-light/lib/work-office-companies/HumanResources"
-import ImageTile from '../../components/ImageTile'
+import NioImageTile from '../../components/ImageTile'
 
 export default {
   props: { 
+    "appName": { type: String, required: true },
     "companies": { type: Array, required: false, default: [] },
     "user": { type: Object, required: false, default: null },
     "userInitials": { type: String, required: false, default: "G"}
@@ -185,7 +186,7 @@ export default {
       this.selectedCompany = this.companies.find(company => company.id === parseInt(this.contextualCompanyId))
     }
   }, 
-  components: { StreamlineIcon }
+  components: { StreamlineIcon, NioImageTile }
 };
 </script>
 

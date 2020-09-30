@@ -11,6 +11,7 @@
     div
       v-card(style="position: relative")
         UserMenu(
+          :appName="appName"
           :companies="companies" 
           :user="user ? user : null"
           ref="nio-nav-menu-ref"
@@ -28,6 +29,7 @@ import UserMenu from './UserMenu'
 export default {
   props: {
     "companies": { type: Array, required: false, default: [] },
+    "appName": { type: String, required: true },
     "user": { type: Object, required: false, default: null }
   },
   data: () => ({
