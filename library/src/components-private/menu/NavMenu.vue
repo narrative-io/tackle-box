@@ -11,6 +11,7 @@
     div
       v-card(style="position: relative")
         UserMenu(
+          :developerName="developerName"
           :appName="appName"
           :companies="companies" 
           :user="user ? user : null"
@@ -21,13 +22,13 @@
         )
 </template>
 
-
 <script>
 
 import UserMenu from './UserMenu'
 
 export default {
   props: {
+    "developerName": { type: String, required: false, default: "Narrative I/O"},
     "companies": { type: Array, required: false, default: [] },
     "appName": { type: String, required: true },
     "user": { type: Object, required: false, default: null }

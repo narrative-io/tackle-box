@@ -1,13 +1,13 @@
 <template lang="pug">
   .user-menu
     .submenu.user(v-if="user !== null")
-      NioImageTile(
+      NioImageTile.avatar(
         src="https://picsum.photos/96/96"
         size="large"
       )
       .user-info
-        h3.text-primary-darker {{ appName }} 
-        .p-small.text-primary-dark By {{ user.email }}
+        h4.text-primary-darker {{ appName }} 
+        .p-small.text-primary-dark By <span class="nio-bold">{{ developerName }}</span>
     .submenu.viewing-as(v-if="isAdmin")
       NioAutocomplete.viewing-as-menu(
         label="Viewing As"
@@ -123,6 +123,7 @@ import NioImageTile from '../../components/ImageTile'
 
 export default {
   props: { 
+    "developerName": { type: String, required: true },
     "appName": { type: String, required: true },
     "companies": { type: Array, required: false, default: [] },
     "user": { type: Object, required: false, default: null },
@@ -212,9 +213,13 @@ export default {
         padding-left: 1.875rem
   .submenu
     &.user
+      display: flex
+      flex-direction: column
+      align-items: center
       .avatar
-
-
+        margin-bottom: 24px
+      .user-info
+        text-align: center
 //   .submenu
 //     padding: 1.25rem 1.875rem 1.25rem 1.875rem
 //     ::v-deep
