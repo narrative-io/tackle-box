@@ -1,0 +1,23 @@
+=nio-image-tile($size: normal)
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15)
+  @if $size == large
+    width: 96px
+    height: 96px
+    border-radius: 12px
+  @else if $size == normal
+    width: 64px
+    height: 64px
+    border-radius: 8px
+  @else if $size == small
+    width: 32px
+    height: 32px
+    border-radius: 4px
+
+.nio-image-tile.large
+  +nio-image-tile($size: large)
+
+.nio-image-tile.normal
+  +nio-image-tile($size: normal)
+
+.nio-image-tile.small
+  +nio-image-tile($size: small)		

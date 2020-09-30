@@ -1,8 +1,10 @@
 <template lang="pug">
   .user-menu
     .submenu.user(v-if="user !== null")
-      .avatar 
-        img(src="https://picsum.photos/96/96")
+      NioImageTile(
+        src="https://picsum.photos/96/96"
+        :size="'large'"
+      ) 
       .user-info
         h3.text-primary-darker {{ user.name }} 
         .p-small.text-primary-dark By {{ user.email }}
@@ -117,6 +119,7 @@ import * as Alerts from "@streamlinehq/streamline-light/lib/interface-essential/
 import * as  View from "@streamlinehq/streamline-light/lib/interface-essential/View"
 import * as Edit from "@streamlinehq/streamline-light/lib/interface-essential/Edit"
 import * as HumanResources from "@streamlinehq/streamline-light/lib/work-office-companies/HumanResources"
+import ImageTile from '../../components/ImageTile'
 
 export default {
   props: { 
@@ -191,7 +194,7 @@ export default {
 @import '../../styles/global/_typography'
 @import '../../styles/global/_color-helpers'
 @import '../../styles/mixins/utility/_center-content'
-@import '../../styles/mixins/utility/_image'
+@import '../../styles/mixins/_image-tile'
 @import '../../styles/mixins/_menu'
 
 .user-menu
@@ -209,7 +212,6 @@ export default {
   .submenu
     &.user
       .avatar
-        +nio-image($size: large)
 
 
 //   .submenu

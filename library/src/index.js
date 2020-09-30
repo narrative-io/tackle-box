@@ -9,6 +9,7 @@ import NioCheckbox from "./components/Checkbox.vue"
 import NioSwitch from "./components/Switch.vue"
 import NioRadioGroup from "./components/RadioGroup"
 import NioRadioButton from "./components/RadioButton"
+import NioImageTile from "./components/ImageTile"
 
 Vue.use(Vuetify)
 
@@ -20,7 +21,8 @@ const Components = {
 	NioCheckbox,
 	NioSwitch,
 	NioRadioGroup,
-	NioRadioButton
+	NioRadioButton,
+	NioImageTile
 }
 
 Vue.component("NioButton", NioButton)
@@ -31,6 +33,7 @@ Vue.component("NioCheckbox", NioCheckbox)
 Vue.component("NioSwitch", NioSwitch)
 Vue.component("NioRadioGroup", NioRadioGroup)
 Vue.component("NioRadioButton", NioRadioButton)
+Vue.component("NioImageTile", NioImageTile)
 
 export { NioButton }
 export { NioTextField }
@@ -40,5 +43,6 @@ export { NioCheckbox }
 export { NioSwitch }
 export { NioRadioGroup }
 export { NioRadioButton }
+export { NioImageTile }
 
 export default Components

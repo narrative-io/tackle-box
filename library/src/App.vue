@@ -120,6 +120,7 @@ export default {
     NioSwitch: () => import("./components/Switch.vue"),
     NioRadioGroup: () => import("./components/RadioGroup.vue"),
     NioRadioButton: () => import("./components/RadioButton.vue"),
+    NioImageTile: () => import("./components/ImageTile.vue"),
     NavMenu
   },
   data: () => ({
