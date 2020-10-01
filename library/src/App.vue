@@ -159,12 +159,14 @@ export default {
           {
             label: "Data Streams",
             to: "/products",
-            icon: icons.profile
+            icon: icons.profile,
+            staatus: "locked"
           },
           {
             label: "Providers",
             to: "/suppliers",
-            icon: icons.payment
+            icon: icons.payment,
+            status: "new"
           },
           {
             label: "Apps",
@@ -176,7 +178,8 @@ export default {
           },
           {
             label: "Subscriptions",
-            to: "/subscriptions"
+            to: "/subscriptions",
+            status: "locked"
           }
         ]
       },
@@ -185,19 +188,23 @@ export default {
         items: [
           {
             label: "Your Profile",
-            to: "/settings/profile"
+            to: "/settings/profile",
+            status: "new"
           },
           {
             label: "Company",
-            to: "/settings/company"
+            to: "/settings/company",
+            status: "coming"
           },
           {
             label: "Payment",
-            to: "/settings/payment"
+            to: "/settings/payment",
+            status: "updated"
           },
           {
             label: "Destination",
-            to: "/settings/delivery"
+            to: "/settings/delivery",
+            status: "alpha"
           }
         ]
       },
@@ -206,7 +213,8 @@ export default {
         items: [
           {
             label: "Logout",
-            event: "logout"
+            event: "logout",
+            status: "beta"
           },
           {
             label: "Help Center",
