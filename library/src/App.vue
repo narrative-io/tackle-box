@@ -3,7 +3,12 @@
     div.menu-container(style="background-color: #010A28").d-flex.align-center
       div.container
         .links
-          NavMenu(appName="Universal Onboarding" :companies="[]" :user="{name: 'Chris Woodward', role: 1}")
+          NavMenu(
+            appName="Universal Onboarding" 
+            :companies="[]" 
+            :user="{name: 'Chris Woodward', role: 1}"
+            :navItems="navItems"  
+          )
     .wrapper
       //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
       //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
@@ -11,13 +16,13 @@
       //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
       //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
       //- .typed Types: {{ model }}
-      //- nio-select.select(
-      //-   v-model="selectedItems" 
-      //-   :items="items"
-      //-   @mounted="childMounted" 
-      //-   :ref="'text'" 
-      //-   :label="'Label'"
-      //- )
+      nio-select.select(
+        v-model="selectedItems" 
+        :items="items"
+        @mounted="childMounted" 
+        :ref="'text'" 
+        :label="'Label'"
+      )
       //- nio-select.select(
       //-   multiple
       //-   v-model="selectedItems" 

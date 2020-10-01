@@ -8,7 +8,8 @@
       .user-info
         h4.text-primary-darker {{ appName }} 
         .p-small.text-primary-dark By <span class="nio-bold">{{ developerName }}</span>
-      
+    .nav-group(v-for="navGroup in navItems")      
+      h3.nio-h6.text-primary-darker {{ navGroup.groupLabel }}
     //- .pages
       //- h3.h6.text-primary-darker App
       //- v-list.pages-list(nav dense)
