@@ -135,23 +135,23 @@ export default {
         groupLabel: "App",
         items: [
           {
-            itemLabel: "Data Streams",
+            label: "Data Streams",
             to: "/products"
           },
           {
-            itemLabel: "Providers",
+            label: "Providers",
             to: "/suppliers"
           },
           {
-            itemLabel: "Apps",
+            label: "Apps",
             to: "/apps"
           },
           {
-            itemLabel: "Your Cart",
+            label: "Your Cart",
             to: "/cart"
           },
           {
-            itemLabel: "Subscriptions",
+            label: "Subscriptions",
             to: "/subscriptions"
           }
         ]
@@ -160,19 +160,19 @@ export default {
         groupLabel: "Account Settins",
         items: [
           {
-            itemLabel: "Your Profile",
+            label: "Your Profile",
             to: "/settings/profile"
           },
           {
-            itemLabel: "Company",
+            label: "Company",
             to: "/settings/company"
           },
           {
-            itemLabel: "Payment",
+            label: "Payment",
             to: "/settings/payment"
           },
           {
-            itemLabel: "Destination",
+            label: "Destination",
             to: "/settings/delivery"
           }
         ]
@@ -181,23 +181,23 @@ export default {
         groupLabel: "Support",
         items: [
           {
-            itemLabel: "Logout",
+            label: "Logout",
             event: "logout"
           },
           {
-            itemLabel: "Help Center",
+            label: "Help Center",
             event: "goToHelpCenter"
           },
           {
-            itemLabel: "Privacy Policy",
+            label: "Privacy Policy",
             event: "goToPrivacyPolicy"
           },
           {
-            itemLabel: "Login",
+            label: "Login",
             to: "/login"
           },
           {
-            itemLabel: "Register",
+            label: "Register",
             to: "/register"
           }
         ]

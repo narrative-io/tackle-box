@@ -35,7 +35,6 @@
       
     },
     mounted() {	
-      
       this.$emit('mounted')
       this.node = this.$refs['nio-select-ref'].$vnode.elm
     },

@@ -1,6 +1,6 @@
 <template lang="pug">
   .user-menu
-    .submenu.user(v-if="user !== null")
+    .user(v-if="user !== null")
       NioImageTile.avatar(
         src="https://picsum.photos/96/96"
         size="large"
@@ -10,6 +10,10 @@
         .p-small.text-primary-dark By <span class="nio-bold">{{ developerName }}</span>
     .nav-group(v-for="navGroup in navItems")      
       h3.nio-h6.text-primary-darker {{ navGroup.groupLabel }}
+      v-list(nav dense)
+        v-list-item(v-for="item in navGroup.items" @click="navItemClicked(item)" :to="item.to")
+           v-list-item-content
+            .item.nio-p.text-primary-dark {{ item.label }}
     //- .pages
       //- h3.h6.text-primary-darker App
       //- v-list.pages-list(nav dense)
@@ -197,13 +201,16 @@ export default {
   +nio-menu
   width: 23.75rem
   padding: 32px 24px
-  .submenu
-    &.user
-      display: flex
-      flex-direction: column
-      align-items: center
-      .avatar
-        margin-bottom: 24px
-      .user-info
-        text-align: center
+  .user
+    display: flex
+    flex-direction: column
+    align-items: center
+    .avatar
+      margin-bottom: 24px
+    .user-info
+      text-align: center
+  .nav-group
+    .v-list-item 
+      &.v-list-item--link 
+        margin-bottom: 1px !important
 </style>
