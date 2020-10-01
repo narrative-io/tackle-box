@@ -178,7 +178,7 @@ export default {
         ]
       },
       {
-        groupLabel: "Account Settins",
+        groupLabel: "Account Settings",
         items: [
           {
             label: "Your Profile",

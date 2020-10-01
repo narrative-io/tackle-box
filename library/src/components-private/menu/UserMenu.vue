@@ -91,9 +91,7 @@ export default {
 @import '../../styles/mixins/_menu'
 
 .user-menu
-  +nio-menu
-  width: 23.75rem
-  padding: 32px 24px
+  +nio-menu  
   .user
     display: flex
     flex-direction: column
@@ -103,6 +101,7 @@ export default {
     .user-info
       text-align: center
   .nav-group
+    margin-bottom: 24px
     .v-list
       padding-left: 0px
       padding-right: 0px
@@ -110,4 +109,6 @@ export default {
         padding: 0px 8px
         &.v-list-item--link 
           margin-bottom: 1px !important
+          .v-list-item__icon
+            margin-right: 16px
 </style>
