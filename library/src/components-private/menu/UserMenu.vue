@@ -12,7 +12,7 @@
       h3.nio-h6.text-primary-darker {{ navGroup.groupLabel }}
       v-list(nav dense)
         v-list-item(v-for="item in navGroup.items" @click="navItemClicked(item)" :to="item.to")
-          v-list-item-icon
+          v-list-item-icon(v-if="item.icon")
             streamline-icon(:icon="item.icon" :size=24 stroke="#4B5FA7")
           v-list-item-content
             .item.nio-p.text-primary-dark {{ item.label }}                                 
@@ -54,7 +54,10 @@ export default {
       this.navItemClicked()
       window.open('https://www.narrative.io/privacy-policy', '_blank')
     },
-    navItemClicked() {
+    navItemClicked(item) {
+      if (item.event) {
+        this.$emit('navEvent', item.event)
+      }
       this.$emit('navItemClicked')
     }
   },

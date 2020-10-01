@@ -19,6 +19,7 @@
           ref="nio-nav-menu-ref"
           @navItemClicked="close" 
           @close="close" 
+          @navEvent="fireNavEvent($event)"
           keep-alive
         )
 </template>
@@ -55,6 +56,10 @@ export default {
     close() {
       this.showMenu = false
     },
+    fireNavEvent(eventName) {
+      this.$emit(eventName)
+
+    }
   },
   components: { UserMenu }
 }

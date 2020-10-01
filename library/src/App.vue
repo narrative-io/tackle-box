@@ -7,7 +7,10 @@
             appName="Universal Onboarding" 
             :companies="[]" 
             :user="{name: 'Chris Woodward', role: 1}"
-            :navItems="navItems"  
+            :navItems="navItems" 
+            @goToHelpCenter="goToHelpCenter"
+            @goToPrivacyPolicy="goToPrivacyPolicy"
+            @logout="logout"
           )
     .wrapper
       //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
@@ -255,7 +258,16 @@ export default {
     ]  
   }),
   methods: {
-    childMounted() {}
+    childMounted() {},
+    goToHelpCenter() {
+      console.log("help center")
+    },
+    goToPrivacyPolicy() {
+      console.log("privacy policy")
+    },
+    logout() {
+      console.log("logout")
+    }
   },
   mounted() {
     setTimeout(function(){ this.size = 'extra-large' }, 1000);
