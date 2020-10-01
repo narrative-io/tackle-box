@@ -12,8 +12,10 @@
       h3.nio-h6.text-primary-darker {{ navGroup.groupLabel }}
       v-list(nav dense)
         v-list-item(v-for="item in navGroup.items" @click="navItemClicked(item)" :to="item.to")
+          .mask
           v-list-item-icon(v-if="item.icon")
-            streamline-icon(:icon="item.icon" :size=24 stroke="#4B5FA7")
+            streamline-icon.icon-light(:icon="item.icon" :size=24 stroke="#4B5FA7")
+            streamline-icon.icon-dark(:icon="item.icon" :size=24 stroke="#323f6f")
           v-list-item-content
             .item.nio-p.text-primary-dark {{ item.label }}     
             .status(v-if="item.status && status === 'locked'") 
@@ -105,6 +107,7 @@ export default {
     display: flex
     flex-direction: column
     align-items: center
+    margin-bottom: 24px
     .avatar
       margin-bottom: 24px
     .user-info
@@ -114,6 +117,7 @@ export default {
     .v-list
       padding-left: 0px
       padding-right: 0px
+      background-color: $c-canvas !important
       .v-list-item 
         padding: 0px 8px
         &.v-list-item--link 
@@ -122,7 +126,7 @@ export default {
             flex-grow: 2
             display: flex
             justify-content: space-between
-            flex-wrap: nowrap
+            flex-wrap: nowrap  
             .item
               flex-shrink: 2
             .status
@@ -146,7 +150,27 @@ export default {
                   font-size: 9px
                   letter-spacing: 0.4px
                   text-transform: uppercase
-                  color: $c-white
+                  color: $c-white                    
           .v-list-item__icon
             margin-right: 16px
+            .icon-dark
+              display: none
+          &:hover
+            background-color: darken($c-canvas, 2)
+            .item
+              color: darken($c-primary-darker, 2)     
+            .status
+              &.new
+                background-color: darken($c-seagreen-light, 15)
+              &.coming
+                background-color: darken($c-coral-light, 15)
+              &.updated
+                background-color: darken($c-aqua-light, 15)
+              &.alpha, &.beta
+                background-color: darken($c-primary-dark, 15)   
+            .v-list-item__icon 
+              .icon-dark
+                display: flex
+              .icon-light
+                display: none  
 </style>
