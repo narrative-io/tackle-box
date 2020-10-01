@@ -124,6 +124,79 @@ export default {
     NavMenu
   },
   data: () => ({
+    navItems: [
+      {
+        groupLabel: "App",
+        items: [
+          {
+            itemLabel: "Data Streams",
+            to: "/products"
+          },
+          {
+            itemLabel: "Providers",
+            to: "/suppliers"
+          },
+          {
+            itemLabel: "Apps",
+            to: "/apps"
+          },
+          {
+            itemLabel: "Your Cart",
+            to: "/cart"
+          },
+          {
+            itemLabel: "Subscriptions",
+            to: "/subscriptions"
+          }
+        ]
+      },
+      {
+        groupLabel: "Account Settins",
+        items: [
+          {
+            itemLabel: "Your Profile",
+            to: "/settings/profile"
+          },
+          {
+            itemLabel: "Company",
+            to: "/settings/company"
+          },
+          {
+            itemLabel: "Payment",
+            to: "/settings/payment"
+          },
+          {
+            itemLabel: "Destination",
+            to: "/settings/delivery"
+          }
+        ]
+      },
+      {
+        groupLabel: "Support",
+        items: [
+          {
+            itemLabel: "Logout",
+            event: "logout"
+          },
+          {
+            itemLabel: "Help Center",
+            event: "goToHelpCenter"
+          },
+          {
+            itemLabel: "Privacy Policy",
+            event: "goToPrivacyPolicy"
+          },
+          {
+            itemLabel: "Login",
+            to: "/login"
+          },
+          {
+            itemLabel: "Register",
+            to: "/register"
+          }
+        ]
+      }
+    ],
     model: "",
     items: ['apple', 'banana', 'orange', 'your mom'],
     selectedItems: 'apple',

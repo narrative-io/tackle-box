@@ -15,6 +15,7 @@
           :appName="appName"
           :companies="companies" 
           :user="user ? user : null"
+          :navItems="navItems"
           ref="nio-nav-menu-ref"
           @navItemClicked="close" 
           @close="close" 
@@ -31,7 +32,8 @@ export default {
     "developerName": { type: String, required: false, default: "Narrative I/O"},
     "companies": { type: Array, required: false, default: [] },
     "appName": { type: String, required: true },
-    "user": { type: Object, required: false, default: null }
+    "user": { type: Object, required: false, default: null },
+    "navItems": { type: Array, required: false, default: []}
   },
   data: () => ({
     showMenu: false
