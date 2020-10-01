@@ -114,7 +114,26 @@
 
 <script>
 import NavMenu from './components-private/menu/NavMenu'
+import * as Notes from "@streamlinehq/streamline-light/lib/content/Notes"
+import * as GeomerticCloseUpSingleUserNeutral from "@streamlinehq/streamline-light/lib/users/GeomerticCloseUpSingleUserNeutral"
+import * as CreditCardPayments from "@streamlinehq/streamline-light/lib/money-payments-finance/CreditCardPayments"
+import * as print3d from "@streamlinehq/streamline-light/lib/technology/3DPrinting"
+import * as OnOff from "@streamlinehq/streamline-light/lib/interface-essential/OnOff"
+import * as Alerts from "@streamlinehq/streamline-light/lib/interface-essential/Alerts"
+import * as  View from "@streamlinehq/streamline-light/lib/interface-essential/View"
+import * as Edit from "@streamlinehq/streamline-light/lib/interface-essential/Edit"
+import * as HumanResources from "@streamlinehq/streamline-light/lib/work-office-companies/HumanResources"
 
+const icons = {
+  profile: GeomerticCloseUpSingleUserNeutral.default.SingleNeutralIdCard3,
+  company: HumanResources.default.HumanResourcesHierarchy,
+  payment: CreditCardPayments.default.CreditCardMastercard,
+  destination: print3d.default['3DBoxExpandCorners'],
+  logout: OnOff.default.PowerButton,
+  help: Alerts.default.QuestionCircle,
+  privacy: View.default.View1,
+  register: Edit.default.PencilWrite2
+}
 export default {
   name: "App",
   components: {
@@ -136,11 +155,13 @@ export default {
         items: [
           {
             label: "Data Streams",
-            to: "/products"
+            to: "/products",
+            icon: icons.profile
           },
           {
             label: "Providers",
-            to: "/suppliers"
+            to: "/suppliers",
+            icon: icons.payment
           },
           {
             label: "Apps",

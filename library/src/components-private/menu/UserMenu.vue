@@ -12,110 +12,15 @@
       h3.nio-h6.text-primary-darker {{ navGroup.groupLabel }}
       v-list(nav dense)
         v-list-item(v-for="item in navGroup.items" @click="navItemClicked(item)" :to="item.to")
-           v-list-item-content
-            .item.nio-p.text-primary-dark {{ item.label }}
-    //- .pages
-      //- h3.h6.text-primary-darker App
-      //- v-list.pages-list(nav dense)
-        //- v-list-item(@click="navItemClicked" to="/products")
-        //-   v-list-item-content
-        //-     .item.button-label-small.text-primary-dark Data Streams
-        //- //- v-list-item(@click="navItemClicked" to="/suppliers")
-        //-   v-list-item-content
-        //-     .item.button-label-small.text-primary-dark Providers
-        //- v-list-item(@click="navItemClicked" to="/apps")
-        //-   v-list-item-content
-        //-     .item.button-label-small.text-primary-dark Apps 
-        //- v-list-item(@click="navItemClicked" to="/cart")
-        //-   v-list-item-content  
-        //-     .item.button-label-small.text-primary-dark Your Cart
-        //- v-list-item(@click="navItemClicked" to="/subscriptions")
-        //-   v-list-item-content    
-        //-     .item.button-label-small.text-primary-dark Subscriptions
-    //- .submenu.manage
-    //-   h3.h6.text-primary-darker Account Settings
-    //-   v-list(nav dense)
-    //-     v-list-item(@click="navItemClicked" to="/subscriptions")
-    //-       v-list-item-icon
-    //-         img(src="https://cdn.narrative.io/images/data-stream/images/icon-stream.svg" alt="subscription icon")
-    //-       v-list-item-content
-    //-         .item.body.text-primary-dark Data Stream Subscriptions
-    //-     v-list-item(@click="navItemClicked" to="/suppliers")
-    //-       v-list-item-icon
-    //-         img(src="https://cdn.narrative.io/images/data-stream/images/icon-suppliers-contacts.svg" alt="supplier contacts icon")
-    //-       v-list-item-content
-    //-         .item.body.text-primary-dark Supplier Contacts
-    //-     v-list-item(@click="navItemClicked" to="/settings/app-installs")
-    //-       v-list-item-icon
-    //-         img(src="https://cdn.narrative.io/images/data-stream/images/icon-apps.svg" alt="app installs icon")
-    //-       v-list-item-content
-    //-         .item.body.text-primary-dark App Installs				
-    //- .submenu.settings(v-if="user !== null")
-    //-   h3.h6.text-primary-darker Account Settings
-    //-   v-list(nav dense)
-    //-     v-list-item(@click="navItemClicked" to="/settings/profile")
-    //-       v-list-item-icon
-    //-         streamline-icon(:icon="icons.profile" :size=24 stroke="#4B5FA7")
-    //-       v-list-item-content
-    //-         .item.body.text-primary-dark Your Profile
-    //-     v-list-item(@click="navItemClicked" to='/settings/company')
-    //-       v-list-item-icon
-    //-         streamline-icon(:icon="icons.company" :size=24 stroke="#4B5FA7")
-    //-       v-list-item-content 
-    //-         .item.body.text-primary-dark Company
-    //-     v-list-item(@click="navItemClicked" to='/settings/payment')
-    //-       v-list-item-icon
-    //-         streamline-icon(:icon="icons.payment" :size=24 stroke="#4B5FA7")
-    //-       v-list-item-content
-    //-         .item.body.text-primary-dark Payment
-    //-     v-list-item(@click="navItemClicked" to='/settings/delivery')
-    //-       v-list-item-icon
-    //-         streamline-icon(:icon="icons.destination" :size=24 stroke="#4B5FA7")
-    //-       v-list-item-content
-    //-         .item.body.text-primary-dark Destination
-    //- v-divider
-    //- .submenu.misc  
-    //-   v-list(nav dense)     
-    //-     v-list-item(v-if="user !== null" @click="localLogout()")
-    //-       v-list-item-icon
-    //-         streamline-icon(:icon="icons.logout" :size=24 stroke="#4B5FA7")
-    //-       v-list-item-content
-    //-         .item.body.text-primary-dark Logout
-    //-     v-list-item(v-if="user !== null" @click="goToKB()")
-    //-       v-list-item-icon
-    //-         streamline-icon(:icon="icons.help" :size=24 stroke="#4B5FA7")
-    //-       v-list-item-content
-    //-         .item.body.text-primary-dark Help Center
-    //-     v-list-item(v-if="user !== null" @click="goToPrivacyPolicy()")
-    //-       v-list-item-icon
-    //-         streamline-icon(:icon="icons.privacy" :size=24 stroke="#4B5FA7")
-    //-       v-list-item-content
-    //-         .item.body.text-primary-dark Privacy Policy                     
-    //-     v-list-item(v-if="user === null"  @click="navItemClicked" to='/login')
-    //-       v-list-item-icon
-    //-         streamline-icon(:icon="icons.logout" :size=24 stroke="#4B5FA7")
-    //-       v-list-item-content
-    //-         .item.body.text-primary-dark Login
-    //-     v-list-item(v-if="user === null" @click="navItemClicked" to='/register')
-    //-       v-list-item-icon
-    //-         streamline-icon(:icon="icons.register" :size=24 stroke="#4B5FA7")
-    //-       v-list-item-content
-    //-         .item.body.text-primary-dark Register
-                                 
+          v-list-item-icon
+            streamline-icon(:icon="item.icon" :size=24 stroke="#4B5FA7")
+          v-list-item-content
+            .item.nio-p.text-primary-dark {{ item.label }}                                 
 </template>
 
 <script>
 
 import StreamlineIcon from "@streamlinehq/streamline-icons-vue"
-import * as Notes from "@streamlinehq/streamline-light/lib/content/Notes"
-import * as GeomerticCloseUpSingleUserNeutral from "@streamlinehq/streamline-light/lib/users/GeomerticCloseUpSingleUserNeutral"
-import * as CreditCardPayments from "@streamlinehq/streamline-light/lib/money-payments-finance/CreditCardPayments"
-import * as print3d from "@streamlinehq/streamline-light/lib/technology/3DPrinting"
-import * as OnOff from "@streamlinehq/streamline-light/lib/interface-essential/OnOff"
-import * as Alerts from "@streamlinehq/streamline-light/lib/interface-essential/Alerts"
-import * as  View from "@streamlinehq/streamline-light/lib/interface-essential/View"
-import * as Edit from "@streamlinehq/streamline-light/lib/interface-essential/Edit"
-import * as HumanResources from "@streamlinehq/streamline-light/lib/work-office-companies/HumanResources"
 import NioImageTile from '../../components/ImageTile'
 
 export default {
@@ -128,19 +33,7 @@ export default {
     "navItems": { type: Array, required: false, default: []}
   },  
   data: () => ({
-    showDrawer: false,
-    selectedCompany: undefined,
-    icons: {
-      profile: GeomerticCloseUpSingleUserNeutral.default.SingleNeutralIdCard3,
-      company: HumanResources.default.HumanResourcesHierarchy,
-      payment: CreditCardPayments.default.CreditCardMastercard,
-      destination: print3d.default['3DBoxExpandCorners'],
-      logout: OnOff.default.PowerButton,
-      help: Alerts.default.QuestionCircle,
-      privacy: View.default.View1,
-      register: Edit.default.PencilWrite2
-    }
-   
+    showDrawer: false
   }),
   computed: {
     isAdmin() {
@@ -210,7 +103,11 @@ export default {
     .user-info
       text-align: center
   .nav-group
-    .v-list-item 
-      &.v-list-item--link 
-        margin-bottom: 1px !important
+    .v-list
+      padding-left: 0px
+      padding-right: 0px
+      .v-list-item 
+        padding: 0px 8px
+        &.v-list-item--link 
+          margin-bottom: 1px !important
 </style>
