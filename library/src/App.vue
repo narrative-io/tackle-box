@@ -17,6 +17,7 @@
       //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
       //- .typed Types: {{ model }}
       nio-select.select(
+        multiple
         v-model="selectedItems" 
         :items="items"
         @mounted="childMounted" 
@@ -204,7 +205,7 @@ export default {
     ],
     model: "",
     items: ['apple', 'banana', 'orange', 'your mom'],
-    selectedItems: 'apple',
+    selectedItems: ['apple'],
     selectedRegions: [],
     checkbox: false,
     selected: ['John'],

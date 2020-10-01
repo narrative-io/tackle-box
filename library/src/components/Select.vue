@@ -8,6 +8,7 @@
       v-on="$listeners"
       @input="$emit('update', $event)"
       ref="nio-select-ref"
+      :value="model"
     )
       template(v-slot:append)
         svg(style="width:24px;height:24px" viewBox="0 0 24 24")
@@ -34,6 +35,7 @@
       
     },
     mounted() {	
+      
       this.$emit('mounted')
       this.node = this.$refs['nio-select-ref'].$vnode.elm
     },
