@@ -6,7 +6,7 @@
         DropdownNavMenu(
           appName="Universal Onboarding" 
           :companies="[]" 
-          :user="{name: 'Chris Woodward', role: 1}"
+          :user="{name: 'Chris Woodward', role: 1, email: 'cwoodward5@hotmail.com'}"
           :navItems="navItems" 
         )
           //- DropdownNavMenu(
