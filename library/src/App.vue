@@ -3,15 +3,21 @@
     div.menu-container(style="background-color: #010A28").d-flex.align-center
       div.container
         .links
-          NavMenu(
-            appName="Universal Onboarding" 
-            :companies="[]" 
-            :user="{name: 'Chris Woodward', role: 1}"
-            :navItems="navItems" 
-            @goToHelpCenter="goToHelpCenter"
-            @goToPrivacyPolicy="goToPrivacyPolicy"
-            @logout="logout"
-          )
+        DropdownNavMenu(
+          appName="Universal Onboarding" 
+          :companies="[]" 
+          :user="{name: 'Chris Woodward', role: 1}"
+          :navItems="navItems" 
+        )
+          //- DropdownNavMenu(
+          //-   appName="Universal Onboarding" 
+          //-   :companies="[]" 
+          //-   :user="{name: 'Chris Woodward', role: 1}"
+          //-   :navItems="navItems" 
+          //-   @goToHelpCenter="goToHelpCenter"
+          //-   @goToPrivacyPolicy="goToPrivacyPolicy"
+          //-   @logout="logout"
+          //- )
     .wrapper
       //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
       //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
@@ -116,7 +122,7 @@
 </template>
 
 <script>
-import NavMenu from './components-private/menu/NavMenu'
+import DropdownNavMenu from './components/navigation/DropdownNavMenu'
 import * as Notes from "@streamlinehq/streamline-light/lib/content/Notes"
 import * as GeomerticCloseUpSingleUserNeutral from "@streamlinehq/streamline-light/lib/users/GeomerticCloseUpSingleUserNeutral"
 import * as CreditCardPayments from "@streamlinehq/streamline-light/lib/money-payments-finance/CreditCardPayments"
@@ -149,7 +155,7 @@ export default {
     NioRadioGroup: () => import("./components/RadioGroup.vue"),
     NioRadioButton: () => import("./components/RadioButton.vue"),
     NioImageTile: () => import("./components/ImageTile.vue"),
-    NavMenu
+    DropdownNavMenu
   },
   data: () => ({
     navItems: [
