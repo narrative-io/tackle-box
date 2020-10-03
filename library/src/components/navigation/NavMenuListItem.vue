@@ -44,17 +44,16 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  // @import '../styles/mixins/navigation/_nav-menu-item.sass'  
 @import '../../styles/global/_colors'
 @import '../../styles/global/_typography'
 @import '../../styles/global/_color-helpers'
 @import '../../styles/mixins/utility/_center-content'
 
 .nio-nav-menu-list-item 
-  padding: 0px 8px
+  padding: 0px 8px !important
   &.v-list-item--link 
     margin-bottom: 1px !important
-    .v-list-item__content
+    ::v-deep .v-list-item__content
       flex-grow: 2
       display: flex
       justify-content: space-between
@@ -88,9 +87,9 @@ export default {
       .icon-dark
         display: none
     &:hover
-      background-color: darken($c-canvas, 2)
+      background-color: darken($c-canvas, 2) !important
       .item
-        color: darken($c-primary-darker, 2)     
+        color: darken($c-primary-darker, 2) !important
       .status
         &.new
           background-color: darken($c-seagreen-light, 15)

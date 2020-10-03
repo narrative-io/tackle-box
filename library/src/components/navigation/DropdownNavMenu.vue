@@ -10,8 +10,9 @@
       template(v-slot:activator="{ on }")
         .activator(@click="open")
           .h3.text-white.button-label-small {{ userInitials }}
+      v-divider    
       NavMenu(
-        :navItems="navItems"
+        :navItems="[navItems.find(group => group.groupLabel === 'App')]"
         @navItemClicked="close" 
         @close="close" 
         @navEvent="fireNavEvent($event)"
@@ -23,6 +24,20 @@
             .user-info
               h3.text-primary-darker {{ user.name }} 
               .body.text-primary-dark {{ user.email }}
+      v-divider        
+      NavMenu(
+        :navItems="[navItems.find(group => group.groupLabel === 'Account Settings')]"
+        @navItemClicked="close" 
+        @close="close" 
+        @navEvent="fireNavEvent($event)"
+      )
+      v-divider
+      NavMenu(
+        :navItems="[navItems.find(group => group.groupLabel === 'Support')]"
+        @navItemClicked="close" 
+        @close="close" 
+        @navEvent="fireNavEvent($event)"
+      )        
 </template>
 
 <script>

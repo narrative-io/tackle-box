@@ -50,6 +50,5 @@ export default {
       .v-list
         padding-left: 0px
         padding-right: 0px
-        background-color: $c-canvas !important
-        
+        background-color: inherit
 </style>
