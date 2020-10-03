@@ -2,7 +2,7 @@
 	.nio-nav-menu
 		slot(name="header")
 		NavMenuList(
-
+			:navItems="navItems"
 		)
 </template>
 
@@ -12,7 +12,7 @@ import NavMenuList from './NavMenuList'
 export default {
 	name: 'nio-nav-menu',
 	props: {
-		
+		"navItems": { type: Array, required: false, default: []}
 	},
 	data: () => ({
 		

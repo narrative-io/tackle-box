@@ -11,7 +11,10 @@
 				.activator(@click="open")
 					.h3.text-white.button-label-small {{ userInitials }}
 			NavMenu(
-
+				:navItems="navItems"
+				@navItemClicked="close" 
+				@close="close" 
+				@navEvent="fireNavEvent($event)"
 			)
 				template(v-slot:header)
 					.test Menu Header
@@ -40,7 +43,7 @@ export default {
     "companies": { type: Array, required: false, default: [] },
     "appName": { type: String, required: true },
     "user": { type: Object, required: false, default: null },
-    "navItems": { type: Array, required: false, default: []}
+    "navItems": { type: Array, required: true }
 	},
 	data: () => ({
 		showMenu: false
