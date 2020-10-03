@@ -22,7 +22,7 @@
 import StreamlineIcon from "@streamlinehq/streamline-icons-vue"
 
 export default {
-  name: 'nio-nav-menu-list-item',
+  name: 'nio-nav-menu-item',
   props: {
     "item": { type: Object, required: true }
   },

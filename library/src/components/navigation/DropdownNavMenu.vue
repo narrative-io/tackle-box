@@ -9,30 +9,29 @@
     )
       template(v-slot:activator="{ on }")
         .activator(@click="open")
-          .h3.text-white.button-label-small {{ userInitials }}
-      v-divider    
-      NavMenu(
+          .h3.text-white.button-label-small {{ userInitials }}    
+      .user
+        .avatar 
+          .h3.text-white {{ userInitials }}
+        .user-info
+          h3.text-primary-darker {{ user.name }} 
+          .body.text-primary-dark {{ user.email }}  
+      v-divider      
+      NavMenu.menu-group(
         :navItems="[navItems.find(group => group.groupLabel === 'App')]"
         @navItemClicked="close" 
         @close="close" 
         @navEvent="fireNavEvent($event)"
-      )
-        template(v-slot:header)
-          .user
-            .avatar 
-              .h3.text-white {{ userInitials }}
-            .user-info
-              h3.text-primary-darker {{ user.name }} 
-              .body.text-primary-dark {{ user.email }}
+      )          
       v-divider        
-      NavMenu(
+      NavMenu.menu-group(
         :navItems="[navItems.find(group => group.groupLabel === 'Account Settings')]"
         @navItemClicked="close" 
         @close="close" 
         @navEvent="fireNavEvent($event)"
       )
       v-divider
-      NavMenu(
+      NavMenu.menu-group(
         :navItems="[navItems.find(group => group.groupLabel === 'Support')]"
         @navItemClicked="close" 
         @close="close" 
@@ -94,10 +93,14 @@ export default {
 .nio-dropdown-nav-menu-menu
   width: 23.75rem
   background-color: $c-white
+  .menu-group, .user
+    padding: 24px
+  ::v-deep .v-divider
+    border: none
+    border-bottom: 2px solid $c-canvas !important
   .user
     display: flex
     overflow: hidden
-    padding: 24px
     .avatar, .user-info
       height: 4rem
     .avatar
