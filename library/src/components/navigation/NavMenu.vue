@@ -3,7 +3,13 @@
     .nav-group(v-for="navGroup in navItems")      
       h3.nio-h6.text-primary-darker {{ navGroup.groupLabel }}
       v-list(nav dense)
-        NavMenuItem(v-for="item in navGroup.items" :item="item" @click="navItemClicked(item)")
+        NavMenuItem(
+          v-for="item in navGroup.items.filter(item => item.hidden !== true)" 
+          :label="item.label"
+          :icon="item.icon"
+          :status="item.status"
+          :to="item.to"
+          @click="navItemClicked(item)")
 </template>
 
 <script>
