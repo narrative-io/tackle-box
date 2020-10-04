@@ -16,34 +16,15 @@
         .user-info
           h3.text-primary-darker {{ user.name }} 
           .body.text-primary-dark {{ user.email }}  
-      v-divider      
-      NavMenu.menu-group(
-        :navItems="[navItems.find(group => group.groupName === 'manage')]"
-        @navItemClicked="close" 
-        @close="close" 
-        @navEvent="fireNavEvent($event)"
-      )          
-      v-divider        
-      NavMenu.menu-group(
-        :navItems="[navItems.find(group => group.groupName === 'accountSettings')]"
-        @navItemClicked="close" 
-        @close="close" 
-        @navEvent="fireNavEvent($event)"
-      )
       v-divider
-      NavMenu.menu-group(
-        :navItems="[navItems.find(group => group.groupName === 'support')]"
-        @navItemClicked="close" 
-        @close="close" 
-        @navEvent="fireNavEvent($event)"
-      )    
-      v-divider
-      NavMenu.menu-group(
-        :navItems="[navItems.find(group => group.groupName === 'loggedIn')]"
-        @navItemClicked="close" 
-        @close="close" 
-        @navEvent="fireNavEvent($event)"
-      )    
+      template(v-for="navGroup in navItems")      
+        NavMenu.menu-group(
+          :navItems="[navGroup]"
+          @navItemClicked="close" 
+          @close="close" 
+          @navEvent="fireNavEvent($event)"
+        )          
+        v-divider        
 </template>
 
 <script>
@@ -57,7 +38,10 @@ export default {
     "companies": { type: Array, required: false, default: [] },
     "appName": { type: String, required: true },
     "user": { type: Object, required: false, default: null },
-    "navItems": { type: Array, required: true }
+    "navItems": { type: Array, required: true },
+    "loggedIn": { type: Boolean, required: false, default: false },
+    "isAdmin": { type: Boolean, required: false, default: false }
+
   },
   data: () => ({
     showMenu: false

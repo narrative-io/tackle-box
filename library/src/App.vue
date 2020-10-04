@@ -8,6 +8,8 @@
           :companies="[]" 
           :user="{name: 'Chris Woodward', role: 1, email: 'cwoodward5@hotmail.com'}"
           :navItems="navItems" 
+          @login="login"
+          @logout="logout"
         )
           //- DropdownNavMenu(
           //-   appName="Universal Onboarding" 
@@ -158,6 +160,7 @@ export default {
     DropdownNavMenu
   },
   data: () => ({
+    loggedIn: false,
     navItems: [
       {
         groupName: "manage",
@@ -239,7 +242,8 @@ export default {
           },
            {
             label: "Login",
-            to: "/login",
+            event: 'login',
+            // to: "/login",
             icon: icons.logout
           }
         ]
@@ -284,7 +288,10 @@ export default {
       console.log("privacy policy")
     },
     logout() {
-      console.log("logout")
+      this.loggedIn = false
+    },
+    login() {
+      this.loggedIn = true
     }
   },
   mounted() {
