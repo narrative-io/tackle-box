@@ -2,6 +2,7 @@
   v-list-item.nio-nav-menu-list-item(
     v-bind="$attrs"
     v-on="$listeners"
+    :class="{'status-coming': status === 'coming'}"
   )
     v-list-item-icon(v-if="icon")
       streamline-icon.icon-light(:icon="icon" :size=24 stroke="#4B5FA7")
@@ -22,9 +23,9 @@ import StreamlineIcon from "@streamlinehq/streamline-icons-vue"
 export default {
   name: 'nio-nav-menu-item',
   props: {
-		"label": { type: String, required: true },
-		"icon": { type: Array, required: false},
-		"status": { type: String, required: false }
+    "label": { type: String, required: true },
+    "icon": { type: Array, required: false},
+    "status": { type: String, required: false }
   },
   data: () => ({
     
@@ -104,4 +105,12 @@ export default {
           display: flex
         .icon-light
           display: none  
+  &.status-coming
+    pointer-events: none !important
+    cursor: initial
+    .item
+      opacity: 0.7
+    .v-list-item__icon
+      opacity: 0.7
+              
 </style>

@@ -9,10 +9,10 @@
     )
       template(v-slot:activator="{ on }")
         .activator(@click="open")
-          .h3.text-white.button-label-small {{ userInitials }}    
+          .nio-h3.text-white.button-label-small {{ userInitials }}    
       .user
         .avatar 
-          .h3.text-white {{ userInitials }}
+          h1.text-white {{ userInitials }}
         .user-info
           h3.text-primary-darker {{ user.name }} 
           .body.text-primary-dark {{ user.email }}  
@@ -95,6 +95,7 @@ export default {
 
 <style lang="sass">
 @import '../../styles/global/_colors'
+@import '../../styles/global/_color-helpers'
 @import '../../styles/mixins/utility/_center-content'	
 
 .nio-dropdown-nav-menu-menu
