@@ -18,7 +18,7 @@
           .body.text-primary-dark {{ user.email }}  
       v-divider      
       NavMenu.menu-group(
-        :navItems="[navItems.find(group => group.groupLabel === 'App')]"
+        :navItems="[navItems.find(group => group.groupLabel === 'Manage')]"
         @navItemClicked="close" 
         @close="close" 
         @navEvent="fireNavEvent($event)"
@@ -36,7 +36,7 @@
         @navItemClicked="close" 
         @close="close" 
         @navEvent="fireNavEvent($event)"
-      )        
+      )    
 </template>
 
 <script>
@@ -91,13 +91,13 @@ export default {
 @import '../../styles/mixins/utility/_center-content'	
 
 .nio-dropdown-nav-menu-menu
-  width: 23.75rem
+  width: 19.375rem
   background-color: $c-white
   .menu-group, .user
     padding: 24px
-  ::v-deep .v-divider
+  .v-divider
     border: none
-    border-bottom: 2px solid $c-canvas !important
+    border-bottom: 1px solid $c-primary-lightest !important
   .user
     display: flex
     overflow: hidden

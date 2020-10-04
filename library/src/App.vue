@@ -160,32 +160,24 @@ export default {
   data: () => ({
     navItems: [
       {
-        groupLabel: "App",
+        groupLabel: "Manage",
         items: [
           {
-            label: "Data Streams",
-            to: "/products",
+            label: "Subscriptions",
+            to: "/subscriptions",
             icon: icons.profile,
             staatus: "locked"
           },
           {
-            label: "Providers",
+            label: "Installed Apps",
             to: "/suppliers",
             icon: icons.payment,
-            status: "new"
+            status: "coming"
           },
           {
-            label: "Apps",
-            to: "/apps"
-          },
-          {
-            label: "Your Cart",
-            to: "/cart"
-          },
-          {
-            label: "Subscriptions",
-            to: "/subscriptions",
-            status: "locked"
+            label: "Saved Providers",
+            to: "/apps",
+            status: "coming"
           }
         ]
       },
@@ -195,22 +187,22 @@ export default {
           {
             label: "Your Profile",
             to: "/settings/profile",
-            status: "new"
+            icon: icons.profile
           },
           {
             label: "Company",
             to: "/settings/company",
-            status: "coming"
+            icon: icons.company
           },
           {
             label: "Payment",
             to: "/settings/payment",
-            status: "updated"
+            icon: icons.payment
           },
           {
             label: "Destination",
             to: "/settings/delivery",
-            status: "alpha"
+            icon: icons.destination
           }
         ]
       },
@@ -220,23 +212,27 @@ export default {
           {
             label: "Logout",
             event: "logout",
-            status: "beta"
+            icon: icons.logout,
           },
           {
             label: "Help Center",
-            event: "goToHelpCenter"
+            event: "goToHelpCenter",
+            icon: icons.help
           },
           {
             label: "Privacy Policy",
-            event: "goToPrivacyPolicy"
+            event: "goToPrivacyPolicy",
+            icon: icons.privacy
           },
           {
             label: "Login",
-            to: "/login"
+            to: "/login",
+            icon: icons.logout
           },
           {
             label: "Register",
-            to: "/register"
+            to: "/register",
+            icon: icons.register
           }
         ]
       }
