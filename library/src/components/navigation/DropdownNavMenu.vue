@@ -22,7 +22,6 @@
           :navItems="[navGroup]"
           :hideItems="hideItems"
           @navItemClicked="close" 
-          @close="close" 
           @navEvent="fireNavEvent($event)"
         )          
         v-divider        

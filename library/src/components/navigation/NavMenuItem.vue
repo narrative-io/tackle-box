@@ -109,8 +109,7 @@ export default {
     pointer-events: none !important
     cursor: initial
     .item
-      opacity: 0.7
+      opacity: 0.6
     .v-list-item__icon
-      opacity: 0.7
-              
+      opacity: 0.6  
 </style>
