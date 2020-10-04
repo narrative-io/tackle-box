@@ -160,6 +160,7 @@ export default {
   data: () => ({
     navItems: [
       {
+        groupName: "manage",
         groupLabel: "Manage",
         items: [
           {
@@ -182,6 +183,7 @@ export default {
         ]
       },
       {
+        groupName: "accountSettings",
         groupLabel: "Account Settings",
         items: [
           {
@@ -207,13 +209,9 @@ export default {
         ]
       },
       {
+        groupName: "support",
         groupLabel: "Support",
         items: [
-          {
-            label: "Logout",
-            event: "logout",
-            icon: icons.logout,
-          },
           {
             label: "Help Center",
             event: "goToHelpCenter",
@@ -225,17 +223,27 @@ export default {
             icon: icons.privacy
           },
           {
-            label: "Login",
-            to: "/login",
-            icon: icons.logout
-          },
-          {
             label: "Register",
             to: "/register",
             icon: icons.register
           }
         ]
-      }
+      },
+      {
+        groupName: "loggedIn",
+        items: [
+          {
+            label: "Logout",
+            event: "logout",
+            icon: icons.logout,
+          },
+           {
+            label: "Login",
+            to: "/login",
+            icon: icons.logout
+          }
+        ]
+      }    
     ],
     model: "",
     items: ['apple', 'banana', 'orange', 'your mom'],

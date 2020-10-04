@@ -18,21 +18,28 @@
           .body.text-primary-dark {{ user.email }}  
       v-divider      
       NavMenu.menu-group(
-        :navItems="[navItems.find(group => group.groupLabel === 'Manage')]"
+        :navItems="[navItems.find(group => group.groupName === 'manage')]"
         @navItemClicked="close" 
         @close="close" 
         @navEvent="fireNavEvent($event)"
       )          
       v-divider        
       NavMenu.menu-group(
-        :navItems="[navItems.find(group => group.groupLabel === 'Account Settings')]"
+        :navItems="[navItems.find(group => group.groupName === 'accountSettings')]"
         @navItemClicked="close" 
         @close="close" 
         @navEvent="fireNavEvent($event)"
       )
       v-divider
       NavMenu.menu-group(
-        :navItems="[navItems.find(group => group.groupLabel === 'Support')]"
+        :navItems="[navItems.find(group => group.groupName === 'support')]"
+        @navItemClicked="close" 
+        @close="close" 
+        @navEvent="fireNavEvent($event)"
+      )    
+      v-divider
+      NavMenu.menu-group(
+        :navItems="[navItems.find(group => group.groupName === 'loggedIn')]"
         @navItemClicked="close" 
         @close="close" 
         @navEvent="fireNavEvent($event)"
@@ -93,7 +100,7 @@ export default {
 .nio-dropdown-nav-menu-menu
   width: 19.375rem
   background-color: $c-white
-  .menu-group, .user
+  .user
     padding: 24px
   .v-divider
     border: none

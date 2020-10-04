@@ -1,7 +1,7 @@
 <template lang="pug">
-  .nio-nav-menu-list
+  .nio-nav-menu
     .nav-group(v-for="navGroup in navItems")      
-      h3.nio-h6.text-primary-darker {{ navGroup.groupLabel }}
+      h3.nio-h6.text-primary-darker(v-if="navGroup.groupLabel") {{ navGroup.groupLabel }}
       v-list(nav dense)
         NavMenuItem(
           v-for="item in navGroup.items.filter(item => item.hidden !== true)" 
@@ -49,9 +49,12 @@ export default {
   @import '../../styles/global/_color-helpers'
   @import '../../styles/mixins/utility/_center-content'
   @import '../../styles/mixins/_menu'
-  .nio-nav-menu-list
+  .nio-nav-menu
     +nio-menu  
     .nav-group
+      padding: 0px 24px 24px 24px
+      h3
+        margin-top: 24px
       .v-list
         margin-bottom: -24px
         padding-left: 0px
