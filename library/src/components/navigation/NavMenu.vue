@@ -4,7 +4,7 @@
       h3.nio-h6.text-primary-darker(v-if="navGroup.groupLabel") {{ navGroup.groupLabel }}
       v-list(nav dense)
         NavMenuItem(
-          v-for="item in navGroup.items.filter(item => item.hidden !== true)" 
+          v-for="item in navGroup.items.filter(item => !itemHidden(item))" 
           :label="item.label"
           :icon="item.icon"
           :status="item.status"
@@ -19,7 +19,8 @@ import NavMenuItem from './NavMenuItem'
 export default {
   name: 'nio-nav-menu',
   props: {
-    "navItems": { type: Array, required: false, default: []}
+    "navItems": { type: Array, required: false, default: []},
+    "hideItems": { type: Object, required: false, default: {} }
   },
   data: () => ({
     
@@ -30,6 +31,9 @@ export default {
         this.$emit('navEvent', item.event)
       }
       this.$emit('navItemClicked')
+    },
+    itemHidden(item) {
+      return this.hideItems[item.name]
     }
   },
   mounted() {	

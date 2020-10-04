@@ -20,6 +20,7 @@
       template(v-for="navGroup in navItems")      
         NavMenu.menu-group(
           :navItems="[navGroup]"
+          :hideItems="hideItems"
           @navItemClicked="close" 
           @close="close" 
           @navEvent="fireNavEvent($event)"
@@ -39,8 +40,7 @@ export default {
     "appName": { type: String, required: true },
     "user": { type: Object, required: false, default: null },
     "navItems": { type: Array, required: true },
-    "loggedIn": { type: Boolean, required: false, default: false },
-    "isAdmin": { type: Boolean, required: false, default: false }
+    "hideItems": { type: Object, required: false, default: {} }
 
   },
   data: () => ({

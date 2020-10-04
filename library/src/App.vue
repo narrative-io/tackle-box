@@ -8,123 +8,126 @@
           :companies="[]" 
           :user="{name: 'Chris Woodward', role: 1, email: 'cwoodward5@hotmail.com'}"
           :navItems="navItems" 
+          :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
           @login="login"
           @logout="logout"
         )
-          //- DropdownNavMenu(
-          //-   appName="Universal Onboarding" 
-          //-   :companies="[]" 
-          //-   :user="{name: 'Chris Woodward', role: 1}"
-          //-   :navItems="navItems" 
-          //-   @goToHelpCenter="goToHelpCenter"
-          //-   @goToPrivacyPolicy="goToPrivacyPolicy"
-          //-   @logout="logout"
-          //- )
-    .wrapper
-      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
-      //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
-      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
-      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
-      //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
-      //- .typed Types: {{ model }}
-      nio-select.select(
-        multiple
-        v-model="selectedItems" 
-        :items="items"
-        @mounted="childMounted" 
-        :ref="'text'" 
-        :label="'Label'"
+    .main
+      SideNavMenu(
+        appName="Universal Onboarding" 
+        developerName="Narrative I/O"
+        :companies="[]" 
+        :navItems="navItems" 
+        :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
+        @login="login"
+        @logout="logout"
       )
-      //- nio-select.select(
-      //-   multiple
-      //-   v-model="selectedItems" 
-      //-   :items="items"
-      //-   @mounted="childMounted" 
-      //-   :ref="'text'" 
-      //-   :label="'Label'"
-      //- )
-      //- nio-select.select(
-      //-   multiple
-      //-   v-model="selectedItems" 
-      //-   :items="items"
-      //-   @mounted="childMounted" 
-      //-   :ref="'text'" 
-      //-   :label="'Label'"
-      //- )
-      //- NioSelect(
-      //-   label="Preferred Data Regions"
-      //-   v-model="selectedRegions"
-      //-   :items="regions"
-      //-   item-text="name"
-      //-   item-value="value" 
-      //-   multiple 
-      //- )
-      //-   template(v-slot:selection="{ item, index }")
-      //-     span.v-select__selection(v-if="index === 0") {{ item.name }}
-      //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
-      //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
-      //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-      //- NioCheckbox(v-model="checkbox")
-      //- v-checkbox(v-model="checkbox")
-      //- .checkbox {{ checkbox }}
-      //- NioAutocomplete.autocomplete(
-      //-   v-model="selectedItems" 
-      //-   :items="items"
-      //-   @mounted="childMounted" 
-      //-   :value="'banana'"
-      //-   :ref="'text'" 
-      //-   :label="'Label'"
-      //- )
-      //- NioAutocomplete(
-      //-   label="Preferred Data Regions"
-      //-   v-model="selectedRegions"
-      //-   :items="regions"
-      //-   item-text="name"
-      //-   item-value="value" 
-      //-   multiple 
-      //- )
-      //-   template(v-slot:selection="{ item, index }")
-      //-     span.v-select__selection(v-if="index === 0") {{ item.name }}
-      //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
-      //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
-      //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-      //- NioCheckbox(v-model="selected2" label="hello" )
-      //- .value value: {{ selected2 }}
-      //- NioCheckbox(v-model="selected" label="John" value="John")
-      //- NioCheckbox(v-model="selected" label="Jacob" value="Jacob")
-      //- .a selected: {{ selected }}
-      //- NioSwitch(v-model="switch1" :input-value="switch1") 
-      //- .value value: {{ switch1 }}
-      //- NioSwitch(v-model="switch2" :input-value="switch2" value="John")
-      //- NioSwitch(v-model="switch2" :input-value="switch2" value="Jacob")       
-      //- .value value: {{ switch2 }}
-      //- NioRadioGroup(v-model="radio")
-      //-   NioRadioButton(value="John" label="John")
-      //-   NioRadioButton(value="Jacob" label="Jacob")
-      //- .value value: {{ radio }}
-      NioButton(:variant="'primary'") Primary
-      NioButton(:variant="'primary'" disabled) Primary
-      NioButton(:variant="'secondary'") Secondary
-      NioButton(:variant="'secondary'" disabled) Secondary
-      NioButton(:variant="'tertiary'") Tertiary
-      NioButton(:variant="'tertiary'" disabled) Tertiary
-      NioButton(normal-primary) Quick Add
-      NioButton(normal-secondary) View Details
-      NioButton(normal-tertiary) Forgot Password
-      NioButton(normal-primary-prepend disabled iconName="mdi-plus") New Onboarding
-      NioButton(normal-secondary-prepend disabled iconName="mdi-chevron-left") Previous
-      NioButton(normal-tertiary-prepend disabled iconName="mdi-arrow-left") Back to Main
-      NioButton(normal-primary-append iconName="mdi-plus") Checkout
-      NioButton(normal-secondary-append iconName="mdi-chevron-right") More Options
-      NioButton(normal-tertiary-append iconName="mdi-arrow-right") View All Suppliers
-      NioButton(jumbo-icon iconName="mdi-plus")
-      NioButton(normal-icon iconName="mdi-plus")
-      NioButton(:variant="'selected'") Primary
-      NioButton.test(jumbo-primary) Test Me
+      .wrapper
+        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
+        //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
+        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
+        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
+        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
+        //- .typed Types: {{ model }}
+        nio-select.select(
+          multiple
+          v-model="selectedItems" 
+          :items="items"
+          @mounted="childMounted" 
+          :ref="'text'" 
+          :label="'Label'"
+        )
+        //- nio-select.select(
+        //-   multiple
+        //-   v-model="selectedItems" 
+        //-   :items="items"
+        //-   @mounted="childMounted" 
+        //-   :ref="'text'" 
+        //-   :label="'Label'"
+        //- )
+        //- nio-select.select(
+        //-   multiple
+        //-   v-model="selectedItems" 
+        //-   :items="items"
+        //-   @mounted="childMounted" 
+        //-   :ref="'text'" 
+        //-   :label="'Label'"
+        //- )
+        //- NioSelect(
+        //-   label="Preferred Data Regions"
+        //-   v-model="selectedRegions"
+        //-   :items="regions"
+        //-   item-text="name"
+        //-   item-value="value" 
+        //-   multiple 
+        //- )
+        //-   template(v-slot:selection="{ item, index }")
+        //-     span.v-select__selection(v-if="index === 0") {{ item.name }}
+        //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
+        //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
+        //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
+        //- NioCheckbox(v-model="checkbox")
+        //- v-checkbox(v-model="checkbox")
+        //- .checkbox {{ checkbox }}
+        //- NioAutocomplete.autocomplete(
+        //-   v-model="selectedItems" 
+        //-   :items="items"
+        //-   @mounted="childMounted" 
+        //-   :value="'banana'"
+        //-   :ref="'text'" 
+        //-   :label="'Label'"
+        //- )
+        //- NioAutocomplete(
+        //-   label="Preferred Data Regions"
+        //-   v-model="selectedRegions"
+        //-   :items="regions"
+        //-   item-text="name"
+        //-   item-value="value" 
+        //-   multiple 
+        //- )
+        //-   template(v-slot:selection="{ item, index }")
+        //-     span.v-select__selection(v-if="index === 0") {{ item.name }}
+        //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
+        //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
+        //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
+        //- NioCheckbox(v-model="selected2" label="hello" )
+        //- .value value: {{ selected2 }}
+        //- NioCheckbox(v-model="selected" label="John" value="John")
+        //- NioCheckbox(v-model="selected" label="Jacob" value="Jacob")
+        //- .a selected: {{ selected }}
+        //- NioSwitch(v-model="switch1" :input-value="switch1") 
+        //- .value value: {{ switch1 }}
+        //- NioSwitch(v-model="switch2" :input-value="switch2" value="John")
+        //- NioSwitch(v-model="switch2" :input-value="switch2" value="Jacob")       
+        //- .value value: {{ switch2 }}
+        //- NioRadioGroup(v-model="radio")
+        //-   NioRadioButton(value="John" label="John")
+        //-   NioRadioButton(value="Jacob" label="Jacob")
+        //- .value value: {{ radio }}
+        NioButton(:variant="'primary'") Primary
+        NioButton(:variant="'primary'" disabled) Primary
+        NioButton(:variant="'secondary'") Secondary
+        NioButton(:variant="'secondary'" disabled) Secondary
+        NioButton(:variant="'tertiary'") Tertiary
+        NioButton(:variant="'tertiary'" disabled) Tertiary
+        NioButton(normal-primary) Quick Add
+        NioButton(normal-secondary) View Details
+        NioButton(normal-tertiary) Forgot Password
+        NioButton(normal-primary-prepend disabled iconName="mdi-plus") New Onboarding
+        NioButton(normal-secondary-prepend disabled iconName="mdi-chevron-left") Previous
+        NioButton(normal-tertiary-prepend disabled iconName="mdi-arrow-left") Back to Main
+        NioButton(normal-primary-append iconName="mdi-plus") Checkout
+        NioButton(normal-secondary-append iconName="mdi-chevron-right") More Options
+        NioButton(normal-tertiary-append iconName="mdi-arrow-right") View All Suppliers
+        NioButton(jumbo-icon iconName="mdi-plus")
+        NioButton(normal-icon iconName="mdi-plus")
+        NioButton(:variant="'selected'") Primary
+        NioButton.test(jumbo-primary) Test Me
 </template>
 
 <script>
 import DropdownNavMenu from './components/navigation/DropdownNavMenu'
+import SideNavMenu from './components/navigation/SideNavMenu'
 import * as Notes from "@streamlinehq/streamline-light/lib/content/Notes"
 import * as GeomerticCloseUpSingleUserNeutral from "@streamlinehq/streamline-light/lib/users/GeomerticCloseUpSingleUserNeutral"
 import * as CreditCardPayments from "@streamlinehq/streamline-light/lib/money-payments-finance/CreditCardPayments"
@@ -157,7 +160,8 @@ export default {
     NioRadioGroup: () => import("./components/RadioGroup.vue"),
     NioRadioButton: () => import("./components/RadioButton.vue"),
     NioImageTile: () => import("./components/ImageTile.vue"),
-    DropdownNavMenu
+    DropdownNavMenu,
+    SideNavMenu
   },
   data: () => ({
     loggedIn: false,
@@ -236,11 +240,13 @@ export default {
         groupName: "loggedIn",
         items: [
           {
+            name: 'logout',
             label: "Logout",
             event: "logout",
             icon: icons.logout,
           },
            {
+            name: 'login',
             label: "Login",
             event: 'login',
             // to: "/login",
@@ -316,6 +322,10 @@ export default {
 .links
   display: flex
   justify-content: flex-end
+
+.main
+  padding: 30px
+  display: flex
 
 .wrapper
   padding: 30px  
