@@ -3,7 +3,7 @@
     div.menu-container(style="background-color: #010A28").d-flex.align-center
       div.container
         .links
-        DropdownNavMenu(
+        DropdownNav(
           appName="Universal Onboarding" 
           :companies="[]" 
           :user="{name: 'Chris Woodward', role: 1, email: 'cwoodward5@hotmail.com'}"
@@ -13,7 +13,7 @@
           @logout="logout"
         )
     .main
-      SideNavMenu(
+      SideNav(
         appName="Universal Onboarding" 
         developerName="Narrative I/O"
         :companies="[]" 
@@ -126,8 +126,8 @@
 </template>
 
 <script>
-import DropdownNavMenu from './components/navigation/DropdownNavMenu'
-import SideNavMenu from './components/navigation/SideNavMenu'
+import DropdownNav from './components/navigation/DropdownNav'
+import SideNav from './components/navigation/SideNav'
 import * as Notes from "@streamlinehq/streamline-light/lib/content/Notes"
 import * as GeomerticCloseUpSingleUserNeutral from "@streamlinehq/streamline-light/lib/users/GeomerticCloseUpSingleUserNeutral"
 import * as CreditCardPayments from "@streamlinehq/streamline-light/lib/money-payments-finance/CreditCardPayments"
@@ -160,8 +160,8 @@ export default {
     NioRadioGroup: () => import("./components/RadioGroup.vue"),
     NioRadioButton: () => import("./components/RadioButton.vue"),
     NioImageTile: () => import("./components/ImageTile.vue"),
-    DropdownNavMenu,
-    SideNavMenu
+    DropdownNav,
+    SideNav
   },
   data: () => ({
     loggedIn: false,
