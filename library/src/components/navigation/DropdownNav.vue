@@ -36,8 +36,8 @@ export default {
   props: {
     "user": { type: Object, required: false, default: null },
     "navItems": { type: Array, required: true },
-		"hideItems": { type: Object, required: false, default: {} },
-		"lockItems": { type: Object, required: false, default: {} },
+    "hideItems": { type: Object, required: false, default: {} },
+    "lockItems": { type: Object, required: false, default: {} },
   },
   data: () => ({
     showMenu: false
@@ -79,8 +79,9 @@ export default {
 @import '../../styles/mixins/utility/_center-content'	
 
 .nio-dropdown-nav-menu-menu
-  width: 19.375rem
+  width: 23.75rem
   background-color: $c-white
+  border-radius: 1rem !important
   .user
     padding: 24px
   .v-divider
@@ -92,7 +93,7 @@ export default {
     .avatar, .user-info
       height: 4rem
     .avatar
-      background-color: $c-coral-dark
+      background-color: $c-coral-light
       border-radius: 0.25rem  
       width: 4rem
       height: 4rem
@@ -115,7 +116,6 @@ export default {
 @import '../../styles/mixins/utility/_center-content'	
 
 .nio-dropdown-nav-menu
-  box-shadow: none
   .activator
     width: 2rem
     height: 2rem
@@ -125,7 +125,7 @@ export default {
     position: relative
     transition: opacity 0.1s ease
     border-radius: 0.25rem  
-    background-color: $c-coral-dark
+    background-color: $c-coral-light
     +nio-center-content  
     .h3
       letter-spacing: 0rem
