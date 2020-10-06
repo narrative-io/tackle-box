@@ -14,8 +14,8 @@
         .avatar 
           h1.text-white {{ userInitials }}
         .user-info
-          h3.text-primary-darker {{ user.name }} 
-          .body.text-primary-dark {{ user.email }}  
+          h3.nio-h2.text-primary-darker {{ user.name }} 
+          .nio-p.text-primary-dark {{ user.email }}  
       v-divider
       template(v-for="navGroup in navItems")      
         NavMenu.menu-group(

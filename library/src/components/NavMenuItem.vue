@@ -45,5 +45,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-	@import "../styles-private/_nav-menu-item"
+	@import "../styles/mixins/_nav-menu-item"
 </style>
