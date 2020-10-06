@@ -6,6 +6,12 @@
     v-bind="$attrs"
     v-on="$listeners" 
   )
+    template(v-slot:placeholder)
+      .image-placeholder HELLO
+        .top
+        .bottom
+    template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+      slot(:name="name" v-bind="data") 
 </template>
 
 <script>

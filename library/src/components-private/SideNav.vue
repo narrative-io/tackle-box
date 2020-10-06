@@ -2,9 +2,13 @@
   .nio-side-nav
     .header
       ImageTile.avatar(
-        src="https://picsum.photos/96/96"
+        src="https://picffsum.photos/96/96"
         size="large"
       )
+        template(v-slot:placeholder)
+          .image-placeholder HELLO
+            .top
+            .bottom
       .app-info
         h4.text-primary-darker {{ appName }} 
         .p-small.text-primary-dark By <span class="nio-bold">{{ developerName }}</span>
@@ -20,7 +24,7 @@
 <script>
 
 import ImageTile from '../components/ImageTile'
-import NavMenu from './NavMenu'
+import NavMenu from '../components/NavMenu'
 
 export default {
   name: 'nio-side-nav-menu',

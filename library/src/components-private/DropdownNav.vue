@@ -21,6 +21,7 @@
         NavMenu.menu-group(
           :navItems="[navGroup]"
           :hideItems="hideItems"
+          :lockItems="lockItems"
           @navItemClicked="close" 
           @navEvent="fireNavEvent($event)"
         )          
@@ -28,7 +29,7 @@
 </template>
 
 <script>
-import NavMenu from './NavMenu'
+import NavMenu from '../components/NavMenu'
 import ImageTile from '../components/ImageTile'
 
 export default {
