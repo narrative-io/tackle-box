@@ -19,7 +19,7 @@
 
 <script>
 
-import ImageTile from '../ImageTile'
+import ImageTile from '../components/ImageTile'
 import NavMenu from './NavMenu'
 
 export default {
@@ -54,8 +54,8 @@ export default {
 
 <style lang="sass" scoped>
 
-@import '../../styles/global/_colors'
-@import '../../styles/global/_color-helpers'
+@import '../styles/global/_colors'
+@import '../styles/global/_color-helpers'
 
 .nio-side-nav-menu
   width: 20.125rem

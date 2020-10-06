@@ -52,11 +52,11 @@ export default {
 
 <style lang="sass" scoped>
   // @import '../styles/mixins/navigation/_nav-menu-list.sass'  
-  @import '../../styles/global/_colors'
-  @import '../../styles/global/_typography'
-  @import '../../styles/global/_color-helpers'
-  @import '../../styles/mixins/utility/_center-content'
-  @import '../../styles/mixins/_menu'
+  @import '../styles/global/_colors'
+  @import '../styles/global/_typography'
+  @import '../styles/global/_color-helpers'
+  @import '../styles/mixins/utility/_center-content'
+  @import '../styles/mixins/_menu'
   .nio-nav-menu
     +nio-menu  
     .nav-group

@@ -128,8 +128,9 @@
 </template>
 
 <script>
-import DropdownNav from './components/navigation/DropdownNav'
-import SideNav from './components/navigation/SideNav'
+
+import DropdownNav from './components-private/DropdownNav'
+import SideNav from './components-private/SideNav'
 import * as Notes from "@streamlinehq/streamline-light/lib/content/Notes"
 import * as GeomerticCloseUpSingleUserNeutral from "@streamlinehq/streamline-light/lib/users/GeomerticCloseUpSingleUserNeutral"
 import * as CreditCardPayments from "@streamlinehq/streamline-light/lib/money-payments-finance/CreditCardPayments"
@@ -161,7 +162,6 @@ export default {
     NioSwitch: () => import("./components/Switch.vue"),
     NioRadioGroup: () => import("./components/RadioGroup.vue"),
     NioRadioButton: () => import("./components/RadioButton.vue"),
-    NioImageTile: () => import("./components/ImageTile.vue"),
     DropdownNav,
     SideNav
   },

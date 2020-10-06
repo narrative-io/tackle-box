@@ -45,10 +45,10 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../../styles/global/_colors'
-@import '../../styles/global/_typography'
-@import '../../styles/global/_color-helpers'
-@import '../../styles/mixins/utility/_center-content'
+@import '../styles/global/_colors'
+@import '../styles/global/_typography'
+@import '../styles/global/_color-helpers'
+@import '../styles/mixins/utility/_center-content'
 
 .nio-nav-menu-list-item 
   padding: 0px 8px !important

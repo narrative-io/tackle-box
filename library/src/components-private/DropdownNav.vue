@@ -29,7 +29,7 @@
 
 <script>
 import NavMenu from './NavMenu'
-import ImageTile from '../../components/ImageTile'
+import ImageTile from '../components/ImageTile'
 
 export default {
   name: 'nio-dropdown-nav-menu',
@@ -74,10 +74,27 @@ export default {
 </script>
 
 <style lang="sass">
-@import '../../styles/global/_colors'
-@import '../../styles/global/_color-helpers'
-@import '../../styles/mixins/utility/_center-content'	
+@import '../styles/global/_colors'
+@import '../styles/global/_color-helpers'
+@import '../styles/mixins/utility/_center-content'	
 
+.nio-dropdown-nav-menu
+  .activator
+    width: 2rem
+    height: 2rem
+    margin-left: 1.25rem
+    padding: 0.3125rem
+    padding: 0rem
+    position: relative
+    transition: opacity 0.1s ease
+    border-radius: 0.25rem  
+    background-color: $c-coral-light
+    +nio-center-content  
+    .h3
+      letter-spacing: 0rem
+    &:hover
+      cursor: pointer
+      opacity: 0.8
 .nio-dropdown-nav-menu-menu
   width: 23.75rem
   background-color: $c-white
@@ -107,31 +124,6 @@ export default {
       align-items: flex-start
       padding: 0.3125rem 0rem
       *
-        white-space: nowrap
-</style>
-
-<style lang="sass" scoped>
-
-@import '../../styles/global/_colors'
-@import '../../styles/mixins/utility/_center-content'	
-
-.nio-dropdown-nav-menu
-  .activator
-    width: 2rem
-    height: 2rem
-    margin-left: 1.25rem
-    padding: 0.3125rem
-    padding: 0rem
-    position: relative
-    transition: opacity 0.1s ease
-    border-radius: 0.25rem  
-    background-color: $c-coral-light
-    +nio-center-content  
-    .h3
-      letter-spacing: 0rem
-    &:hover
-      cursor: pointer
-      opacity: 0.8
+        white-space: nowrap    
  
-
 </style>

@@ -24,5 +24,5 @@
 </script>
 
 <style lang="sass" scoped>
-  @import '../styles/mixins/navigation/_nav-bar.sass'  
+  // @import '../styles/mixins/navigation/_nav-bar.sass'  
 </style>
