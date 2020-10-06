@@ -1,0 +1,52 @@
+@import "../styles/global/_colors"
+@import "../styles/global/_color-helpers"
+@import "../styles/global/_fonts"
+@import "../styles/global/_typography"
+@import '../styles/mixins/_menu'
+
+=nio-side-nav
+  width: 20.125rem
+  background-color: $c-canvas
+  border: 1px solid $c-primary-lighter
+  border-radius: 12px
+  padding: 24px 0px
+  .header
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-bottom: 24px
+    .avatar
+      margin-bottom: 24px
+      .image-placeholder
+        background-color: $c-primary
+        width: 100%
+        height: 100%
+        padding: 20px
+        .content
+          position: relative
+          overflow: hidden
+          width: 100%
+          height: 100%
+          .top
+            position: absolute
+            left: 0%
+            top: 0%
+            width: 100%
+            height: 50%
+            border-bottom-left-radius: 28px
+            border-bottom-right-radius: 28px
+            background: $c-white
+          .bottom
+            position: absolute
+            left: 0%
+            bottom: 0%
+            width: 100%
+            height: 50%
+            border-top-left-radius: 28px
+            border-top-right-radius: 28px
+            background: $c-primary-lighter
+    .app-info
+      text-align: center
+
+.nio-side-nav
+  +nio-side-nav

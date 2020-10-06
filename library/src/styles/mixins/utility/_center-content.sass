@@ -1,0 +1,9 @@
+=nio-center-content($axis: both)
+	display: flex
+	@if $axis == both
+			align-items: center
+			justify-content: center
+	@if $axis == vertical
+			align-items: center
+	@if $axis == horizontal
+			justify-content: center
