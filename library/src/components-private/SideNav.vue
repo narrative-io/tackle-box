@@ -11,8 +11,8 @@
               .top
               .bottom
       .app-info
-        h4.text-primary-darker {{ appName }} 
-        .p-small.text-primary-dark By <span class="nio-bold">{{ developerName }}</span>
+        h4.nio-h4.text-primary-darker {{ appName }} 
+        .nio-p-small.text-primary-dark By <span class="nio-bold">{{ developerName }}</span>
     NavMenu(
       :navItems="navItems"
       :hideItems="hideItems"
@@ -60,33 +60,4 @@ export default {
 
 <style lang="sass" scoped>
   @import "../styles-private/_side-nav"
-
-  .image-placeholder
-    background-color: $c-primary
-    width: 100%
-    height: 100%
-    padding: 20px
-    .content
-      position: relative
-      overflow: hidden
-      width: 100%
-      height: 100%
-      .top
-        position: absolute
-        left: 0%
-        top: 0%
-        width: 100%
-        height: 50%
-        border-bottom-left-radius: 28px
-        border-bottom-right-radius: 28px
-        background: $c-white
-      .bottom
-        position: absolute
-        left: 0%
-        bottom: 0%
-        width: 100%
-        height: 50%
-        border-top-left-radius: 28px
-        border-top-right-radius: 28px
-        background: $c-primary-lighter
 </style>

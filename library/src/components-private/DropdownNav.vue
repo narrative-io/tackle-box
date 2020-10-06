@@ -9,7 +9,7 @@
     )
       template(v-slot:activator="{ on }")
         .activator(@click="open")
-          .nio-h3.text-white.button-label-small {{ userInitials }}    
+          .user-initials.text-white.nio-button-label-small {{ userInitials }}    
       .user
         .avatar 
           h1.text-white {{ userInitials }}

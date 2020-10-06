@@ -52,5 +52,6 @@ export default {
 
 <style lang="sass" scoped>
 	@import "../styles-private/_nav-menu"
+	// @import "../styles/global/_typography"
 </style>
 

@@ -1,9 +1,13 @@
-@import '../styles/global/_colors'
-@import '../styles/global/_color-helpers'
+@import "../styles/global/_colors"
+@import "../styles/global/_color-helpers"
+@import "../styles/global/_fonts"
+@import "../styles/global/_typography"
+@import '../styles/mixins/_menu'
 @import '../styles/mixins/utility/_center-content'	
 
 =nio-dropdown-nav
   .activator
+  font-family: 'Euclid Circular A'
   width: 2rem
   height: 2rem
   margin-left: 1.25rem
@@ -14,7 +18,7 @@
   border-radius: 0.25rem  
   background-color: $c-coral-light
   +nio-center-content  
-  .h3
+  .user-initials
     letter-spacing: 0rem
   &:hover
     cursor: pointer
