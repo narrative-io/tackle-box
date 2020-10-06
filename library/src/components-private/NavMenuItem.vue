@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-list-item.nio-nav-menu-list-item(
+  v-list-item.nio-nav-menu-item(
     v-bind="$attrs"
     v-on="$listeners"
     :class="status ? `status-${status}` : ''"
@@ -45,71 +45,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../styles/global/_colors'
-@import '../styles/global/_typography'
-@import '../styles/global/_color-helpers'
-@import '../styles/mixins/utility/_center-content'
-
-.nio-nav-menu-list-item 
-  padding: 0px 8px !important
-  &.v-list-item--link 
-    margin-bottom: 1px !important
-    ::v-deep .v-list-item__content
-      flex-grow: 2
-      display: flex
-      justify-content: space-between
-      flex-wrap: nowrap  
-      .item
-        flex-shrink: 2
-      .status
-        flex: none
-        border-radius: 2px
-        padding: 2px 3px 1px 4px
-        &.new
-          background-color: $c-seagreen-light
-        &.coming
-          background-color: $c-coral-light
-        &.updated
-          background-color: $c-aqua-light
-        &.alpha, &.beta
-          background-color: $c-primary-dark
-        .status-content-wrapper
-          width: 100%
-          height: 100%
-          +nio-center-content
-          .status-content
-            font-weight: 600
-            font-size: 9px
-            letter-spacing: 0.4px
-            text-transform: uppercase
-            color: $c-white                    
-    .v-list-item__icon
-      margin-right: 16px
-      .icon-dark
-        display: none
-    &:hover
-      background-color: darken($c-canvas, 2) !important
-      .item
-        color: darken($c-primary-darker, 2) !important
-      .status
-        &.new
-          background-color: darken($c-seagreen-light, 15)
-        &.coming
-          background-color: darken($c-coral-light, 15)
-        &.updated
-          background-color: darken($c-aqua-light, 15)
-        &.alpha, &.beta
-          background-color: darken($c-primary-dark, 15)   
-      .v-list-item__icon 
-        .icon-dark
-          display: flex
-        .icon-light
-          display: none  
-  &.status-coming, &.status-locked
-    pointer-events: none !important
-    cursor: initial
-    .item
-      opacity: 0.6
-    .v-list-item__icon
-      opacity: 0.6  
+	@import "../styles-private/_nav-menu-item"
 </style>

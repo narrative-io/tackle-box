@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-side-nav-menu
+  .nio-side-nav
     .header
       ImageTile.avatar(
         src="https://picsum.photos/96/96"
@@ -53,24 +53,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
-@import '../styles/global/_colors'
-@import '../styles/global/_color-helpers'
-
-.nio-side-nav-menu
-  width: 20.125rem
-  background-color: $c-canvas
-  border: 1px solid $c-primary-lighter
-  border-radius: 12px
-  padding: 24px 0px
-  .header
-    display: flex
-    flex-direction: column
-    align-items: center
-    margin-bottom: 24px
-    .avatar
-      margin-bottom: 24px
-    .app-info
-      text-align: center
-
+  @import "../styles-private/_side-nav"
 </style>

@@ -51,22 +51,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  // @import '../styles/mixins/navigation/_nav-menu-list.sass'  
-  @import '../styles/global/_colors'
-  @import '../styles/global/_typography'
-  @import '../styles/global/_color-helpers'
-  @import '../styles/mixins/utility/_center-content'
-  @import '../styles/mixins/_menu'
-  .nio-nav-menu
-    +nio-menu  
-    .nav-group
-      padding: 0px 24px 24px 24px
-      h3
-        margin-top: 24px
-      .v-list
-        margin-bottom: -24px
-        padding-left: 0px
-        padding-right: 0px
-        background-color: inherit
+	@import "../styles-private/_nav-menu"
 </style>
 
