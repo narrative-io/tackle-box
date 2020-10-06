@@ -1,10 +1,10 @@
 <template lang="pug">
-  .nio-dropdown-nav-menu
+  .nio-dropdown-nav
     v-menu(
       open-on-click 
       offset-y 
       v-model="showMenu" 
-      content-class="nio-dropdown-nav-menu-menu"
+      content-class="nio-dropdown-nav-menu"
       :close-on-content-click="false"
     )
       template(v-slot:activator="{ on }")
@@ -74,56 +74,5 @@ export default {
 </script>
 
 <style lang="sass">
-@import '../styles/global/_colors'
-@import '../styles/global/_color-helpers'
-@import '../styles/mixins/utility/_center-content'	
-
-.nio-dropdown-nav-menu
-  .activator
-    width: 2rem
-    height: 2rem
-    margin-left: 1.25rem
-    padding: 0.3125rem
-    padding: 0rem
-    position: relative
-    transition: opacity 0.1s ease
-    border-radius: 0.25rem  
-    background-color: $c-coral-light
-    +nio-center-content  
-    .h3
-      letter-spacing: 0rem
-    &:hover
-      cursor: pointer
-      opacity: 0.8
-.nio-dropdown-nav-menu-menu
-  width: 23.75rem
-  background-color: $c-white
-  border-radius: 1rem !important
-  .user
-    padding: 24px
-  .v-divider
-    border: none
-    border-bottom: 1px solid $c-primary-lightest !important
-  .user
-    display: flex
-    overflow: hidden
-    .avatar, .user-info
-      height: 4rem
-    .avatar
-      background-color: $c-coral-light
-      border-radius: 0.25rem  
-      width: 4rem
-      height: 4rem
-      display: flex
-      margin-right: 1.25rem
-      flex-shrink: 0
-      +nio-center-content
-    .user-info
-      display: flex
-      flex-direction: column
-      align-items: flex-start
-      padding: 0.3125rem 0rem
-      *
-        white-space: nowrap    
- 
+  @import "../styles-private/_dropdown-nav"
 </style>
