@@ -3,15 +3,12 @@
     :class="[size]"
     :width="sizes[size]"
     :height="sizes[size]"
+    aspect-ratio="1"
     v-bind="$attrs"
     v-on="$listeners" 
-  )
+  ) 
     template(v-slot:placeholder)
-      .image-placeholder HELLO
-        .top
-        .bottom
-    template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-      slot(:name="name" v-bind="data") 
+      slot(name="nio-image-placeholder")
 </template>
 
 <script>

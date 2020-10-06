@@ -5,7 +5,7 @@
         src="https://picffsum.photos/96/96"
         size="large"
       )
-        template(v-slot:placeholder)
+        template(v-slot:nio-image-placeholder)
           .image-placeholder HELLO
             .top
             .bottom
