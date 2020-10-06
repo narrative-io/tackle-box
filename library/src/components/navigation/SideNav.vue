@@ -26,8 +26,6 @@ export default {
   props: {
     "developerName": { type: String, required: true },
     "appName": { type: String, required: true },
-    "companies": { type: Array, required: false, default: [] },
-    "userInitials": { type: String, required: false, default: "G"},
     "navItems": { type: Array, required: false, default: []},
     "hideItems": { type: Object, required: false, default: {} }
   },
