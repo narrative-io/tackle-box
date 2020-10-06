@@ -2,7 +2,7 @@
   v-list-item.nio-nav-menu-list-item(
     v-bind="$attrs"
     v-on="$listeners"
-    :class="{'status-coming': status === 'coming'}"
+    :class="status ? `status-${status}` : ''"
   )
     v-list-item-icon(v-if="icon")
       streamline-icon.icon-light(:icon="icon" :size=24 stroke="#4B5FA7")
@@ -105,7 +105,7 @@ export default {
           display: flex
         .icon-light
           display: none  
-  &.status-coming
+  &.status-coming, &.status-locked
     pointer-events: none !important
     cursor: initial
     .item

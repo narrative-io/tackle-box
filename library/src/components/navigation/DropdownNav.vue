@@ -36,7 +36,8 @@ export default {
   props: {
     "user": { type: Object, required: false, default: null },
     "navItems": { type: Array, required: true },
-    "hideItems": { type: Object, required: false, default: {} }
+		"hideItems": { type: Object, required: false, default: {} },
+		"lockItems": { type: Object, required: false, default: {} },
   },
   data: () => ({
     showMenu: false

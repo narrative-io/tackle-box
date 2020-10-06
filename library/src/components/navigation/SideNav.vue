@@ -11,6 +11,7 @@
     NavMenu(
       :navItems="navItems"
       :hideItems="hideItems"
+      :lockItems="lockItems"
       @navItemClicked="navItemClicked" 
       @navEvent="fireNavEvent($event)"
     )     
@@ -27,7 +28,8 @@ export default {
     "developerName": { type: String, required: true },
     "appName": { type: String, required: true },
     "navItems": { type: Array, required: false, default: []},
-    "hideItems": { type: Object, required: false, default: {} }
+    "hideItems": { type: Object, required: false, default: {} },
+    "lockItems": { type: Object, required: false, default: {} }
   },
   data: () => ({
     

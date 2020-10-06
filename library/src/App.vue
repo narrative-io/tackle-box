@@ -8,6 +8,7 @@
           :companies="[]" 
           :user="{name: 'Chris Woodward', role: 1, email: 'cwoodward5@hotmail.com'}"
           :navItems="navItems" 
+          :lockItems="{'profile': true }"
           :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
           @login="login"
           @logout="logout"
@@ -18,6 +19,7 @@
         developerName="Narrative I/O"
         :companies="[]" 
         :navItems="navItems" 
+        :lockItems="{'profile': true }"
         :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
         @login="login"
         @logout="logout"
@@ -194,6 +196,7 @@ export default {
         groupLabel: "Account Settings",
         items: [
           {
+            name: "profile",
             label: "Your Profile",
             to: "/settings/profile",
             icon: icons.profile

@@ -7,7 +7,7 @@
           v-for="item in navGroup.items.filter(item => !itemHidden(item))" 
           :label="item.label"
           :icon="item.icon"
-          :status="item.status"
+          :status="itemLocked(item) ? 'locked' : item.status"
           :to="item.to"
           @click="navItemClicked(item)")
 </template>
@@ -20,7 +20,8 @@ export default {
   name: 'nio-nav-menu',
   props: {
     "navItems": { type: Array, required: false, default: []},
-    "hideItems": { type: Object, required: false, default: {} }
+    "hideItems": { type: Object, required: false, default: {} },
+    "lockItems": {type: Object, required: false, default: {} }
   },
   data: () => ({
     
@@ -34,6 +35,9 @@ export default {
     },
     itemHidden(item) {
       return this.hideItems[item.name]
+    },
+    itemLocked(item) {
+      return this.lockItems[item.name]
     }
   },
   mounted() {	
