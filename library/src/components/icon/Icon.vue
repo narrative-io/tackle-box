@@ -16,7 +16,7 @@ export default {
   props: {
     "name": { type: String, required: true },
     "size": { type: String, required: false, default: '24'},
-    "color": { type: String, required: true }
+    "color": { type: String, required: false, default: 'black' }
   },
   data: () => ({
     icon: null,
