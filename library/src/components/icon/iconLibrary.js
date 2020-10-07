@@ -56,7 +56,7 @@ const NioIconLibrary = {
 		name: "IrisScanUser"
 	},
 	"display-module": {
-		collection: "programing-apps-websites/PluginsModule",
+		collection: "programing-apps-websites/PluginsModules",
 		name: "ModuleFour"
 	},
 	"display-search": {
