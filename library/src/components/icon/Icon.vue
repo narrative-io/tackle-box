@@ -1,27 +1,37 @@
 <template lang="pug">
-    .nio-icon
+    streamline-icon.nio-icon(
+			:icon="icon" 
+			:size="size" 
+			:stroke="color"
+		)
 </template>
 
 <script>
-  export default {
-    name: 'nio-icon',
-    props: {
-      "streamlineCollection": { required: true },
-      "streamlineIconName": { required: true }
-    },
-    data: () => ({
+import StreamlineIcon from "@streamlinehq/streamline-icons-vue"
 
-    }),
-    methods: {
-		 
-		},
-    mounted() {	
-      this.$emit('mounted')
-    },
-    destroyed() {
-      this.$emit('destroyed')
-    }
-  }
+export default {
+	name: 'nio-icon',
+	props: {
+		"streamlineCollection": { type: String, required: true },
+		"streamlineIconName": { type: String, required: true },
+		"size": { type: Number, required: false, default: 24},
+		"color": { type: String, required: true }
+	},
+	data: () => ({
+		icon: null
+	}),
+	methods: {
+		getIcon() {
+			this.icon = require(`@streamlinehq/${this.streamlineAssetPath}`).default[this.streamlineIconName]
+		}
+	},
+	mounted() {	
+		this.$emit('mounted')
+	},
+	destroyed() {
+		this.$emit('destroyed')
+	}
+}
 </script>
 
 <style lang="sass" scoped>
