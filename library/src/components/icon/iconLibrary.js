@@ -1,7 +1,7 @@
 const NioIconLibrary = {
 	"display-new": {
-		streamlineCollection: "test",
-		streamlineIconName: "test"
+		collection: "interface-essential/RemoveAdd",
+		name: "AddSquare"
 	}
 }
 

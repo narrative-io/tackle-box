@@ -25,6 +25,11 @@
         @logout="logout"
       )
       .wrapper
+        NioIcon(
+          name="display-new",
+          size="24"
+          color="black"
+        )
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
         //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
@@ -39,6 +44,7 @@
           :ref="'text'" 
           :label="'Label'"
         )
+
         //- nio-select.select(
         //-   multiple
         //-   v-model="selectedItems" 
@@ -162,6 +168,7 @@ export default {
     NioSwitch: () => import("./components/Switch.vue"),
     NioRadioGroup: () => import("./components/RadioGroup.vue"),
     NioRadioButton: () => import("./components/RadioButton.vue"),
+    NioIcon: () => import("./components/icon/Icon.vue"),
     DropdownNav,
     SideNav
   },
@@ -176,7 +183,7 @@ export default {
             label: "Subscriptions",
             to: "/subscriptions",
             icon: icons.profile,
-            staatus: "locked"
+            status: "locked"
           },
           {
             label: "Installed Apps",

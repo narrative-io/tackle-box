@@ -22,7 +22,7 @@ const Components = {
 	NioSwitch,
 	NioRadioGroup,
 	NioRadioButton,
-	NioImageTile
+	NioImageTile,
 }
 
 Vue.component("NioButton", NioButton)
