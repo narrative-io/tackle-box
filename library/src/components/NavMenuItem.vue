@@ -5,8 +5,8 @@
     :class="status ? `status-${status}` : ''"
   )
     v-list-item-icon(v-if="icon")
-      streamline-icon.icon-light(:icon="icon" :size=24 stroke="#4B5FA7")
-      streamline-icon.icon-dark(:icon="icon" :size=24 stroke="#323f6f")
+      NioIcon.icon-light(:name="icon" color="#4B5FA7")
+      NioIcon.icon-dark(:name="icon" color="#323f6f")
     v-list-item-content
       .item.nio-p.text-primary-dark {{ label }}
       .status(v-if="status && status === 'locked'") 
@@ -18,13 +18,14 @@
 </template>
 
 <script>
-import StreamlineIcon from "@streamlinehq/streamline-icons-vue"
+// import StreamlineIcon from "@streamlinehq/streamline-icons-vue"
+import NioIcon from './icon/Icon'
 
 export default {
   name: 'nio-nav-menu-item',
   props: {
     "label": { type: String, required: true },
-    "icon": { type: Array, required: false},
+    "icon": { type: String, required: false},
     "status": { type: String, required: false }
   },
   data: () => ({
@@ -39,11 +40,11 @@ export default {
   destroyed() {
     this.$emit('destroyed')
   },
-  components: { StreamlineIcon }
+  components: { NioIcon }
 
 }
 </script>
 
 <style lang="sass" scoped>
-	@import "../styles/mixins/_nav-menu-item"
+  @import "../styles/mixins/_nav-menu-item"
 </style>

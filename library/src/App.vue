@@ -203,88 +203,88 @@ export default {
           {
             label: "Subscriptions",
             to: "/subscriptions",
-            icon: icons.profile,
+            icon: 'display-new',
             status: "locked"
           },
           {
             label: "Installed Apps",
             to: "/suppliers",
-            icon: icons.payment,
-            status: "coming"
+            icon: 'display-reports',
           },
           {
             label: "Saved Providers",
             to: "/apps",
+            icon: "display-payment",
             status: "coming"
           }
         ]
       },
-      {
-        groupName: "accountSettings",
-        groupLabel: "Account Settings",
-        items: [
-          {
-            name: "profile",
-            label: "Your Profile",
-            to: "/settings/profile",
-            icon: icons.profile
-          },
-          {
-            label: "Company",
-            to: "/settings/company",
-            icon: icons.company
-          },
-          {
-            label: "Payment",
-            to: "/settings/payment",
-            icon: icons.payment
-          },
-          {
-            label: "Destination",
-            to: "/settings/delivery",
-            icon: icons.destination
-          }
-        ]
-      },
-      {
-        groupName: "support",
-        groupLabel: "Support",
-        items: [
-          {
-            label: "Help Center",
-            event: "goToHelpCenter",
-            icon: icons.help
-          },
-          {
-            label: "Privacy Policy",
-            event: "goToPrivacyPolicy",
-            icon: icons.privacy
-          },
-          {
-            label: "Register",
-            to: "/register",
-            icon: icons.register
-          }
-        ]
-      },
-      {
-        groupName: "loggedIn",
-        items: [
-          {
-            name: 'logout',
-            label: "Logout",
-            event: "logout",
-            icon: icons.logout,
-          },
-           {
-            name: 'login',
-            label: "Login",
-            event: 'login',
-            // to: "/login",
-            icon: icons.logout
-          }
-        ]
-      }    
+      // {
+      //   groupName: "accountSettings",
+      //   groupLabel: "Account Settings",
+      //   items: [
+      //     {
+      //       name: "profile",
+      //       label: "Your Profile",
+      //       to: "/settings/profile",
+      //       icon: icons.profile
+      //     },
+      //     {
+      //       label: "Company",
+      //       to: "/settings/company",
+      //       icon: icons.company
+      //     },
+      //     {
+      //       label: "Payment",
+      //       to: "/settings/payment",
+      //       icon: icons.payment
+      //     },
+      //     {
+      //       label: "Destination",
+      //       to: "/settings/delivery",
+      //       icon: icons.destination
+      //     }
+      //   ]
+      // },
+      // {
+      //   groupName: "support",
+      //   groupLabel: "Support",
+      //   items: [
+      //     {
+      //       label: "Help Center",
+      //       event: "goToHelpCenter",
+      //       icon: icons.help
+      //     },
+      //     {
+      //       label: "Privacy Policy",
+      //       event: "goToPrivacyPolicy",
+      //       icon: icons.privacy
+      //     },
+      //     {
+      //       label: "Register",
+      //       to: "/register",
+      //       icon: icons.register
+      //     }
+      //   ]
+      // },
+      // {
+      //   groupName: "loggedIn",
+      //   items: [
+      //     {
+      //       name: 'logout',
+      //       label: "Logout",
+      //       event: "logout",
+      //       icon: icons.logout,
+      //     },
+      //      {
+      //       name: 'login',
+      //       label: "Login",
+      //       event: 'login',
+      //       // to: "/login",
+      //       icon: icons.logout
+      //     }
+      //   ]
+      // }    
     ],
     model: "",
     items: ['apple', 'banana', 'orange', 'your mom'],
