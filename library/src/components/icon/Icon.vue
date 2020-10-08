@@ -1,7 +1,7 @@
 <template lang="pug">
     streamline-icon.nio-icon(
       v-if="icon"
-      :icon="iconLibrary[name]" 
+      :icon="icon" 
       :size="24" 
       :stroke="color"
     )
@@ -23,7 +23,8 @@ export default {
     iconLibrary: NioIconLibrary
   }),
   mounted() {	
-    this.getIcon()
+    console.log(this.iconLibrary[this.name])
+    this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },
   destroyed() {

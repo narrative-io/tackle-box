@@ -1,5 +1,5 @@
 import { IconNew } from './icons/'
-import { IconPreferences } from './icons'
+import { IconPreferences } from './icons/preferences'
 import { IconHelp } from './icons'
 import { IconPrivacy } from './icons'
 import { IconSearch } from './icons'
@@ -10,49 +10,49 @@ import { IconNotification } from './icons'
 
 const NioIconLibrary = {
 	"display-new": IconNew,
-	"display-reports": {
-		collection: "business-products/Analytics",
-		name: "AnalyticsPie2"
-	},
+	// "display-reports": {
+	// 	collection: "business-products/Analytics",
+	// 	name: "AnalyticsPie2"
+	// },
 	"display-preferences": IconPreferences,
-	"display-quick-start": {
-		collection: "content/Books",
-		name: "BookBookPages"
-	},
-	"display-listmanager": {
-		collection: "work-office-companies/Tasks",
-		name: "TaskListSearch"
-	},
-	"display-sources": {
-		collection: "shipping-delivery/Shipment",
-		name: "ShipmentUpload"
-	},
-	"display-destinations": {
-		collection: "technology/3DPrinting",
-		name: "3DBoxExpandCorners"
-	},
-	"display-payment": {
-		collection: "money-payments-finance/CreditCardPayments",
-		name: "CreditCard"
-	},
+	// "display-quick-start": {
+	// 	collection: "content/Books",
+	// 	name: "BookBookPages"
+	// },
+	// "display-listmanager": {
+	// 	collection: "work-office-companies/Tasks",
+	// 	name: "TaskListSearch"
+	// },
+	// "display-sources": {
+	// 	collection: "shipping-delivery/Shipment",
+	// 	name: "ShipmentUpload"
+	// },
+	// "display-destinations": {
+	// 	collection: "technology/3DPrinting",
+	// 	name: "3DBoxExpandCorners"
+	// },
+	// "display-payment": {
+	// 	collection: "money-payments-finance/CreditCardPayments",
+	// 	name: "CreditCard"
+	// },
 	"display-help": IconHelp,
-	"display-email": {
-		collection: "emails/SendEmail",
-		name: "SendEmail"
-	},
-	"display-website": {
-		collection: "internet-networks-servers/WorldwideWeb",
-		name: "NetworkBrowser"
-	},
-	"display-security": {
-		collection: "programing-apps-websites/BugSecurity",
-		name: "ShieldWarning"
-	},
+	// "display-email": {
+	// 	collection: "emails/SendEmail",
+	// 	name: "SendEmail"
+	// },
+	// "display-website": {
+	// 	collection: "internet-networks-servers/WorldwideWeb",
+	// 	name: "NetworkBrowser"
+	// },
+	// "display-security": {
+	// 	collection: "programing-apps-websites/BugSecurity",
+	// 	name: "ShieldWarning"
+	// },
 	"display-privacy": IconPrivacy,
-	"display-module": {
-		collection: "programing-apps-websites/PluginsModules",
-		name: "ModuleFour"
-	},
+	// "display-module": {
+	// 	collection: "programing-apps-websites/PluginsModules",
+	// 	name: "ModuleFour"
+	// },
 	"display-search": IconSearch,
 	"display-notification": IconNotification,
 	// "display-subscriptions": {
