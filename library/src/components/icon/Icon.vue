@@ -1,7 +1,7 @@
 <template lang="pug">
     streamline-icon.nio-icon(
       v-if="icon"
-      :icon="icon" 
+      :icon="iconLibrary[name]" 
       :size="24" 
       :stroke="color"
     )
@@ -20,13 +20,8 @@ export default {
   },
   data: () => ({
     icon: null,
+    iconLibrary: NioIconLibrary
   }),
-  methods: {
-    getIcon() {
-      const icon = NioIconLibrary[this.name]
-      this.icon = require(`@streamlinehq/streamline-light/lib/${icon.collection}`).default[icon.name]
-    }
-  },
   mounted() {	
     this.getIcon()
     this.$emit('mounted')

@@ -1,20 +1,20 @@
+import { IconNew } from './icons/'
+import { IconPreferences } from './icons'
+import { IconHelp } from './icons'
+import { IconPrivacy } from './icons'
+import { IconSearch } from './icons'
+import { IconHamburger } from './icons'
+import { IconLogout } from './icons'
+import { IconClose } from './icons'
+import { IconNotification } from './icons'
+
 const NioIconLibrary = {
-	"display-new": {
-		collection: "interface-essential/RemoveAdd",
-		name: "AddSquare"
-	},
-	"display-list": {
-		collection: "work-office-companies/Tasks",
-		name: "TaskListToDo"
-	},
+	"display-new": IconNew,
 	"display-reports": {
 		collection: "business-products/Analytics",
 		name: "AnalyticsPie2"
 	},
-	"display-preferences": {
-		collection: "interface-essential/Controls",
-		name: "SettingsSlider"
-	},
+	"display-preferences": IconPreferences,
 	"display-quick-start": {
 		collection: "content/Books",
 		name: "BookBookPages"
@@ -35,10 +35,7 @@ const NioIconLibrary = {
 		collection: "money-payments-finance/CreditCardPayments",
 		name: "CreditCard"
 	},
-	"display-help": {
-		collection: "interface-essential/Alerts",
-		name: "QuestionCircle"
-	},
+	"display-help": IconHelp,
 	"display-email": {
 		collection: "emails/SendEmail",
 		name: "SendEmail"
@@ -51,66 +48,48 @@ const NioIconLibrary = {
 		collection: "programing-apps-websites/BugSecurity",
 		name: "ShieldWarning"
 	},
-	"display-privacy": {
-		collection: "interface-essential/IrisScan",
-		name: "IrisScanUser"
-	},
+	"display-privacy": IconPrivacy,
 	"display-module": {
 		collection: "programing-apps-websites/PluginsModules",
 		name: "ModuleFour"
 	},
-	"display-search": {
-		collection: "interface-essential/Search",
-		name: "Search"
-	},
-	"display-notification": {
-		collection: "interface-essential/Alert",
-		name: "AlarmBell"
-	},
-	"display-subscriptions": {
-		collection: "work-office-companies/Tasks",
-		name: "TaskListClock"
-	},
-	"display-hamburger": {
-		collection: "interface-essential/Menu",
-		name: "NavigationMenu"
-	},
-	"display-logout": {
-		collection: "interface-essential/OnOff",
-		name: "PowerButton"
-	},
-	"display-close": {
-		collection: "interface-essential/FormValidation",
-		name: "Close"
-	},
-	"display-file": {
-		collection: "work-office-companies/Tasks",
-		name: "TaskListPlain"
-	},
-	"display-company": {
-		collection: "work-office-companies/HumanResources",
-		name: "HumanResourcesHierarchy"
-	},
-	"display-cart": {
-		collection: "shopping-ecommerce/Carts",
-		name: "ShoppingCart1"
-	},
-	"display-upload": {
-		collection: "work-office-companies/Tasks",
-		name: "TaskListUpload"
-	},
-	"display-download": {
-		collection: "work-office-companies/Tasks",
-		name: "TaskListDownload"
-	},
-	"display-yourprofile": {
-		collection: "users/NaturalCloseUpSingleUserNeutral",
-		name: "SingleNeutralIdCard3"
-	},
-	"display-warning": {
-		collection: "messages-chat-smileys/MessagesSpeechBubbles",
-		name: "MessagesBubbleWarning"
-	}
+	"display-search": IconSearch,
+	"display-notification": IconNotification,
+	// "display-subscriptions": {
+	// 	collection: "work-office-companies/Tasks",
+	// 	name: "TaskListClock"
+	// },
+	"display-hamburger": IconHamburger,
+	"display-logout": IconLogout,
+	"display-close": IconClose,
+	// "display-file": {
+	// 	collection: "work-office-companies/Tasks",
+	// 	name: "TaskListPlain"
+	// },
+	// "display-company": {
+	// 	collection: "work-office-companies/HumanResources",
+	// 	name: "HumanResourcesHierarchy"
+	// },
+	// "display-cart": {
+	// 	collection: "shopping-ecommerce/Carts",
+	// 	name: "ShoppingCart1"
+	// },
+	// "display-upload": {
+	// 	collection: "work-office-companies/Tasks",
+	// 	name: "TaskListUpload"
+	// },
+	// "display-download": {
+	// 	collection: "work-office-companies/Tasks",
+	// 	name: "TaskListDownload"
+	// },
+	// "display-yourprofile": {
+	// 	collection: "users/NaturalCloseUpSingleUserNeutral",
+	// 	name: "SingleNeutralIdCard3"
+	// },
+	// "display-warning": {
+	// 	collection: "messages-chat-smileys/MessagesSpeechBubbles",
+	// 	name: "MessagesBubbleWarning"
+	// }
 }
 
 export { NioIconLibrary }

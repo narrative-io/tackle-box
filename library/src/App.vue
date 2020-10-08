@@ -210,6 +210,7 @@ export default {
             label: "Installed Apps",
             to: "/suppliers",
             icon: 'display-reports',
+            status: "coming"
           },
           {
             label: "Saved Providers",
