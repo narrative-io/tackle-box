@@ -28,10 +28,10 @@
   "browser": "dist/tackle-box.umd.min.js",
   "jsdelivr": "dist/tackle-box.umd.min.js",
   "files": [
-		"src/components",
-		"src/components-private",
-		"src/styles",
-		"src/styles-private",
+    "src/components",
+    "src/components-private",
+    "src/styles",
+    "src/styles-private",
     "dist",
     "LICENSE",
     "README.md"
@@ -40,9 +40,7 @@
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
     "vue": "^2.6.10",
-    "vuetify": "^2.2.11",
-    "@streamlinehq/streamline-icons-vue": "^0.6.1",
-    "@streamlinehq/streamline-light": "^0.6.1"
+    "vuetify": "^2.2.11"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import StreamlineIcon from "@streamlinehq/streamline-icons-vue"
+import StreamlineIcon from "../../plugins/streamline-icons-vue/dist/index.umd.min.js"
 import { NioIconLibrary } from './iconLibrary'
 
 export default {

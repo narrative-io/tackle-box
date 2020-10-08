@@ -1,0 +1,57 @@
+{
+  "_args": [
+    [
+      "@streamlinehq/streamline-icons-vue@0.6.1",
+      "/Users/chris/Desktop/code/narrative-ui-library/library"
+    ]
+  ],
+  "_from": "@streamlinehq/streamline-icons-vue@0.6.1",
+  "_id": "@streamlinehq/streamline-icons-vue@0.6.1",
+  "_inBundle": false,
+  "_integrity": "sha512-Ro8TQhrVLTXDSyk6rVGKdIi/WxlKKKQFB0SGcaVSL5+vGQVtArFOvJ2l3PGfrAnSWVECkBXB2Td32JyLvU3uaQ==",
+  "_location": "/@streamlinehq/streamline-icons-vue",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@streamlinehq/streamline-icons-vue@0.6.1",
+    "name": "@streamlinehq/streamline-icons-vue",
+    "escapedName": "@streamlinehq%2fstreamline-icons-vue",
+    "scope": "@streamlinehq",
+    "rawSpec": "0.6.1",
+    "saveSpec": null,
+    "fetchSpec": "0.6.1"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://npm.cloudsmith.io/streamlinehq/streamline-icons/@streamlinehq/streamline-icons-vue/-/0.6.1/streamline-icons-vue-0.6.1.tgz",
+  "_spec": "0.6.1",
+  "_where": "/Users/chris/Desktop/code/narrative-ui-library/library",
+  "gitHead": "7114c026257e9d735eb2313ae9579e4eb6977660",
+  "main": "dist/index.umd.min.js",
+  "maintainers": [
+    {
+      "name": "Thibault Roussel",
+      "email": "thibault.roussel@gmail.com"
+    },
+    {
+      "name": "Clément Sauvage",
+      "email": "hello@clementsauvage.me"
+    }
+  ],
+  "name": "@streamlinehq/streamline-icons-vue",
+  "peerDependencies": {
+    "core-js": "^3.6",
+    "vue": "^2.6",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vue-cli-service build --target lib --filename index ./src/components/StreamlineIcon.vue",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "version": "0.6.1"
+}
