@@ -1,12 +1,12 @@
-import { IconNew } from './icons/'
+import { IconNew } from './icons/new'
 import { IconPreferences } from './icons/preferences'
-import { IconHelp } from './icons'
-import { IconPrivacy } from './icons'
-import { IconSearch } from './icons'
-import { IconHamburger } from './icons'
-import { IconLogout } from './icons'
-import { IconClose } from './icons'
-import { IconNotification } from './icons'
+import { IconHelp } from './icons/help'
+import { IconPrivacy } from './icons/privacy'
+import { IconSearch } from './icons/search'
+import { IconHamburger } from './icons/hamburger'
+import { IconLogout } from './icons/logout'
+import { IconClose } from './icons/close'
+import { IconNotification } from './icons/notification'
 
 const NioIconLibrary = {
 	"display-new": IconNew,

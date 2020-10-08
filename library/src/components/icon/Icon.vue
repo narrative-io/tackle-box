@@ -23,7 +23,6 @@ export default {
     iconLibrary: NioIconLibrary
   }),
   mounted() {	
-    console.log(this.iconLibrary[this.name])
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },
