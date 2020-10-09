@@ -25,6 +25,32 @@
         @logout="logout"
       )
       .wrapper
+        NioIcon(name="display-list")
+        NioIcon(name="display-reports")
+        NioIcon(name="display-preferences")
+        NioIcon(name="display-quick-start")
+        NioIcon(name="display-listmanager")
+        NioIcon(name="display-sources")
+        NioIcon(name="display-destinations")
+        NioIcon(name="display-payment")
+        NioIcon(name="display-help")
+        NioIcon(name="display-email")
+        NioIcon(name="display-website")
+        NioIcon(name="display-security")
+        NioIcon(name="display-privacy")
+        NioIcon(name="display-module")
+        NioIcon(name="display-search")
+        NioIcon(name="display-notification")
+        NioIcon(name="display-subscriptions")
+        NioIcon(name="display-hamburger")
+        NioIcon(name="display-logout")
+        NioIcon(name="display-close")
+        NioIcon(name="display-file")
+        NioIcon(name="display-cart")
+        NioIcon(name="display-upload")
+        NioIcon(name="display-download")
+        NioIcon(name="display-yourprofile")
+        NioIcon(name="display-warning")
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
         //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
@@ -39,6 +65,7 @@
           :ref="'text'" 
           :label="'Label'"
         )
+
         //- nio-select.select(
         //-   multiple
         //-   v-model="selectedItems" 
@@ -131,26 +158,7 @@
 
 import DropdownNav from './components-private/DropdownNav'
 import SideNav from './components-private/SideNav'
-import * as Notes from "@streamlinehq/streamline-light/lib/content/Notes"
-import * as GeomerticCloseUpSingleUserNeutral from "@streamlinehq/streamline-light/lib/users/GeomerticCloseUpSingleUserNeutral"
-import * as CreditCardPayments from "@streamlinehq/streamline-light/lib/money-payments-finance/CreditCardPayments"
-import * as print3d from "@streamlinehq/streamline-light/lib/technology/3DPrinting"
-import * as OnOff from "@streamlinehq/streamline-light/lib/interface-essential/OnOff"
-import * as Alerts from "@streamlinehq/streamline-light/lib/interface-essential/Alerts"
-import * as  View from "@streamlinehq/streamline-light/lib/interface-essential/View"
-import * as Edit from "@streamlinehq/streamline-light/lib/interface-essential/Edit"
-import * as HumanResources from "@streamlinehq/streamline-light/lib/work-office-companies/HumanResources"
 
-const icons = {
-  profile: GeomerticCloseUpSingleUserNeutral.default.SingleNeutralIdCard3,
-  company: HumanResources.default.HumanResourcesHierarchy,
-  payment: CreditCardPayments.default.CreditCardMastercard,
-  destination: print3d.default['3DBoxExpandCorners'],
-  logout: OnOff.default.PowerButton,
-  help: Alerts.default.QuestionCircle,
-  privacy: View.default.View1,
-  register: Edit.default.PencilWrite2
-}
 export default {
   name: "App",
   components: {
@@ -162,6 +170,7 @@ export default {
     NioSwitch: () => import("./components/Switch.vue"),
     NioRadioGroup: () => import("./components/RadioGroup.vue"),
     NioRadioButton: () => import("./components/RadioButton.vue"),
+    NioIcon: () => import("./components/icon/Icon.vue"),
     DropdownNav,
     SideNav
   },
@@ -172,91 +181,120 @@ export default {
         groupName: "manage",
         groupLabel: "Manage",
         items: [
+					{
+            label: "Saved Providers",
+            to: "/apps",
+            icon: "display-payment",
+						status: "new",
+						hidden: false
+					},
+					{
+            label: "Stuffs",
+            to: "/apps",
+            icon: "display-payment",
+          },
           {
             label: "Subscriptions",
             to: "/subscriptions",
-            icon: icons.profile,
-            staatus: "locked"
+            icon: 'display-new',
+						locked: true,
+						hidden: true
           },
           {
             label: "Installed Apps",
             to: "/suppliers",
-            icon: icons.payment,
-            status: "coming"
+            icon: 'display-reports',
+						status: "coming",
+						locked: true
           },
           {
             label: "Saved Providers",
             to: "/apps",
+            icon: "display-payment",
             status: "coming"
+					},
+					{
+            label: "Saved Providers",
+            to: "/apps",
+            icon: "display-payment",
+						status: "alpha",
+						locked: true
+					},
+					{
+            label: "Saved Providers",
+            to: "/apps",
+            icon: "display-payment",
+						status: "new",
+						locked: true
           }
         ]
       },
-      {
-        groupName: "accountSettings",
-        groupLabel: "Account Settings",
-        items: [
-          {
-            name: "profile",
-            label: "Your Profile",
-            to: "/settings/profile",
-            icon: icons.profile
-          },
-          {
-            label: "Company",
-            to: "/settings/company",
-            icon: icons.company
-          },
-          {
-            label: "Payment",
-            to: "/settings/payment",
-            icon: icons.payment
-          },
-          {
-            label: "Destination",
-            to: "/settings/delivery",
-            icon: icons.destination
-          }
-        ]
-      },
-      {
-        groupName: "support",
-        groupLabel: "Support",
-        items: [
-          {
-            label: "Help Center",
-            event: "goToHelpCenter",
-            icon: icons.help
-          },
-          {
-            label: "Privacy Policy",
-            event: "goToPrivacyPolicy",
-            icon: icons.privacy
-          },
-          {
-            label: "Register",
-            to: "/register",
-            icon: icons.register
-          }
-        ]
-      },
-      {
-        groupName: "loggedIn",
-        items: [
-          {
-            name: 'logout',
-            label: "Logout",
-            event: "logout",
-            icon: icons.logout,
-          },
-           {
-            name: 'login',
-            label: "Login",
-            event: 'login',
-            // to: "/login",
-            icon: icons.logout
-          }
-        ]
-      }    
+      // {
+      //   groupName: "accountSettings",
+      //   groupLabel: "Account Settings",
+      //   items: [
+      //     {
+      //       name: "profile",
+      //       label: "Your Profile",
+      //       to: "/settings/profile",
+      //       icon: icons.profile
+      //     },
+      //     {
+      //       label: "Company",
+      //       to: "/settings/company",
+      //       icon: icons.company
+      //     },
+      //     {
+      //       label: "Payment",
+      //       to: "/settings/payment",
+      //       icon: icons.payment
+      //     },
+      //     {
+      //       label: "Destination",
+      //       to: "/settings/delivery",
+      //       icon: icons.destination
+      //     }
+      //   ]
+      // },
+      // {
+      //   groupName: "support",
+      //   groupLabel: "Support",
+      //   items: [
+      //     {
+      //       label: "Help Center",
+      //       event: "goToHelpCenter",
+      //       icon: icons.help
+      //     },
+      //     {
+      //       label: "Privacy Policy",
+      //       event: "goToPrivacyPolicy",
+      //       icon: icons.privacy
+      //     },
+      //     {
+      //       label: "Register",
+      //       to: "/register",
+      //       icon: icons.register
+      //     }
+      //   ]
+      // },
+      // {
+      //   groupName: "loggedIn",
+      //   items: [
+      //     {
+      //       name: 'logout',
+      //       label: "Logout",
+      //       event: "logout",
+      //       icon: icons.logout,
+      //     },
+      //      {
+      //       name: 'login',
+      //       label: "Login",
+      //       event: 'login',
+      //       // to: "/login",
+      //       icon: icons.logout
+      //     }
+      //   ]
+      // }    
     ],
     model: "",
     items: ['apple', 'banana', 'orange', 'your mom'],

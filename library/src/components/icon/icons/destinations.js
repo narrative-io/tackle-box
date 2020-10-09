@@ -1,0 +1,63 @@
+const IconDestinations = ['3d-box-expand-corners', 24, 24, [{
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}], ['M12 6L4 9.5 12 13 20 9.5 12 6z', 'M7.059 20.338L12 22.5', 'M4 9.5L4 17', 'M12 13L12 22.5', 'M10 2.5L12 0.5 14 2.5', 'M1 20.5L1 23.5 4 23.5', 'M1 23.5L5.5 19', 'M16.941 20.338L12 22.5', 'M20 9.5L20 17', 'M23 20.5L23 23.5 20 23.5', 'M23 23.5L18.5 19', 'M12 0.5L12 4']]
+
+export { IconDestinations }

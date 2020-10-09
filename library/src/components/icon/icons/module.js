@@ -1,0 +1,53 @@
+const IconModule = ['module-four', 24, 24, [{
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round'
+}], ['M9.000 9.500 A3 1.5 0 1 0 15.000 9.500 A3 1.5 0 1 0 9.000 9.500 Z', 'M9.000 3.500 A3 1.5 0 1 0 15.000 3.500 A3 1.5 0 1 0 9.000 3.500 Z', 'M16.000 6.500 A3 1.5 0 1 0 22.000 6.500 A3 1.5 0 1 0 16.000 6.500 Z', 'M2.500 6.500 A3 1.5 0 1 0 8.500 6.500 A3 1.5 0 1 0 2.500 6.500 Z', 'M9.737 4.484L7.582 5.421', 'M16.694 5.541L14.261 4.483', 'M3.074,7.381,1.1,8.239a1,1,0,0,0-.6.917v6.7a1,1,0,0,0,.586.91L11.1,21.32a1,1,0,0,0,.8.013l10.983-4.577a1,1,0,0,0,.615-.923V9.156a1,1,0,0,0-.6-.917L21.2,7.5', 'M11.5 13.5L11.5 21.408', 'M23.315 8.577L11.5 13.5', 'M11.5 13.5L0.681 8.582']]
+
+export { IconModule }

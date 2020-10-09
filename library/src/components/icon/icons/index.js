@@ -1,0 +1,1 @@
+import { IconNew } from './new'

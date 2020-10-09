@@ -4,10 +4,12 @@
       h3.nio-h6.text-primary-darker(v-if="navGroup.groupLabel") {{ navGroup.groupLabel }}
       v-list(nav dense)
         NavMenuItem(
-          v-for="item in navGroup.items.filter(item => !itemHidden(item))" 
+          v-for="item in navGroup.items.filter(item => !item.hidden && !itemHidden(item))" 
           :label="item.label"
           :icon="item.icon"
-          :status="itemLocked(item) ? 'locked' : item.status"
+          :hidden="item.hidden ? true : itemHidden(item)"
+          :locked="item.locked ? true : itemLocked(item)"
+          :status="item.status"
           :to="item.to"
           @click="navItemClicked(item)")
 </template>
@@ -51,6 +53,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-	@import "../styles/mixins/_nav-menu"
+  @import "../styles/mixins/_nav-menu"
 </style>
 
