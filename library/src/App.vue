@@ -181,6 +181,17 @@ export default {
         groupName: "manage",
         groupLabel: "Manage",
         items: [
+					{
+            label: "Saved Providers",
+            to: "/apps",
+            icon: "display-payment",
+						status: "new",
+					},
+					{
+            label: "Saved Providers",
+            to: "/apps",
+            icon: "display-payment",
+          },
           {
             label: "Subscriptions",
             to: "/subscriptions",
@@ -199,6 +210,20 @@ export default {
             to: "/apps",
             icon: "display-payment",
             status: "coming"
+					},
+					{
+            label: "Saved Providers",
+            to: "/apps",
+            icon: "display-payment",
+						status: "alpha",
+						locked: true
+					},
+					{
+            label: "Saved Providers",
+            to: "/apps",
+            icon: "display-payment",
+						status: "new",
+						locked: true
           }
         ]
       },
