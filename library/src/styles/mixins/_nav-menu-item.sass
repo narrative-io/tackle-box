@@ -5,9 +5,9 @@
 @import './utility/_center-content'
 
 =nio-nav-menu-item
-  padding: 0px 8px !important
+  padding: 0rem 0.5rem !important
   &.v-list-item--link 
-    margin-bottom: 1px !important
+    margin-bottom: 0.0625rem !important
     ::v-deep .v-list-item__content
       flex-grow: 2
       display: flex
@@ -16,6 +16,7 @@
       .item
         flex-shrink: 2
         flex-grow: 2
+
         white-space: nowrap
       .modifiers
         display: flex	
@@ -23,13 +24,13 @@
         flex-shrink: 2
         align-items: center
         .locked
-          margin-right: 8px
+          margin-right: 0.5rem
       .status
         flex: none
-        border-radius: 2px
-        height: 12px
-        padding: 2px 3px 1px 4px
-        margin-bottom: 2px
+        border-radius: 0.125rem
+        height: 0.75rem
+        padding: 0.125rem 0.1875rem 0.0625rem 0.25rem
+        margin-bottom: 0.125rem
         &.new
           background-color: $c-seagreen-light
         &.coming
@@ -44,12 +45,12 @@
           +nio-center-content
           .status-content
             font-weight: 600
-            font-size: 9px
-            letter-spacing: 0.4px
+            font-size: 0.5625rem
+            letter-spacing: 0.025rem
             text-transform: uppercase
             color: $c-white                    
     .v-list-item__icon
-      margin-right: 16px
+      margin-right: 1rem
       .icon-dark
         display: none
     &:hover
