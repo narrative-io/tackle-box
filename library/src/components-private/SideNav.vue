@@ -42,6 +42,7 @@ export default {
   }),
   methods: {
     fireNavEvent(eventName) {
+			this.$emit('navMenuEvent', eventName)
       this.$emit(eventName)
     },
     navItemClicked() {

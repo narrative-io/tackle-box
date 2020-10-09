@@ -1,4 +1,5 @@
 import { IconNew } from './icons/new'
+import { IconList } from './icons/list'
 import { IconPreferences } from './icons/preferences'
 import { IconHelp } from './icons/help'
 import { IconPrivacy } from './icons/privacy'
@@ -28,6 +29,7 @@ import { IconWarning } from './icons/warning'
 
 const NioIconLibrary = {
 	"display-new": IconNew,
+	"display-list": IconList,
 	"display-reports": IconReports,
 	"display-preferences": IconPreferences,
 	"display-quick-start": IconQuickStart,
