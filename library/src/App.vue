@@ -186,9 +186,10 @@ export default {
             to: "/apps",
             icon: "display-payment",
 						status: "new",
+						hidden: false
 					},
 					{
-            label: "Saved Providers",
+            label: "Stuffs",
             to: "/apps",
             icon: "display-payment",
           },
@@ -196,7 +197,8 @@ export default {
             label: "Subscriptions",
             to: "/subscriptions",
             icon: 'display-new',
-            locked: true
+						locked: true,
+						hidden: true
           },
           {
             label: "Installed Apps",

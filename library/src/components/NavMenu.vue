@@ -4,7 +4,7 @@
       h3.nio-h6.text-primary-darker(v-if="navGroup.groupLabel") {{ navGroup.groupLabel }}
       v-list(nav dense)
         NavMenuItem(
-          v-for="item in navGroup.items.filter(item => !itemHidden(item))" 
+          v-for="item in navGroup.items.filter(item => !item.hidden && !itemHidden(item))" 
           :label="item.label"
           :icon="item.icon"
           :hidden="item.hidden ? true : itemHidden(item)"
