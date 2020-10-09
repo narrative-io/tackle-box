@@ -15,10 +15,21 @@
       flex-wrap: nowrap  
       .item
         flex-shrink: 2
+        flex-grow: 2
+        white-space: nowrap
+      .modifiers
+        display: flex	
+        justify-content: flex-end
+        flex-shrink: 2
+        align-items: center
+        .locked
+          margin-right: 8px
       .status
         flex: none
         border-radius: 2px
+        height: 12px
         padding: 2px 3px 1px 4px
+        margin-bottom: 2px
         &.new
           background-color: $c-seagreen-light
         &.coming
@@ -59,13 +70,14 @@
           display: flex
         .icon-light
           display: none  
-  &.status-coming, &.status-locked
+  &.status-coming
     pointer-events: none !important
     cursor: initial
     .item
       opacity: 0.6
     .v-list-item__icon
       opacity: 0.6  
-
+    .locked
+      opacity: 0.6
 .nio-nav-menu-item
   +nio-nav-menu-item

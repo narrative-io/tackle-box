@@ -185,13 +185,14 @@ export default {
             label: "Subscriptions",
             to: "/subscriptions",
             icon: 'display-new',
-            status: "locked"
+            locked: true
           },
           {
             label: "Installed Apps",
             to: "/suppliers",
             icon: 'display-reports',
-            status: "coming"
+						status: "coming",
+						locked: true
           },
           {
             label: "Saved Providers",
