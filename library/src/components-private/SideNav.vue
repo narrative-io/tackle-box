@@ -17,6 +17,7 @@
       :navItems="navItems"
       :hideItems="hideItems"
       :lockItems="lockItems"
+      :activeItemName="activeItemName"
       @navItemClicked="navItemClicked" 
       @navEvent="fireNavEvent($event)"
     )     
@@ -35,14 +36,15 @@ export default {
     "navItems": { type: Array, required: false, default: []},
     "hideItems": { type: Object, required: false, default: {} },
     "lockItems": { type: Object, required: false, default: {} },
-    "headerImage": { type: String, required: false }
+    "headerImage": { type: String, required: false },
+    "activeItemName": { type: String, required: false}
   },
   data: () => ({
     
   }),
   methods: {
     fireNavEvent(eventName) {
-			this.$emit('navMenuEvent', eventName)
+      this.$emit('navMenuEvent', eventName)
       this.$emit(eventName)
     },
     navItemClicked() {
