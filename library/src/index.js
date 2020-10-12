@@ -1,16 +1,16 @@
 import Vue from "vue"
 import Vuetify from "vuetify/lib"
 
-import NioButton from "./components/Button.vue"
-import NioTextField from "./components/TextField.vue"
-import NioSelect from "./components/Select.vue"
-import NioAutocomplete from "./components/Autocomplete.vue"
-import NioCheckbox from "./components/Checkbox.vue"
-import NioSwitch from "./components/Switch.vue"
+import NioButton from "./components/Button"
+import NioTextField from "./components/TextField"
+import NioSelect from "./components/Select"
+import NioAutocomplete from "./components/Autocomplete"
+import NioCheckbox from "./components/Checkbox"
+import NioSwitch from "./components/Switch"
 import NioRadioGroup from "./components/RadioGroup"
 import NioRadioButton from "./components/RadioButton"
 import NioImageTile from "./components/ImageTile"
-import NioIcon from "./components/icon/icons"
+import NioIcon from "./components/icon/Icon"
 
 Vue.use(Vuetify)
 
