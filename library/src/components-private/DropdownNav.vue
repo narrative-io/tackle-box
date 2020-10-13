@@ -1,7 +1,7 @@
 <template lang="pug">
   .nio-dropdown-nav
     v-menu(
-      open-on-click 
+      open-on-click
       offset-y 
       v-model="showMenu" 
       content-class="nio-dropdown-nav-menu"
@@ -16,6 +16,7 @@
         .user-info
           h3.nio-h2.text-primary-darker {{ user.name }} 
           .nio-p.text-primary-dark {{ user.email }}  
+      slot(name="viewing-as")
       v-divider
       template(v-for="navGroup in navItems")      
         NavMenu.menu-group(

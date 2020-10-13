@@ -11,6 +11,7 @@
           :locked="item.locked ? true : itemLocked(item)"
           :status="item.status"
           :to="item.to"
+          :class="{'v-list-item--active': item.name === activeItemName}"
           @click="navItemClicked(item)")
 </template>
 
@@ -23,7 +24,8 @@ export default {
   props: {
     "navItems": { type: Array, required: false, default: []},
     "hideItems": { type: Object, required: false, default: {} },
-    "lockItems": {type: Object, required: false, default: {} }
+    "lockItems": {type: Object, required: false, default: {} },
+    "activeItemName": { type: String, required: false }
   },
   data: () => ({
     
