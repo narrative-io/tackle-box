@@ -16,7 +16,7 @@
         .user-info
           h3.nio-h2.text-primary-darker {{ user.name }} 
           .nio-p.text-primary-dark {{ user.email }}  
-			slot(name="viewing-as")	
+      slot(name="viewing-as")
       v-divider
       template(v-for="navGroup in navItems")      
         NavMenu.menu-group(
