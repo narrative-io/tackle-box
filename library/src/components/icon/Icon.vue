@@ -4,7 +4,6 @@
       :icon="icon" 
       :size="24" 
       :stroke="color"
-			@click="click"
     )
 </template>
 
@@ -22,12 +21,7 @@ export default {
   data: () => ({
     icon: null,
     iconLibrary: NioIconLibrary
-	}),
-	methods: {
-		click() {
-			this.$emit('click')
-		}
-	},
+  }),
   mounted() {	
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
