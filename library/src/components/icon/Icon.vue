@@ -38,7 +38,6 @@ export default {
   },
   mounted() {	
     this.icon = this.iconLibrary[this.name]
-    console.log(this.icon)
     this.$emit('mounted')
   },
   destroyed() {
