@@ -1,6 +1,7 @@
 <template lang="pug">
   span.nio-icon(
     v-if="icon && !isUtilityIcon"
+    @click="click"
   )
     streamline-icon.nio-icon(
       :icon="icon" 
@@ -52,6 +53,11 @@ export default {
   computed: {
     isUtilityIcon() {
       return this.name.indexOf('utility-') > -1
+    }
+  },
+  methods: {
+    click() {
+      this.$emit('click')
     }
   },
   mounted() {	
