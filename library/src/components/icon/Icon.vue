@@ -38,6 +38,7 @@ import { faPlus } from './fa-icons/plus'
 import { faSearch } from './fa-icons/search'
 import { faTimes } from './fa-icons/times'
 import { faTrash } from './fa-icons/trash'
+import { faDollarSign } from './fa-icons/dollar-sign'
 
 export default {
   name: 'nio-icon',
@@ -77,6 +78,7 @@ export default {
     library.add(faSearch)
     library.add(faTimes)
     library.add(faTrash)
+    library.add(faDollarSign)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },
