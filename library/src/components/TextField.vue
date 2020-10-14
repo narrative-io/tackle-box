@@ -10,6 +10,14 @@
       ref="nio-text-field-ref"
     )
       template(
+        v-if="prependAttr"
+        v-slot:prepend-inner
+      )
+        NioIcon(
+          :name="iconName"
+          size="16"
+        )
+      template(
         v-if="appendAttr"
         v-slot:append
       )
@@ -39,6 +47,7 @@ export default {
   data: () => ({
     parsedRules: [],
     appendAttr: false,
+    prependAttr: false,
     iconName: null
   }),
   methods: {
@@ -59,6 +68,10 @@ export default {
       if (attributes.getNamedItem('append')) {
         this.appendAttr = true
         this.iconName = attributes.getNamedItem('append').value
+      }	
+      if (attributes.getNamedItem('prepend')) {
+        this.prependAttr = true
+        this.iconName = attributes.getNamedItem('prepend').value
       }	
     }
   },
