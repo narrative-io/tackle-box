@@ -57,7 +57,19 @@ const NioIconLibrary = {
 	"display-yourprofile": IconYourprofile,
 	"display-warning": IconWarning,
 	"utility-plus": "plus",
-	"utility-chevron-left": "chevron-left"
+	"utility-chevron-left": "chevron-left",
+	"utility-times": "times",
+	"utility-external-link": "external-link",
+	"utility-more": "more",
+	"utility-chevron-left": "chevron-left",
+	"utility-arrow-left": "arrow-left",
+	"utility-trash": "trash",
+	"utility-android": "android",
+	"utility-apple": "apple",
+	"utility-lock": "lock",
+	"utility-search": "search",
+	"utility-chevron-down": "chevron-down"
+
 }
 
 export { NioIconLibrary }
