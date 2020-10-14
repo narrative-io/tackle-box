@@ -36,8 +36,4 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(Vuetify)
 
-export default new Vuetify({
-  icons: {
-    iconfont: 'faSvg',
-  },
-})
+export default new Vuetify()
