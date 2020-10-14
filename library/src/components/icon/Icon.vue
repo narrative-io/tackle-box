@@ -1,9 +1,18 @@
 <template lang="pug">
+  span.nio-icon(
+    v-if="icon && !isUtilityIcon"
+  )
     streamline-icon.nio-icon(
-      v-if="icon"
       :icon="icon" 
-      :size="24" 
+      :size="size ? parseInt(size) : 24"
       :stroke="color"
+    )
+  span.nio-icon(
+    v-else-if="icon && isUtilityIcon"
+    :style="{fontSize: '14px'}"
+  )  
+    font-awesome-icon(      
+      :icon="utilityIconName"
     )
 </template>
 
@@ -15,13 +24,21 @@ export default {
   name: 'nio-icon',
   props: {
     "name": { type: String, required: true },
-    "size": { type: String, required: false, default: '24'},
+    "size": { required: false },
     "color": { type: String, required: false, default: 'black' }
   },
   data: () => ({
     icon: null,
     iconLibrary: NioIconLibrary
   }),
+  computed: {
+    isUtilityIcon() {
+      return this.name.indexOf('utility-') > -1
+    },
+    utilityIconName() {
+      return this.name.replace('utility-', '')
+    }
+  },
   mounted() {	
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')

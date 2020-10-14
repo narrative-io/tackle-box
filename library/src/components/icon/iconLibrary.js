@@ -55,7 +55,9 @@ const NioIconLibrary = {
 	"display-upload": IconUpload,
 	"display-download": IconDownload,
 	"display-yourprofile": IconYourprofile,
-	"display-warning": IconWarning
+	"display-warning": IconWarning,
+	"utility-plus": "plus",
+	"utility-chevron-left": "chevron-left"
 }
 
 export { NioIconLibrary }

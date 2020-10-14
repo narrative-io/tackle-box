@@ -3,27 +3,27 @@
     div.menu-container(style="background-color: #010A28").d-flex.align-center
       div.container
         .links
-        DropdownNav(
-          appName="Universal Onboarding" 
-          :companies="[]" 
-          :user="{name: 'Chris Woodward', role: 1, email: 'cwoodward5@hotmail.com'}"
-          :navItems="navItems" 
-          :lockItems="{'profile': true }"
-          :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
-          @login="login"
-          @logout="logout"
-        )
+        //- DropdownNav(
+        //-   appName="Universal Onboarding" 
+        //-   :companies="[]" 
+        //-   :user="{name: 'Chris Woodward', role: 1, email: 'cwoodward5@hotmail.com'}"
+        //-   :navItems="navItems" 
+        //-   :lockItems="{'profile': true }"
+        //-   :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
+        //-   @login="login"
+        //-   @logout="logout"
+        //- )
     .main
-      SideNav(
-        appName="Universal Onboarding" 
-        developerName="Narrative I/O"
-        :companies="[]" 
-        :navItems="navItems" 
-        :lockItems="{'profile': true }"
-        :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
-        @login="login"
-        @logout="logout"
-      )
+      //- SideNav(
+      //-   appName="Universal Onboarding" 
+      //-   developerName="Narrative I/O"
+      //-   :companies="[]" 
+      //-   :navItems="navItems" 
+      //-   :lockItems="{'profile': true }"
+      //-   :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
+      //-   @login="login"
+      //-   @logout="logout"
+      //- )
       .wrapper
         NioIcon(name="display-list")
         NioIcon(name="display-reports")
@@ -51,20 +51,28 @@
         NioIcon(name="display-download")
         NioIcon(name="display-yourprofile")
         NioIcon(name="display-warning")
+        NioIcon(name="display-warning" size="50")
+
+        br
+        br
+
+        NioIcon(name="utility-plus")
+        NioIcon(name="utility-chevron-left")
+        NioIcon(name="utility-plus" size="50")
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
         //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
         //- .typed Types: {{ model }}
-        nio-select.select(
-          multiple
-          v-model="selectedItems" 
-          :items="items"
-          @mounted="childMounted" 
-          :ref="'text'" 
-          :label="'Label'"
-        )
+        //- nio-select.select(
+        //-   multiple
+        //-   v-model="selectedItems" 
+        //-   :items="items"
+        //-   @mounted="childMounted" 
+        //-   :ref="'text'" 
+        //-   :label="'Label'"
+        //- )
 
         //- nio-select.select(
         //-   multiple
@@ -147,12 +155,12 @@
         //- NioButton(normal-tertiary-prepend disabled iconName="mdi-arrow-left") Back to Main
         //- NioButton(normal-primary-append iconName="mdi-plus") Checkout
         //- NioButton(normal-secondary-append iconName="mdi-chevron-right") More Options
-        NioButton(normal-tertiary-append iconName="trash") View All Suppliers
+        NioButton(normal-tertiary-append iconName="utility-chevron-left") View All Suppliers
         //- NioButton(jumbo-icon iconName="mdi-plus")
         //- NioButton(normal-icon iconName="mdi-plus")
         //- NioButton(:variant="'selected'") Primary
         //- NioButton.test(jumbo-primary) Test Me
-        v-icon fas fa-trash
+        v-icon 
 </template>
 
 <script>
