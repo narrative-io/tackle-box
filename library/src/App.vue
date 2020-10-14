@@ -67,7 +67,7 @@
         NioIcon(name="utility-arrow-left")
         NioIcon(name="utility-trash")
         NioIcon(name="utility-android")
-        NioIcon(name="utility-apple")
+        NioIcon(name="utility-apple" color="#415298")
         NioIcon(name="utility-lock")
         NioIcon(name="utility-search")
         NioIcon(name="utility-chevron-down")

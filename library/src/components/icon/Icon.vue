@@ -14,6 +14,7 @@
   )  
     font-awesome-icon(      
       :icon="icon"
+      :color="color"
     )
 </template>
 
