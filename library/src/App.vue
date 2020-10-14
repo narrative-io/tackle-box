@@ -71,11 +71,13 @@
         NioIcon(name="utility-lock")
         NioIcon(name="utility-search")
         NioIcon(name="utility-chevron-down")
-        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
-        //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
-        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
-        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
-        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
+        nio-text-field.text-field(append="utility-search" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
+        nio-text-field.text-field(prepend="utility-arrow-left" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
+        nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
+        nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
+        nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
+        nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
+        nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
         //- .typed Types: {{ model }}
         nio-select.select(
           multiple

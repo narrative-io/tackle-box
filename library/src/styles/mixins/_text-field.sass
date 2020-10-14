@@ -7,7 +7,11 @@
   margin-bottom: 1.25rem
   border-radius: 0.5rem
   background-color: $c-white
-  
+  ::v-deep .v-input__append-inner	
+    margin-right: 1rem
+  ::v-deep .nio-icon
+    color: $c-primary
+    padding-top: 2px
   // solo
   &.v-text-field--solo
     ::v-deep input
@@ -20,8 +24,6 @@
       font-size: 0.875rem
     ::placeholder
       color: $c-primary-dark !important
-    ::v-deep .v-input__append-inner	
-      margin-right: 1rem
       i
         color: $c-primary-dark
     ::v-deep .v-input__slot

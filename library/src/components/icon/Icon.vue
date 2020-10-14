@@ -9,7 +9,7 @@
     )
   span.nio-icon(
     v-else-if="icon && isUtilityIcon"
-    :style="{fontSize: '12px'}"
+    :style="{fontSize: size ? `${size}px` : '12px'}"
   )  
     font-awesome-icon(      
       :icon="icon"
