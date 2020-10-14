@@ -25,6 +25,7 @@
         @logout="logout"
       )
       .wrapper
+        NioButton.action-button(normal-primary-append iconName="utility-arrow-right") Test
         NioIcon(name="display-list")
         NioIcon(name="display-reports")
         NioIcon(name="display-preferences")

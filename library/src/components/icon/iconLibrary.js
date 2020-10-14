@@ -65,6 +65,8 @@ const NioIconLibrary = {
 	"utility-more": ["fas", "ellipsis-h"],
 	"utility-chevron-right": ["fas", "chevron-right"],
 	"utility-arrow-left": ["fas", "arrow-left"],
+	"utility-arrow-right": ["fas", "arrow-right"],
+	"utility-arrow-down": ["fas", "arrow-down"],
 	"utility-trash": ["fas", "trash"],
 	"utility-android": ["fab", 'android'],
 	"utility-apple": ["fab", "apple"],

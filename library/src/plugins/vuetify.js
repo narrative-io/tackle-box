@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from './vue-fontawesome'
 import { faApple } from '../components/icon/fa-icons/apple'
 import { faAndroid } from '../components/icon/fa-icons/android'
 import { faArrowLeft } from '../components/icon/fa-icons/arrow-left'
+import { faArrowRight } from '../components/icon/fa-icons/arrow-right'
+import { faArrowDown } from '../components/icon/fa-icons/arrow-down'
 import { faChevronDown } from '../components/icon/fa-icons/chevron-down'
 import { faChevronLeft } from '../components/icon/fa-icons/chevron-left'
 import { faChevronRight } from '../components/icon/fa-icons/chevron-right'
@@ -21,6 +23,8 @@ library.add(faCode)
 library.add(faApple) 
 library.add(faAndroid)
 library.add(faArrowLeft)
+library.add(faArrowRight)
+library.add(faArrowDown)
 library.add(faChevronDown)
 library.add(faChevronLeft)
 library.add(faChevronRight)
