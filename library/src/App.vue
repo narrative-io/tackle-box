@@ -56,6 +56,7 @@
         br
         br
 
+        NioIcon(name="utility-code")
         NioIcon(name="utility-plus")
         NioIcon(name="utility-chevron-left")
         NioIcon(name="utility-times")

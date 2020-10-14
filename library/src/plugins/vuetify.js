@@ -3,9 +3,11 @@ import Vuetify from 'vuetify/lib'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import { faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add(fas)
+library.add(faFontAwesome)
 
 Vue.use(Vuetify)
 

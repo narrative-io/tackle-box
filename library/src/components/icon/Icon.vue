@@ -12,7 +12,7 @@
     :style="{fontSize: '12px'}"
   )  
     font-awesome-icon(      
-      :icon="utilityIconName"
+      :icon="icon"
     )
 </template>
 
@@ -34,13 +34,11 @@ export default {
   computed: {
     isUtilityIcon() {
       return this.name.indexOf('utility-') > -1
-    },
-    utilityIconName() {
-      return this.name.replace('utility-', '')
     }
   },
   mounted() {	
     this.icon = this.iconLibrary[this.name]
+    console.log(this.icon)
     this.$emit('mounted')
   },
   destroyed() {
