@@ -40,13 +40,15 @@ import { faSearch } from './fa-icons/search'
 import { faTimes } from './fa-icons/times'
 import { faTrash } from './fa-icons/trash'
 import { faDollarSign } from './fa-icons/dollar-sign'
-
+import { faEnvelope } from './fa-icons/envelope'
+import { faLink } from './fa-icons/link'
+ 
 export default {
   name: 'nio-icon',
   props: {
     "name": { type: String, required: true },
     "size": { required: false },
-    "color": { type: String, required: false, default: 'black' }
+    "color": { type: String, required: false }
   },
   data: () => ({
     icon: null,
@@ -80,6 +82,8 @@ export default {
     library.add(faTimes)
     library.add(faTrash)
     library.add(faDollarSign)
+    library.add(faEnvelope)
+    library.add(faLink)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },

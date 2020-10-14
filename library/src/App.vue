@@ -71,6 +71,8 @@
         NioIcon(name="utility-lock")
         NioIcon(name="utility-search")
         NioIcon(name="utility-chevron-down")
+        NioIcon(name="utility-envelope")
+        NioIcon(name="utility-link")
         nio-text-field.text-field(append="utility-search" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
         nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" solo)
         nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
@@ -175,6 +177,8 @@
         NioButton(normal-icon iconName="utility-plus")
         NioButton(:variant="'selected'") Primary
         NioButton.test(jumbo-primary) Test Me
+        NioButton(jumbo-primary-prepend disabled iconName="utility-arrow-left") Back to Main
+        NioButton(jumbo-primary-append iconName="utility-plus") Checkout
         v-icon 
 </template>
 

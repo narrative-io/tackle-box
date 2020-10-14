@@ -111,6 +111,11 @@ export default {
         this.sizeAttr = 'extra-large'
         this.appendAttr = true
       }
+      if (attributes.getNamedItem('jumbo-primary-prepend')) {
+        this.variantAttr = 'primary'
+        this.sizeAttr = 'extra-large'
+        this.prependAttr = true
+      }
       if (attributes.getNamedItem('jumbo-secondary')) {
         this.variantAttr = 'secondary'
         this.sizeAttr = 'extra-large'
