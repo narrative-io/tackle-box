@@ -42,6 +42,8 @@ import { faTrash } from './fa-icons/trash'
 import { faDollarSign } from './fa-icons/dollar-sign'
 import { faEnvelope } from './fa-icons/envelope'
 import { faLink } from './fa-icons/link'
+import { faLinkedin } from './fa-icons/linkedin'
+import { faTwitter } from './fa-icons/twitter'
  
 export default {
   name: 'nio-icon',
@@ -84,6 +86,8 @@ export default {
     library.add(faDollarSign)
     library.add(faEnvelope)
     library.add(faLink)
+    library.add(faLinkedin)
+    library.add(faTwitter)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },

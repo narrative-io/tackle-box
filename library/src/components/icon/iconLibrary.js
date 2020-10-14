@@ -75,7 +75,9 @@ const NioIconLibrary = {
 	"utility-chevron-down": ["fas", "chevron-down"],
 	"utility-dollar-sign": ["fas", "dollar-sign"],
 	"utility-envelope": ["fas", "envelope"],
-	"utility-link": ["fas", "link"]
+	"utility-link": ["fas", "link"],
+	"utility-linkedin": ["fab", "linkedin"],
+	"utility-twitter": ["fab", "twitter"]
 }
 
 export { NioIconLibrary }

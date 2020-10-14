@@ -73,6 +73,8 @@
         NioIcon(name="utility-chevron-down")
         NioIcon(name="utility-envelope")
         NioIcon(name="utility-link")
+        NioIcon(name="utility-linkedin")
+        NioIcon(name="utility-twitter")
         nio-text-field.text-field(append="utility-search" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
         nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" solo)
         nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
