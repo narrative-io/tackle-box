@@ -76,39 +76,39 @@
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
         //- .typed Types: {{ model }}
-        //- nio-select.select(
-        //-   multiple
-        //-   v-model="selectedItems" 
-        //-   :items="items"
-        //-   @mounted="childMounted" 
-        //-   :ref="'text'" 
-        //-   :label="'Label'"
-        //- )
+        nio-select.select(
+          multiple
+          v-model="selectedItems" 
+          :items="items"
+          @mounted="childMounted" 
+          :ref="'text'" 
+          :label="'Label'"
+        )
 
-        //- nio-select.select(
-        //-   multiple
-        //-   v-model="selectedItems" 
-        //-   :items="items"
-        //-   @mounted="childMounted" 
-        //-   :ref="'text'" 
-        //-   :label="'Label'"
-        //- )
-        //- nio-select.select(
-        //-   multiple
-        //-   v-model="selectedItems" 
-        //-   :items="items"
-        //-   @mounted="childMounted" 
-        //-   :ref="'text'" 
-        //-   :label="'Label'"
-        //- )
-        //- NioSelect(
-        //-   label="Preferred Data Regions"
-        //-   v-model="selectedRegions"
-        //-   :items="regions"
-        //-   item-text="name"
-        //-   item-value="value" 
-        //-   multiple 
-        //- )
+        nio-select.select(
+          multiple
+          v-model="selectedItems" 
+          :items="items"
+          @mounted="childMounted" 
+          :ref="'text'" 
+          :label="'Label'"
+        )
+        nio-select.select(
+          multiple
+          v-model="selectedItems" 
+          :items="items"
+          @mounted="childMounted" 
+          :ref="'text'" 
+          :label="'Label'"
+        )
+        NioSelect(
+          label="Preferred Data Regions"
+          v-model="selectedRegions"
+          :items="regions"
+          item-text="name"
+          item-value="value" 
+          multiple 
+        )
         //-   template(v-slot:selection="{ item, index }")
         //-     span.v-select__selection(v-if="index === 0") {{ item.name }}
         //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
@@ -152,25 +152,25 @@
         //-   NioRadioButton(value="John" label="John")
         //-   NioRadioButton(value="Jacob" label="Jacob")
         //- .value value: {{ radio }}
-        //- NioButton(:variant="'primary'") Primary
-        //- NioButton(:variant="'primary'" disabled) Primary
-        //- NioButton(:variant="'secondary'") Secondary
-        //- NioButton(:variant="'secondary'" disabled) Secondary
-        //- NioButton(:variant="'tertiary'") Tertiary
-        //- NioButton(:variant="'tertiary'" disabled) Tertiary
-        //- NioButton(normal-primary) Quick Add
-        //- NioButton(normal-secondary) View Details
-        //- NioButton(normal-tertiary) Forgot Password
-        //- NioButton(normal-primary-prepend disabled iconName="mdi-plus") New Onboarding
-        //- NioButton(normal-secondary-prepend disabled iconName="mdi-chevron-left") Previous
-        //- NioButton(normal-tertiary-prepend disabled iconName="mdi-arrow-left") Back to Main
-        //- NioButton(normal-primary-append iconName="mdi-plus") Checkout
-        //- NioButton(normal-secondary-append iconName="mdi-chevron-right") More Options
+        NioButton(:variant="'primary'") Primary
+        NioButton(:variant="'primary'" disabled) Primary
+        NioButton(:variant="'secondary'") Secondary
+        NioButton(:variant="'secondary'" disabled) Secondary
+        NioButton(:variant="'tertiary'") Tertiary
+        NioButton(:variant="'tertiary'" disabled) Tertiary
+        NioButton(normal-primary) Quick Add
+        NioButton(normal-secondary) View Details
+        NioButton(normal-tertiary) Forgot Password
+        NioButton(normal-primary-prepend disabled iconName="utility-plus") New Onboarding
+        NioButton(normal-secondary-prepend disabled iconName="utility-chevron-left") Previous
+        NioButton(normal-tertiary-prepend disabled iconName="utility-arrow-left") Back to Main
+        NioButton(normal-primary-append iconName="utility-plus") Checkout
+        NioButton(normal-secondary-append iconName="utility-chevron-right") More Options
         NioButton(normal-tertiary-append iconName="utility-chevron-left") View All Suppliers
-        //- NioButton(jumbo-icon iconName="mdi-plus")
-        //- NioButton(normal-icon iconName="mdi-plus")
-        //- NioButton(:variant="'selected'") Primary
-        //- NioButton.test(jumbo-primary) Test Me
+        NioButton(jumbo-icon iconName="utility-plus")
+        NioButton(normal-icon iconName="utility-plus")
+        NioButton(:variant="'selected'") Primary
+        NioButton.test(jumbo-primary) Test Me
         v-icon 
 </template>
 
