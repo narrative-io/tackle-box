@@ -133,25 +133,26 @@
         //-   NioRadioButton(value="John" label="John")
         //-   NioRadioButton(value="Jacob" label="Jacob")
         //- .value value: {{ radio }}
-        NioButton(:variant="'primary'") Primary
-        NioButton(:variant="'primary'" disabled) Primary
-        NioButton(:variant="'secondary'") Secondary
-        NioButton(:variant="'secondary'" disabled) Secondary
-        NioButton(:variant="'tertiary'") Tertiary
-        NioButton(:variant="'tertiary'" disabled) Tertiary
-        NioButton(normal-primary) Quick Add
-        NioButton(normal-secondary) View Details
-        NioButton(normal-tertiary) Forgot Password
-        NioButton(normal-primary-prepend disabled iconName="mdi-plus") New Onboarding
-        NioButton(normal-secondary-prepend disabled iconName="mdi-chevron-left") Previous
-        NioButton(normal-tertiary-prepend disabled iconName="mdi-arrow-left") Back to Main
-        NioButton(normal-primary-append iconName="mdi-plus") Checkout
-        NioButton(normal-secondary-append iconName="mdi-chevron-right") More Options
-        NioButton(normal-tertiary-append iconName="mdi-arrow-right") View All Suppliers
-        NioButton(jumbo-icon iconName="mdi-plus")
-        NioButton(normal-icon iconName="mdi-plus")
-        NioButton(:variant="'selected'") Primary
-        NioButton.test(jumbo-primary) Test Me
+        //- NioButton(:variant="'primary'") Primary
+        //- NioButton(:variant="'primary'" disabled) Primary
+        //- NioButton(:variant="'secondary'") Secondary
+        //- NioButton(:variant="'secondary'" disabled) Secondary
+        //- NioButton(:variant="'tertiary'") Tertiary
+        //- NioButton(:variant="'tertiary'" disabled) Tertiary
+        //- NioButton(normal-primary) Quick Add
+        //- NioButton(normal-secondary) View Details
+        //- NioButton(normal-tertiary) Forgot Password
+        //- NioButton(normal-primary-prepend disabled iconName="mdi-plus") New Onboarding
+        //- NioButton(normal-secondary-prepend disabled iconName="mdi-chevron-left") Previous
+        //- NioButton(normal-tertiary-prepend disabled iconName="mdi-arrow-left") Back to Main
+        //- NioButton(normal-primary-append iconName="mdi-plus") Checkout
+        //- NioButton(normal-secondary-append iconName="mdi-chevron-right") More Options
+        NioButton(normal-tertiary-append iconName="trash") View All Suppliers
+        //- NioButton(jumbo-icon iconName="mdi-plus")
+        //- NioButton(normal-icon iconName="mdi-plus")
+        //- NioButton(:variant="'selected'") Primary
+        //- NioButton.test(jumbo-primary) Test Me
+        v-icon fas fa-trash
 </template>
 
 <script>
@@ -181,14 +182,14 @@ export default {
         groupName: "manage",
         groupLabel: "Manage",
         items: [
-					{
+          {
             label: "Saved Providers",
             to: "/apps",
             icon: "display-payment",
-						status: "new",
-						hidden: false
-					},
-					{
+            status: "new",
+            hidden: false
+          },
+          {
             label: "Stuffs",
             to: "/apps",
             icon: "display-payment",
@@ -197,35 +198,35 @@ export default {
             label: "Subscriptions",
             to: "/subscriptions",
             icon: 'display-new',
-						locked: true,
-						hidden: true
+            locked: true,
+            hidden: true
           },
           {
             label: "Installed Apps",
             to: "/suppliers",
             icon: 'display-reports',
-						status: "coming",
-						locked: true
+            status: "coming",
+            locked: true
           },
           {
             label: "Saved Providers",
             to: "/apps",
             icon: "display-payment",
             status: "coming"
-					},
-					{
+          },
+          {
             label: "Saved Providers",
             to: "/apps",
             icon: "display-payment",
-						status: "alpha",
-						locked: true
-					},
-					{
+            status: "alpha",
+            locked: true
+          },
+          {
             label: "Saved Providers",
             to: "/apps",
             icon: "display-payment",
-						status: "new",
-						locked: true
+            status: "new",
+            locked: true
           }
         ]
       },

@@ -7,9 +7,9 @@
     v-on="$listeners" 
     ref="nio-button-ref"
   )
-    v-icon(v-if="prependAttr || iconAttr" :size="iconSize") {{ iconName }}
+    font-awesome-icon(:icon="iconName" v-if="prependAttr || iconAttr" :size="iconSize") {{ iconName }}
     slot
-    v-icon(v-if="appendAttr" :size="iconSize") {{ iconName }}
+    font-awesome-icon(:icon="iconName" v-if="appendAttr" :size="iconSize") {{ iconName }}
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
       slot(:name="name" v-bind="data") 
 </template>
