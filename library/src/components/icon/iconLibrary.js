@@ -55,7 +55,31 @@ const NioIconLibrary = {
 	"display-upload": IconUpload,
 	"display-download": IconDownload,
 	"display-yourprofile": IconYourprofile,
-	"display-warning": IconWarning
+	"display-warning": IconWarning,
+	"utility-code": ["fas","code"],
+	"utility-plus": ["fas", "plus"],
+	"utility-chevron-left": ["fas", "chevron-left"],
+	"utility-times": ["fas", "times"],
+	"utility-trash": ["fas", "trash"],
+	"utility-external-link": ["fas", "external-link-alt"],
+	"utility-more": ["fas", "ellipsis-h"],
+	"utility-chevron-right": ["fas", "chevron-right"],
+	"utility-arrow-left": ["fas", "arrow-left"],
+	"utility-arrow-right": ["fas", "arrow-right"],
+	"utility-arrow-down": ["fas", "arrow-down"],
+	"utility-trash": ["fas", "trash"],
+	"utility-android": ["fab", 'android'],
+	"utility-apple": ["fab", "apple"],
+	"utility-lock": ["fas", "lock"],
+	"utility-search": ["fas", "search"],
+	"utility-chevron-down": ["fas", "chevron-down"],
+	"utility-dollar-sign": ["fas", "dollar-sign"],
+	"utility-envelope": ["fas", "envelope"],
+	"utility-link": ["fas", "link"],
+	"utility-linkedin": ["fab", "linkedin"],
+	"utility-twitter": ["fab", "twitter"],
+	"utility-eye": ["fas", "eye"],
+	"utility-eye-slash": ["fas", "eye-slash"]
 }
 
 export { NioIconLibrary }
