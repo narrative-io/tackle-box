@@ -8,12 +8,12 @@
     ref="nio-button-ref"
   )
     NioIcon(
-      v-if="prependAttr || iconAttr"
+      v-if="(prependAttr || iconAttr) && iconName"
       :name="iconName" :size="size" 
     )
     slot
     NioIcon(
-      v-if="appendAttr"
+      v-if="appendAttr && iconName"
       :name="iconName" :size="size" 
     )
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")

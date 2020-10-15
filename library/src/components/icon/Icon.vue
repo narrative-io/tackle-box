@@ -99,6 +99,11 @@ export default {
   destroyed() {
     this.$emit('destroyed')
   },
+  watch: {
+    name() {
+      this.icon = this.iconLibrary[this.name]
+    }
+  },
   components: { StreamlineIcon, FontAwesomeIcon }
 }
 </script>

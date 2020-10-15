@@ -14,6 +14,7 @@
         v-slot:prepend-inner
       )
         NioIcon(
+          v-if="iconName"
           :name="iconName"
           size="16"
           @click="clickPrepend"
@@ -23,6 +24,7 @@
         v-slot:append
       )
         NioIcon(
+          v-if="iconName"
           @click="clickAppend"
           :name="iconName"
           size="16"
@@ -40,7 +42,8 @@ export default {
   name: 'nio-text-field',
   props: {
     "model": { required: false },
-    "rules": { required: false }
+    "rules": { required: false },
+    "iconName": { type: String, required: false, default: null }
   },
   model: {
     prop: "model",
@@ -49,8 +52,7 @@ export default {
   data: () => ({
     parsedRules: [],
     appendAttr: false,
-    prependAttr: false,
-    iconName: null
+    prependAttr: false
   }),
   methods: {
     focus() {
@@ -69,11 +71,9 @@ export default {
       const attributes = this.$el.attributes
       if (attributes.getNamedItem('append')) {
         this.appendAttr = true
-        this.iconName = attributes.getNamedItem('append').value
       }	
       if (attributes.getNamedItem('prepend')) {
         this.prependAttr = true
-        this.iconName = attributes.getNamedItem('prepend').value
       }	
     },
     clickAppend() {
