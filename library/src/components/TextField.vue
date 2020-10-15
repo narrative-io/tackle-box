@@ -16,12 +16,14 @@
         NioIcon(
           :name="iconName"
           size="16"
+          @click="clickPrepend"
         )
       template(
         v-if="appendAttr"
         v-slot:append
       )
         NioIcon(
+          @click="clickAppend"
           :name="iconName"
           size="16"
         )
@@ -73,6 +75,12 @@ export default {
         this.prependAttr = true
         this.iconName = attributes.getNamedItem('prepend').value
       }	
+    },
+    clickAppend() {
+      this.$emit('click:append')
+    },
+    clickPrepend() {
+      this.$emit('click:prepend')
     }
   },
   mounted() {	

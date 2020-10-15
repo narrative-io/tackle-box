@@ -77,7 +77,7 @@
         NioIcon(name="utility-twitter")
         NioIcon(name="utility-eye")
         NioIcon(name="utility-eye-slash")
-        nio-text-field.text-field(append="utility-search" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
+        nio-text-field.text-field(append="utility-search" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" @click:append="test")
         nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" solo)
         nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
         nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
@@ -371,6 +371,9 @@ export default {
     },
     login() {
       this.loggedIn = true
+    },
+    test() {
+      console.log("hi")
     }
   },
   mounted() {

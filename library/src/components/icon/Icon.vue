@@ -11,7 +11,8 @@
   span.nio-icon(
     v-else-if="icon && isUtilityIcon"
     :style="{fontSize: size ? `${size}px` : '12px'}"
-  )  
+    @click="click"
+  )
     font-awesome-icon(      
       :icon="icon"
       :color="color"
