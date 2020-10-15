@@ -25,100 +25,101 @@
         @logout="logout"
       )
       .wrapper
-        NioButton.action-button(normal-primary-append iconName="utility-arrow-right") Test
-        NioIcon(name="display-list")
-        NioIcon(name="display-reports")
-        NioIcon(name="display-preferences")
-        NioIcon(name="display-quick-start")
-        NioIcon(name="display-listmanager")
-        NioIcon(name="display-sources")
-        NioIcon(name="display-destinations")
-        NioIcon(name="display-payment")
-        NioIcon(name="display-help")
-        NioIcon(name="display-email")
-        NioIcon(name="display-website")
-        NioIcon(name="display-security")
-        NioIcon(name="display-privacy")
-        NioIcon(name="display-module")
-        NioIcon(name="display-search")
-        NioIcon(name="display-notification")
-        NioIcon(name="display-subscriptions")
-        NioIcon(name="display-hamburger")
-        NioIcon(name="display-logout")
-        NioIcon(name="display-close")
-        NioIcon(name="display-file")
-        NioIcon(name="display-cart")
-        NioIcon(name="display-upload")
-        NioIcon(name="display-download")
-        NioIcon(name="display-yourprofile")
-        NioIcon(name="display-warning")
-        NioIcon(name="display-warning" size="50")
+        NioFileUploader
+        //- NioButton.action-button(normal-primary-append iconName="utility-arrow-right") Test
+        //- NioIcon(name="display-list")
+        //- NioIcon(name="display-reports")
+        //- NioIcon(name="display-preferences")
+        //- NioIcon(name="display-quick-start")
+        //- NioIcon(name="display-listmanager")
+        //- NioIcon(name="display-sources")
+        //- NioIcon(name="display-destinations")
+        //- NioIcon(name="display-payment")
+        //- NioIcon(name="display-help")
+        //- NioIcon(name="display-email")
+        //- NioIcon(name="display-website")
+        //- NioIcon(name="display-security")
+        //- NioIcon(name="display-privacy")
+        //- NioIcon(name="display-module")
+        //- NioIcon(name="display-search")
+        //- NioIcon(name="display-notification")
+        //- NioIcon(name="display-subscriptions")
+        //- NioIcon(name="display-hamburger")
+        //- NioIcon(name="display-logout")
+        //- NioIcon(name="display-close")
+        //- NioIcon(name="display-file")
+        //- NioIcon(name="display-cart")
+        //- NioIcon(name="display-upload")
+        //- NioIcon(name="display-download")
+        //- NioIcon(name="display-yourprofile")
+        //- NioIcon(name="display-warning")
+        //- NioIcon(name="display-warning" size="50")
 
-        br
-        br
+        //- br
+        //- br
 
-        NioIcon(name="utility-code")
-        NioIcon(name="utility-plus")
-        NioIcon(name="utility-chevron-left")
-        NioIcon(name="utility-times")
-        NioIcon(name="utility-external-link")
-        NioIcon(name="utility-more")
-        NioIcon(name="utility-chevron-left")
-        NioIcon(name="utility-arrow-left")
-        NioIcon(name="utility-trash")
-        NioIcon(name="utility-android")
-        NioIcon(name="utility-apple" color="#415298")
-        NioIcon(name="utility-lock")
-        NioIcon(name="utility-search")
-        NioIcon(name="utility-chevron-down")
-        NioIcon(name="utility-envelope")
-        NioIcon(name="utility-link")
-        NioIcon(name="utility-linkedin")
-        NioIcon(name="utility-twitter")
-        NioIcon(name="utility-eye")
-        NioIcon(name="utility-eye-slash")
-        nio-text-field.text-field(append :iconName="switch1 ? 'utility-search' : 'utility-eye'"  @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" @click:append="test")
-        nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" solo)
-        nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
-        nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
-        nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
-        nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
-        nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
-        nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
-        //- .typed Types: {{ model }}
-        nio-select.select(
-          multiple
-          v-model="selectedItems" 
-          :items="items"
-          @mounted="childMounted" 
-          :ref="'text'" 
-          :label="'Label'"
-        )
+        //- NioIcon(name="utility-code")
+        //- NioIcon(name="utility-plus")
+        //- NioIcon(name="utility-chevron-left")
+        //- NioIcon(name="utility-times")
+        //- NioIcon(name="utility-external-link")
+        //- NioIcon(name="utility-more")
+        //- NioIcon(name="utility-chevron-left")
+        //- NioIcon(name="utility-arrow-left")
+        //- NioIcon(name="utility-trash")
+        //- NioIcon(name="utility-android")
+        //- NioIcon(name="utility-apple" color="#415298")
+        //- NioIcon(name="utility-lock")
+        //- NioIcon(name="utility-search")
+        //- NioIcon(name="utility-chevron-down")
+        //- NioIcon(name="utility-envelope")
+        //- NioIcon(name="utility-link")
+        //- NioIcon(name="utility-linkedin")
+        //- NioIcon(name="utility-twitter")
+        //- NioIcon(name="utility-eye")
+        //- NioIcon(name="utility-eye-slash")
+        //- nio-text-field.text-field(append :iconName="switch1 ? 'utility-search' : 'utility-eye'"  @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" @click:append="test")
+        //- nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" solo)
+        //- nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
+        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
+        //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
+        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
+        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
+        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
+        //- //- .typed Types: {{ model }}
+        //- nio-select.select(
+        //-   multiple
+        //-   v-model="selectedItems" 
+        //-   :items="items"
+        //-   @mounted="childMounted" 
+        //-   :ref="'text'" 
+        //-   :label="'Label'"
+        //- )
 
-        nio-select.select(
-          multiple
-          v-model="selectedItems" 
-          :items="items"
-          @mounted="childMounted" 
-          :ref="'text'" 
-          :label="'Label'"
-        )
-        nio-select.select(
-          multiple
-          v-model="selectedItems" 
-          :items="items"
-          @mounted="childMounted" 
-          :ref="'text'" 
-          :label="'Label'"
-        )
-        NioSelect(
-          label="Preferred Data Regions"
-          v-model="selectedRegions"
-          :items="regions"
-          item-text="name"
-          item-value="value" 
-          multiple 
-        )
+        //- nio-select.select(
+        //-   multiple
+        //-   v-model="selectedItems" 
+        //-   :items="items"
+        //-   @mounted="childMounted" 
+        //-   :ref="'text'" 
+        //-   :label="'Label'"
+        //- )
+        //- nio-select.select(
+        //-   multiple
+        //-   v-model="selectedItems" 
+        //-   :items="items"
+        //-   @mounted="childMounted" 
+        //-   :ref="'text'" 
+        //-   :label="'Label'"
+        //- )
+        //- NioSelect(
+        //-   label="Preferred Data Regions"
+        //-   v-model="selectedRegions"
+        //-   :items="regions"
+        //-   item-text="name"
+        //-   item-value="value" 
+        //-   multiple 
+        //- )
         //-   template(v-slot:selection="{ item, index }")
         //-     span.v-select__selection(v-if="index === 0") {{ item.name }}
         //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
@@ -162,28 +163,28 @@
         //-   NioRadioButton(value="John" label="John")
         //-   NioRadioButton(value="Jacob" label="Jacob")
         //- .value value: {{ radio }}
-        NioButton(:variant="'primary'") Primary
-        NioButton(:variant="'primary'" disabled) Primary
-        NioButton(:variant="'secondary'") Secondary
-        NioButton(:variant="'secondary'" disabled) Secondary
-        NioButton(:variant="'tertiary'") Tertiary
-        NioButton(:variant="'tertiary'" disabled) Tertiary
-        NioButton(normal-primary) Quick Add
-        NioButton(normal-secondary) View Details
-        NioButton(normal-tertiary) Forgot Password
-        NioButton(normal-primary-prepend disabled iconName="utility-plus") New Onboarding
-        NioButton(normal-secondary-prepend disabled iconName="utility-chevron-left") Previous
-        NioButton(normal-tertiary-prepend disabled iconName="utility-arrow-left") Back to Main
-        NioButton(normal-primary-append iconName="utility-plus") Checkout
-        NioButton(normal-secondary-append iconName="utility-chevron-right") More Options
-        NioButton(normal-tertiary-append iconName="utility-chevron-left") View All Suppliers
-        NioButton(jumbo-icon iconName="utility-plus")
-        NioButton(normal-icon iconName="utility-plus")
-        NioButton(:variant="'selected'") Primary
-        NioButton.test(jumbo-primary) Test Me
-        NioButton(jumbo-primary-prepend disabled iconName="utility-arrow-left") Back to Main
-        NioButton(jumbo-primary-append iconName="utility-plus") Checkout
-        v-icon 
+        //- NioButton(:variant="'primary'") Primary
+        //- NioButton(:variant="'primary'" disabled) Primary
+        //- NioButton(:variant="'secondary'") Secondary
+        //- NioButton(:variant="'secondary'" disabled) Secondary
+        //- NioButton(:variant="'tertiary'") Tertiary
+        //- NioButton(:variant="'tertiary'" disabled) Tertiary
+        //- NioButton(normal-primary) Quick Add
+        //- NioButton(normal-secondary) View Details
+        //- NioButton(normal-tertiary) Forgot Password
+        //- NioButton(normal-primary-prepend disabled iconName="utility-plus") New Onboarding
+        //- NioButton(normal-secondary-prepend disabled iconName="utility-chevron-left") Previous
+        //- NioButton(normal-tertiary-prepend disabled iconName="utility-arrow-left") Back to Main
+        //- NioButton(normal-primary-append iconName="utility-plus") Checkout
+        //- NioButton(normal-secondary-append iconName="utility-chevron-right") More Options
+        //- NioButton(normal-tertiary-append iconName="utility-chevron-left") View All Suppliers
+        //- NioButton(jumbo-icon iconName="utility-plus")
+        //- NioButton(normal-icon iconName="utility-plus")
+        //- NioButton(:variant="'selected'") Primary
+        //- NioButton.test(jumbo-primary) Test Me
+        //- NioButton(jumbo-primary-prepend disabled iconName="utility-arrow-left") Back to Main
+        //- NioButton(jumbo-primary-append iconName="utility-plus") Checkout
+        //- v-icon 
 </template>
 
 <script>
@@ -203,6 +204,7 @@ export default {
     NioRadioGroup: () => import("./components/RadioGroup.vue"),
     NioRadioButton: () => import("./components/RadioButton.vue"),
     NioIcon: () => import("./components/icon/Icon.vue"),
+    NioFileUploader: () => import("./components/FileUploader.vue"),
     DropdownNav,
     SideNav
   },
