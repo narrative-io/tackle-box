@@ -29,7 +29,12 @@
           instructions="Upload a .CSV or .TXT file containing hashed or raw emails."
           actionLabel="Generate Hash"
           :state="downloaderState"
+          successMsg="Your file contains 12,345 valid IDs and 0 errors."
+          errorMsg="Your file does not contain any valid IDs."
         )
+          template(v-slot:success-actions)        
+            NioButton(normal-secondary @click="resetDownloader") Reset PII Hasher
+            NioButton(normal-primary @click="downloadFile") Download File
         .select-state
           .nio-h6 Select state: 
           NioButton(normal-secondary @click="setState('initial')") Initial
@@ -375,6 +380,12 @@ export default {
   methods: {
     setState(val) {
       this.downloaderState = val
+    },
+    resetDownloader() {
+
+    },
+    downloadFile() {
+
     },
     childMounted() {},
     goToHelpCenter() {

@@ -38,7 +38,6 @@
           .left
           .nio-h6.text-primary-dark OR
           .right
-
     .actions
       NioButton(
         key="1"
@@ -58,6 +57,13 @@
         caution-outlined
         @click="cancelClicked"
       ) Cancel
+      //- .success-actions
+      slot(
+        name="success-actions"
+        v-if="currentState === 'success'"
+      )
+      
+
 
 </template>
 
