@@ -3,6 +3,24 @@
     :class="`state-${ currentState }`"
   )
     .graphic
+      NioIcon(
+        v-if="currentState === state.initial"
+        name="display-upload" 
+        color="#415298"
+        size="48"
+      )
+      NioIcon(
+        v-if="currentState === state.selected"
+        name="display-file" 
+        color="#415298"
+        size="48"
+      )
+      NioIcon(
+        v-if="currentState === state.error"
+        name="display-warning" 
+        color="#415298"
+        size="48"
+      )
     .details
       .nio-h3.text-primary-darker Drag and Drop
       .nio-p.text-primary-dark {{ instructions }}
@@ -28,7 +46,7 @@
 
 <script>
 
-const states = {
+const state = {
   0: 'initial',
   1: 'selected',
   2: 'working',
@@ -42,6 +60,7 @@ const states = {
 }
 
 import NioButton from './Button'
+import NioIcon from './icon/Icon'
 
 export default {
   name: 'nio-file-uploader',
@@ -50,7 +69,8 @@ export default {
     "actionLabel": { type: String, required: false, default: "Go" }
   },
   data: () => ({
-    currentState: 0
+    currentState: 0,
+    state: state
   }),
   methods: {
     browseClicked() {
@@ -69,7 +89,7 @@ export default {
   destroyed() {
     this.$emit('destroyed')
   },
-  components: { NioButton }
+  components: { NioButton, NioIcon }
 }
 
 </script>
