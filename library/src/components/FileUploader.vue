@@ -35,6 +35,14 @@
         color="#415298"
         size="48"
       )
+      .progress(v-if="currentState === 'inProgress'")
+        v-progress-circular(
+          :value="percentComplete"
+          rotate="270"
+          width="1"
+          color="#415298"
+        )
+        .nio-p.text-primary-dark.nio-bold {{ percentComplete }}%
     .details
       .nio-h3.text-primary-darker 
         span(v-if="currentState === 'initial'") Drag and Drop

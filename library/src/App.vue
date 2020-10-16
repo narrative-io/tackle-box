@@ -34,7 +34,7 @@
           validationErrorMsg="Your file does not contain any valid IDs."
           @changed="loadTextFromFile($event)" 
           :percentComplete="10" 
-          :maxFileSize="11"
+          :maxFileSize="1024*1024*100"
           :validateFn="() => true"
         )
           template(v-slot:success-actions)        
