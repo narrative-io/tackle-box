@@ -129,6 +129,21 @@ export default {
         this.iconAttr = true
         this.sizeAttr = 'normal'
         this.variantAttr = 'secondary'
+			}
+			if (attributes.getNamedItem('caution-filled-prepend')) {
+        this.prependAttr = true
+        this.sizeAttr = 'normal'
+        this.variantAttr = 'error-filled'
+			}
+			if (attributes.getNamedItem('caution-outlined')) {
+        this.iconAttr = false
+        this.sizeAttr = 'normal'
+        this.variantAttr = 'error'
+			}
+			if (attributes.getNamedItem('caution-text')) {
+        this.iconAttr = false
+        this.sizeAttr = 'normal'
+        this.variantAttr = 'error-text'
       }
     }
   },

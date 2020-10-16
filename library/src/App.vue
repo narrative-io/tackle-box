@@ -424,9 +424,14 @@ export default {
 .wrapper
   flex-grow: 2
   padding: 30px  
-  
 
 .test
   @media (max-width: 800px)
     +nio-button($variant: primary, $size: small)
+.select-state
+  margin-top: 50px
+  .nio-h6
+    margin-bottom: 20px
+  .nio-button
+    margin-bottom: 10px      
 </style>
