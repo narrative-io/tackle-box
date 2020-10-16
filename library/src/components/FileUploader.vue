@@ -1,6 +1,6 @@
 <template lang="pug">
   .nio-file-uploader(
-    :class="`state-${ currentState }`"
+    :class="`state-${ state[currentState] }`"
   )
     .graphic
       NioIcon(
@@ -24,7 +24,10 @@
     .details
       .nio-h3.text-primary-darker Drag and Drop
       .nio-p.text-primary-dark {{ instructions }}
-    .spacer
+      .spacer
+        .left
+        .nio-h6.text-primary-dark OR
+        .right
     .actions
       NioButton(
         v-if="currentState === 0"
@@ -33,10 +36,10 @@
       ) Browse Files
       NioButton(
         v-if="currentState === 1"
-        normal-primary
+        normal-secondary
         @click="actionClicked"
       ) {{ actionLabel }}
-      Cancel(
+      NioButton(
         v-if="currentState === 2"
         caution-outlined
         @click="cancelClicked"

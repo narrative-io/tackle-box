@@ -25,7 +25,10 @@
         @logout="logout"
       )
       .wrapper
-        NioFileUploader
+        NioFileUploader(
+          instructions="Upload a .CSV or .TXT file containing hashed or raw emails."
+          actionLabel="Generate Hash"
+        )
         //- NioButton.action-button(normal-primary-append iconName="utility-arrow-right") Test
         //- NioIcon(name="display-list")
         //- NioIcon(name="display-reports")

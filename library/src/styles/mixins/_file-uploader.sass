@@ -3,7 +3,7 @@
 @import "./utility/_center-content"
 
 =nio-file-uploader
-  background: $c-canvas
+  background-color: $c-canvas
   border: 1.5px dashed $c-primary-light
   box-sizing: border-box
   border-radius: 12px
@@ -14,8 +14,8 @@
   align-items: center
   width: 100%
   text-align: center
-  padding: 77px
   .graphic
+    background: $c-canvas
     width: 120px
     height: 120px
     border-radius: 60px
@@ -27,8 +27,34 @@
       margin-bottom: 8px
     .nio-p
       margin-bottom: 8px	
-  .spacer
-      margin-top: 8px
-      margin-bottom: 8px
+    .spacer
+        margin-top: 16px
+        margin-bottom: 16px
+        width: 100%
+        display: flex
+        justify-content: space-between
+        align-items: center
+        height: 20px
+        .left, .right
+          flex-grow: 2
+          height: 0px
+          border-top: 1px solid $c-primary-lighter
+        .nio-h6
+          margin: 0px 10px  
+
+  // states
+  &.state-initial
+
+  &.state-selected, &.state-working
+    background-color: $c-white   
+    border: 1.5px solid $c-primary-light 
+  &.state-selected 
+        
+  &.state-working
+  
+  &.state-success
+
+  &.state-error  
+
 .nio-file-uploader
   +nio-file-uploader
