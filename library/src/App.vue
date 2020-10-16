@@ -31,7 +31,7 @@
           actionLabel="Generate Hash"
           :state="downloaderState"
           successMsg="Your file contains 12,345 valid IDs and 0 errors."
-          errorMsg="Your file does not contain any valid IDs."
+          generalErrorMsg="Your file does not contain any valid IDs."
           @changed="loadTextFromFile" 
           :percentComplete="10" 
           :maxFileSize="1024*1024*100"

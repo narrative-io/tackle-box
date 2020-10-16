@@ -44,9 +44,11 @@
         span(v-if="currentState === 'error'") We have a problem
       .nio-p.text-primary-dark 
         span(v-if="currentState === 'initial'") {{ instructions }}
-        span(v-if="currentState === 'selected' || currentState === 'inProgress'") {{ filename }} <span>{{ filesize }}</span>
+        span(v-if="currentState === 'selected' || currentState === 'inProgress'") <strong>{{ filename }}</strong> {{ readableFilesize }}
         span(v-if="currentState === 'success'") {{ successMsg }}
-        span(v-if="currentState === 'error'") {{ errorMsg }}
+        span(v-if="currentState === 'error'")
+           span(v-if="errorType === 'validation'") {{ validationErrorMsg }}
+           span(v-if="errorType === 'validation'") {{ generalErrorMsg }}
       .spacer
         .content(v-if="currentState === 'initial'")
           .left
@@ -90,7 +92,8 @@ export default {
     actionLabel: { type: String, required: false, default: "Go" },
     inProgressMessage: { type: String, required: false, default: "Working on it..." },
     successMsg: { type: String, required: false, default: "Everything went smoothly" },
-    errorMsg: { type: String, required: false, default: "Something went wrong. Please try again." },
+    generalErrorMsg: { type: String, required: false, default: "Something went wrong. Please try again." },
+    validationErrorMsg: { type: String, required: false, default: "Your file contained errors. Please select another file" },
     state: { type: String, required: false, default: "initial" },
     multiple: { type: Boolean, default: false },
     isLoading: { type: Boolean, default: false },
@@ -103,6 +106,7 @@ export default {
     filename: 'yourFile.csv',
     filesize: '2.4MB',
     isDragEnter: false,
+    errorType: null,
     f: false
   }),
   methods: {
@@ -153,9 +157,21 @@ export default {
       if (result === true) {
         this.f = files[0];
         this.$emit("changed", files);
+        this.filename = this.f.name
+        this.filesize = this.f.size
+        this.currentState = 'selected'
+      } else {
+        this.currentState = 'error'
+        this.errorType = 'validation'
       }
       // clear selected files
       this.$refs.fsFileInput.value = "";
+    }
+  },
+  computed: {
+    readableFilesize() {
+      var i = Math.floor( Math.log(this.filesize) / Math.log(1024) );
+      return ( this.filesize / Math.pow(1024, i) ).toFixed(0) * 1 + ['B', 'KB', 'MB', 'GB', 'TB'][i];
     }
   },
   mounted() {	
