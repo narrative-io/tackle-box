@@ -2,7 +2,7 @@
   .nio-file-uploader(
     :class="`state-${ currentState }`"
   )
-    .graphic
+    .graphic(v-if="currentState !== 'success'")
       NioIcon(
         v-if="currentState === 'initial'"
         name="display-upload" 
@@ -22,28 +22,42 @@
         size="48"
       )
     .details
-      .nio-h3.text-primary-darker Drag and Drop
-      .nio-p.text-primary-dark {{ instructions }}
+      .nio-h3.text-primary-darker 
+        span(v-if="currentState === 'initial'") Drag and Drop
+        span(v-if="currentState === 'selected'") Your File
+        span(v-if="currentState === 'inProgress'") {{ inProgressMessage }}
+        span(v-if="currentState === 'success'") Success
+        span(v-if="currentState === 'error'") We have a problem
+      .nio-p.text-primary-dark 
+        span(v-if="currentState === 'initial'") {{ instructions }}
+        span(v-if="currentState === 'selected' || currentState === 'inProgress'") {{ filename }} <span>{{ filesize }}</span>
+        span(v-if="currentState === 'success'") {{ successMsg }}
+        span(v-if="currentState === 'error'") {{ errorMsg }}
       .spacer
-        .left
-        .nio-h6.text-primary-dark OR
-        .right
+        .content(v-if="currentState === 'initial'")
+          .left
+          .nio-h6.text-primary-dark OR
+          .right
+
     .actions
       NioButton(
+        key="1"
         v-if="currentState === 'initial'"
         normal-secondary 
         @click="browseClicked"
       ) Browse Files
       NioButton(
+        key="2"
         v-if="currentState === 'selected'"
         normal-secondary
         @click="actionClicked"
       ) {{ actionLabel }}
       NioButton(
-        v-if="currentState === 'working'"
+        key="3"
+        v-if="currentState === 'inProgress'"
         caution-outlined
         @click="cancelClicked"
-      ) {{ actionLabel }}
+      ) Cancel
 
 </template>
 
@@ -57,10 +71,15 @@ export default {
   props: {
     "instructions": { type: String, required: false, default: "Choose a file" },
     "actionLabel": { type: String, required: false, default: "Go" },
+    "inProgressMessage": { type: String, required: false, default: "Working on it..." },
+    "successMsg": { type: String, required: false, default: "Everything went smoothly" },
+    "errorMsg": { type: String, required: false, default: "Something went wrong. Please try again." },
     "state": { type: String, required: false, default: "initial" }
   },
   data: () => ({
-    currentState: 0
+    currentState: 'initial',
+    filename: 'yourFile.csv',
+    filesize: '2.4MB'
   }),
   methods: {
     browseClicked() {

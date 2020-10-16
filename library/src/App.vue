@@ -34,7 +34,7 @@
           .nio-h6 Select state: 
           NioButton(normal-secondary @click="setState('initial')") Initial
           NioButton(normal-secondary @click="setState('selected')") Selected
-          NioButton(normal-secondary @click="setState('working')") Working
+          NioButton(normal-secondary @click="setState('inProgress')") Working
           NioButton(normal-secondary @click="setState('success')") Success
           NioButton(normal-secondary @click="setState('error')") Error
         //- NioButton.action-button(normal-primary-append iconName="utility-arrow-right") Test
