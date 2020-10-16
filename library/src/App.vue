@@ -28,7 +28,15 @@
         NioFileUploader(
           instructions="Upload a .CSV or .TXT file containing hashed or raw emails."
           actionLabel="Generate Hash"
+          :state="downloaderState"
         )
+        .select-state
+          .nio-h6 Select state: 
+          NioButton(normal-secondary @click="setState('initial')") Initial
+          NioButton(normal-secondary @click="setState('selected')") Selected
+          NioButton(normal-secondary @click="setState('working')") Working
+          NioButton(normal-secondary @click="setState('success')") Success
+          NioButton(normal-secondary @click="setState('error')") Error
         //- NioButton.action-button(normal-primary-append iconName="utility-arrow-right") Test
         //- NioIcon(name="display-list")
         //- NioIcon(name="display-reports")
@@ -213,6 +221,7 @@ export default {
   },
   data: () => ({
     loggedIn: false,
+    downloaderState: 'initial',
     navItems: [
       {
         groupName: "manage",
@@ -364,6 +373,9 @@ export default {
     ]  
   }),
   methods: {
+    setState(val) {
+      this.downloaderState = val
+    },
     childMounted() {},
     goToHelpCenter() {
       console.log("help center")
