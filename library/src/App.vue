@@ -407,8 +407,9 @@ export default {
   display: flex
 
 .wrapper
+  flex-grow: 2
   padding: 30px  
-  width: 500px
+  
 
 .test
   @media (max-width: 800px)
