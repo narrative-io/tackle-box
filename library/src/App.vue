@@ -32,9 +32,9 @@
           :state="downloaderState"
           successMsg="Your file contains 12,345 valid IDs and 0 errors."
           validationErrorMsg="Your file does not contain any valid IDs."
-          @changed="loadTextFromFile" 
+          @changed="loadTextFromFile($event)" 
           :percentComplete="10" 
-          :maxFileSize="1024*1024*100"
+          :maxFileSize="11"
           :validateFn="() => true"
         )
           template(v-slot:success-actions)        
@@ -390,8 +390,8 @@ export default {
     resetDownloader() {
 
     },
-    loadTextFromFile() {
-
+    loadTextFromFile(files) {
+      console.log(files[0])
     },
     downloadFile() {
 

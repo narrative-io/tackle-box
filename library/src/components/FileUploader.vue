@@ -48,6 +48,8 @@
         span(v-if="currentState === 'success'") {{ successMsg }}
         span(v-if="currentState === 'error'")
            span(v-if="errorType === 'validation'") {{ validationErrorMsg }}
+           span(v-else-if="errorType === 'filesize'") {{ filesizeErrorMsg }}
+           span(v-else-if="errorType === 'multifile'") {{ multifileErrorMsg }}
            span(v-else) {{ generalErrorMsg }}
       .spacer
         .content(v-if="currentState === 'initial'")
@@ -59,7 +61,7 @@
         key="4"
         v-if="currentState === 'selected' || currentState === 'error'"
         normal-secondary
-        @click="cancelClicked"
+        @click="browseClicked"
       ) Choose Another File
       NioButton(
         key="1"
@@ -98,7 +100,9 @@ export default {
     inProgressMessage: { type: String, required: false, default: "Working on it..." },
     successMsg: { type: String, required: false, default: "Everything went smoothly" },
     generalErrorMsg: { type: String, required: false, default: "Something went wrong. Please try again." },
-    validationErrorMsg: { type: String, required: false, default: "Your file contained errors. Please select another file" },
+    filesizeErrorMsg: { type: String, required: false, default: "Your file is too large. Please choose another file."},
+    multifileErrorMsg: { type: String, required: false, default: "Only one file is allowed"},
+    validationErrorMsg: { type: String, required: false, default: "Your file contained errors. Please choose another file" },
     state: { type: String, required: false, default: "initial" },
     multiple: { type: Boolean, required: false, default: false },
     isLoading: { type: Boolean, required: false, default: false },
@@ -108,8 +112,8 @@ export default {
   },
   data: () => ({
     currentState: 'initial',
-    filename: 'yourFile.csv',
-    filesize: '2.4MB',
+    filename: null,
+    filesize: null,
     isDragEnter: false,
     errorType: null,
     f: false
@@ -120,7 +124,7 @@ export default {
       this.$refs.fsFileInput.click()
     },
     actionClicked() {
-      this.$emit('actionlicked')
+      this.$emit('actionClicked')
       this.currentState = 'inProgress'
     },
     cancelClicked() {
@@ -170,7 +174,13 @@ export default {
         this.currentState = 'selected'
       } else {
         this.currentState = 'error'
-        this.errorType = 'validation'
+        if (result === "FILE_SIZE_ERROR") {
+          this.errorType = 'filesize'
+        } else if (result === "MULTIFILES_ERROR") {
+          this.errorType = 'multifile'
+        } else {
+          this.errorType = 'validation'
+        }
       }
       // clear selected files
       this.$refs.fsFileInput.value = "";
