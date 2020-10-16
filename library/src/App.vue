@@ -26,11 +26,15 @@
       )
       .wrapper
         NioFileUploader(
+          v-model="file" 
           instructions="Upload a .CSV or .TXT file containing hashed or raw emails."
           actionLabel="Generate Hash"
           :state="downloaderState"
           successMsg="Your file contains 12,345 valid IDs and 0 errors."
           errorMsg="Your file does not contain any valid IDs."
+          @changed="loadTextFromFile" 
+          :percentComplete="10" 
+          :maxFileSize="1024*1024*100"
         )
           template(v-slot:success-actions)        
             NioButton(normal-secondary @click="resetDownloader") Reset PII Hasher
@@ -225,6 +229,7 @@ export default {
     SideNav
   },
   data: () => ({
+    file: null,
     loggedIn: false,
     downloaderState: 'initial',
     navItems: [
@@ -382,6 +387,9 @@ export default {
       this.downloaderState = val
     },
     resetDownloader() {
+
+    },
+    loadTextFromFile() {
 
     },
     downloadFile() {

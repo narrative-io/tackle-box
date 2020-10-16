@@ -1,7 +1,21 @@
 <template lang="pug">
   .nio-file-uploader(
     :class="`state-${ currentState }`"
+    ref="fsDroppable" 
+    @dragenter.stop.prevent="isDragEnter = true" 
+    @dragover.stop.prevent="() => {}" 
+    @dragleave.stop.prevent="isDragEnter = false" 
+    @drop.stop.prevent="handleDrop"
   )
+    input(
+      ref="fsFileInput" 
+      id="getFile" 
+      type="file" 
+      tabindex="-1" 
+      :multiple="multiple" 
+      @change="handleFilesChange"
+      style="display: none;"
+    )
     .graphic(v-if="currentState !== 'success'")
       NioIcon(
         v-if="currentState === 'initial'"
@@ -62,9 +76,6 @@
         name="success-actions"
         v-if="currentState === 'success'"
       )
-      
-
-
 </template>
 
 <script>
@@ -75,27 +86,76 @@ import NioIcon from './icon/Icon'
 export default {
   name: 'nio-file-uploader',
   props: {
-    "instructions": { type: String, required: false, default: "Choose a file" },
-    "actionLabel": { type: String, required: false, default: "Go" },
-    "inProgressMessage": { type: String, required: false, default: "Working on it..." },
-    "successMsg": { type: String, required: false, default: "Everything went smoothly" },
-    "errorMsg": { type: String, required: false, default: "Something went wrong. Please try again." },
-    "state": { type: String, required: false, default: "initial" }
+    instructions: { type: String, required: false, default: "Choose a file" },
+    actionLabel: { type: String, required: false, default: "Go" },
+    inProgressMessage: { type: String, required: false, default: "Working on it..." },
+    successMsg: { type: String, required: false, default: "Everything went smoothly" },
+    errorMsg: { type: String, required: false, default: "Something went wrong. Please try again." },
+    state: { type: String, required: false, default: "initial" },
+    multiple: { type: Boolean, default: false },
+    isLoading: { type: Boolean, default: false },
+    maxFileSize: { type: Number, default: NaN },
+    validateFn: { type: Function, default: () => true },
+    percentComplete: { type: Number, default: 0 }
   },
   data: () => ({
     currentState: 'initial',
     filename: 'yourFile.csv',
-    filesize: '2.4MB'
+    filesize: '2.4MB',
+    isDragEnter: false,
+    f: false
   }),
   methods: {
     browseClicked() {
-      this.$emit('browseClicked')
+      this.$refs.fsFileInput.click()
     },
     actionClicked() {
       this.$emit('browseClicked')
     },
     cancelClicked() {
       this.$emit('browseClicked')
+    },
+    handleFilesChange($event) {
+      this.files = this.preprocessFiles($event.target.files);
+    },
+    handleDrop($event) {
+      this.isDragEnter = false;
+      this.preprocessFiles($event.dataTransfer.files);
+    },
+    checkFileSize(files) {
+      if (Number.isNaN(this.maxFileSize)) {
+        return true;
+      }
+      const list = Array.from(files);
+      // find invalid file size
+      const invalidFileIndex = list.findIndex(
+        (file) => file.size > this.maxFileSize
+      );
+      // all file size are valid
+      return invalidFileIndex === -1;
+    },
+    validate(files) {
+      // file selection
+      if (!this.multiple && files.length > 1) {
+        return "MULTIFILES_ERROR";
+      }
+      // file size
+      if (!this.checkFileSize(files)) {
+        return "FILE_SIZE_ERROR";
+      }
+      // custom validation
+      return this.validateFn(files);
+    },
+    preprocessFiles(files) {
+      const result = this.validate(files);
+      this.$emit("validated", result, files);
+      // validation
+      if (result === true) {
+        this.f = files[0];
+        this.$emit("changed", files);
+      }
+      // clear selected files
+      this.$refs.fsFileInput.value = "";
     }
   },
   mounted() {	
