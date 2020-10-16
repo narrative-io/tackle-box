@@ -48,13 +48,19 @@
         span(v-if="currentState === 'success'") {{ successMsg }}
         span(v-if="currentState === 'error'")
            span(v-if="errorType === 'validation'") {{ validationErrorMsg }}
-           span(v-if="errorType === 'validation'") {{ generalErrorMsg }}
+           span(v-else) {{ generalErrorMsg }}
       .spacer
         .content(v-if="currentState === 'initial'")
           .left
           .nio-h6.text-primary-dark OR
           .right
     .actions
+      NioButton(
+        key="4"
+        v-if="currentState === 'selected' || currentState === 'error'"
+        normal-secondary
+        @click="cancelClicked"
+      ) Choose Another File
       NioButton(
         key="1"
         v-if="currentState === 'initial'"
@@ -64,7 +70,7 @@
       NioButton(
         key="2"
         v-if="currentState === 'selected'"
-        normal-secondary
+        normal-primary
         @click="actionClicked"
       ) {{ actionLabel }}
       NioButton(
@@ -73,7 +79,6 @@
         caution-outlined
         @click="cancelClicked"
       ) Cancel
-      //- .success-actions
       slot(
         name="success-actions"
         v-if="currentState === 'success'"
@@ -95,11 +100,11 @@ export default {
     generalErrorMsg: { type: String, required: false, default: "Something went wrong. Please try again." },
     validationErrorMsg: { type: String, required: false, default: "Your file contained errors. Please select another file" },
     state: { type: String, required: false, default: "initial" },
-    multiple: { type: Boolean, default: false },
-    isLoading: { type: Boolean, default: false },
-    maxFileSize: { type: Number, default: NaN },
-    validateFn: { type: Function, default: () => true },
-    percentComplete: { type: Number, default: 0 }
+    multiple: { type: Boolean, required: false, default: false },
+    isLoading: { type: Boolean, required: false, default: false },
+    maxFileSize: { type: Number, required: true, default: NaN },
+    validateFn: { type: Function, required: false, default: () => true },
+    percentComplete: { type: Number, required: false, default: 0 }
   },
   data: () => ({
     currentState: 'initial',
@@ -111,13 +116,16 @@ export default {
   }),
   methods: {
     browseClicked() {
+      this.$emit('browseClicked')
       this.$refs.fsFileInput.click()
     },
     actionClicked() {
-      this.$emit('browseClicked')
+      this.$emit('actionlicked')
+      this.currentState = 'inProgress'
     },
     cancelClicked() {
-      this.$emit('browseClicked')
+      this.$emit('cancelClicked')
+      this.currentState = 'initial'
     },
     handleFilesChange($event) {
       this.files = this.preprocessFiles($event.target.files);

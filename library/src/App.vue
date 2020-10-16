@@ -31,10 +31,11 @@
           actionLabel="Generate Hash"
           :state="downloaderState"
           successMsg="Your file contains 12,345 valid IDs and 0 errors."
-          generalErrorMsg="Your file does not contain any valid IDs."
+          validationErrorMsg="Your file does not contain any valid IDs."
           @changed="loadTextFromFile" 
           :percentComplete="10" 
           :maxFileSize="1024*1024*100"
+          :validateFn="() => true"
         )
           template(v-slot:success-actions)        
             NioButton(normal-secondary @click="resetDownloader") Reset PII Hasher
