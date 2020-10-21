@@ -1,6 +1,6 @@
 {
   "name": "@narrative.io/tackle-box",
-  "version": "0.0.86",
+  "version": "0.1.0-beta.1",
   "description": "The Narrative Data Stream UI library of user interface components and styles, written for use in Vue.js projects",
   "author": "Narrative, Inc.",
   "repository": {
@@ -20,7 +20,8 @@
     "build": "vue-cli-service build --target lib --name tackle-box src/index.js",
     "prepublishOnly": "$npm_execpath run build",
     "build:app": "vue-cli-service build --dest dist-app",
-    "release": "npm publish -access public"
+    "release:prod": "npm publish -access public",
+    "release:dev": "npm publish -access public --tag beta"
   },
   "main": "dist/tackle-box.common.js",
   "unpkg": "dist/tackle-box.umd.min.js",
@@ -38,13 +39,18 @@
     "README.md"
   ],
   "dependencies": {
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
     "vue": "^2.6.10",
-    "vuetify": "^2.2.11"
+    "vuetify": "^2.2.11",
+    "@fortawesome/fontawesome-free": "^5.15.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/vue-fontawesome": "^2.0.0",
     "@mdi/font": "^5.6.55",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-docs": "^5.3.19",
