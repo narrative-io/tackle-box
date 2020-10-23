@@ -1,6 +1,7 @@
 <template lang="pug">
   span.nio-icon(
     v-if="icon && !isUtilityIcon"
+    :style="{ height: `${size ? parseInt(size) : 24}px` }"
     @click="click"
   )
     streamline-icon.nio-icon(

@@ -12,7 +12,7 @@
     )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data")  
-      slot   
+      slot
     v-checkbox.nio-checkbox(
       v-else
       @change="$emit('update', $event)"

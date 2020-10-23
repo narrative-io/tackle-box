@@ -25,6 +25,28 @@
         @logout="logout"
       )
       .wrapper
+        NioFileUploader(
+          v-model="file" 
+          instructions="Upload a .CSV or .TXT file containing hashed or raw emails."
+          actionLabel="Generate Hash"
+          :state="downloaderState"
+          successMsg="Your file contains 12,345 valid IDs and 0 errors."
+          validationErrorMsg="Your file does not contain any valid IDs."
+          @changed="loadTextFromFile($event)" 
+          :percentComplete="10" 
+          :maxFileSize="1024*1024*100"
+          :validateFn="() => true"
+        )
+          template(v-slot:success-actions)        
+            NioButton(normal-secondary @click="resetDownloader") Reset PII Hasher
+            NioButton(normal-primary @click="downloadFile") Download File
+        .select-state
+          .nio-h6 Select state: 
+          NioButton(normal-secondary @click="setState('initial')") Initial
+          NioButton(normal-secondary @click="setState('selected')") Selected
+          NioButton(normal-secondary @click="setState('inProgress')") Working
+          NioButton(normal-secondary @click="setState('success')") Success
+          NioButton(normal-secondary @click="setState('error')") Error
         NioButton.action-button(normal-primary-append iconName="utility-arrow-right") Test
         NioIcon(name="display-list")
         NioIcon(name="display-reports")
@@ -119,49 +141,49 @@
           item-value="value" 
           multiple 
         )
-        //-   template(v-slot:selection="{ item, index }")
-        //-     span.v-select__selection(v-if="index === 0") {{ item.name }}
-        //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
-        //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
-        //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-        //- NioCheckbox(v-model="checkbox")
-        //- v-checkbox(v-model="checkbox")
-        //- .checkbox {{ checkbox }}
-        //- NioAutocomplete.autocomplete(
-        //-   v-model="selectedItems" 
-        //-   :items="items"
-        //-   @mounted="childMounted" 
-        //-   :value="'banana'"
-        //-   :ref="'text'" 
-        //-   :label="'Label'"
-        //- )
-        //- NioAutocomplete(
-        //-   label="Preferred Data Regions"
-        //-   v-model="selectedRegions"
-        //-   :items="regions"
-        //-   item-text="name"
-        //-   item-value="value" 
-        //-   multiple 
-        //- )
-        //-   template(v-slot:selection="{ item, index }")
-        //-     span.v-select__selection(v-if="index === 0") {{ item.name }}
-        //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
-        //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
-        //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-        //- NioCheckbox(v-model="selected2" label="hello" )
-        //- .value value: {{ selected2 }}
-        //- NioCheckbox(v-model="selected" label="John" value="John")
-        //- NioCheckbox(v-model="selected" label="Jacob" value="Jacob")
-        //- .a selected: {{ selected }}
-        //- NioSwitch(v-model="switch1" :input-value="switch1") 
-        //- .value value: {{ switch1 }}
-        //- NioSwitch(v-model="switch2" :input-value="switch2" value="John")
-        //- NioSwitch(v-model="switch2" :input-value="switch2" value="Jacob")       
-        //- .value value: {{ switch2 }}
-        //- NioRadioGroup(v-model="radio")
-        //-   NioRadioButton(value="John" label="John")
-        //-   NioRadioButton(value="Jacob" label="Jacob")
-        //- .value value: {{ radio }}
+          template(v-slot:selection="{ item, index }")
+            span.v-select__selection(v-if="index === 0") {{ item.name }}
+            span.v-select__selection(v-if="index === 1") , {{ item.name }}
+            span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
+            span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
+        NioCheckbox(v-model="checkbox")
+        v-checkbox(v-model="checkbox")
+        .checkbox {{ checkbox }}
+        NioAutocomplete.autocomplete(
+          v-model="selectedItems" 
+          :items="items"
+          @mounted="childMounted" 
+          :value="'banana'"
+          :ref="'text'" 
+          :label="'Label'"
+        )
+        NioAutocomplete(
+          label="Preferred Data Regions"
+          v-model="selectedRegions"
+          :items="regions"
+          item-text="name"
+          item-value="value" 
+          multiple 
+        )
+          template(v-slot:selection="{ item, index }")
+            span.v-select__selection(v-if="index === 0") {{ item.name }}
+            span.v-select__selection(v-if="index === 1") , {{ item.name }}
+            span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
+            span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
+        NioCheckbox(v-model="selected2" label="hello" )
+        .value value: {{ selected2 }}
+        NioCheckbox(v-model="selected" label="John" value="John")
+        NioCheckbox(v-model="selected" label="Jacob" value="Jacob")
+        .a selected: {{ selected }}
+        NioSwitch(v-model="switch1" :input-value="switch1") 
+        .value value: {{ switch1 }}
+        NioSwitch(v-model="switch2" :input-value="switch2" value="John")
+        NioSwitch(v-model="switch2" :input-value="switch2" value="Jacob")       
+        .value value: {{ switch2 }}
+        NioRadioGroup(v-model="radio")
+          NioRadioButton(value="John" label="John")
+          NioRadioButton(value="Jacob" label="Jacob")
+        .value value: {{ radio }}
         NioButton(:variant="'primary'") Primary
         NioButton(:variant="'primary'" disabled) Primary
         NioButton(:variant="'secondary'") Secondary
@@ -183,7 +205,7 @@
         NioButton.test(jumbo-primary) Test Me
         NioButton(jumbo-primary-prepend disabled iconName="utility-arrow-left") Back to Main
         NioButton(jumbo-primary-append iconName="utility-plus") Checkout
-        v-icon 
+        //- v-icon 
 </template>
 
 <script>
@@ -203,11 +225,14 @@ export default {
     NioRadioGroup: () => import("./components/RadioGroup.vue"),
     NioRadioButton: () => import("./components/RadioButton.vue"),
     NioIcon: () => import("./components/icon/Icon.vue"),
+    NioFileUploader: () => import("./components/FileUploader.vue"),
     DropdownNav,
     SideNav
   },
   data: () => ({
+    file: null,
     loggedIn: false,
+    downloaderState: 'initial',
     navItems: [
       {
         groupName: "manage",
@@ -359,6 +384,18 @@ export default {
     ]  
   }),
   methods: {
+    setState(val) {
+      this.downloaderState = val
+    },
+    resetDownloader() {
+
+    },
+    loadTextFromFile(files) {
+      console.log(files[0])
+    },
+    downloadFile() {
+
+    },
     childMounted() {},
     goToHelpCenter() {
       console.log("help center")
@@ -405,10 +442,16 @@ export default {
   display: flex
 
 .wrapper
+  flex-grow: 2
   padding: 30px  
-  width: 500px
 
 .test
   @media (max-width: 800px)
     +nio-button($variant: primary, $size: small)
+.select-state
+  margin-top: 50px
+  .nio-h6
+    margin-bottom: 20px
+  .nio-button
+    margin-bottom: 10px      
 </style>

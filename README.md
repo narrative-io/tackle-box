@@ -39,7 +39,16 @@ npm run build
 
 Make asure you have an NPM account and have been added to the __Narrative.io__ orgg and the __developers__ team
 
+
+###### Publish a -beta version (make sure the version contains xxx-beta)
 ```
 npm login
-npm run release
+npm run release:dev
+```
+
+###### Publish a prod version
+
+```
+npm login
+npm run release:prod
 ```

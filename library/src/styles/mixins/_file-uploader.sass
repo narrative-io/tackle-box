@@ -1,0 +1,79 @@
+@import "../global/_colors"
+@import "../global/_typography"
+@import "../global/_color-helpers"
+@import "./utility/_center-content"
+@import "../global/_transitions"
+
+=nio-file-uploader
+  background-color: $c-canvas
+  border: 1.5px dashed $c-primary-light
+  box-sizing: border-box
+  border-radius: 12px
+  height: 420px
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  width: 100%
+  text-align: center
+  .graphic
+    background: $c-canvas
+    width: 120px
+    height: 120px
+    border-radius: 60px
+    border: 1px solid $c-primary-lighter
+    margin-bottom: 16px
+    position: relative
+    +nio-center-content
+    .v-progress-circular
+      width: 100px !important
+      height: 100px !important
+      position: absolute
+      left: 9px
+      top: 9px
+      ::v-deep circle:nth-child(1)
+        stroke: $c-primary-lighter !important
+  .details
+    .nio-h3
+      margin-bottom: 8px
+    .nio-p
+      margin-bottom: 8px	
+    .spacer
+        margin-top: 16px
+        margin-bottom: 16px
+        width: 100%
+        height: 20px
+        .content
+          display: flex
+          justify-content: space-between
+          align-items: center
+          .left, .right
+            flex-grow: 2
+            height: 0px
+            border-top: 1px solid $c-primary-lighter
+          .nio-h6
+            margin: 0px 10px  
+  .actions
+    display: flex
+    justify-content: center
+    align-items: center
+    & > * + * 
+      margin-left: 16px
+
+  // states
+  &.state-initial
+
+  &.state-selected, &.state-working
+    background-color: $c-white   
+    border: 1.5px solid $c-primary-light 
+  &.state-selected 
+        
+  &.state-working
+  
+  &.state-success
+
+  &.state-error  
+
+.nio-file-uploader
+  +nio-file-uploader
+

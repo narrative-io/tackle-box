@@ -133,6 +133,42 @@
     border: 0.0625rem solid $c-error   !important 
     color: $c-error !important
 
+=nio-button-error-filled
+  background-color: $c-error !important
+  border: 0.0625rem solid $c-error !important
+  color: $c-white !important
+  &:focus
+    background-color: lighten($c-error, 10) !important
+    color: $c-white !important
+  &:focus:before
+    opacity: 0 !important
+  &:hover
+    background-color: darken($c-error, 5) !important
+    color: darken($c-white, 5) !important
+    border: 0.0625rem solid darken($c-error, 5) !important
+  &:disabled	
+    opacity: 0.5 !important
+    pointer-events: none !important
+    cursor: initial !important
+  &:active
+    background-color: darken($c-error, 10) !important
+    border: 0.0625rem solid darken($c-error, 10)  !important 
+    color: darken($c-white, 10) !important
+
+=nio-button-error-text	
+  +nio-button-error
+  padding: 0rem !important
+  border: none !important
+  background-color: rgba(0,0,0,0) !important
+  &:hover
+    border: none !important
+    background-color: rgba(0,0,0,0) !important
+    &:before
+      opacity: 0 !important
+  &:disabled 
+    border: none !important
+    opacity: 0.5 !important          
+
 =nio-button-extra-large
   &.v-btn:not(.v-btn--round).v-size--default
     padding: 0px 28px
@@ -190,8 +226,12 @@
   &.nio-button-selected
     +nio-button-selected
   &.nio-button-error
-    +nio-button-error   
-
+    +nio-button-error     
+  &.nio-button-error-filled
+    +nio-button-error-filled   
+  &.nio-button-error-text
+    +nio-button-error-text
+    
   &.nio-button-extra-large
     +nio-button-extra-large
   &.nio-button-large
@@ -211,3 +251,4 @@
   &.nio-button-append
     +nio-button-append
     
+
