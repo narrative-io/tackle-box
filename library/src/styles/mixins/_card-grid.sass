@@ -1,75 +1,16 @@
+@import './_card'
+@import '../global/_breakpoints'
+
 =nio-card-grid
-	display: grid
-	grid-template-columns: 1fr 1fr 1fr 1fr
-	grid-gap: 0.675rem 1.875rem
-	@media (max-width: $breakpoint-xl)
-		grid-template-columns: 1fr 1fr 1fr        
-	@media (max-width: $breakpoint-lg)
-		grid-template-columns: 1fr 1fr
-	@media (max-width: $breakpoint-sm)
-		grid-template-columns: 1fr
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr 1fr
+  grid-gap: 0.675rem 1.875rem
+  @media (max-width: $breakpoint-xl)
+    grid-template-columns: 1fr 1fr 1fr        
+  @media (max-width: $breakpoint-lg)
+    grid-template-columns: 1fr 1fr
+  @media (max-width: $breakpoint-sm)
+    grid-template-columns: 1fr
 
-=nio-card-grid-item
-	&:not(.informational)
-    +nio-card($padding: 0rem, $border-radius: 0.75rem)
-    position: relative
-    background-color: $c-white
-    box-shadow: $box-shadow-card
-    border-radius: 0.75rem
-    transition: all .2s ease-out
-    overflow: hidden
-    height: $height
-    margin-bottom: 1.25rem
-    .card
-      position: absolute
-      top: 0
-      left: 0
-      margin: 0rem 0rem
-      width: 100%
-      height: 100%
-      box-shadow: none
-      padding: 1.875rem
-    .hover-controls
-      z-index: 1	
-      opacity: 0
-      position: absolute
-      bottom: -1.25rem
-      left: 0rem
-      background-color: $c-primary-lightest
-      width: 100%
-      padding: 1.25rem
-    &:hover
-      cursor: pointer
-      transform: translateY(-0.125rem)
-      box-shadow: rgba(65, 87, 155, 0.4) 0rem 1.25rem 2.5rem 0rem
-      .hover-controls
-        opacity: 1
-        bottom: 0rem
-        transition: all .2s ease-out .2s	
-  &.informational			
-    padding: 0rem
-    margin-bottom: 1.25rem
-    height: $height
-    .hover-controls
-      display: none
-    .card
-      height: 100%
-      border-radius: 0.75rem
-      padding: 2.9375rem 1.075rem
-      display: flex
-      flex-direction: column
-      justify-content: space-between
-      align-items: center
-      text-align: center
-      background-color: rgba(0,0,0,0)
-      border: 0.125rem solid $c-primary-lighter
-      .how-it-works
-        border-radius: 2.5rem
-        &:hover
-          text-decoration: none
-					
 .nio-card-grid
-	+nio-card-grid
-
-.nio-card-grid-item
-	+nio-card-grid-item	
+  +nio-card-grid
