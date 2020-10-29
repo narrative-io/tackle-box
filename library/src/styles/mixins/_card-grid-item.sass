@@ -1,10 +1,10 @@
 @import '../global/_colors'
 @import './_card'
 
-=nio-card-grid-item($height: 254px, $expanded-height: 300px)
+=nio-card-grid-item($height: 254px)
   &:not(.informational)
     +nio-card($padding: 0rem, $border-radius: 0.75rem)
-    position: relativee
+    position: relative
     background-color: $c-white
     box-shadow: $box-shadow-card
     border-radius: 0.75rem
@@ -30,6 +30,16 @@
       background-color: $c-primary-lightest
       width: 100%
       padding: 1.25rem
+      text-align: center
+      display: flex
+      justify-content: center
+      align-items: center      
+      .actions
+        margin: 0 auto
+        display: flex
+        justify-content: center
+        width: 100%
+
     &:hover
       cursor: pointer
       transform: translateY(-0.125rem)

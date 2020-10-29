@@ -27,11 +27,15 @@
       .wrapper
         NioCardGrid
           NioCardGridItem
-          NioCardGridItem
-          NioCardGridItem
-          NioCardGridItem
-          NioCardGridItem
-          NioCardGridItem
+            .content content
+            template(v-slot:hover-controls)
+              NioButton.more-info(:variant="'secondary'" :size="'small'") MORE INFO
+              NioButton.quick-add(:size="'small'") QUICK ADD
+          //- NioCardGridItem
+          //- NioCardGridItem
+          //- NioCardGridItem
+          //- NioCardGridItem
+          //- NioCardGridItem
         //- NioFileUploader(
         //-   v-model="file" 
         //-   instructions="Upload a .CSV or .TXT file containing hashed or raw emails."
@@ -233,8 +237,8 @@ export default {
     NioRadioButton: () => import("./components/RadioButton.vue"),
     NioIcon: () => import("./components/icon/Icon.vue"),
     NioFileUploader: () => import("./components/FileUploader.vue"),
-    NioCardGrid: () => import("./components/CardGrid.vue"),
-    NioCardGridItem: () => import("./components/CardGridItem.vue"),
+    NioCardGrid: () => import("./components-private/CardGrid.vue"),
+    NioCardGridItem: () => import("./components-private/CardGridItem.vue"),
     DropdownNav,
     DropdownNav,
     SideNav

@@ -1,6 +1,9 @@
 <template lang="pug">
   .nio-card-grid-item
     slot
+    .hover-controls
+      .actions
+        slot(name="hover-controls") 
 </template>
 
 <script>
