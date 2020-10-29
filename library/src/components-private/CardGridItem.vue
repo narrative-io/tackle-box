@@ -1,5 +1,8 @@
 <template lang="pug">
-  .nio-card-grid-item
+  .nio-card-grid-item(
+    v-bind="$attrs"
+    v-on="$listeners"
+  )
     slot
     .hover-controls
       .actions

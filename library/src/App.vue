@@ -29,8 +29,8 @@
           NioCardGridItem
             .content content
             template(v-slot:hover-controls)
-              NioButton.more-info(:variant="'secondary'" :size="'small'") MORE INFO
-              NioButton.quick-add(:size="'small'") QUICK ADD
+              NioButton.more-info(normal-secondary) MORE INFO
+              NioButton.quick-add(normal-primary) QUICK ADD
           //- NioCardGridItem
           //- NioCardGridItem
           //- NioCardGridItem

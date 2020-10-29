@@ -1,5 +1,6 @@
 @import '../global/_colors'
 @import './_card'
+@import './_button'
 
 =nio-card-grid-item($height: 254px)
   &:not(.informational)
@@ -27,9 +28,9 @@
       position: absolute
       bottom: -1.25rem
       left: 0rem
-      background-color: $c-primary-lightest
+      background-color: rgba(0, 0, 0, 0)
       width: 100%
-      padding: 1.25rem
+      padding-bottom: 32px
       text-align: center
       display: flex
       justify-content: center
@@ -39,6 +40,8 @@
         display: flex
         justify-content: center
         width: 100%
+        & > .nio-button + .nio-button
+          margin-left: 8px
 
     &:hover
       cursor: pointer
@@ -47,7 +50,7 @@
       .hover-controls
         opacity: 1
         bottom: 0rem
-        transition: all .2s ease-out .2s	
+        transition: opacity .2s ease-out .2s	
   &.informational			
     padding: 0rem
     margin-bottom: 1.25rem
