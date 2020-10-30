@@ -7,9 +7,10 @@
   &:not(.informational)
     position: relative
     height: $height
-    margin-bottom: 1.25rem
+    // margin-bottom: 1.25rem
     .nio-card
       +nio-card($padding: 0rem, $border-radius: 0.75rem)
+      overflow: hidden
       background-color: $c-white
       box-shadow: $box-shadow-card
       height: $height
@@ -42,39 +43,37 @@
           width: 100%
           & > .nio-button + .nio-button
             margin-left: 8px
-  &:hover
-    z-index: 10
-    cursor: pointer
-    .nio-card 
-      position: absolute
-      height: 337px
-      transform: translateY(-9px)
-      box-shadow: rgba(65, 87, 155, 0.4) 0rem 1.25rem 2.5rem 0rem
-      .hover-controls
-        opacity: 1
-        bottom: 0rem
-        transition: opacity .2s ease-out .2s	
+    &:hover
+      z-index: 10
+      cursor: pointer
+      .nio-card 
+        position: absolute
+        height: 337px
+        transform: translateY(-9px)
+        box-shadow: rgba(65, 87, 155, 0.4) 0rem 1.25rem 2.5rem 0rem
+        .hover-controls
+          opacity: 1
+          bottom: 0rem
+          transition: opacity .2s ease-out .2s	
   &.informational			
-    padding: 0rem
-    margin-bottom: 1.25rem
-    height: $height
-    .hover-controls
+    .nio-card
       display: none
-    .card
-      height: 100%
-      border-radius: 0.75rem
-      padding: 2.9375rem 1.075rem
-      display: flex
-      flex-direction: column
-      justify-content: space-between
-      align-items: center
-      text-align: center
-      background-color: rgba(0,0,0,0)
-      border: 0.125rem solid $c-primary-lighter
-      .how-it-works
-        border-radius: 2.5rem
-        &:hover
-          text-decoration: none
+    padding: 0rem
+    height: $height
+    height: 100%
+    border-radius: 0.75rem
+    padding: 2.9375rem 1.075rem
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    text-align: center
+    background-color: rgba(0,0,0,0)
+    border: 0.125rem solid $c-primary-lighter
+    .how-it-works
+      border-radius: 2.5rem
+      &:hover
+        text-decoration: none
 
 .nio-card-grid-item
   +nio-card-grid-item	

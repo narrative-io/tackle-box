@@ -3,6 +3,7 @@
     v-bind="$attrs"
     v-on="$listeners"
   )
+    slot(name="informational")
     .nio-card
       slot
       .hover-controls
