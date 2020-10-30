@@ -22,6 +22,6 @@
 </script>
 
 <style lang="sass" scoped>
-  @import '../styles/mixins/_card-grid-item'  
+  @import '../styles-private/_card-grid-item'  
 </style>
 

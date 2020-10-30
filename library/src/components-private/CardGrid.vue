@@ -16,6 +16,6 @@
 </script>
 
 <style lang="sass" scoped>
-  @import '../styles/mixins/_card-grid'  
+  @import '../styles-private/_card-grid'  
 </style>
 

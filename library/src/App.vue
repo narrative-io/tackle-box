@@ -27,7 +27,7 @@
       .wrapper
         NioCardGrid
           NioCardGridItem
-            .content content
+            .content
             template(v-slot:hover-controls)
               NioButton.more-info(normal-secondary) MORE INFO
               NioButton.quick-add(normal-primary) QUICK ADD
@@ -441,7 +441,6 @@ export default {
 
 <style lang="sass" scoped>
 @import '../src/styles/mixins/_button'
-@import '../src/styles/mixins/_card-grid'
 .menu-container
   background-color: #010A28
   height: 4.3125rem
