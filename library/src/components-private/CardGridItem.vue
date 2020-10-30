@@ -3,10 +3,11 @@
     v-bind="$attrs"
     v-on="$listeners"
   )
-    slot
-    .hover-controls
-      .actions
-        slot(name="hover-controls") 
+    .nio-card
+      slot
+      .hover-controls
+        .actions
+          slot(name="hover-controls") 
 </template>
 
 <script>
