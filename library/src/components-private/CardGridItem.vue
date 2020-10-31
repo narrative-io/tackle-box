@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-card-grid-item(
+  NioCard.nio-card-grid-item(
     v-bind="$attrs"
     v-on="$listeners"
   )
@@ -12,15 +12,18 @@
 </template>
 
 <script>
-  export default {
-    name: 'nio-card-grid-item',
-    mounted() {	
-      this.$emit('mounted')
-    },
-    destroyed() {
-      this.$emit('destroyed')
-    }
-  }
+import NioCard from '../components/Card'
+
+export default {
+  name: 'nio-card-grid-item',
+  mounted() {	
+    this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
+  },
+  components: { NioCard }
+}
 </script>
 
 <style lang="sass" scoped>
