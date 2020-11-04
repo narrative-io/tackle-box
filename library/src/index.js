@@ -11,7 +11,7 @@ import NioRadioGroup from "./components/RadioGroup"
 import NioRadioButton from "./components/RadioButton"
 import NioImageTile from "./components/ImageTile"
 import NioIcon from "./components/icon/Icon"
-import NioFileUploader from "./components/FileUploader"
+import NioFileChooser from "./components/FileChooser"
 import NioCard from "./components/Card"
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
@@ -29,7 +29,7 @@ const Components = {
 	NioRadioButton,
 	NioImageTile,
 	NioIcon,
-	NioFileUploader,
+	NioFileChooser,
 	NioCard,
 	FontAwesomeIcon
 }
@@ -44,7 +44,7 @@ Vue.component("NioRadioGroup", NioRadioGroup)
 Vue.component("NioRadioButton", NioRadioButton)
 Vue.component("NioImageTile", NioImageTile)
 Vue.component("NioIcon", NioIcon)
-Vue.component("NioFileUploader", NioFileUploader)
+Vue.component("NioFileChooser", NioFileChooser)
 Vue.component("NioCard", NioCard)
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
@@ -58,7 +58,7 @@ export { NioRadioGroup }
 export { NioRadioButton }
 export { NioImageTile }
 export { NioIcon }
-export { NioFileUploader }
+export { NioFileChooser }
 export { NioCard }
 export { FontAwesomeIcon }
 

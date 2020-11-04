@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-file-uploader(
+  .nio-file-chooser(
     :class="`state-${ currentState }`"
     ref="fsDroppable" 
     @dragenter.stop.prevent="isDragEnter = true" 
@@ -90,6 +90,7 @@
         caution-outlined
         @click="cancelClicked"
       ) Cancel
+    .invalid-message.text-error.nio-p {{ invalidMessage }}
       slot(
         name="success-actions"
         v-if="currentState === 'success'"
@@ -102,7 +103,7 @@ import NioButton from './Button'
 import NioIcon from './icon/Icon'
 
 export default {
-  name: 'nio-file-uploader',
+  name: 'nio-file-chooser',
   props: {
     instructions: { type: String, required: false, default: "Choose a file" },
     actionLabel: { type: String, required: false, default: "Go" },
@@ -118,7 +119,8 @@ export default {
     maxFileSize: { type: Number, required: true, default: NaN },
     validateFn: { type: Function, required: false, default: () => true },
     percentComplete: { type: Number, required: false, default: 0 },
-    valid: { type: Boolean, required: false, default: false}
+    valid: { type: Boolean, required: false, default: false},
+    invalidMessage: { type: String, required: false, default: 'selection is invalid'}
   },
   data: () => ({
     currentState: 'initial',
@@ -218,5 +220,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  @import '../styles/mixins/_file-uploader'  
+  @import '../styles/mixins/_file-chooser'  
 </style>

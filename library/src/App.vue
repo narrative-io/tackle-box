@@ -58,21 +58,21 @@
           //- NioCardGridItem
           //- NioCardGridItem
           //- NioCardGridItem
-        //- NioFileUploader(
-        //-   v-model="file" 
-        //-   instructions="Upload a .CSV or .TXT file containing hashed or raw emails."
-        //-   actionLabel="Generate Hash"
-        //-   :state="downloaderState"
-        //-   successMsg="Your file contains 12,345 valid IDs and 0 errors."
-        //-   validationErrorMsg="Your file does not contain any valid IDs."
-        //-   @changed="loadTextFromFile($event)" 
-        //-   :percentComplete="10" 
-        //-   :maxFileSize="1024*1024*100"
-        //-   :validateFn="() => true"
-        //- )
-        //-   template(v-slot:success-actions)        
-        //-     NioButton(normal-secondary @click="resetDownloader") Reset PII Hasher
-        //-     NioButton(normal-primary @click="downloadFile") Download File
+        NioFileChooser(
+          v-model="file" 
+          instructions="Upload a .CSV or .TXT file containing hashed or raw emails."
+          actionLabel="Generate Hash"
+          :state="downloaderState"
+          successMsg="Your file contains 12,345 valid IDs and 0 errors."
+          validationErrorMsg="Your file does not contain any valid IDs."
+          @changed="loadTextFromFile($event)" 
+          :percentComplete="10" 
+          :maxFileSize="1024*1024*100"
+          :validateFn="() => true"
+        )
+          template(v-slot:success-actions)        
+            NioButton(normal-secondary @click="resetDownloader") Reset PII Hasher
+            NioButton(normal-primary @click="downloadFile") Download File
         //- .select-state
         //-   .nio-h6 Select state: 
         //-   NioButton(normal-secondary @click="setState('initial')") Initial
@@ -258,7 +258,7 @@ export default {
     NioRadioGroup: () => import("./components/RadioGroup.vue"),
     NioRadioButton: () => import("./components/RadioButton.vue"),
     NioIcon: () => import("./components/icon/Icon.vue"),
-    NioFileUploader: () => import("./components/FileUploader.vue"),
+    NioFileChooser: () => import("./components/FileChooser.vue"),
     NioCardGrid: () => import("./components-private/CardGrid.vue"),
     NioCardGridItem: () => import("./components-private/CardGridItem.vue"),
     DropdownNav,

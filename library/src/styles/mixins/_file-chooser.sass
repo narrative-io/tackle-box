@@ -4,7 +4,7 @@
 @import "./utility/_center-content"
 @import "../global/_transitions"
 
-=nio-file-uploader
+=nio-file-chooser
   background-color: $c-canvas
   border: 1.5px dashed $c-primary-light
   box-sizing: border-box
@@ -59,8 +59,12 @@
     align-items: center
     & > * + * 
       margin-left: 16px
-
-  // states
+    
+  .invalid-message
+    text-align: center
+    margin-top: 8px
+   
+  // states	
   &.state-initial
 
   &.state-selected, &.state-working
@@ -74,6 +78,6 @@
 
   &.state-error  
 
-.nio-file-uploader
-  +nio-file-uploader
+.nio-file-chooser
+  +nio-file-chooser
 
