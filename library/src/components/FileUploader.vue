@@ -82,6 +82,7 @@
         v-if="currentState === 'selected'"
         normal-primary
         @click="actionClicked"
+        :disabled="!valid"
       ) {{ actionLabel }}
       NioButton(
         key="3"
@@ -116,7 +117,8 @@ export default {
     isLoading: { type: Boolean, required: false, default: false },
     maxFileSize: { type: Number, required: true, default: NaN },
     validateFn: { type: Function, required: false, default: () => true },
-    percentComplete: { type: Number, required: false, default: 0 }
+    percentComplete: { type: Number, required: false, default: 0 },
+    valid: { type: Boolean, required: false, default: false}
   },
   data: () => ({
     currentState: 'initial',
