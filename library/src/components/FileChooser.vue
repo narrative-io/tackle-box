@@ -90,11 +90,11 @@
         caution-outlined
         @click="cancelClicked"
       ) Cancel
-    .invalid-message.text-error.nio-p(v-if="currentState === 'selected' && !valid") {{ invalidMessage }}
       slot(
         name="success-actions"
         v-if="currentState === 'success'"
       )
+    .invalid-message.text-error.nio-p(v-if="currentState === 'selected' && !valid") {{ invalidMessage }}
 </template>
 
 <script>
