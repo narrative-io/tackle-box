@@ -1,0 +1,51 @@
+const IconListWarning = ['task-list-warning', 24, 24, [{
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}, {
+	fill: 'none',
+	stroke: '#000',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}], ['M5.25 10.511L12 10.511', 'M5.25 14.261L7.5 14.261', 'M5.25 18.011L7.5 18.011', 'M9,23.261H2.25a1.5,1.5,0,0,1-1.5-1.5V6.011a1.5,1.5,0,0,1,1.5-1.5H6a3.75,3.75,0,0,1,7.5,0h3.75a1.5,1.5,0,0,1,1.5,1.5v2.25', 'M9.75,3.761a.375.375,0,1,1-.375.375.375.375,0,0,1,.375-.375', 'M17.25,20.25a.375.375,0,1,1-.375.375.375.375,0,0,1,.375-.375', 'M17.25 18L17.25 15', 'M23.063,20.682a1.775,1.775,0,0,1-1.587,2.568H13.024a1.775,1.775,0,0,1-1.587-2.568l4.226-8.452a1.775,1.775,0,0,1,3.174,0Z']]
+
+export { IconListWarning }
