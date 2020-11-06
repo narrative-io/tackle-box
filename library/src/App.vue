@@ -82,7 +82,7 @@
         //-   NioButton(normal-secondary @click="setState('error')") Error
         //- NioButton.action-button(normal-primary-append iconName="utility-arrow-right") Test
         NioIcon(name="display-new")
-        NioIcon(name="display-list")
+        NioIcon(name="display-list" size="48")
         NioIcon(name="display-reports")
         NioIcon(name="display-preferences")
         NioIcon(name="display-quick-start")
@@ -104,6 +104,7 @@
         NioIcon(name="display-close")
         NioIcon(name="display-file")
         NioIcon(name="display-cart")
+        NioIcon(name="display-company")
         NioIcon(name="display-upload")
         NioIcon(name="display-download")
         NioIcon(name="display-yourprofile")
