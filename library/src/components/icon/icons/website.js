@@ -2,57 +2,56 @@ const IconWebsite = ['network-browser', 24, 24, [{
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
-}, {
-	fill: 'none',
-	stroke: '#000',
-	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
-}, {
-	fill: 'none',
-	stroke: '#000',
-	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
-}], ['M0.5 4.5L20.5 4.5', 'M3.5,2.25a.25.25,0,1,0,.25.25.25.25,0,0,0-.25-.25h0', 'M5.5,2.25a.25.25,0,1,0,.25.25.25.25,0,0,0-.25-.25h0', 'M7.5,2.25a.25.25,0,1,0,.25.25.25.25,0,0,0-.25-.25h0', 'M7.5,16.5h-5a2,2,0,0,1-2-2V2.5a2,2,0,0,1,2-2h16a2,2,0,0,1,2,2v6', 'M16.5,23.5c-2-1.5-3-4.5-3-7s1-5.5,3-7', 'M16.5,23.5c2-1.5,3-4.5,3-7s-1-5.5-3-7', 'M10.174 13.5L22.826 13.5', 'M10.174 19.5L22.826 19.5', 'M9.5 16.5L23.5 16.5', 'M9.500 16.500 A7.000 7.000 0 1 0 23.500 16.500 A7.000 7.000 0 1 0 9.500 16.500 Z']]
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}], ['M9.750 16.500 A6.750 6.750 0 1 0 23.250 16.500 A6.750 6.750 0 1 0 9.750 16.500 Z', 'M10.134 18.75L22.866 18.75', 'M10.134 14.25L22.866 14.25', 'M15.044,9.908a21.863,21.863,0,0,0,.51,13.276', 'M17.956,9.908a21.734,21.734,0,0,1,.794,5.842,21.7,21.7,0,0,1-1.3,7.434', 'M21.75,7.5V2.366A1.62,1.62,0,0,0,20.135.75H2.357A1.612,1.612,0,0,0,.75,2.357V17.885A1.62,1.62,0,0,0,2.365,19.5H6.75', 'M0.75 5.25L21.75 5.25', 'M6.75 0.75L6.75 5.25', 'M11.25 0.75L11.25 5.25']]
 
 export { IconWebsite }

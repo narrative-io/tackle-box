@@ -2,37 +2,44 @@ const IconListmanager = ['task-list-search', 24, 24, [{
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
-}], ['M14.5 9.991L14.5 5.491 3.5 5.491 3.5 18.49 9.5 18.491', 'M17.5,8.991v-5.5a1,1,0,0,0-1-1H12.052a3.329,3.329,0,0,0-6.1,0H1.5a1,1,0,0,0-1,1v17a1,1,0,0,0,1,1h9', 'M6.5 8.491L11.5 8.491', 'M6.5 11.491L11.5 11.491', 'M6.5 14.491L9.5 14.491', 'M12.500 17.021 A4.529 4.529 0 1 0 21.558 17.021 A4.529 4.529 0 1 0 12.500 17.021 Z', 'M23.5 23.491L20.252 20.244']]
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}], ['M11.250 16.511 A5.250 5.250 0 1 0 21.750 16.511 A5.250 5.250 0 1 0 11.250 16.511 Z', 'M23.25 23.261L20.212 20.223', 'M5.25 10.511L9.75 10.511', 'M5.25 14.261L7.5 14.261', 'M5.25 18.011L7.5 18.011', 'M9.75,23.261H2.25a1.5,1.5,0,0,1-1.5-1.5V6.011a1.5,1.5,0,0,1,1.5-1.5H6a3.75,3.75,0,0,1,7.5,0h3.75a1.5,1.5,0,0,1,1.5,1.5v2.25', 'M9.75,3.761a.375.375,0,1,1-.375.375.375.375,0,0,1,.375-.375']]
 
 export { IconListmanager }
