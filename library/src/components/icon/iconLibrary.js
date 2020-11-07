@@ -26,6 +26,11 @@ import { IconUpload } from './icons/upload'
 import { IconDownload } from './icons/download'
 import { IconYourprofile} from './icons/yourprofile'
 import { IconWarning } from './icons/warning'
+import { IconInvoice } from './icons/invoice'
+import { IconKb } from './icons/kb'
+import { IconBudget } from './icons/budget'
+import { IconListWarning } from './icons/listWarning'
+import { IconCurvyArrow } from './icons/curvyArrow'
 
 const NioIconLibrary = {
 	"display-new": IconNew,
@@ -56,6 +61,11 @@ const NioIconLibrary = {
 	"display-download": IconDownload,
 	"display-yourprofile": IconYourprofile,
 	"display-warning": IconWarning,
+	"display-invoice": IconInvoice,
+	"display-kb": IconKb,
+	"display-budget": IconBudget,
+	"display-list-warning": IconListWarning,
+	"display-curvy-arrow": IconCurvyArrow,
 	"utility-code": ["fas","code"],
 	"utility-plus": ["fas", "plus"],
 	"utility-chevron-left": ["fas", "chevron-left"],

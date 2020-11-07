@@ -1,4 +1,4 @@
-const IconEmail = ['send-email', 24, 24, [{
+const IconCurvyArrow = ['diagram-curvy-both-direction', 24, 24, [{
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
@@ -16,6 +16,6 @@ const IconEmail = ['send-email', 24, 24, [{
 	'stroke-linecap': 'round',
 	'stroke-linejoin': 'round',
 	'stroke-width': '1.0'
-}], ['M2.759,15.629a1.664,1.664,0,0,1-.882-3.075L20.36,1A1.663,1.663,0,0,1,22.876,2.72l-3.6,19.173a1.664,1.664,0,0,1-2.966.691L11.1,15.629Z', 'M11.1,15.629H8.6V20.8a1.663,1.663,0,0,0,2.6,1.374l3.178-2.166Z', 'M11.099 15.629L22.179 1.039']]
+}], ['M20.25 7.5L23.25 4.5 20.25 1.5', 'M3.75 16.5L0.75 19.5 3.75 22.5', 'M23.25,4.5H10.5a3.75,3.75,0,0,0,0,7.5h3a3.75,3.75,0,0,1,0,7.5H.75']]
 
-export { IconEmail }
+export { IconCurvyArrow }

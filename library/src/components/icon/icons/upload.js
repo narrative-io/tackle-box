@@ -2,22 +2,26 @@ const IconUpload = ['task-list-upload', 24, 24, [{
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
-}], ['M21.5,3.5a1,1,0,0,0-1-1H15.052a3.329,3.329,0,0,0-6.1,0H3.5a1,1,0,0,0-1,1v19a1,1,0,0,0,1,1h17a1,1,0,0,0,1-1Z', 'M5.5,20.5h9.08a2,2,0,0,0,1.519-.7l1.92-2.239a2.006,2.006,0,0,0,.481-1.3V5.5H5.5Z', 'M11.5 16.5L11.5 10 9 12.5', 'M14 12.5L11.5 10']]
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}], ['M8.25 13.511L12 9.761 15.75 13.511', 'M12 9.761L12 18.761', 'M15.75,4.511H19.5a1.5,1.5,0,0,1,1.5,1.5v15.75a1.5,1.5,0,0,1-1.5,1.5H4.5a1.5,1.5,0,0,1-1.5-1.5V6.011a1.5,1.5,0,0,1,1.5-1.5H8.25a3.75,3.75,0,0,1,7.5,0Z', 'M12,3.761a.375.375,0,1,1-.375.375A.375.375,0,0,1,12,3.761']]
 
 export { IconUpload }

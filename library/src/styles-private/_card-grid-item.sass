@@ -1,0 +1,79 @@
+@import '../styles/global/_colors'
+@import '../styles/mixins/_button'
+@import '../styles/mixins/_card'
+
+=nio-card-grid-item($height: 320px)
+  height: $height
+  &:not(.informational)
+    position: relative
+    height: $height
+    .nio-card
+      +nio-card($padding: 0rem)
+      overflow: hidden
+      background-color: $c-white
+      box-shadow: $box-shadow-card
+      height: $height
+      border-radius: 0.75rem
+      transition: all .2s ease-out
+      position: absolute
+      top: 0
+      left: 0
+      margin: 0rem 0rem
+      width: 100%
+      height: 100%
+      padding: 1.875rem
+      .hover-controls
+        z-index: 1	
+        opacity: 0
+        position: absolute
+        bottom: -1.25rem
+        left: 0rem
+        background-color: rgba(0, 0, 0, 0)
+        width: 100%
+        padding-bottom: 32px
+        text-align: center
+        display: flex
+        justify-content: center
+        align-items: center      
+        .actions
+          margin: 0 auto
+          display: flex
+          justify-content: center
+          width: 100%
+          & > .nio-button + .nio-button
+            margin-left: 8px
+    &:hover
+      z-index: 10
+      cursor: pointer
+      .nio-card 
+        position: absolute
+        height: 337px
+        transform: translateY(-9px)
+        box-shadow: rgba(65, 87, 155, 0.4) 0rem 1.25rem 2.5rem 0rem
+        .hover-controls
+          opacity: 1
+          bottom: 0rem
+          transition: opacity .2s ease-out .2s	
+  &.informational			
+    .nio-card
+      display: none
+    padding: 0rem
+    height: $height
+    height: 100%
+    border-radius: 0.75rem
+    box-shadow: none
+    padding: 2.9375rem 1.075rem
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    text-align: center
+    background-color: rgba(0,0,0,0)
+    border: 0.125rem solid $c-primary-lighter
+    .how-it-works
+      border-radius: 2.5rem
+      &:hover
+        text-decoration: none
+
+.nio-card-grid-item
+  +nio-card-grid-item	

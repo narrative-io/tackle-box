@@ -4,12 +4,13 @@
 @import "./utility/_center-content"
 @import "../global/_transitions"
 
-=nio-file-uploader
+=nio-file-chooser
+  position: relative
   background-color: $c-canvas
-  border: 1.5px dashed $c-primary-light
+  border: 0.0938rem dashed $c-primary-light
   box-sizing: border-box
-  border-radius: 12px
-  height: 420px
+  border-radius: 0.75rem
+  height: 26.25rem
   display: flex
   flex-direction: column
   justify-content: center
@@ -18,54 +19,60 @@
   text-align: center
   .graphic
     background: $c-canvas
-    width: 120px
-    height: 120px
-    border-radius: 60px
-    border: 1px solid $c-primary-lighter
-    margin-bottom: 16px
+    width: 7.5rem
+    height: 7.5rem
+    border-radius: 3.75rem
+    border: 0.0625rem solid $c-primary-lighter
+    margin-bottom: 1rem
     position: relative
     +nio-center-content
     .v-progress-circular
-      width: 100px !important
-      height: 100px !important
+      width: 6.25rem !important
+      height: 6.25rem !important
       position: absolute
-      left: 9px
-      top: 9px
+      left: 0.5625rem
+      top: 0.5625rem
       ::v-deep circle:nth-child(1)
         stroke: $c-primary-lighter !important
   .details
     .nio-h3
-      margin-bottom: 8px
+      margin-bottom: 0.5rem
     .nio-p
-      margin-bottom: 8px	
+      margin-bottom: 0.5rem	
     .spacer
-        margin-top: 16px
-        margin-bottom: 16px
+        margin-top: 1rem
+        margin-bottom: 1rem
         width: 100%
-        height: 20px
+        height: 1.25rem
         .content
           display: flex
           justify-content: space-between
           align-items: center
           .left, .right
             flex-grow: 2
-            height: 0px
-            border-top: 1px solid $c-primary-lighter
+            height: 0rem
+            border-top: 0.0625rem solid $c-primary-lighter
           .nio-h6
-            margin: 0px 10px  
+            margin: 0rem 0.625rem  
   .actions
     display: flex
     justify-content: center
     align-items: center
     & > * + * 
-      margin-left: 16px
-
-  // states
+      margin-left: 1rem
+    
+  .invalid-message
+    text-align: center
+    position: absolute
+    width: 100%
+    bottom: 2.5rem
+   
+  // states	
   &.state-initial
 
   &.state-selected, &.state-working
     background-color: $c-white   
-    border: 1.5px solid $c-primary-light 
+    border: 0.0938rem solid $c-primary-light 
   &.state-selected 
         
   &.state-working
@@ -74,6 +81,6 @@
 
   &.state-error  
 
-.nio-file-uploader
-  +nio-file-uploader
+.nio-file-chooser
+  +nio-file-chooser
 

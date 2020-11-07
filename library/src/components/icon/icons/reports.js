@@ -2,17 +2,20 @@ const IconReports = ['analytics-pie-2', 24, 24, [{
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
-}], ['M13.5,10a.5.5,0,0,0,.5.5h9.5a10,10,0,0,0-10-10Z', 'M20.575,19.571A9.965,9.965,0,0,0,23.5,12.5H14c-.275,0-.341.159-.147.353Z', 'M10.5,3.5a10,10,0,1,0,7.071,17.071l-6.718-6.718A1.391,1.391,0,0,1,10.5,13Z']]
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}], ['M13.5.75v9h9A9,9,0,0,0,13.5.75Z', 'M10.5,14.25v-9a9,9,0,1,0,5.561,16.077Z', 'M22.5,12.75h-9l5.561,7.077A8.986,8.986,0,0,0,22.5,12.75Z']]
 
 export { IconReports }

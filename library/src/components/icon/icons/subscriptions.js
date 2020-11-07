@@ -2,37 +2,44 @@ const IconSubscriptions = ['task-list-clock', 24, 24, [{
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
 }, {
 	fill: 'none',
 	stroke: '#000',
 	'stroke-linecap': 'round',
-	'stroke-linejoin': 'round'
-}], ['M14.5 9.491L14.5 5.491 3.5 5.491 3.5 18.49 8.5 18.491', 'M17.5,8.491v-5a1,1,0,0,0-1-1H12.052a3.329,3.329,0,0,0-6.1,0H1.5a1,1,0,0,0-1,1v17a1,1,0,0,0,1,1h8', 'M6.5 8.491L11.5 8.491', 'M6.5 11.491L11.5 11.491', 'M6.5 14.491L9.5 14.491', 'M11.500 17.491 A6.000 6.000 0 1 0 23.500 17.491 A6.000 6.000 0 1 0 11.500 17.491 Z', 'M19.5 17.491L17.5 17.491 17.5 14.491']]
+	'stroke-linejoin': 'round',
+	'stroke-width': '1.0'
+}], ['M11.250 17.261 A6.000 6.000 0 1 0 23.250 17.261 A6.000 6.000 0 1 0 11.250 17.261 Z', 'M19.902 17.261L17.25 17.261 17.25 14.609', 'M5.25 10.511L10.5 10.511', 'M5.25 14.261L8.25 14.261', 'M5.25 18.011L8.25 18.011', 'M9.75,23.261H2.25a1.5,1.5,0,0,1-1.5-1.5V6.011a1.5,1.5,0,0,1,1.5-1.5H6a3.75,3.75,0,0,1,7.5,0h3.75a1.5,1.5,0,0,1,1.5,1.5v2.25', 'M9.75,3.761a.375.375,0,1,1-.375.375.375.375,0,0,1,.375-.375']]
 
 export { IconSubscriptions }
