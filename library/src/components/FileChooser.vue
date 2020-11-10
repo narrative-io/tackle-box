@@ -45,7 +45,7 @@
         .nio-p.text-primary-dark.nio-bold {{ percentComplete }}%
     .details
       .nio-h3.text-primary-darker 
-        span(v-if="currentState === 'initial'") Drag and Drop
+        span(v-if="currentState === 'initial'") Drag and drop
         span(v-if="currentState === 'selected'") Your File
         span(v-if="currentState === 'inProgress'") {{ inProgressMessage }}
         span(v-if="currentState === 'success'") Success
