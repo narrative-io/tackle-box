@@ -16,7 +16,7 @@
       @change="handleFilesChange"
       style="display: none;"
     )
-    .graphic(v-if="currentState !== 'success'")
+    .graphic
       NioIcon(
         v-if="currentState === 'initial'"
         name="display-upload" 
@@ -32,6 +32,12 @@
       NioIcon(
         v-if="currentState === 'error'"
         name="display-warning" 
+        color="#415298"
+        size="48"
+      )
+      NioIcon(
+        v-if="currentState === 'success'"
+        name="display-download" 
         color="#415298"
         size="48"
       )
@@ -66,12 +72,6 @@
           .right
     .actions
       NioButton(
-        key="4"
-        v-if="currentState === 'selected' || currentState === 'error'"
-        normal-secondary
-        @click="browseClicked"
-      ) Choose Another File
-      NioButton(
         key="1"
         v-if="currentState === 'initial'"
         normal-secondary 
@@ -85,7 +85,14 @@
         :disabled="!valid"
       ) {{ actionLabel }}
       NioButton(
+        caution-icon-small
+        iconName="utility-times"
         key="3"
+        v-if="currentState === 'selected'"
+        @click="cancelSelection"
+      )
+      NioButton(
+        key="4"
         v-if="currentState === 'inProgress'"
         caution-outlined
         @click="cancelClicked"
@@ -140,6 +147,10 @@ export default {
     },
     cancelClicked() {
       this.$emit('cancelClicked')
+      this.currentState = 'initial'
+    },
+    cancelSelection() {
+      this.$emit('cancelSelected')
       this.currentState = 'initial'
     },
     handleFilesChange($event) {

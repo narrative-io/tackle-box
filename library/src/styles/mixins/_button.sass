@@ -167,7 +167,21 @@
       opacity: 0 !important
   &:disabled 
     border: none !important
-    opacity: 0.5 !important          
+    opacity: 0.5 !important  
+
+=nio-button-error-icon
+  +nio-button-error
+  padding: 0rem !important
+  border: none !important
+  background-color: rgba(0,0,0,0) !important     
+  &:hover
+    border: none !important
+    background-color: rgba(0,0,0,0) !important
+    &:before
+      opacity: 0 !important
+  &:disabled 
+    border: none !important
+    opacity: 0.5 !important   
 
 =nio-button-extra-large
   &.v-btn:not(.v-btn--round).v-size--default
@@ -195,6 +209,9 @@
     padding: 0px 14px
     font-size: 14px
     height: 28px
+  &.nio-button-icon
+    height: 24px
+    width: 24px
 =nio-button-extra-small
   &.v-btn:not(.v-btn--round).v-size--default
     padding: 0px 10px
@@ -231,7 +248,9 @@
     +nio-button-error-filled   
   &.nio-button-error-text
     +nio-button-error-text
-    
+  &.nio-button-error-icon
+    +nio-button-error-icon
+
   &.nio-button-extra-large
     +nio-button-extra-large
   &.nio-button-large

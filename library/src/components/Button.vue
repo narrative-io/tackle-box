@@ -144,6 +144,11 @@ export default {
         this.iconAttr = false
         this.sizeAttr = 'normal'
         this.variantAttr = 'error-text'
+			}
+			if (attributes.getNamedItem('caution-icon-small')) {
+				this.iconAttr = true
+        this.sizeAttr = 'small'
+        this.variantAttr = 'error-icon'
       }
     }
   },
