@@ -2,7 +2,13 @@
   .nio-side-nav
     .header
       ImageTile.avatar(
+        v-if="headerImage"
         :src="`data:${headerImage.imageType};base64, ${headerImage.image}`"
+        size="large"
+      )
+      ImageTile.avatar(
+        v-else
+        :src="null"
         size="large"
       )
         template(v-slot:nio-image-placeholder)
@@ -20,7 +26,7 @@
       :activeItemName="activeItemName"
       @navItemClicked="navItemClicked" 
       @navEvent="fireNavEvent($event)"
-    )     
+    )
 </template>
 
 <script>
