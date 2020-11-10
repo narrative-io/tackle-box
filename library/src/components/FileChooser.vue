@@ -47,7 +47,7 @@
       .nio-h3.text-primary-darker 
         span(v-if="currentState === 'initial'") Drag and drop
         span(v-if="currentState === 'selected'") Your File
-        span(v-if="currentState === 'inProgress'") {{ inProgressMessage }}
+        span(v-if="currentState === 'inProgress'") {{ inProgressMsg }}
         span(v-if="currentState === 'success'") Success
         span(v-if="currentState === 'error'") We have a problem
       .nio-p.text-primary-dark 
@@ -94,7 +94,7 @@
         name="success-actions"
         v-if="currentState === 'success'"
       )
-    .invalid-message.text-error.nio-p(v-if="currentState === 'selected' && !valid") {{ invalidMessage }}
+    .invalid-message.text-error.nio-p(v-if="currentState === 'selected' && !valid") {{ invalidMsg }}
 </template>
 
 <script>
@@ -107,7 +107,7 @@ export default {
   props: {
     instructions: { type: String, required: false, default: "Choose a file" },
     actionLabel: { type: String, required: false, default: "Go" },
-    inProgressMessage: { type: String, required: false, default: "Working on it..." },
+    inProgressMsg: { type: String, required: false, default: "Working on it..." },
     successMsg: { type: String, required: false, default: "Everything went smoothly" },
     generalErrorMsg: { type: String, required: false, default: "Something went wrong. Please try again." },
     filesizeErrorMsg: { type: String, required: false, default: "Your file is too large. Please choose another file."},
@@ -120,7 +120,7 @@ export default {
     validateFn: { type: Function, required: false, default: () => true },
     percentComplete: { type: Number, required: false, default: 0 },
     valid: { type: Boolean, required: false, default: false},
-    invalidMessage: { type: String, required: false, default: 'selection is invalid'}
+    invalidMsg: { type: String, required: false, default: 'selection is invalid'}
   },
   data: () => ({
     currentState: 'initial',
