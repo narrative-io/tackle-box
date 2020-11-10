@@ -3,27 +3,27 @@
     div.menu-container(style="background-color: #010A28").d-flex.align-center
       div.container
         .links
-        //- DropdownNav(
-        //-   appName="Universal Onboarding" 
-        //-   :companies="[]" 
-        //-   :user="{name: 'Chris Woodward', role: 1, email: 'cwoodward5@hotmail.com'}"
-        //-   :navItems="navItems" 
-        //-   :lockItems="{'profile': true }"
-        //-   :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
-        //-   @login="login"
-        //-   @logout="logout"
-        //- )
+        DropdownNav(
+          appName="Universal Onboarding" 
+          :companies="[]" 
+          :user="{name: 'Chris Woodward', role: 1, email: 'cwoodward5@hotmail.com'}"
+          :navItems="navItems" 
+          :lockItems="{'profile': true }"
+          :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
+          @login="login"
+          @logout="logout"
+        )
     .main
-      //- SideNav(
-      //-   appName="Universal Onboarding" 
-      //-   developerName="Narrative I/O"
-      //-   :companies="[]" 
-      //-   :navItems="navItems" 
-      //-   :lockItems="{'profile': true }"
-      //-   :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
-      //-   @login="login"
-      //-   @logout="logout"
-      //- )
+      SideNav(
+        appName="Universal Onboarding" 
+        developerName="Narrative I/O"
+        :companies="[]" 
+        :navItems="navItems" 
+        :lockItems="{'profile': true }"
+        :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
+        @login="login"
+        @logout="logout"
+      )
       .wrapper
         NioCardGrid
           NioCardGridItem
