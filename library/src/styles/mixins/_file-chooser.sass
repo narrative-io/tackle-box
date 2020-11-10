@@ -7,7 +7,7 @@
 =nio-file-chooser
   position: relative
   background-color: $c-canvas
-  border: 0.0938rem dashed $c-primary-light
+  border: 0.0625rem dashed $c-primary-lighter
   box-sizing: border-box
   border-radius: 0.75rem
   height: 26.25rem
@@ -70,16 +70,9 @@
   // states	
   &.state-initial
 
-  &.state-selected, &.state-working
+  &.state-selected, &.state-inprogress, &.state-success, &.state-error
     background-color: $c-white   
-    border: 0.0938rem solid $c-primary-light 
-  &.state-selected 
-        
-  &.state-working
-  
-  &.state-success
-
-  &.state-error  
+    border: 1px solid $c-primary-lighter 
 
 .nio-file-chooser
   +nio-file-chooser

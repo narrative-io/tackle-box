@@ -1,6 +1,6 @@
 <template lang="pug">
   .nio-file-chooser(
-    :class="`state-${ currentState }`"
+    :class="`state-${ currentState.toLowerCase() }`"
     ref="fsDroppable" 
     @dragenter.stop.prevent="isDragEnter = true" 
     @dragover.stop.prevent="() => {}" 
