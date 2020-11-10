@@ -2,7 +2,7 @@
   .nio-side-nav
     .header
       ImageTile.avatar(
-        :src="headerImage"
+        :src="`data:${headerImage.imageType};base64, ${headerImage.image}`"
         size="large"
       )
         template(v-slot:nio-image-placeholder)
@@ -36,7 +36,7 @@ export default {
     "navItems": { type: Array, required: false, default: []},
     "hideItems": { type: Object, required: false, default: {} },
     "lockItems": { type: Object, required: false, default: {} },
-    "headerImage": { type: String, required: false },
+    "headerImage": { type: Object, required: false },
     "activeItemName": { type: String, required: false}
   },
   data: () => ({
