@@ -54,5 +54,17 @@
     ::v-deep .v-input__slot
       background-color: $c-canvas !important
 
+=nio-text-field-small
+  height: 40px
+  ::v-deep input
+    padding: 0rem 0.75rem
+    font-size: 14px
+  ::v-deep label
+    padding-left: 0.75rem
+    top: 0.625rem
+    
 .nio-text-field
   +nio-text-field
+
+  &.small
+    +nio-text-field-small

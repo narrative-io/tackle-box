@@ -1,3 +1,4 @@
 2020.11.09 16:38:30 INFO  started: Metals version 0.9.4 in workspace '/Users/chris/Desktop/code/narrative-ui-library' for client vscode.
 2020.11.09 16:38:31 INFO  time: initialize in 1.08s
 2020.11.09 16:38:32 WARN  no build tool detected in workspace '/Users/chris/Desktop/code/narrative-ui-library'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.11.10 12:10:21 INFO  shutting down Metals

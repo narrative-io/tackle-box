@@ -1,5 +1,6 @@
 <template lang="pug">
     v-text-field.nio-text-field(
+      :class="{small: smallAttr}"
       outlined 
       flat
       @input="$emit('update', $event)"
@@ -10,12 +11,12 @@
       ref="nio-text-field-ref"
     )
       template(
-        v-if="prependAttr"
+        v-if="prependAttr || prependIconAttr"
         v-slot:prepend-inner
       )
         NioIcon(
-          v-if="iconName"
-          :name="iconName"
+          v-if="iconName || prependIconAttr"
+          :name="prependIconAttr ? prependIconAttr : iconName"
           size="16"
           @click="clickPrepend"
         )
@@ -52,7 +53,9 @@ export default {
   data: () => ({
     parsedRules: [],
     appendAttr: false,
-    prependAttr: false
+    prependAttr: false,
+    prependIconAttr: null,
+    smallAttr: false
   }),
   methods: {
     focus() {
@@ -75,6 +78,13 @@ export default {
       if (attributes.getNamedItem('prepend')) {
         this.prependAttr = true
       }	
+      if (attributes.getNamedItem('small')) {
+        this.smallAttr = true
+      }
+      if (attributes.getNamedItem('search-small')) {
+        this.smallAttr = true
+        this.prependIconAttr = 'utility-search'
+      }
     },
     clickAppend() {
       this.$emit('click:append')

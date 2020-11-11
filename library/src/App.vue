@@ -25,54 +25,54 @@
         @logout="logout"
       )
       .wrapper
-        NioCardGrid
-          NioCardGridItem
-            .content
-            template(v-slot:hover-controls)
-              NioButton.more-info(normal-secondary) MORE INFO
-              NioButton.quick-add(normal-primary) QUICK ADD
-          NioCardGridItem
-            .content
-            template(v-slot:hover-controls)
-              NioButton.more-info(normal-secondary) MORE INFO
-              NioButton.quick-add(normal-primary) QUICK ADD
-          NioCardGridItem.informational
-            template(v-slot:informational) test
-          NioCardGridItem
-            .content
-            template(v-slot:hover-controls)
-              NioButton.more-info(normal-secondary) MORE INFO
-              NioButton.quick-add(normal-primary) QUICK ADD
-          NioCardGridItem
-            .content
-            template(v-slot:hover-controls)
-              NioButton.more-info(normal-secondary) MORE INFO
-              NioButton.quick-add(normal-primary) QUICK ADD
-          NioCardGridItem
-            .content
-            template(v-slot:hover-controls)
-              NioButton.more-info(normal-secondary) MORE INFO
-              NioButton.quick-add(normal-primary) QUICK ADD                    
+        //- NioCardGrid
+        //-   NioCardGridItem
+        //-     .content
+        //-     template(v-slot:hover-controls)
+        //-       NioButton.more-info(normal-secondary) MORE INFO
+        //-       NioButton.quick-add(normal-primary) QUICK ADD
+        //-   NioCardGridItem
+        //-     .content
+        //-     template(v-slot:hover-controls)
+        //-       NioButton.more-info(normal-secondary) MORE INFO
+        //-       NioButton.quick-add(normal-primary) QUICK ADD
+        //-   NioCardGridItem.informational
+        //-     template(v-slot:informational) test
+        //-   NioCardGridItem
+        //-     .content
+        //-     template(v-slot:hover-controls)
+        //-       NioButton.more-info(normal-secondary) MORE INFO
+        //-       NioButton.quick-add(normal-primary) QUICK ADD
+        //-   NioCardGridItem
+        //-     .content
+        //-     template(v-slot:hover-controls)
+        //-       NioButton.more-info(normal-secondary) MORE INFO
+        //-       NioButton.quick-add(normal-primary) QUICK ADD
+        //-   NioCardGridItem
+        //-     .content
+        //-     template(v-slot:hover-controls)
+        //-       NioButton.more-info(normal-secondary) MORE INFO
+        //-       NioButton.quick-add(normal-primary) QUICK ADD                    
           //- NioCardGridItem
           //- NioCardGridItem
           //- NioCardGridItem
           //- NioCardGridItem
           //- NioCardGridItem
-        NioFileChooser(
-          v-model="file" 
-          instructions="Upload a .CSV or .TXT file containing hashed or raw emails."
-          actionLabel="Generate Hash"
-          :state="downloaderState"
-          successMsg="Your file contains 12,345 valid IDs and 0 errors."
-          validationErrorMsg="Your file does not contain any valid IDs."
-          @changed="loadTextFromFile($event)" 
-          :percentComplete="10" 
-          :maxFileSize="1024*1024*100"
-          :validateFn="() => true"
-        )
-          template(v-slot:success-actions)        
-            NioButton(normal-secondary @click="resetDownloader") Reset PII Hasher
-            NioButton(normal-primary @click="downloadFile") Download File
+        //- NioFileChooser(
+        //-   v-model="file" 
+        //-   instructions="Upload a .CSV or .TXT file containing hashed or raw emails."
+        //-   actionLabel="Generate Hash"
+        //-   :state="downloaderState"
+        //-   successMsg="Your file contains 12,345 valid IDs and 0 errors."
+        //-   validationErrorMsg="Your file does not contain any valid IDs."
+        //-   @changed="loadTextFromFile($event)" 
+        //-   :percentComplete="10" 
+        //-   :maxFileSize="1024*1024*100"
+        //-   :validateFn="() => true"
+        //- )
+        //-   template(v-slot:success-actions)        
+        //-     NioButton(normal-secondary @click="resetDownloader") Reset PII Hasher
+        //-     NioButton(normal-primary @click="downloadFile") Download File
         //- .select-state
         //-   .nio-h6 Select state: 
         //-   NioButton(normal-secondary @click="setState('initial')") Initial
@@ -81,39 +81,39 @@
         //-   NioButton(normal-secondary @click="setState('success')") Success
         //-   NioButton(normal-secondary @click="setState('error')") Error
         //- NioButton.action-button(normal-primary-append iconName="utility-arrow-right") Test
-        NioIcon(name="display-new")
-        NioIcon(name="display-list")
-        NioIcon(name="display-reports")
-        NioIcon(name="display-preferences")
-        NioIcon(name="display-quick-start")
-        NioIcon(name="display-listmanager")
-        NioIcon(name="display-sources")
-        NioIcon(name="display-destinations")
-        NioIcon(name="display-payment")
-        NioIcon(name="display-help")
-        NioIcon(name="display-email")
-        NioIcon(name="display-website")
-        NioIcon(name="display-security")
-        NioIcon(name="display-privacy")
-        NioIcon(name="display-module")
-        NioIcon(name="display-search")
-        NioIcon(name="display-notification")
-        NioIcon(name="display-subscriptions")
-        NioIcon(name="display-hamburger")
-        NioIcon(name="display-logout")
-        NioIcon(name="display-close")
-        NioIcon(name="display-file")
-        NioIcon(name="display-cart")
-        NioIcon(name="display-company")
-        NioIcon(name="display-upload")
-        NioIcon(name="display-download")
-        NioIcon(name="display-yourprofile")
-        NioIcon(name="display-warning")
-        NioIcon(name="display-invoice")
-        NioIcon(name="display-kb")
-        NioIcon(name="display-budget")
-        NioIcon(name="display-list-warning")
-        NioIcon(name="display-curvy-arrow")
+        //- NioIcon(name="display-new")
+        //- NioIcon(name="display-list")
+        //- NioIcon(name="display-reports")
+        //- NioIcon(name="display-preferences")
+        //- NioIcon(name="display-quick-start")
+        //- NioIcon(name="display-listmanager")
+        //- NioIcon(name="display-sources")
+        //- NioIcon(name="display-destinations")
+        //- NioIcon(name="display-payment")
+        //- NioIcon(name="display-help")
+        //- NioIcon(name="display-email")
+        //- NioIcon(name="display-website")
+        //- NioIcon(name="display-security")
+        //- NioIcon(name="display-privacy")
+        //- NioIcon(name="display-module")
+        //- NioIcon(name="display-search")
+        //- NioIcon(name="display-notification")
+        //- NioIcon(name="display-subscriptions")
+        //- NioIcon(name="display-hamburger")
+        //- NioIcon(name="display-logout")
+        //- NioIcon(name="display-close")
+        //- NioIcon(name="display-file")
+        //- NioIcon(name="display-cart")
+        //- NioIcon(name="display-company")
+        //- NioIcon(name="display-upload")
+        //- NioIcon(name="display-download")
+        //- NioIcon(name="display-yourprofile")
+        //- NioIcon(name="display-warning")
+        //- NioIcon(name="display-invoice")
+        //- NioIcon(name="display-kb")
+        //- NioIcon(name="display-budget")
+        //- NioIcon(name="display-list-warning")
+        //- NioIcon(name="display-curvy-arrow")
 
         //- br
         //- br
@@ -138,7 +138,9 @@
         //- NioIcon(name="utility-twitter")
         //- NioIcon(name="utility-eye")
         //- NioIcon(name="utility-eye-slash")
-        //- nio-text-field.text-field(append :iconName="switch1 ? 'utility-search' : 'utility-eye'"  @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" @click:append="test")
+        nio-text-field.text-field(append :iconName="switch1 ? 'utility-search' : 'utility-eye'"  @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" @click:append="test")
+        nio-text-field.text-field(solo small v-model="model" label="search")
+        nio-text-field.text-field(solo search-small v-model="model" label="search")
         //- nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" solo)
         //- nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
