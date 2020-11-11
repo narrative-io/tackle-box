@@ -1,6 +1,6 @@
 <template lang="pug">
     v-text-field.nio-text-field(
-      :class="{small: smallAttr}"
+      :class="{small: smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr }"
       outlined 
       flat
       @input="$emit('update', $event)"
