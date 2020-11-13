@@ -49,5 +49,20 @@
   ::v-deep .v-menu__content
     +nio-menu
 
+=nio-select-small
+  height: 40px
+  ::v-deep 
+    .v-input__slot .v-label.v-label--active
+      top: 1.4275rem !important
+      font-size: 20px !important
+    .v-select__selection.v-select__selection--comma  
+      display: none
+    .v-label
+      position: unset !important
+    .v-label.v-label--active  
+      transform: scale(0.75)
 .nio-select
   +nio-select
+
+  &.small
+    +nio-select-small

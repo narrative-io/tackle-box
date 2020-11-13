@@ -149,15 +149,23 @@
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
         //- //- .typed Types: {{ model }}
-        //- nio-select.select(
-        //-   multiple
-        //-   v-model="selectedItems" 
-        //-   :items="items"
-        //-   @mounted="childMounted" 
-        //-   :ref="'text'" 
-        //-   :label="'Label'"
-        //- )
-
+        nio-select.select(
+          multiple
+          v-model="selectedItems" 
+          :items="items"
+          @mounted="childMounted" 
+          :ref="'text'" 
+          :label="'Label'"
+        )
+        nio-select.select(
+          small
+          multiple
+          v-model="selectedItems" 
+          :items="items"
+          @mounted="childMounted" 
+          :ref="'text'" 
+          :label="'Label'"
+        )
         //- nio-select.select(
         //-   multiple
         //-   v-model="selectedItems" 

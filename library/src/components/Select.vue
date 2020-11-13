@@ -1,5 +1,6 @@
 <template lang="pug">
     v-select.nio-select(
+      :class="{ small: smallAttr }"
       :model="model"
       :menu-props="{ offsetY: true, nudgeBottom: 10  }"
       :attach="node"
@@ -29,12 +30,19 @@
       event: "update"
     },
     data: () => ({
-      node: null
+      node: null,
+      smallAttr: false
     }),
     methods: {
-      
+      applyHelperAttributes() {
+        const attributes = this.$el.attributes
+        if (attributes.getNamedItem('small')) {
+          this.smallAttr = true
+        }
+      }  
     },
     mounted() {	
+      this.applyHelperAttributes()
       this.$emit('mounted')
       this.node = this.$refs['nio-select-ref'].$vnode.elm
     },
