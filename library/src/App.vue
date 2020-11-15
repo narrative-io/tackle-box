@@ -25,6 +25,11 @@
         @logout="logout"
       )
       .wrapper
+        NioAlert(
+          warning
+          :visible="1 === 1"
+          message="Your mom"
+        )
         NioCardGrid
           NioCardGridItem
             .content
@@ -118,26 +123,27 @@
         //- br
         //- br
 
-        //- NioIcon(name="utility-code")
-        //- NioIcon(name="utility-plus")
-        //- NioIcon(name="utility-chevron-left")
-        //- NioIcon(name="utility-times")
-        //- NioIcon(name="utility-external-link")
-        //- NioIcon(name="utility-more")
-        //- NioIcon(name="utility-chevron-left")
-        //- NioIcon(name="utility-arrow-left")
-        //- NioIcon(name="utility-trash")
-        //- NioIcon(name="utility-android")
-        //- NioIcon(name="utility-apple" color="#415298")
-        //- NioIcon(name="utility-lock")
-        //- NioIcon(name="utility-search")
-        //- NioIcon(name="utility-chevron-down")
-        //- NioIcon(name="utility-envelope")
-        //- NioIcon(name="utility-link")
-        //- NioIcon(name="utility-linkedin")
-        //- NioIcon(name="utility-twitter")
-        //- NioIcon(name="utility-eye")
-        //- NioIcon(name="utility-eye-slash")
+        NioIcon(name="utility-code")
+        NioIcon(name="utility-plus")
+        NioIcon(name="utility-chevron-left")
+        NioIcon(name="utility-times")
+        NioIcon(name="utility-external-link")
+        NioIcon(name="utility-more")
+        NioIcon(name="utility-chevron-left")
+        NioIcon(name="utility-arrow-left")
+        NioIcon(name="utility-trash")
+        NioIcon(name="utility-android")
+        NioIcon(name="utility-apple" color="#415298")
+        NioIcon(name="utility-lock")
+        NioIcon(name="utility-search")
+        NioIcon(name="utility-chevron-down")
+        NioIcon(name="utility-envelope")
+        NioIcon(name="utility-link")
+        NioIcon(name="utility-linkedin")
+        NioIcon(name="utility-twitter")
+        NioIcon(name="utility-eye")
+        NioIcon(name="utility-eye-slash")
+        NioIcon(name="utility-exclamation")
         nio-text-field.text-field(append :iconName="switch1 ? 'utility-search' : 'utility-eye'"  @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" @click:append="test")
         nio-text-field.text-field(solo small v-model="model" label="search" placeholder="hello")
         nio-text-field.text-field(solo search-small v-model="model" label="search" placeholder="hello")
@@ -265,6 +271,7 @@ import SideNav from './components-private/SideNav'
 export default {
   name: "App",
   components: {
+    NioAlert: () => import("./components/Alert.vue"),
     NioButton: () => import("./components/Button.vue"),
     NioTextField: () => import("./components/TextField.vue"),
     NioSelect: () => import("./components/Select.vue"),

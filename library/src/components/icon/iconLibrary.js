@@ -66,6 +66,7 @@ const NioIconLibrary = {
 	"display-budget": IconBudget,
 	"display-list-warning": IconListWarning,
 	"display-curvy-arrow": IconCurvyArrow,
+	"utility-exclamation": ["fas", "exclamation"],
 	"utility-code": ["fas","code"],
 	"utility-plus": ["fas", "plus"],
 	"utility-chevron-left": ["fas", "chevron-left"],

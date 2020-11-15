@@ -4,9 +4,9 @@
   )
     .graphic(v-if="alertType === 'warning'")
       NioIcon(
-        name="utility-times"
+        name="utility-exclamation"
         color="white"
-        size="14"
+        size="10"
         @click="dismiss"
       )
     .message.nio-h4.text-white(v-if="alertType === 'info'") {{ message }}
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+
+import NioIcon from './icon/Icon'
 
 export default {
 	name: 'nio-alert',
@@ -51,7 +53,8 @@ export default {
     dismiss() {
       this.$emit('dismiss')
     }
-  }
+	},
+	components: { NioIcon }
 }
 </script>
 
