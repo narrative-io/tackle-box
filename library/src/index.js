@@ -13,6 +13,7 @@ import NioImageTile from "./components/ImageTile"
 import NioIcon from "./components/icon/Icon"
 import NioFileChooser from "./components/FileChooser"
 import NioCard from "./components/Card"
+import NioAlert from "./components/Alert"
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
@@ -31,6 +32,7 @@ const Components = {
 	NioIcon,
 	NioFileChooser,
 	NioCard,
+	NioAlert,
 	FontAwesomeIcon
 }
 
@@ -46,6 +48,7 @@ Vue.component("NioImageTile", NioImageTile)
 Vue.component("NioIcon", NioIcon)
 Vue.component("NioFileChooser", NioFileChooser)
 Vue.component("NioCard", NioCard)
+Vue.component("NioAlert", NioAlert)
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
 export { NioButton }
@@ -60,6 +63,7 @@ export { NioImageTile }
 export { NioIcon }
 export { NioFileChooser }
 export { NioCard }
+export { NioAlert }
 export { FontAwesomeIcon }
 
 export default Components

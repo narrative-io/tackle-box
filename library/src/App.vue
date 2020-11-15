@@ -25,34 +25,34 @@
         @logout="logout"
       )
       .wrapper
-        //- NioCardGrid
-        //-   NioCardGridItem
-        //-     .content
-        //-     template(v-slot:hover-controls)
-        //-       NioButton.more-info(normal-secondary) MORE INFO
-        //-       NioButton.quick-add(normal-primary) QUICK ADD
-        //-   NioCardGridItem
-        //-     .content
-        //-     template(v-slot:hover-controls)
-        //-       NioButton.more-info(normal-secondary) MORE INFO
-        //-       NioButton.quick-add(normal-primary) QUICK ADD
-        //-   NioCardGridItem.informational
-        //-     template(v-slot:informational) test
-        //-   NioCardGridItem
-        //-     .content
-        //-     template(v-slot:hover-controls)
-        //-       NioButton.more-info(normal-secondary) MORE INFO
-        //-       NioButton.quick-add(normal-primary) QUICK ADD
-        //-   NioCardGridItem
-        //-     .content
-        //-     template(v-slot:hover-controls)
-        //-       NioButton.more-info(normal-secondary) MORE INFO
-        //-       NioButton.quick-add(normal-primary) QUICK ADD
-        //-   NioCardGridItem
-        //-     .content
-        //-     template(v-slot:hover-controls)
-        //-       NioButton.more-info(normal-secondary) MORE INFO
-        //-       NioButton.quick-add(normal-primary) QUICK ADD                    
+        NioCardGrid
+          NioCardGridItem
+            .content
+            template(v-slot:hover-controls)
+              NioButton.more-info(normal-secondary) MORE INFO
+              NioButton.quick-add(normal-primary) QUICK ADD
+          NioCardGridItem
+            .content
+            template(v-slot:hover-controls)
+              NioButton.more-info(normal-secondary) MORE INFO
+              NioButton.quick-add(normal-primary) QUICK ADD
+          NioCardGridItem.informational
+            template(v-slot:informational) test
+          NioCardGridItem
+            .content
+            template(v-slot:hover-controls)
+              NioButton.more-info(normal-secondary) MORE INFO
+              NioButton.quick-add(normal-primary) QUICK ADD
+          NioCardGridItem
+            .content
+            template(v-slot:hover-controls)
+              NioButton.more-info(normal-secondary) MORE INFO
+              NioButton.quick-add(normal-primary) QUICK ADD
+          NioCardGridItem
+            .content
+            template(v-slot:hover-controls)
+              NioButton.more-info(normal-secondary) MORE INFO
+              NioButton.quick-add(normal-primary) QUICK ADD                    
           //- NioCardGridItem
           //- NioCardGridItem
           //- NioCardGridItem
