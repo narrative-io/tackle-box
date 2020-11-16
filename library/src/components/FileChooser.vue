@@ -101,6 +101,10 @@
         name="success-actions"
         v-if="currentState === 'success'"
       )
+      slot(
+        name="error-actions"
+        v-if="currentState === 'error'"
+      )
     .invalid-message.text-error.nio-p(v-if="currentState === 'selected' && !valid") {{ invalidMsg }}
 </template>
 
