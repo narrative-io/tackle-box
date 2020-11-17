@@ -25,39 +25,40 @@
         @logout="logout"
       )
       .wrapper
-        NioAlert(
-          warning
-          :visible="1 === 1"
-          message="Your mom"
-        )
-        NioCardGrid
-          NioCardGridItem
-            .content
-            template(v-slot:hover-controls)
-              NioButton.more-info(normal-secondary) MORE INFO
-              NioButton.quick-add(normal-primary) QUICK ADD
-          NioCardGridItem
-            .content
-            template(v-slot:hover-controls)
-              NioButton.more-info(normal-secondary) MORE INFO
-              NioButton.quick-add(normal-primary) QUICK ADD
-          NioCardGridItem.informational
-            template(v-slot:informational) test
-          NioCardGridItem
-            .content
-            template(v-slot:hover-controls)
-              NioButton.more-info(normal-secondary) MORE INFO
-              NioButton.quick-add(normal-primary) QUICK ADD
-          NioCardGridItem
-            .content
-            template(v-slot:hover-controls)
-              NioButton.more-info(normal-secondary) MORE INFO
-              NioButton.quick-add(normal-primary) QUICK ADD
-          NioCardGridItem
-            .content
-            template(v-slot:hover-controls)
-              NioButton.more-info(normal-secondary) MORE INFO
-              NioButton.quick-add(normal-primary) QUICK ADD                    
+        TestButtons
+        //- NioAlert(
+        //-   warning
+        //-   :visible="1 === 1"
+        //-   message="Your mom"
+        //- )
+        //- NioCardGrid
+        //-   NioCardGridItem
+        //-     .content
+        //-     template(v-slot:hover-controls)
+        //-       NioButton.more-info(normal-secondary) MORE INFO
+        //-       NioButton.quick-add(normal-primary) QUICK ADD
+        //-   NioCardGridItem
+        //-     .content
+        //-     template(v-slot:hover-controls)
+        //-       NioButton.more-info(normal-secondary) MORE INFO
+        //-       NioButton.quick-add(normal-primary) QUICK ADD
+        //-   NioCardGridItem.informational
+        //-     template(v-slot:informational) test
+        //-   NioCardGridItem
+        //-     .content
+        //-     template(v-slot:hover-controls)
+        //-       NioButton.more-info(normal-secondary) MORE INFO
+        //-       NioButton.quick-add(normal-primary) QUICK ADD
+        //-   NioCardGridItem
+        //-     .content
+        //-     template(v-slot:hover-controls)
+        //-       NioButton.more-info(normal-secondary) MORE INFO
+        //-       NioButton.quick-add(normal-primary) QUICK ADD
+        //-   NioCardGridItem
+        //-     .content
+        //-     template(v-slot:hover-controls)
+        //-       NioButton.more-info(normal-secondary) MORE INFO
+        //-       NioButton.quick-add(normal-primary) QUICK ADD                    
           //- NioCardGridItem
           //- NioCardGridItem
           //- NioCardGridItem
@@ -123,30 +124,30 @@
         //- br
         //- br
 
-        NioIcon(name="utility-code")
-        NioIcon(name="utility-plus")
-        NioIcon(name="utility-chevron-left")
-        NioIcon(name="utility-times")
-        NioIcon(name="utility-external-link")
-        NioIcon(name="utility-more")
-        NioIcon(name="utility-chevron-left")
-        NioIcon(name="utility-arrow-left")
-        NioIcon(name="utility-trash")
-        NioIcon(name="utility-android")
-        NioIcon(name="utility-apple" color="#415298")
-        NioIcon(name="utility-lock")
-        NioIcon(name="utility-search")
-        NioIcon(name="utility-chevron-down")
-        NioIcon(name="utility-envelope")
-        NioIcon(name="utility-link")
-        NioIcon(name="utility-linkedin")
-        NioIcon(name="utility-twitter")
-        NioIcon(name="utility-eye")
-        NioIcon(name="utility-eye-slash")
-        NioIcon(name="utility-exclamation")
-        nio-text-field.text-field(append :iconName="switch1 ? 'utility-search' : 'utility-eye'"  @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" @click:append="test")
-        nio-text-field.text-field(solo small v-model="model" label="search" placeholder="hello")
-        nio-text-field.text-field(solo search-small v-model="model" label="search" placeholder="hello")
+        //- NioIcon(name="utility-code")
+        //- NioIcon(name="utility-plus")
+        //- NioIcon(name="utility-chevron-left")
+        //- NioIcon(name="utility-times")
+        //- NioIcon(name="utility-external-link")
+        //- NioIcon(name="utility-more")
+        //- NioIcon(name="utility-chevron-left")
+        //- NioIcon(name="utility-arrow-left")
+        //- NioIcon(name="utility-trash")
+        //- NioIcon(name="utility-android")
+        //- NioIcon(name="utility-apple" color="#415298")
+        //- NioIcon(name="utility-lock")
+        //- NioIcon(name="utility-search")
+        //- NioIcon(name="utility-chevron-down")
+        //- NioIcon(name="utility-envelope")
+        //- NioIcon(name="utility-link")
+        //- NioIcon(name="utility-linkedin")
+        //- NioIcon(name="utility-twitter")
+        //- NioIcon(name="utility-eye")
+        //- NioIcon(name="utility-eye-slash")
+        //- NioIcon(name="utility-exclamation")
+        //- nio-text-field.text-field(append :iconName="switch1 ? 'utility-search' : 'utility-eye'"  @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" @click:append="test")
+        //- nio-text-field.text-field(solo small v-model="model" label="search" placeholder="hello")
+        //- nio-text-field.text-field(solo search-small v-model="model" label="search" placeholder="hello")
         //- nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" solo)
         //- nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
@@ -155,23 +156,23 @@
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
         //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
         //- //- .typed Types: {{ model }}
-        nio-select.select(
-          multiple
-          v-model="selectedItems" 
-          :items="items"
-          @mounted="childMounted" 
-          :ref="'text'" 
-          :label="'Label'"
-        )
-        nio-select.select(
-          small
-          multiple
-          v-model="selectedItems" 
-          :items="items"
-          @mounted="childMounted" 
-          :ref="'text'" 
-          :label="'Label'"
-        )
+        //- nio-select.select(
+        //-   multiple
+        //-   v-model="selectedItems" 
+        //-   :items="items"
+        //-   @mounted="childMounted" 
+        //-   :ref="'text'" 
+        //-   :label="'Label'"
+        //- )
+        //- nio-select.select(
+        //-   small
+        //-   multiple
+        //-   v-model="selectedItems" 
+        //-   :items="items"
+        //-   @mounted="childMounted" 
+        //-   :ref="'text'" 
+        //-   :label="'Label'"
+        //- )
         //- nio-select.select(
         //-   multiple
         //-   v-model="selectedItems" 
@@ -267,6 +268,7 @@
 
 import DropdownNav from './components-private/DropdownNav'
 import SideNav from './components-private/SideNav'
+import TestButtons from './test-components/TestButtons'
 
 export default {
   name: "App",
@@ -286,7 +288,8 @@ export default {
     NioCardGridItem: () => import("./components-private/CardGridItem.vue"),
     DropdownNav,
     DropdownNav,
-    SideNav
+    SideNav,
+    TestButtons
   },
   data: () => ({
     file: null,
