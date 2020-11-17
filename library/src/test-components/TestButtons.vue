@@ -28,7 +28,6 @@
 import NioButton from '../components/Button'
 
 export default {
-  name: "App",
   components: {
    NioButton
   },
