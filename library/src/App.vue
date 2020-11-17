@@ -25,15 +25,16 @@
         @logout="logout"
       )
       .wrapper
+        TestDivider
         //- TestAlert
         //- TestButtons
         //- TestAutocomplete
-        TestFileChooser
+        //- TestFileChooser
         //- TestCheckbox
         //- TestSwitch
         //- TestRadioGroup
         //- TestImageTile
-        TestProminentIcon
+        //- TestProminentIcon
         //- TestIcons
         //- TestTextField
         //- TestSelect
@@ -57,6 +58,7 @@ import TestTextField from './test-components/TestTextField'
 import TestSelect from './test-components/TestSelect'
 import TestRadioGroup from './test-components/TestRadioGroup'
 import TestProminentIcon from './test-components/TestProminentIcon'
+import TestDivider from './test-components/TestDivider'
 
 export default {
   name: "App",
@@ -76,7 +78,8 @@ export default {
     TestTextField,
     TestSelect,
     TestRadioGroup,
-    TestProminentIcon
+    TestProminentIcon,
+    TestDivider
   },
   data: () => ({
     loggedIn: false,
