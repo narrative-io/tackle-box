@@ -16,32 +16,24 @@
       @change="handleFilesChange"
       style="display: none;"
     )
-    .graphic
-      NioIcon(
-        v-if="currentState === 'initial'"
-        name="display-upload" 
-        color="#415298"
-        size="48"
-      )
-      NioIcon(
-        v-if="currentState === 'selected'"
-        name="display-file" 
-        color="#415298"
-        size="48"
-      )
-      NioIcon(
-        v-if="currentState === 'error'"
-        name="display-warning" 
-        color="#415298"
-        size="48"
-      )
-      NioIcon(
-        v-if="currentState === 'success'"
-        name="display-download" 
-        color="#415298"
-        size="48"
-      )
-      .progress(v-if="currentState === 'inProgress'")
+    NioProminentIcon(
+      v-if="currentState === 'initial'"
+      iconName="display-upload" 
+    )
+    NioProminentIcon(
+      v-if="currentState === 'selected'"
+      iconName="display-file" 
+    )
+    NioProminentIcon(
+      v-if="currentState === 'error'"
+      iconName="display-warning" 
+    )
+    NioProminentIcon(
+      v-if="currentState === 'success'"
+      iconName="display-download" 
+    )
+    .graphic(v-if="currentState === 'inProgress'")
+      .progress
         v-progress-circular(
           :value="percentComplete"
           rotate="270"
@@ -111,7 +103,7 @@
 <script>
 
 import NioButton from './Button'
-import NioIcon from './icon/Icon'
+import NioProminentIcon from'./icon/ProminentIcon'
 
 export default {
   name: 'nio-file-chooser',
@@ -229,7 +221,7 @@ export default {
       this.currentState = val
     }
   },
-  components: { NioButton, NioIcon }
+  components: { NioButton, NioProminentIcon }
 }
 
 </script>

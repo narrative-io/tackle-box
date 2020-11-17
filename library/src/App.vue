@@ -25,18 +25,19 @@
         @logout="logout"
       )
       .wrapper
-        TestAlert
-        TestButtons
-        TestAutocomplete
+        //- TestAlert
+        //- TestButtons
+        //- TestAutocomplete
         TestFileChooser
-        TestCheckbox
-        TestSwitch
-        TestRadioGroup
-        TestImageTile
-        TestIcons
-        TestTextField
-        TestSelect
-        TestCardGrid
+        //- TestCheckbox
+        //- TestSwitch
+        //- TestRadioGroup
+        //- TestImageTile
+        TestProminentIcon
+        //- TestIcons
+        //- TestTextField
+        //- TestSelect
+        //- TestCardGrid
 </template>
 
 <script>
@@ -55,7 +56,7 @@ import TestIcons from './test-components/TestIcons'
 import TestTextField from './test-components/TestTextField'
 import TestSelect from './test-components/TestSelect'
 import TestRadioGroup from './test-components/TestRadioGroup'
-
+import TestProminentIcon from './test-components/TestProminentIcon'
 
 export default {
   name: "App",
@@ -74,7 +75,8 @@ export default {
     TestIcons,
     TestTextField,
     TestSelect,
-    TestRadioGroup
+    TestRadioGroup,
+    TestProminentIcon
   },
   data: () => ({
     loggedIn: false,
