@@ -25,160 +25,18 @@
         @logout="logout"
       )
       .wrapper
-        //- TestButtons
-        //- TestAlert
-        //- TestAutocomplete
-        //- TestFileChooser
-        //- TestCheckbox
-        //- TestSwitch
+        TestAlert
+        TestButtons
+        TestAutocomplete
+        TestFileChooser
+        TestCheckbox
+        TestSwitch
+        TestRadioGroup
         TestImageTile
-        //- TestCardGrid
-        //- NioButton.action-button(normal-primary-append iconName="utility-arrow-right") Test
-        //- NioIcon(name="display-new")
-        //- NioIcon(name="display-list")
-        //- NioIcon(name="display-reports")
-        //- NioIcon(name="display-preferences")
-        //- NioIcon(name="display-quick-start")
-        //- NioIcon(name="display-listmanager")
-        //- NioIcon(name="display-sources")
-        //- NioIcon(name="display-destinations")
-        //- NioIcon(name="display-payment")
-        //- NioIcon(name="display-help")
-        //- NioIcon(name="display-email")
-        //- NioIcon(name="display-website")
-        //- NioIcon(name="display-security")
-        //- NioIcon(name="display-privacy")
-        //- NioIcon(name="display-module")
-        //- NioIcon(name="display-search")
-        //- NioIcon(name="display-notification")
-        //- NioIcon(name="display-subscriptions")
-        //- NioIcon(name="display-hamburger")
-        //- NioIcon(name="display-logout")
-        //- NioIcon(name="display-close")
-        //- NioIcon(name="display-file")
-        //- NioIcon(name="display-cart")
-        //- NioIcon(name="display-company")
-        //- NioIcon(name="display-upload")
-        //- NioIcon(name="display-download")
-        //- NioIcon(name="display-yourprofile")
-        //- NioIcon(name="display-warning")
-        //- NioIcon(name="display-invoice")
-        //- NioIcon(name="display-kb")
-        //- NioIcon(name="display-budget")
-        //- NioIcon(name="display-list-warning")
-        //- NioIcon(name="display-curvy-arrow")
-
-        //- br
-        //- br
-
-        //- NioIcon(name="utility-code")
-        //- NioIcon(name="utility-plus")
-        //- NioIcon(name="utility-chevron-left")
-        //- NioIcon(name="utility-times")
-        //- NioIcon(name="utility-external-link")
-        //- NioIcon(name="utility-more")
-        //- NioIcon(name="utility-chevron-left")
-        //- NioIcon(name="utility-arrow-left")
-        //- NioIcon(name="utility-trash")
-        //- NioIcon(name="utility-android")
-        //- NioIcon(name="utility-apple" color="#415298")
-        //- NioIcon(name="utility-lock")
-        //- NioIcon(name="utility-search")
-        //- NioIcon(name="utility-chevron-down")
-        //- NioIcon(name="utility-envelope")
-        //- NioIcon(name="utility-link")
-        //- NioIcon(name="utility-linkedin")
-        //- NioIcon(name="utility-twitter")
-        //- NioIcon(name="utility-eye")
-        //- NioIcon(name="utility-eye-slash")
-        //- NioIcon(name="utility-exclamation")
-        //- nio-text-field.text-field(append :iconName="switch1 ? 'utility-search' : 'utility-eye'"  @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" @click:append="test")
-        //- nio-text-field.text-field(solo small v-model="model" label="search" placeholder="hello")
-        //- nio-text-field.text-field(solo search-small v-model="model" label="search" placeholder="hello")
-        //- nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'" solo)
-        //- nio-text-field.text-field(prepend="utility-dollar-sign" @mounted="childMounted" :ref="'text'" v-model="model" :label="'Search'")
-        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" value="test" :label="'Label'")
-        //- nio-text-field.text-field(@mounted="childMounted" name="test" :ref="'text'" v-model="model" :label="'Label'")
-        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" disabled)
-        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" error)
-        //- nio-text-field.text-field(@mounted="childMounted" :ref="'text'" v-model="model" :label="'Label'" solo)
-        //- //- .typed Types: {{ model }}
-        //- nio-select.select(
-        //-   multiple
-        //-   v-model="selectedItems" 
-        //-   :items="items"
-        //-   @mounted="childMounted" 
-        //-   :ref="'text'" 
-        //-   :label="'Label'"
-        //- )
-        //- nio-select.select(
-        //-   small
-        //-   multiple
-        //-   v-model="selectedItems" 
-        //-   :items="items"
-        //-   @mounted="childMounted" 
-        //-   :ref="'text'" 
-        //-   :label="'Label'"
-        //- )
-        //- nio-select.select(
-        //-   multiple
-        //-   v-model="selectedItems" 
-        //-   :items="items"
-        //-   @mounted="childMounted" 
-        //-   :ref="'text'" 
-        //-   :label="'Label'"
-        //- )
-        //- nio-select.select(
-        //-   multiple
-        //-   v-model="selectedItems" 
-        //-   :items="items"
-        //-   @mounted="childMounted" 
-        //-   :ref="'text'" 
-        //-   :label="'Label'"
-        //- )
-        //- NioSelect(
-        //-   label="Preferred Data Regions"
-        //-   v-model="selectedRegions"
-        //-   :items="regions"
-        //-   item-text="name"
-        //-   item-value="value" 
-        //-   multiple 
-        //- )
-        //-   template(v-slot:selection="{ item, index }")
-        //-     span.v-select__selection(v-if="index === 0") {{ item.name }}
-        //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
-        //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
-        //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-        //- NioAutocomplete.autocomplete(
-        //-   v-model="selectedItems" 
-        //-   :items="items"
-        //-   @mounted="childMounted" 
-        //-   :value="'banana'"
-        //-   :ref="'text'" 
-        //-   :label="'Label'"
-        //- )
-        //- NioAutocomplete(
-        //-   label="Preferred Data Regions"
-        //-   v-model="selectedRegions"
-        //-   :items="regions"
-        //-   item-text="name"
-        //-   item-value="value" 
-        //-   multiple 
-        //- )
-        //-   template(v-slot:selection="{ item, index }")
-        //-     span.v-select__selection(v-if="index === 0") {{ item.name }}
-        //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
-        //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
-        //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-        //- NioSwitch(v-model="switch1" :input-value="switch1") 
-        //- .value value: {{ switch1 }}
-        //- NioSwitch(v-model="switch2" :input-value="switch2" value="John")
-        //- NioSwitch(v-model="switch2" :input-value="switch2" value="Jacob")       
-        //- .value value: {{ switch2 }}
-        //- NioRadioGroup(v-model="radio")
-        //-   NioRadioButton(value="John" label="John")
-        //-   NioRadioButton(value="Jacob" label="Jacob")
-        //- .value value: {{ radio }}
+        TestIcons
+        TestTextField
+        TestSelect
+        TestCardGrid
 </template>
 
 <script>
@@ -193,23 +51,15 @@ import TestFileChooser from './test-components/TestFileChooser'
 import TestCheckbox from './test-components/TestCheckbox'
 import TestSwitch from './test-components/TestSwitch'
 import TestImageTile from './test-components/TestImageTile'
+import TestIcons from './test-components/TestIcons'
+import TestTextField from './test-components/TestTextField'
+import TestSelect from './test-components/TestSelect'
+import TestRadioGroup from './test-components/TestRadioGroup'
+
 
 export default {
   name: "App",
   components: {
-    NioAlert: () => import("./components/Alert.vue"),
-    NioButton: () => import("./components/Button.vue"),
-    NioTextField: () => import("./components/TextField.vue"),
-    NioSelect: () => import("./components/Select.vue"),
-    NioAutocomplete: () => import("./components/Autocomplete.vue"),
-    NioCheckbox: () => import("./components/Checkbox.vue"),
-    NioSwitch: () => import("./components/Switch.vue"),
-    NioRadioGroup: () => import("./components/RadioGroup.vue"),
-    NioRadioButton: () => import("./components/RadioButton.vue"),
-    NioIcon: () => import("./components/icon/Icon.vue"),
-    NioFileChooser: () => import("./components/FileChooser.vue"),
-    NioCardGrid: () => import("./components-private/CardGrid.vue"),
-    NioCardGridItem: () => import("./components-private/CardGridItem.vue"),
     DropdownNav,
     DropdownNav,
     SideNav,
@@ -220,12 +70,14 @@ export default {
     TestFileChooser,
     TestCheckbox,
     TestSwitch,
-    TestImageTile
+    TestImageTile,
+    TestIcons,
+    TestTextField,
+    TestSelect,
+    TestRadioGroup
   },
   data: () => ({
-    file: null,
     loggedIn: false,
-    downloaderState: 'initial',
     navItems: [
       {
         groupName: "manage",
@@ -345,45 +197,9 @@ export default {
       //     }
       //   ]
       // }    
-    ],
-    model: "",
-    items: ['apple', 'banana', 'orange', 'your mom'],
-    selectedItems: ['apple'],
-    selectedRegions: [],
-    radio: 'Jacob',
-    size: null,
-    regions: [
-      {
-        name: 'US',
-        value: 1
-      },  
-      {
-        name: 'UK',
-        value: 2
-      },  
-      {
-        name: 'AU',
-        value: 3
-      },  
-      {
-        name: 'G',
-        value: 4
-      }
-    ]  
+    ]
   }),
   methods: {
-    setState(val) {
-      this.downloaderState = val
-    },
-    resetDownloader() {
-
-    },
-    loadTextFromFile(files) {
-      console.log(files[0])
-    },
-    downloadFile() {
-
-    },
     childMounted() {},
     goToHelpCenter() {
       console.log("help center")
@@ -396,25 +212,12 @@ export default {
     },
     login() {
       this.loggedIn = true
-    },
-    test() {
-      this.switch1 = !this.switch1
-      console.log(this.switch1)
-    }
-  },
-  mounted() {
-    setTimeout(function(){ this.size = 'extra-large' }, 1000);
-  },
-  watch: {
-    selected2(value) {
-      console.log(value)
     }
   }
 };
 </script>
 
 <style lang="sass" scoped>
-@import '../src/styles/mixins/_button'
 .menu-container
   background-color: #010A28
   height: 4.3125rem
@@ -431,15 +234,5 @@ export default {
 .wrapper
   flex-grow: 2
   padding: 30px  
-
-  .nio-card-grid
-
-
-
-.select-state
-  margin-top: 50px
-  .nio-h6
-    margin-bottom: 20px
-  .nio-button
-    margin-bottom: 10px      
+   
 </style>
