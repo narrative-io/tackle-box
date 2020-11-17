@@ -26,37 +26,13 @@
       )
       .wrapper
         //- TestButtons
-        TestAlert
-        TestAutocomplete
-        TestFileChooser
+        //- TestAlert
+        //- TestAutocomplete
+        //- TestFileChooser
+        //- TestCheckbox
+        //- TestSwitch
+        TestImageTile
         //- TestCardGrid
-        //- NioAlert(
-        //-   warning
-        //-   :visible="1 === 1"
-        //-   message="Your mom"
-        //- )
-        //- NioFileChooser(
-        //-   v-model="file" 
-        //-   instructions="Upload a .CSV or .TXT file containing hashed or raw emails."
-        //-   actionLabel="Generate Hash"
-        //-   :state="downloaderState"
-        //-   successMsg="Your file contains 12,345 valid IDs and 0 errors."
-        //-   validationErrorMsg="Your file does not contain any valid IDs."
-        //-   @changed="loadTextFromFile($event)" 
-        //-   :percentComplete="10" 
-        //-   :maxFileSize="1024*1024*100"
-        //-   :validateFn="() => true"
-        //- )
-        //-   template(v-slot:success-actions)        
-        //-     NioButton(normal-secondary @click="resetDownloader") Reset PII Hasher
-        //-     NioButton(normal-primary @click="downloadFile") Download File
-        //- .select-state
-        //-   .nio-h6 Select state: 
-        //-   NioButton(normal-secondary @click="setState('initial')") Initial
-        //-   NioButton(normal-secondary @click="setState('selected')") Selected
-        //-   NioButton(normal-secondary @click="setState('inProgress')") Working
-        //-   NioButton(normal-secondary @click="setState('success')") Success
-        //-   NioButton(normal-secondary @click="setState('error')") Error
         //- NioButton.action-button(normal-primary-append iconName="utility-arrow-right") Test
         //- NioIcon(name="display-new")
         //- NioIcon(name="display-list")
@@ -173,9 +149,6 @@
         //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
         //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
         //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-        //- NioCheckbox(v-model="checkbox")
-        //- v-checkbox(v-model="checkbox")
-        //- .checkbox {{ checkbox }}
         //- NioAutocomplete.autocomplete(
         //-   v-model="selectedItems" 
         //-   :items="items"
@@ -197,11 +170,6 @@
         //-     span.v-select__selection(v-if="index === 1") , {{ item.name }}
         //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
         //-     span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
-        //- NioCheckbox(v-model="selected2" label="hello" )
-        //- .value value: {{ selected2 }}
-        //- NioCheckbox(v-model="selected" label="John" value="John")
-        //- NioCheckbox(v-model="selected" label="Jacob" value="Jacob")
-        //- .a selected: {{ selected }}
         //- NioSwitch(v-model="switch1" :input-value="switch1") 
         //- .value value: {{ switch1 }}
         //- NioSwitch(v-model="switch2" :input-value="switch2" value="John")
@@ -222,6 +190,9 @@ import TestButtons from './test-components/TestButtons'
 import TestCardGrid from './test-components/TestCardGrid'
 import TestAutocomplete from './test-components/TestAutocomplete'
 import TestFileChooser from './test-components/TestFileChooser'
+import TestCheckbox from './test-components/TestCheckbox'
+import TestSwitch from './test-components/TestSwitch'
+import TestImageTile from './test-components/TestImageTile'
 
 export default {
   name: "App",
@@ -246,7 +217,10 @@ export default {
     TestButtons,
     TestCardGrid,
     TestAutocomplete,
-    TestFileChooser
+    TestFileChooser,
+    TestCheckbox,
+    TestSwitch,
+    TestImageTile
   },
   data: () => ({
     file: null,
@@ -376,12 +350,7 @@ export default {
     items: ['apple', 'banana', 'orange', 'your mom'],
     selectedItems: ['apple'],
     selectedRegions: [],
-    checkbox: false,
-    selected: ['John'],
-    selected2: true,
-    switch1: true,
     radio: 'Jacob',
-    switch2: ['Jacob', 'John'],
     size: null,
     regions: [
       {

@@ -17,7 +17,8 @@
     name: 'nio-image-tile',
     data: () => ({
       sizes: {
-        'small': 32,
+				'extra-small': 32,
+        'small': 48,
         'normal': 64,
         'large': 96
       }
