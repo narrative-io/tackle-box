@@ -25,7 +25,8 @@
         @logout="logout"
       )
       .wrapper
-        TestDivider
+        TestExpansionPanel
+        //- TestDivider
         //- TestAlert
         //- TestButtons
         //- TestAutocomplete
@@ -59,6 +60,7 @@ import TestSelect from './test-components/TestSelect'
 import TestRadioGroup from './test-components/TestRadioGroup'
 import TestProminentIcon from './test-components/TestProminentIcon'
 import TestDivider from './test-components/TestDivider'
+import TestExpansionPanel from './test-components/TestExpansionPanel'
 
 export default {
   name: "App",
@@ -79,7 +81,8 @@ export default {
     TestSelect,
     TestRadioGroup,
     TestProminentIcon,
-    TestDivider
+    TestDivider,
+    TestExpansionPanel
   },
   data: () => ({
     loggedIn: false,
