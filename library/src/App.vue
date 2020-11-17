@@ -27,6 +27,8 @@
       .wrapper
         //- TestButtons
         TestAlert
+        TestAutocomplete
+        TestFileChooser
         //- TestCardGrid
         //- NioAlert(
         //-   warning
@@ -218,6 +220,8 @@ import SideNav from './components-private/SideNav'
 import TestAlert from './test-components/TestAlert'
 import TestButtons from './test-components/TestButtons'
 import TestCardGrid from './test-components/TestCardGrid'
+import TestAutocomplete from './test-components/TestAutocomplete'
+import TestFileChooser from './test-components/TestFileChooser'
 
 export default {
   name: "App",
@@ -240,7 +244,9 @@ export default {
     SideNav,
     TestAlert,
     TestButtons,
-    TestCardGrid
+    TestCardGrid,
+    TestAutocomplete,
+    TestFileChooser
   },
   data: () => ({
     file: null,
