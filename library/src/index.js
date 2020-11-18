@@ -19,7 +19,7 @@ import NioDivider from "./components/Divider"
 import NioExpansionPanel from "./components/ExpansionPanel"
 import NioSlatGroup from "./components/slat/SlatGroup"
 import NioSlat from "./components/slat/Slat"
-import NioSlatLink from "./components/slat/SlatLink"
+import NioSlatLink from "./components/slat/types/SlatLink"
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 

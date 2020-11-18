@@ -8,8 +8,6 @@
 
 <script>
 
-import NioSlatLink from './types/SlatLink'
-
 export default {
   name: 'nio-slat',
   props: {
@@ -22,8 +20,7 @@ export default {
   },
   methods: {
     
-  },
-  components: { NioSlatLink  }
+  }
 }
 </script>
 
