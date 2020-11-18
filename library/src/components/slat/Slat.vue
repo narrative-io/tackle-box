@@ -1,8 +1,8 @@
 <template lang="pug">
 	.nio-slat
-		.content
+		.nio-slat-content
 			slot(name="content")
-		.action
+		.nio-slat-action
 			slot(name="action")
 </template>
 

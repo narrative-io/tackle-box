@@ -10,10 +10,10 @@
       :src="imgSrc"
       size="small"
     )
-    .title-subtitle
-      .nio-slat-title.nio-h5.text-primary-darker
+    .nio-slat-title-subtitle
+      .nio-slat-title
         slot(name="title")
-      .nio-slat-subtitle.nio-p-small.text-primary-dark
+      .nio-slat-subtitle
         slot(name="subtitle")
 </template>
 

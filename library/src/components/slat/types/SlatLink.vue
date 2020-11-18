@@ -5,6 +5,7 @@
     template(v-slot:action)
       NioIcon(
         name="utility-chevron-right"
+        color="#415298"
       )
 </template>
 
