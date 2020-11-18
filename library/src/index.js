@@ -19,7 +19,9 @@ import NioDivider from "./components/Divider"
 import NioExpansionPanel from "./components/ExpansionPanel"
 import NioSlatGroup from "./components/slat/SlatGroup"
 import NioSlat from "./components/slat/Slat"
-import NioSlatLink from "./components/slat/types/SlatLink"
+import NioLinkSlat from "./components/slat/types/LinkSlat"
+import NioIconLinkSlat from "./components/slat/assembled/IconLinkSlat"
+import NioImageTileLinkSlat from "./components/slat/assembled/ImageTileLinkSlat"
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
@@ -44,7 +46,9 @@ const Components = {
 	NioExpansionPanel,
 	NioSlatGroup,
 	NioSlat,
-	NioSlatLink,
+	NioLinkSlat,
+	NioIconLinkSlat,
+	NioImageTileSlat,
 	FontAwesomeIcon
 }
 
@@ -66,7 +70,9 @@ Vue.component("NioDivider", NioDivider)
 Vue.component("NioExpansionPanel", NioExpansionPanel)
 Vue.component("NioSlatGroup", NioSlatGroup)
 Vue.component("NioSlat", NioSlat)
-Vue.component("NioSlatLink", NioSlatLink)
+Vue.component("NioLinkSlat", NioLinkSlat)
+Vue.component("NioIconLinkSlat", NioIconLinkSlat)
+Vue.component("NioImageTileLinkSlat", NioImageTileLinkSlat)
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
 export { NioButton }
@@ -87,7 +93,7 @@ export { NioDivider }
 export { NioExpansionPanel }
 export { NioSlatGroup }
 export { NioSlat }
-export { NioSlatLink }
+export { NioLinkSlat }
 export { FontAwesomeIcon }
 
 export default Components

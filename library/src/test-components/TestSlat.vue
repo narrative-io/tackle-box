@@ -11,21 +11,21 @@
       )
         template(v-slot:title) Item 1 title
         template(v-slot:subtitle) Item 1 subtitle  
-      NioSlatLink
+      NioImageTileLinkSlat
         .test Content
 </template>
 
 <script>
 
 import NioSlatGroup from '../components/slat/SlatGroup'
-import NioSlatLink from '../components/slat/types/SlatLink'
+import NioLinkSlat from '../components/slat/types/LinkSlat'
 import NioIconLinkSlat from '../components/slat/assembled/IconLinkSlat'
 import NioImageTileLinkSlat from '../components/slat/assembled/ImageTileLinkSlat'
 
 export default {
   components: {
     NioSlatGroup,
-    NioSlatLink,
+    NioLinkSlat,
     NioIconLinkSlat,
     NioImageTileLinkSlat
   },

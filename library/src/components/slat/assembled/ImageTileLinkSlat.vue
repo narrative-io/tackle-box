@@ -1,5 +1,5 @@
 <template lang="pug">
-  NioSlatLink.nio-image-tile-link-slat
+  NioLinkSlat.nio-image-tile-link-slat
     ImageTitleSubtitleSlot(
       imgSrc="https://picsum.photos/48/48"
     )
@@ -12,11 +12,11 @@
 
 <script>
 
-import NioSlatLink from '../types/SlatLink'
+import NioLinkSlat from '../types/LinkSlat'
 import ImageTitleSubtitleSlot from '../slot-templates/content/ImageTitleSubtitleSlot'
 
 export default {
-  name: 'nio-icon-link-slat',
+  name: 'nio-image-tile-link-slat',
   props: {
     "imgSrc": { type: String, required: false }
   },
@@ -30,7 +30,7 @@ export default {
       this.$emit('click')
     }
   },
-  components: { NioSlatLink, ImageTitleSubtitleSlot }
+  components: { NioLinkSlat, ImageTitleSubtitleSlot }
 }
 </script>
 

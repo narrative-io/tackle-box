@@ -1,5 +1,5 @@
 <template lang="pug">
-  NioSlatLink.nio-icon-link-slat
+  NioLinkSlat.nio-icon-link-slat
     ImageTitleSubtitleSlot(
       :iconName="iconName"
     )
@@ -12,7 +12,7 @@
 
 <script>
 
-import NioSlatLink from '../types/SlatLink'
+import NioLinkSlat from '../types/LinkSlat'
 import ImageTitleSubtitleSlot from '../slot-templates/content/ImageTitleSubtitleSlot'
 
 export default {
@@ -30,7 +30,7 @@ export default {
       this.$emit('click')
     }
   },
-  components: { NioSlatLink, ImageTitleSubtitleSlot }
+  components: { NioLinkSlat, ImageTitleSubtitleSlot }
 }
 </script>
 
