@@ -1,15 +1,15 @@
 <template lang="pug">
-  .test-prominent-icon
-    NioProminentIcon(iconName="display-new")
+  .test-icon-framer
+    NioIconFramer(iconName="display-new")
 </template>
 
 <script>
 
-import NioProminentIcon from '../components/icon/ProminentIcon'
+import NioIconFramer from '../components/icon/IconFramer'
 import NioIcon from '../components/icon/Icon'
 export default {
   components: {
-    NioProminentIcon,
+    NioIconFramer,
     NioIcon
   },
   data: () => ({
@@ -19,6 +19,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.test-prominent-icon
+.test-icon-framer
  
 </style>

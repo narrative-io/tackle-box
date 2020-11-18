@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.nio-prominent-icon(
+  div.nio-icon-framer(
     @click="click"
   )
     NioIcon(
@@ -15,7 +15,7 @@
 import NioIcon from './Icon'
 
 export default {
-  name: 'nio-prominent-icon',
+  name: 'nio-icon-framer',
   props: {
     "iconName": { type: String, required: true }
   },
@@ -37,5 +37,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  @import '../../styles/mixins/_prominent-icon'
+  @import '../../styles/mixins/_icon-framer'
 </style>

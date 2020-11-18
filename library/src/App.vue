@@ -30,12 +30,12 @@
         //- TestAlert
         //- TestButtons
         //- TestAutocomplete
-        //- TestFileChooser
+        TestFileChooser
         //- TestCheckbox
         //- TestSwitch
         //- TestRadioGroup
         //- TestImageTile
-        //- TestProminentIcon
+        TestIconFramer
         //- TestIcons
         //- TestTextField
         //- TestSelect
@@ -58,7 +58,7 @@ import TestIcons from './test-components/TestIcons'
 import TestTextField from './test-components/TestTextField'
 import TestSelect from './test-components/TestSelect'
 import TestRadioGroup from './test-components/TestRadioGroup'
-import TestProminentIcon from './test-components/TestProminentIcon'
+import TestIconFramer from './test-components/TestIconFramer'
 import TestDivider from './test-components/TestDivider'
 import TestExpansionPanel from './test-components/TestExpansionPanel'
 
@@ -80,7 +80,7 @@ export default {
     TestTextField,
     TestSelect,
     TestRadioGroup,
-    TestProminentIcon,
+    TestIconFramer,
     TestDivider,
     TestExpansionPanel
   },

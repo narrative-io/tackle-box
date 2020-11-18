@@ -11,7 +11,7 @@ import NioRadioGroup from "./components/RadioGroup"
 import NioRadioButton from "./components/RadioButton"
 import NioImageTile from "./components/ImageTile"
 import NioIcon from "./components/icon/Icon"
-import NioProminentIcon from "./components/icon/ProminentIcon"
+import NioIconFramer from "./components/icon/IconFramer"
 import NioFileChooser from "./components/FileChooser"
 import NioCard from "./components/Card"
 import NioAlert from "./components/Alert"
@@ -33,7 +33,7 @@ const Components = {
 	NioRadioButton,
 	NioImageTile,
 	NioIcon,
-	NioProminentIcon,
+	NioIconFramer,
 	NioFileChooser,
 	NioCard,
 	NioAlert,
@@ -52,7 +52,7 @@ Vue.component("NioRadioGroup", NioRadioGroup)
 Vue.component("NioRadioButton", NioRadioButton)
 Vue.component("NioImageTile", NioImageTile)
 Vue.component("NioIcon", NioIcon)
-Vue.component("NioProminentIcon", NioProminentIcon)
+Vue.component("NioIconFramer", NioIconFramer)
 Vue.component("NioFileChooser", NioFileChooser)
 Vue.component("NioCard", NioCard)
 Vue.component("NioAlert", NioAlert)
@@ -70,7 +70,7 @@ export { NioRadioGroup }
 export { NioRadioButton }
 export { NioImageTile }
 export { NioIcon }
-export { NioProminentIcon }
+export { NioIconFramer }
 export { NioFileChooser }
 export { NioCard }
 export { NioAlert }

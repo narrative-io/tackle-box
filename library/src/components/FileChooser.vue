@@ -16,19 +16,19 @@
       @change="handleFilesChange"
       style="display: none;"
     )
-    NioProminentIcon(
+    NioIconFramer(
       v-if="currentState === 'initial'"
       iconName="display-upload" 
     )
-    NioProminentIcon(
+    NioIconFramer(
       v-if="currentState === 'selected'"
       iconName="display-file" 
     )
-    NioProminentIcon(
+    NioIconFramer(
       v-if="currentState === 'error'"
       iconName="display-warning" 
     )
-    NioProminentIcon(
+    NioIconFramer(
       v-if="currentState === 'success'"
       iconName="display-download" 
     )
@@ -103,7 +103,7 @@
 <script>
 
 import NioButton from './Button'
-import NioProminentIcon from'./icon/ProminentIcon'
+import NioIconFramer from'./icon/IconFramer'
 
 export default {
   name: 'nio-file-chooser',
@@ -221,7 +221,7 @@ export default {
       this.currentState = val
     }
   },
-  components: { NioButton, NioProminentIcon }
+  components: { NioButton, NioIconFramer }
 }
 
 </script>
