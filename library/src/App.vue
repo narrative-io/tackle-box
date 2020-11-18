@@ -25,17 +25,18 @@
         @logout="logout"
       )
       .wrapper
-        TestExpansionPanel
+        TestSlat
+        //- TestExpansionPanel
         //- TestDivider
         //- TestAlert
         //- TestButtons
         //- TestAutocomplete
-        TestFileChooser
+        //- TestFileChooser
         //- TestCheckbox
         //- TestSwitch
         //- TestRadioGroup
         //- TestImageTile
-        TestIconFramer
+        //- TestIconFramer
         //- TestIcons
         //- TestTextField
         //- TestSelect
@@ -61,6 +62,7 @@ import TestRadioGroup from './test-components/TestRadioGroup'
 import TestIconFramer from './test-components/TestIconFramer'
 import TestDivider from './test-components/TestDivider'
 import TestExpansionPanel from './test-components/TestExpansionPanel'
+import TestSlat from './test-components/TestSlat'
 
 export default {
   name: "App",
@@ -82,7 +84,8 @@ export default {
     TestRadioGroup,
     TestIconFramer,
     TestDivider,
-    TestExpansionPanel
+    TestExpansionPanel,
+    TestSlat
   },
   data: () => ({
     loggedIn: false,
