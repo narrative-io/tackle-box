@@ -4,7 +4,7 @@
       slot
     template(v-slot:action)
       NioIcon(
-        name="utility-arrow-right"
+        name="utility-chevron-right"
       )
 </template>
 

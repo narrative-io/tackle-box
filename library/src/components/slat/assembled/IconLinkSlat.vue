@@ -1,7 +1,7 @@
 <template lang="pug">
-  NioSlatLink.nio-image-tile-link-slat
+  NioSlatLink.nio-icon-link-slat
     ImageTitleSubtitleSlot(
-      imgSrc="https://picsum.photos/48/48"
+      :iconName="iconName"
     )
       template(v-slot:title)
         slot(name="title")
@@ -18,7 +18,7 @@ import ImageTitleSubtitleSlot from '../slot-templates/content/ImageTitleSubtitle
 export default {
   name: 'nio-icon-link-slat',
   props: {
-    "imgSrc": { type: String, required: false }
+    "iconName": { type: String, required: false }
   },
   data: () => ({
 
@@ -35,7 +35,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
-@import '../../../styles/mixins/slat/assembled/_image-tile-link-slat'
-
+  @import '../../../styles/mixins/slat/assembled/_icon-link-slat'
 </style>

@@ -1,17 +1,27 @@
 @import '../../global/_colors'
+@import '../../global/_color-helpers'
+@import '../../global/_typography'
 
 =nio-slat
 	display: flex
 	justify-content: space-between
 	align-items: center
-	padding-left: 24px
+	padding: 16px 24px
 	&:not(:last-child)
 		box-shadow: inset 0px -1px 0px $c-primary-lighter
-	.content
-		flex-gros: 2
 	.action
-		margin-right: 40px
+		margin-right: 16px
 		flex-grow: 0
-
+	
+	::v-deep // styles common to all slats
+		.nio-slat-image 
+			margin-right: 26px
+		.nio-slat-title
+			@extend .nio-h4
+			@extend .text-primary-darker
+			@extend .nio-bold
+		.nio-slat-subtitle
+			@extend .nio-p-small
+			@extend .text-primary-dark
 .nio-slat
-	+nio-slat 
+	+nio-slat

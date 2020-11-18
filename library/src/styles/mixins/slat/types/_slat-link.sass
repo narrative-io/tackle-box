@@ -1,10 +1,14 @@
 @import '../../../global/_colors'
 
 =nio-slat-link 
-  height: 96px
   background-color: $c-white
   &:hover
     background-color: $c-canvas
     cursor: pointer
+  ::v-deep .content
+    display: flex
+    align-items: center
+    flex-grow: 2
+
 .nio-slat-link
   +nio-slat-link 
