@@ -1,12 +1,13 @@
 <template lang="pug">
   div.nio-icon-framer(
     @click="click"
+    :class="[`nio-${size}`]"
   )
     NioIcon(
       v-if="iconName"
       :name="iconName"
       color="#415298"
-      size="48"
+      :size="size === 'large' ? 48 : 32"
     )
 </template>
 
@@ -20,15 +21,26 @@ export default {
     "iconName": { type: String, required: true }
   },
   data: () => ({
+    size: 'large'
   }),
+  mounted() {
+    this.applyHelperAttributes()
+    this.$emit('mounted')
+  },
   methods: {
+    applyHelperAttributes() {
+      const attributes = this.$el.attributes
+      if (attributes.getNamedItem('large')) {
+        this.size = 'large'
+      }
+      if (attributes.getNamedItem('small')) {
+        this.size = 'small'
+      }
+    },	
     click() {
       this.$emit('click')
     }
-  },
-  mounted() {	
-    this.$emit('mounted')
-  },
+  }, 
   destroyed() {
     this.$emit('destroyed')
   },

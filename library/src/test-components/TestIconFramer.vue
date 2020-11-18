@@ -1,6 +1,7 @@
 <template lang="pug">
   .test-icon-framer
     NioIconFramer(iconName="display-new")
+    NioIconFramer(small iconName="display-new")
 </template>
 
 <script>
