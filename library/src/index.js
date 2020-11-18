@@ -18,6 +18,7 @@ import NioAlert from "./components/Alert"
 import NioDivider from "./components/Divider"
 import NioExpansionPanel from "./components/ExpansionPanel"
 import NioSlatGroup from "./components/slat/SlatGroup"
+import NioSlat from "./components/slat/Slat"
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
@@ -41,6 +42,7 @@ const Components = {
 	NioDivider,
 	NioExpansionPanel,
 	NioSlatGroup,
+	NioSlat,
 	FontAwesomeIcon
 }
 
@@ -61,6 +63,7 @@ Vue.component("NioAlert", NioAlert)
 Vue.component("NioDivider", NioDivider)
 Vue.component("NioExpansionPanel", NioExpansionPanel)
 Vue.component("NioSlatGroup", NioSlatGroup)
+Vue.component("NioSlat", NioSlat)
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
 export { NioButton }
@@ -80,6 +83,7 @@ export { NioAlert }
 export { NioDivider }
 export { NioExpansionPanel }
 export { NioSlatGroup }
+export { NioSlat }
 export { FontAwesomeIcon }
 
 export default Components

@@ -1,16 +1,14 @@
 <template lang="pug">
-  .nio-slat-group(
-    
-  )
+  .nio-slat-link(@click="click")
     slot
 </template>
 
 <script>
 
 export default {
-  name: 'nio-slat-group',
+  name: 'nio-slat-link',
   props: {
-    // "type": { type: String, required: false },
+    
   },
   data: () => ({
 
@@ -18,12 +16,14 @@ export default {
   mounted() {
   },
   methods: {
-    
+    click() {
+      this.$emit('click')
+    }
   },
   components: { }
 }
 </script>
 
 <style lang="sass" scoped>
-  @import '../../styles/mixins/slat/_slat-group'  
+  @import '../../../styles/mixins/slat/types/_slat-link'
 </style>
