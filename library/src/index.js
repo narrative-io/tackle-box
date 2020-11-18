@@ -94,6 +94,8 @@ export { NioExpansionPanel }
 export { NioSlatGroup }
 export { NioSlat }
 export { NioLinkSlat }
+export { NioIconLinkSlat }
+export { NioImageTileLinkSlat }
 export { FontAwesomeIcon }
 
 export default Components
