@@ -1,7 +1,5 @@
 <template lang="pug">
-  .nio-slat-group(
-    
-  )
+  .nio-slat-group
     slot
 </template>
 
@@ -10,7 +8,6 @@
 export default {
   name: 'nio-slat-group',
   props: {
-    // "type": { type: String, required: false },
   },
   data: () => ({
 

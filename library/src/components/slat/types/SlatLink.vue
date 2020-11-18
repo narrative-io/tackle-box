@@ -1,9 +1,17 @@
 <template lang="pug">
-  .nio-slat-link(@click="click")
-    slot
+  NioSlat.nio-slat-link
+    template(v-slot:content)
+      slot
+    template(v-slot:action)
+      NioIcon(
+        name="utility-arrow-right"
+      )
 </template>
 
 <script>
+
+import NioSlat from '../Slat'
+import NioIcon from '../../icon/Icon'
 
 export default {
   name: 'nio-slat-link',
@@ -20,7 +28,7 @@ export default {
       this.$emit('click')
     }
   },
-  components: { }
+  components: { NioSlat, NioIcon }
 }
 </script>
 

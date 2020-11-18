@@ -1,19 +1,21 @@
 <template lang="pug">
   .test-slat
     NioSlatGroup
-      NioSlat(type="link")
-      NioSlat(type="link")
+      NioSlatLink
+        .test Content
+      NioSlatLink
+        .test Content
 </template>
 
 <script>
 
 import NioSlatGroup from '../components/slat/SlatGroup'
-import NioSlat from '../components/slat/Slat'
+import NioSlatLink from '../components/slat/types/SlatLink'
 
 export default {
   components: {
     NioSlatGroup,
-    NioSlat
+    NioSlatLink
   },
   data: () => ({
     

@@ -1,6 +1,9 @@
 <template lang="pug">
-	NioSlatLink.nio-slat.nio-slat-link(v-if="type === 'link'")
-		
+	.nio-slat
+		.content
+			slot(name="content")
+		.action
+			slot(name="action")
 </template>
 
 <script>
