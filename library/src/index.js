@@ -22,7 +22,9 @@ import NioSlat from "./components/slat/Slat"
 import NioLinkSlat from "./components/slat/types/LinkSlat"
 import NioIconLinkSlat from "./components/slat/assembled/IconLinkSlat"
 import NioImageTileLinkSlat from "./components/slat/assembled/ImageTileLinkSlat"
-import NioStepper from "./components/Stepper"
+import NioStepper from "./components/stepper/Stepper"
+import NioStepHeader from "./components/stepper/StepHeaderr"
+import NioStepBody from "./components/stepper/StepBody"
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
@@ -51,6 +53,8 @@ const Components = {
 	NioIconLinkSlat,
 	NioImageTileLinkSlat,
 	NioStepper,
+	NioStepHeader,
+	NioStepBody,
 	FontAwesomeIcon
 }
 
@@ -76,6 +80,7 @@ Vue.component("NioLinkSlat", NioLinkSlat)
 Vue.component("NioIconLinkSlat", NioIconLinkSlat)
 Vue.component("NioImageTileLinkSlat", NioImageTileLinkSlat)
 Vue.component("NioStepper", NioStepper)
+Vue.component("NioStepHeader", NioStepHeader)
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
 export { NioButton }
@@ -100,6 +105,8 @@ export { NioLinkSlat }
 export { NioIconLinkSlat }
 export { NioImageTileLinkSlat }
 export { NioStepper }
+export { NioStepHeader }
+export { NioStepBody }
 export { FontAwesomeIcon }
 
 export default Components

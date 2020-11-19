@@ -25,13 +25,13 @@
         @logout="logout"
       )
       .wrapper
-        TestSlat
+        //- TestSlat
         //- TestExpansionPanel
         //- TestDivider
         //- TestAlert
         //- TestButtons
         //- TestAutocomplete
-        NioStepper
+        TestStepper
         //- TestFileChooser
         //- TestCheckbox
         //- TestSwitch
@@ -64,6 +64,7 @@ import TestIconFramer from './test-components/TestIconFramer'
 import TestDivider from './test-components/TestDivider'
 import TestExpansionPanel from './test-components/TestExpansionPanel'
 import TestSlat from './test-components/TestSlat'
+import TestStepper from './test-components/TestStepper'
 
 export default {
   name: "App",
@@ -86,7 +87,8 @@ export default {
     TestIconFramer,
     TestDivider,
     TestExpansionPanel,
-    TestSlat
+    TestSlat,
+    TestStepper
   },
   data: () => ({
     loggedIn: false,
