@@ -31,7 +31,8 @@
         //- TestAlert
         //- TestButtons
         //- TestAutocomplete
-        TestFileChooser
+        NioStepper
+        //- TestFileChooser
         //- TestCheckbox
         //- TestSwitch
         //- TestRadioGroup
