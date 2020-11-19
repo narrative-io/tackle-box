@@ -1,12 +1,12 @@
 <template lang="pug">
-  .nio-step-body
+  v-expansion-panel-content.nio-step-content
       
 </template>
 
 <script>
 
 export default {
-  name: 'nio-step-body',
+  name: 'nio-step-content',
   props: {
     
   },
@@ -24,5 +24,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  @import '../../styles/mixins/stepper/_step-body'  
+  @import '../../styles/mixins/stepper/_step-content'  
 </style>

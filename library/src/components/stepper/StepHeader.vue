@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-step-header
+  v-expansion-panel-header.nio-step-header
       
 </template>
 

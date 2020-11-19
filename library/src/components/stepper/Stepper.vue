@@ -1,12 +1,16 @@
 <template lang="pug">
   v-expansion-panels.nio-stepper(v-model="activeStep")
-    slot    
+    slot
+    //- v-expansion-panel(v-for="step in steps")
+    //-   v-expansion-panel-header
+        
+    //-   v-expansion-panel-content
+        
 </template>
 
 <script>
 
-import NioStepHeader from './StepHeader'
-import NioStepBody from './StepBody'
+import NioStep from './Step'
 
 export default {
   name: 'nio-stepper',
@@ -23,7 +27,7 @@ export default {
   methods: {
     
   },
-  components: { NioStepHeader, NioStepBody }
+  components: { NioStep }
 }
 </script>
 
