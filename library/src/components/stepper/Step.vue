@@ -1,5 +1,6 @@
 <template lang="pug">
-  .nio-step
+  v-expansion-panel.nio-step
+    slot
       
 </template>
 
@@ -27,5 +28,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  @import '../../styles/mixins/stepper/_step'  
+@import '../../styles/mixins/stepper/_step'  
 </style>

@@ -1,11 +1,6 @@
 <template lang="pug">
-  v-expansion-panels.nio-stepper(v-model="activeStep")
+  v-expansion-panels.nio-stepper(v-model="currentStep")
     slot
-    //- v-expansion-panel(v-for="step in steps")
-    //-   v-expansion-panel-header
-        
-    //-   v-expansion-panel-content
-        
 </template>
 
 <script>
@@ -23,7 +18,7 @@ export default {
   }),
   mounted() {
 
-},
+  },
   methods: {
     
   },
@@ -32,5 +27,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  @import '../../styles/mixins/stepper/_stepper'  
+@import '../../styles/mixins/stepper/_stepper'  
 </style>
