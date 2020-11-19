@@ -2,14 +2,29 @@
   v-expansion-panel-header.nio-step-header(
     :class="{'nio-step-complete': complete}"
   )
-    .slat-here
-      .index {{ stepIndex }}
-      .name {{ stepName }}
+    NioSlat.nio-step-header-slat
+      template(v-slot:content)
+        .step
+          .icon
+            NioIcon(  
+              v-if="complete"
+              iconName="utility-times"
+              color="#F4F7FB"
+            )
+            .step-number(v-else) {{ stepIndex }}
+          .step-name
+        slot(name="completed-content")
+      template(v-slot:action)
+        NioIcon(
+          name="utility-chevron-down"
+          color="#415298"
+        )
 
 </template>
 
 <script>
 
+import NioSlat from '../slat/Slat'
 
 export default {
   name: 'nio-step-header',
@@ -27,7 +42,7 @@ export default {
   methods: {
     
   },
-  components: {  }
+  components: { NioSlat }
 }
 </script>
 

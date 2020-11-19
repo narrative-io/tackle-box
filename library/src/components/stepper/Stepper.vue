@@ -17,7 +17,7 @@ export default {
     activeStep: 0
   }),
   mounted() {
-    this.activeStep = this.currentStep
+    this.activeStep = this.getStepIndex(this.currentStep)
   },
   methods: {
     nioPreviousStep() {
@@ -25,6 +25,14 @@ export default {
     },
     nioNextStep() {
       this.$emit('nextStep')
+    },
+    getStepIndex(stepName) {
+      return this.steps.indexOf(stepName)
+    }
+  },
+  watch: {
+    currentStep() {
+      this.activeStep = this.getStepIndex(this.currentStep)
     }
   },
   components: { NioStep }

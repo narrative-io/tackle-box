@@ -1,4 +1,20 @@
+@import '../../global/_colors'
+
 =nio-step
+  border-radius: 0px !important
+  margin: 0px 
+  
+  &:not(:last-child)
+    box-shadow: inset 0px -1px 0px $c-primary-lighter
+
+  &:before
+    box-shadow: none
+
+  &:after
+    border: none !important
+
+  &.v-expansion-panel--active
+    box-shadow: inset 0px -1px 0px $c-primary-lighter
 
 .nio-step
-	+nio-step
+  +nio-step
