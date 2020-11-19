@@ -1,25 +1,35 @@
+@import '../../global/_colors'
+  
 =nio-step-header
-	min-height: unset
-	padding: 0px
+  min-height: unset
+  padding: 0px
 
-	::v-deep .v-expansion-panel-header__icon
-		display: none
+  ::v-deep .v-expansion-panel-header__icon
+    visibility: hidden
+    width: 0px
 
-	.nio-step-header-slat
-		box-shadow: none
-		display: flex
-		justify-content: space-around
-		align-items: center
-		.step
-			flex-grow: 0
-			display: flex
-			align-items: center
-			.icon
-				width: 24px
-				height: 24px
-				display: flex
-				justify-content: center
-				align-items: center
+  .nio-step-header-slat
+    box-shadow: none
+    display: flex
+    justify-content: space-between
+    align-items: center
+    .step
+      flex-grow: 0
+      display: flex
+      align-items: center
+      .icon
+        width: 24px
+        height: 24px
+        border-radius: 12px
+        margin-right: 16px
+        background-color: $c-primary-dark
+        display: flex
+        justify-content: center
+        align-items: center
+        .step-number
+          color: $c-canvas
+      .step-name
+  &.complete
 
 .nio-step-header
-	+nio-step-header
+  +nio-step-header

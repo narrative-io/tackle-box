@@ -8,7 +8,7 @@
     )
       NioStep
         NioStepHeader(
-          stepName="'source'"
+          stepName="source"
           stepIndex="0"
         )
         NioStepContent(
@@ -16,7 +16,7 @@
         ) source content
       NioStep
         NioStepHeader(
-          stepName="'destination'"
+          stepName="destination"
           stepIndex="1"
         )
         NioStepContent(

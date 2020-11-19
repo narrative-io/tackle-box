@@ -12,7 +12,7 @@
               color="#F4F7FB"
             )
             .step-number(v-else) {{ stepIndex }}
-          .step-name
+          .step-name.nio-h6.text-primary-dark {{ stepName }}
         slot(name="completed-content")
       template(v-slot:action)
         NioIcon(
@@ -25,6 +25,7 @@
 <script>
 
 import NioSlat from '../slat/Slat'
+import NioIcon from '../icon/Icon'
 
 export default {
   name: 'nio-step-header',
@@ -42,7 +43,7 @@ export default {
   methods: {
     
   },
-  components: { NioSlat }
+  components: { NioSlat, NioIcon }
 }
 </script>
 
