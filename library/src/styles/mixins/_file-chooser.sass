@@ -17,6 +17,8 @@
   align-items: center
   width: 100%
   text-align: center
+  .nio-icon-framer
+    margin-bottom: 1rem
   .graphic
     background: $c-canvas
     width: 7.5rem
@@ -38,7 +40,15 @@
     .nio-h3
       margin-bottom: 0.5rem
     .nio-p
-      margin-bottom: 0.5rem	
+      margin-bottom: 0.5rem	     
+    .selected-file
+      display: flex
+      justify-content: center  
+      align-items: center
+      .nio-button
+        margin-left: 16px 
+      .nio-p
+        margin-bottom: 0rem	       
     .spacer
         margin-top: 1rem
         margin-bottom: 1rem
@@ -72,7 +82,7 @@
 
   &.state-selected, &.state-inprogress, &.state-success, &.state-error
     background-color: $c-white   
-    border: 1px solid $c-primary-lighter 
+    border: 0.0625rem solid $c-primary-lighter 
 
 .nio-file-chooser
   +nio-file-chooser

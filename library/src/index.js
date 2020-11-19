@@ -48,7 +48,7 @@ const Components = {
 	NioSlat,
 	NioLinkSlat,
 	NioIconLinkSlat,
-	NioImageTileSlat,
+	NioImageTileLinkSlat,
 	FontAwesomeIcon
 }
 

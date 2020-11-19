@@ -48,15 +48,23 @@
         span(v-if="currentState === 'inProgress'") {{ inProgressMsg }}
         span(v-if="currentState === 'success'") Success
         span(v-if="currentState === 'error'") We have a problem
-      .nio-p.text-primary-dark 
+      .selected-file(v-if="currentState === 'selected'")
+        .nio-p.text-primary-dark <strong>{{ filename }}</strong> {{ readableFilesize }}
+        NioButton(
+          caution-icon-small
+          iconName="utility-times"
+          @click="cancelSelection"
+        )
+      .nio-p.text-primary-dark(v-else)
         span(v-if="currentState === 'initial'") {{ instructions }}
-        span(v-if="currentState === 'selected' || currentState === 'inProgress'") <strong>{{ filename }}</strong> {{ readableFilesize }}
+        span(v-if="currentState === 'inProgress'") <strong>{{ filename }}</strong> {{ readableFilesize }}
         span(v-if="currentState === 'success'") {{ successMsg }}
         span(v-if="currentState === 'error'")
            span(v-if="errorType === 'validation'") {{ validationErrorMsg }}
            span(v-else-if="errorType === 'filesize'") {{ filesizeErrorMsg }}
            span(v-else-if="errorType === 'multifile'") {{ multifileErrorMsg }}
            span(v-else) {{ generalErrorMsg }}
+      .selected-file     
       .spacer
         .content(v-if="currentState === 'initial'")
           .left
@@ -76,13 +84,6 @@
         @click="actionClicked"
         :disabled="!valid"
       ) {{ actionLabel }}
-      NioButton(
-        caution-icon-small
-        iconName="utility-times"
-        key="3"
-        v-if="currentState === 'selected'"
-        @click="cancelSelection"
-      )
       NioButton(
         key="4"
         v-if="currentState === 'inProgress'"
