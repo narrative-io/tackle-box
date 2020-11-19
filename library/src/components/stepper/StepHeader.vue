@@ -14,8 +14,8 @@
 export default {
   name: 'nio-step-header',
   props: {
-    "stepName": { type: Array, required: true},
-    "stepIndex": { type: Number, required: true},
+    "stepName": { type: String, required: true},
+    "stepIndex": { type: String, required: true},
     "complete": { type: Boolean, required: false, default: false}
   },
   data: () => ({

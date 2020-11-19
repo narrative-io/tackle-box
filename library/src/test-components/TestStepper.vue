@@ -3,6 +3,8 @@
     NioStepper(
       :steps="steps"
       :currentStep="currentStep"
+      @nextStep="nextStep"
+      @previousStep="previousStep"
     )
       NioStep
         NioStepHeader(
@@ -10,8 +12,7 @@
           stepIndex="0"
         )
         NioStepContent(
-          @continue="nextStep"
-          @back="previousStep"
+          
         ) source content
       NioStep
         NioStepHeader(
@@ -19,8 +20,7 @@
           stepIndex="1"
         )
         NioStepContent(
-          @continue="nextStep"
-          @back="previousStep"
+         
         ) destination content
 </template>
 

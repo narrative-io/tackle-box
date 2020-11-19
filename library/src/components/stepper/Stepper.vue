@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-expansion-panels.nio-stepper(v-model="currentStep")
+  v-expansion-panels.nio-stepper(v-model="activeStep")
     slot
 </template>
 
@@ -14,13 +14,18 @@ export default {
     "currentStep": { type: String, required: false, default: false}
   },
   data: () => ({
-
+    activeStep: 0
   }),
   mounted() {
-
+    this.activeStep = this.currentStep
   },
   methods: {
-    
+    nioPreviousStep() {
+      this.$emit('previousStep')
+    },
+    nioNextStep() {
+      this.$emit('nextStep')
+    }
   },
   components: { NioStep }
 }

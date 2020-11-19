@@ -1,6 +1,8 @@
 <template lang="pug">
   v-expansion-panel.nio-step
-    slot
+    slot(
+      
+    )
       
 </template>
 
@@ -18,10 +20,14 @@ export default {
 
   }),
   mounted() {
-
-},
+  },
   methods: {
-    
+    nioPreviousStep() {
+      this.$parent.$parent.nioPreviousStep()
+    },
+    nioNextStep() {
+      this.$parent.$parent.nioNextStep()
+    }
   },
   components: { NioStepHeader, NioStepContent }
 }

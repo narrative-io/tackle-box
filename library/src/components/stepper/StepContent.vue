@@ -3,8 +3,8 @@
     .nio-step-content-body
       slot
     .nio-step-content-actions
-      NioButton(normal-secondary @click="backClicked") Back
-      NioButton(normal-primary @click="continueClicked") Continue
+      NioButton(normal-secondary @click="nioPreviousStep") Back
+      NioButton(normal-primary @click="nioNextStep") Continue
 
 </template>
 
@@ -21,14 +21,14 @@ export default {
     
   }),
   mounted() {
-
+    
   },
   methods: {
-    backClicked() {
-      this.$emit('back')
+    nioPreviousStep() {
+      this.$parent.$parent.nioPreviousStep()
     },
-    continueClicked() {
-      this.$emit('continue')
+    nioNextStep() {
+      this.$parent.$parent.nioNextStep()
     }
   },
   components: { NioButton }
@@ -36,5 +36,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../../styles/mixins/stepper/_step-content'  
+  @import '../../styles/mixins/stepper/_step-content'  
 </style>
