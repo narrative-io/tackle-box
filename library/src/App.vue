@@ -27,7 +27,7 @@
       .wrapper
         //- TestSlat
         //- TestExpansionPanel
-        TestDivider
+        //- TestDivider
         //- TestAlert
         //- TestButtons
         //- TestAutocomplete
