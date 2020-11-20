@@ -2,6 +2,7 @@
   v-expansion-panel-content.nio-step-content
     .nio-step-content-body
       slot(name="content")
+    NioDivider(horizontal-solo)
     .nio-step-content-actions(v-if="!isLastStep")
       NioButton(
         normal-secondary 
@@ -24,6 +25,7 @@
 <script>
 
 import NioButton from '../Button'
+import NioDivider from '../Divider'
 
 export default {
   name: 'nio-step-content',
@@ -47,7 +49,7 @@ export default {
       this.$emit('nextStep')
     }
   },
-  components: { NioButton }
+  components: { NioButton, NioDivider }
 }
 </script>
 

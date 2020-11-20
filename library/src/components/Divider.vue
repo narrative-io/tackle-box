@@ -8,6 +8,7 @@
       .start
       .text.nio-h6.text-primary-dark OR
       .end
+    .segment(v-else)
 </template>
 
 <script>
