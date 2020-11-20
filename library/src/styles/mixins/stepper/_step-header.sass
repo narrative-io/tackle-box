@@ -3,6 +3,7 @@
 =nio-step-header
   min-height: unset
   padding: 0px
+  background-color: $c-canvas
 
   ::v-deep .v-expansion-panel-header__icon
     visibility: hidden
@@ -31,8 +32,10 @@
           color: $c-canvas
       .step-name
   
+  &.v-expansion-panel-header--active
+    background-color: $c-white
+
   &.nio-step-complete
-    background-color: $c-canvas
 
 .nio-step-header
   +nio-step-header
