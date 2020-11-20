@@ -1,8 +1,6 @@
 <template lang="pug">
   v-expansion-panel.nio-step
-    slot(
-      
-    )
+    slot(v-if="orderedSteps")
       
 </template>
 
@@ -17,9 +15,10 @@ export default {
     
   },
   data: () => ({
-
+    orderedSteps: null
   }),
   mounted() {
+    this.orderedSteps = this.$parent.$parent.orderedSteps
   },
   methods: {
     nioPreviousStep() {

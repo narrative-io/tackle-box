@@ -1,6 +1,6 @@
 <template lang="pug">
   v-expansion-panels.nio-stepper(v-model="activeStep")
-    slot
+    slot(v-if="orderedSteps")
 </template>
 
 <script>
@@ -10,7 +10,7 @@ import NioStep from './Step'
 export default {
   name: 'nio-stepper',
   props: {
-    "steps": { type: Array, required: true},
+    "orderedSteps": { type: Array, required: true },
     "currentStep": { type: String, required: false, default: false}
   },
   data: () => ({
@@ -27,7 +27,7 @@ export default {
       this.$emit('nextStep')
     },
     getStepIndex(stepName) {
-      return this.steps.indexOf(stepName)
+      return this.orderedSteps.indexOf(stepName)
     }
   },
   watch: {

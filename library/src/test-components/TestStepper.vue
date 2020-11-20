@@ -1,7 +1,7 @@
 <template lang="pug">
   .test-stepper
     NioStepper(
-      :steps="steps"
+      :orderedSteps="steps"
       :currentStep="currentStep"
       @nextStep="nextStep"
       @previousStep="previousStep"
@@ -9,7 +9,6 @@
       NioStep
         NioStepHeader(
           stepName="source"
-          stepIndex="0"
           :complete="true"
         )
         NioStepContent(
@@ -17,12 +16,39 @@
         ) source content
       NioStep
         NioStepHeader(
+          stepName="match"
+        )
+        NioStepContent(
+         
+        ) match content
+      NioStep
+        NioStepHeader(
           stepName="destination"
-          stepIndex="1"
         )
         NioStepContent(
          
         ) destination content
+      NioStep
+        NioStepHeader(
+          stepName="budget"
+        )
+        NioStepContent(
+         
+        ) budget content
+      NioStep
+        NioStepHeader(
+          stepName="payment"
+        )
+        NioStepContent(
+         
+        ) payment content
+      NioStep
+        NioStepHeader(
+          stepName="confirmation"
+        )
+        NioStepContent(
+         
+        ) confirmation content        
 </template>
 
 <script>
@@ -40,7 +66,7 @@ export default {
     NioStepContent
   },
   data: () => ({
-    steps: ['source', 'match'],
+    steps: ['source', 'match', 'destination', 'budget', 'payment', 'confirmation'],
     currentStep: 'source'
   }),
   methods: {

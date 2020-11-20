@@ -32,15 +32,19 @@ export default {
   name: 'nio-step-header',
   props: {
     "stepName": { type: String, required: true},
-    "stepIndex": { type: String, required: true},
     "complete": { type: Boolean, required: false, default: false}
   },
   data: () => ({
-
+    orderedSteps: null
   }),
+  computed: {
+    stepIndex() {
+      return this.orderedSteps && this.orderedSteps.indexOf(this.stepName) > -1 ? this.orderedSteps.indexOf(this.stepName) : undefined
+    }
+  },
   mounted() {
-
-},
+    this.orderedSteps = this.$parent.$parent.orderedSteps
+  },
   methods: {
     
   },
