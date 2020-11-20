@@ -1,11 +1,24 @@
 <template lang="pug">
   v-expansion-panel-content.nio-step-content
     .nio-step-content-body
-      slot
-    .nio-step-content-actions
-      NioButton(normal-secondary @click="nioPreviousStep") Back
-      NioButton(normal-primary @click="nioNextStep") Continue
-
+      slot(name="content")
+    .nio-step-content-actions(v-if="!isLastStep")
+      NioButton(
+        normal-secondary 
+        @click="previousStep"
+        :disabled="isFirstStep"
+      ) Back
+      NioButton(
+        normal-primary 
+        @click="nextStep"
+        :disabled="!valid"
+      ) Continue
+    .nio-step-content-actions(v-if="isLastStep")
+      NioButton(
+        normal-primary 
+        @click="nextStep"
+        :disabled="!valid"
+      ) Complete
 </template>
 
 <script>
@@ -15,20 +28,23 @@ import NioButton from '../Button'
 export default {
   name: 'nio-step-content',
   props: {
-     
+    "stepName": { type: String, required: true },
+    "complete": { type: Boolean, required: false, default: false },
+    "valid": { type: Boolean, required: false, default: true },
+    "stepIndex": { type: Number, requied: true },
+    "isFirstStep": { type: Boolean, required: false, default: false },
+    "isLastStep": { type: Boolean, required: false, default: false }
   },
   data: () => ({
-    
   }),
   mounted() {
-    
   },
   methods: {
-    nioPreviousStep() {
-      this.$parent.$parent.nioPreviousStep()
+    previousStep() {
+      this.$emit('previousStep')
     },
-    nioNextStep() {
-      this.$parent.$parent.nioNextStep()
+    nextStep() {
+      this.$emit('nextStep')
     }
   },
   components: { NioButton }

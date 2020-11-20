@@ -14,13 +14,12 @@
           .icon(v-else)
             .step-number {{ stepIndex }}
           .step-name.nio-h6.text-primary-dark {{ stepName }}
-        slot(name="completed-content")
+        slot(name="header-complete")
       template(v-slot:action)
         NioIcon(
           name="utility-chevron-down"
           color="#415298"
         )
-
 </template>
 
 <script>
@@ -31,19 +30,16 @@ import NioIcon from '../icon/Icon'
 export default {
   name: 'nio-step-header',
   props: {
-    "stepName": { type: String, required: true},
-    "complete": { type: Boolean, required: false, default: false}
+    "stepName": { type: String, required: true },
+    "complete": { type: Boolean, required: false, default: false },
+    "valid": { type: Boolean, required: false, default: true },
+    "stepIndex": { type: Number, requied: true },
+    "isFirstStep": { type: Boolean, required: false, default: false },
+    "isLastStep": { type: Boolean, required: false, default: false }
   },
   data: () => ({
-    orderedSteps: null
   }),
-  computed: {
-    stepIndex() {
-      return this.orderedSteps && this.orderedSteps.indexOf(this.stepName) > -1 ? this.orderedSteps.indexOf(this.stepName) : undefined
-    }
-  },
   mounted() {
-    this.orderedSteps = this.$parent.$parent.orderedSteps
   },
   methods: {
     

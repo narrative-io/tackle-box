@@ -6,49 +6,37 @@
       @nextStep="nextStep"
       @previousStep="previousStep"
     )
-      NioStep
-        NioStepHeader(
-          stepName="source"
-          :complete="true"
-        )
-        NioStepContent(
-          
-        ) source content
-      NioStep
-        NioStepHeader(
-          stepName="match"
-        )
-        NioStepContent(
-         
-        ) match content
-      NioStep
-        NioStepHeader(
-          stepName="destination"
-        )
-        NioStepContent(
-         
-        ) destination content
-      NioStep
-        NioStepHeader(
-          stepName="budget"
-        )
-        NioStepContent(
-         
-        ) budget content
-      NioStep
-        NioStepHeader(
-          stepName="payment"
-        )
-        NioStepContent(
-         
-        ) payment content
-      NioStep
-        NioStepHeader(
-          stepName="confirmation"
-        )
-        NioStepContent(
-         
-        ) confirmation content        
+      NioStep(
+        stepName="source"
+        :complete="true"
+      )
+        template(v-slot:header-complete)
+        template(v-slot:content) source content
+      NioStep(
+        stepName="match"
+      )
+        template(v-slot:header-complete)
+        template(v-slot:content) match content
+      NioStep(
+        stepName="destination"
+      )
+        template(v-slot:header-complete)
+        template(v-slot:content) destination content
+      NioStep(
+        stepName="budget"
+      )
+        template(v-slot:header-complete)
+        template(v-slot:content) budget content
+      NioStep(
+        stepName="payment"
+      )
+        template(v-slot:header-complete)
+        template(v-slot:content) payment content
+      NioStep(
+        stepName="confirmation"
+      )
+        template(v-slot:header-complete)
+        template(v-slot:content) confirmation content        
 </template>
 
 <script>
@@ -71,10 +59,10 @@ export default {
   }),
   methods: {
     nextStep() {
-      console.log('nextStep')
+      this.currentStep = this.steps[this.steps.indexOf(this.currentStep) + 1]
     },
     previousStep() {
-      console.log('previousStep')
+      this.currentStep = this.steps[this.steps.indexOf(this.currentStep) - 1]
     }
   }
 };

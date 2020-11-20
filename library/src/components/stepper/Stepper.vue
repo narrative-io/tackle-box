@@ -20,10 +20,10 @@ export default {
     this.activeStep = this.getStepIndex(this.currentStep)
   },
   methods: {
-    nioPreviousStep() {
+    previousStep() {
       this.$emit('previousStep')
     },
-    nioNextStep() {
+    nextStep() {
       this.$emit('nextStep')
     },
     getStepIndex(stepName) {
