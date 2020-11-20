@@ -49,6 +49,7 @@ import { faTwitter } from './fa-icons/twitter'
 import { faEye } from './fa-icons/eye'
 import { faEyeSlash } from './fa-icons/eye-slash'
 import { faExclamation } from './fa-icons/exclamation'
+import { faCheckCircle } from './fa-icons/check-circle'
  
 export default {
   name: 'nio-icon',
@@ -95,7 +96,8 @@ export default {
     library.add(faTwitter)
     library.add(faEye)
     library.add(faEyeSlash)
-    library.add(faExclamation)
+		library.add(faExclamation)
+		library.add(faCheckCircle)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },

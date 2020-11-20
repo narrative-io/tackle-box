@@ -5,13 +5,14 @@
     NioSlat.nio-step-header-slat
       template(v-slot:content)
         .step
-          .icon
-            NioIcon(  
-              v-if="complete"
-              iconName="utility-times"
-              color="#F4F7FB"
-            )
-            .step-number(v-else) {{ stepIndex }}
+          NioIcon(  
+            v-if="complete"
+            name="utility-check-circle"
+            color="#43B463"
+            size="24"
+          )
+          .icon(v-else)
+            .step-number {{ stepIndex }}
           .step-name.nio-h6.text-primary-dark {{ stepName }}
         slot(name="completed-content")
       template(v-slot:action)

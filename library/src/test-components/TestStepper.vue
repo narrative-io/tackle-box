@@ -10,6 +10,7 @@
         NioStepHeader(
           stepName="source"
           stepIndex="0"
+          :complete="true"
         )
         NioStepContent(
           
