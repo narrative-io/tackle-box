@@ -47,6 +47,21 @@ export default {
 		},
 		isComplete() {
 			return this.$parent.$parent.completedSteps.includes(this.stepName)
+		},
+		isLocked() {
+			if (!this.orderedSteps) {
+				return true
+			}
+			const lastCompletedStep = this.$parent.$parent.completedSteps.reduce((maxIndex, completedStep) => {
+				if (this.orderedSteps.indexOf(completedStep) > maxIndex) {
+					maxIndex = this.orderedSteps.indexOf(completedStep)
+				}
+				return maxIndex
+			}, 0)
+			if (this.orderedSteps.indexOf(this.stepName) > lastCompletedStep + 1) {
+				return true
+			}
+			return false
 		}
   },
   mounted() {
