@@ -32,9 +32,7 @@ export default {
   props: {
     "stepName": { type: String, required: true },
 		"complete": { type: Boolean, required: false, default: false },
-		"locked": { type: Boolean, required: false, default: true },
     "valid": { type: Boolean, required: false, default: true },
-    "stepIndex": { type: Number, requied: true },
     "isFirstStep": { type: Boolean, required: false, default: false },
     "isLastStep": { type: Boolean, required: false, default: false }
   },

@@ -5,21 +5,18 @@
     NioStepHeader(
       :stepName="stepName"
       :complete="isComplete"
+      :locked="isLocked"
       :stepIndex="stepIndex"
       :isFirstStep="isFirstStep"
       :isLastStep="isLastStep"
-      :locked="isLocked"
-      :valid="valid"
     )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data") 
     NioStepContent(
       :stepName="stepName"
       :complete="isComplete"
-      :stepIndex="stepIndex"
       :isFirstStep="isFirstStep"
       :isLastStep="isLastStep"
-      :locked="isLocked"
       :valid="valid"
       @previousStep="previousStep"
       @nextStep="nextStep"
