@@ -11,7 +11,8 @@ export default {
   name: 'nio-stepper',
   props: {
     "orderedSteps": { type: Array, required: true },
-    "currentStep": { type: String, required: false, default: false}
+		"currentStep": { type: String, required: false, default: false },
+		"completedSteps": { type: Array, required: false, default: [] },
   },
   data: () => ({
     activeStep: 0

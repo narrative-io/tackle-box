@@ -3,12 +3,12 @@
     NioStepper(
       :orderedSteps="steps"
       :currentStep="currentStep"
+      :completedSteps="completedSteps"
       @nextStep="nextStep"
       @previousStep="previousStep"
     )
       NioStep(
         stepName="source"
-        :complete="true"
       )
         template(v-slot:header-complete)
         template(v-slot:content) source content
@@ -55,7 +55,8 @@ export default {
   },
   data: () => ({
     steps: ['source', 'match', 'destination', 'budget', 'payment', 'confirmation'],
-    currentStep: 'source'
+		currentStep: 'source',
+		completedSteps: ['source', 'match']
   }),
   methods: {
     nextStep() {

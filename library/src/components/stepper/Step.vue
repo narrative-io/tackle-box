@@ -2,7 +2,7 @@
   v-expansion-panel.nio-step
     NioStepHeader(
       :stepName="stepName"
-      :complete="complete"
+      :complete="isComplete"
       :stepIndex="stepIndex"
       :isFirstStep="isFirstStep"
       :isLastStep="isLastStep"
@@ -11,7 +11,7 @@
         slot(:name="name" v-bind="data") 
     NioStepContent(
       :stepName="stepName"
-      :complete="complete"
+      :complete="isComplete"
       :stepIndex="stepIndex"
       :isFirstStep="isFirstStep"
       :isLastStep="isLastStep"
@@ -30,8 +30,7 @@ import NioStepContent from './StepContent'
 export default {
   name: 'nio-step',
   props: {
-    "stepName": { type: String, required: true},
-    "complete": { type: Boolean, required: false, default: false}
+    "stepName": { type: String, required: true}
   },
   data: () => ({
     orderedSteps: null
@@ -45,7 +44,10 @@ export default {
     },
     isLastStep() {
       return this.orderedSteps && this.orderedSteps.indexOf(this.stepName) === this.orderedSteps.length - 1
-    }
+		},
+		isComplete() {
+			return this.$parent.$parent.completedSteps.includes(this.stepName)
+		}
   },
   mounted() {
     this.orderedSteps = this.$parent.$parent.orderedSteps
@@ -57,7 +59,7 @@ export default {
     nextStep() {
       this.$parent.$parent.nextStep()
     }
-  },
+	},
   components: { NioStepHeader, NioStepContent }
 }
 </script>
