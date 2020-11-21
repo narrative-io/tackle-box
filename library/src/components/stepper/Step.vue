@@ -18,6 +18,9 @@
       :isFirstStep="isFirstStep"
       :isLastStep="isLastStep"
       :valid="valid"
+      :nextStepLabel="nextStepLabel"
+      :previousStepLabel="previousStepLabel"
+      :finalStepLabel="finalStepLabel"
       @previousStep="previousStep"
       @nextStep="nextStep"
     ) 
@@ -66,7 +69,16 @@ export default {
 				return true
 			}
 			return false
-		}
+    },
+    nextStepLabel() {
+      return this.$parent.$parent.nextStepLabel
+    },
+    previousStepLabel() {
+      return this.$parent.$parent.previousStepLabel
+    },
+    finalStepLabel() {
+      return this.$parent.$parent.finalStepLabel
+    }
   },
   mounted() {
     this.orderedSteps = this.$parent.$parent.orderedSteps

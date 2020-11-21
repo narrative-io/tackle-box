@@ -4,6 +4,7 @@
       :orderedSteps="steps"
       :currentStep="currentStep"
       :completedSteps="completedSteps"
+      finalStepLabel="Activate Subscription"
       @nextStep="nextStep"
       @previousStep="previousStep"
     )

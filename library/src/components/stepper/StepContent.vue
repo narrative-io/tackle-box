@@ -8,18 +8,18 @@
         normal-secondary 
         @click="previousStep"
         :disabled="isFirstStep"
-      ) Back
+      ) {{ previousStepLabel }}
       NioButton(
         normal-primary 
         @click="nextStep"
         :disabled="!valid"
-      ) Continue
+      ) {{ nextStepLabel }}
     .nio-step-content-actions(v-if="isLastStep")
       NioButton(
         normal-primary 
         @click="nextStep"
         :disabled="!valid"
-      ) Complete
+      ) {{ finalStepLabel }}
 </template>
 
 <script>
@@ -34,7 +34,10 @@ export default {
 		"complete": { type: Boolean, required: false, default: false },
     "valid": { type: Boolean, required: false, default: true },
     "isFirstStep": { type: Boolean, required: false, default: false },
-    "isLastStep": { type: Boolean, required: false, default: false }
+		"isLastStep": { type: Boolean, required: false, default: false },
+		"nextStepLabel": { type: String, required: true},
+		"previousStepLabel": { type: String, required: true },
+		"finalStepLabel": { type: String, required: true }
   },
   data: () => ({
   }),
