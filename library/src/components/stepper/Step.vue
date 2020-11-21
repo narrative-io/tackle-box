@@ -9,6 +9,7 @@
       :isFirstStep="isFirstStep"
       :isLastStep="isLastStep"
       :locked="isLocked"
+      :valid="valid"
     )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data") 
@@ -19,6 +20,7 @@
       :isFirstStep="isFirstStep"
       :isLastStep="isLastStep"
       :locked="isLocked"
+      :valid="valid"
       @previousStep="previousStep"
       @nextStep="nextStep"
     ) 
@@ -34,7 +36,8 @@ import NioStepContent from './StepContent'
 export default {
   name: 'nio-step',
   props: {
-    "stepName": { type: String, required: true}
+    "stepName": { type: String, required: true },
+    "valid": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     orderedSteps: null
@@ -62,7 +65,7 @@ export default {
 				}
 				return maxIndex
 			}, 0)
-			if (this.orderedSteps.indexOf(this.stepName) > lastCompletedStep + 1) {
+			if (this.orderedSteps.indexOf(this.stepName) > lastCompletedStep + 1 || (this.$parent.$parent.completedSteps.length === 0 && this.orderedSteps.indexOf(this.stepName) === 1)) {
 				return true
 			}
 			return false
