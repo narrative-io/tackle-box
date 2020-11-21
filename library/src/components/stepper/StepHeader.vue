@@ -1,6 +1,6 @@
 <template lang="pug">
   v-expansion-panel-header.nio-step-header(
-    :class="{'nio-step-complete': complete}"
+    :class="{'nio-step-complete': complete, 'locked': locked}"
   )
     NioSlat.nio-step-header-slat
       template(v-slot:content)
@@ -31,7 +31,8 @@ export default {
   name: 'nio-step-header',
   props: {
     "stepName": { type: String, required: true },
-    "complete": { type: Boolean, required: false, default: false },
+		"complete": { type: Boolean, required: false, default: false },
+		"locked": { type: Boolean, required: false, default: true },
     "valid": { type: Boolean, required: false, default: true },
     "stepIndex": { type: Number, requied: true },
     "isFirstStep": { type: Boolean, required: false, default: false },

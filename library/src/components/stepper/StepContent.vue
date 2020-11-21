@@ -31,7 +31,8 @@ export default {
   name: 'nio-step-content',
   props: {
     "stepName": { type: String, required: true },
-    "complete": { type: Boolean, required: false, default: false },
+		"complete": { type: Boolean, required: false, default: false },
+		"locked": { type: Boolean, required: false, default: true },
     "valid": { type: Boolean, required: false, default: true },
     "stepIndex": { type: Number, requied: true },
     "isFirstStep": { type: Boolean, required: false, default: false },

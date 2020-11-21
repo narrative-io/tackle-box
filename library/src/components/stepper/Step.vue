@@ -1,11 +1,14 @@
 <template lang="pug">
-  v-expansion-panel.nio-step
+  v-expansion-panel.nio-step(
+    :disabled="isLocked"
+  )
     NioStepHeader(
       :stepName="stepName"
       :complete="isComplete"
       :stepIndex="stepIndex"
       :isFirstStep="isFirstStep"
       :isLastStep="isLastStep"
+      :locked="isLocked"
     )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data") 
@@ -15,6 +18,7 @@
       :stepIndex="stepIndex"
       :isFirstStep="isFirstStep"
       :isLastStep="isLastStep"
+      :locked="isLocked"
       @previousStep="previousStep"
       @nextStep="nextStep"
     ) 
