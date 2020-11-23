@@ -1,6 +1,10 @@
 <template lang="pug">
   .test-slat-table
-    NioSlatTable
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+    )
 </template>
 
 <script>
@@ -31,31 +35,13 @@ export default {
     NioSlatTable
   },
   data: () => ({
-    columns: [
-      {
-        name: "title-subtitle",
-        props: ["imageSrc", "orderName", "orderNumber"],
-        computed: {
-          orderNumber: this.computeOrderNumber
-        }
-      },
-      {
-        name: "spent-budget",
-        label: "Spent/Budget",
-        computed: {
-          spentBudget: this.computeSpentBudget
-        } 
-      },
-      {
-        name: "expires",
-        label: "Expires",
-        computed: {
-          expires: this.computeExpires
-        }
-      }
-    ]
+    columns: null,
+    items: items
   }),
   methods: {
+    computeOrderName(item) {
+      return `Name: ${item.orderName}`
+    },
     computeOrderNumber(item) {
       return `#${item.orderNumber}`
     },
@@ -67,7 +53,31 @@ export default {
     },
     formatDate(date) {
       return `${date.getFullYear()}`
+    },
+    makeItems() {
+      this.columns = [
+        {
+          name: "titleSubtitle",
+          props: ["imageSrc", "orderName", "orderNumber"],
+          computed: {
+            orderName: this.computeOrderName,
+            orderNumber: this.computeOrderNumber
+          }
+        },
+        {
+          name: "spentBudget",
+          label: "Spent/Budget",
+          computed: this.computeSpentBudget
+        },
+        {
+          name: "expires",
+          label: "Expires"
+        }
+      ]  
     }
+  },
+  mounted() {
+    this.makeItems()
   }
 };
 </script>
