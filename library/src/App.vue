@@ -31,7 +31,8 @@
         //- TestAlert
         //- TestButtons
         //- TestAutocomplete
-        TestStepper
+        TestSlatTable
+        //- TestStepper
         //- TestFileChooser
         //- TestCheckbox
         //- TestSwitch
@@ -65,6 +66,7 @@ import TestDivider from './test-components/TestDivider'
 import TestExpansionPanel from './test-components/TestExpansionPanel'
 import TestSlat from './test-components/TestSlat'
 import TestStepper from './test-components/TestStepper'
+import TestSlatTable from './test-components/TestSlatTable'
 
 export default {
   name: "App",
@@ -88,7 +90,8 @@ export default {
     TestDivider,
     TestExpansionPanel,
     TestSlat,
-    TestStepper
+    TestStepper,
+    TestSlatTable
   },
   data: () => ({
     loggedIn: false,
