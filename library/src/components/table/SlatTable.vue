@@ -18,8 +18,8 @@
               v-if="item.slat.image && item.slat.title && item.slat.title"
               :imgSrc="item.slat.image"
             )
-              template(v-slot:title) {{ item.title }}
-              template(v-slot:subtitle)
+              template(v-slot:title) {{ item.slat.title }}
+              template(v-slot:subtitle) {{ item.slat.subtitle }}
 
           td.static-cell(
             v-for="column of staticColumns"

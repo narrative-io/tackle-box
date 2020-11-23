@@ -1,6 +1,5 @@
 @import '../../global/_colors'
 @import '../../global/_color-helpers'
-@import '../../global/_typography'
 
 =nio-slat
 	display: flex
@@ -15,17 +14,7 @@
 	
 	// styles common to all slats' internal components
 	::v-deep 
-		.nio-slat-image 
-			margin-right: 26px
-		.nio-slat-title
-			@extend .nio-h4
-			@extend .text-primary-darker
-			@extend .nio-bold
-			white-space: nowrap
-		.nio-slat-subtitle
-			@extend .nio-p-small
-			@extend .text-primary-dark
-			white-space: nowrap
+		
 
 .nio-slat
 	+nio-slat

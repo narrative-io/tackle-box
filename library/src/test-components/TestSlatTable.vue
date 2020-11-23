@@ -11,7 +11,7 @@
 
 const items = [
   {
-    imageSrc: "https://picsum.photos/48/48",
+    imageSrc: "https://picsum.photos/64/64",
     orderName: "My Offline Customers - Onboared",
     orderNumber: "36658334",
     spent: "500",
@@ -19,7 +19,7 @@ const items = [
     expires: new Date()
   },
   {
-    imageSrc: "https://picsum.photos/48/48",
+    imageSrc: "https://picsum.photos/64/64",
     orderName: "Another Order",
     orderNumber: "25653324",
     spent: "100",

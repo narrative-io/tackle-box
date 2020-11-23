@@ -8,7 +8,7 @@
     NioImageTile.nio-slat-image(
       v-else
       :src="imgSrc"
-      size="small"
+      size="normal"
     )
     .nio-slat-title-subtitle
       .nio-slat-title
