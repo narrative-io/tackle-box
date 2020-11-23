@@ -57,10 +57,14 @@ export default {
     makeItems() {
       this.columns = [
         {
-          name: "titleSubtitle",
-          props: ["imageSrc", "orderName", "orderNumber"],
+          name: "slat",
+          props: {
+            image: "imageSrc",
+            title: "orderName",
+            subtitle: "orderNumber"
+          },
           computed: {
-            orderName: this.computeOrderName,
+            image: this.computeOrderName,
             orderNumber: this.computeOrderNumber
           }
         },

@@ -6,13 +6,31 @@
     :items-per-page="10"
   )
     template(
-      v-for="column of columns"
-      v-slot:column.name="{ item }"
-    ) {{ getCellValue(column, item) }}
-  
+      v-slot:body="{ items }"
+    )
+      tbody
+        tr(
+          v-for="item in items"
+          :key="item.name"
+        )
+          td.slat-cell
+            NioImageTitleSubtitleSlot(
+              v-if="item.slat.image && item.slat.title && item.slat.title"
+              :imgSrc="item.slat.image"
+            )
+              template(v-slot:title) {{ item.title }}
+              template(v-slot:subtitle)
+
+          td.static-cell(
+            v-for="column of staticColumns"
+          )
+            .label {{ column.label }}
+            .value {{ item[column.name ]}}
 </template>
 
 <script>
+
+import NioImageTitleSubtitleSlot from '../slat/slot-templates/content/ImageTitleSubtitleSlot'
 
 export default {
   name: 'nio-slat-table',
@@ -26,16 +44,9 @@ export default {
   data: () => ({
     searchable: false,
     multiple: false,
-    headers: [],
-    computedItems: [],
-    //   { name: 'id', text: 'ID', value: "buyOrder.id" },
-    //   { name: 'name', text: 'Order name', value: 'buyOrder.name', sortable: false },
-    //   { name: 'status', text: 'Status', value: 'buyOrder.status', sortable: false },
-    //   { name: 'company', text: 'Company', value: 'buyOrder.company', sortable: false },
-    //   { name: 'dataTypes', text: 'Data type(s)', value: 'buyOrder.dataTypes', sortable: false },
-    //   { name: 'created', text: 'Created', value: 'buyOrder.createdAt', sortable: false },
-    //   { name: 'overflow', text: '', value: 'buyOrder', sortable: false}
-    // ],
+    headers: null,
+    computedItems: null,
+    staticColumns: []
   }),
   mounted() {
     this.makeHeaders()
@@ -44,10 +55,19 @@ export default {
   methods: {
     computeItems() {
       const computedItems = []
-      console.log(this.items)
       this.items.forEach(item => {
         const computedItem = {}
-        this.columns.forEach(column => {
+        const slatColumn = this.columns.find(column => column.name === 'slat')
+        // console.log(slatColumn)
+        // console.log(item)
+        computedItem.slat = {
+          image: slatColumn.computed && slatColumn.computed.image ? slatColumn.computed.image(item) : item[slatColumn.props.image],
+          title: slatColumn.computed && slatColumn.computed.title ? slatColumn.computed.title(item) : item[slatColumn.props.title],
+          subtitle: slatColumn.computed && slatColumn.computed.subtitle ? slatColumn.computed.subtitle(item) : item[slatColumn.props.subtitle]
+        }
+        console.log(computedItem)
+
+        this.columns.filter(column => column.name !== "slat").forEach(column => {
           if (column.props) {
             const itemProps = {}
             column.props.forEach(prop => {
@@ -57,11 +77,10 @@ export default {
           } else {
             computedItem[column.name] = column.computed ? column.computed(item) : item[column.name]
           }
-          console.log(computedItem)
         })
         computedItems.push(computedItem)
       })
-      console.log(computedItems)
+      // console.log(computedItems)
       this.computedItems = computedItems
     },
     makeHeaders() {
@@ -71,15 +90,26 @@ export default {
         
       }
 
-      this.columns.map(column => {
-        // console.log(column)
+      const slatColumn = this.columns.find(column => column.name === 'slat')
+      headers.push({
+        name: 'slat',
+        text: 'slat',
+        value: 'slat'
+      })
+
+      this.columns.filter(column => column.name !== "slat").forEach(column => {
         headers.push({
           name: column.name,
+          label: column.label,
           value: column.name
         })
       })
-      // console.log(headers)
       this.headers = headers
+      this.makeStaticColumns()
+    },
+    makeStaticColumns() {
+      this.staticColumns = this.headers.filter(header => header.name !== 'selections' && header.name !== 'slat' && header.name !== 'action')
+      // console.log(this.staticColumns)
     },
     applyHelperMethods() {
       // const attributes = this.$el.attributes
@@ -91,7 +121,7 @@ export default {
       // }
     }
   },
-  components: { }
+  components: {NioImageTitleSubtitleSlot }
 }
 </script>
 
