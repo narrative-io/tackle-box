@@ -9,6 +9,7 @@ export default {
   name: 'nio-slat-table',
   props: {
     "items": { type: Array, required: true },
+    "columns": { type: Array, required: true },
     "filters": { type: Array, required: false, default: []},
     "action": { type: String, required: false, default: "menu"}, // menu | link | expand
     "selection": { type: String, required: false, default: "none"}, // none | single | multiple
