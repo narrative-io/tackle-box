@@ -4,6 +4,7 @@
       v-if="columns && items"
       :items="items"
       :columns="columns"
+      action="expand"
       key="1"
     )
     NioSlatTable(
@@ -12,6 +13,7 @@
       :columns="columns"
       single-select
       @selectionChanged="selectionChanged($event)"
+      action="menu"
       key="2"
     )
     NioSlatTable(
@@ -20,6 +22,7 @@
       :columns="columns"
       multi-select
       @selectionChanged="selectionChanged($event)"
+      action="link"
       key="3"
     )
 </template>

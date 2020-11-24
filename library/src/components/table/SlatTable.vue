@@ -5,6 +5,7 @@
       :headers="headers"
       :items="computedItems"
       :items-per-page="10"
+      hide-default-header
     )
       template(
         v-slot:body="{ items }"
@@ -40,6 +41,22 @@
             )
               .label {{ column.label }}
               .value {{ item[column.name ]}}
+            td.action-cell
+              NioIcon(
+                v-if="action === 'link'"
+                name="utility-chevron-right"
+                color="#415298"
+              )
+              NioIcon(
+                v-if="action === 'expand'"
+                name="utility-chevron-down"
+                color="#415298"
+              )
+              NioIcon(
+                v-if="action === 'menu'"
+                name="utility-chevron-more"
+                color="#415298"
+              )
 </template>
 
 <script>
@@ -48,6 +65,7 @@ import NioImageTitleSubtitleSlot from '../slat/slot-templates/content/ImageTitle
 import NioCheckbox from '../../components/Checkbox'
 import NioRadioButton from '../RadioButton'
 import NioRadioGroup from '../RadioGroup'
+import NioIcon from '../icon/Icon'
 
 export default {
   name: 'nio-slat-table',
@@ -156,7 +174,7 @@ export default {
       this.$emit('selectionChanged', val)
     }
   },
-  components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton, NioRadioGroup }
+  components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton, NioRadioGroup, NioIcon }
 }
 </script>
 
