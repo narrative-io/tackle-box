@@ -4,6 +4,21 @@
       v-if="columns && items"
       :items="items"
       :columns="columns"
+      key="1"
+    )
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      single-select
+      key="2"
+    )
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      multi-select
+      key="3"
     )
 </template>
 
@@ -11,6 +26,7 @@
 
 const items = [
   {
+    id: 1,
     imageSrc: "https://picsum.photos/64/64",
     orderName: "My Offline Customers - Onboared",
     orderNumber: "36658334",
@@ -19,6 +35,7 @@ const items = [
     expires: new Date()
   },
   {
+    id: 2,
     imageSrc: "https://picsum.photos/64/64",
     orderName: "Another Order",
     orderNumber: "25653324",
@@ -60,12 +77,8 @@ export default {
           name: "slat",
           props: {
             image: "imageSrc",
-            title: "orderName",
-            subtitle: "orderNumber"
-          },
-          computed: {
-            image: this.computeOrderName,
-            orderNumber: this.computeOrderNumber
+            title: this.computeOrderName,
+            subtitle: this.computeOrderNumber
           }
         },
         {

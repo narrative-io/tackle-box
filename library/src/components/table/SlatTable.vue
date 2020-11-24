@@ -1,54 +1,69 @@
 <template lang="pug">
-  v-data-table.nio-slat-table(
-    v-if="headers && computedItems"
-    :headers="headers"
-    :items="computedItems"
-    :items-per-page="10"
-  )
-    template(
-      v-slot:body="{ items }"
+  .nio-slat-table
+    v-data-table(
+      v-if="headers && computedItems"
+      :headers="headers"
+      :items="computedItems"
+      :items-per-page="10"
     )
-      tbody
-        tr(
-          v-for="item in items"
-          :key="item.name"
-        )
-          td.slat-cell
-            NioImageTitleSubtitleSlot(
-              v-if="item.slat.image && item.slat.title && item.slat.title"
-              :imgSrc="item.slat.image"
-            )
-              template(v-slot:title) {{ item.slat.title }}
-              template(v-slot:subtitle) {{ item.slat.subtitle }}
-
-          td.static-cell(
-            v-for="column of staticColumns"
+      template(
+        v-slot:body="{ items }"
+      )
+        tbody
+          tr(
+            v-for="item in items"
+            :key="item.name"
           )
-            .label {{ column.label }}
-            .value {{ item[column.name ]}}
+            td.selection-cell(v-if="singleSelect || multiSelect")
+              NioRadioButton(
+                v-if="singleSelect"
+                :value="item"
+              )
+              NioCheckbox(
+                v-if="multiSelect"
+                v-model="selection"
+                :value="item.id"
+                :key="item.id"
+              )
+            td.slat-cell
+              NioImageTitleSubtitleSlot(
+                v-if="item.slat.image && item.slat.title && item.slat.title"
+                :imgSrc="item.slat.image"
+              )
+                template(v-slot:title) {{ item.slat.title }}
+                template(v-slot:subtitle) {{ item.slat.subtitle }}
+
+            td.static-cell(
+              v-for="column of staticColumns"
+            )
+              .label {{ column.label }}
+              .value {{ item[column.name ]}}
 </template>
 
 <script>
 
 import NioImageTitleSubtitleSlot from '../slat/slot-templates/content/ImageTitleSubtitleSlot'
+import NioCheckbox from '../../components/Checkbox'
+import NioRadioButton from '../RadioButton'
 
 export default {
   name: 'nio-slat-table',
   props: {
     "items": { type: Array, required: true },
     "columns": { type: Array, required: true },
-    // "filters": { type: Array, required: false, default: []},
     "action": { type: String, required: false, default: "menu"}, // menu | link | expand
-    "selection": { type: String, required: false}, // single | multiple
   },
   data: () => ({
     searchable: false,
-    multiple: false,
+    multiSelect: false,
+    singleSelect: false,
+    selection: null,
     headers: null,
     computedItems: null,
     staticColumns: []
   }),
   mounted() {
+    this.applyHelperAttributes()
     this.makeHeaders()
     this.computeItems()
   },
@@ -58,14 +73,11 @@ export default {
       this.items.forEach(item => {
         const computedItem = {}
         const slatColumn = this.columns.find(column => column.name === 'slat')
-        // console.log(slatColumn)
-        // console.log(item)
         computedItem.slat = {
-          image: slatColumn.computed && slatColumn.computed.image ? slatColumn.computed.image(item) : item[slatColumn.props.image],
-          title: slatColumn.computed && slatColumn.computed.title ? slatColumn.computed.title(item) : item[slatColumn.props.title],
-          subtitle: slatColumn.computed && slatColumn.computed.subtitle ? slatColumn.computed.subtitle(item) : item[slatColumn.props.subtitle]
+          image: typeof slatColumn.props.image === 'function' ? slatColumn.props.image(item) : item[slatColumn.props.image],
+          title: typeof slatColumn.props.title === 'function' ? slatColumn.props.title(item) : item[slatColumn.props.title],
+          subtitle: typeof slatColumn.props.subtitle === 'function' ? slatColumn.props.subtitle(item) : item[slatColumn.props.subtitle]
         }
-        console.log(computedItem)
 
         this.columns.filter(column => column.name !== "slat").forEach(column => {
           if (column.props) {
@@ -80,20 +92,26 @@ export default {
         })
         computedItems.push(computedItem)
       })
-      // console.log(computedItems)
       this.computedItems = computedItems
     },
     makeHeaders() {
       const headers = []
 
-      if (this.action) {
-        
+      if (this.singleSelect) {
+        headers.push({
+          name: 'singleSelect',
+          value: 'singleSelect'
+        })
+      } else if (this.multiSelect) {
+        headers.push({
+          name: 'multiSelect',
+          value: 'multiSelect'
+        })
       }
 
       const slatColumn = this.columns.find(column => column.name === 'slat')
       headers.push({
         name: 'slat',
-        text: 'slat',
         value: 'slat'
       })
 
@@ -111,17 +129,18 @@ export default {
       this.staticColumns = this.headers.filter(header => header.name !== 'selections' && header.name !== 'slat' && header.name !== 'action')
       // console.log(this.staticColumns)
     },
-    applyHelperMethods() {
-      // const attributes = this.$el.attributes
-      // if (attributes.getNamedItem('paginate')) {
-      //   this.paginate = true
-      // }
-      // if (attributes.getNamedItem('filter')) {
-      //   this.filter = true
-      // }
+    applyHelperAttributes() {
+      const attributes = this.$el.attributes
+      if (attributes.getNamedItem('single-select')) {
+        this.singleSelect = true
+      }
+      if (attributes.getNamedItem('multi-select')) {
+        this.multiSelect = true
+        this.selection = []
+      }
     }
   },
-  components: {NioImageTitleSubtitleSlot }
+  components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton }
 }
 </script>
 
