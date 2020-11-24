@@ -11,6 +11,7 @@
       :items="items"
       :columns="columns"
       single-select
+      @selectionChanged="selectionChanged($event)"
       key="2"
     )
     NioSlatTable(
@@ -18,6 +19,7 @@
       :items="items"
       :columns="columns"
       multi-select
+      @selectionChanged="selectionChanged($event)"
       key="3"
     )
 </template>
@@ -56,6 +58,9 @@ export default {
     items: items
   }),
   methods: {
+    selectionChanged(val) {
+      console.log(val)
+    },
     computeOrderName(item) {
       return `Name: ${item.orderName}`
     },

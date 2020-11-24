@@ -13,12 +13,14 @@
           tr(
             v-for="item in items"
             :key="item.name"
+            :class="{'selected': itemSelected(item)}"
           )
             td.selection-cell(v-if="singleSelect || multiSelect")
-              NioRadioButton(
-                v-if="singleSelect"
-                :value="item"
-              )
+              NioRadioGroup(v-model="selection")
+                NioRadioButton(
+                  v-if="singleSelect"
+                  :value="item.id"
+                )
               NioCheckbox(
                 v-if="multiSelect"
                 v-model="selection"
@@ -45,6 +47,7 @@
 import NioImageTitleSubtitleSlot from '../slat/slot-templates/content/ImageTitleSubtitleSlot'
 import NioCheckbox from '../../components/Checkbox'
 import NioRadioButton from '../RadioButton'
+import NioRadioGroup from '../RadioGroup'
 
 export default {
   name: 'nio-slat-table',
@@ -68,10 +71,19 @@ export default {
     this.computeItems()
   },
   methods: {
+    itemSelected(item) {
+      if (this.singleSelect) {
+        return this.selection === item.id
+      } else if (this.multiSelect) {
+        return this.selection.includes(item.id)
+      }
+    },
     computeItems() {
       const computedItems = []
       this.items.forEach(item => {
-        const computedItem = {}
+        const computedItem = {
+          id: item.id
+        }
         const slatColumn = this.columns.find(column => column.name === 'slat')
         computedItem.slat = {
           image: typeof slatColumn.props.image === 'function' ? slatColumn.props.image(item) : item[slatColumn.props.image],
@@ -127,7 +139,6 @@ export default {
     },
     makeStaticColumns() {
       this.staticColumns = this.headers.filter(header => header.name !== 'selections' && header.name !== 'slat' && header.name !== 'action')
-      // console.log(this.staticColumns)
     },
     applyHelperAttributes() {
       const attributes = this.$el.attributes
@@ -140,7 +151,12 @@ export default {
       }
     }
   },
-  components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton }
+  watch: {
+    selection(val) {
+      this.$emit('selectionChanged', val)
+    }
+  },
+  components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton, NioRadioGroup }
 }
 </script>
 
