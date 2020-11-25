@@ -109,4 +109,6 @@ export default {
 
 <style lang="sass" scoped>
 .test-slat-table
+	.nio-slat-table
+		margin: 30px 0px
 </style>

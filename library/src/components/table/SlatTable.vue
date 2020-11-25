@@ -1,5 +1,8 @@
 <template lang="pug">
   .nio-slat-table
+    NioSlatTableHeader(
+        
+    )
     v-data-table(
       v-if="headers && computedItems"
       :headers="headers"
@@ -66,6 +69,7 @@ import NioCheckbox from '../../components/Checkbox'
 import NioRadioButton from '../RadioButton'
 import NioRadioGroup from '../RadioGroup'
 import NioIcon from '../icon/Icon'
+import NioSlatTableHeader from './SlatTableHeader'
 
 export default {
   name: 'nio-slat-table',
@@ -174,7 +178,7 @@ export default {
       this.$emit('selectionChanged', val)
     }
   },
-  components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton, NioRadioGroup, NioIcon }
+  components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton, NioRadioGroup, NioIcon, NioSlatTableHeader }
 }
 </script>
 
