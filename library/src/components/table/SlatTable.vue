@@ -22,9 +22,11 @@
             :class="{'selected': itemSelected(item)}"
           )
             td.selection-cell(v-if="singleSelect || multiSelect")
-              NioRadioGroup(v-model="selection")
+              NioRadioGroup(
+                v-model="selection"
+                v-if="singleSelect"
+              )
                 NioRadioButton(
-                  v-if="singleSelect"
                   :value="item.id"
                 )
               NioCheckbox(

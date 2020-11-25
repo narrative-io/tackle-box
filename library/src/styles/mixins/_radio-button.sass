@@ -4,6 +4,7 @@
 =nio-radio-button
   ::v-deep .v-label
     +nio-form-label
+    left: 8px !important
   ::v-deep .v-icon
     color: $c-primary-light !important
     font-size: 1.25rem !important
@@ -12,6 +13,7 @@
   &.v-item--active  
     ::v-deep .v-icon
       color: $c-primary !important
-
+  ::v-deep .v-input--selection-controls__input
+    margin-right: 0px
 .nio-radio-button
   +nio-radio-button

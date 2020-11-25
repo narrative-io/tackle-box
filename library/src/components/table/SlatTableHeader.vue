@@ -5,9 +5,11 @@
     template(v-slot:content)
       NioTextField(
         v-if="searchable"
+        search-small
       )
       NioSelect(
         v-if="sortable"
+        small
       )
     
 </template>
@@ -21,13 +23,13 @@ import NioSelect from '../Select'
 export default {
   name: 'nio-slat-table-header',
   props: {
-    "searchable": { type: Boolean, required: false, default: false },
-    "sortable": { type: Boolean, required: false, default: false }
+    
   },
   data: () => ({
     
   }),
   mounted() {
+
   },
   methods: {
     

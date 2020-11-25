@@ -34,9 +34,9 @@
         TestSlatTable
         //- TestStepper
         //- TestFileChooser
-        //- TestCheckbox
+        TestCheckbox
         //- TestSwitch
-        //- TestRadioGroup
+        TestRadioGroup
         //- TestImageTile
         //- TestIconFramer
         //- TestIcons
