@@ -1,8 +1,10 @@
 <template lang="pug">
   .nio-slat-table
     NioSlatTableHeader(
-        
+      :searchable="searchable"
+      :sortable="sortable"
     )
+      
     v-data-table(
       v-if="headers && computedItems"
       :headers="headers"
@@ -71,6 +73,7 @@ import NioRadioGroup from '../RadioGroup'
 import NioIcon from '../icon/Icon'
 import NioSlatTableHeader from './SlatTableHeader'
 
+
 export default {
   name: 'nio-slat-table',
   props: {
@@ -82,6 +85,8 @@ export default {
     searchable: false,
     multiSelect: false,
     singleSelect: false,
+    searchable: false,
+    sortable: false,
     selection: null,
     headers: null,
     computedItems: null,
@@ -170,6 +175,12 @@ export default {
       if (attributes.getNamedItem('multi-select')) {
         this.multiSelect = true
         this.selection = []
+      }
+      if (attributes.getNamedItem('searchable')) {
+        this.searchable = true
+      }
+      if (attributes.getNamedItem('sortable')) {
+        this.sortable = true
       }
     }
   },

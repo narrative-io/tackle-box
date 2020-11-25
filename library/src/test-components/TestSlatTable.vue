@@ -12,6 +12,7 @@
       :items="items"
       :columns="columns"
       single-select
+      searchable
       @selectionChanged="selectionChanged($event)"
       action="menu"
       key="2"
@@ -21,9 +22,21 @@
       :items="items"
       :columns="columns"
       multi-select
+      sortable
       @selectionChanged="selectionChanged($event)"
       action="link"
       key="3"
+    )
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      multi-select
+      searchable
+      sortable
+      @selectionChanged="selectionChanged($event)"
+      action="link"
+      key="4"
     )
 </template>
 
@@ -109,6 +122,6 @@ export default {
 
 <style lang="sass" scoped>
 .test-slat-table
-	.nio-slat-table
-		margin: 30px 0px
+  .nio-slat-table
+    margin: 30px 0px
 </style>
