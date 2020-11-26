@@ -11,6 +11,14 @@
       v-if="columns && items"
       :items="items"
       :columns="columns"
+      action="expand"
+      dense-rows
+      key="5"
+    )
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
       single-select
       searchable
       @selectionChanged="selectionChanged($event)"

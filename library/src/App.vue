@@ -25,13 +25,13 @@
       //-   @logout="logout"
       //- )
       .wrapper
-        TestSlat
         //- TestExpansionPanel
         //- TestDivider
         //- TestAlert
         //- TestButtons
         //- TestAutocomplete
         TestSlatTable
+        TestSlat
         //- TestStepper
         //- TestFileChooser
         //- TestCheckbox

@@ -8,7 +8,7 @@
     NioImageTile.nio-slat-image(
       v-else
       :src="imgSrc"
-      :size="imageSize"
+      :size="imageSize ? imageSize : size"
     )
     .nio-slat-title-subtitle
       .nio-slat-title
@@ -27,10 +27,11 @@ export default {
   name: 'image-title-subtitle-slot',
   props: {
     "imgSrc": { type: String, required: false },
-    "iconName": { type: String, required: false }
+		"iconName": { type: String, required: false },
+		"size": { type: String, required: false, default: 'normal' }
   },
   data: () => ({
-		imageSize: 'normal'
+		imageSize: null
   }),
   mounted() {
 		this.applyHelperAttributes()

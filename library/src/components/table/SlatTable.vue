@@ -38,6 +38,7 @@
               NioImageTitleSubtitleSlot(
                 v-if="item.slat.image && item.slat.title && item.slat.title"
                 :imgSrc="item.slat.image"
+                :size="dense ? 'small' : 'normal'"
               )
                 template(v-slot:title) {{ item.slat.title }}
                 template(v-slot:subtitle) {{ item.slat.subtitle }}
@@ -92,6 +93,7 @@ export default {
     selection: null,
     headers: null,
     computedItems: null,
+    dense: false,
     staticColumns: []
   }),
   mounted() {
@@ -183,6 +185,9 @@ export default {
       }
       if (attributes.getNamedItem('sortable')) {
         this.sortable = true
+      }
+      if (attributes.getNamedItem('dense-rows')) {
+        this.dense = true
       }
     }
   },
