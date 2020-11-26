@@ -4,7 +4,6 @@
       :searchable="searchable"
       :sortable="sortable"
     )
-      
     v-data-table(
       v-if="headers && computedItems"
       :headers="headers"
@@ -45,6 +44,7 @@
 
             td.static-cell(
               v-for="column of staticColumns"
+              :class="[`column-${column.name}`]"
             )
               .label {{ column.label }}
               .value {{ item[column.name ]}}
@@ -61,7 +61,7 @@
               )
               NioIcon(
                 v-if="action === 'menu'"
-                name="utility-chevron-more"
+                name="utility-more"
                 color="#415298"
               )
 </template>

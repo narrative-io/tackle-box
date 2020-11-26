@@ -7,10 +7,25 @@
         template(v-slot:title) Item 1 title
         template(v-slot:subtitle) Item 1 subtitle
       NioImageTileLinkSlat(
-        imgSrc="https://picsum.photos/48/48"
+        imgSrc="https://picsum.photos/64/64"
       )
         template(v-slot:title) Item 1 title
         template(v-slot:subtitle) Item 1 subtitle  
+      NioImageTileLinkSlat(
+        imgSrc="https://picsum.photos/64/64"
+      )
+        template(v-slot:title) Item 1 title
+      NioImageTileLinkSlat(
+        imgSrc="https://picsum.photos/64/64"
+        small
+      )
+        template(v-slot:title) Item 1 title
+        template(v-slot:subtitle) Item 1 subtitle  
+      NioImageTileLinkSlat(
+        imgSrc="https://picsum.photos/464/64"
+        small
+      )
+        template(v-slot:title) Item 1 title  
       NioImageTileLinkSlat
         .test Content
 </template>

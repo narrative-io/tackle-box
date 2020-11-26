@@ -2,6 +2,7 @@
   NioLinkSlat.nio-image-tile-link-slat
     ImageTitleSubtitleSlot(
       imgSrc="https://picsum.photos/48/48"
+      v-bind="$attrs"
     )
       template(v-slot:title)
         slot(name="title")

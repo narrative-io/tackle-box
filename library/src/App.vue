@@ -25,7 +25,7 @@
       //-   @logout="logout"
       //- )
       .wrapper
-        //- TestSlat
+        TestSlat
         //- TestExpansionPanel
         //- TestDivider
         //- TestAlert
@@ -34,9 +34,9 @@
         TestSlatTable
         //- TestStepper
         //- TestFileChooser
-        TestCheckbox
+        //- TestCheckbox
         //- TestSwitch
-        TestRadioGroup
+        //- TestRadioGroup
         //- TestImageTile
         //- TestIconFramer
         //- TestIcons

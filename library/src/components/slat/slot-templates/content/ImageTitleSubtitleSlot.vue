@@ -8,7 +8,7 @@
     NioImageTile.nio-slat-image(
       v-else
       :src="imgSrc"
-      size="normal"
+      :size="imageSize"
     )
     .nio-slat-title-subtitle
       .nio-slat-title
@@ -30,11 +30,18 @@ export default {
     "iconName": { type: String, required: false }
   },
   data: () => ({
-
+		imageSize: 'normal'
   }),
   mounted() {
-  },
+		this.applyHelperAttributes()
+	},
   methods: {
+		applyHelperAttributes() {
+			const attributes = this.$el.attributes
+			if (attributes.getNamedItem('small')) {
+				this.imageSize = 'small'
+			}
+		},	
     click() {
       this.$emit('click')
     }
