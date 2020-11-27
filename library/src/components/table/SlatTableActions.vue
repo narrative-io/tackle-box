@@ -1,9 +1,10 @@
 <template lang="pug">
-  NioSlat.nio-slat-table-actions(
+  tr.nio-slat-table-actions
+    NioSlat.nio-slat-table-actions(
 
-  )
-    template(v-slot:content)
-      slot(name="footer-actions")
+    )
+      template(v-slot:content)
+        slot(name="footer-actions")
 </template>
 
 <script>

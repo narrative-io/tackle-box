@@ -6,9 +6,10 @@
       :columns="columns"
       action="expand"
       key="1"
+      footer-actions
     )
       template(v-slot:footer-actions)
-        .test Test
+        NioButton(normal-primary-append iconName="utility-plus") New Item
     NioSlatTable(
       v-if="columns && items"
       :items="items"
@@ -16,7 +17,11 @@
       action="expand"
       dense-rows
       key="5"
+      footer-actions
     )
+      template(v-slot:footer-actions)
+        NioButton(normal-primary-append iconName="utility-plus") New Item
+        NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
     NioSlatTable(
       v-if="columns && items"
       :items="items"
@@ -26,7 +31,11 @@
       @selectionChanged="selectionChanged($event)"
       action="menu"
       key="2"
+      footer-actions
     )
+      template(v-slot:footer-actions)
+        NioButton(normal-primary-append iconName="utility-plus") New Item
+        NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
     NioSlatTable(
       v-if="columns && items"
       :items="items"
@@ -74,10 +83,12 @@ const items = [
 ]
 
 import NioSlatTable from '../components/table/SlatTable'
+import NioButton from '../components/Button'
 
 export default {
   components: {
-    NioSlatTable
+    NioSlatTable,
+    NioButton
   },
   data: () => ({
     columns: null,

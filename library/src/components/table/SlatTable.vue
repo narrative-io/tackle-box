@@ -65,11 +65,13 @@
                 name="utility-more"
                 color="#415298"
               )
-    NioSlatTableActions(
-      
-    )
-      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data") 
+          tr(v-if="actions && numColumns")    
+            td(:colspan="numColumns")
+              NioSlatTableActions(
+                
+              )
+                template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+                  slot(:name="name" v-bind="data") 
 </template>
 
 <script>
@@ -99,6 +101,8 @@ export default {
     headers: null,
     computedItems: null,
     dense: false,
+    actions: false,
+    numColumns: null,
     staticColumns: []
   }),
   mounted() {
@@ -113,6 +117,16 @@ export default {
       } else if (this.multiSelect) {
         return this.selection.includes(item.id)
       }
+    },
+    getNumColumns() {
+      let columns = this.staticColumns.length
+      if (this.singleSelect || this.multiSelect) {
+        columns++
+      }
+      if (this.actions) {
+        columns++
+      }
+      this.numColumns = columns + 1
     },
     computeItems() {
       const computedItems = []
@@ -199,11 +213,17 @@ export default {
       if (attributes.getNamedItem('count-selected-header')) {
         this.searchable = true
       }
+      if (attributes.getNamedItem('footer-actions')) {
+        this.actions = true
+      }
     }
   },
   watch: {
     selection(val) {
       this.$emit('selectionChanged', val)
+    },
+    staticColumns(val) {
+      this.getNumColumns()
     }
   },
   components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton, NioRadioGroup, NioIcon, NioSlatTableHeader, NioSlatTableActions }
