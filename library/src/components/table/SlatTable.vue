@@ -65,6 +65,11 @@
                 name="utility-more"
                 color="#415298"
               )
+    NioSlatTableActions(
+      
+    )
+      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+        slot(:name="name" v-bind="data") 
 </template>
 
 <script>
@@ -75,7 +80,7 @@ import NioRadioButton from '../RadioButton'
 import NioRadioGroup from '../RadioGroup'
 import NioIcon from '../icon/Icon'
 import NioSlatTableHeader from './SlatTableHeader'
-
+import NioSlatTableActions from './SlatTableActions'
 
 export default {
   name: 'nio-slat-table',
@@ -180,14 +185,19 @@ export default {
         this.multiSelect = true
         this.selection = []
       }
-      if (attributes.getNamedItem('searchable')) {
-        this.searchable = true
-      }
-      if (attributes.getNamedItem('sortable')) {
-        this.sortable = true
-      }
       if (attributes.getNamedItem('dense-rows')) {
         this.dense = true
+      }
+
+      // header types
+      if (attributes.getNamedItem('search-sort-header')) {
+        this.searchable = true
+      }
+      if (attributes.getNamedItem('count-sort-header')) {
+        this.searchable = true
+      }
+      if (attributes.getNamedItem('count-selected-header')) {
+        this.searchable = true
       }
     }
   },
@@ -196,7 +206,7 @@ export default {
       this.$emit('selectionChanged', val)
     }
   },
-  components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton, NioRadioGroup, NioIcon, NioSlatTableHeader }
+  components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton, NioRadioGroup, NioIcon, NioSlatTableHeader, NioSlatTableActions }
 }
 </script>
 

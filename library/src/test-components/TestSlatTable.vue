@@ -7,6 +7,8 @@
       action="expand"
       key="1"
     )
+      template(v-slot:footer-actions)
+        .test Test
     NioSlatTable(
       v-if="columns && items"
       :items="items"
