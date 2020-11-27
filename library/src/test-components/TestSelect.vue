@@ -1,7 +1,6 @@
 <template lang="pug">
   .test-select
     NioSelect.select(
-      multiple
       v-model="selectedItems" 
       :items="items"
       :ref="'text'" 

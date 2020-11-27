@@ -62,15 +62,16 @@
               v-menu(
                 v-if="action === 'menu'"
                 contentClass="nio-slat-table-item-menu"
+                left
+                nudgeBottom="20"
               )
                 template(v-slot:activator="{ on, attrs }")
                   v-button(v-on="on")
                     NioIcon(
                       name="utility-more"
                       color="#415298"
-                    )
-                .item-menu()    
-                  slot(name="item-menu" v-bind:item="item")
+                    )        
+                slot(name="item-menu" v-bind:item="item")
           tr.actions-row(v-if="actions && numColumns")    
             NioSlatTableActions(
               :colSpan="numColumns"
@@ -133,9 +134,6 @@ export default {
       }
       this.numColumns = columns + 1
     },
-    getAttachElement(item) {
-      console.log(document.getElementById(`nio-slat-table-menu-${item.id}`))
-    } ,
     computeItems() {
       const computedItems = []
       this.items.forEach(item => {
@@ -203,7 +201,6 @@ export default {
       if (attributes.getNamedItem('dense-rows')) {
         this.dense = true
       }
-
       // header types
       if (attributes.getNamedItem('search-sort-header')) {
         this.searchable = true
@@ -236,8 +233,10 @@ export default {
 </style>
 
 <style lang="sass">
+  @import '../../styles/global/_colors'
   @import '../../styles/mixins/_menu'
   .nio-slat-table-item-menu
     +nio-menu   
+    background-color: $c-white
 </style>
 

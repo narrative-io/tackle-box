@@ -38,9 +38,9 @@
         NioButton(normal-primary-append iconName="utility-plus") New Item
       template(v-slot:item-menu="slotProps")  
         v-list
-          v-list-item Update budget
-          v-list-item Update Expiration
-          v-list-item Delete {{ slotProps.item.orderNumber }}
+          v-list-item(@click="menuItemClicked('updateBudget', slotProps.item)") Update budget
+          v-list-item(@click="menuItemClicked('updateExpiration', slotProps.item)") Update Expiration
+          v-list-item(@click="menuItemClicked('delete', slotProps.item)") Delete {{ slotProps.item.orderNumber }}
     NioSlatTable(
       v-if="columns && items"
       :items="items"
@@ -140,6 +140,9 @@ export default {
           label: "Expires"
         }
       ]  
+    },
+    menuItemClicked(event, item) {
+      alert(`Menu item clicked. Event: ${event}, itemId: ${item.id}`)
     }
   },
   mounted() {
