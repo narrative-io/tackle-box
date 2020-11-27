@@ -36,6 +36,11 @@
       template(v-slot:footer-actions)
         NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
         NioButton(normal-primary-append iconName="utility-plus") New Item
+      template(v-slot:item-menu="slotProps")  
+        v-list
+          v-list-item Update budget
+          v-list-item Update Expiration
+          v-list-item Delete {{ slotProps.item.orderNumber }}
     NioSlatTable(
       v-if="columns && items"
       :items="items"
@@ -84,11 +89,13 @@ const items = [
 
 import NioSlatTable from '../components/table/SlatTable'
 import NioButton from '../components/Button'
+import VButton from 'vuetify'
 
 export default {
   components: {
     NioSlatTable,
-    NioButton
+    NioButton,
+    VButton
   },
   data: () => ({
     columns: null,
@@ -105,7 +112,7 @@ export default {
       return `#${item.orderNumber}`
     },
     computeSpentBudget(item) {
-      return `${item.spent}/${item.budget}`
+      return `$${item.spent}/$${item.budget}`
     },
     computeExpires(item) {
       return this.formatDate(item.expires)

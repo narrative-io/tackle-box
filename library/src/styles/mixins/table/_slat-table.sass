@@ -1,5 +1,6 @@
 @import '../../global/_colors'
 @import '../slat/_slat-group'
+@import '../_menu'
   
 =nio-slat-table 
   +nio-slat-group 
@@ -40,6 +41,9 @@
         cursor: pointer
         opacity: 0.5
 
+      .item-menu
+        +nio-menu
+        
     & > td + td
       padding-left: 16px !important
 
@@ -50,7 +54,7 @@
   ::v-deep .nio-slat-table-actions
     padding: 22px 0px !important
      
-  ::v-deep .v-data-footer  
+  ::v-deep .v-data-footer
     border-top: none !important
       
 .nio-slat-table

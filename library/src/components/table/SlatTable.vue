@@ -42,13 +42,12 @@
               )
                 template(v-slot:title) {{ item.slat.title }}
                 template(v-slot:subtitle) {{ item.slat.subtitle }}
-
             td.static-cell(
               v-for="column of staticColumns"
               :class="[`column-${column.name}`]"
             )
               .label.nio-table-label.text-primary-dark {{ column.label }}
-              .value.nio-table-value.text-primary-dark {{ item[column.name ]}}
+              .value.nio-table-value.text-primary-dark {{ item.columnValues[column.name ]}}
             td.action-cell
               NioIcon(
                 v-if="action === 'link'"
@@ -60,16 +59,18 @@
                 name="utility-chevron-down"
                 color="#415298"
               )
-              v-menu(v-if="action === 'menu'")
+              v-menu(
+                v-if="action === 'menu'"
+                contentClass="nio-slat-table-item-menu"
+              )
                 template(v-slot:activator="{ on, attrs }")
                   v-button(v-on="on")
                     NioIcon(
                       name="utility-more"
                       color="#415298"
                     )
-                v-list
-                  v-list-item Test
-              
+                .item-menu()    
+                  slot(name="item-menu" v-bind:item="item")
           tr.actions-row(v-if="actions && numColumns")    
             NioSlatTableActions(
               :colSpan="numColumns"
@@ -132,30 +133,26 @@ export default {
       }
       this.numColumns = columns + 1
     },
+    getAttachElement(item) {
+      console.log(document.getElementById(`nio-slat-table-menu-${item.id}`))
+    } ,
     computeItems() {
       const computedItems = []
       this.items.forEach(item => {
-        const computedItem = {
-          id: item.id
-        }
+        const computedItem = item
         const slatColumn = this.columns.find(column => column.name === 'slat')
         computedItem.slat = {
           image: typeof slatColumn.props.image === 'function' ? slatColumn.props.image(item) : item[slatColumn.props.image],
           title: typeof slatColumn.props.title === 'function' ? slatColumn.props.title(item) : item[slatColumn.props.title],
           subtitle: typeof slatColumn.props.subtitle === 'function' ? slatColumn.props.subtitle(item) : item[slatColumn.props.subtitle]
         }
+        
+        const columnValues = {}
 
         this.columns.filter(column => column.name !== "slat").forEach(column => {
-          if (column.props) {
-            const itemProps = {}
-            column.props.forEach(prop => {
-              itemProps[prop] = column.computed && column.computed.hasOwnProperty(prop) ? column.computed[prop](item) : item[prop] 
-            })
-            computedItem[column.name] = itemProps
-          } else {
-            computedItem[column.name] = column.computed ? column.computed(item) : item[column.name]
-          }
+          columnValues[column.name] = column.computed ? column.computed(item) : item[column.name]
         })
+        computedItem.columnValues = columnValues
         computedItems.push(computedItem)
       })
       this.computedItems = computedItems
@@ -237,3 +234,10 @@ export default {
 <style lang="sass" scoped>
   @import '../../styles/mixins/table/_slat-table'  
 </style>
+
+<style lang="sass">
+  @import '../../styles/mixins/_menu'
+  .nio-slat-table-item-menu
+    +nio-menu   
+</style>
+
