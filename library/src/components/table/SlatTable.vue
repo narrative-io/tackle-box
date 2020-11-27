@@ -47,8 +47,8 @@
               v-for="column of staticColumns"
               :class="[`column-${column.name}`]"
             )
-              .label {{ column.label }}
-              .value {{ item[column.name ]}}
+              .label.nio-table-label.text-primary-dark {{ column.label }}
+              .value.nio-table-value.text-primary-dark {{ item[column.name ]}}
             td.action-cell
               NioIcon(
                 v-if="action === 'link'"
