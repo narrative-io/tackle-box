@@ -10,7 +10,7 @@
     box-shadow: inset 0px -1px 0px #DAE0F9
     
     &.selected, &:hover
-      background-color: $c-canvas
+      background-color: $c-canvas !important
 
     td
       padding: 16px 0px !important
@@ -40,6 +40,13 @@
     & > td + td
       padding-left: 16px !important
 
+  .actions-row:hover
+    cursor: initial !important
+    background-color: rgba(0, 0, 0, 0) !important
+
+  ::v-deep .nio-slat-table-actions
+    padding: 22px 0px !important
+     
   ::v-deep .v-data-footer  
     border-top: none !important
       

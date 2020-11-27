@@ -20,8 +20,8 @@
       footer-actions
     )
       template(v-slot:footer-actions)
-        NioButton(normal-primary-append iconName="utility-plus") New Item
         NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
+        NioButton(normal-primary-append iconName="utility-plus") New Item
     NioSlatTable(
       v-if="columns && items"
       :items="items"
@@ -34,8 +34,8 @@
       footer-actions
     )
       template(v-slot:footer-actions)
-        NioButton(normal-primary-append iconName="utility-plus") New Item
         NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
+        NioButton(normal-primary-append iconName="utility-plus") New Item
     NioSlatTable(
       v-if="columns && items"
       :items="items"

@@ -65,13 +65,12 @@
                 name="utility-more"
                 color="#415298"
               )
-          tr(v-if="actions && numColumns")    
-            td(:colspan="numColumns")
-              NioSlatTableActions(
-                
-              )
-                template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-                  slot(:name="name" v-bind="data") 
+          tr.actions-row(v-if="actions && numColumns")    
+            NioSlatTableActions(
+              :colSpan="numColumns"
+            )
+              template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+                slot(:name="name" v-bind="data") 
 </template>
 
 <script>

@@ -1,8 +1,6 @@
 <template lang="pug">
-  tr.nio-slat-table-actions
-    NioSlat.nio-slat-table-actions(
-
-    )
+  td.nio-slat-table-actions(:colspan="colSpan")
+    NioSlat
       template(v-slot:content)
         slot(name="footer-actions")
 </template>
@@ -11,11 +9,10 @@
 
 import NioSlat from '../slat/Slat'
 
-
 export default {
   name: 'nio-slat-table-actions',
   props: {
-    
+    colSpan: { type: Number, required: true }
   },
   data: () => ({
     
