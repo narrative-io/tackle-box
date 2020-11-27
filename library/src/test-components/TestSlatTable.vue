@@ -58,7 +58,7 @@ const items = [
     orderNumber: "36658334",
     spent: "500",
     budget: "2400",
-    expires: new Date()
+    expires: "Jan 01 2020"
   },
   {
     id: 2,
@@ -67,7 +67,7 @@ const items = [
     orderNumber: "25653324",
     spent: "100",
     budget: "600",
-    expires: new Date()
+    expires: "Jan 12 2020"
   }
 ]
 

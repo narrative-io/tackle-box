@@ -3,7 +3,7 @@
   
 =nio-slat-table 
   +nio-slat-group 
-   
+
   tr
     background-color: $c-white
     border-bottom: 0px !important
@@ -25,11 +25,17 @@
       width: 24px
       padding-right: 24px !important
 
-    td.static-cell *
+    td.static-cell
       width: 120px
+      
+    td.static-cell *
+      width: 100%
       white-space: nowrap
       overflow: hidden
       text-align: right
+
+    td.action-cell
+      width: 14px	
 
   ::v-deep .v-data-footer  
     border-top: none !important
