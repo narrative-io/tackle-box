@@ -60,11 +60,16 @@
                 name="utility-chevron-down"
                 color="#415298"
               )
-              NioIcon(
-                v-if="action === 'menu'"
-                name="utility-more"
-                color="#415298"
-              )
+              v-menu(v-if="action === 'menu'")
+                template(v-slot:activator="{ on, attrs }")
+                  v-button(v-on="on")
+                    NioIcon(
+                      name="utility-more"
+                      color="#415298"
+                    )
+                v-list
+                  v-list-item Test
+              
           tr.actions-row(v-if="actions && numColumns")    
             NioSlatTableActions(
               :colSpan="numColumns"
