@@ -10,7 +10,7 @@
     )
       template(v-slot:footer-actions)
         NioButton(normal-primary-append iconName="utility-plus") New Item
-      //- template(v-slot:expanded-item="slotProps") {{ slotProps.item }}    
+      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}    
     NioSlatTable(
       v-if="columns && items"
       :items="items"
@@ -23,6 +23,7 @@
       template(v-slot:footer-actions)
         NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
         NioButton(normal-primary-append iconName="utility-plus") New Item
+      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}   
     NioSlatTable(
       v-if="columns && items"
       :items="items"
@@ -42,6 +43,7 @@
           v-list-item(@click="menuItemClicked('updateBudget', slotProps.item)") Update budget
           v-list-item(@click="menuItemClicked('updateExpiration', slotProps.item)") Update Expiration
           v-list-item(@click="menuItemClicked('delete', slotProps.item)") Delete {{ slotProps.item.orderNumber }}
+      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}        
     NioSlatTable(
       v-if="columns && items"
       :items="items"
@@ -52,6 +54,7 @@
       action="link"
       key="3"
     )
+      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}     
     NioSlatTable(
       v-if="columns && items"
       :items="items"

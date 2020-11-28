@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-slat-table
+  .nio-slat-table(:class="[`action-${action}`, {'single-select': singleSelect, 'multi-select': multiSelect, }]")
     NioSlatTableHeader(
       :searchable="searchable"
       :sortable="sortable"
@@ -13,13 +13,14 @@
       hide-default-header
     )
       template(
-        v-slot:item="{ item, index }"    
+        v-slot:item="{ item, expand, isExpanded }"    
       )
         tr(
           :key="item.id"
           :class="{'selected': itemSelected(item)}"
+          @click="handleItemClick(item, expand, isExpanded)"
         )
-          td.selection-cell(v-if="singleSelect || multiSelect")
+          td.selection-cell(v-if="singleSelect || multiSelect" @click.stop)
             NioRadioGroup(
               v-model="selection"
               v-if="singleSelect"
@@ -58,7 +59,6 @@
               v-if="action === 'expand'"
               name="utility-chevron-down"
               color="#415298"
-              @click="expandItem(item)"
             )
             v-menu(
               v-if="action === 'menu'"
@@ -73,6 +73,9 @@
                     color="#415298"
                   )        
               slot(name="item-menu" v-bind:item="item")
+      template(v-slot:expanded-item="{ headers, item }")
+        td(:colspan="numColumns") 
+          slot(name="item-expanded" v-bind:item="item")
       template(v-slot:body.append)      
         tr.actions-row(v-if="actions && numColumns")    
           NioSlatTableActions(
@@ -112,8 +115,6 @@ export default {
     actions: false,
     numColumns: null,
     staticColumns: [],
-    expandedItems: [],
-    singleExpand: false
   }),
   mounted() {
     this.applyHelperAttributes()
@@ -121,6 +122,11 @@ export default {
     this.computeItems()
   },
   methods: {
+    handleItemClick(item, expandFn, isExpanded) {
+      if (this.action === 'expand') {
+        expandFn(!isExpanded)
+      }
+    },
     itemSelected(item) {
       if (this.singleSelect) {
         return this.selection === item.id
@@ -129,11 +135,11 @@ export default {
       }
     },
     expandItem(item) {
-      if (this.expandedItems.find(expandedItem => item.id === expandedItem.id)) {
-        this.expandedItems = this.expandedItems.filter(expandedItem => item.id !== expandedItem.id)
-      } else {
-        this.expandedItems.push(item)
-      }
+      // if (this.expandedItems.find(expandedItem => item.id === expandedItem.id)) {
+      //   this.expandedItems = this.expandedItems.filter(expandedItem => item.id !== expandedItem.id)
+      // } else {
+      //   this.expandedItems.push(item)
+      // }
     },
     getNumColumns() {
       let columns = this.staticColumns.length
@@ -195,15 +201,12 @@ export default {
         })
       })
 
-      if (this.action === 'expand') {
-        headers.push({ text: '', value: 'data-table-expand' })
-      }
       this.headers = headers
-      console.log(this.headers)
       this.makeStaticColumns()
     },
     makeStaticColumns() {
       this.staticColumns = this.headers.filter(header => header.name !== 'selections' && header.name !== 'slat' && header.name !== 'action')
+      console.log(this.staticColumns)
     },
     applyHelperAttributes() {
       const attributes = this.$el.attributes
