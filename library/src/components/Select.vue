@@ -2,9 +2,9 @@
     v-select.nio-select(
       :class="{ small: smallAttr }"
       :model="model"
-      :menu-props="{ offsetY: true, nudgeBottom: 10  }"
-      :attach="node"
+      :menu-props="{contentClass: 'nio-select-menu', offsetY: true, nudgeBottom: 10  }"
       outlined
+      :attach="attach ? node : undefined"
       v-bind="$attrs"
       v-on="$listeners"
       @input="$emit('update', $event)"
@@ -31,13 +31,17 @@
     },
     data: () => ({
       node: null,
-      smallAttr: false
+      smallAttr: false,
+      attach: false
     }),
     methods: {
       applyHelperAttributes() {
         const attributes = this.$el.attributes
         if (attributes.getNamedItem('small')) {
           this.smallAttr = true
+        }
+        if (attributes.getNamedItem('attach-to-parent')) {
+          this.attach = true
         }
       }  
     },
@@ -51,6 +55,13 @@
     }
   }
 </script>
+
+<style lang="sass">
+  @import '../styles/mixins/_menu'
+  
+  .v-menu__content.nio-select-menu
+    +nio-menu
+</style>
 
 <style lang="sass" scoped>
   @import '../styles/mixins/_select'  

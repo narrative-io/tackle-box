@@ -6,7 +6,7 @@
       :columns="columns"
       action="expand"
       key="1"
-      footer-actions
+      pagination
     )
       template(v-slot:footer-actions)
         NioButton(normal-primary-append iconName="utility-plus") New Item
@@ -19,6 +19,7 @@
       dense-rows
       key="5"
       footer-actions
+      pagination
     )
       template(v-slot:footer-actions)
         NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back

@@ -11,6 +11,8 @@
       :items-per-page="10"
       item-key="id"
       hide-default-header
+      hide-default-footer
+      :footer-props="{'items-per-page-text':''}"
     )
       template(
         v-slot:item="{ item, expand, isExpanded }"    
@@ -83,6 +85,14 @@
           )
             template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
               slot(:name="name" v-bind="data") 
+      template(v-slot:footer v-if="pagination")
+        .pagination-footer
+          NioSelect(
+            small
+            v-model="itemsPerPage"
+            :items="itemsPerPageOptions"
+          )
+            template(v-slot:append) items per page
 </template>
 
 <script>
@@ -94,6 +104,7 @@ import NioRadioGroup from '../RadioGroup'
 import NioIcon from '../icon/Icon'
 import NioSlatTableHeader from './SlatTableHeader'
 import NioSlatTableActions from './SlatTableActions'
+import NioSelect from '../Select'
 
 export default {
   name: 'nio-slat-table',
@@ -101,6 +112,8 @@ export default {
     "items": { type: Array, required: true },
     "columns": { type: Array, required: true },
     "action": { type: String, required: false, default: "menu"}, // menu | link | expand
+    "itemsPerPageOptions": { type: Array, required: false, default: function() { return ['-1, 5, 10, 20']}},
+    "initialItemsPerPage": { type: Number, required: false}
   },
   data: () => ({
     searchable: false,
@@ -114,12 +127,17 @@ export default {
     dense: false,
     actions: false,
     numColumns: null,
+    pagination: false, 
     staticColumns: [],
+    itemsPerPage: 10
   }),
   mounted() {
     this.applyHelperAttributes()
     this.makeHeaders()
     this.computeItems()
+    if (this.initialItemsPerPage) {
+      this.itemsPerPage = this.initialItemsPerPage
+    }
   },
   methods: {
     handleItemClick(item, expandFn, isExpanded) {
@@ -133,13 +151,6 @@ export default {
       } else if (this.multiSelect) {
         return this.selection.includes(item.id)
       }
-    },
-    expandItem(item) {
-      // if (this.expandedItems.find(expandedItem => item.id === expandedItem.id)) {
-      //   this.expandedItems = this.expandedItems.filter(expandedItem => item.id !== expandedItem.id)
-      // } else {
-      //   this.expandedItems.push(item)
-      // }
     },
     getNumColumns() {
       let columns = this.staticColumns.length
@@ -206,7 +217,6 @@ export default {
     },
     makeStaticColumns() {
       this.staticColumns = this.headers.filter(header => header.name !== 'selections' && header.name !== 'slat' && header.name !== 'action')
-      console.log(this.staticColumns)
     },
     applyHelperAttributes() {
       const attributes = this.$el.attributes
@@ -233,6 +243,9 @@ export default {
       if (attributes.getNamedItem('footer-actions')) {
         this.actions = true
       }
+      if (attributes.getNamedItem('pagination')) {
+        this.pagination = true
+      }
     }
   },
   watch: {
@@ -243,7 +256,7 @@ export default {
       this.getNumColumns()
     }
   },
-  components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton, NioRadioGroup, NioIcon, NioSlatTableHeader, NioSlatTableActions }
+  components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton, NioRadioGroup, NioIcon, NioSlatTableHeader, NioSlatTableActions, NioSelect }
 }
 </script>
 

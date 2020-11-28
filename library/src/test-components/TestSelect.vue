@@ -11,6 +11,7 @@
       multiple
       v-model="selectedItems" 
       :items="items"
+      attach-to-parent
       :ref="'text'" 
       :label="'Label'"
     )

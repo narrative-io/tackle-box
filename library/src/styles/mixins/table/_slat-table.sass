@@ -1,7 +1,9 @@
 @import '../../global/_colors'
 @import '../slat/_slat-group'
 @import '../_menu'
-  
+@import '../_select' 
+@import '../_input' 
+
 =nio-slat-table 
   +nio-slat-group 
 
@@ -62,5 +64,16 @@
     ::v-deep .action-cell
       opacity: 0.5  
 
+  .pagination-footer
+    height: 70px
+    padding: 16px
+    padding-right: 24px
+    display: flex
+    justify-content: space-between
+    align-items: center    
+    .nio-select
+      flex-grow: 0
+      margin-bottom: 0
+      width: 232px
 .nio-slat-table
   +nio-slat-table
