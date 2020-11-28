@@ -9,75 +9,77 @@
       :headers="headers"
       :items="computedItems"
       :items-per-page="10"
+      item-key="id"
       hide-default-header
     )
       template(
-        v-slot:body="{ items }"
+        v-slot:item="{ item, index }"    
       )
-        tbody
-          tr(
-            v-for="item in items"
-            :key="item.name"
-            :class="{'selected': itemSelected(item)}"
-          )
-            td.selection-cell(v-if="singleSelect || multiSelect")
-              NioRadioGroup(
-                v-model="selection"
-                v-if="singleSelect"
-              )
-                NioRadioButton(
-                  :value="item.id"
-                )
-              NioCheckbox(
-                v-if="multiSelect"
-                v-model="selection"
+        tr(
+          :key="item.id"
+          :class="{'selected': itemSelected(item)}"
+        )
+          td.selection-cell(v-if="singleSelect || multiSelect")
+            NioRadioGroup(
+              v-model="selection"
+              v-if="singleSelect"
+            )
+              NioRadioButton(
                 :value="item.id"
-                :key="item.id"
               )
-            td.slat-cell
-              NioImageTitleSubtitleSlot(
-                v-if="item.slat.image && item.slat.title && item.slat.title"
-                :imgSrc="item.slat.image"
-                :size="dense ? 'small' : 'normal'"
-              )
-                template(v-slot:title) {{ item.slat.title }}
-                template(v-slot:subtitle) {{ item.slat.subtitle }}
-            td.static-cell(
-              v-for="column of staticColumns"
-              :class="[`column-${column.name}`]"
+            NioCheckbox(
+              v-if="multiSelect"
+              v-model="selection"
+              :value="item.id"
+              :key="item.id"
             )
-              .label.nio-table-label.text-primary-dark {{ column.label }}
-              .value.nio-table-value.text-primary-dark {{ item.columnValues[column.name ]}}
-            td.action-cell
-              NioIcon(
-                v-if="action === 'link'"
-                name="utility-chevron-right"
-                color="#415298"
-              )
-              NioIcon(
-                v-if="action === 'expand'"
-                name="utility-chevron-down"
-                color="#415298"
-              )
-              v-menu(
-                v-if="action === 'menu'"
-                contentClass="nio-slat-table-item-menu"
-                left
-                nudgeBottom="20"
-              )
-                template(v-slot:activator="{ on, attrs }")
-                  v-button(v-on="on")
-                    NioIcon(
-                      name="utility-more"
-                      color="#415298"
-                    )        
-                slot(name="item-menu" v-bind:item="item")
-          tr.actions-row(v-if="actions && numColumns")    
-            NioSlatTableActions(
-              :colSpan="numColumns"
+            
+          td.slat-cell
+            NioImageTitleSubtitleSlot(
+              v-if="item.slat.image && item.slat.title && item.slat.title"
+              :imgSrc="item.slat.image"
+              :size="dense ? 'small' : 'normal'"
             )
-              template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-                slot(:name="name" v-bind="data") 
+              template(v-slot:title) {{ item.slat.title }}
+              template(v-slot:subtitle) {{ item.slat.subtitle }}
+          td.static-cell(
+            v-for="column of staticColumns"
+            :class="[`column-${column.name}`]"
+          )
+            .label.nio-table-label.text-primary-dark {{ column.label }}
+            .value.nio-table-value.text-primary-dark {{ item.columnValues[column.name ]}}
+          td.action-cell
+            NioIcon(
+              v-if="action === 'link'"
+              name="utility-chevron-right"
+              color="#415298"
+            )
+            NioIcon(
+              v-if="action === 'expand'"
+              name="utility-chevron-down"
+              color="#415298"
+              @click="expandItem(item)"
+            )
+            v-menu(
+              v-if="action === 'menu'"
+              contentClass="nio-slat-table-item-menu"
+              left
+              nudgeBottom="20"
+            )
+              template(v-slot:activator="{ on, attrs }")
+                .activator(v-on="on")
+                  NioIcon(
+                    name="utility-more"
+                    color="#415298"
+                  )        
+              slot(name="item-menu" v-bind:item="item")
+      template(v-slot:body.append)      
+        tr.actions-row(v-if="actions && numColumns")    
+          NioSlatTableActions(
+            :colSpan="numColumns"
+          )
+            template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+              slot(:name="name" v-bind="data") 
 </template>
 
 <script>
@@ -109,7 +111,9 @@ export default {
     dense: false,
     actions: false,
     numColumns: null,
-    staticColumns: []
+    staticColumns: [],
+    expandedItems: [],
+    singleExpand: false
   }),
   mounted() {
     this.applyHelperAttributes()
@@ -122,6 +126,13 @@ export default {
         return this.selection === item.id
       } else if (this.multiSelect) {
         return this.selection.includes(item.id)
+      }
+    },
+    expandItem(item) {
+      if (this.expandedItems.find(expandedItem => item.id === expandedItem.id)) {
+        this.expandedItems = this.expandedItems.filter(expandedItem => item.id !== expandedItem.id)
+      } else {
+        this.expandedItems.push(item)
       }
     },
     getNumColumns() {
@@ -183,7 +194,12 @@ export default {
           value: column.name
         })
       })
+
+      if (this.action === 'expand') {
+        headers.push({ text: '', value: 'data-table-expand' })
+      }
       this.headers = headers
+      console.log(this.headers)
       this.makeStaticColumns()
     },
     makeStaticColumns() {

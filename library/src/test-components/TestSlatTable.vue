@@ -10,6 +10,7 @@
     )
       template(v-slot:footer-actions)
         NioButton(normal-primary-append iconName="utility-plus") New Item
+      //- template(v-slot:expanded-item="slotProps") {{ slotProps.item }}    
     NioSlatTable(
       v-if="columns && items"
       :items="items"
@@ -89,13 +90,15 @@ const items = [
 
 import NioSlatTable from '../components/table/SlatTable'
 import NioButton from '../components/Button'
-import VButton from 'vuetify'
+import { VButton, VExpansionPanels, VExpansionPanel } from 'vuetify'
 
 export default {
   components: {
     NioSlatTable,
     NioButton,
-    VButton
+    VButton,
+    VExpansionPanels,
+    VExpansionPanel
   },
   data: () => ({
     columns: null,
