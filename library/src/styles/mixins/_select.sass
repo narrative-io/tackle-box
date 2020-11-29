@@ -1,4 +1,5 @@
 @import '../global/_colors'
+@import './_text-field'
 @import './_input'
 @import './_menu'
 
@@ -50,19 +51,28 @@
     +nio-menu
 
 =nio-select-small
-  height: 40px
+  +nio-text-field
+  +nio-text-field-small 
   ::v-deep 
-    .v-input__slot .v-label.v-label--active
-      top: 1.4275rem !important
-      font-size: 20px !important
-    .v-select__selection.v-select__selection--comma  
-      display: none
-    .v-label
-      position: unset !important
-    .v-label.v-label--active  
-      transform: scale(0.75)
-.nio-select
+    .v-input__slot 
+      label
+        top: 0.675rem !important
+        padding-left: 1rem !important
+    .v-select__selection.v-select__selection--comma			
+      margin-left: 16px
+      color: $c-primary-dark    
+  //   .v-input__slot .v-label.v-label--active
+  //     top: 1.4275rem !important
+  //     font-size: 20px !important
+  //   .v-select__selection.v-select__selection--comma  
+  //     display: none
+  //   .v-label
+  //     position: unset !important
+  //   .v-label.v-label--active  
+  //     transform: scale(0.75)
+
+.nio-select:not(.small)
   +nio-select
 
-  &.small
-    +nio-select-small
+.nio-select.small
+  +nio-select-small

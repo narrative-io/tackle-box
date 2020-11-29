@@ -4,10 +4,17 @@
       v-model="selectedItems" 
       :items="items"
       :ref="'text'" 
+      small
       :label="'Label'"
     )
     NioSelect.select(
+      v-model="selectedItems" 
+      :items="items"
+      :ref="'text'" 
       small
+      :label="'Label'"
+    )
+    NioSelect.select(
       multiple
       v-model="selectedItems" 
       :items="items"

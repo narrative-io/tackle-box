@@ -30,8 +30,8 @@
         //- TestAlert
         //- TestButtons
         //- TestAutocomplete
-        TestSlatTable
-        TestSlat
+        //- TestSlatTable
+        //- TestSlat
         //- TestStepper
         //- TestFileChooser
         //- TestCheckbox
@@ -40,7 +40,7 @@
         //- TestImageTile
         //- TestIconFramer
         //- TestIcons
-        //- TestTextField
+        TestTextField
         TestSelect
         //- TestCardGrid
 </template>

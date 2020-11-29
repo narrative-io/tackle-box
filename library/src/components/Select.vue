@@ -1,6 +1,7 @@
 <template lang="pug">
     v-select.nio-select(
       :class="{ small: smallAttr }"
+      :solo="smallAttr"
       :model="model"
       :menu-props="{contentClass: 'nio-select-menu', offsetY: true, nudgeBottom: 10  }"
       outlined
