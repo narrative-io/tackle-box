@@ -40,7 +40,7 @@
         font-size: 0.875rem
         color: $c-primary-darker
   & .v-select__selection.v-select__selection--comma			
-    margin: 7px 4px 7px 0
+    margin: 0.4375rem 0.25rem 0.4375rem 0
     overflow: hidden
     text-overflow: ellipsis
     white-space: nowrap
@@ -54,22 +54,19 @@
   +nio-text-field
   +nio-text-field-small 
   ::v-deep 
+    .v-input__control
+      min-height: unset
     .v-input__slot 
+      box-shadow: none !important
+      border-width: 0.0625rem !important
       label
-        top: 0.675rem !important
+        top: 0.5625rem !important
         padding-left: 1rem !important
+        font-size: 0.875rem !important
     .v-select__selection.v-select__selection--comma			
-      margin-left: 16px
+      margin-left: 1rem
+      font-size: 0.875rem
       color: $c-primary-dark    
-  //   .v-input__slot .v-label.v-label--active
-  //     top: 1.4275rem !important
-  //     font-size: 20px !important
-  //   .v-select__selection.v-select__selection--comma  
-  //     display: none
-  //   .v-label
-  //     position: unset !important
-  //   .v-label.v-label--active  
-  //     transform: scale(0.75)
 
 .nio-select:not(.small)
   +nio-select
