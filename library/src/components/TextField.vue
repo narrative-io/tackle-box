@@ -3,6 +3,7 @@
       :class="{small: smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr }"
       outlined 
       flat
+      :solo="smallAttr"
       @input="$emit('update', $event)"
       :model="model" 
       :rules="parsedRules"
@@ -18,6 +19,7 @@
           v-if="iconName || prependIconAttr"
           :name="prependIconAttr ? prependIconAttr : iconName"
           size="16"
+          :color="iconColor"
           @click="clickPrepend"
         )
       template(
@@ -55,7 +57,8 @@ export default {
     appendAttr: false,
     prependAttr: false,
     prependIconAttr: null,
-    smallAttr: false
+    smallAttr: false,
+    iconColor: '#1438F5'
   }),
   methods: {
     focus() {
@@ -84,6 +87,11 @@ export default {
       if (attributes.getNamedItem('search-small')) {
         this.smallAttr = true
         this.prependIconAttr = 'utility-search'
+      }
+      if (attributes.getNamedItem('search-small-subdued')) {
+        this.smallAttr = true
+        this.prependIconAttr = 'utility-search'
+        this.iconColor = '#AEB9E8'
       }
     },
     clickAppend() {

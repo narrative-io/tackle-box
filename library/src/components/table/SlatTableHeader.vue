@@ -3,15 +3,21 @@
 
   )
     template(v-slot:content)
-      //- NioTextField(
-      //-   v-if="searchable"
-      //-   search-small
-      //- )
-      //- NioSelect(
-      //-   v-if="sortable"
-      //-   small
-      //- )
-    
+      .header-count(
+        v-if="elements.count"
+      )
+        
+      .header-selected(
+        v-if="elements.selected"
+      )
+      NioTextField(
+        v-if="elements.search"
+        search-small-subdued
+      )
+      NioSelect(
+        v-if="elements.sort"
+        small
+      )
 </template>
 
 <script>
@@ -23,7 +29,7 @@ import NioSelect from '../Select'
 export default {
   name: 'nio-slat-table-header',
   props: {
-		
+    "elements": { type: Object, required: true}
   },
   data: () => ({
     

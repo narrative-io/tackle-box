@@ -1,8 +1,7 @@
 <template lang="pug">
   .nio-slat-table(:class="[`action-${action}`, {'single-select': singleSelect, 'multi-select': multiSelect, }]")
     NioSlatTableHeader(
-      :searchable="searchable"
-      :sortable="sortable"
+      :elements="headerElements"
     )
     v-data-table(
       v-if="headers && computedItems"
@@ -120,8 +119,12 @@ export default {
     searchable: false,
     multiSelect: false,
     singleSelect: false,
-    searchable: false,
-    sortable: false,
+    headerElements: {
+      count: false,
+      search: false,
+      sort: false,
+      selected: false
+    },
     selection: null,
     headers: null,
     computedItems: null,
@@ -233,13 +236,15 @@ export default {
       }
       // header types
       if (attributes.getNamedItem('search-sort-header')) {
-        this.searchable = true
+        this.headerElements.search = true
+        this.headerElements.sort = true
       }
       if (attributes.getNamedItem('count-sort-header')) {
-        this.searchable = true
+        this.headerElements.count = true
+        this.headerElements.sort = true
       }
       if (attributes.getNamedItem('count-selected-header')) {
-        this.searchable = true
+        this.headerElements.selected = true
       }
       if (attributes.getNamedItem('footer-actions')) {
         this.actions = true

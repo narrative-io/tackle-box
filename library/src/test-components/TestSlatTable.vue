@@ -7,6 +7,7 @@
       action="expand"
       key="1"
       pagination
+      search-sort-header
     )
       template(v-slot:footer-actions)
         NioButton(normal-primary-append iconName="utility-plus") New Item
@@ -20,6 +21,7 @@
       key="5"
       footer-actions
       pagination
+      count-sort-header
     )
       template(v-slot:footer-actions)
         NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
@@ -35,6 +37,7 @@
       action="menu"
       key="2"
       footer-actions
+      count-selected-header
     )
       template(v-slot:footer-actions)
         NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
