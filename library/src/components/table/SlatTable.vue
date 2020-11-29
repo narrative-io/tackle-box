@@ -92,7 +92,8 @@
             v-model="itemsPerPage"
             :items="itemsPerPageOptions"
           )
-            template(v-slot:append) items per page
+            template(v-slot:selection="data") {{ data.item === -1 ? 'Show all' : `${data.item} items per page`}}
+            template(v-slot:item="data") {{ data.item === -1 ? 'Show all' : `${data.item} items per page`}}
 </template>
 
 <script>
@@ -111,9 +112,9 @@ export default {
   props: {
     "items": { type: Array, required: true },
     "columns": { type: Array, required: true },
-    "action": { type: String, required: false, default: "menu"}, // menu | link | expand
-    "itemsPerPageOptions": { type: Array, required: false, default: function() { return ['-1, 5, 10, 20']}},
-    "initialItemsPerPage": { type: Number, required: false}
+    "action": { type: String, required: false, default: "menu" }, // menu | link | expand
+    "itemsPerPageOptions": { type: Array, required: false, default: function() { return [5, 10, 20, -1]}} ,
+    "initialItemsPerPage": { type: Number, required: false }
   },
   data: () => ({
     searchable: false,
@@ -256,7 +257,16 @@ export default {
       this.getNumColumns()
     }
   },
-  components: { NioImageTitleSubtitleSlot, NioCheckbox, NioRadioButton, NioRadioGroup, NioIcon, NioSlatTableHeader, NioSlatTableActions, NioSelect }
+  components: {
+    NioImageTitleSubtitleSlot, 
+    NioCheckbox, 
+    NioRadioButton, 
+    NioRadioGroup, 
+    NioIcon, 
+    NioSlatTableHeader, 
+    NioSlatTableActions, 
+    NioSelect 
+  }
 }
 </script>
 

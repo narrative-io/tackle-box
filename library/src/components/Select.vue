@@ -50,7 +50,6 @@
       this.applyHelperAttributes()
       this.$emit('mounted')
       this.node = this.$refs['nio-select-ref'].$vnode.elm
-      console.log(this.$scopedSlots)
     },
     destroyed() {
       this.$emit('destroyed')
