@@ -12,11 +12,11 @@
       ref="nio-select-ref"
       :value="model"
     )
+      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+        slot(:name="name" v-bind="data") 
       template(v-slot:append)
         svg(style="width:24px;height:24px" viewBox="0 0 24 24")
           path(fill="#425290" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z")
-      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data")    
 </template>
 
 <script>
@@ -50,6 +50,7 @@
       this.applyHelperAttributes()
       this.$emit('mounted')
       this.node = this.$refs['nio-select-ref'].$vnode.elm
+      console.log(this.$scopedSlots)
     },
     destroyed() {
       this.$emit('destroyed')
