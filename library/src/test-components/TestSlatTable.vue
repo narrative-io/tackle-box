@@ -8,6 +8,7 @@
       key="1"
       pagination
       search-sort-header
+      :sortOptions="sortOptions"
     )
       template(v-slot:footer-actions)
         NioButton(normal-primary-append iconName="utility-plus") New Item
@@ -22,6 +23,7 @@
       footer-actions
       pagination
       count-sort-header
+      :sortOptions="sortOptions"
     )
       template(v-slot:footer-actions)
         NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
@@ -74,30 +76,12 @@
 
 <script>
 
-const items = [
-  {
-    id: 1,
-    imageSrc: "https://picsum.photos/64/64",
-    orderName: "My Offline Customers - Onboared",
-    orderNumber: "36658334",
-    spent: "500",
-    budget: "2400",
-    expires: "Jan 01 2020"
-  },
-  {
-    id: 2,
-    imageSrc: "https://picsum.photos/64/64",
-    orderName: "Another Order",
-    orderNumber: "25653324",
-    spent: "100",
-    budget: "600",
-    expires: "Jan 12 2020"
-  }
-]
 
 import NioSlatTable from '../components/table/SlatTable'
 import NioButton from '../components/Button'
 import { VButton, VExpansionPanels, VExpansionPanel } from 'vuetify'
+import { testItems } from './mocks/slatTableItems'
+import { testSortOptions } from './mocks/slatTableSortOptions'
 
 export default {
   components: {
@@ -109,7 +93,8 @@ export default {
   },
   data: () => ({
     columns: null,
-    items: items
+    items: testItems,
+    sortOptions: testSortOptions
   }),
   methods: {
     selectionChanged(val) {

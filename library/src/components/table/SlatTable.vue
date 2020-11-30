@@ -2,6 +2,7 @@
   .nio-slat-table(:class="[`action-${action}`, {'single-select': singleSelect, 'multi-select': multiSelect, }]")
     NioSlatTableHeader(
       :elements="headerElements"
+      :sortOptions="sortOptions"
     )
     v-data-table(
       v-if="headers && computedItems"
@@ -112,8 +113,10 @@ export default {
     "items": { type: Array, required: true },
     "columns": { type: Array, required: true },
     "action": { type: String, required: false, default: "menu" }, // menu | link | expand
-    "itemsPerPageOptions": { type: Array, required: false, default: function() { return [5, 10, 20, -1]}} ,
-    "initialItemsPerPage": { type: Number, required: false }
+    "itemsPerPageOptions": { type: Array, required: false, default: function() { return [1, 2, 4, -1]}} ,
+    // "itemsPerPageOptions": { type: Array, required: false, default: function() { return [5, 10, 20, -1]}} ,
+    "initialItemsPerPage": { type: Number, required: false },
+    "sortOptions": { type: Array, required: false }
   },
   data: () => ({
     searchable: false,
@@ -139,6 +142,7 @@ export default {
     this.applyHelperAttributes()
     this.makeHeaders()
     this.computeItems()
+    console.log(this.sortOptions)
     if (this.initialItemsPerPage) {
       this.itemsPerPage = this.initialItemsPerPage
     }

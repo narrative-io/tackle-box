@@ -16,8 +16,12 @@
       )
       NioSelect(
         v-if="elements.sort"
+        :items="sortOptions"
+        v-model="selectedSort"
         small
       )
+        template(v-slot:selection="data") {{ data.item.label }}
+        template(v-slot:item="data") {{ data.item.label }}
 </template>
 
 <script>
@@ -29,13 +33,16 @@ import NioSelect from '../Select'
 export default {
   name: 'nio-slat-table-header',
   props: {
-    "elements": { type: Object, required: true}
+    "elements": { type: Object, required: true },
+    "sortOptions": { type: Array, required: false, default: function() { return []} }
   },
   data: () => ({
-    
+    selectedSort: null
   }),
   mounted() {
-
+    if (this.sortOptions && this.sortOptions.length) {
+      this.selectedSort = this.sortOptions[0]
+    }
   },
   methods: {
     
