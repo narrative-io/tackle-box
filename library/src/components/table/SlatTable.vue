@@ -150,12 +150,6 @@ export default {
     }
   },
   methods: {
-    searchChange(val) {
-      console.log(val)
-    },
-    sortChange(val) {
-      console.log(val)
-    },
     handleItemClick(item, expandFn, isExpanded) {
       if (this.action === 'expand') {
         expandFn(!isExpanded)
@@ -179,7 +173,7 @@ export default {
       this.numColumns = columns + 1
     },
     computeItems() {
-      const computedItems = []
+      let computedItems = []
       this.items.forEach(item => {
         const computedItem = item
         const slatColumn = this.columns.find(column => column.name === 'slat')
@@ -197,6 +191,9 @@ export default {
         computedItem.columnValues = columnValues
         computedItems.push(computedItem)
       })
+      if (this.headerElements.sort) {
+        computedItems = computedItems.sort(this.sortOptions[0].value.sortBy)
+      }
       this.computedItems = computedItems
     },
     makeHeaders() {
@@ -264,7 +261,34 @@ export default {
       if (attributes.getNamedItem('pagination')) {
         this.pagination = true
       }
-    }
+    },
+    searchChange(val) {
+      console.log(val)
+    },
+    sortChange(val) {
+      console.log(val)
+    },
+    sortItemsByKey(key, order = 'asc') {
+      return this.items.sort(this.compareValues(key, order))
+    },
+    compareValues(key, order) {
+      return innerSort((a, b) => {
+        if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+          return 0;
+        }
+        const varA = (typeof a[key] === 'string') ? a[key].toUpperCase() : a[key];
+        const varB = (typeof b[key] === 'string') ? b[key].toUpperCase() : b[key];
+        let comparison = 0;
+        if (varA > varB) {
+          comparison = 1;
+        } else if (varA < varB) {
+          comparison = -1;
+        }
+        return (
+          (order === 'desc') ? (comparison * -1) : comparison
+        )
+      })
+    }  
   },
   watch: {
     selection(val) {
