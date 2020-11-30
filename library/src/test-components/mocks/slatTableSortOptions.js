@@ -1,26 +1,34 @@
 export const testSortOptions = [
   {
-    label: 'Alphabetic [A-z]',
-    itemProp: 'name',
-    propType: 'String',
-    order: 'ascending'
+    label: 'Alphabetic [A-Z]',
+    value: {
+			itemProp: 'name',
+			propType: 'String',
+			order: 'ascending'
+		}	
   },
   {
-    label: 'Alphabetic [Z-A]',
-    itemProp: 'name',
-    propType: 'String',
-    order: 'descending'
+		label: 'Alphabetic [Z-A]',
+		value: {
+			itemProp: 'name',
+			propType: 'String',
+			order: 'descending'
+		}	
   },
   {
-    label: 'Date [newest - oldest]',
-    itemProp: 'expires',
-    propType: 'Date',
-    order: 'asscending'
+		label: 'Date [newest - oldest]',
+		value: {
+			itemProp: 'expires',
+			propType: 'Date',
+			order: 'asscending'
+		}	
   },
   {
-    label: 'Date [oldest - newest]',
-    itemProp: 'expires',
-    propType: 'Date',
-    order: 'descending'
-  }
+		label: 'Date [oldest - newest]',
+		value: {
+			itemProp: 'expires',
+			propType: 'Date',
+			order: 'descending'
+		}
+	}
 ]

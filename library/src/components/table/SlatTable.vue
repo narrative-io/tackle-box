@@ -3,6 +3,8 @@
     NioSlatTableHeader(
       :elements="headerElements"
       :sortOptions="sortOptions"
+      @searchChange="searchChange($event)"
+      @sortChange="sortChange($event)"
     )
     v-data-table(
       v-if="headers && computedItems"
@@ -91,6 +93,7 @@
             small
             v-model="itemsPerPage"
             :items="itemsPerPageOptions"
+            itemText=""
           )
             template(v-slot:selection="data") {{ data.item === -1 ? 'Show all' : `${data.item} items per page`}}
             template(v-slot:item="data") {{ data.item === -1 ? 'Show all' : `${data.item} items per page`}}
@@ -136,18 +139,23 @@ export default {
     numColumns: null,
     pagination: false, 
     staticColumns: [],
-    itemsPerPage: 10
+    itemsPerPage: 4
   }),
   mounted() {
     this.applyHelperAttributes()
     this.makeHeaders()
     this.computeItems()
-    console.log(this.sortOptions)
     if (this.initialItemsPerPage) {
       this.itemsPerPage = this.initialItemsPerPage
     }
   },
   methods: {
+    searchChange(val) {
+      console.log(val)
+    },
+    sortChange(val) {
+      console.log(val)
+    },
     handleItemClick(item, expandFn, isExpanded) {
       if (this.action === 'expand') {
         expandFn(!isExpanded)

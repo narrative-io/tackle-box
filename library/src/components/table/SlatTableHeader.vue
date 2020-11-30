@@ -13,15 +13,18 @@
       NioTextField(
         v-if="elements.search"
         search-small-subdued
+        placeholder="Search"
+        @input="searchChange($event)"
       )
       NioSelect(
         v-if="elements.sort"
         :items="sortOptions"
         v-model="selectedSort"
+        itemText="label"
+        itemValue="value"
         small
+        @change="sortChange($event)"
       )
-        template(v-slot:selection="data") {{ data.item.label }}
-        template(v-slot:item="data") {{ data.item.label }}
 </template>
 
 <script>
@@ -45,7 +48,12 @@ export default {
     }
   },
   methods: {
-    
+    searchChange(val) {
+      this.$emit('searchChange', val)
+    },
+    sortChange(val) {
+      this.$emit('sortChange', val)
+    }
   },
   components: { NioSlat, NioSelect, NioTextField }
 }
