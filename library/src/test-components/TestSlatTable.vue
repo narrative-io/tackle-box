@@ -23,7 +23,6 @@
       key="5"
       footer-actions
       pagination
-      count-sort-header
       :sortOptions="sortOptions"
     )
       template(v-slot:footer-actions)
@@ -35,12 +34,11 @@
       :items="items"
       :columns="columns"
       single-select
-      searchable
       @selectionChanged="selectionChanged($event)"
       action="menu"
       key="2"
       footer-actions
-      count-selected-header
+      selected-header
     )
       template(v-slot:footer-actions)
         NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
@@ -56,10 +54,12 @@
       :items="items"
       :columns="columns"
       multi-select
-      sortable
       @selectionChanged="selectionChanged($event)"
       action="link"
       key="3"
+      pagination
+      selected-search-header
+      :searchableProps="['orderName', 'orderNumber']"
     )
       template(v-slot:item-expanded="slotProps") {{ slotProps.item }}     
     NioSlatTable(

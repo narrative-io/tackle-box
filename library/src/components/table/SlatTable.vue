@@ -5,6 +5,10 @@
       :sortOptions="sortOptions"
       @searchChange="searchChange($event)"
       @sortChange="sortChange($event)"
+      :selectionType="multiSelect ? 'multiSelect' : 'singleSelect'"
+      :allSelected="allSelected"
+      :selectedCount="selection.length"
+      @allSelectedChange="allSelectedChange($event)"
     )
     v-data-table(
       v-if="headers && computedItems"
@@ -155,12 +159,11 @@ export default {
     multiSelect: false,
     singleSelect: false,
     headerElements: {
-      count: false,
       search: false,
       sort: false,
       selected: false
     },
-    selection: null,
+    selection: [],
     headers: null,
     computedItems: null,
     dense: false,
@@ -176,7 +179,8 @@ export default {
       findAllMatches: true
     }, 
     searchTerm: null,
-    fuseInstance: null
+    fuseInstance: null,
+    allSelected: false
   }),
   mounted() {
     this.applyHelperAttributes()
@@ -189,6 +193,7 @@ export default {
     if (this.headerElements.search) {
       this.searchOptions.keys = this.searchableProps			
     }	
+    console.log(this.searchOptions)
     this.makeHeaders()
     this.computeItems()
   },
@@ -234,14 +239,13 @@ export default {
         computedItem.columnValues = columnValues
         computedItems.push(computedItem)
       })
-
       // apply search
       if (this.headerElements.search && this.searchTerm && this.searchTerm.length > 2) {
         this.fuseInstance = new Fuse(computedItems, this.searchOptions)
         this.fuseInstance.search(this.searchTerm)
         computedItems = this.fuseInstance.search(this.searchTerm).map(result => result.item)
       }
-
+      console.log(computedItems)
       // apply sort
       if (this.selectedSortOption) {
         computedItems = this.sortByKey(computedItems, this.selectedSortOption.itemProp, this.selectedSortOption.order )
@@ -306,11 +310,11 @@ export default {
         this.headerElements.search = true
         this.headerElements.sort = true
       }
-      if (attributes.getNamedItem('count-sort-header')) {
-        this.headerElements.count = true
-        this.headerElements.sort = true
+      if (attributes.getNamedItem('selected-search-header')) {
+        this.headerElements.selected = true
+        this.headerElements.search = true
       }
-      if (attributes.getNamedItem('count-selected-header')) {
+      if (attributes.getNamedItem('selected-header')) {
         this.headerElements.selected = true
       }
       if (attributes.getNamedItem('footer-actions')) {
@@ -329,6 +333,12 @@ export default {
       this.currentPage = 1
       this.selectedSortOption = val
       this.computeItems()
+    },
+    allSelectedChange() {
+      this.selection = this.computedItems.map(item => item.id)
+    },
+    selectAll() {
+
     },
     itemsPerPageChange(val) {
       this.applyPagination(1)

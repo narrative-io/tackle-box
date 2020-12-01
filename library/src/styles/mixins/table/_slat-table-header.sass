@@ -11,6 +11,14 @@
     flex-grow: 2
     display: flex
     justify-content: space-between
+    align-items: center
+
+    .header-selected
+      display: flex
+      align-items: center
+
+      .nio-checkbox
+        margin-right: 24px
 
     .nio-select, .nio-text-field
       flex-grow: 0
@@ -19,6 +27,8 @@
 
   ::v-deep .nio-slat-action
     display: none 
+
+    
 
 .nio-slat-table-header
   +nio-slat-table-header 
