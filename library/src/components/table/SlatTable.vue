@@ -9,7 +9,7 @@
     v-data-table(
       v-if="headers && computedItems"
       :headers="headers"
-      :items="computedItems"
+      :items="pagination ? paginatedItems : computedItems"
       :items-per-page="10"
       item-key="id"
       hide-default-header
@@ -139,9 +139,11 @@ export default {
     dense: false,
     actions: false,
     numColumns: null,
-    pagination: false, 
+		pagination: false, 
+		paginatedItems: [],
     staticColumns: [],
-    itemsPerPage: 4,
+		itemsPerPage: 4,
+		currentPage: 1,
 		selectedSortOption: null,
 		searchOptions: {
 			findAllMatches: true
@@ -206,16 +208,21 @@ export default {
         computedItems.push(computedItem)
       })
 
-			//apply search
+			// apply search
 			if (this.headerElements.search && this.searchTerm && this.searchTerm.length > 2) {
 				this.fuseInstance = new Fuse(computedItems, this.searchOptions)
 				this.fuseInstance.search(this.searchTerm)
 				computedItems = this.fuseInstance.search(this.searchTerm).map(result => result.item)
 			}
 
-			//apply sort
+			// apply sort
       if (this.selectedSortOption) {
         computedItems = this.sortByKey(computedItems, this.selectedSortOption.itemProp, this.selectedSortOption.order )
+			}
+
+			// apply pagination 
+			if (this.pagination) {
+				this.paginatedItems = this.itemsPerPage === -1 ? computedItems : computedItems.slice(0, this.itemsPerPage)
 			}
 
 			this.computedItems = computedItems
@@ -291,10 +298,17 @@ export default {
 			this.computeItems()
     },
     sortChange(val) {
-      console.log(val)
       this.selectedSortOption = val
       this.computeItems()
-    },
+		},
+		pageChange(val) {
+			this.currentPage = val
+			this.applyPagination()
+		},
+		applyPagination(page) {
+			this.currentPage = page
+			this.paginatedItems = this.computedItems.slice(this.currentPage * this.itemsPerPage - this.itemsPerPage, this.currentPage * this.itemsPerPage)
+		},
     sortByKey(items, key, order = 'ascending') {
       console.log(key)
       return items.sort(this.compareValues(key, order))

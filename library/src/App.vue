@@ -40,8 +40,8 @@
         //- TestImageTile
         //- TestIconFramer
         //- TestIcons
-        TestTextField
-        TestSelect
+        //- TestTextField
+        //- TestSelect
         //- TestCardGrid
 </template>
 
