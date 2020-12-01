@@ -10,7 +10,8 @@
   tr
     background-color: $c-white
     border-bottom: 0px !important
-    box-shadow: inset 0px -1px 0px #DAE0F9
+    &:not(:last-child)
+      box-shadow: inset 0px -1px 0px #DAE0F9
     
     &.selected, &:hover
       background-color: $c-canvas !important
@@ -71,13 +72,21 @@
     display: flex
     justify-content: space-between
     align-items: center    
+    box-shadow: inset 0px 1px 0px #DAE0F9
     .nio-select
       flex-grow: 0
       margin-bottom: 0
       width: 232px
-
     .pages
       display: flex	
       align-items: center
+      .count
+        margin-top: 2px
+        margin-right: 16px
+      .actions
+        display: flex
+        align-items: center
+        .prev
+          margin-right: 8px
 .nio-slat-table
   +nio-slat-table

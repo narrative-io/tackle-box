@@ -53,33 +53,34 @@
             .label.nio-table-label.text-primary-dark {{ column.label }}
             .value.nio-table-value.text-primary-dark {{ item.columnValues[column.name]}}
           td.action-cell
-            NioIcon(
-              v-if="action === 'link'"
-              name="utility-chevron-right"
-              color="#415298"
-            )
-            NioIcon(
-              v-if="action === 'expand'"
-              name="utility-chevron-down"
-              color="#415298"
-            )
-            v-menu(
-              v-if="action === 'menu'"
-              contentClass="nio-slat-table-item-menu"
-              left
-              nudgeBottom="20"
-            )
-              template(v-slot:activator="{ on, attrs }")
-                .activator(v-on="on")
-                  NioIcon(
-                    name="utility-more"
-                    color="#415298"
-                  )        
-              slot(name="item-menu" v-bind:item="item")
+            NioButton(container)
+              NioIcon(
+                v-if="action === 'link'"
+                name="utility-chevron-right"
+                color="#415298"
+              )
+              NioIcon(
+                v-if="action === 'expand'"
+                name="utility-chevron-down"
+                color="#415298"
+              )
+              v-menu(
+                v-if="action === 'menu'"
+                contentClass="nio-slat-table-item-menu"
+                left
+                nudgeBottom="20"
+              )
+                template(v-slot:activator="{ on, attrs }")
+                  .activator(v-on="on")
+                    NioIcon(
+                      name="utility-more"
+                      color="#415298"
+                    )        
+                slot(name="item-menu" v-bind:item="item")
       template(v-slot:expanded-item="{ headers, item }")
         td(:colspan="numColumns") 
           slot(name="item-expanded" v-bind:item="item")
-      template(v-slot:body.append)      
+      template(v-slot:body.append v-if="actions")      
         tr.actions-row(v-if="actions && numColumns")    
           NioSlatTableActions(
             :colSpan="numColumns"
@@ -101,26 +102,27 @@
               span.start(v-if="currentPage * itemsPerPage - itemsPerPage + 1 !== computedItems.length") {{ currentPage * itemsPerPage - itemsPerPage + 1 }}-
               span.end {{ Math.min(itemsPerPage * currentPage, computedItems.length) }} 
               span.total of {{ computedItems.length }}
-            .prev
-              NioButton(
-                container 
-                @click="prevPage"
-                :disabled="currentPage === 1"
-              )
-                NioIcon(
-                  name="utility-chevron-left"
-                  color="#415298"
+            .actions
+              .prev
+                NioButton(
+                  container 
+                  @click="prevPage"
+                  :disabled="currentPage === 1"
                 )
-            .next
-              NioButton(
-                container 
-                @click="nextPage"
-                :disabled="computedItems.length <= currentPage * itemsPerPage"
-              )
-                NioIcon(
-                  name="utility-chevron-right"
-                  color="#415298"
+                  NioIcon(
+                    name="utility-chevron-left"
+                    color="#415298"
+                  )
+              .next
+                NioButton(
+                  container 
+                  @click="nextPage"
+                  :disabled="computedItems.length <= currentPage * itemsPerPage"
                 )
+                  NioIcon(
+                    name="utility-chevron-right"
+                    color="#415298"
+                  )
 </template>
 
 <script>
