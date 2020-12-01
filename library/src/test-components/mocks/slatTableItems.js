@@ -62,14 +62,5 @@ export const testItems = [
     spent: 500,
     budget: 24000,
     expires: "Jan 01 2020"
-  },
-  {
-    id: 8,
-    imageSrc: "https://picsum.photos/64/64",
-    orderName: "Another Order",
-    orderNumber: 426,
-    spent: 1001,
-    budget: 6005,
-    expires: "Jan 12 2020"
   }
 ]

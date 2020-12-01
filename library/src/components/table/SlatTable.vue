@@ -14,7 +14,6 @@
       item-key="id"
       hide-default-header
       hide-default-footer
-      :footer-props="{'items-per-page-text':''}"
     )
       template(
         v-slot:item="{ item, expand, isExpanded }"    
@@ -93,11 +92,15 @@
             small
             v-model="itemsPerPage"
             :items="itemsPerPageOptions"
+            @change="itemsPerPageChange($event)"
           )
             template(v-slot:selection="data") {{ data.item === -1 ? 'Show all' : `${data.item} items per page`}}
             template(v-slot:item="data") {{ data.item === -1 ? 'Show all' : `${data.item} items per page`}}
-          .pages
-            .count.text-primary-dark.nio-p.nio-bold 1-6 of 6
+          .pages(v-if="computedItems.length && itemsPerPage !== -1")
+            .count.text-primary-dark.nio-p.nio-bold 
+              span.start(v-if="currentPage * itemsPerPage - itemsPerPage + 1 !== computedItems.length") {{ currentPage * itemsPerPage - itemsPerPage + 1 }}-
+              span.end {{ Math.min(itemsPerPage * currentPage, computedItems.length) }} 
+              span.total of {{ computedItems.length }}
             .prev
               NioButton(
                 container 
@@ -139,7 +142,7 @@ export default {
     "items": { type: Array, required: true },
     "columns": { type: Array, required: true },
     "action": { type: String, required: false, default: "menu" }, // menu | link | expand
-    "itemsPerPageOptions": { type: Array, required: false, default: function() { return [1, 2, 4, -1]}} ,
+    "itemsPerPageOptions": { type: Array, required: false, default: function() { return [2, 4, 6, -1]}} ,
     // "itemsPerPageOptions": { type: Array, required: false, default: function() { return [5, 10, 20, -1]}} ,
     "initialItemsPerPage": { type: Number, required: false },
     "sortOptions": { type: Array, required: false },
@@ -316,12 +319,17 @@ export default {
       }
     },
     searchChange(val) {
+      this.currentPage = 1
       this.searchTerm = val
       this.computeItems()
     },
     sortChange(val) {
+      this.currentPage = 1
       this.selectedSortOption = val
       this.computeItems()
+    },
+    itemsPerPageChange(val) {
+      this.applyPagination(1)
     },
     prevPage() {
       if (this.currentPage > 1) {
