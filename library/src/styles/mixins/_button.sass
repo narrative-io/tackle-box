@@ -233,6 +233,20 @@
     display: inline-block
     margin-right: 0.5125rem
 
+=nio-container-button
+  width: 38px !important
+  height: 38px !important
+  padding: 0px !important
+  min-width: unset !important
+  background-color: rgba(0, 0, 0, 0) !important
+  &:hover
+    opacity: 0.5
+    &:before
+      opacity: 0 !important
+
+.nio-container-button
+  +nio-container-button 
+
 .nio-button.v-btn
   +nio-button
 

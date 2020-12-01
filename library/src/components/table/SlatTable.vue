@@ -93,10 +93,21 @@
             small
             v-model="itemsPerPage"
             :items="itemsPerPageOptions"
-            itemText=""
           )
             template(v-slot:selection="data") {{ data.item === -1 ? 'Show all' : `${data.item} items per page`}}
             template(v-slot:item="data") {{ data.item === -1 ? 'Show all' : `${data.item} items per page`}}
+          .pages
+            .count
+            .prev
+              NioIcon(
+                name="utility-chevron-left"
+                color="#415298"
+              )
+            .next
+              NioIcon(
+                name="utility-chevron-right"
+                color="#415298"
+              )
 </template>
 
 <script>
@@ -120,8 +131,8 @@ export default {
     "itemsPerPageOptions": { type: Array, required: false, default: function() { return [1, 2, 4, -1]}} ,
     // "itemsPerPageOptions": { type: Array, required: false, default: function() { return [5, 10, 20, -1]}} ,
     "initialItemsPerPage": { type: Number, required: false },
-		"sortOptions": { type: Array, required: false },
-		"searchableProps": { type: Array, required: false }
+    "sortOptions": { type: Array, required: false },
+    "searchableProps": { type: Array, required: false }
   },
   data: () => ({
     searchable: false,
@@ -139,17 +150,17 @@ export default {
     dense: false,
     actions: false,
     numColumns: null,
-		pagination: false, 
-		paginatedItems: [],
+    pagination: false, 
+    paginatedItems: [],
     staticColumns: [],
-		itemsPerPage: 4,
-		currentPage: 1,
-		selectedSortOption: null,
-		searchOptions: {
-			findAllMatches: true
-		}, 
-		searchTerm: null,
-		fuseInstance: null
+    itemsPerPage: 4,
+    currentPage: 1,
+    selectedSortOption: null,
+    searchOptions: {
+      findAllMatches: true
+    }, 
+    searchTerm: null,
+    fuseInstance: null
   }),
   mounted() {
     this.applyHelperAttributes()
@@ -158,10 +169,10 @@ export default {
     }
     if (this.headerElements.sort || this.sortOptions) {
       this.selectedSortOption = this.sortOptions[0].value
-		} 
-		if (this.headerElements.search) {
-			this.searchOptions.keys = this.searchableProps			
-		}	
+    } 
+    if (this.headerElements.search) {
+      this.searchOptions.keys = this.searchableProps			
+    }	
     this.makeHeaders()
     this.computeItems()
   },
@@ -208,24 +219,24 @@ export default {
         computedItems.push(computedItem)
       })
 
-			// apply search
-			if (this.headerElements.search && this.searchTerm && this.searchTerm.length > 2) {
-				this.fuseInstance = new Fuse(computedItems, this.searchOptions)
-				this.fuseInstance.search(this.searchTerm)
-				computedItems = this.fuseInstance.search(this.searchTerm).map(result => result.item)
-			}
+      // apply search
+      if (this.headerElements.search && this.searchTerm && this.searchTerm.length > 2) {
+        this.fuseInstance = new Fuse(computedItems, this.searchOptions)
+        this.fuseInstance.search(this.searchTerm)
+        computedItems = this.fuseInstance.search(this.searchTerm).map(result => result.item)
+      }
 
-			// apply sort
+      // apply sort
       if (this.selectedSortOption) {
         computedItems = this.sortByKey(computedItems, this.selectedSortOption.itemProp, this.selectedSortOption.order )
-			}
+      }
 
-			// apply pagination 
-			if (this.pagination) {
-				this.paginatedItems = this.itemsPerPage === -1 ? computedItems : computedItems.slice(0, this.itemsPerPage)
-			}
+      // apply pagination 
+      if (this.pagination) {
+        this.paginatedItems = this.itemsPerPage === -1 ? computedItems : computedItems.slice(0, this.itemsPerPage)
+      }
 
-			this.computedItems = computedItems
+      this.computedItems = computedItems
     },
     makeHeaders() {
       const headers = []
@@ -294,23 +305,22 @@ export default {
       }
     },
     searchChange(val) {
-			this.searchTerm = val
-			this.computeItems()
+      this.searchTerm = val
+      this.computeItems()
     },
     sortChange(val) {
       this.selectedSortOption = val
       this.computeItems()
-		},
-		pageChange(val) {
-			this.currentPage = val
-			this.applyPagination()
-		},
-		applyPagination(page) {
-			this.currentPage = page
-			this.paginatedItems = this.computedItems.slice(this.currentPage * this.itemsPerPage - this.itemsPerPage, this.currentPage * this.itemsPerPage)
-		},
+    },
+    pageChange(val) {
+      this.currentPage = val
+      this.applyPagination()
+    },
+    applyPagination(page) {
+      this.currentPage = page
+      this.paginatedItems = this.computedItems.slice(this.currentPage * this.itemsPerPage - this.itemsPerPage, this.currentPage * this.itemsPerPage)
+    },
     sortByKey(items, key, order = 'ascending') {
-      console.log(key)
       return items.sort(this.compareValues(key, order))
     },
     compareValues(key, order) {

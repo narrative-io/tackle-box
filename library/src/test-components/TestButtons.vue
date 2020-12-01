@@ -21,15 +21,22 @@
 		NioButton.test(jumbo-primary) Test Me
 		NioButton(jumbo-primary-prepend disabled iconName="utility-arrow-left") Back to Main
 		NioButton(jumbo-primary-append iconName="utility-plus") Checkout
+		NioButton(container)
+			NioIcon(
+				name="utility-chevron-left"
+				color="#415298"
+			)
 </template>
 
 <script>
 
 import NioButton from '../components/Button'
+import NioIcon from '../components/icon/Icon'
 
 export default {
   components: {
-   NioButton
+	 NioButton,
+	 NioIcon
   },
   data: () => ({
     

@@ -28,7 +28,7 @@
         //- TestExpansionPanel
         //- TestDivider
         //- TestAlert
-        //- TestButtons
+        TestButtons
         //- TestAutocomplete
         TestSlatTable
         //- TestSlat
