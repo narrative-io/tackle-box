@@ -146,10 +146,11 @@ export default {
 		searchOptions: {
 			findAllMatches: true
 		}, 
-		searchTerm: 'cool',
+		searchTerm: null,
 		fuseInstance: null
   }),
   mounted() {
+    this.applyHelperAttributes()
     if (this.initialItemsPerPage) {
       this.itemsPerPage = this.initialItemsPerPage
     }
@@ -157,10 +158,8 @@ export default {
       this.selectedSortOption = this.sortOptions[0].value
 		} 
 		if (this.headerElements.search) {
-			this.searchOptions.keys = this.searchableProps
+			this.searchOptions.keys = this.searchableProps			
 		}	
-		
-    this.applyHelperAttributes()
     this.makeHeaders()
     this.computeItems()
   },
@@ -207,17 +206,18 @@ export default {
         computedItems.push(computedItem)
       })
 
-      //apply sort
+			//apply search
+			if (this.headerElements.search && this.searchTerm && this.searchTerm.length > 2) {
+				this.fuseInstance = new Fuse(computedItems, this.searchOptions)
+				this.fuseInstance.search(this.searchTerm)
+				computedItems = this.fuseInstance.search(this.searchTerm).map(result => result.item)
+			}
+
+			//apply sort
       if (this.selectedSortOption) {
-        console.log(this.selectedSortOption)
         computedItems = this.sortByKey(computedItems, this.selectedSortOption.itemProp, this.selectedSortOption.order )
 			}
-			
-			//apply search
-			if (this.headerElements.search) {
-				this.fuseInstance = new Fuse(computedItems, this.searchOptions);
-				this.fuseInstance.search(this.searchTerm)
-			}
+
 			this.computedItems = computedItems
     },
     makeHeaders() {
