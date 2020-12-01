@@ -9,6 +9,7 @@
       pagination
       search-sort-header
       :sortOptions="sortOptions"
+      :initialItemsPerPage="10"
       :searchableProps="['orderName', 'orderNumber']"
     )
       template(v-slot:footer-actions)

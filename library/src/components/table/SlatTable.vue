@@ -7,7 +7,7 @@
       @sortChange="sortChange($event)"
       :selectionType="multiSelect ? 'multiSelect' : 'singleSelect'"
       :allSelected="allSelected"
-      :selectedCount="selection.length"
+      :selectedCount="multiSelect ? selection.length : selection ? 1 : 0"
       @allSelectedChange="allSelectedChange($event)"
     )
     v-data-table(
@@ -148,14 +148,12 @@ export default {
     "items": { type: Array, required: true },
     "columns": { type: Array, required: true },
     "action": { type: String, required: false, default: "menu" }, // menu | link | expand
-    "itemsPerPageOptions": { type: Array, required: false, default: function() { return [2, 4, 6, -1]}} ,
-    // "itemsPerPageOptions": { type: Array, required: false, default: function() { return [5, 10, 20, -1]}} ,
-    "initialItemsPerPage": { type: Number, required: false },
+    "itemsPerPageOptions": { type: Array, required: false, default: function() { return [5, 10, 20, -1]}} ,
+    "initialItemsPerPage": { type: Number, required: false, default: 5 },
     "sortOptions": { type: Array, required: false },
     "searchableProps": { type: Array, required: false }
   },
   data: () => ({
-    searchable: false,
     multiSelect: false,
     singleSelect: false,
     headerElements: {
@@ -163,7 +161,7 @@ export default {
       sort: false,
       selected: false
     },
-    selection: [],
+    selection: null,
     headers: null,
     computedItems: null,
     dense: false,
@@ -193,7 +191,6 @@ export default {
     if (this.headerElements.search) {
       this.searchOptions.keys = this.searchableProps			
     }	
-    console.log(this.searchOptions)
     this.makeHeaders()
     this.computeItems()
   },
@@ -245,7 +242,6 @@ export default {
         this.fuseInstance.search(this.searchTerm)
         computedItems = this.fuseInstance.search(this.searchTerm).map(result => result.item)
       }
-      console.log(computedItems)
       // apply sort
       if (this.selectedSortOption) {
         computedItems = this.sortByKey(computedItems, this.selectedSortOption.itemProp, this.selectedSortOption.order )
@@ -297,6 +293,7 @@ export default {
       const attributes = this.$el.attributes
       if (attributes.getNamedItem('single-select')) {
         this.singleSelect = true
+        this.selection = null
       }
       if (attributes.getNamedItem('multi-select')) {
         this.multiSelect = true
@@ -334,11 +331,8 @@ export default {
       this.selectedSortOption = val
       this.computeItems()
     },
-    allSelectedChange() {
-      this.selection = this.computedItems.map(item => item.id)
-    },
-    selectAll() {
-
+    allSelectedChange(val) {
+      this.selection = val === true ? this.computedItems.map(item => item.id) : []
     },
     itemsPerPageChange(val) {
       this.applyPagination(1)
@@ -355,7 +349,11 @@ export default {
     },
     applyPagination(page) {
       this.currentPage = page
-      this.paginatedItems = this.computedItems.slice(this.currentPage * this.itemsPerPage - this.itemsPerPage, this.currentPage * this.itemsPerPage)
+      if (this.itemsPerPage === -1) {
+        this.paginatedItems = this.computedItems
+      } else {
+        this.paginatedItems = this.computedItems.slice(this.currentPage * this.itemsPerPage - this.itemsPerPage, this.currentPage * this.itemsPerPage)
+      }
     },
     sortByKey(items, key, order = 'ascending') {
       return items.sort(this.compareValues(key, order))
@@ -381,10 +379,14 @@ export default {
   },
   watch: {
     selection(val) {
-      this.$emit('selectionChanged', val)
+      const value = this.multiSelect ? this.items.filter(item => val.includes(item.id)) : this.items.find(item => item.id === val)
+      this.$emit('selectionChanged', value)
     },
     staticColumns(val) {
       this.getNumColumns()
+    },
+    items(val) {
+      this.computeItems()
     }
   },
   components: {
