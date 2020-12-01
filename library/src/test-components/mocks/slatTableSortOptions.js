@@ -30,5 +30,21 @@ export const testSortOptions = [
 			propType: 'Date',
 			order: 'descending'
 		}
+	},
+	{
+		label: 'Order number (lowest first)',
+		value: {
+			itemProp: 'orderNumber',
+			propType: 'Number',
+			order: 'asscending'
+		}	
+  },
+  {
+		label: 'Order number (highest first)',
+		value: {
+			itemProp: 'orderNumber',
+			propType: 'Number',
+			order: 'descending'
+		}
 	}
 ]

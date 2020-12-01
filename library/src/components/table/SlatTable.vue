@@ -109,6 +109,7 @@ import NioIcon from '../icon/Icon'
 import NioSlatTableHeader from './SlatTableHeader'
 import NioSlatTableActions from './SlatTableActions'
 import NioSelect from '../Select'
+import Fuse from 'fuse.js'
 
 export default {
   name: 'nio-slat-table',
@@ -119,7 +120,8 @@ export default {
     "itemsPerPageOptions": { type: Array, required: false, default: function() { return [1, 2, 4, -1]}} ,
     // "itemsPerPageOptions": { type: Array, required: false, default: function() { return [5, 10, 20, -1]}} ,
     "initialItemsPerPage": { type: Number, required: false },
-    "sortOptions": { type: Array, required: false }
+		"sortOptions": { type: Array, required: false },
+		"searchableProps": { type: Array, required: false }
   },
   data: () => ({
     searchable: false,
@@ -140,7 +142,12 @@ export default {
     pagination: false, 
     staticColumns: [],
     itemsPerPage: 4,
-    selectedSortOption: null,
+		selectedSortOption: null,
+		searchOptions: {
+			findAllMatches: true
+		}, 
+		searchTerm: 'cool',
+		fuseInstance: null
   }),
   mounted() {
     if (this.initialItemsPerPage) {
@@ -148,7 +155,11 @@ export default {
     }
     if (this.headerElements.sort || this.sortOptions) {
       this.selectedSortOption = this.sortOptions[0].value
-    } 
+		} 
+		if (this.headerElements.search) {
+			this.searchOptions.keys = this.searchableProps
+		}	
+		
     this.applyHelperAttributes()
     this.makeHeaders()
     this.computeItems()
@@ -200,8 +211,14 @@ export default {
       if (this.selectedSortOption) {
         console.log(this.selectedSortOption)
         computedItems = this.sortByKey(computedItems, this.selectedSortOption.itemProp, this.selectedSortOption.order )
-      }
-      this.computedItems = computedItems
+			}
+			
+			//apply search
+			if (this.headerElements.search) {
+				this.fuseInstance = new Fuse(computedItems, this.searchOptions);
+				this.fuseInstance.search(this.searchTerm)
+			}
+			this.computedItems = computedItems
     },
     makeHeaders() {
       const headers = []
@@ -270,7 +287,8 @@ export default {
       }
     },
     searchChange(val) {
-      
+			this.searchTerm = val
+			this.computeItems()
     },
     sortChange(val) {
       console.log(val)

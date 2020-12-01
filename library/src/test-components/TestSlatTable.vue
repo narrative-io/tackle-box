@@ -9,6 +9,7 @@
       pagination
       search-sort-header
       :sortOptions="sortOptions"
+      :searchableProps="['orderName', 'orderBudget']"
     )
       template(v-slot:footer-actions)
         NioButton(normal-primary-append iconName="utility-plus") New Item

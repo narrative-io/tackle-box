@@ -19,7 +19,6 @@
 </template>
 
 <script>
-// import StreamlineIcon from "@streamlinehq/streamline-icons-vue"
 import NioIcon from './icon/Icon'
 
 export default {
