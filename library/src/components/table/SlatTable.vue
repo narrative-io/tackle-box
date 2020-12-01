@@ -97,17 +97,27 @@
             template(v-slot:selection="data") {{ data.item === -1 ? 'Show all' : `${data.item} items per page`}}
             template(v-slot:item="data") {{ data.item === -1 ? 'Show all' : `${data.item} items per page`}}
           .pages
-            .count
+            .count.text-primary-dark.nio-p.nio-bold 1-6 of 6
             .prev
-              NioIcon(
-                name="utility-chevron-left"
-                color="#415298"
+              NioButton(
+                container 
+                @click="prevPage"
+                :disabled="currentPage === 1"
               )
+                NioIcon(
+                  name="utility-chevron-left"
+                  color="#415298"
+                )
             .next
-              NioIcon(
-                name="utility-chevron-right"
-                color="#415298"
+              NioButton(
+                container 
+                @click="nextPage"
+                :disabled="computedItems.length <= currentPage * itemsPerPage"
               )
+                NioIcon(
+                  name="utility-chevron-right"
+                  color="#415298"
+                )
 </template>
 
 <script>
@@ -120,6 +130,7 @@ import NioIcon from '../icon/Icon'
 import NioSlatTableHeader from './SlatTableHeader'
 import NioSlatTableActions from './SlatTableActions'
 import NioSelect from '../Select'
+import NioButton from '../Button'
 import Fuse from 'fuse.js'
 
 export default {
@@ -312,9 +323,15 @@ export default {
       this.selectedSortOption = val
       this.computeItems()
     },
-    pageChange(val) {
-      this.currentPage = val
-      this.applyPagination()
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.applyPagination(this.currentPage - 1)
+      } 
+    },
+    nextPage() {
+      if (this.computedItems.length > this.currentPage * this.itemsPerPage) {
+        this.applyPagination(this.currentPage + 1)
+      }
     },
     applyPagination(page) {
       this.currentPage = page
@@ -358,7 +375,8 @@ export default {
     NioIcon, 
     NioSlatTableHeader, 
     NioSlatTableActions, 
-    NioSelect 
+    NioSelect,
+    NioButton
   }
 }
 </script>
