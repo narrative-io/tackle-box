@@ -52,7 +52,7 @@
             :class="[`column-${column.name}`]"
           )
             .label.nio-table-label.text-primary-dark {{ column.label }}
-            .value.nio-table-value.text-primary-dark {{ item.columnValues[column.name ]}}
+            .value.nio-table-value.text-primary-dark {{ item.columnValues[column.name]}}
           td.action-cell
             NioIcon(
               v-if="action === 'link'"
@@ -139,15 +139,19 @@ export default {
     numColumns: null,
     pagination: false, 
     staticColumns: [],
-    itemsPerPage: 4
+    itemsPerPage: 4,
+    selectedSortOption: null,
   }),
   mounted() {
-    this.applyHelperAttributes()
-    this.makeHeaders()
-    this.computeItems()
     if (this.initialItemsPerPage) {
       this.itemsPerPage = this.initialItemsPerPage
     }
+    if (this.headerElements.sort || this.sortOptions) {
+      this.selectedSortOption = this.sortOptions[0].value
+    } 
+    this.applyHelperAttributes()
+    this.makeHeaders()
+    this.computeItems()
   },
   methods: {
     handleItemClick(item, expandFn, isExpanded) {
@@ -191,8 +195,11 @@ export default {
         computedItem.columnValues = columnValues
         computedItems.push(computedItem)
       })
-      if (this.headerElements.sort) {
-        computedItems = computedItems.sort(this.sortOptions[0].value.sortBy)
+
+      //apply sort
+      if (this.selectedSortOption) {
+        console.log(this.selectedSortOption)
+        computedItems = this.sortByKey(computedItems, this.selectedSortOption.itemProp, this.selectedSortOption.order )
       }
       this.computedItems = computedItems
     },
@@ -263,16 +270,19 @@ export default {
       }
     },
     searchChange(val) {
-      console.log(val)
+      
     },
     sortChange(val) {
       console.log(val)
+      this.selectedSortOption = val
+      this.computeItems()
     },
-    sortItemsByKey(key, order = 'asc') {
-      return this.items.sort(this.compareValues(key, order))
+    sortByKey(items, key, order = 'ascending') {
+      console.log(key)
+      return items.sort(this.compareValues(key, order))
     },
     compareValues(key, order) {
-      return innerSort((a, b) => {
+      return ((a, b) => {
         if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
           return 0;
         }
@@ -285,7 +295,7 @@ export default {
           comparison = -1;
         }
         return (
-          (order === 'desc') ? (comparison * -1) : comparison
+          (order === 'descending') ? (comparison * -1) : comparison
         )
       })
     }  

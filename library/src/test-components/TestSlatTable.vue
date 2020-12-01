@@ -13,65 +13,65 @@
       template(v-slot:footer-actions)
         NioButton(normal-primary-append iconName="utility-plus") New Item
       template(v-slot:item-expanded="slotProps") {{ slotProps.item }}    
-    NioSlatTable(
-      v-if="columns && items"
-      :items="items"
-      :columns="columns"
-      action="expand"
-      dense-rows
-      key="5"
-      footer-actions
-      pagination
-      count-sort-header
-      :sortOptions="sortOptions"
-    )
-      template(v-slot:footer-actions)
-        NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
-        NioButton(normal-primary-append iconName="utility-plus") New Item
-      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}   
-    NioSlatTable(
-      v-if="columns && items"
-      :items="items"
-      :columns="columns"
-      single-select
-      searchable
-      @selectionChanged="selectionChanged($event)"
-      action="menu"
-      key="2"
-      footer-actions
-      count-selected-header
-    )
-      template(v-slot:footer-actions)
-        NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
-        NioButton(normal-primary-append iconName="utility-plus") New Item
-      template(v-slot:item-menu="slotProps")  
-        v-list
-          v-list-item(@click="menuItemClicked('updateBudget', slotProps.item)") Update budget
-          v-list-item(@click="menuItemClicked('updateExpiration', slotProps.item)") Update Expiration
-          v-list-item(@click="menuItemClicked('delete', slotProps.item)") Delete {{ slotProps.item.orderNumber }}
-      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}        
-    NioSlatTable(
-      v-if="columns && items"
-      :items="items"
-      :columns="columns"
-      multi-select
-      sortable
-      @selectionChanged="selectionChanged($event)"
-      action="link"
-      key="3"
-    )
-      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}     
-    NioSlatTable(
-      v-if="columns && items"
-      :items="items"
-      :columns="columns"
-      multi-select
-      searchable
-      sortable
-      @selectionChanged="selectionChanged($event)"
-      action="link"
-      key="4"
-    )
+    //- NioSlatTable(
+    //-   v-if="columns && items"
+    //-   :items="items"
+    //-   :columns="columns"
+    //-   action="expand"
+    //-   dense-rows
+    //-   key="5"
+    //-   footer-actions
+    //-   pagination
+    //-   count-sort-header
+    //-   :sortOptions="sortOptions"
+    //- )
+    //-   template(v-slot:footer-actions)
+    //-     NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
+    //-     NioButton(normal-primary-append iconName="utility-plus") New Item
+    //-   template(v-slot:item-expanded="slotProps") {{ slotProps.item }}   
+    //- NioSlatTable(
+    //-   v-if="columns && items"
+    //-   :items="items"
+    //-   :columns="columns"
+    //-   single-select
+    //-   searchable
+    //-   @selectionChanged="selectionChanged($event)"
+    //-   action="menu"
+    //-   key="2"
+    //-   footer-actions
+    //-   count-selected-header
+    //- )
+    //-   template(v-slot:footer-actions)
+    //-     NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
+    //-     NioButton(normal-primary-append iconName="utility-plus") New Item
+    //-   template(v-slot:item-menu="slotProps")  
+    //-     v-list
+    //-       v-list-item(@click="menuItemClicked('updateBudget', slotProps.item)") Update budget
+    //-       v-list-item(@click="menuItemClicked('updateExpiration', slotProps.item)") Update Expiration
+    //-       v-list-item(@click="menuItemClicked('delete', slotProps.item)") Delete {{ slotProps.item.orderNumber }}
+    //-   template(v-slot:item-expanded="slotProps") {{ slotProps.item }}        
+    //- NioSlatTable(
+    //-   v-if="columns && items"
+    //-   :items="items"
+    //-   :columns="columns"
+    //-   multi-select
+    //-   sortable
+    //-   @selectionChanged="selectionChanged($event)"
+    //-   action="link"
+    //-   key="3"
+    //- )
+    //-   template(v-slot:item-expanded="slotProps") {{ slotProps.item }}     
+    //- NioSlatTable(
+    //-   v-if="columns && items"
+    //-   :items="items"
+    //-   :columns="columns"
+    //-   multi-select
+    //-   searchable
+    //-   sortable
+    //-   @selectionChanged="selectionChanged($event)"
+    //-   action="link"
+    //-   key="4"
+    //- )
 </template>
 
 <script>
@@ -101,7 +101,7 @@ export default {
       console.log(val)
     },
     computeOrderName(item) {
-      return `Name: ${item.orderName}`
+      return `${item.orderName}`
     },
     computeOrderNumber(item) {
       return `#${item.orderNumber}`

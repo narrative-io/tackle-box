@@ -2,7 +2,7 @@ export const testSortOptions = [
   {
     label: 'Alphabetic [A-Z]',
     value: {
-			itemProp: 'name',
+			itemProp: 'orderName',
 			propType: 'String',
 			order: 'ascending'
 		}	
@@ -10,7 +10,7 @@ export const testSortOptions = [
   {
 		label: 'Alphabetic [Z-A]',
 		value: {
-			itemProp: 'name',
+			itemProp: 'orderName',
 			propType: 'String',
 			order: 'descending'
 		}	
