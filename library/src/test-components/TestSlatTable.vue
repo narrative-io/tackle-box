@@ -74,6 +74,25 @@
       action="link"
       key="4"
     )
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      searchable
+      sortable
+      @selectionChanged="selectionChanged($event)"
+      key="6"
+    )
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      multi-select
+      searchable
+      sortable
+      @selectionChanged="selectionChanged($event)"
+      key="7"
+    )
 </template>
 
 <script>

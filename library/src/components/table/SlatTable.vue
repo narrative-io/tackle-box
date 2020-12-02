@@ -82,7 +82,7 @@
                     )        
                 slot(name="item-menu" v-bind:item="item")
       template(v-slot:expanded-item="{ headers, item }")
-        td(:colspan="numColumns") 
+        td.expanded-row(:colspan="numColumns") 
           slot(name="item-expanded" v-bind:item="item")
       template(v-slot:body.append v-if="actions")      
         tr.actions-row(v-if="actions && numColumns")    
@@ -202,7 +202,6 @@ export default {
         }
         
         const columnValues = {}
-
         this.columns.filter(column => column.name !== "slat").forEach(column => {
           columnValues[column.name] = column.computed ? column.computed(item) : item[column.name]
         })
@@ -219,7 +218,6 @@ export default {
       if (this.selectedSortOption) {
         computedItems = this.sortByKey(computedItems, this.selectedSortOption.itemProp, this.selectedSortOption.order )
       }
-
       // apply pagination 
       if (this.pagination) {
         this.paginatedItems = this.itemsPerPage === -1 ? computedItems : computedItems.slice(0, this.itemsPerPage)
@@ -241,13 +239,10 @@ export default {
           value: 'multiSelect'
         })
       }
-
-      const slatColumn = this.columns.find(column => column.name === 'slat')
       headers.push({
         name: 'slat',
         value: 'slat'
       })
-
       this.columns.filter(column => column.name !== "slat").forEach(column => {
         headers.push({
           name: column.name,
@@ -255,7 +250,6 @@ export default {
           value: column.name
         })
       })
-
       this.headers = headers
       this.makeStaticColumns()
     },
