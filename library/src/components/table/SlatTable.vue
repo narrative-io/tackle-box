@@ -8,6 +8,8 @@
       :selectionType="multiSelect ? 'multiSelect' : 'singleSelect'"
       :allSelected="allSelected"
       :selectedCount="multiSelect ? selection.length : selection ? 1 : 0"
+      :numItems="computedItems ? computedItems.length : 0"
+      :pagination="pagination"
       @allSelectedChange="allSelectedChange($event)"
     )
     v-data-table(

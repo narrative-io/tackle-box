@@ -85,6 +85,14 @@
       v-if="columns && items"
       :items="items"
       :columns="columns"
+      @selectionChanged="selectionChanged($event)"
+      pagination
+      key="6"
+    )
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
       multi-select
       @selectionChanged="selectionChanged($event)"
       key="7"

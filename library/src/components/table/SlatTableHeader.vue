@@ -14,6 +14,7 @@
         .count.nio-p.nio-bold.text-primary-dark(v-if="selectedCount > 0")
           span.selected-count {{ selectedCount }}
           span.label {{ selectedCount > 1 ? ' items' : ' item' }} selected
+      .count.nio-p.nio-bold.text-primary-dark(v-if="!pagination && numItems > 0 && !elements.search && !elements.sort && !elements.selected") Showing {{ numItems }} items
       NioTextField(
         v-if="elements.search"
         search-small-subdued
@@ -45,8 +46,10 @@ export default {
     "elements": { type: Object, required: true },
     "sortOptions": { type: Array, required: false, default: function() { return []} },
     "selectedCount": { type: Number, required: false, default: 0 },
+    "numItems": { type: Number, required: false },
     "selectionType": { type: String, required: false },
-    "allSelected": { type: Boolean, required: false, default: false }
+    "allSelected": { type: Boolean, required: false, default: false },
+    "pagination": { type: Boolean, requied: false, default: false }
   },
   data: () => ({
     selectedSort: null,
