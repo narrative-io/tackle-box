@@ -1,6 +1,6 @@
 <template lang="pug">
   .nio-file-chooser(
-    :class="`state-${ currentState }`"
+    :class="`state-${ currentState.toLowerCase() }`"
     ref="fsDroppable" 
     @dragenter.stop.prevent="isDragEnter = true" 
     @dragover.stop.prevent="() => {}" 
@@ -16,26 +16,24 @@
       @change="handleFilesChange"
       style="display: none;"
     )
-    .graphic(v-if="currentState !== 'success'")
-      NioIcon(
-        v-if="currentState === 'initial'"
-        name="display-upload" 
-        color="#415298"
-        size="48"
-      )
-      NioIcon(
-        v-if="currentState === 'selected'"
-        name="display-file" 
-        color="#415298"
-        size="48"
-      )
-      NioIcon(
-        v-if="currentState === 'error'"
-        name="display-warning" 
-        color="#415298"
-        size="48"
-      )
-      .progress(v-if="currentState === 'inProgress'")
+    NioIconFramer(
+      v-if="currentState === 'initial'"
+      iconName="display-upload" 
+    )
+    NioIconFramer(
+      v-if="currentState === 'selected'"
+      iconName="display-file" 
+    )
+    NioIconFramer(
+      v-if="currentState === 'error'"
+      iconName="display-warning" 
+    )
+    NioIconFramer(
+      v-if="currentState === 'success'"
+      iconName="display-download" 
+    )
+    .graphic(v-if="currentState === 'inProgress'")
+      .progress
         v-progress-circular(
           :value="percentComplete"
           rotate="270"
@@ -45,32 +43,34 @@
         .nio-p.text-primary-dark.nio-bold {{ percentComplete }}%
     .details
       .nio-h3.text-primary-darker 
-        span(v-if="currentState === 'initial'") Drag and Drop
+        span(v-if="currentState === 'initial'") Drag and drop
         span(v-if="currentState === 'selected'") Your File
-        span(v-if="currentState === 'inProgress'") {{ inProgressMessage }}
+        span(v-if="currentState === 'inProgress'") {{ inProgressMsg }}
         span(v-if="currentState === 'success'") Success
         span(v-if="currentState === 'error'") We have a problem
-      .nio-p.text-primary-dark 
+      .selected-file(v-if="currentState === 'selected'")
+        .nio-p.text-primary-dark <strong>{{ filename }}</strong> {{ readableFilesize }}
+        NioButton(
+          caution-icon-small
+          iconName="utility-times"
+          @click="cancelSelection"
+        )
+      .nio-p.text-primary-dark(v-else)
         span(v-if="currentState === 'initial'") {{ instructions }}
-        span(v-if="currentState === 'selected' || currentState === 'inProgress'") <strong>{{ filename }}</strong> {{ readableFilesize }}
+        span(v-if="currentState === 'inProgress'") <strong>{{ filename }}</strong> {{ readableFilesize }}
         span(v-if="currentState === 'success'") {{ successMsg }}
         span(v-if="currentState === 'error'")
            span(v-if="errorType === 'validation'") {{ validationErrorMsg }}
            span(v-else-if="errorType === 'filesize'") {{ filesizeErrorMsg }}
            span(v-else-if="errorType === 'multifile'") {{ multifileErrorMsg }}
            span(v-else) {{ generalErrorMsg }}
+      .selected-file     
       .spacer
         .content(v-if="currentState === 'initial'")
           .left
           .nio-h6.text-primary-dark OR
           .right
     .actions
-      NioButton(
-        key="4"
-        v-if="currentState === 'selected' || currentState === 'error'"
-        normal-secondary
-        @click="browseClicked"
-      ) Choose Another File
       NioButton(
         key="1"
         v-if="currentState === 'initial'"
@@ -85,7 +85,7 @@
         :disabled="!valid"
       ) {{ actionLabel }}
       NioButton(
-        key="3"
+        key="4"
         v-if="currentState === 'inProgress'"
         caution-outlined
         @click="cancelClicked"
@@ -94,20 +94,24 @@
         name="success-actions"
         v-if="currentState === 'success'"
       )
-    .invalid-message.text-error.nio-p(v-if="currentState === 'selected' && !valid") {{ invalidMessage }}
+      slot(
+        name="error-actions"
+        v-if="currentState === 'error'"
+      )
+    .invalid-message.text-error.nio-p(v-if="currentState === 'selected' && !valid") {{ invalidMsg }}
 </template>
 
 <script>
 
 import NioButton from './Button'
-import NioIcon from './icon/Icon'
+import NioIconFramer from'./icon/IconFramer'
 
 export default {
   name: 'nio-file-chooser',
   props: {
     instructions: { type: String, required: false, default: "Choose a file" },
     actionLabel: { type: String, required: false, default: "Go" },
-    inProgressMessage: { type: String, required: false, default: "Working on it..." },
+    inProgressMsg: { type: String, required: false, default: "Working on it..." },
     successMsg: { type: String, required: false, default: "Everything went smoothly" },
     generalErrorMsg: { type: String, required: false, default: "Something went wrong. Please try again." },
     filesizeErrorMsg: { type: String, required: false, default: "Your file is too large. Please choose another file."},
@@ -120,7 +124,7 @@ export default {
     validateFn: { type: Function, required: false, default: () => true },
     percentComplete: { type: Number, required: false, default: 0 },
     valid: { type: Boolean, required: false, default: false},
-    invalidMessage: { type: String, required: false, default: 'selection is invalid'}
+    invalidMsg: { type: String, required: false, default: 'selection is invalid'}
   },
   data: () => ({
     currentState: 'initial',
@@ -140,6 +144,10 @@ export default {
     },
     cancelClicked() {
       this.$emit('cancelClicked')
+      this.currentState = 'initial'
+    },
+    cancelSelection() {
+      this.$emit('cancelSelected')
       this.currentState = 'initial'
     },
     handleFilesChange($event) {
@@ -214,7 +222,7 @@ export default {
       this.currentState = val
     }
   },
-  components: { NioButton, NioIcon }
+  components: { NioButton, NioIconFramer }
 }
 
 </script>

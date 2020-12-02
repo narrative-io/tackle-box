@@ -1,0 +1,29 @@
+@import '../global/_colors'
+@import '../global/_typography'
+@import '../global/_color-helpers'
+@import '../mixins/utility/_center-content'
+
+=nio-icon-framer
+  background: $c-canvas
+  width: 7.5rem
+  height: 7.5rem
+  border-radius: 3.75rem
+  border: 0.0625rem solid $c-primary-lighter
+  position: relative
+  &.nio-small
+    width: 4rem
+    height: 4rem
+    border-radius: 2rem
+  +nio-center-content
+  .v-progress-circular
+    width: 6.25rem !important
+    height: 6.25rem !important
+    position: absolute
+    left: 0.5625rem
+    top: 0.5625rem
+    ::v-deep circle:nth-child(1)
+      stroke: $c-primary-lighter !important
+
+.nio-icon-framer
+  +nio-icon-framer
+  

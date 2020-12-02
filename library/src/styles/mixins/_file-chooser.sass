@@ -7,7 +7,7 @@
 =nio-file-chooser
   position: relative
   background-color: $c-canvas
-  border: 0.0938rem dashed $c-primary-light
+  border: 0.0625rem solid $c-primary-lighter
   box-sizing: border-box
   border-radius: 0.75rem
   height: 26.25rem
@@ -17,6 +17,8 @@
   align-items: center
   width: 100%
   text-align: center
+  .nio-icon-framer
+    margin-bottom: 1rem
   .graphic
     background: $c-canvas
     width: 7.5rem
@@ -38,7 +40,16 @@
     .nio-h3
       margin-bottom: 0.5rem
     .nio-p
-      margin-bottom: 0.5rem	
+      margin-bottom: 0.5rem	     
+    .selected-file
+      display: flex
+      justify-content: center  
+      align-items: center
+      .nio-button
+        margin-left: 1rem 
+        margin-top: 0.0625rem
+      .nio-p
+        margin-bottom: 0rem	       
     .spacer
         margin-top: 1rem
         margin-bottom: 1rem
@@ -70,16 +81,9 @@
   // states	
   &.state-initial
 
-  &.state-selected, &.state-working
+  &.state-selected, &.state-inprogress, &.state-success, &.state-error
     background-color: $c-white   
-    border: 0.0938rem solid $c-primary-light 
-  &.state-selected 
-        
-  &.state-working
-  
-  &.state-success
-
-  &.state-error  
+    border: 0.0625rem solid $c-primary-lighter 
 
 .nio-file-chooser
   +nio-file-chooser

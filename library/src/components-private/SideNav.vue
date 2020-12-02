@@ -2,7 +2,13 @@
   .nio-side-nav
     .header
       ImageTile.avatar(
-        :src="headerImage"
+        v-if="headerImage"
+        :src="`data:${headerImage.imageType};base64, ${headerImage.image}`"
+        size="large"
+      )
+      ImageTile.avatar(
+        v-else
+        :src="null"
         size="large"
       )
         template(v-slot:nio-image-placeholder)
@@ -20,7 +26,7 @@
       :activeItemName="activeItemName"
       @navItemClicked="navItemClicked" 
       @navEvent="fireNavEvent($event)"
-    )     
+    )
 </template>
 
 <script>
@@ -36,7 +42,7 @@ export default {
     "navItems": { type: Array, required: false, default: []},
     "hideItems": { type: Object, required: false, default: {} },
     "lockItems": { type: Object, required: false, default: {} },
-    "headerImage": { type: String, required: false },
+    "headerImage": { type: Object, required: false },
     "activeItemName": { type: String, required: false}
   },
   data: () => ({

@@ -5,22 +5,25 @@
   margin: 0rem
   margin-left: -0.3125rem
   i
-    color: $c-primary-dark !important
+    color: $c-primary-light !important
   &.nio-checked i
     color: $c-primary !important
     caret-color: $c-primary !important
     
 =nio-checkbox
   ::v-deep i
-    color: $c-primary-dark !important
+    color: $c-primary-light !important
   &.v-input--is-label-active 
     ::v-deep i
       color: $c-primary !important
       caret-color: $c-primary !important
   ::v-deep .v-label
     +nio-form-label 
+    left: 8px !important
   ::v-deep .v-input--selection-controls__ripple
     display: none
-      
+  ::v-deep .v-input--selection-controls__input
+    margin-right: 0px
+  ::v-deep label
 .nio-checkbox
   +nio-checkbox

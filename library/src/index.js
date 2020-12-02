@@ -11,8 +11,21 @@ import NioRadioGroup from "./components/RadioGroup"
 import NioRadioButton from "./components/RadioButton"
 import NioImageTile from "./components/ImageTile"
 import NioIcon from "./components/icon/Icon"
+import NioIconFramer from "./components/icon/IconFramer"
 import NioFileChooser from "./components/FileChooser"
 import NioCard from "./components/Card"
+import NioAlert from "./components/Alert"
+import NioDivider from "./components/Divider"
+import NioExpansionPanel from "./components/ExpansionPanel"
+import NioSlatGroup from "./components/slat/SlatGroup"
+import NioSlat from "./components/slat/Slat"
+import NioLinkSlat from "./components/slat/types/LinkSlat"
+import NioSummarySlat from "./components/slat/types/SummarySlat"
+import NioIconLinkSlat from "./components/slat/assembled/IconLinkSlat"
+import NioImageTileLinkSlat from "./components/slat/assembled/ImageTileLinkSlat"
+import NioStepper from "./components/stepper/Stepper"
+import NioStep from "./components/stepper/Step"
+import NioSlatTable from "./components/table/SlatTable"
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
@@ -29,8 +42,21 @@ const Components = {
 	NioRadioButton,
 	NioImageTile,
 	NioIcon,
+	NioIconFramer,
 	NioFileChooser,
 	NioCard,
+	NioAlert,
+	NioDivider,
+	NioExpansionPanel,
+	NioSlatGroup,
+	NioSlat,
+	NioLinkSlat,
+	NioIconLinkSlat,
+	NioSummarySlat,
+	NioImageTileLinkSlat,
+	NioStepper,
+	NioStep,
+	NioSlatTable,
 	FontAwesomeIcon
 }
 
@@ -44,8 +70,21 @@ Vue.component("NioRadioGroup", NioRadioGroup)
 Vue.component("NioRadioButton", NioRadioButton)
 Vue.component("NioImageTile", NioImageTile)
 Vue.component("NioIcon", NioIcon)
+Vue.component("NioIconFramer", NioIconFramer)
 Vue.component("NioFileChooser", NioFileChooser)
 Vue.component("NioCard", NioCard)
+Vue.component("NioAlert", NioAlert)
+Vue.component("NioDivider", NioDivider)
+Vue.component("NioExpansionPanel", NioExpansionPanel)
+Vue.component("NioSlatGroup", NioSlatGroup)
+Vue.component("NioSlat", NioSlat)
+Vue.component("NioLinkSlat", NioLinkSlat)
+Vue.component("NioIconLinkSlat", NioIconLinkSlat)
+Vue.component("NioSummarySlat", NioSummarySlat)
+Vue.component("NioImageTileLinkSlat", NioImageTileLinkSlat)
+Vue.component("NioStepper", NioStepper)
+Vue.component("NioStep", NioStep)
+Vue.component("NioSlatTable", NioSlatTable)
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
 export { NioButton }
@@ -58,8 +97,21 @@ export { NioRadioGroup }
 export { NioRadioButton }
 export { NioImageTile }
 export { NioIcon }
+export { NioIconFramer }
 export { NioFileChooser }
 export { NioCard }
+export { NioAlert }
+export { NioDivider }
+export { NioExpansionPanel }
+export { NioSlatGroup }
+export { NioSlat }
+export { NioLinkSlat }
+export { NioIconLinkSlat }
+export { NioSummarySlat }
+export { NioImageTileLinkSlat }
+export { NioStepper }
+export { NioStep }
+export { NioSlatTable }
 export { FontAwesomeIcon }
 
 export default Components

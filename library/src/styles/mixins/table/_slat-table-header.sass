@@ -1,0 +1,32 @@
+@import "../../global/_colors"
+
+=nio-slat-table-header 
+  height: 4.375rem
+  background-color: $c-canvas-darker
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+  ::v-deep .nio-slat-content
+    flex-grow: 2
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+    .header-selected
+      display: flex
+      align-items: center
+
+      .nio-checkbox
+        margin-right: 1.5rem
+
+    .nio-select, .nio-text-field
+      flex-grow: 0
+      width: 16.25rem
+      margin-bottom: 0rem
+
+  ::v-deep .nio-slat-action
+    display: none 
+
+.nio-slat-table-header
+  +nio-slat-table-header 

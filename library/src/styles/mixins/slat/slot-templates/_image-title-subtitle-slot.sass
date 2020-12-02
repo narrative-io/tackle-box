@@ -1,0 +1,31 @@
+@import '../../../global/_colors'
+@import '../../../global/_color-helpers'
+@import '../../../global/_typography'
+
+
+=image-title-subtitle-slot
+  display: flex
+  align-items: center
+  height: 100%
+
+  .nio-slat-image 
+    margin-right: 26px
+  
+  .nio-slat-title-subtitle
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+    .nio-slat-title
+      @extend .nio-h4
+      @extend .text-primary-darker
+      @extend .nio-bold
+      white-space: nowrap
+    .nio-slat-subtitle
+      @extend .nio-p
+      @extend .text-primary-dark
+      white-space: nowrap
+      margin-top: 4px
+
+.image-title-subtitle-slot
+  +image-title-subtitle-slot

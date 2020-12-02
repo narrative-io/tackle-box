@@ -1,0 +1,17 @@
+@import '../../global/_colors'
+
+=nio-step
+  border-radius: 0rem !important
+  margin: 0rem 
+  
+  &:not(:last-child)
+    border-bottom: 0.0625rem solid $c-primary-lighter
+
+  &:before
+    box-shadow: none
+
+  &:after
+    border: none !important
+
+.nio-step
+  +nio-step

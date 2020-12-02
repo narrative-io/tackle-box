@@ -1,22 +1,25 @@
 <template lang="pug">
     v-text-field.nio-text-field(
+      :class="{small: smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr }"
       outlined 
       flat
+      :solo="smallAttr"
       @input="$emit('update', $event)"
-      :model="model" 
+      :model="model"
       :rules="parsedRules"
       v-bind="$attrs"
       v-on="$listeners" 
       ref="nio-text-field-ref"
     )
       template(
-        v-if="prependAttr"
+        v-if="prependAttr || prependIconAttr"
         v-slot:prepend-inner
       )
         NioIcon(
-          v-if="iconName"
-          :name="iconName"
+          v-if="iconName || prependIconAttr"
+          :name="prependIconAttr ? prependIconAttr : iconName"
           size="16"
+          :color="iconColor"
           @click="clickPrepend"
         )
       template(
@@ -52,7 +55,10 @@ export default {
   data: () => ({
     parsedRules: [],
     appendAttr: false,
-    prependAttr: false
+    prependAttr: false,
+    prependIconAttr: null,
+    smallAttr: false,
+    iconColor: '#1438F5'
   }),
   methods: {
     focus() {
@@ -75,6 +81,18 @@ export default {
       if (attributes.getNamedItem('prepend')) {
         this.prependAttr = true
       }	
+      if (attributes.getNamedItem('small')) {
+        this.smallAttr = true
+      }
+      if (attributes.getNamedItem('search-small')) {
+        this.smallAttr = true
+        this.prependIconAttr = 'utility-search'
+      }
+      if (attributes.getNamedItem('search-small-subdued')) {
+        this.smallAttr = true
+        this.prependIconAttr = 'utility-search'
+        this.iconColor = '#AEB9E8'
+      }
     },
     clickAppend() {
       this.$emit('click:append')

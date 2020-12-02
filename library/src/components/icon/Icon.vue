@@ -33,6 +33,7 @@ import { faArrowDown } from './fa-icons/arrow-down'
 import { faChevronDown } from './fa-icons/chevron-down'
 import { faChevronLeft } from './fa-icons/chevron-left'
 import { faChevronRight } from './fa-icons/chevron-right'
+import { faChevronUp } from './fa-icons/chevron-up'
 import { faCode } from './fa-icons/code'
 import { faExternalLinkAlt } from './fa-icons/external-link'
 import { faLock } from './fa-icons/lock'
@@ -48,6 +49,8 @@ import { faLinkedin } from './fa-icons/linkedin'
 import { faTwitter } from './fa-icons/twitter'
 import { faEye } from './fa-icons/eye'
 import { faEyeSlash } from './fa-icons/eye-slash'
+import { faExclamation } from './fa-icons/exclamation'
+import { faCheckCircle } from './fa-icons/check-circle'
  
 export default {
   name: 'nio-icon',
@@ -79,7 +82,8 @@ export default {
     library.add(faArrowDown)
     library.add(faChevronDown)
     library.add(faChevronLeft)
-    library.add(faChevronRight)
+		library.add(faChevronRight)
+		library.add(faChevronUp)
     library.add(faExternalLinkAlt)
     library.add(faLock)
     library.add(faEllipsisH)
@@ -94,6 +98,8 @@ export default {
     library.add(faTwitter)
     library.add(faEye)
     library.add(faEyeSlash)
+		library.add(faExclamation)
+		library.add(faCheckCircle)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },

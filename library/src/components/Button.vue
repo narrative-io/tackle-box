@@ -1,5 +1,16 @@
 <template lang="pug">
+  v-btn.nio-container-button(
+    v-if="container"
+    v-bind="$attrs"
+    v-on="$listeners" 
+    text
+    :ripple="false"
+  )
+    template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+      slot(:name="name" v-bind="data")
+    slot
   v-btn.nio-button(
+    v-else
     :ripple="false" 
     :class="[`nio-button-${ sizeAttr ? sizeAttr : size }`, `nio-button-${ variantAttr ? variantAttr : variant }`, { 'nio-button-caps': caps }, { 'nio-button-prepend': prependAttr }, { 'nio-button-append': appendAttr }, { 'nio-button-icon': icon || iconAttr}]"
     :icon="icon || iconAttr"
@@ -17,7 +28,7 @@
       :name="iconName" :size="size" 
     )
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-      slot(:name="name" v-bind="data") 
+      slot(:name="name" v-bind="data") 	
 </template>
 
 <script>
@@ -129,22 +140,30 @@ export default {
         this.iconAttr = true
         this.sizeAttr = 'normal'
         this.variantAttr = 'secondary'
-			}
-			if (attributes.getNamedItem('caution-filled-prepend')) {
+      }
+      if (attributes.getNamedItem('caution-filled-prepend')) {
         this.prependAttr = true
         this.sizeAttr = 'normal'
         this.variantAttr = 'error-filled'
-			}
-			if (attributes.getNamedItem('caution-outlined')) {
+      }
+      if (attributes.getNamedItem('caution-outlined')) {
         this.iconAttr = false
         this.sizeAttr = 'normal'
         this.variantAttr = 'error'
-			}
-			if (attributes.getNamedItem('caution-text')) {
+      }
+      if (attributes.getNamedItem('caution-text')) {
         this.iconAttr = false
         this.sizeAttr = 'normal'
         this.variantAttr = 'error-text'
       }
+      if (attributes.getNamedItem('caution-icon-small')) {
+        this.iconAttr = true
+        this.sizeAttr = 'small'
+        this.variantAttr = 'error-icon'
+      }
+      if (attributes.getNamedItem('container')) {
+        this.container = true
+      }	
     }
   },
   data: () => ({
@@ -152,7 +171,8 @@ export default {
     variantAttr: undefined,
     prependAttr: false,
     appendAttr: false,
-    iconAttr: false
+    iconAttr: false,
+    container: false
   }),
   mounted() {
     this.applyHelperAttributes()

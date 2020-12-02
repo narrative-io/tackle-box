@@ -1,0 +1,14 @@
+=nio-slat-table-actions
+	border-bottom: none
+	
+	::v-deep .nio-slat
+		padding: 0rem !important	
+
+	::v-deep .nio-slat-content
+		display: flex	
+
+		& > * + *
+			margin-left: 1rem
+
+.nio-slat-table-actions
+	+nio-slat-table-actions 

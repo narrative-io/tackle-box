@@ -1,0 +1,53 @@
+@import '../global/_colors'
+@import '../global/_color-helpers'
+@import '../global/_fonts'
+  
+=nio-alert 
+    position: relative
+    display: flex
+    text-align: center
+    justify-content: center
+    align-items: center
+    overflow: hidden
+    background: $c-seagreen-light
+    border-radius: 0.75rem
+    margin: 0rem 0rem
+    width: 100%
+    height: 4.25rem
+    max-height: 0rem
+    transition: all 100ms ease-in-out
+    .dismiss
+      position: absolute
+      right: 1.6875rem
+      top: 50%
+      margin-top: -0.625rem
+      &:hover 
+        cursor: pointer
+        opacity: 0.7
+    .graphic
+      width: 20px
+      height: 20px
+      border-radius: 10px    
+      display: flex
+      justify-content: center
+      align-items: center
+      margin-right: 18px
+      .nio-icon
+        margin-top: 1px
+    &.nio-alert-warning
+      justify-content: flex-start
+      background-color: $c-white  
+      border: 0px solid rgba(0,0,0,0)
+      padding-left: 1.6875rem
+      ::v-deep .nio-icon.dismiss svg
+        color: $c-error
+      .graphic
+        background-color: $c-warning
+    &.nio-visible
+      max-height: 4.25rem
+      margin-bottom: 1.5rem
+      &.nio-alert-warning
+        border: 2px solid $c-warning
+.nio-alert
+  +nio-alert 	
+          

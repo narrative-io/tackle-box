@@ -1,0 +1,59 @@
+@import '../../global/_colors'
+  
+=nio-step-header
+  min-height: unset
+  padding: 0rem
+  background-color: $c-canvas
+
+  ::v-deep .v-expansion-panel-header__icon
+    visibility: hidden
+    width: 0rem
+
+  .nio-step-header-slat
+    box-shadow: none
+    display: flex
+    justify-content: space-between
+    align-items: center
+    & > ::v-deep .nio-slat-content, & > ::v-deep .nio-slat-action
+      flex-basis: 0
+      flex-grow: 2
+    & > ::v-deep .nio-slat-content
+      margin-right: 1.5rem
+    & > ::v-deep .nio-slat-action
+      margin-right: 0rem
+      margin-left: 1.5rem
+      display: flex
+      justify-content: center
+      align-items: center  
+    .step
+      flex-grow: 0
+      display: flex
+      align-items: center
+      .icon, .nio-icon
+        margin-right: 1rem
+      .icon
+        width: 1.5rem
+        height: 1.5rem
+        border-radius: 0.75rem
+        background-color: $c-primary-dark
+        display: flex
+        justify-content: center
+        align-items: center
+        .step-number
+          color: $c-canvas
+
+  &:hover ::v-deep .nio-icon.expand
+    opacity: 0.7
+
+  &.v-expansion-panel-header--active
+    background-color: $c-white
+
+    ::v-deep .nio-icon.expand
+      transform: rotate(180deg)
+
+  &.locked
+    .nio-step-header-slat
+      opacity: 0.5
+
+.nio-step-header
+  +nio-step-header

@@ -66,6 +66,7 @@ const NioIconLibrary = {
 	"display-budget": IconBudget,
 	"display-list-warning": IconListWarning,
 	"display-curvy-arrow": IconCurvyArrow,
+	"utility-exclamation": ["fas", "exclamation"],
 	"utility-code": ["fas","code"],
 	"utility-plus": ["fas", "plus"],
 	"utility-chevron-left": ["fas", "chevron-left"],
@@ -89,7 +90,9 @@ const NioIconLibrary = {
 	"utility-linkedin": ["fab", "linkedin"],
 	"utility-twitter": ["fab", "twitter"],
 	"utility-eye": ["fas", "eye"],
-	"utility-eye-slash": ["fas", "eye-slash"]
+	"utility-eye-slash": ["fas", "eye-slash"],
+	"utility-check-circle": ["fas", "check-circle"],
+	"utility-chevron-up": ["fas", "chevron-up"],
 }
 
 export { NioIconLibrary }

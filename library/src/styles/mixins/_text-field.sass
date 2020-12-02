@@ -15,6 +15,7 @@
   ::v-deep .nio-icon
     color: $c-primary
     padding-top: 2px
+  
   // solo
   &.v-text-field--solo
     ::v-deep .v-input__prepend-inner	
@@ -54,5 +55,28 @@
     ::v-deep .v-input__slot
       background-color: $c-canvas !important
 
+=nio-text-field-small
+  height: 40px
+  ::v-deep input
+    padding: 0rem 1rem
+    font-size: 14px
+  ::v-deep label
+    padding-left: 1rem
+    top: 0.625rem
+  ::v-deep .v-input__slot
+    height: 100%  
+    border-width: 1px
+    
+=nio-text-field-prepend-icon-small
+    ::v-deep input
+      padding-left: 0.75rem
+    ::v-deep label
+      padding-left: 0.75rem
+
 .nio-text-field
   +nio-text-field
+
+  &.small
+    +nio-text-field-small
+  &.prepend-icon-small  
+    +nio-text-field-prepend-icon-small

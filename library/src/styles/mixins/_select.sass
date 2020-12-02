@@ -1,4 +1,5 @@
 @import '../global/_colors'
+@import './_text-field'
 @import './_input'
 @import './_menu'
 
@@ -39,7 +40,7 @@
         font-size: 0.875rem
         color: $c-primary-darker
   & .v-select__selection.v-select__selection--comma			
-    margin: 7px 4px 7px 0
+    margin: 0.4375rem 0.25rem 0.4375rem 0
     overflow: hidden
     text-overflow: ellipsis
     white-space: nowrap
@@ -49,5 +50,29 @@
   ::v-deep .v-menu__content
     +nio-menu
 
-.nio-select
+=nio-select-small
+  +nio-text-field
+  +nio-text-field-small 
+  ::v-deep 
+    .v-input__control
+      min-height: unset
+    .v-input__slot 
+      box-shadow: none !important
+      border-width: 0.0625rem !important
+      label
+        top: 0.5625rem !important
+        padding-left: 1rem !important
+        font-size: 0.875rem !important
+    .v-select__selection.v-select__selection--comma			
+      // margin-left: 1rem
+      font-size: 0.875rem
+      color: $c-primary-dark    
+    .v-select__selections
+      margin-left: 1rem
+      font-size: 0.875rem
+      color: $c-primary-dark   
+.nio-select:not(.small)
   +nio-select
+
+.nio-select.small
+  +nio-select-small
