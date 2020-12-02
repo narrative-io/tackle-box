@@ -20,6 +20,7 @@ import NioExpansionPanel from "./components/ExpansionPanel"
 import NioSlatGroup from "./components/slat/SlatGroup"
 import NioSlat from "./components/slat/Slat"
 import NioLinkSlat from "./components/slat/types/LinkSlat"
+import NioSummarySlat from "./components/slat/types/SummarySlat"
 import NioIconLinkSlat from "./components/slat/assembled/IconLinkSlat"
 import NioImageTileLinkSlat from "./components/slat/assembled/ImageTileLinkSlat"
 import NioStepper from "./components/stepper/Stepper"
@@ -51,6 +52,7 @@ const Components = {
 	NioSlat,
 	NioLinkSlat,
 	NioIconLinkSlat,
+	NioSummarySlat,
 	NioImageTileLinkSlat,
 	NioStepper,
 	NioStep,
@@ -78,6 +80,7 @@ Vue.component("NioSlatGroup", NioSlatGroup)
 Vue.component("NioSlat", NioSlat)
 Vue.component("NioLinkSlat", NioLinkSlat)
 Vue.component("NioIconLinkSlat", NioIconLinkSlat)
+Vue.component("NioSummarySlat", NioSummarySlat)
 Vue.component("NioImageTileLinkSlat", NioImageTileLinkSlat)
 Vue.component("NioStepper", NioStepper)
 Vue.component("NioStep", NioStep)
@@ -104,6 +107,7 @@ export { NioSlatGroup }
 export { NioSlat }
 export { NioLinkSlat }
 export { NioIconLinkSlat }
+export { NioSummarySlat }
 export { NioImageTileLinkSlat }
 export { NioStepper }
 export { NioStep }
