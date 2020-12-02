@@ -91,7 +91,8 @@ const NioIconLibrary = {
 	"utility-twitter": ["fab", "twitter"],
 	"utility-eye": ["fas", "eye"],
 	"utility-eye-slash": ["fas", "eye-slash"],
-	"utility-check-circle": ["fas", "check-circle"]
+	"utility-check-circle": ["fas", "check-circle"],
+	"utility-chevron-up": ["fas", "chevron-up"],
 }
 
 export { NioIconLibrary }

@@ -33,6 +33,7 @@ import { faArrowDown } from './fa-icons/arrow-down'
 import { faChevronDown } from './fa-icons/chevron-down'
 import { faChevronLeft } from './fa-icons/chevron-left'
 import { faChevronRight } from './fa-icons/chevron-right'
+import { faChevronUp } from './fa-icons/chevron-up'
 import { faCode } from './fa-icons/code'
 import { faExternalLinkAlt } from './fa-icons/external-link'
 import { faLock } from './fa-icons/lock'
@@ -81,7 +82,8 @@ export default {
     library.add(faArrowDown)
     library.add(faChevronDown)
     library.add(faChevronLeft)
-    library.add(faChevronRight)
+		library.add(faChevronRight)
+		library.add(faChevronUp)
     library.add(faExternalLinkAlt)
     library.add(faLock)
     library.add(faEllipsisH)

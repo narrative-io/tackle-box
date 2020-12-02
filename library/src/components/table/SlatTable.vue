@@ -66,7 +66,7 @@
               )
               NioIcon(
                 v-if="action === 'expand'"
-                name="utility-chevron-down"
+                :name="isExpanded ? 'utility-chevron-up' : 'utility-chevron-down'"
                 color="#415298"
               )
               v-menu(
