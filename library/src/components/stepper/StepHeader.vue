@@ -14,7 +14,8 @@
           .icon(v-else)
             .step-number {{ stepIndex }}
           .step-name.nio-h6.text-primary-dark {{ stepName }}
-        slot(name="header-complete")
+        .summary(v-if="complete")
+          slot(name="header-complete")
       template(v-slot:action)
         NioIcon(
           name="utility-chevron-down"
@@ -31,8 +32,8 @@ export default {
   name: 'nio-step-header',
   props: {
     "stepName": { type: String, required: true },
-		"complete": { type: Boolean, required: false, default: false },
-		"locked": { type: Boolean, required: false, default: true },
+    "complete": { type: Boolean, required: false, default: false },
+    "locked": { type: Boolean, required: false, default: true },
     "stepIndex": { type: Number, requied: true },
     "isFirstStep": { type: Boolean, required: false, default: false },
     "isLastStep": { type: Boolean, required: false, default: false }

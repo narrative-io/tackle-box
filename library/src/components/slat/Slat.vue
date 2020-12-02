@@ -11,7 +11,7 @@
 export default {
   name: 'nio-slat',
   props: {
-    "type": { type: String, required: false, default: 'link' },
+		
   },
   data: () => ({
 

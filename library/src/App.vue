@@ -30,9 +30,9 @@
         //- TestAlert
         //- TestButtons
         //- TestAutocomplete
-        TestSlatTable
+        //- TestSlatTable
         //- TestSlat
-        //- TestStepper
+        TestStepper
         //- TestFileChooser
         //- TestCheckbox
         //- TestSwitch

@@ -11,11 +11,11 @@ export default {
   name: 'nio-stepper',
   props: {
     "orderedSteps": { type: Array, required: true },
-		"currentStep": { type: String, required: false, default: false },
-		"completedSteps": { type: Array, required: false, default: [] },
-		"nextStepLabel": { type: String, required: false, default: "continue"},
-		"previousStepLabel": { type: String, required: false, default: "back"},
-		"finalStepLabel": { type: String, required: false, default: "finish"}
+    "currentStep": { type: String, required: false, default: false },
+    "completedSteps": { type: Array, required: false, default: [] },
+    "nextStepLabel": { type: String, required: false, default: "continue"},
+    "previousStepLabel": { type: String, required: false, default: "back"},
+    "finalStepLabel": { type: String, required: false, default: "finish"}
   },
   data: () => ({
     activeStep: 0
