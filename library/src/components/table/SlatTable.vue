@@ -3,23 +3,22 @@
     NioSlatTableHeader(
       :elements="headerElements"
       :sortOptions="sortOptions"
-      @searchChange="searchChange($event)"
-      @sortChange="sortChange($event)"
       :selectionType="multiSelect ? 'multiSelect' : 'singleSelect'"
       :allSelected="allSelected"
       :selectedCount="multiSelect ? selection.length : selection ? 1 : 0"
       :numItems="computedItems ? computedItems.length : 0"
       :pagination="pagination"
+      @searchChange="searchChange($event)"
+      @sortChange="sortChange($event)"
       @allSelectedChange="allSelectedChange($event)"
     )
     v-data-table(
       v-if="headers && computedItems"
-      :headers="headers"
-      :items="pagination ? paginatedItems : computedItems"
-      :items-per-page="10"
       item-key="id"
       hide-default-header
       hide-default-footer
+      :headers="headers"
+      :items="pagination ? paginatedItems : computedItems"
     )
       template(
         v-slot:item="{ item, expand, isExpanded }"    

@@ -14,12 +14,12 @@
     display: flex
     justify-content: space-between
     align-items: center
-    ::v-deep .nio-slat-content, ::v-deep .nio-slat-action
+    & > ::v-deep .nio-slat-content, & > ::v-deep .nio-slat-action
       flex-basis: 0
       flex-grow: 2
-    ::v-deep .nio-slat-content
+    & > ::v-deep .nio-slat-content
       margin-right: 24px
-    ::v-deep .nio-slat-action
+    & > ::v-deep .nio-slat-action
       margin-right: 0px
       margin-left: 24px
       display: flex
@@ -41,12 +41,8 @@
         align-items: center
         .step-number
           color: $c-canvas
-      .step-name
-    .summary
-      
+      .step-name      
     
-      
-  
   &.v-expansion-panel-header--active
     background-color: $c-white
 

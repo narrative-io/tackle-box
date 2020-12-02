@@ -9,6 +9,13 @@
 		display: flex
 		justify-content: space-between
 		align-items: center
+		.details
+			text-align: right
+			& > * + * 
+				margin-top: 2px
+
+	::v-deep .nio-slat-summary, ::v-deep .nio-slat-action
+		display: none
 
 .nio-summary-slat
 	+nio-summary-slat

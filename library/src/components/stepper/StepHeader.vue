@@ -22,7 +22,7 @@
             value="103,000"
             annotation="Hashed Emails"
           )
-      template(v-slot:action)
+      template(v-slot:action v-if="complete")
         NioIcon(
           name="utility-chevron-down"
           color="#415298"
