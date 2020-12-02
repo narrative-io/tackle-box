@@ -9,28 +9,28 @@
 
   tr
     background-color: $c-white
-    border-bottom: 0px !important
+    border-bottom: 0rem !important
     &:not(:last-child)
-      box-shadow: inset 0px -1px 0px #DAE0F9
+      box-shadow: inset 0rem -0.0625rem 0rem #DAE0F9
     
     &.selected, &:hover
       background-color: $c-canvas !important
 
     td
-      padding: 16px 0px !important
-      border-bottom: 0px !important
+      padding: 1rem 0rem !important
+      border-bottom: 0rem !important
 
       &:first-child
-        padding-left: 24px !important
+        padding-left: 1.5rem !important
       &:last-child
-        padding-right: 24px !important
+        padding-right: 1.5rem !important
 
     td.selection-cell
-      width: 24px
-      padding-right: 24px !important
+      width: 1.5rem
+      padding-right: 1.5rem !important
 
     td.static-cell
-      width: 120px
+      width: 7.5rem
       
     td.static-cell *
       width: 100%
@@ -39,7 +39,7 @@
       text-align: right
 
     td.action-cell
-      width: 14px	
+      width: 0.875rem	
       ::v-deep .activator:hover, & > .nio-icon:hover
         cursor: pointer
         opacity: 0.5
@@ -48,14 +48,14 @@
         +nio-menu
 
     & > td + td
-      padding-left: 16px !important
+      padding-left: 1rem !important
 
   .actions-row:hover
     cursor: initial !important
     background-color: rgba(0, 0, 0, 0) !important
 
   ::v-deep .nio-slat-table-actions
-    padding: 22px 0px !important
+    padding: 1.375rem 0rem !important
      
   ::v-deep .v-data-footer
     border-top: none !important
@@ -65,28 +65,5 @@
     ::v-deep .action-cell
       opacity: 0.5  
 
-  .pagination-footer
-    height: 70px
-    padding: 16px
-    padding-right: 24px
-    display: flex
-    justify-content: space-between
-    align-items: center    
-    box-shadow: inset 0px 1px 0px #DAE0F9
-    .nio-select
-      flex-grow: 0
-      margin-bottom: 0
-      width: 232px
-    .pages
-      display: flex	
-      align-items: center
-      .count
-        margin-top: 2px
-        margin-right: 16px
-      .actions
-        display: flex
-        align-items: center
-        .prev
-          margin-right: 8px
 .nio-slat-table
   +nio-slat-table

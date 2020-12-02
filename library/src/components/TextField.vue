@@ -5,7 +5,7 @@
       flat
       :solo="smallAttr"
       @input="$emit('update', $event)"
-      :model="model" 
+      :model="model"
       :rules="parsedRules"
       v-bind="$attrs"
       v-on="$listeners" 

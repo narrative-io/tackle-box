@@ -92,41 +92,15 @@
             template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
               slot(:name="name" v-bind="data") 
       template(v-slot:footer v-if="pagination")
-        .pagination-footer
-          NioSelect(
-            small
-            v-model="itemsPerPage"
-            :items="itemsPerPageOptions"
-            @change="itemsPerPageChange($event)"
-          )
-            template(v-slot:selection="data") {{ data.item === -1 ? 'Show all' : `${data.item} items per page`}}
-            template(v-slot:item="data") {{ data.item === -1 ? 'Show all' : `${data.item} items per page`}}
-          .pages(v-if="computedItems.length && itemsPerPage !== -1")
-            .count.text-primary-dark.nio-p.nio-bold 
-              span.start(v-if="currentPage * itemsPerPage - itemsPerPage + 1 !== computedItems.length") {{ currentPage * itemsPerPage - itemsPerPage + 1 }}-
-              span.end {{ Math.min(itemsPerPage * currentPage, computedItems.length) }} 
-              span.total of {{ computedItems.length }}
-            .actions
-              .prev
-                NioButton(
-                  container 
-                  @click="prevPage"
-                  :disabled="currentPage === 1"
-                )
-                  NioIcon(
-                    name="utility-chevron-left"
-                    color="#415298"
-                  )
-              .next
-                NioButton(
-                  container 
-                  @click="nextPage"
-                  :disabled="computedItems.length <= currentPage * itemsPerPage"
-                )
-                  NioIcon(
-                    name="utility-chevron-right"
-                    color="#415298"
-                  )
+        NioSlatTablePagination(
+          :itemsPerPageOptions="itemsPerPageOptions"
+          :itemsPerPage="itemsPerPage"
+          :numItems="computedItems.length"
+          :currentPage="currentPage"
+          @itemsPerPageChange="itemsPerPageChange($event)"
+          @nextPage="nextPage"
+          @prevPage="prevPage"
+        )
 </template>
 
 <script>
@@ -138,6 +112,7 @@ import NioRadioGroup from '../RadioGroup'
 import NioIcon from '../icon/Icon'
 import NioSlatTableHeader from './SlatTableHeader'
 import NioSlatTableActions from './SlatTableActions'
+import NioSlatTablePagination from './SlatTablePagination'
 import NioSelect from '../Select'
 import NioButton from '../Button'
 import Fuse from 'fuse.js'
@@ -182,9 +157,7 @@ export default {
   }),
   mounted() {
     this.applyHelperAttributes()
-    if (this.initialItemsPerPage) {
-      this.itemsPerPage = this.initialItemsPerPage
-    }
+    this.itemsPerPage = this.initialItemsPerPage
     if (this.headerElements.sort || this.sortOptions) {
       this.selectedSortOption = this.sortOptions[0].value
     } 
@@ -302,7 +275,6 @@ export default {
       if (attributes.getNamedItem('dense-rows')) {
         this.dense = true
       }
-      // header types
       if (attributes.getNamedItem('search-sort-header')) {
         this.headerElements.search = true
         this.headerElements.sort = true
@@ -335,17 +307,14 @@ export default {
       this.selection = val === true ? this.computedItems.map(item => item.id) : []
     },
     itemsPerPageChange(val) {
+      this.itemsPerPage = val
       this.applyPagination(1)
     },
     prevPage() {
-      if (this.currentPage > 1) {
-        this.applyPagination(this.currentPage - 1)
-      } 
+      this.applyPagination(this.currentPage - 1)
     },
     nextPage() {
-      if (this.computedItems.length > this.currentPage * this.itemsPerPage) {
-        this.applyPagination(this.currentPage + 1)
-      }
+      this.applyPagination(this.currentPage + 1)
     },
     applyPagination(page) {
       this.currentPage = page
@@ -397,6 +366,7 @@ export default {
     NioIcon, 
     NioSlatTableHeader, 
     NioSlatTableActions, 
+    NioSlatTablePagination,
     NioSelect,
     NioButton
   }
