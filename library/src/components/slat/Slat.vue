@@ -2,6 +2,8 @@
 	.nio-slat
 		.nio-slat-content
 			slot(name="content")
+		.nio-slat-summary
+			slot(name="summary")
 		.nio-slat-action
 			slot(name="action")
 </template>
@@ -11,7 +13,7 @@
 export default {
   name: 'nio-slat',
   props: {
-		
+
   },
   data: () => ({
 

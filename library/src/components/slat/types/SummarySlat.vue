@@ -38,5 +38,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  @import '../../../styles/mixins/slat/assembled/_summary-slat'
+  @import '../../../styles/mixins/slat/types/_summary-slat'
 </style>

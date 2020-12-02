@@ -12,13 +12,6 @@
         stepName="source"
         :valid="valid.source"
       )
-        template(v-slot:header-complete)
-          NioSummarySlat(
-            imageSrc="https://picsum.photos/64/64"
-            label="Unique Ids"
-            value="103,000"
-            annotation="Hashed Emails"
-          )
         template(v-slot:content)
           .test        
             NioButton(normal-primary v-if="!valid.source" @click="valid.source = true") Set Valid
@@ -77,7 +70,6 @@ import NioStep from '../components/stepper/Step'
 import NioStepHeader from '../components/stepper/StepHeader'
 import NioStepContent from '../components/stepper/StepContent'
 import NioButton from '../components/Button'
-import NioSummarySlat from '../components/slat/assembled/SummarySlat'
 
 export default {
   components: {
@@ -85,8 +77,7 @@ export default {
     NioStep,
     NioStepHeader,
     NioStepContent,
-    NioButton,
-    NioSummarySlat
+    NioButton
   },
   data: () => ({
     steps: ['source', 'match', 'destination', 'budget', 'payment', 'confirmation'],

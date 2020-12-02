@@ -14,8 +14,14 @@
           .icon(v-else)
             .step-number {{ stepIndex }}
           .step-name.nio-h6.text-primary-dark {{ stepName }}
-        .summary(v-if="complete")
-          slot(name="header-complete")
+      template(v-slot:summary)    
+        NioSlatGroup.summary(v-if="complete")
+          NioSummarySlat(
+            imageSrc="https://picsum.photos/64/64"
+            label="Unique Ids"
+            value="103,000"
+            annotation="Hashed Emails"
+          )
       template(v-slot:action)
         NioIcon(
           name="utility-chevron-down"
@@ -27,6 +33,8 @@
 
 import NioSlat from '../slat/Slat'
 import NioIcon from '../icon/Icon'
+import NioSummarySlat from '../../components/slat/types/SummarySlat'
+import NioSlatGroup from '../../components/slat/SlatGroup'
 
 export default {
   name: 'nio-step-header',
@@ -45,7 +53,7 @@ export default {
   methods: {
     
   },
-  components: { NioSlat, NioIcon }
+  components: { NioSlat, NioIcon,  NioSummarySlat, NioSlatGroup }
 }
 </script>
 
