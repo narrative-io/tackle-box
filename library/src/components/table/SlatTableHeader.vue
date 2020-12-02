@@ -14,7 +14,6 @@
         .count.nio-p.nio-bold.text-primary-dark(v-if="selectedCount > 0")
           span.selected-count {{ selectedCount }}
           span.label {{ selectedCount > 1 ? ' items' : ' item' }} selected
-
       NioTextField(
         v-if="elements.search"
         search-small-subdued
@@ -30,6 +29,7 @@
         small
         @change="sortChange($event)"
       )
+
 </template>
 
 <script>

@@ -57,6 +57,7 @@
       multi-select
       @selectionChanged="selectionChanged($event)"
       action="link"
+      @itemClicked="itemClicked($event)"
       key="3"
       pagination
       selected-search-header
@@ -68,9 +69,8 @@
       :items="items"
       :columns="columns"
       multi-select
-      searchable
-      sortable
       @selectionChanged="selectionChanged($event)"
+      @itemClicked="itemClicked($event)"
       action="link"
       key="4"
     )
@@ -78,8 +78,6 @@
       v-if="columns && items"
       :items="items"
       :columns="columns"
-      searchable
-      sortable
       @selectionChanged="selectionChanged($event)"
       key="6"
     )
@@ -88,8 +86,6 @@
       :items="items"
       :columns="columns"
       multi-select
-      searchable
-      sortable
       @selectionChanged="selectionChanged($event)"
       key="7"
     )
@@ -135,6 +131,9 @@ export default {
     },
     formatDate(date) {
       return `${date.getFullYear()}`
+    },
+    itemClicked(item) {
+      alert(`item clicked: id = ${item.id}`)
     },
     makeItems() {
       this.columns = [

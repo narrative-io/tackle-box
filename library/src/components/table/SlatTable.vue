@@ -171,6 +171,17 @@ export default {
     handleItemClick(item, expandFn, isExpanded) {
       if (this.action === 'expand') {
         expandFn(!isExpanded)
+      } else if (this.action === 'link'){
+        this.$emit('itemClicked', item)
+      } else if (this.singleSelect) {
+        this.selection = item.id
+        this.itemSelected(item)
+      } else if (this.multiSelect) {
+        if (this.selection.includes(item.id)) {
+          this.selection.splice(this.selection.indexOf(item.id), 1)
+        } else {
+          this.selection.push(item.id)
+        }
       }
     },
     itemSelected(item) {
