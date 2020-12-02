@@ -24,7 +24,7 @@
             :detailsAnnotation="summary.detailsAnnotation"
           )
       template(v-slot:action v-if="complete")
-        NioIcon(
+        NioIcon.expand(
           name="utility-chevron-down"
           color="#415298"
         )
