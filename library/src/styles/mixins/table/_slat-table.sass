@@ -45,13 +45,13 @@
         opacity: 0.5
 
       .item-menu
-        +nio-menu
-
-    td.expanded-row
-      box-shadow: inset 0rem -0.0625rem 0rem #DAE0F9
+        +nio-menu    
 
     & > td + td
       padding-left: 1rem !important
+
+  ::v-deep td.expanded-row:not(:last-child)
+    box-shadow: inset 0rem -0.0625rem 0rem #DAE0F9
 
   .actions-row:hover
     cursor: initial !important
@@ -63,8 +63,6 @@
   ::v-deep .v-data-footer
     border-top: none !important
   
-  
-
   &.action-link, &.action-expand, &.single-select, &.multi-select
     tr:hover
       cursor: pointer

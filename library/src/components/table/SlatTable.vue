@@ -197,10 +197,7 @@ export default {
       if (this.singleSelect || this.multiSelect) {
         columns++
       }
-      if (this.actions) {
-        columns++
-      }
-      this.numColumns = columns + 1
+      this.numColumns = columns + 2
     },
     computeItems() {
       let computedItems = []
