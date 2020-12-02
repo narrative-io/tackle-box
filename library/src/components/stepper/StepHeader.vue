@@ -12,9 +12,9 @@
             size="24"
           )
           .icon(v-else)
-            .step-number {{ stepIndex }}
+            .step-number {{ stepIndex + 1 }}
           .step-name.nio-h6.text-primary-dark {{ stepName }}
-      template(v-slot:summary)    
+      template(v-slot:summary)
         NioSlatGroup.summary(v-if="complete")
           NioSummarySlat(
             imageSrc="https://picsum.photos/64/64"

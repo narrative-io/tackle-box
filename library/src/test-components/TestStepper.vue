@@ -20,6 +20,7 @@
       NioStep(
         stepName="match"
         :valid="valid.match"
+        :summary="stepSummary"
       )
         template(v-slot:header-complete)
         template(v-slot:content) 
@@ -29,6 +30,7 @@
       NioStep(
         stepName="destination"
         :valid="valid.destination"
+        :summary="stepSummary"
       )
         template(v-slot:header-complete)
         template(v-slot:content)
@@ -38,6 +40,7 @@
       NioStep(
         stepName="budget"
         :valid="valid.budget"
+        :summary="stepSummary"
       )
         template(v-slot:header-complete)
         template(v-slot:content)
@@ -47,6 +50,7 @@
       NioStep(
         stepName="payment"
         :valid="valid.payment"
+        :summary="stepSummary"
       )
         template(v-slot:header-complete)
         template(v-slot:content)
@@ -56,6 +60,7 @@
       NioStep(
         stepName="confirmation"
         :valid="valid.confirmation"
+        :summary="stepSummary"
       )
         template(v-slot:header-complete)
         template(v-slot:content)

@@ -14,7 +14,7 @@
         @click="nextStep"
         :disabled="!valid"
       ) {{ nextStepLabel }}
-    .nio-step-content-actions(v-if="isLastStep")
+    .nio-step-content-actions.final-step(v-if="isLastStep")
       NioButton(
         normal-primary 
         @click="nextStep"
