@@ -1,13 +1,15 @@
 <template lang="pug">
   NioSlat.nio-summary-slat
     template(v-slot:content)
-      NioImageTile(
-        :src="imageSrc"
-      )
+      .summary
+        NioImageTile(
+          :src="imageSrc"
+        )
+        .nio-h4.text-primary-darker {{ title }}
       .details
-        .nio-h7.text-primary-dark(v-if="label") {{ label }}
-        .nio-h4.text-primary-darker(v-if="value") {{ value }}
-        .nio-p-small.text-primary-dark(v-if="annotation") {{ annotation }}
+        .nio-h7.text-primary-dark(v-if="detailsLabel") {{ detailsLabel }}
+        .nio-h4.text-primary-darker(v-if="detailsValue") {{ detailsValue }}
+        .nio-p-small.text-primary-dark(v-if="detailsAnnotation") {{ detailsAnnotation }}
 </template>
 
 <script>
@@ -19,9 +21,10 @@ export default {
   name: 'nio-icon-link-slat',
   props: {
     "imageSrc": { type: String, required: false },
-    "label": { type: String, required: false },
-    "value": { type: String, required: false },
-    "annotation": { type: String, required: false }
+    "title": { type: String, required: false },
+    "detailsLabel": { type: String, required: false },
+    "detailsValue": { type: String, required: false },
+    "detailsAnnotation": { type: String, required: false }
   },
   data: () => ({
 

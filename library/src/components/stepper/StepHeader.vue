@@ -18,9 +18,10 @@
         NioSlatGroup.summary(v-if="complete")
           NioSummarySlat(
             imageSrc="https://picsum.photos/64/64"
-            label="Unique Ids"
-            value="103,000"
-            annotation="Hashed Emails"
+            :title="summary.title"
+            :detailsLabel="summary.detailsLabel"
+            :detailsValue="summary.detailsValue"
+            :detailsAnnotation="summary.detailsAnnotation"
           )
       template(v-slot:action v-if="complete")
         NioIcon(
@@ -44,7 +45,8 @@ export default {
     "locked": { type: Boolean, required: false, default: true },
     "stepIndex": { type: Number, requied: true },
     "isFirstStep": { type: Boolean, required: false, default: false },
-    "isLastStep": { type: Boolean, required: false, default: false }
+    "isLastStep": { type: Boolean, required: false, default: false },
+    "summary": { type: Object, required: false }
   },
   data: () => ({
   }),

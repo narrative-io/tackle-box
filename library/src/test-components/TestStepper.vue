@@ -11,6 +11,7 @@
       NioStep(
         stepName="source"
         :valid="valid.source"
+        :summary="stepSummary"
       )
         template(v-slot:content)
           .test        
@@ -90,6 +91,12 @@ export default {
       budget: false,
       payment: false,
       confirmation: false
+    },
+    stepSummary: {
+      title: "My stellar new order",
+      detailsLabel: "Unique Ids",
+      detailsValue: "103,000",
+      detailsAnnotation: "Hashed Emails"
     }
   }),
   methods: {
