@@ -31,8 +31,8 @@
         //- TestButtons
         //- TestAutocomplete
         TestSlatTable
-        TestSlat
-        TestStepper
+        //- TestSlat
+        //- TestStepper
         //- TestFileChooser
         //- TestCheckbox
         //- TestSwitch
