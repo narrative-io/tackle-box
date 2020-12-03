@@ -1,6 +1,11 @@
 <template lang="pug">
   .test-options-grid
-    NioBudgetOptions
+    NioBudgetOptions(
+      :options="budgetOptions"
+    )
+      template(slot="annotation")
+        .test test
+    
 </template>
 
 <script>
@@ -12,7 +17,23 @@ export default {
     NioBudgetOptions
   },
   data: () => ({
-   
+    budgetOptions: [
+      {
+        name: "small",
+        amount: "$2,500",
+        forecast: '10,000'
+      },
+      {
+        name: "medium",
+        amount: "$5,000",
+        forecast: '200,000'
+      },
+      {
+        name: "large",
+        amount: "$10,000",
+        forecast: '800,000'
+      }
+    ]
   })
 };
 </script>

@@ -1,0 +1,13 @@
+@import '../../global/_breakpoints'
+
+=nio-options-grid 
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  justify-items: center
+  @media (max-width: $breakpoint-xs)
+    flex-direction: column
+    align-items: center
+    
+.nio-options-grid
+  +nio-options-grid 
