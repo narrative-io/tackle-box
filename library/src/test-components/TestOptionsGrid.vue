@@ -3,10 +3,9 @@
     NioOptionsGrid
       NioBudgetOption(
         v-for="option of budgetOptions"
-        :name="option.name"
-        :amount="option.amount"
+        :option="option"
         :selected="selectedOption && selectedOption.name === option.name"
-        @selection="selectionChanged($event)"
+        @selected="selectionChanged($event)"
       )
         template(v-slot:content)
           .nio-p.text-primary-dark Get up to
@@ -15,8 +14,7 @@
     NioOptionsGrid
       NioBudgetOption(
         v-for="option of budgetOptions"
-        :name="option.name"
-        :amount="option.amount"
+        :option="option"
         :selected="selectedOption && selectedOption.name === option.name"
         @selection="selectionChanged($event)"
       )
@@ -25,7 +23,7 @@
           .h3.text-primary-dark {{ option.forecast }}
           .nio-p.text-primary-dark Deliverable IDs
         template(v-slot:cta)
-          NioButton(normal-primary) Test  
+          NioButton(normal-primary @click="cta(option)") Test  
      
 
 </template>
@@ -62,6 +60,15 @@ export default {
     ],
     selectedOption: null
   }),
+  methods: {
+    selectionChanged(val) {
+      this.selectedOption = val
+      console.log(val)
+    },
+    cta(option) {
+      console.log(`cta - option: ${option}`)
+    }
+  },  
   mounted() {
     this.selectedOption = this.budgetOptions[1]
   }

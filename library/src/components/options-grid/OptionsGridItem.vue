@@ -1,5 +1,8 @@
 <template lang="pug">
-  .nio-options-grid-item
+  .nio-options-grid-item(
+    :class="{'has-cta': $scopedSlots.cta}"
+    @click="handleClick"
+  )
     .name(v-if="$scopedSlots.name")
       slot(name="name")
     .amount 
@@ -15,8 +18,15 @@
 export default {
   name: 'nio-options-grid-item',
   props: {
-    "selectedOption": { type: Object, required: false }
+    option: { type: Object, required: true }
   },
+  methods: {
+    handleClick() {
+      if (!this.$scopedSlots.cta) {
+        this.$emit('optionSelected', this.option)
+      }
+    },
+  },  
   mounted() {	
     this.$emit('mounted')
   },

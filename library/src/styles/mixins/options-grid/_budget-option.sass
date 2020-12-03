@@ -2,8 +2,8 @@
   
 =nio-budget-option 
   background-color: $c-white
-  border: 1px solid $c-primary-lighter
-  border-radius: 12px
+  border: 0.0625rem solid $c-primary-lighter
+  border-radius: 0.75rem
   display: flex
   ::v-deep .name
     background-color: $c-primary-dark
@@ -13,16 +13,20 @@
     justify-content: center
     margin-bottom: 3.5rem
   ::v-deep .amount
-    margin-bottom: 24px
+    margin-bottom: 1.5rem
   ::v-deep .content:last-child
-    margin-bottom: 56px
+    margin-bottom: 3.5rem
   ::v-deep .cta  
-    margin-top: 30px
-    margin-bottom: 40px
+    margin-top: 1.875rem
+    margin-bottom: 2.5rem
 
-  &.selected
+  &:not(.has-cta):hover
+    cursor: pointer
+    border: 0.0625rem solid $c-primary-light
+
+  &.selected:not(.has-cta)
     background-color: $c-canvas
-    border: 1px solid $c-primary-light
+    border: 0.0625rem solid $c-primary-light
     ::v-deep .name
       background-color: $c-primary-darker
     ::v-deep .amount 
