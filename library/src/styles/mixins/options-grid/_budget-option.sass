@@ -1,6 +1,7 @@
 @import "../../global/_colors"
   
 =nio-budget-option 
+  background-color: $c-white
   border: 1px solid $c-primary-lighter
   border-radius: 12px
   display: flex
@@ -13,7 +14,20 @@
     margin-bottom: 3.5rem
   ::v-deep .amount
     margin-bottom: 24px
- 
+  ::v-deep .content:last-child
+    margin-bottom: 56px
+  ::v-deep .cta  
+    margin-top: 30px
+    margin-bottom: 40px
 
+  &.selected
+    background-color: $c-canvas
+    border: 1px solid $c-primary-light
+    ::v-deep .name
+      background-color: $c-primary-darker
+    ::v-deep .amount 
+      .nio-p, .nio-h3
+        color: $c-primary-darker
+  
 .nio-budget-option
   +nio-budget-option

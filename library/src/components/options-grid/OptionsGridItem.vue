@@ -1,11 +1,13 @@
 <template lang="pug">
   .nio-options-grid-item
-    .name(v-if="$slots.name")
+    .name(v-if="$scopedSlots.name")
       slot(name="name")
     .amount 
       slot(name="amount")
-    .content
+    .content(v-if="$scopedSlots.content")
       slot(name="content")
+    .cta(v-if="$scopedSlots.cta")
+      slot(name="cta")
 </template>
 
 <script>
@@ -13,7 +15,7 @@
 export default {
   name: 'nio-options-grid-item',
   props: {
-
+    "selectedOption": { type: Object, required: false }
   },
   mounted() {	
     this.$emit('mounted')

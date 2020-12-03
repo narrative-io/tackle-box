@@ -1,5 +1,7 @@
 <template lang="pug">
-  NioOptionsGridItem.nio-budget-option
+  NioOptionsGridItem.nio-budget-option(
+    :class="{'selected': selected}"
+  )
     template(v-slot:name)
       .nio-h3.text-primary-lightest {{ name }}
     template(v-slot:amount)
@@ -16,7 +18,8 @@ export default {
   name: 'nio-budget-option',
   props: {
     "name": { type: String, required: true },
-    "amount": { type: String, required: true }
+    "amount": { type: String, required: true },
+    "selected": { type: Boolean, required: false, default: false }
   },
   mounted() {	
     this.$emit('mounted')
