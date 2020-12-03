@@ -30,9 +30,9 @@
         //- TestAlert
         //- TestButtons
         //- TestAutocomplete
-        TestStepper
-        TestSlatTable
-        TestSlat
+        //- TestStepper
+        //- TestSlatTable
+        //- TestSlat
         //- TestFileChooser
         //- TestCheckbox
         //- TestSwitch
@@ -43,6 +43,7 @@
         //- TestTextField
         //- TestSelect
         //- TestCardGrid
+        TestOptionsGrid
 </template>
 
 <script>
@@ -67,6 +68,7 @@ import TestExpansionPanel from './test-components/TestExpansionPanel'
 import TestSlat from './test-components/TestSlat'
 import TestStepper from './test-components/TestStepper'
 import TestSlatTable from './test-components/TestSlatTable'
+import TestOptionsGrid from './test-components/TestOptionsGrid'
 
 export default {
   name: "App",
@@ -91,7 +93,8 @@ export default {
     TestExpansionPanel,
     TestSlat,
     TestStepper,
-    TestSlatTable
+    TestSlatTable,
+    TestOptionsGrid
   },
   data: () => ({
     loggedIn: false,
