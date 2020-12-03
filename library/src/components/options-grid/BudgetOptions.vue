@@ -1,15 +1,13 @@
 <template lang="pug">
   .nio-budget-options
     NioOptionsGrid
-      template(v-slot:options)
-        NioBudgetOption(
-          v-for="option of options"
-          :name="option.name"
-          :amount="option.amount"
-        )
-          template(slot="annotation")
-            slot(name="annotation")
-
+      NioBudgetOption(
+        v-for="option of options"
+        :name="option.name"
+        :amount="option.amount"
+      )
+        template(slot="annotation" )
+          slot(name="annotation" :option="option")
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template lang="pug">
   .nio-options-grid
-    slot(name="options")
+    slot
 </template>
 
 <script>

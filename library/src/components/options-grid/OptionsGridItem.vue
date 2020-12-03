@@ -1,8 +1,11 @@
 <template lang="pug">
   .nio-options-grid-item
-    slot(name="mask")
-    slot(name="value")
-    slot(name="annotation")
+    .mask
+      slot(name="mask")
+    .value  
+      slot(name="value")
+    .annotation  
+      slot(name="annotation")
 </template>
 
 <script>

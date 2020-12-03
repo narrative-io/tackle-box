@@ -1,20 +1,24 @@
 <template lang="pug">
   .test-options-grid
-    NioBudgetOptions(
-      :options="budgetOptions"
-    )
-      template(slot="annotation")
-        .test test
-    
+    NioOptionsGrid
+      NioBudgetOption(
+        v-for="option of budgetOptions"
+        :name="option.name"
+        :amount="option.amount"
+      )
+        template(v-slot:annotation)
+          .test test {{ option.forecast }}
 </template>
 
 <script>
 
-import NioBudgetOptions from '../components/options-grid/BudgetOptions'
+import NioOptionsGrid from '../components/options-grid/OptionsGrid'
+import NioBudgetOption from '../components/options-grid/BudgetOption'
 
 export default {
   components: {
-    NioBudgetOptions
+    NioOptionsGrid,
+    NioBudgetOption
   },
   data: () => ({
     budgetOptions: [
