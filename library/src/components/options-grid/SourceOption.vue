@@ -1,7 +1,7 @@
 <template lang="pug">
   NioOptionsGridItem.nio-source-option(
     :option="option"
-    :class="{'selected': selected, 'disabled': option.status && option.status === 'coming'}"
+    :class="{'selected': selected, 'disabled': option.status && option.status === 'coming', 'has-status': option.status}"
     @optionSelected="optionSelected"
   )
     template(v-slot:amount)

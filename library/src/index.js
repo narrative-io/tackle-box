@@ -28,7 +28,9 @@ import NioStep from "./components/stepper/Step"
 import NioSlatTable from "./components/table/SlatTable"
 import NioOptionsGrid from "./components/options-grid/OptionsGrid"
 import NioOptionsGridItem from "./components/options-grid/OptionsGridItem"
-import NioBugetOption from "./components/options-grid/BudgetOption"
+import NioBudgetOption from "./components/options-grid/BudgetOption"
+import NioSourceOption from "./components/options-grid/SourceOption"
+import NioPill from "./components/Pill"
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
@@ -63,6 +65,8 @@ const Components = {
 	NioOptionsGrid,
 	NioOptionsGridItem,
 	NioBudgetOption,
+	NioSourceOption,
+	NioPill,
 	FontAwesomeIcon
 }
 
@@ -94,6 +98,8 @@ Vue.component("NioSlatTable", NioSlatTable)
 Vue.component("NioOptionsGrid", NioOptionsGrid)
 Vue.component("NioOptionsGridItem", NioOptionsGridItem)
 Vue.component("NioBudgetOption", NioBudgetOption)
+Vue.component("NioSourceOption", NioSourceOption)
+Vue.component("NioPill", NioPill)
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
 export { NioButton }
@@ -124,6 +130,8 @@ export { NioSlatTable }
 export { NioOptionsGrid }
 export { NioOptionsGridItem }
 export { NioBudgetOption }
+export { NioSourceOption }
+export { NioPill }
 export { FontAwesomeIcon }
 
 export default Components
