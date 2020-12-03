@@ -16,6 +16,7 @@
 <script>
 
 import NioOptionsGridItem from './OptionsGridItem'
+import NioIconFramer from '../icon/IconFramer'
 
 export default {
   name: 'nio-budget-option',
@@ -34,7 +35,7 @@ export default {
   destroyed() {
     this.$emit('destroyed')
   },
-  components: { NioOptionsGridItem }
+  components: { NioOptionsGridItem, NioIconFramer }
 }
 </script>
 
