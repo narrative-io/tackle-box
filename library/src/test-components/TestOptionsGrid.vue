@@ -24,7 +24,13 @@
           .nio-p.text-primary-dark Deliverable IDs
         template(v-slot:cta)
           NioButton(normal-primary @click="cta(option)") Test  
-     
+    NioOptionsGrid
+      NioSourceOption(
+        v-for="option of sourceOptions"
+        :option="option"
+        :selected="selectedOption && selectedOption.name === option.name"
+        @selection="sourceSelectionChanged($event)"
+      )
 
 </template>
 
@@ -33,10 +39,12 @@
 import NioButton from '../components/Button'
 import NioOptionsGrid from '../components/options-grid/OptionsGrid'
 import NioBudgetOption from '../components/options-grid/BudgetOption'
+import NioSourceOption from '../components/options-grid/SourceOption'
 
 export default {
   components: {
     NioButton,
+    NioSourceOption,
     NioOptionsGrid,
     NioBudgetOption
   },
@@ -58,11 +66,36 @@ export default {
         forecast: '800,000'
       }
     ],
-    selectedOption: null
+    sourceOptions: [
+      {
+        name: 'upload',
+        title: 'Upload a File',
+        description: 'Select a .CSV or .TXT file with hashed or raw emails.',
+        iconName: 'display-new'
+      },
+      {
+        name: 'existing',
+        title: 'pick an existing list',
+        description: 'Choose a list of users to onboard.',
+        iconName: 'display-new'
+      },
+      {
+        name: 'new',
+        title: 'setup a new source',
+        description: 'Log in to your source or platform to import data.',
+        iconName: 'display-new'
+      },
+    ],  
+    selectedOption: null,
+    selectedSourceOption: null
   }),
   methods: {
     selectionChanged(val) {
       this.selectedOption = val
+      console.log(val)
+    },
+    sourceSelectionChanged(val) {
+      this.selectedSourceOption = val
       console.log(val)
     },
     cta(option) {
