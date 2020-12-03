@@ -1,9 +1,9 @@
 <template lang="pug">
   NioOptionsGridItem.nio-budget-option
-    template(v-slot:mask)
+    template(v-slot:name)
       .nio-h3.text-primary-lightest {{ name }}
-    template(v-slot:value)
-      .nio-jumbo-1.text-primary-dark {{ option }}
+    template(v-slot:amount)
+      .nio-jumbo-1.text-primary-dark {{ amount }}
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
       slot(:name="name" v-bind="data") 	
 </template>
@@ -16,8 +16,7 @@ export default {
   name: 'nio-budget-option',
   props: {
     "name": { type: String, required: true },
-    "amount": { type: String, required: true },
-    "option": { type: Object}
+    "amount": { type: String, required: true }
   },
   mounted() {	
     this.$emit('mounted')

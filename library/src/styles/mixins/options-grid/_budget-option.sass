@@ -1,4 +1,19 @@
+@import "../../global/_colors"
+  
 =nio-budget-option 
+  border: 1px solid $c-primary-lighter
+  border-radius: 12px
+  display: flex
+  ::v-deep .name
+    background-color: $c-primary-dark
+    height: 3.625rem
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-bottom: 3.5rem
+  ::v-deep .amount
+    margin-bottom: 24px
+ 
 
 .nio-budget-option
-	+nio-budget-option
+  +nio-budget-option

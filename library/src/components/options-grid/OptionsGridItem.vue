@@ -1,11 +1,11 @@
 <template lang="pug">
   .nio-options-grid-item
-    .mask
-      slot(name="mask")
-    .value  
-      slot(name="value")
-    .annotation  
-      slot(name="annotation")
+    .name(v-if="$slots.name")
+      slot(name="name")
+    .amount 
+      slot(name="amount")
+    .content
+      slot(name="content")
 </template>
 
 <script>

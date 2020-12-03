@@ -6,8 +6,8 @@
         :name="option.name"
         :amount="option.amount"
       )
-        template(v-slot:annotation)
-          .test test {{ option.forecast }}
+        template(v-slot:content)
+          .test Test
 </template>
 
 <script>
