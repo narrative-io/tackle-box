@@ -1,7 +1,7 @@
 <template lang="pug">
   .nio-pill(:class="text") 
-    .content-wrapper
-      .content.text-c-white {{ text }}
+    .nio-pill-content-wrapper
+      .nio-pill-content.text-c-white {{ text }}
 </template>
 
 <script>

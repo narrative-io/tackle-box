@@ -20,18 +20,11 @@
     margin-top: 1.875rem
     margin-bottom: 2.5rem
 
-  &:not(.has-cta):hover
-    cursor: pointer
-    border: 0.0625rem solid $c-primary-light
-
   &.selected:not(.has-cta)
-    background-color: $c-canvas
-    border: 0.0625rem solid $c-primary-light
     ::v-deep .name
       background-color: $c-primary-darker
-    ::v-deep .amount 
-      .nio-p, .nio-h3
-        color: $c-primary-darker
+    ::v-deep .amount .nio-jumbo-1, .nio-p
+      color: $c-primary-darker
   
 .nio-budget-option
   +nio-budget-option

@@ -1,3 +1,5 @@
+@import '../../global/_colors'
+
 =nio-options-grid-item
   margin: 0.625rem
   margin-top: 0rem
@@ -22,6 +24,17 @@
     display: flex
     align-items: center
     justify-content: center
+
+  &:not(.has-cta):not(.disabled):hover
+    cursor: pointer
+    border: 0.0625rem solid $c-primary-light
+
+  &.disabled:hover
+    cursor: initial !important  
+
+  &.selected:not(.has-cta)
+    background-color: $c-canvas
+    border: 0.0625rem solid $c-primary-light
 
 .nio-options-grid-item
   +nio-options-grid-item 

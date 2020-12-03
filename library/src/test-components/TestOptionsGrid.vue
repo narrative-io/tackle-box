@@ -16,7 +16,7 @@
         v-for="option of budgetOptions"
         :option="option"
         :selected="selectedOption && selectedOption.name === option.name"
-        @selection="selectionChanged($event)"
+        @selected="selectionChanged($event)"
       )
         template(v-slot:content)
           .nio-p.text-primary-dark Get up to
@@ -28,8 +28,8 @@
       NioSourceOption(
         v-for="option of sourceOptions"
         :option="option"
-        :selected="selectedOption && selectedOption.name === option.name"
-        @selection="sourceSelectionChanged($event)"
+        :selected="selectedSourceOption && selectedSourceOption.name === option.name"
+        @selected="sourceSelectionChanged($event)"
       )
 
 </template>
@@ -83,7 +83,8 @@ export default {
         name: 'new',
         title: 'setup a new source',
         description: 'Log in to your source or platform to import data.',
-        iconName: 'display-new'
+        iconName: 'display-new',
+        status: 'coming'
       },
     ],  
     selectedOption: null,
