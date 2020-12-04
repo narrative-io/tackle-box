@@ -7,9 +7,10 @@
         )
         .nio-h4.text-primary-darker {{ title }}
       .details
-        .nio-h7.text-primary-dark(v-if="detailsLabel") {{ detailsLabel }}
-        .nio-h4.text-primary-darker(v-if="detailsValue") {{ detailsValue }}
-        .nio-p-small.text-primary-dark(v-if="detailsAnnotation") {{ detailsAnnotation }}
+        .nio-h7.text-primary-dark(v-if="!loading && detailsLabel") {{ detailsLabel }}
+        .nio-h4.text-primary-darker(v-if="!loading && detailsValue") {{ detailsValue }}
+        .nio-h4.text-primary-dark(v-if="loading") {{ loadingMsg }}
+        .nio-p-small.text-primary-dark(v-if="!loading && detailsAnnotation") {{ detailsAnnotation }}
 </template>
 
 <script>
@@ -24,8 +25,10 @@ export default {
     "title": { type: String, required: false },
     "detailsLabel": { type: String, required: false },
     "detailsValue": { type: String, required: false },
-		"detailsAnnotation": { type: String, required: false },
-		"active": { type: Boolean, required: false, default: false }
+    "detailsAnnotation": { type: String, required: false },
+    "loading": { type: Boolean, required: false, default: false },
+    "loadingMsg": { type: String, required: false, default: 'loading'},
+    "active": { type: Boolean, required: false, default: false }
   },
   data: () => ({
 
