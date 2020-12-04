@@ -3,6 +3,9 @@
 =nio-summary-slat
 	width: 640px	
 	background-color: $c-white
+	border: 1px solid $c-primary-lighter
+	border-radius: 12px
+	overflow: hidden
 
 	::v-deep .nio-slat-content	
 		flex-grow: 2
@@ -19,6 +22,9 @@
 			text-align: right
 			& > * + * 
 				margin-top: 2px
+
+	&.active
+		background-color: $c-canvas	
 
 	::v-deep .nio-slat-summary, ::v-deep .nio-slat-action
 		display: none

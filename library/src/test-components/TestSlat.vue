@@ -1,5 +1,6 @@
 <template lang="pug">
   .test-slat
+  
     NioSlatGroup
       NioIconLinkSlat(
         iconName="display-new"
@@ -28,6 +29,22 @@
         template(v-slot:title) Item 1 title  
       NioImageTileLinkSlat
         .test Content
+
+      NioSummarySlat(
+        imageSrc="https://picsum.photos/64/64"
+        title="Narrative Data Lake"
+        detailsLabel="Available to Match"
+        detailsValue="stuff"
+        detailsAnnotation="IDs for matching"
+      )  	
+      NioSummarySlat(
+        active
+        imageSrc="https://picsum.photos/64/64"
+        title="Narrative Data Lake"
+        detailsLabel="Available to Match"
+        detailsValue="stuff"
+        detailsAnnotation="IDs for matching"
+      )  	
 </template>
 
 <script>
@@ -36,13 +53,15 @@ import NioSlatGroup from '../components/slat/SlatGroup'
 import NioLinkSlat from '../components/slat/types/LinkSlat'
 import NioIconLinkSlat from '../components/slat/assembled/IconLinkSlat'
 import NioImageTileLinkSlat from '../components/slat/assembled/ImageTileLinkSlat'
+import NioSummarySlat from '../components/slat/types/SummarySlat'
 
 export default {
   components: {
     NioSlatGroup,
     NioLinkSlat,
     NioIconLinkSlat,
-    NioImageTileLinkSlat
+    NioImageTileLinkSlat,
+    NioSummarySlat
   },
   data: () => ({
     

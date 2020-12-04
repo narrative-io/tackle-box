@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-slat-group
+  .nio-slat-group(:class="{'summary-slat-group': summarySlat}")
     slot
 </template>
 
@@ -10,12 +10,17 @@ export default {
   props: {
   },
   data: () => ({
-
+		summarySlat: false
   }),
   mounted() {
   },
   methods: {
-    
+		applyHelperAttributes() {
+      const attributes = this.$el.attributes
+      if (attributes.getNamedItem('summary')) {
+        this.summarySlat = true
+			}
+		}	
   },
   components: { }
 }

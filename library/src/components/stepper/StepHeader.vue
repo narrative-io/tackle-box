@@ -15,14 +15,13 @@
             .step-number {{ stepIndex + 1 }}
           .step-name.nio-h6.text-primary-dark {{ stepName }}
       template(v-slot:summary)
-        NioSlatGroup.summary(v-if="complete")
-          NioSummarySlat(
-            imageSrc="https://picsum.photos/64/64"
-            :title="summary.title"
-            :detailsLabel="summary.detailsLabel"
-            :detailsValue="summary.detailsValue"
-            :detailsAnnotation="summary.detailsAnnotation"
-          )
+        NioSummarySlat.summary(v-if="complete")(
+          imageSrc="https://picsum.photos/64/64"
+          :title="summary.title"
+          :detailsLabel="summary.detailsLabel"
+          :detailsValue="summary.detailsValue"
+          :detailsAnnotation="summary.detailsAnnotation"
+        )
       template(v-slot:action v-if="complete")
         NioIcon.expand(
           name="utility-chevron-down"

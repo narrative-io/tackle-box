@@ -1,5 +1,5 @@
 <template lang="pug">
-  NioSlat.nio-summary-slat
+  NioSlat.nio-summary-slat(:class="{'active': active}")
     template(v-slot:content)
       .summary
         NioImageTile(
@@ -24,7 +24,8 @@ export default {
     "title": { type: String, required: false },
     "detailsLabel": { type: String, required: false },
     "detailsValue": { type: String, required: false },
-    "detailsAnnotation": { type: String, required: false }
+		"detailsAnnotation": { type: String, required: false },
+		"active": { type: Boolean, required: false, default: false }
   },
   data: () => ({
 
