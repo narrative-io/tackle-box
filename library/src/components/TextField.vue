@@ -17,10 +17,10 @@
       )
         NioIcon(
           v-if="iconName || prependIconAttr"
-          :name="prependIconAttr ? prependIconAttr : iconName"
-          size="16"
-          :color="iconColor"
           @click="clickPrepend"
+          :name="prependIconAttr ? prependIconAttr : iconName"
+          :color="iconColor ? iconColor : defaultIconColor"
+          :size="iconSize ? iconSize : defaultIconSize"
         )
       template(
         v-if="appendAttr"
@@ -30,7 +30,8 @@
           v-if="iconName"
           @click="clickAppend"
           :name="iconName"
-          size="16"
+          :color="iconColor ? iconColor : defaultIconColor"
+          :size="iconSize ? iconSize : defaultIconSize"
         )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data")   
@@ -46,7 +47,9 @@ export default {
   props: {
     "model": { required: false },
     "rules": { required: false },
-    "iconName": { type: String, required: false, default: null }
+    "iconName": { type: String, required: false, default: null },
+    "iconColor": { type: String, required: false },
+    "iconSize": { type: Number, required: false }
   },
   model: {
     prop: "model",
@@ -58,7 +61,8 @@ export default {
     prependAttr: false,
     prependIconAttr: null,
     smallAttr: false,
-    iconColor: '#1438F5'
+    defaultIconColor: '#1438F5',
+    defaultIconSize: 16
   }),
   methods: {
     focus() {
@@ -91,7 +95,7 @@ export default {
       if (attributes.getNamedItem('search-small-subdued')) {
         this.smallAttr = true
         this.prependIconAttr = 'utility-search'
-        this.iconColor = '#AEB9E8'
+        this.defaultIconColor = '#AEB9E8'
       }
     },
     clickAppend() {

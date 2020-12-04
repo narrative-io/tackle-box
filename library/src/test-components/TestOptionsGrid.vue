@@ -1,6 +1,9 @@
 <template lang="pug">
   .test-options-grid
-    NioBudgetOptions
+    NioBudgetOptions(
+      :forecast="forecast"
+      @forecastRequested="forecastRequested"
+    )
       NioBudgetOption(
         v-for="option of budgetOptions"
         :option="option"
@@ -51,6 +54,11 @@ export default {
     NioBudgetOptions
   },
   data: () => ({
+    forecast: {
+      label: "Get up to",
+      value: "100,000",
+      annotation: "delierable IDs"
+    },
     budgetOptions: [
       {
         name: "small",
@@ -103,6 +111,9 @@ export default {
     },
     cta(option) {
       console.log(`cta - option: ${option}`)
+    },
+    forecastRequested(val) {
+      console.log(val)
     }
   },  
   mounted() {

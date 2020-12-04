@@ -1,3 +1,5 @@
+@import '../../global/_colors'
+  
 =nio-budget-options
   
   .nio-custom-budget
@@ -7,6 +9,26 @@
     .nio-divider
       margin: calc(16px - 0.625rem) 0px 16px 0px
     
+    .custom-budget-form
+      padding: 36px 0px 36px 24px
+      background-color: $c-canvas
+      border: 1px solid $c-primary-lighter
+      border-radius: 12px
+      display: flex
+      align-items: center
+      position: relative
+      .nio-text-field
+        margin-bottom: 0px
+      ::v-deep input
+        padding-left: 2px
+      .forecast
+        width: 180px
+        margin-right: 64px
+        margin-left: 16px
+        text-align: center
+        & > * + * 
+          margin-top: 2px
+
 
 .nio-budget-options
   +nio-budget-options 
