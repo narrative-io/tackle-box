@@ -10,11 +10,13 @@
       .nio-jumbo-1.text-primary-dark {{ option.amount }}
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
       slot(:name="name" v-bind="data") 	
+  
 </template>
 
 <script>
 
 import NioOptionsGridItem from './OptionsGridItem'
+
 
 export default {
   name: 'nio-budget-option',

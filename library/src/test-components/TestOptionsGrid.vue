@@ -1,6 +1,6 @@
 <template lang="pug">
   .test-options-grid
-    NioOptionsGrid
+    NioBudgetOptions
       NioBudgetOption(
         v-for="option of budgetOptions"
         :option="option"
@@ -11,7 +11,7 @@
           .nio-p.text-primary-dark Get up to
           .h3.text-primary-dark {{ option.forecast }}
           .nio-p.text-primary-dark Deliverable IDs
-    NioOptionsGrid
+    NioBudgetOptions
       NioBudgetOption(
         v-for="option of budgetOptions"
         :option="option"
@@ -40,13 +40,15 @@ import NioButton from '../components/Button'
 import NioOptionsGrid from '../components/options-grid/OptionsGrid'
 import NioBudgetOption from '../components/options-grid/BudgetOption'
 import NioSourceOption from '../components/options-grid/SourceOption'
+import NioBudgetOptions from '../components/options-grid/BudgetOptions'
 
 export default {
   components: {
     NioButton,
     NioSourceOption,
     NioOptionsGrid,
-    NioBudgetOption
+    NioBudgetOption,
+    NioBudgetOptions
   },
   data: () => ({
     budgetOptions: [
