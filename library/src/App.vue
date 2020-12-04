@@ -27,10 +27,10 @@
       .wrapper
         //- TestExpansionPanel
         //- TestDivider
-        //- TestAlert
+        TestAlert
         //- TestButtons
         //- TestAutocomplete
-        TestStepper
+        //- TestStepper
         //- TestSlatTable
         //- TestSlat
         //- TestFileChooser
