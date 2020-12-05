@@ -5,7 +5,9 @@
         NioImageTile(
           :src="imageSrc"
         )
-        .nio-h4.text-primary-darker {{ title }}
+        .title-subtitle
+          .nio-h4.text-primary-darker {{ title }}
+          .nio-p-small.text-primary-dark(v-if="subtitle") {{ subtitle }}
       .details
         .nio-h7.text-primary-dark(v-if="!loading && detailsLabel") {{ detailsLabel }}
         .nio-h4.text-primary-darker(v-if="!loading && detailsValue") {{ detailsValue }}
@@ -23,6 +25,7 @@ export default {
   props: {
     "imageSrc": { type: String, required: false },
     "title": { type: String, required: false },
+    "subtitle": { type: String, required: false },
     "detailsLabel": { type: String, required: false },
     "detailsValue": { type: String, required: false },
     "detailsAnnotation": { type: String, required: false },

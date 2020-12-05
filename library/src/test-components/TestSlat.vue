@@ -50,6 +50,7 @@
         active
         imageSrc="https://picsum.photos/64/64"
         title="Narrative Data Lake"
+        subtitle="a subtitle"
         detailsLabel="Available to Match"
         detailsValue="stuff"
         detailsAnnotation="IDs for matching"
