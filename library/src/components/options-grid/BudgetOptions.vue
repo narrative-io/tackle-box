@@ -12,9 +12,10 @@
       .custom-budget-form(v-if="customBudgetVisible")
         nio-text-field(
           prepend
+          solo
           iconName="utility-dollar-sign"
           iconColor="#415298"
-          :iconSize="14"
+          :iconSize="12"
           placeholder="Enter budget"
           @input="customBudgetChanged($event)"
         )
