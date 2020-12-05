@@ -93,13 +93,12 @@ export default {
       this.maxBudgetError = !this.minBudgetError && this.customBudgetMax && this.customBudget > this.customBudgetMax ? true : false
       if (this.minBudgetError || this.maxBudgetError) {
         this.customBudgetValid = false
+        this.$emit('customBudgetValidChanged', false)
       } else {
         this.customBudgetValid = true
+        this.$emit('customBudgetValidChanged', true)
       }
       this.$emit('customBudgetChanged', val)
-    },
-    customBudgetValid(val) {
-      this.$emit('customBudgetValidChanged', val)
     }
   },
   components: { NioOptionsGrid, NioDivider, NioButton, NioTextField, NioIcon }
