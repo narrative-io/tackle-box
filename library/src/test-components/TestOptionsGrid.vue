@@ -20,21 +20,21 @@
           .nio-p.text-primary-dark Get up to
           .h3.text-primary-dark {{ option.forecast }}
           .nio-p.text-primary-dark Deliverable IDs
+    .test {{ customBudgetValid }}
     
-    
-    NioBudgetOptions
-      NioBudgetOption(
-        v-for="option of budgetOptions"
-        :option="option"
-        :selected="selectedOption && selectedOption.name === option.name"
-        @selected="selectionChanged($event)"
-      )
-        template(v-slot:content)
-          .nio-p.text-primary-dark Get up to
-          .h3.text-primary-dark {{ option.forecast }}
-          .nio-p.text-primary-dark Deliverable IDs
-        template(v-slot:cta)
-          NioButton(normal-primary @click="cta(option)") Test  
+    //- NioBudgetOptions
+    //-   NioBudgetOption(
+    //-     v-for="option of budgetOptions"
+    //-     :option="option"
+    //-     :selected="selectedOption && selectedOption.name === option.name"
+    //-     @selected="selectionChanged($event)"
+    //-   )
+    //-     template(v-slot:content)
+    //-       .nio-p.text-primary-dark Get up to
+    //-       .h3.text-primary-dark {{ option.forecast }}
+    //-       .nio-p.text-primary-dark Deliverable IDs
+    //-     template(v-slot:cta)
+    //-       NioButton(normal-primary @click="cta(option)") Test  
     NioOptionsGrid
       NioSourceOption(
         v-for="option of sourceOptions"
@@ -106,7 +106,8 @@ export default {
       },
     ],  
     selectedOption: null,
-    selectedSourceOption: null
+    selectedSourceOption: null,
+    customBudgetValid: false
   }),
   methods: {
     selectionChanged(val) {
@@ -130,7 +131,7 @@ export default {
       this.selectedOption = this.budgetOptions[1]
     },
     customBudgetValidChanged(val) {
-      console.log(val)
+      this.customBudgetValid = val
     }
   },  
   mounted() {

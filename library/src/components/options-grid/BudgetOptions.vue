@@ -19,7 +19,6 @@
             :iconSize="12"
             type="number"
             placeholder="Enter budget"
-            @input="customBudgetChanged($event)"
             v-model="customBudget"
           )
           .custom-budget-error.text-error.nio-p-small
@@ -68,9 +67,6 @@ export default {
       this.customBudgetVisible = true
       this.$emit('customBudgetOpened')
     },
-    customBudgetChanged(val) {
-      this.$emit('customBudgetChanged', val)
-    },
     closeCustomBudget() {
       this.customBudgetVisible = false
       this.$emit('customBudgetValidChanged', false)
@@ -100,6 +96,7 @@ export default {
       } else {
         this.customBudgetValid = true
       }
+      this.$emit('customBudgetChanged', val)
     },
     customBudgetValid(val) {
       this.$emit('customBudgetValidChanged', val)
