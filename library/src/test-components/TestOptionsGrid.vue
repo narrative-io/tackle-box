@@ -2,7 +2,9 @@
   .test-options-grid
     NioBudgetOptions(
       :forecast="forecast"
-      @forecastRequested="forecastRequested"
+      @customBudgetChanged="customBudgetChanged($event)"
+      @customBudgetOpened="customBudgetOpened"
+      @customBudgetClosed="customBudgetClosed"
     )
       NioBudgetOption(
         v-for="option of budgetOptions"
@@ -14,6 +16,8 @@
           .nio-p.text-primary-dark Get up to
           .h3.text-primary-dark {{ option.forecast }}
           .nio-p.text-primary-dark Deliverable IDs
+    
+    
     NioBudgetOptions
       NioBudgetOption(
         v-for="option of budgetOptions"
@@ -112,8 +116,14 @@ export default {
     cta(option) {
       console.log(`cta - option: ${option}`)
     },
-    forecastRequested(val) {
+    customBudgetChanged(val) {
       console.log(val)
+    },
+    customBudgetOpened() {
+      this.selectedOption = null
+    }, 
+    customBudgetClosed() {
+      this.selectedOption = this.budgetOptions[1]
     }
   },  
   mounted() {

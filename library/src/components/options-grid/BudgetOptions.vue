@@ -12,17 +12,26 @@
       .custom-budget-form(v-if="customBudgetVisible")
         nio-text-field(
           prepend
-          small
           iconName="utility-dollar-sign"
           iconColor="#415298"
-          :iconSize="12"
+          :iconSize="14"
           placeholder="Enter budget"
-          @input="requestForecast($event)"
+          @input="customBudgetChanged($event)"
         )
         .forecast
           .nio-p.text-primary-dark(v-if="forecast && forecast.label") {{ forecast.label }}
           .nio-h3.text-primary-dark(v-if="forecast && forecast.value") {{ forecast.value }}
           .nio-p.text-primary-dark(v-if="forecast && forecast.annotation") {{ forecast.annotation }}
+        NioButton.close-button(
+          container
+          @click="closeCustomBudget"
+        )
+          NioIcon(
+            name="utility-times"
+            color="#415298"
+            size="14"
+          )
+            
 </template>
 
 <script>
@@ -31,6 +40,7 @@ import NioOptionsGrid from './OptionsGrid'
 import NioDivider from '../Divider'
 import NioButton from '../Button'
 import NioTextField from '../TextField'
+import NioIcon from '../icon/Icon'
 
 export default {
   name: 'nio-budget-options',
@@ -45,9 +55,14 @@ export default {
   methods: {
     showCustomBudget() {
       this.customBudgetVisible = true
+      this.$emit('customBudgetOpened')
     },
-    requestForecast(val) {
-      this.$emit('forecastRequested', val)
+    customBudgetChanged(val) {
+      this.$emit('customBudgetChanged', val)
+    },
+    closeCustomBudget() {
+      this.customBudgetVisible = false
+      this.$emit('customBudgetClosed')
     }
   },
   mounted() {	
@@ -56,7 +71,7 @@ export default {
   destroyed() {
     this.$emit('destroyed')
   },
-  components: { NioOptionsGrid, NioDivider, NioButton, NioTextField }
+  components: { NioOptionsGrid, NioDivider, NioButton, NioTextField, NioIcon }
 }
 </script>
 
