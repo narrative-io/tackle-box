@@ -41,7 +41,7 @@ export default {
     "size": { type: String, required: false, default: "extra-large"},
     "caps": { type: Boolean, required: false, default: true },
     "icon": { type: Boolean, required: false, default: false },
-    "iconName": { type: String, required: false, default: null }
+		"iconName": { type: String, required: false, default: null }
   },
   computed: {
     iconSize() {

@@ -2,9 +2,13 @@
   .test-options-grid
     NioBudgetOptions(
       :forecast="forecast"
+      :customBudgetMin="100"
+      :customBudgetMax="1000"
       @customBudgetChanged="customBudgetChanged($event)"
       @customBudgetOpened="customBudgetOpened"
       @customBudgetClosed="customBudgetClosed"
+      @customBudgetValidChanged="customBudgetValidChanged($event)"
+      custom-budget
     )
       NioBudgetOption(
         v-for="option of budgetOptions"
@@ -124,6 +128,9 @@ export default {
     }, 
     customBudgetClosed() {
       this.selectedOption = this.budgetOptions[1]
+    },
+    customBudgetValidChanged(val) {
+      console.log(val)
     }
   },  
   mounted() {
