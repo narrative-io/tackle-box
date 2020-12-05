@@ -3,7 +3,7 @@
       :class="{small: smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr }"
       outlined 
       flat
-      :solo="smallAttr || prependAttr || appendAttr"
+      :solo="soloAttr || smallAttr || prependAttr || appendAttr"
       @input="$emit('update', $event)"
       :model="model"
       :rules="parsedRules"
@@ -60,6 +60,7 @@ export default {
     appendAttr: false,
     prependAttr: false,
     prependIconAttr: null,
+    soloAttr: false,
     smallAttr: false,
     defaultIconColor: '#1438F5',
     defaultIconSize: 16
@@ -92,6 +93,9 @@ export default {
         this.smallAttr = true
         this.prependIconAttr = 'utility-search'
       }
+      if (attributes.getNamedItem('solo')) {
+        this.soloAttr = true
+      }  
       if (attributes.getNamedItem('search-small-subdued')) {
         this.smallAttr = true
         this.prependIconAttr = 'utility-search'
