@@ -1,14 +1,16 @@
 @import '../../global/_colors'
   
 =nio-budget-options
-  
+  .nio-budget-options-grid.disabled
+    opacity: 0.80
+    pointer-events: none
+    cursor: initial
   .nio-custom-budget
     display: flex
     flex-direction: column
     align-items: center
     .nio-divider
       margin: calc(16px - 0.625rem) 0px 16px 0px
-    
     .custom-budget-form
       padding: 36px 0px 36px 24px
       background-color: $c-canvas

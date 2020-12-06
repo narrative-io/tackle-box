@@ -1,6 +1,6 @@
 <template lang="pug">
   .nio-budget-options
-    NioOptionsGrid.nio-budget-options-grid
+    NioOptionsGrid.nio-budget-options-grid(:class="{'disabled': hasCustomBudget && customBudgetVisible}")
       slot
     .nio-custom-budget
       NioDivider(horizontal-or)
