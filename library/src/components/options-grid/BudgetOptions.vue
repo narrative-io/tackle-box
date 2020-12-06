@@ -22,8 +22,8 @@
             v-model="customBudget"
           )
           .custom-budget-error.text-error.nio-p-small
-            span(v-if="customBudget !== null && minBudgetError") Minimum ${{ customBudgetMin }} budget required
-            span(v-if="customBudget !== null && maxBudgetError") Maximum ${{ customBudgetMax }} budget allowed
+            span(v-if="customBudget !== null && minBudgetError") Minimum ${{ formatNumber(customBudgetMin) }} budget required
+            span(v-if="customBudget !== null && maxBudgetError") Maximum ${{ formatNumber(customBudgetMax) }} budget allowed
         .forecast
           .nio-p.text-primary-dark(v-if="forecast && forecast.label") {{ forecast.label }}
           .forecast-value
@@ -48,6 +48,7 @@ import NioDivider from '../Divider'
 import NioButton from '../Button'
 import NioTextField from '../TextField'
 import NioIcon from '../icon/Icon'
+import numeral from 'numeral'
 
 export default {
   name: 'nio-budget-options',
@@ -67,6 +68,9 @@ export default {
     maxBudgetError: false
   }),  
   methods: {
+    formatNumber(number) {
+      return numeral(number).format('0,0')
+    },
     showCustomBudget() {
       this.customBudgetVisible = true
       this.$emit('customBudgetOpened')
