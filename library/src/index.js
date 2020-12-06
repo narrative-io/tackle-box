@@ -35,6 +35,17 @@ import NioPill from "./components/Pill"
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
+import { 
+	nioFormatCurrency,
+  nioFormatCurrencyNoCents,
+  nioFormatNumber,
+  nioFormatNumberVerbose,
+  nioFormatFloat,
+  nioFormatFloatVerbose,
+  nioFormatPercentageFromFloat,
+	nioFormatInteger
+} from './utilities/numbers'
+
 Vue.use(Vuetify)
 
 const Components = {
@@ -136,6 +147,16 @@ export { NioBudgetOptions }
 export { NioBudgetOption }
 export { NioSourceOption }
 export { NioPill }
+
+export { nioFormatCurrency }
+export { nioFormatCurrencyNoCents }
+export { nioFormatNumber }
+export { nioFormatNumberVerbose }
+export { nioFormatFloat }
+export { nioFormatFloatVerbose }
+export { nioFormatPercentageFromFloat }
+export { nioFormatInteger }
+
 export { FontAwesomeIcon }
 
 export default Components
