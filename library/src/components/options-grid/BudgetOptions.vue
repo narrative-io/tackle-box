@@ -26,8 +26,9 @@
             span(v-if="customBudget !== null && maxBudgetError") Maximum ${{ customBudgetMax }} budget allowed
         .forecast
           .nio-p.text-primary-dark(v-if="forecast && forecast.label") {{ forecast.label }}
-          .nio-h3.text-primary-dark(v-if="!forecastLoading && forecast && forecast.value") {{ forecast.value ? forecast.value : '' }}
-          .nio-h4.text-primary-dark(v-if="forecastLoading") {{ forecastLoadingMsg }}
+          .forecast-value
+            .nio-h3.text-primary-dark(v-if="!forecastLoading && forecast && forecast.value") {{ forecast.value ? forecast.value : '' }}
+            .nio-h4.text-primary-dark(v-if="forecastLoading") {{ forecastLoadingMsg }}
           .nio-p.text-primary-dark(v-if="forecast && forecast.annotation") {{ forecast.annotation }}
         NioButton.close-button(
           container
