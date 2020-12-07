@@ -1,6 +1,8 @@
 <template lang="pug">
   .test-charge-summary
-    NioChargeSummary
+    NioChargeSummary(
+      :lineItems="lineItems"
+    )
 </template>
 
 <script>
@@ -12,7 +14,20 @@ export default {
     NioChargeSummary
   },
   data: () => ({
-   
+    lineItems: [
+      {
+        name: "Monthly Budget",
+        value: 115
+      },
+      {
+        name: "Narrative Fees",
+        value: 150
+      },
+      {
+        name: "Applicable Taxes",
+        value: 125.89
+      }
+    ]
   })
 };
 </script>
