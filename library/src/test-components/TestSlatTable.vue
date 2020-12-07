@@ -1,6 +1,12 @@
 <template lang="pug">
   .test-slat-table
     NioSlatTable(
+      v-if="paymentMethods && headers"
+      :items="paymentMethods"
+      :columns="headers"
+      single-select
+    )
+    NioSlatTable(
       v-if="columns && items"
       :items="items"
       :columns="columns"
@@ -56,7 +62,7 @@
       :columns="columns"
       multi-select
       @selectionChanged="selectionChanged($event)"
-      action="link"
+      action="expand"
       @itemClicked="itemClicked($event)"
       key="3"
       pagination
@@ -119,7 +125,16 @@ export default {
   data: () => ({
     columns: null,
     items: testItems,
-    sortOptions: testSortOptions
+    sortOptions: testSortOptions,
+    headers: null,
+    paymentMethods: [
+      {
+        id: 1,
+        cardType: 'Visa',
+        name: 'Chris Woodward',
+        expiration: '01/2021'
+      }
+    ]
   }),
   methods: {
     selectionChanged(val) {
@@ -164,12 +179,42 @@ export default {
         }
       ]  
     },
+    computeHeaders() {
+      this.headers = [
+        {
+          name: "slat",
+          props: {
+            image: this.computeImgSrc,
+            title: this.computeTitle,
+            subtitle: "name"
+          }
+        },
+        {
+          name: "expiration",
+          label: "Expires",
+          computed: this.computeExpiration
+        }
+      ]
+    },
+    computeExpiration(item) {
+      return '01/2021'
+    },
+    computeImgSrc(item) {
+      
+    },
+    computeTitle(item) {
+      return 'cardType'
+    },
+    computeSubtitle(item) {
+      return '01/2021'
+    },
     menuItemClicked(event, item) {
       alert(`Menu item clicked. Event: ${event}, itemId: ${item.id}`)
     }
   },
   mounted() {
     this.makeItems()
+    this.computeHeaders()
   }
 };
 </script>

@@ -45,7 +45,6 @@
             
           td.slat-cell
             NioImageTitleSubtitleSlot(
-              v-if="item.slat.image && item.slat.title && item.slat.title"
               :imgSrc="item.slat.image"
               :size="dense ? 'small' : 'normal'"
             )
@@ -231,23 +230,11 @@ export default {
       if (this.pagination) {
         this.paginatedItems = this.itemsPerPage === -1 ? computedItems : computedItems.slice(0, this.itemsPerPage)
       }
-
       this.computedItems = computedItems
     },
     makeHeaders() {
       const headers = []
 
-      if (this.singleSelect) {
-        headers.push({
-          name: 'singleSelect',
-          value: 'singleSelect'
-        })
-      } else if (this.multiSelect) {
-        headers.push({
-          name: 'multiSelect',
-          value: 'multiSelect'
-        })
-      }
       headers.push({
         name: 'slat',
         value: 'slat'
@@ -258,7 +245,7 @@ export default {
           label: column.label,
           value: column.name
         })
-      })
+			})
       this.headers = headers
       this.makeStaticColumns()
     },
