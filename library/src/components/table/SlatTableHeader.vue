@@ -14,7 +14,7 @@
         .count.nio-p.nio-bold.text-primary-dark(v-if="selectedCount > 0")
           span.selected-count {{ selectedCount }}
           span.label {{ selectedCount > 1 ? ' items' : ' item' }} selected
-      .count.nio-p.nio-bold.text-primary-dark(v-if="!pagination && numItems > 0 && !elements.search && !elements.sort && !elements.selected") Showing {{ numItems }} items
+      .count.nio-p.nio-bold.text-primary-dark(v-if="!pagination && numItems > 0 && !elements.search && !elements.sort && !elements.selected") Showing {{ numItems }} {{ numItems > 1 ? 'items' : 'item'}}
       NioTextField(
         v-if="elements.search"
         search-small-subdued

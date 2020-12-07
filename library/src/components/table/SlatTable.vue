@@ -56,7 +56,7 @@
           )
             .label.nio-table-label.text-primary-dark {{ column.label }}
             .value.nio-table-value.text-primary-dark {{ item.columnValues[column.name]}}
-          td.action-cell
+          td.action-cell(v-if="action")
             NioButton(container)
               NioIcon(
                 v-if="action === 'link'"
@@ -122,7 +122,7 @@ export default {
   props: {
     "items": { type: Array, required: true },
     "columns": { type: Array, required: true },
-    "action": { type: String, required: false, default: "menu" }, // menu | link | expand
+    "action": { type: String, required: false }, // menu | link | expand
     "itemsPerPageOptions": { type: Array, required: false, default: function() { return [5, 10, 20, -1]}} ,
     "initialItemsPerPage": { type: Number, required: false, default: 5 },
     "sortOptions": { type: Array, required: false },
