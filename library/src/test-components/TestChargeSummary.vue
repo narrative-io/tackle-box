@@ -25,7 +25,8 @@ export default {
       },
       {
         name: "Applicable Taxes",
-        value: 125.89
+        value: 125.89,
+        showCents: true
       }
     ]
   })
