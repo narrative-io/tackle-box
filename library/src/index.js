@@ -32,6 +32,7 @@ import NioBudgetOptions from "./components/options-grid/BudgetOptions"
 import NioBudgetOption from "./components/options-grid/BudgetOption"
 import NioSourceOption from "./components/options-grid/SourceOption"
 import NioPill from "./components/Pill"
+import NioChargeSummary from "./components/ChargeSummary"
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
@@ -69,6 +70,7 @@ const Components = {
 	NioBudgetOption,
 	NioSourceOption,
 	NioPill,
+	NioChargeSummary,
 	FontAwesomeIcon
 }
 
@@ -103,6 +105,7 @@ Vue.component("NioBudgetOptions", NioBudgetOptions)
 Vue.component("NioBudgetOption", NioBudgetOption)
 Vue.component("NioSourceOption", NioSourceOption)
 Vue.component("NioPill", NioPill)
+Vue.component("NioChargeSummary", NioChargeSummary)
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
 export { NioButton }
@@ -136,6 +139,7 @@ export { NioBudgetOptions }
 export { NioBudgetOption }
 export { NioSourceOption }
 export { NioPill }
+export { NioChargeSummary }
 export { FontAwesomeIcon }
 
 export default Components

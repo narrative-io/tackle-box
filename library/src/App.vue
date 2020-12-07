@@ -27,7 +27,8 @@
       .wrapper
         //- TestExpansionPanel
         //- TestDivider
-        TestAlert
+        //- TestAlert
+        TestChargeSummary
         //- TestButtons
         //- TestAutocomplete
         //- TestStepper
@@ -69,6 +70,7 @@ import TestSlat from './test-components/TestSlat'
 import TestStepper from './test-components/TestStepper'
 import TestSlatTable from './test-components/TestSlatTable'
 import TestOptionsGrid from './test-components/TestOptionsGrid'
+import TestChargeSummary from './test-components/TestChargeSummary'
 
 export default {
   name: "App",
@@ -94,7 +96,8 @@ export default {
     TestSlat,
     TestStepper,
     TestSlatTable,
-    TestOptionsGrid
+    TestOptionsGrid,
+    TestChargeSummary
   },
   data: () => ({
     loggedIn: false,
