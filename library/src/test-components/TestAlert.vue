@@ -18,6 +18,9 @@
       :messageTitle="messageTitle"
       :message="longMessage"
       :dismissable="false"
+      :linkText="'MORE INFO'"
+      :linkHref="'http://www.google.com'"
+
     )
 </template>
 

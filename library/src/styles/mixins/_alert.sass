@@ -1,6 +1,7 @@
 @import '../global/_colors'
 @import '../global/_color-helpers'
 @import '../global/_fonts'
+@import '../global/_typography'
   
 =nio-alert 
     position: relative
@@ -53,6 +54,12 @@
       margin-bottom: 1.5rem
       &.nio-alert-warning
         border: 2px solid $c-warning
+    a
+      text-decoration: none
+      color: $c-primary  
+      @extend .nio-p
+      @extend .nio-bold
+
 .nio-alert
   +nio-alert 	
           

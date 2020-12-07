@@ -10,10 +10,12 @@
       )
     .message.nio-h4.text-white(v-if="alertType === 'info'") 
       span.nio-bold(v-if="messageTitle") {{ messageTitle }}
-      span {{ message }}
+      span {{ message }} {{ linkText }}
+      a(v-if="linkText && linkHref" :href="linkHref") {{ formatLinkText(linkText) }}
     .message.nio-p.text-primary-dark(v-if="alertType === 'warning'")
       span.nio-bold.text-primary-darker(v-if="messageTitle") {{ messageTitle }}
       span {{ message }}
+      a(v-if="linkText && linkHref" :href="linkHref") {{ formatLinkText(linkText) }}
     NioIcon.dismiss(
       v-if="dismissable"
       name="utility-times"
@@ -33,6 +35,8 @@ export default {
     "visible": { type: Boolean, required: false, default: false },
     "message": { type: String, required: false, default: '' },
     "messageTitle": { type: String, required: false },
+    "linkText": { type: String, required: false },
+    "linkHref": { type: String, required: false },
     "dismissable": { type: Boolean, required: false, default: true }
   },
   data() {
@@ -44,6 +48,9 @@ export default {
     this.applyHelperAttributes()
   },
   methods: {
+    formatLinkText(text) {
+      return ` ${text.toUpperCase()}`
+    },
     applyHelperAttributes() {
       const attributes = this.$el.attributes
       if (attributes.getNamedItem('info')) {
