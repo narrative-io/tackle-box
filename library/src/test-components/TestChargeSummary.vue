@@ -35,5 +35,5 @@ export default {
 
 <style lang="sass" scoped>
 .test-charge-summary
-  
+  display: flex
 </style>

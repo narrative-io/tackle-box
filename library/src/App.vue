@@ -256,6 +256,7 @@ export default {
 
 .wrapper
   flex-grow: 2
+  max-width: 100%
   padding: 30px  
    
 </style>

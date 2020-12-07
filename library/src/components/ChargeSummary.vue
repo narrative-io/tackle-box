@@ -1,18 +1,22 @@
 <template lang="pug">
-  .nio-charge-summary(
-
-  )
-    .line-items
-      .line-item(
-        v-for="lineItem of lineItems"
-      )
-        .line-item-content
-          .item-name.nio-p.text-primary-dark {{ lineItem.name }}
-          .value.nio-p.nio-bold.text-primary-dark {{ formatPrice(lineItem.value) }}
-      .line-item.total
-        .line-item-content
-          .item-name.nio-p.text-primary-dark TOTAL CHARGE
-          .value.nio-p.nio-bold.text-primary-dark {{ totalCharge }}
+  .nio-charge-summary
+    .summary-container
+      .line-items
+        .line-item(
+          v-for="lineItem of lineItems"
+        )
+          .line-item-content
+            .item-name.nio-p.text-primary-dark {{ lineItem.name }}
+            .value.nio-p.nio-bold.text-primary-dark {{ formatPrice(lineItem.value) }}
+        .line-item.total
+          .line-item-content
+            .item-name.nio-p.text-primary-dark TOTAL CHARGE
+            .value.nio-p.nio-bold.text-primary-dark {{ totalCharge }}
+      .cadence-message.nio-p.text-primary-dark(v-if="!$slots['append-content']") {{ rebillingMessage }}      
+      .help-message(v-if="!$slots['append-content']")
+        span.nio-p.text-primary-dark {{ ` Questions about your order? ` }}
+        a(href="https://kb.narrative.io" target="_blank") Visit the help center
+      slot(name="append-content")  
 </template>
 
 <script>
@@ -23,7 +27,8 @@ export default {
   name: 'nio-charge-summary',
   props: {
     "lineItems": { type: Array, required: false },
-    "total": { type: Number, required: false }
+    "total": { type: Number, required: false },
+    "rebillingMessage": { type: String, required: false, default: 'You will be rebilled for your subscription after 30 days' }
   },
   computed: {
     totalCharge() {
