@@ -5,6 +5,7 @@
       :items="paymentMethods"
       :columns="headers"
       single-select
+      :defaultSelection="1"
     )
     NioSlatTable(
       v-if="columns && items"
@@ -61,6 +62,7 @@
       :items="items"
       :columns="columns"
       multi-select
+      :default-selection="[1, 3]"
       @selectionChanged="selectionChanged($event)"
       action="expand"
       @itemClicked="itemClicked($event)"

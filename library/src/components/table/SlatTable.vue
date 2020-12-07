@@ -126,7 +126,8 @@ export default {
     "itemsPerPageOptions": { type: Array, required: false, default: function() { return [5, 10, 20, -1]}} ,
     "initialItemsPerPage": { type: Number, required: false, default: 5 },
     "sortOptions": { type: Array, required: false },
-    "searchableProps": { type: Array, required: false }
+		"searchableProps": { type: Array, required: false },
+		"defaultSelection": { type: Array | Number, required: false }
   },
   data: () => ({
     multiSelect: false,
@@ -165,7 +166,8 @@ export default {
       this.searchOptions.keys = this.searchableProps			
     }	
     this.makeHeaders()
-    this.computeItems()
+		this.computeItems()
+		this.initSelections()
   },
   methods: {
     handleItemClick(item, expandFn, isExpanded) {
@@ -183,7 +185,12 @@ export default {
           this.selection.push(item.id)
         }
       }
-    },
+		},
+		initSelections() {
+			if (this.defaultSelection) {
+				this.selection = this.defaultSelection
+			}
+		},
     itemSelected(item) {
       if (this.singleSelect) {
         return this.selection === item.id
@@ -251,7 +258,7 @@ export default {
     },
     makeStaticColumns() {
       this.staticColumns = this.headers.filter(header => header.name !== 'selections' && header.name !== 'slat' && header.name !== 'action')
-    },
+		},
     applyHelperAttributes() {
       const attributes = this.$el.attributes
       if (attributes.getNamedItem('single-select')) {
