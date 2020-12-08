@@ -35,7 +35,10 @@ export default {
 		},
     getStepIndex(stepName) {
       return this.orderedSteps.indexOf(stepName)
-    }
+		},
+		stepSelected(stepName) {
+			console.log(stepName)
+		}
   },
   watch: {
     currentStep() {

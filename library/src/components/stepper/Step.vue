@@ -1,6 +1,7 @@
 <template lang="pug">
   v-expansion-panel.nio-step(
     :disabled="isLocked"
+    @change="stepSelected"
   )
     NioStepHeader(
       :stepName="stepName"
@@ -95,6 +96,9 @@ export default {
     },
     submit() {
       this.$parent.$parent.submit()
+    },
+    stepSelected() {
+      this.$parent.$parent.stepSelected(this.stepName)
     }
   },
   components: { NioStepHeader, NioStepContent }

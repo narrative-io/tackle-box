@@ -15,7 +15,7 @@
             .step-number {{ stepIndex + 1 }}
           .step-name.nio-h6.text-primary-dark {{ stepName }}
       template(v-slot:summary)
-        NioSummarySlat.summary(v-if="complete")(
+        NioSummarySlat.summary(v-if="summary && complete")(
           :imageSrc="summary.imageSrc"
           :title="summary.title"
           :subtitle="summary.subtitle"
