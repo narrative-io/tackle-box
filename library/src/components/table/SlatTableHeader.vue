@@ -4,7 +4,7 @@
   )
     template(v-slot:content)  
       .header-selected(
-        v-if="elements.selected"
+        v-if="elements.selected || elements.count"
       )
         NioCheckbox(
           v-if="selectionType === 'multiSelect'"

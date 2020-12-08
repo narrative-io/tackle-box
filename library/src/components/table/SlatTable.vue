@@ -135,7 +135,8 @@ export default {
     headerElements: {
       search: false,
       sort: false,
-      selected: false
+			selected: false,
+			count: false
     },
     selection: null,
     headers: null,
@@ -281,6 +282,9 @@ export default {
         this.headerElements.search = true
       }
       if (attributes.getNamedItem('selected-header')) {
+        this.headerElements.selected = true
+			}
+			if (attributes.getNamedItem('count-header')) {
         this.headerElements.selected = true
       }
       if (attributes.getNamedItem('footer-actions')) {

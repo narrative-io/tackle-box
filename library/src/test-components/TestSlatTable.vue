@@ -101,6 +101,14 @@
       v-if="columns && items"
       :items="items"
       :columns="columns"
+      @selectionChanged="selectionChanged($event)"
+      count-header
+      key="6"
+    )
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
       multi-select
       @selectionChanged="selectionChanged($event)"
       key="7"
