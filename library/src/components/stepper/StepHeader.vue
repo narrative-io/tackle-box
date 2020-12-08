@@ -16,8 +16,9 @@
           .step-name.nio-h6.text-primary-dark {{ stepName }}
       template(v-slot:summary)
         NioSummarySlat.summary(v-if="complete")(
-          imageSrc="https://picsum.photos/64/64"
+          :imageSrc="summary.imageSrc"
           :title="summary.title"
+          :subtitle="summary.subtitle"
           :detailsLabel="summary.detailsLabel"
           :detailsValue="summary.detailsValue"
           :detailsAnnotation="summary.detailsAnnotation"
