@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     optionSelected() {
-      if (!this.option.status || option.status !== 'coming') {
+      if (!this.option || !this.option.status || this.option.status !== 'coming') {
         this.$emit('selected', this.option)
       }  
     },
