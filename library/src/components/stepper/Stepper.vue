@@ -29,7 +29,10 @@ export default {
     },
     nextStep() {
       this.$emit('nextStep')
-    },
+		},
+		submit() {
+			this.$emit('submit')
+		},
     getStepIndex(stepName) {
       return this.orderedSteps.indexOf(stepName)
     }

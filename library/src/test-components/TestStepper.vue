@@ -7,6 +7,7 @@
       finalStepLabel="Activate Subscription"
       @nextStep="nextStep"
       @previousStep="previousStep"
+      @submit="submit"
     )
       NioStep(
         stepName="source"
@@ -113,6 +114,9 @@ export default {
     },
     previousStep() {
       this.currentStep = this.steps[this.steps.indexOf(this.currentStep) - 1]
+    },
+    submit() {
+      console.log('submit')
     }
   }
 };

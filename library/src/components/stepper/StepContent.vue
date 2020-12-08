@@ -17,7 +17,7 @@
     .nio-step-content-actions.final-step(v-if="isLastStep")
       NioButton(
         normal-primary 
-        @click="nextStep"
+        @click="submit"
         :disabled="!valid"
       ) {{ finalStepLabel }}
 </template>
@@ -49,7 +49,10 @@ export default {
     },
     nextStep() {
       this.$emit('nextStep')
-    }
+		},
+		submit() {
+			this.$emit('submit')
+		}
   },
   components: { NioButton, NioDivider }
 }
