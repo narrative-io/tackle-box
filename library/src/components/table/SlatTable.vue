@@ -285,7 +285,7 @@ export default {
         this.headerElements.selected = true
 			}
 			if (attributes.getNamedItem('count-header')) {
-        this.headerElements.selected = true
+        this.headerElements.count = true
       }
       if (attributes.getNamedItem('footer-actions')) {
         this.actions = true

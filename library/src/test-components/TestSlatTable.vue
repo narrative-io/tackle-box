@@ -4,8 +4,8 @@
       v-if="paymentMethods && headers"
       :items="paymentMethods"
       :columns="headers"
-      single-select
       :defaultSelection="1"
+      count-header
     )
     NioSlatTable(
       v-if="columns && items"
