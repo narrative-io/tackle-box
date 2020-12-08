@@ -37,7 +37,7 @@ export default {
       return this.orderedSteps.indexOf(stepName)
 		},
 		stepSelected(stepName) {
-			console.log(stepName)
+			this.$emit('stepSelected', stepName)
 		}
   },
   watch: {
