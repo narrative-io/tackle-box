@@ -18,6 +18,7 @@
       hide-default-header
       hide-default-footer
       :headers="headers"
+      :items-per-page="500"
       :items="pagination ? paginatedItems : computedItems"
     )
       template(
@@ -126,8 +127,8 @@ export default {
     "itemsPerPageOptions": { type: Array, required: false, default: function() { return [5, 10, 20, -1]}} ,
     "initialItemsPerPage": { type: Number, required: false, default: 5 },
     "sortOptions": { type: Array, required: false },
-		"searchableProps": { type: Array, required: false },
-		"defaultSelection": { type: Array | Number, required: false }
+    "searchableProps": { type: Array, required: false },
+    "defaultSelection": { type: Array | Number, required: false }
   },
   data: () => ({
     multiSelect: false,
@@ -135,8 +136,8 @@ export default {
     headerElements: {
       search: false,
       sort: false,
-			selected: false,
-			count: false
+      selected: false,
+      count: false
     },
     selection: null,
     headers: null,
@@ -167,8 +168,8 @@ export default {
       this.searchOptions.keys = this.searchableProps			
     }	
     this.makeHeaders()
-		this.computeItems()
-		this.initSelections()
+    this.computeItems()
+    this.initSelections()
   },
   methods: {
     handleItemClick(item, expandFn, isExpanded) {
@@ -186,12 +187,12 @@ export default {
           this.selection.push(item.id)
         }
       }
-		},
-		initSelections() {
-			if (this.defaultSelection) {
-				this.selection = this.defaultSelection
-			}
-		},
+    },
+    initSelections() {
+      if (this.defaultSelection) {
+        this.selection = this.defaultSelection
+      }
+    },
     itemSelected(item) {
       if (this.singleSelect) {
         return this.selection === item.id
@@ -253,13 +254,13 @@ export default {
           label: column.label,
           value: column.name
         })
-			})
+      })
       this.headers = headers
       this.makeStaticColumns()
     },
     makeStaticColumns() {
       this.staticColumns = this.headers.filter(header => header.name !== 'selections' && header.name !== 'slat' && header.name !== 'action')
-		},
+    },
     applyHelperAttributes() {
       const attributes = this.$el.attributes
       if (attributes.getNamedItem('single-select')) {
@@ -283,8 +284,8 @@ export default {
       }
       if (attributes.getNamedItem('selected-header')) {
         this.headerElements.selected = true
-			}
-			if (attributes.getNamedItem('count-header')) {
+      }
+      if (attributes.getNamedItem('count-header')) {
         this.headerElements.count = true
       }
       if (attributes.getNamedItem('footer-actions')) {
