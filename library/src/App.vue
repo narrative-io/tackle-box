@@ -32,7 +32,7 @@
         //- TestButtons
         //- TestAutocomplete
         //- TestStepper
-        //- TestSlatTable
+        TestSlatTable
         //- TestSlat
         //- TestFileChooser
         //- TestCheckbox
@@ -44,7 +44,7 @@
         //- TestTextField
         //- TestSelect
         //- TestCardGrid
-        TestOptionsGrid
+        //- TestOptionsGrid
 </template>
 
 <script>

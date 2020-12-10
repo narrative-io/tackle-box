@@ -1,6 +1,13 @@
 <template lang="pug">
   .test-slat-table
     NioSlatTable(
+      v-if="items && smallHeaders"
+      :items="items"
+      :columns="smallHeaders"
+      single-select
+      key="12"
+    )
+    NioSlatTable(
       v-if="paymentMethods && headers"
       :items="paymentMethods"
       :columns="headers"
@@ -87,7 +94,7 @@
       :items="items"
       :columns="columns"
       @selectionChanged="selectionChanged($event)"
-      key="6"
+      key="9"
     )
     NioSlatTable(
       v-if="columns && items"
@@ -103,7 +110,7 @@
       :columns="columns"
       @selectionChanged="selectionChanged($event)"
       count-header
-      key="6"
+      key="8"
     )
     NioSlatTable(
       v-if="columns && items"
@@ -137,6 +144,7 @@ export default {
     items: testItems,
     sortOptions: testSortOptions,
     headers: null,
+    smallHeaders: null,
     paymentMethods: [
       {
         id: 1,
@@ -206,6 +214,18 @@ export default {
         }
       ]
     },
+    computeSmallHeaders() {
+      this.smallHeaders = [
+        {
+          name: "slat",
+          props: {
+            image: "imageSrc",
+            title: this.computeOrderName,
+            subtitle: this.computeOrderNumber
+          }
+        }
+      ]  
+    },
     computeExpiration(item) {
       return '01/2021'
     },
@@ -225,6 +245,7 @@ export default {
   mounted() {
     this.makeItems()
     this.computeHeaders()
+    this.computeSmallHeaders()
   }
 };
 </script>
