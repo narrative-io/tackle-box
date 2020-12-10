@@ -16,15 +16,6 @@
     &.selected, &:hover
       background-color: $c-canvas !important
 
-    td
-      padding: 1rem 0rem !important
-      border-bottom: 0rem !important
-
-      &:first-child
-        padding-left: 1.5rem !important
-      &:last-child
-        padding-right: 1.5rem !important
-
     td.selection-cell
       width: 1.5rem
       padding-right: 1.5rem !important
@@ -50,6 +41,16 @@
     & > td + td
       padding-left: 1rem !important
 
+    td
+      padding: 1rem 0rem !important
+      border-bottom: 0rem !important
+      &:first-child
+        padding-left: 1.5rem !important
+      &:last-child:not(.slat-cell)
+        padding-right: 1.5rem !important
+        &:not(.action-cell)
+          width: 9rem
+          
   ::v-deep td.expanded-row:not(:last-child)
     box-shadow: inset 0rem -0.0625rem 0rem #DAE0F9
 

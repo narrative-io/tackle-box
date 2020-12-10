@@ -29,10 +29,16 @@ export default {
     },
     nextStep() {
       this.$emit('nextStep')
-    },
+		},
+		submit() {
+			this.$emit('submit')
+		},
     getStepIndex(stepName) {
       return this.orderedSteps.indexOf(stepName)
-    }
+		},
+		stepSelected(stepName) {
+			this.$emit('stepSelected', stepName)
+		}
   },
   watch: {
     currentStep() {

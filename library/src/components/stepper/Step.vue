@@ -1,6 +1,7 @@
 <template lang="pug">
   v-expansion-panel.nio-step(
     :disabled="isLocked"
+    @change="stepSelected"
   )
     NioStepHeader(
       :stepName="stepName"
@@ -24,6 +25,7 @@
       :finalStepLabel="finalStepLabel"
       @previousStep="previousStep"
       @nextStep="nextStep"
+      @submit="submit"
     ) 
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data") 
@@ -91,6 +93,12 @@ export default {
     },
     nextStep() {
       this.$parent.$parent.nextStep()
+    },
+    submit() {
+      this.$parent.$parent.submit()
+    },
+    stepSelected() {
+      this.$parent.$parent.stepSelected(this.stepName)
     }
   },
   components: { NioStepHeader, NioStepContent }

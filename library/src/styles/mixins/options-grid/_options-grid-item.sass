@@ -1,0 +1,40 @@
+@import '../../global/_colors'
+
+=nio-options-grid-item
+  margin: 0.625rem
+  margin-top: 0rem
+  min-width: 15.625rem
+  max-width: 23.125rem
+  width: 100%
+  overflow: hidden
+  text-align: center
+  flex: 0 0 calc(33.33% - 1.25rem)
+  padding: 0rem
+  display: flex
+  flex-direction: column
+  
+  .name, .amount, .content
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding-left: 16px
+    padding-right: 16px
+
+  .cta
+    display: flex
+    align-items: center
+    justify-content: center
+
+  &:not(.has-cta):not(.disabled):hover
+    cursor: pointer
+    border: 0.0625rem solid $c-primary-light
+
+  &.disabled:hover
+    cursor: initial !important  
+
+  &.selected:not(.has-cta)
+    background-color: $c-canvas
+    border: 0.0625rem solid $c-primary-light
+
+.nio-options-grid-item
+  +nio-options-grid-item 

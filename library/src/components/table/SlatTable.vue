@@ -18,6 +18,7 @@
       hide-default-header
       hide-default-footer
       :headers="headers"
+      :items-per-page="500"
       :items="pagination ? paginatedItems : computedItems"
     )
       template(
@@ -45,7 +46,6 @@
             
           td.slat-cell
             NioImageTitleSubtitleSlot(
-              v-if="item.slat.image && item.slat.title && item.slat.title"
               :imgSrc="item.slat.image"
               :size="dense ? 'small' : 'normal'"
             )
@@ -57,7 +57,7 @@
           )
             .label.nio-table-label.text-primary-dark {{ column.label }}
             .value.nio-table-value.text-primary-dark {{ item.columnValues[column.name]}}
-          td.action-cell
+          td.action-cell(v-if="action")
             NioButton(container)
               NioIcon(
                 v-if="action === 'link'"
@@ -123,11 +123,12 @@ export default {
   props: {
     "items": { type: Array, required: true },
     "columns": { type: Array, required: true },
-    "action": { type: String, required: false, default: "menu" }, // menu | link | expand
+    "action": { type: String, required: false }, // menu | link | expand
     "itemsPerPageOptions": { type: Array, required: false, default: function() { return [5, 10, 20, -1]}} ,
     "initialItemsPerPage": { type: Number, required: false, default: 5 },
     "sortOptions": { type: Array, required: false },
-    "searchableProps": { type: Array, required: false }
+    "searchableProps": { type: Array, required: false },
+    "defaultSelection": { type: Array | Number, required: false }
   },
   data: () => ({
     multiSelect: false,
@@ -135,7 +136,8 @@ export default {
     headerElements: {
       search: false,
       sort: false,
-      selected: false
+      selected: false,
+      count: false
     },
     selection: null,
     headers: null,
@@ -167,6 +169,7 @@ export default {
     }	
     this.makeHeaders()
     this.computeItems()
+    this.initSelections()
   },
   methods: {
     handleItemClick(item, expandFn, isExpanded) {
@@ -183,6 +186,11 @@ export default {
         } else {
           this.selection.push(item.id)
         }
+      }
+    },
+    initSelections() {
+      if (this.defaultSelection) {
+        this.selection = this.defaultSelection
       }
     },
     itemSelected(item) {
@@ -231,23 +239,11 @@ export default {
       if (this.pagination) {
         this.paginatedItems = this.itemsPerPage === -1 ? computedItems : computedItems.slice(0, this.itemsPerPage)
       }
-
       this.computedItems = computedItems
     },
     makeHeaders() {
       const headers = []
 
-      if (this.singleSelect) {
-        headers.push({
-          name: 'singleSelect',
-          value: 'singleSelect'
-        })
-      } else if (this.multiSelect) {
-        headers.push({
-          name: 'multiSelect',
-          value: 'multiSelect'
-        })
-      }
       headers.push({
         name: 'slat',
         value: 'slat'
@@ -288,6 +284,9 @@ export default {
       }
       if (attributes.getNamedItem('selected-header')) {
         this.headerElements.selected = true
+      }
+      if (attributes.getNamedItem('count-header')) {
+        this.headerElements.count = true
       }
       if (attributes.getNamedItem('footer-actions')) {
         this.actions = true

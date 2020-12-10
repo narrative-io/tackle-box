@@ -1,6 +1,20 @@
 <template lang="pug">
   .test-slat-table
     NioSlatTable(
+      v-if="items && smallHeaders"
+      :items="items"
+      :columns="smallHeaders"
+      single-select
+      key="12"
+    )
+    NioSlatTable(
+      v-if="paymentMethods && headers"
+      :items="paymentMethods"
+      :columns="headers"
+      :defaultSelection="1"
+      count-header
+    )
+    NioSlatTable(
       v-if="columns && items"
       :items="items"
       :columns="columns"
@@ -55,8 +69,9 @@
       :items="items"
       :columns="columns"
       multi-select
+      :default-selection="[1, 3]"
       @selectionChanged="selectionChanged($event)"
-      action="link"
+      action="expand"
       @itemClicked="itemClicked($event)"
       key="3"
       pagination
@@ -79,7 +94,7 @@
       :items="items"
       :columns="columns"
       @selectionChanged="selectionChanged($event)"
-      key="6"
+      key="9"
     )
     NioSlatTable(
       v-if="columns && items"
@@ -88,6 +103,14 @@
       @selectionChanged="selectionChanged($event)"
       pagination
       key="6"
+    )
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      @selectionChanged="selectionChanged($event)"
+      count-header
+      key="8"
     )
     NioSlatTable(
       v-if="columns && items"
@@ -119,7 +142,17 @@ export default {
   data: () => ({
     columns: null,
     items: testItems,
-    sortOptions: testSortOptions
+    sortOptions: testSortOptions,
+    headers: null,
+    smallHeaders: null,
+    paymentMethods: [
+      {
+        id: 1,
+        cardType: 'Visa',
+        name: 'Chris Woodward',
+        expiration: '01/2021'
+      }
+    ]
   }),
   methods: {
     selectionChanged(val) {
@@ -164,12 +197,55 @@ export default {
         }
       ]  
     },
+    computeHeaders() {
+      this.headers = [
+        {
+          name: "slat",
+          props: {
+            image: this.computeImgSrc,
+            title: this.computeTitle,
+            subtitle: "name"
+          }
+        },
+        {
+          name: "expiration",
+          label: "Expires",
+          computed: this.computeExpiration
+        }
+      ]
+    },
+    computeSmallHeaders() {
+      this.smallHeaders = [
+        {
+          name: "slat",
+          props: {
+            image: "imageSrc",
+            title: this.computeOrderName,
+            subtitle: this.computeOrderNumber
+          }
+        }
+      ]  
+    },
+    computeExpiration(item) {
+      return '01/2021'
+    },
+    computeImgSrc(item) {
+      
+    },
+    computeTitle(item) {
+      return 'cardType'
+    },
+    computeSubtitle(item) {
+      return '01/2021'
+    },
     menuItemClicked(event, item) {
       alert(`Menu item clicked. Event: ${event}, itemId: ${item.id}`)
     }
   },
   mounted() {
     this.makeItems()
+    this.computeHeaders()
+    this.computeSmallHeaders()
   }
 };
 </script>

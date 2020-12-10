@@ -1,0 +1,20 @@
+=nio-source-option
+	border: 1px solid #DAE0F9
+	border-radius: 12px
+
+	::v-deep .amount
+		margin-top: 64px
+		margin-bottom: 46px
+
+	&:not(.has-status) ::v-deep .content
+		margin-bottom: 64px
+		.nio-h3
+			margin-bottom: 8px
+
+	&.has-status
+		::v-deep .nio-pill
+			margin-top: 18px
+			margin-bottom: 34px
+
+.nio-source-option
+	+nio-source-option

@@ -1,0 +1,59 @@
+@import '../../global/_colors'
+  
+=nio-budget-options
+  .nio-budget-options-grid.disabled
+    opacity: 0.80
+    pointer-events: none
+    cursor: initial
+  .nio-custom-budget
+    display: flex
+    flex-direction: column
+    align-items: center
+    .nio-divider
+      margin: calc(16px - 0.625rem) 0px 16px 0px
+    .custom-budget-form
+      padding: 36px 0px 36px 24px
+      background-color: $c-canvas
+      border: 1px solid $c-primary-lighter
+      border-radius: 12px
+      display: flex
+      align-items: center
+      position: relative
+      .custom-budget-entry
+        position: relative
+        .nio-text-field
+          margin-bottom: 0px
+          ::v-deep input
+            padding-left: 1px
+            padding-top: 0px
+            width: 355px
+          ::v-deep input::-webkit-outer-spin-button,
+          ::v-deep input::-webkit-inner-spin-button
+            -webkit-appearance: none
+            margin: 0
+          ::v-deep input[type=number] 
+            -moz-appearance: textfield
+        .custom-budget-error
+          position: absolute
+          bottom: -22px
+          left: 0px    
+      .forecast
+        width: 180px
+        margin-right: 64px
+        margin-left: 16px
+        text-align: center
+        .forecast-value
+          display: flex
+          justify-content: center
+          align-items: center
+          height: 26px
+        & > * + * 
+          margin-top: 2px
+      .close-button
+        position: absolute
+        right: 12px
+        top: 12px    
+
+
+.nio-budget-options
+  +nio-budget-options 

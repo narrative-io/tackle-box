@@ -3,6 +3,7 @@
 @import '../global/_typography'
 @import '../global/_fonts'
 @import './utility/_center-content'
+@import './_pill'
 
 =nio-nav-menu-item
   padding: 0rem 0.5rem !important
@@ -54,18 +55,8 @@
       .icon-dark
         display: none
     &:hover
-      background-color: darken($c-canvas, 2) !important
-      .item
-        color: darken($c-primary-darker, 2) !important
-      .status
-        &.new
-          background-color: darken($c-seagreen-light, 15)
-        &.coming
-          background-color: darken($c-coral-light, 15)
-        &.updated
-          background-color: darken($c-aqua-light, 15)
-        &.alpha, &.beta
-          background-color: darken($c-primary-dark, 15)   
+      .nio-pill
+        +nio-pill-hover
       .v-list-item__icon 
         .icon-dark
           display: flex

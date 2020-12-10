@@ -26,6 +26,13 @@ import NioImageTileLinkSlat from "./components/slat/assembled/ImageTileLinkSlat"
 import NioStepper from "./components/stepper/Stepper"
 import NioStep from "./components/stepper/Step"
 import NioSlatTable from "./components/table/SlatTable"
+import NioOptionsGrid from "./components/options-grid/OptionsGrid"
+import NioOptionsGridItem from "./components/options-grid/OptionsGridItem"
+import NioBudgetOptions from "./components/options-grid/BudgetOptions"
+import NioBudgetOption from "./components/options-grid/BudgetOption"
+import NioSourceOption from "./components/options-grid/SourceOption"
+import NioPill from "./components/Pill"
+import NioChargeSummary from "./components/ChargeSummary"
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
@@ -57,6 +64,13 @@ const Components = {
 	NioStepper,
 	NioStep,
 	NioSlatTable,
+	NioOptionsGrid,
+	NioOptionsGridItem,
+	NioBudgetOptions,
+	NioBudgetOption,
+	NioSourceOption,
+	NioPill,
+	NioChargeSummary,
 	FontAwesomeIcon
 }
 
@@ -85,6 +99,13 @@ Vue.component("NioImageTileLinkSlat", NioImageTileLinkSlat)
 Vue.component("NioStepper", NioStepper)
 Vue.component("NioStep", NioStep)
 Vue.component("NioSlatTable", NioSlatTable)
+Vue.component("NioOptionsGrid", NioOptionsGrid)
+Vue.component("NioOptionsGridItem", NioOptionsGridItem)
+Vue.component("NioBudgetOptions", NioBudgetOptions)
+Vue.component("NioBudgetOption", NioBudgetOption)
+Vue.component("NioSourceOption", NioSourceOption)
+Vue.component("NioPill", NioPill)
+Vue.component("NioChargeSummary", NioChargeSummary)
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
 export { NioButton }
@@ -112,6 +133,13 @@ export { NioImageTileLinkSlat }
 export { NioStepper }
 export { NioStep }
 export { NioSlatTable }
+export { NioOptionsGrid }
+export { NioOptionsGridItem }
+export { NioBudgetOptions }
+export { NioBudgetOption }
+export { NioSourceOption }
+export { NioPill }
+export { NioChargeSummary }
 export { FontAwesomeIcon }
 
 export default Components

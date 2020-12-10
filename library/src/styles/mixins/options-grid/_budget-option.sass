@@ -1,0 +1,30 @@
+@import "../../global/_colors"
+  
+=nio-budget-option 
+  background-color: $c-white
+  border: 0.0625rem solid $c-primary-lighter
+  border-radius: 0.75rem
+  display: flex
+  ::v-deep .name
+    background-color: $c-primary-dark
+    height: 3.625rem
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-bottom: 3.5rem
+  ::v-deep .amount
+    margin-bottom: 1.5rem
+  ::v-deep .content:last-child
+    margin-bottom: 3.5rem
+  ::v-deep .cta  
+    margin-top: 1.875rem
+    margin-bottom: 2.5rem
+
+  &.selected:not(.has-cta)
+    ::v-deep .name
+      background-color: $c-primary-darker
+    ::v-deep .amount .nio-jumbo-1, .nio-p
+      color: $c-primary-darker
+
+.nio-budget-option
+  +nio-budget-option
