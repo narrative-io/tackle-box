@@ -174,7 +174,8 @@ export default {
   methods: {
     handleItemClick(item, expandFn, isExpanded) {
       if (this.action === 'expand') {
-        expandFn(!isExpanded)
+				expandFn(!isExpanded)
+				isExpanded ? this.$emit('itemCollapsed', item) : this.$emit('itemExpanded', item)
       } else if (this.action === 'link'){
         this.$emit('itemClicked', item)
       } else if (this.singleSelect) {

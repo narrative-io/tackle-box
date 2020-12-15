@@ -22,6 +22,8 @@
       key="1"
       pagination
       search-sort-header
+      @itemExpanded="itemExpanded($event)"
+      @itemCollapsed="itemCollapsed($event)"
       :sortOptions="sortOptions"
       :initialItemsPerPage="10"
       :searchableProps="['orderName', 'orderNumber']"
@@ -68,15 +70,9 @@
       v-if="columns && items"
       :items="items"
       :columns="columns"
-      multi-select
-      :default-selection="[1, 3]"
-      @selectionChanged="selectionChanged($event)"
       action="expand"
       @itemClicked="itemClicked($event)"
-      key="3"
-      pagination
-      selected-search-header
-      :searchableProps="['orderName', 'orderNumber']"
+      @selectionChanged="selectionChanged($event)"
     )
       template(v-slot:item-expanded="slotProps") {{ slotProps.item }}     
     NioSlatTable(
@@ -240,6 +236,14 @@ export default {
     },
     menuItemClicked(event, item) {
       alert(`Menu item clicked. Event: ${event}, itemId: ${item.id}`)
+    },
+    itemExpanded(item) {
+      console.log('expanded')
+      console.log(item)
+    },
+    itemCollapsed(item) {
+      console.log('collapsed')
+      console.log(item)
     }
   },
   mounted() {

@@ -4,9 +4,9 @@
       slot
     .nio-custom-budget
       NioDivider(
-				horizontal-or 
-				v-if="hasCustomBudget"
-			)
+        horizontal-or 
+        v-if="hasCustomBudget"
+      )
       NioButton(
         v-if="hasCustomBudget && !customBudgetVisible"
         normal-secondary 
