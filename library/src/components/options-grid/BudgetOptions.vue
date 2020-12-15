@@ -3,7 +3,10 @@
     NioOptionsGrid.nio-budget-options-grid(:class="{'disabled': hasCustomBudget && customBudgetVisible}")
       slot
     .nio-custom-budget
-      NioDivider(horizontal-or)
+      NioDivider(
+				horizontal-or 
+				v-if="hasCustomBudget"
+			)
       NioButton(
         v-if="hasCustomBudget && !customBudgetVisible"
         normal-secondary 
