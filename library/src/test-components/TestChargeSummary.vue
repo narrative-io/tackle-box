@@ -21,11 +21,11 @@ export default {
       },
       {
         name: "Narrative Fees",
-        value: 150
+        value: 1500
       },
       {
         name: "Applicable Taxes",
-        value: 125.89
+        value: 1250
       }
     ]
   })
