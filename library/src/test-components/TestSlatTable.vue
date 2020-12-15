@@ -4,6 +4,16 @@
       v-if="items && smallHeaders"
       :items="items"
       :columns="smallHeaders"
+      key="20"
+      action="custom"
+    )
+      template(v-slot:custom-action="slotProps") 
+        NioButton(normal-secondary) Test  
+
+    NioSlatTable(
+      v-if="items && smallHeaders"
+      :items="items"
+      :columns="smallHeaders"
       single-select
       key="12"
     )
