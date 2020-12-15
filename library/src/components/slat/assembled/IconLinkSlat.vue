@@ -1,7 +1,10 @@
 <template lang="pug">
-  NioLinkSlat.nio-icon-link-slat
+  NioLinkSlat.nio-icon-link-slat(:class="{'disabled': displayOnly}")
+    template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+      slot(:name="name" v-bind="data")
     ImageTitleSubtitleSlot(
       :iconName="iconName"
+      :displayOnly="displayOnly"
     )
       template(v-slot:title)
         slot(name="title")
@@ -18,7 +21,8 @@ import ImageTitleSubtitleSlot from '../slot-templates/content/ImageTitleSubtitle
 export default {
   name: 'nio-icon-link-slat',
   props: {
-    "iconName": { type: String, required: false }
+    "iconName": { type: String, required: false },
+    "displayOnly": { type: Boolean, required: false, default: false }
   },
   data: () => ({
 

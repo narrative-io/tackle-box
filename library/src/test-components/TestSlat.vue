@@ -4,6 +4,13 @@
     NioSlatGroup
       NioIconLinkSlat(
         iconName="display-new"
+        display-only
+      )
+        template(v-slot:title) Item 1 title
+        template(v-slot:subtitle) Item 1 subtitle
+        template(v-slot:action) Test
+      NioIconLinkSlat(
+        iconName="display-new"
       )
         template(v-slot:title) Item 1 title
         template(v-slot:subtitle) Item 1 subtitle
