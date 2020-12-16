@@ -216,7 +216,8 @@ export default {
         {
           name: "expiration",
           label: "Expires",
-          computed: this.computeExpiration
+					computed: this.computeExpiration,
+					addItemAsClass: true
         }
       ]
     },

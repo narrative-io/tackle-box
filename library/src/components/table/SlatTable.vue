@@ -53,7 +53,7 @@
               template(v-slot:subtitle) {{ item.slat.subtitle }}
           td.static-cell(
             v-for="column of staticColumns"
-            :class="[`column-${column.name}`]"
+            :class="[`column-${column.name}`, `${column.addItemAsClass === true ? `value-${item.columnValues[column.name]}` : ''}`]"
           )
             .label.nio-table-label.text-primary-dark {{ column.label }}
             .value.nio-table-value.text-primary-dark {{ item.columnValues[column.name]}}
@@ -255,7 +255,8 @@ export default {
         headers.push({
           name: column.name,
           label: column.label,
-          value: column.name
+          value: column.name,
+          addItemAsClass: column.addItemAsClass
         })
       })
       this.headers = headers
@@ -349,7 +350,7 @@ export default {
           (order === 'descending') ? (comparison * -1) : comparison
         )
       })
-    }  
+    }
   },
   watch: {
     selection(val) {
