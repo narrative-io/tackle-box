@@ -33,7 +33,7 @@ export default {
   computed: {
     totalCharge() {
       return this.total ? this.total : this.lineItems.reduce((total, lineItem) => {
-        return total + lineItem.value
+        return total + parseInt(lineItem.value)
       }, 0)
     }
   },
@@ -59,7 +59,7 @@ export default {
   },
   destroyed() {
     this.$emit('destroyed')
-  }
+	}
 }
 </script>
 

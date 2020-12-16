@@ -28,11 +28,11 @@
         //- TestExpansionPanel
         //- TestDivider
         //- TestAlert
-        //- TestChargeSummary
+        TestChargeSummary
         //- TestButtons
         //- TestAutocomplete
         //- TestStepper
-        TestSlatTable
+        //- TestSlatTable
         //- TestSlat
         //- TestFileChooser
         //- TestCheckbox
