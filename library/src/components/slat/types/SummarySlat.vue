@@ -1,5 +1,7 @@
 <template lang="pug">
   NioSlat.nio-summary-slat(:class="{'active': active}")
+    template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+      slot(:name="name" v-bind="data") 	
     template(v-slot:content)
       .summary
         NioImageTile(

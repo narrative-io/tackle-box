@@ -64,6 +64,8 @@
         detailsValue="stuff"
         detailsAnnotation="IDs for matching"
       )  	
+        template(v-slot:loading)
+          .test
 </template>
 
 <script>
@@ -90,4 +92,8 @@ export default {
 
 <style lang="sass" scoped>
 .test-slat
+  .test
+    width: 20px
+    height: 20px
+    background-color: red
 </style>
