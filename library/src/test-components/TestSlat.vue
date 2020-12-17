@@ -9,6 +9,8 @@
         template(v-slot:title) Item 1 title
         template(v-slot:subtitle) Item 1 subtitle
         template(v-slot:action) Test
+        template(v-slot:loading)
+          .test
       NioIconLinkSlat(
         iconName="display-new"
       )

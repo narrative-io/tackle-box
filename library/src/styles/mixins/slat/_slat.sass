@@ -1,17 +1,21 @@
 @import '../../global/_colors'
 @import '../../global/_color-helpers'
-	
+  
 =nio-slat
-	display: flex
-	justify-content: space-between
-	align-items: center
-	padding: 16px 24px
-	position: relative
-	&:not(:last-child)
-		box-shadow: inset 0px -1px 0px $c-primary-lighter
-	& > .nio-slat-action
-		margin-right: 16px
-		flex-grow: 0
-
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 16px 24px
+  position: relative
+  &:not(:last-child)
+    box-shadow: inset 0px -1px 0px $c-primary-lighter
+  & > .nio-slat-action
+    margin-right: 16px
+    flex-grow: 0
+  .nio-slat-loading
+    width: 20px
+    height: 20px
+    position: absolute
+    right: 40px
 .nio-slat
-	+nio-slat
+  +nio-slat
