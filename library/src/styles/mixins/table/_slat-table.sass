@@ -80,5 +80,20 @@
       ::v-deep .action-cell
         opacity: 0.5  
 
+  &.listing-plain
+    border-radius: 0px
+    border: none
+    border-top: 1px solid $c-primary-lighter
+    border-bottom: 1px solid $c-primary-lighter
+    tr 
+      background-color: $c-canvas !important
+      height: 68px
+      &:hover
+        background-color: $c-canvas-darker !important
+      ::v-deep .nio-image-tile
+        display: none
+    ::v-deep .expanded-row
+    padding: 0px !important
+
 .nio-slat-table
   +nio-slat-table
