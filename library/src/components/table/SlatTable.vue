@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-slat-table(:class="[`action-${action}`, {'single-select': singleSelect, 'multi-select': multiSelect, }]")
+  .nio-slat-table(:class="[`action-${action}`, {'single-select': singleSelect, 'multi-select': multiSelect, 'plain-listing': plainListing}]")
     NioSlatTableHeader(
       :elements="headerElements"
       :sortOptions="sortOptions"
@@ -157,7 +157,8 @@ export default {
     }, 
     searchTerm: null,
     fuseInstance: null,
-    allSelected: false
+		allSelected: false,
+		plainListing: false
   }),
   mounted() {
     this.applyHelperAttributes()
@@ -297,7 +298,20 @@ export default {
       }
       if (attributes.getNamedItem('pagination')) {
         this.pagination = true
-      }
+			}
+			if (attributes.getNamedItem('plain-listing')) {
+				this.singleSelect = false
+				this.multiSelect = false
+				this.headerElements = {
+					search: false,
+					sort: false,
+					selected: false,
+					count: false
+				}
+				this.actions = false
+				this.pagination = false
+				this.plain = true
+			}
     },
     searchChange(val) {
       this.currentPage = 1

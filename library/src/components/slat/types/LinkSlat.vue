@@ -1,5 +1,5 @@
 <template lang="pug">
-  NioSlat.nio-link-slat
+  NioSlat.nio-link-slat(v-on="$listeners")
     template(v-slot:content)
       slot
     template(v-slot:action)

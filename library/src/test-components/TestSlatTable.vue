@@ -1,5 +1,14 @@
 <template lang="pug">
   .test-slat-table
+    h2 Plain-listing
+    NioSlatTable(
+      v-if="items && plainColumns"
+      plain-listing
+      :items="items"
+      :columns="plainColumns"
+      key="101"
+    )
+    h2 small-headers
     NioSlatTable(
       v-if="items && smallHeaders"
       :items="items"
@@ -147,6 +156,7 @@ export default {
   },
   data: () => ({
     columns: null,
+    plainColumns: null,
     items: testItems,
     sortOptions: testSortOptions,
     headers: null,
@@ -203,6 +213,20 @@ export default {
         }
       ]  
     },
+    makePlainColumns() {
+      this.plainColumns = [
+        {
+          name: "slat",
+          props: {
+            title: this.computeOrderName,
+          }
+        },
+        {
+          name: "expiration",
+          computed: this.daysToAccessExpiration
+        }
+      ]
+    },
     computeHeaders() {
       this.headers = [
         {
@@ -216,8 +240,8 @@ export default {
         {
           name: "expiration",
           label: "Expires",
-					computed: this.computeExpiration,
-					addItemAsClass: true
+          computed: this.computeExpiration,
+          addItemAsClass: true
         }
       ]
     },
@@ -232,6 +256,9 @@ export default {
           }
         }
       ]  
+    },
+    daysToAccessExpiration(item) {
+      return `Expires on ${item.expiration}`
     },
     computeExpiration(item) {
       return '01/2021'
@@ -261,6 +288,7 @@ export default {
     this.makeItems()
     this.computeHeaders()
     this.computeSmallHeaders()
+    this.makePlainColumns()
   }
 };
 </script>

@@ -5,6 +5,7 @@
       NioIconLinkSlat(
         iconName="display-new"
         display-only
+        key="1"
       )
         template(v-slot:title) Item 1 title
         template(v-slot:subtitle) Item 1 subtitle
@@ -13,6 +14,8 @@
           .test
       NioIconLinkSlat(
         iconName="display-new"
+        @click.native="testClick"
+        key="2"
       )
         template(v-slot:title) Item 1 title
         template(v-slot:subtitle) Item 1 subtitle
@@ -86,7 +89,12 @@ export default {
   },
   data: () => ({
     
-  })
+  }),
+  methods: {
+    testClick() {
+      console.log("here")
+    }
+  }
 };
 </script>
 
