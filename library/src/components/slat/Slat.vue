@@ -25,7 +25,6 @@ export default {
   },
   methods: {
     click() {
-			console.log("click")
 			this.$emit('click')
 		}
   }
