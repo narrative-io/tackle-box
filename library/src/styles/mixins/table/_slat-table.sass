@@ -87,13 +87,19 @@
     border-bottom: 1px solid $c-primary-lighter
     tr 
       background-color: $c-canvas !important
-      height: 68px
       &:hover
         background-color: $c-canvas-darker !important
-      ::v-deep .nio-image-tile
+      ::v-deep .nio-image-tile, ::v-deep .nio-slat-subtitle
         display: none
     ::v-deep .expanded-row
     padding: 0px !important
-
+    td
+      padding-top: 24px !important
+      padding-bottom: 24px !important
+      &:first-child
+        padding-left: 1rem !important
+      &:last-child:not(.slat-cell)
+        padding-right: 1rem !important
+        
 .nio-slat-table
   +nio-slat-table

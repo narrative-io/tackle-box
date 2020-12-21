@@ -7,7 +7,10 @@
       :items="items"
       :columns="plainColumns"
       key="101"
+      action="custom"
     )
+      template(v-slot:custom-action="slotProps") 
+        NioButton(normal-secondary) Test  
     //- h2 small-headers
     //- NioSlatTable(
     //-   v-if="items && smallHeaders"
