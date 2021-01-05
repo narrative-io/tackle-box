@@ -42,7 +42,7 @@
         //- TestIconFramer
         //- TestIcons
         //- TestTextField
-        //- TestSelect
+        TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
 </template>
