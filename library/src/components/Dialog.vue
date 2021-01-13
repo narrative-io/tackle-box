@@ -1,16 +1,17 @@
 <template lang="pug">
-  .nio-dialog dialog
+  .nio-dialog(v-if="model")
+    .nio-dialog-content
+      slot
 </template>
 
 <script>
   export default {
     name: 'nio-dialog',
     props: {
-     
+      "model": { required: false },
     },
     model: {
-      prop: "model",
-      event: "update"
+      prop: "model"
     },
     data: () => ({
     }),

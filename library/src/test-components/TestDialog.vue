@@ -1,5 +1,8 @@
 <template lang="pug">
-  NioDialog.test-dialog
+  .test-dialog
+    NioDialog(v-model="dialog")
+
+    button(@click="dialog = true") Launch
 </template>
 
 <script>
@@ -11,7 +14,7 @@ export default {
     NioDialog
   },
   data: () => ({
-   
+    dialog: false
   })
 };
 </script>
