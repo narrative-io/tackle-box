@@ -45,6 +45,7 @@
         TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
+        TestDialog
 </template>
 
 <script>
@@ -71,6 +72,7 @@ import TestStepper from './test-components/TestStepper'
 import TestSlatTable from './test-components/TestSlatTable'
 import TestOptionsGrid from './test-components/TestOptionsGrid'
 import TestChargeSummary from './test-components/TestChargeSummary'
+import TestDialog from './test-components/TestDialog'
 
 export default {
   name: "App",
@@ -97,7 +99,8 @@ export default {
     TestStepper,
     TestSlatTable,
     TestOptionsGrid,
-    TestChargeSummary
+    TestChargeSummary,
+    TestDialog
   },
   data: () => ({
     loggedIn: false,
