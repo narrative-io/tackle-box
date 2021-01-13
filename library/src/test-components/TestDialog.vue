@@ -1,8 +1,14 @@
 <template lang="pug">
   .test-dialog
-    NioDialog(v-model="dialog")
-
-    button(@click="dialog = true") Launch
+    NioDialog(v-model="dialog1")
+    NioDialog(v-model="dialog2" maxWidth="400px")
+    NioDialog(v-model="dialog3" maxWidth="700px")
+      .long-container
+    button(@click="dialog1 = true") Launch 1
+    br
+    button(@click="dialog2 = true") Launch 2
+    br
+    button(@click="dialog3 = true") Launch 3
 </template>
 
 <script>
@@ -14,11 +20,16 @@ export default {
     NioDialog
   },
   data: () => ({
-    dialog: false
+    dialog1: false,
+    dialog2: false,
+    dialog3: false
   })
 };
 </script>
 
 <style lang="sass" scoped>
 .test-dialog
+  .long-container
+    height: 1500px
+    background-color: #efefef
 </style>
