@@ -1,6 +1,7 @@
 <template lang="pug">
-  .nio-slat-table(:class="[`action-${action}`, {'single-select': singleSelect, 'multi-select': multiSelect, }]")
+  .nio-slat-table(:class="[`action-${action}`, {'single-select': singleSelect, 'multi-select': multiSelect, 'listing-plain': listingPlain}]")
     NioSlatTableHeader(
+      v-if="!listingPlain"
       :elements="headerElements"
       :sortOptions="sortOptions"
       :selectionType="multiSelect ? 'multiSelect' : 'singleSelect'"
@@ -53,12 +54,12 @@
               template(v-slot:subtitle) {{ item.slat.subtitle }}
           td.static-cell(
             v-for="column of staticColumns"
-            :class="[`column-${column.name}`]"
+            :class="[`column-${column.name}`, `${column.addItemAsClass === true ? `value-${item.columnValues[column.name]}` : ''}`]"
           )
             .label.nio-table-label.text-primary-dark {{ column.label }}
             .value.nio-table-value.text-primary-dark {{ item.columnValues[column.name]}}
           td.action-cell(v-if="action")
-            NioButton(container)
+            NioButton(container v-if="action !== 'custom'")
               NioIcon(
                 v-if="action === 'link'"
                 name="utility-chevron-right"
@@ -82,6 +83,7 @@
                       color="#415298"
                     )        
                 slot(name="item-menu" v-bind:item="item")
+            slot(name="custom-action" v-bind:item="item" v-if="action === 'custom'")
       template(v-slot:expanded-item="{ headers, item }")
         td.expanded-row(:colspan="numColumns") 
           slot(name="item-expanded" v-bind:item="item")
@@ -156,7 +158,8 @@ export default {
     }, 
     searchTerm: null,
     fuseInstance: null,
-    allSelected: false
+    allSelected: false,
+    listingPlain: false
   }),
   mounted() {
     this.applyHelperAttributes()
@@ -173,8 +176,10 @@ export default {
   },
   methods: {
     handleItemClick(item, expandFn, isExpanded) {
+      this.$emit('itemClicked', item)
       if (this.action === 'expand') {
         expandFn(!isExpanded)
+        isExpanded ? this.$emit('itemCollapsed', item) : this.$emit('itemExpanded', item)
       } else if (this.action === 'link'){
         this.$emit('itemClicked', item)
       } else if (this.singleSelect) {
@@ -252,7 +257,8 @@ export default {
         headers.push({
           name: column.name,
           label: column.label,
-          value: column.name
+          value: column.name,
+          addItemAsClass: column.addItemAsClass
         })
       })
       this.headers = headers
@@ -293,6 +299,13 @@ export default {
       }
       if (attributes.getNamedItem('pagination')) {
         this.pagination = true
+      }
+      if (attributes.getNamedItem('listing-plain')) {
+        this.singleSelect = false
+        this.multiSelect = false
+        this.actions = false
+        this.pagination = false
+        this.listingPlain = true
       }
     },
     searchChange(val) {
@@ -346,7 +359,7 @@ export default {
           (order === 'descending') ? (comparison * -1) : comparison
         )
       })
-    }  
+    }
   },
   watch: {
     selection(val) {

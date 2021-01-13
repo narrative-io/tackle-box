@@ -17,16 +17,12 @@ export default {
     lineItems: [
       {
         name: "Monthly Budget",
-        value: 115
-      },
-      {
-        name: "Narrative Fees",
-        value: 150
-      },
-      {
-        name: "Applicable Taxes",
-        value: 125.89
-      }
+				value: "2800"
+			},
+			{
+				name: "Narrative Fees",
+				value: 0
+			}
     ]
   })
 };

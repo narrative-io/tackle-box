@@ -11,7 +11,7 @@
         .line-item.total
           .line-item-content
             .item-name.nio-p.text-primary-dark TOTAL CHARGE
-            .value.nio-p.nio-bold.text-primary-dark {{ totalCharge }}
+            .value.nio-p.nio-bold.text-primary-dark {{ formatPrice(totalCharge) }}
       .cadence-message.nio-p.text-primary-dark(v-if="!$slots['append-content']") {{ rebillingMessage }}      
       .help-message(v-if="!$slots['append-content']")
         span.nio-p.text-primary-dark {{ ` Questions about your order? ` }}
@@ -32,14 +32,14 @@ export default {
   },
   computed: {
     totalCharge() {
-      return this.formatCurrency(this.total ? this.total : this.lineItems.reduce((total, lineItem) => {
-        return total + lineItem.value
-      }, 0))
+      return this.total ? this.total : this.lineItems.reduce((total, lineItem) => {
+        return total + parseInt(lineItem.value)
+      }, 0)
     }
   },
   methods: {
     formatPrice(price) {
-      return String(price).indexOf('.') > -1 ? this.formatCurrency(price) : this.formatCurrencyNoCents(price)
+      return this.formatCurrencyNoCents(price)
     }, 
     formatCurrency(number) {
       if (Math.abs(number) > 1000)
@@ -59,7 +59,7 @@ export default {
   },
   destroyed() {
     this.$emit('destroyed')
-  }
+	}
 }
 </script>
 

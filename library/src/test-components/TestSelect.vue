@@ -6,6 +6,7 @@
       :ref="'text'" 
       small
       :label="'Label'"
+      key="1"
     )
     NioSelect.select(
       v-model="selectedItems" 
@@ -13,6 +14,7 @@
       :ref="'text'" 
       small
       :label="'Label'"
+      key="2"
     )
     NioSelect.select(
       multiple
@@ -21,6 +23,26 @@
       attach-to-parent
       :ref="'text'" 
       :label="'Label'"
+      key="3"
+    )
+    NioSelect.select(
+      multiple
+      small
+      v-model="selectedItems" 
+      :items="items"
+      :ref="'text'" 
+      :label="'Label'"
+      key="4"
+    )
+    NioSelect.select(
+      multiple
+      small
+      hide-selections
+      v-model="selectedItems" 
+      :items="items"
+      :ref="'text'" 
+      :label="'Label'"
+      key="5"
     )
     NioSelect.select(
       multiple
@@ -28,13 +50,7 @@
       :items="items"
       :ref="'text'" 
       :label="'Label'"
-    )
-    NioSelect.select(
-      multiple
-      v-model="selectedItems" 
-      :items="items"
-      :ref="'text'" 
-      :label="'Label'"
+      key="6"
     )
     NioSelect(
       label="Preferred Data Regions"
@@ -43,6 +59,7 @@
       item-text="name"
       item-value="value" 
       multiple 
+      key="7"
     )
       template(v-slot:selection="{ item, index }")
         span.v-select__selection(v-if="index === 0") {{ item.name }}

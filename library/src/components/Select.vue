@@ -1,6 +1,6 @@
 <template lang="pug">
     v-select.nio-select(
-      :class="{ small: smallAttr }"
+      :class="{ small: smallAttr, 'hide-selections': hideSelections }"
       :solo="smallAttr"
       :model="model"
       :menu-props="{contentClass: 'nio-select-menu', offsetY: true, nudgeBottom: 10  }"
@@ -17,6 +17,9 @@
       template(v-slot:append)
         svg(style="width:24px;height:24px" viewBox="0 0 24 24")
           path(fill="#425290" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z")
+      template(v-slot:selection="{ item, index }" v-if="hideSelections")
+        span(v-if="index === 0") {{ labelText }}
+        
 </template>
 
 <script>
@@ -33,7 +36,9 @@
     data: () => ({
       node: null,
       smallAttr: false,
-      attach: false
+      attach: false,
+      hideSelections: false,
+      labelText: null
     }),
     methods: {
       applyHelperAttributes() {
@@ -43,6 +48,12 @@
         }
         if (attributes.getNamedItem('attach-to-parent')) {
           this.attach = true
+        }
+        if (attributes.getNamedItem('hide-selections')) {
+          this.hideSelections = true
+        }
+        if (attributes.getNamedItem('label')) {
+          this.labelText = attributes.getNamedItem('label').value
         }
       }  
     },

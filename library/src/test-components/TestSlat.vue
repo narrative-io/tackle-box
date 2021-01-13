@@ -4,6 +4,18 @@
     NioSlatGroup
       NioIconLinkSlat(
         iconName="display-new"
+        display-only
+        key="1"
+      )
+        template(v-slot:title) Item 1 title
+        template(v-slot:subtitle) Item 1 subtitle
+        template(v-slot:action) Test
+        template(v-slot:loading)
+          .test
+      NioIconLinkSlat(
+        iconName="display-new"
+        @click.native="testClick"
+        key="2"
       )
         template(v-slot:title) Item 1 title
         template(v-slot:subtitle) Item 1 subtitle
@@ -55,6 +67,8 @@
         detailsValue="stuff"
         detailsAnnotation="IDs for matching"
       )  	
+        template(v-slot:loading)
+          .test
 </template>
 
 <script>
@@ -75,10 +89,19 @@ export default {
   },
   data: () => ({
     
-  })
+  }),
+  methods: {
+    testClick() {
+      console.log("here")
+    }
+  }
 };
 </script>
 
 <style lang="sass" scoped>
 .test-slat
+  .test
+    width: 20px
+    height: 20px
+    background-color: red
 </style>
