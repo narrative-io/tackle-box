@@ -1,6 +1,7 @@
 <template lang="pug">
   .test-dialog
-    NioDialog(v-model="dialog1")
+    NioDialog(v-model="dialog1" @destroyed="destroyed")
+      button(@click="dialog1 = false") Close
     NioDialog(v-model="dialog2" maxWidth="400px")
     NioDialog(v-model="dialog3" maxWidth="700px")
       .long-container
@@ -23,7 +24,12 @@ export default {
     dialog1: false,
     dialog2: false,
     dialog3: false
-  })
+  }),
+  methods: {
+    destroyed() {
+      console.log("destroyed")
+    }
+  }
 };
 </script>
 

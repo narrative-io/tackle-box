@@ -27,17 +27,10 @@
     },
     destroyed() {
       this.$emit('destroyed')
-    },
-    // watch: {
-    //   'max-width': {
-    //     handler(val) {
-    //       console.log(val)
-    //     }
-    //   }
-    // }
+    }
   }
 </script>
 
 <style lang="sass" scoped>
-  @import '../styles/mixins/_dialog'  
+  @import '../styles/mixins/_dialog'
 </style>
