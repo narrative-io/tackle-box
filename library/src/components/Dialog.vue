@@ -1,7 +1,7 @@
 <template lang="pug">
-  .nio-dialog(v-if="model")
-    .nio-dialog-content(:style="{maxWidth: maxWidth}")
-      .nio-dialog-content-body
+  .nio-dialog(v-if="model" :class="{visible: model}")
+    transition(appear)
+      .nio-dialog-content(v-if="model && visible" :style="{maxWidth: maxWidth}")
         slot
 </template>
 
@@ -16,11 +16,13 @@
       prop: "model"
     },
     data: () => ({
+      visible: false
     }),
     methods: {
       
     },
     mounted() {	
+      this.visible = true
       this.$emit('mounted')
     },
     destroyed() {

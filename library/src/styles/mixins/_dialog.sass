@@ -15,6 +15,7 @@
   display: flex
   justify-content: center
   align-items: center
+  opacity: 0
 
   .nio-dialog-content
     background-color: $c-white
@@ -26,6 +27,13 @@
     border-radius: 12px !important
     min-height: 200px
 
-
 .nio-dialog
   +nio-dialog
+
+.v-enter,
+.v-leave-to
+  opacity: 0
+
+.v-enter-active,
+.v-leave-active
+  transition: 0.5s
