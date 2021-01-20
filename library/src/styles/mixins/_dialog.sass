@@ -7,16 +7,26 @@
   left: 0
   width: 100%
   min-height: 100%
-  background-color: $c-canvas-darker !important
-  opacity: 0.9 !important
-  backdrop-filter: blur(3px)
   box-shadow: none
   padding: 24px
   display: flex
   justify-content: center
   align-items: center
 
+  .nio-dialog-scrim
+    position: fixed
+    z-index: 1
+    top: 0
+    left: 0
+    width: 100%
+    min-height: 100%
+    background-color: $c-canvas-darker !important
+    opacity: 0.9 !important
+    backdrop-filter: blur(3px)
+    box-shadow: none
+
   .nio-dialog-content
+    z-index: 2 
     background-color: $c-white
     max-height: unset !important
     width: calc(100vw - 64px)

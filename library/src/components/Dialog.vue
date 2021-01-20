@@ -1,5 +1,6 @@
 <template lang="pug">
   .nio-dialog(v-if="model" :class="{visible: model}")
+    .nio-dialog-scrim
     transition(appear)
       .nio-dialog-content(v-if="model && visible" :style="{maxWidth: maxWidth}")
         slot
