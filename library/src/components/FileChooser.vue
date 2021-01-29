@@ -56,7 +56,8 @@
           @click="cancelSelection"
         )
       .nio-p.text-primary-dark(v-else)
-        span(v-if="currentState === 'initial'") {{ instructions }}
+        slot(name="instructions" v-bind:item="item" v-if="currentState === 'initial' && $scopedSlots.instructions")
+        span(v-if="currentState === 'initial' && !$scopedSlots.instructions") {{ instructions }}
         span(v-if="currentState === 'inProgress'") <strong>{{ filename }}</strong> {{ readableFilesize }}
         span(v-if="currentState === 'success'") {{ successMsg }}
         span(v-if="currentState === 'error'")
