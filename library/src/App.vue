@@ -32,9 +32,9 @@
         //- TestButtons
         //- TestAutocomplete
         //- TestStepper
-        TestSlatTable
+        //- TestSlatTable
         //- TestSlat
-        //- TestFileChooser
+        TestFileChooser
         //- TestCheckbox
         //- TestSwitch
         //- TestRadioGroup
@@ -42,10 +42,10 @@
         //- TestIconFramer
         //- TestIcons
         //- TestTextField
-        TestSelect
+        //- TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
-        TestDialog
+        //- TestDialog
 </template>
 
 <script>
