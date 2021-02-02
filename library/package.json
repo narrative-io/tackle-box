@@ -39,6 +39,7 @@
     "README.md"
   ],
   "dependencies": {
+    "axios": "^0.21.0",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "fuse.js": "^6.4.3",

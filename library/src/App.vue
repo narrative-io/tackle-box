@@ -244,9 +244,9 @@ export default {
 	},
 	mounted() {
 		console.log(this.$store)
-		this.$store.dispatch('nioServices/ACTION_SET_LISTS_LOADING', true)
+		this.$store.dispatch('nioServices/SET_LISTS_LOADING', true)
 		console.log(this.$store.getters['nioServices/listsLoading'])
-		this.$store.dispatch('nioServices/ACTION_SET_LISTS_LOADING', false)
+		this.$store.dispatch('nioServices/SET_LISTS_LOADING', false)
 		console.log(this.$store.getters['nioServices/listsLoading'])
 	}
 };
