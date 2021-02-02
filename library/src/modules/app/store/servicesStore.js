@@ -1,8 +1,8 @@
 
-import ServicesMutations from '@/stores/servicesMutations'
-import servicesMutations from './servicesMutations'
+import ServicesMutations from './servicesMutations'
 
 export default {
+	namespaced: true,
   state: {
 		registeredPath: null,
     lists: [],
@@ -27,7 +27,7 @@ export default {
     [ServicesMutations.SET_PAYMENT_METHOD_LOADING] (state, val) {
       state.paymentMethodLoading = val
     },
-    [servicesMutations.SET_USER] (state, val) {
+    [ServicesMutations.SET_USER] (state, val) {
       state.user = val
     }
   },

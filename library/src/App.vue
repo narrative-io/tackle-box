@@ -240,8 +240,15 @@ export default {
     },
     login() {
       this.loggedIn = true
-    }
-  }
+    },
+	},
+	mounted() {
+		console.log(this.$store)
+		this.$store.dispatch('nioServices/ACTION_SET_LISTS_LOADING', true)
+		console.log(this.$store.getters['nioServices/listsLoading'])
+		this.$store.dispatch('nioServices/ACTION_SET_LISTS_LOADING', false)
+		console.log(this.$store.getters['nioServices/listsLoading'])
+	}
 };
 </script>
 

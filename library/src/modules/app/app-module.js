@@ -1,10 +1,12 @@
-import Vue from 'vue'
 import heightObserver from './height-observer'
 import messageHandler from './message-handler'
+import servicesStore from './store/servicesStore'
 
 export default {
 	methods: {
 		nioInitializeApplication: (app) => {
+			app.$store.registerModule('nioServices', servicesStore);
+			console.log(app)
 			heightObserver.addTrackedElement('document', document.getElementsByTagName('main')[0])
 		},
 		nioAddHeightTrackedElement: (elementName, elementRef) => {
