@@ -1,6 +1,7 @@
 <template lang="pug">
   v-app
-    slot
+    v-main
+      slot
 </template>
 
 <script>

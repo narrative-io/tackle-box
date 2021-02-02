@@ -5,7 +5,7 @@ import messageHandler from './message-handler'
 export default {
 	methods: {
 		nioInitializeApplication: (app) => {
-			console.log(app)
+			heightObserver.addTrackedElement('document', document.getElementsByTagName('main')[0])
 		},
 		nioAddHeightTrackedElement: (elementName, elementRef) => {
 			console.log("add")
