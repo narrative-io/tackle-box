@@ -28,7 +28,7 @@
         //- TestExpansionPanel
         //- TestDivider
         //- TestAlert
-        TestChargeSummary
+        //- TestChargeSummary
         //- TestButtons
         //- TestAutocomplete
         //- TestStepper
@@ -45,7 +45,7 @@
         //- TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
-        //- TestDialog
+        TestDialog
 </template>
 
 <script>

@@ -1,5 +1,6 @@
 import Vue from "vue"
 import Vuetify from "vuetify/lib"
+import AppModule from '@/modules/app/app-module'
 
 import NioButton from "./components/Button"
 import NioTextField from "./components/TextField"
@@ -38,6 +39,7 @@ import NioDialog from './components/Dialog'
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
 Vue.use(Vuetify)
+Vue.mixin(AppModule)
 
 const Components = {
 	NioButton,
