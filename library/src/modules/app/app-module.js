@@ -9,8 +9,19 @@ export default {
   }),	
 	methods: {
 		nioInitializeApplication: (app) => {
+			window.onpopstate = () => {
+				parent.postMessage({
+					name: 'browserBack',
+					payload: null
+				},"*")
+			} 
+			if (window.addEventListener) {
+				window.addEventListener("message", app.nioHandleMessage, false);
+			}
+			else {
+				window.attachEvent("onmessage", app.nioHandleMessage);
+			}
 			app.$store.registerModule('nioServices', servicesStore);
-			console.log(app)
 			heightObserver.addTrackedElement('document', document.getElementsByTagName('main')[0])
 		},
 		nioAddHeightTrackedElement: (elementName, elementRef) => {
@@ -86,18 +97,7 @@ export default {
 		}
 	},
 	mounted() {
-		window.onpopstate = () => {
-      parent.postMessage({
-        name: 'browserBack',
-        payload: null
-      },"*")
-    } 
-		if (window.addEventListener) {
-      window.addEventListener("message", this.nioHandleMessage, false);
-    }
-    else {
-      window.attachEvent("onmessage", this.nioHandleMessage);
-    }
+		
 	}
 }
 
