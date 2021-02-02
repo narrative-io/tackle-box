@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app
+  Application
     div.menu-container(style="background-color: #010A28").d-flex.align-center
       div.container
         .links
@@ -50,6 +50,7 @@
 
 <script>
 
+import Application from './components/Application'
 import DropdownNav from './components-private/DropdownNav'
 import SideNav from './components-private/SideNav'
 import TestAlert from './test-components/TestAlert'
@@ -77,6 +78,7 @@ import TestDialog from './test-components/TestDialog'
 export default {
   name: "App",
   components: {
+		Application,
     DropdownNav,
     DropdownNav,
     SideNav,

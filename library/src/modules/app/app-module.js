@@ -1,8 +1,12 @@
+import Vue from 'vue'
 import heightObserver from './height-observer'
 import messageHandler from './message-handler'
 
 export default {
 	methods: {
+		nioInitializeApplication: (app) => {
+			console.log(app)
+		},
 		nioAddHeightTrackedElement: (elementName, elementRef) => {
 			console.log("add")
 			console.log(elementName)
