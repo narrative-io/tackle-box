@@ -1,41 +1,24 @@
 import Vue from 'vue'
 import axios from 'axios'
 import heightObserver from './height-observer'
+import servicesStore from './store/servicesStore'
 
 export default {
 	data: () => ({
-		nioServices: null,
-		nioServicesData: {
-			registeredPath: null,
-			lists: [],
-			listsLoading: false,
-			paymentMethod: null,
-			paymentMethodLoading: false,
-			user: null
-		}
-	}),	
-	computed: {
-		nioRegisteredPath() {
-			return this.nioServicesData.registeredPath
-		},
-		nioLists() {
-			return this.nioServicesData.lists
-		},
-		nioListsLoading() {
-			return this.nioServicesData.listsLoading
-		}
-	},
+    nioServices: null
+  }),	
 	methods: {
-		nioSetRegisteredPath(val) {
-			this.nioServicesData.registeredPath = val
-		},
-		nioSetLists(val) {
-			this.nioServicesData.lists = val
-		},
-		nioSetListsLoading(val) {
-			this.nioServicesData.listsLoading = val
-		},
 		nioInitializeApplication: (app) => {
+			app.$router.beforeEach((to, from, next) => {
+				if (this.$store.state.nioServices.registeredPath && this.$store.state.nioServices.registeredPath === to.fullPath) {
+					next()
+				} else {
+					parent.postMessage({
+						name: 'routeChanged',
+						payload: to.fullPath
+					},"*")
+				}
+			})
 			window.onpopstate = () => {
 				parent.postMessage({
 					name: 'browserBack',
@@ -48,7 +31,7 @@ export default {
 			else {
 				window.attachEvent("onmessage", app.nioHandleMessage);
 			}
-			// app.$store.registerModule('nioServices', servicesStore);
+			app.$store.registerModule('nioServices', servicesStore);
 			heightObserver.addTrackedElement('document', document.getElementsByTagName('main')[0])
 		},
 		nioAddHeightTrackedElement: (elementName, elementRef) => {
@@ -82,8 +65,7 @@ export default {
 					this.$store.dispatch('nioServices/SET_PAYMENT_METHOD', evt.data.payload)
 					break;
 				case 'setRegisteredPath': 
-					// this.$store.dispatch('nioServices/SET_REGISTERED_PATH', evt.data.payload)
-					this.nioSetRegisteredPath(evt.data.payload)
+					this.$store.dispatch('nioServices/SET_REGISTERED_PATH', evt.data.payload)
 					this.$router.push(evt.data.payload)
 					break;
 				default:

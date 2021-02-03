@@ -1,8 +1,6 @@
 
 import ServicesMutations from './servicesMutations'
 
-
-
 export default {
 	namespaced: true,
   state: {
