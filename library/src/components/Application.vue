@@ -9,7 +9,6 @@
 export default {
   name: "nio-application",
   mounted() {
-    this.nioInitializeApplication(this)
   }
 };
 </script>

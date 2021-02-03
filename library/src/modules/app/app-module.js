@@ -32,16 +32,20 @@ export default {
 				window.attachEvent("onmessage", app.nioHandleMessage);
 			}
 			app.$store.registerModule('nioServices', servicesStore);
-			heightObserver.addTrackedElement('document', document.getElementsByTagName('main')[0])
+			heightObserver.addTrackedElement('document')
+      const resizeObserver = new ResizeObserver((val) => {
+        heightObserver.elementHeightChanged('document', val[0].contentRect.height)
+      });
+			resizeObserver.observe(document.getElementsByTagName('main')[0])
 		},
 		nioAddHeightTrackedElement: (elementName, elementRef) => {
-			console.log("add")
-			console.log(elementName)
-			heightObserver.addTrackedElement(elementName, elementRef)
+			heightObserver.addTrackedElement(elementName)
+			const resizeObserver = new ResizeObserver((val) => {
+				heightObserver.elementHeightChanged(elementName, Math.max(val[0].contentRect.height + 150, 600))
+			});
+			resizeObserver.observe(elementRef)
 		},
 		nioRemoveHeightTrackedElement: (elementName) => {
-			console.log("remove")
-			console.log(elementName)
 			heightObserver.removeTrackedElement(elementName)
 		},
 		nioHandleMessage (evt) {

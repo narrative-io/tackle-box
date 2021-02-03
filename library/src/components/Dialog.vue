@@ -21,6 +21,12 @@
 			dialogId: null
     }),
     methods: {
+			observeDialogHeight() {
+				const resizeObserver = new ResizeObserver((val) => {
+					heightObserver.elementHeightChanged(this.dialogId, Math.max(val[0].contentRect.height + 150, 600))
+				});
+				resizeObserver.observe(this.$refs.dialog)
+			},
 			makeid() {
 				let result = '';
 				let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -40,6 +46,7 @@
 			model(val) {
 				if (val === true) {
 					this.$nextTick(() => {
+						this.observeDialogHeight()
 						this.nioAddHeightTrackedElement(this.dialogId, this.$refs.dialog) 
 					})	
 				} else {
