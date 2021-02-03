@@ -1,13 +1,40 @@
 import Vue from 'vue'
 import axios from 'axios'
 import heightObserver from './height-observer'
-import servicesStore from './store/servicesStore'
 
 export default {
 	data: () => ({
-    nioServices: null
-  }),	
+		nioServices: null,
+		nioServicesData: {
+			registeredPath: null,
+			lists: [],
+			listsLoading: false,
+			paymentMethod: null,
+			paymentMethodLoading: false,
+			user: null
+		}
+	}),	
+	computed: {
+		nioRegisteredPath() {
+			return this.nioServicesData.registeredPath
+		},
+		nioLists() {
+			return this.nioServicesData.lists
+		},
+		nioListsLoading() {
+			return this.nioServicesData.listsLoading
+		}
+	},
 	methods: {
+		nioSetRegisteredPath(val) {
+			this.nioServicesData.registeredPath = val
+		},
+		nioSetLists(val) {
+			this.nioServicesData.lists = val
+		},
+		nioSetListsLoading(val) {
+			this.nioServicesData.listsLoading = val
+		},
 		nioInitializeApplication: (app) => {
 			window.onpopstate = () => {
 				parent.postMessage({
@@ -21,7 +48,7 @@ export default {
 			else {
 				window.attachEvent("onmessage", app.nioHandleMessage);
 			}
-			app.$store.registerModule('nioServices', servicesStore);
+			// app.$store.registerModule('nioServices', servicesStore);
 			heightObserver.addTrackedElement('document', document.getElementsByTagName('main')[0])
 		},
 		nioAddHeightTrackedElement: (elementName, elementRef) => {
@@ -39,14 +66,14 @@ export default {
 			switch (evt.data.name) {
 				case 'auth':
 					this.$store.dispatch('nioServices/SET_USER', evt.data.payload.user)
-					this.setupAxios(evt.data.payload.baseurl, evt.data.payload.token)
+					this.nioSetupAxios(evt.data.payload.baseurl, evt.data.payload.token)
 					if (this.nioServices && this.nioServices.length) {
-						this.initServices()
+						this.nioInitServices()
 					}
 					break;
 				case 'initServices':
 					this.nioServices = evt.data.payload
-					if (this.$nioAxios) {
+					if (this.$axios) {
 						this.initServices()
 					}
 					break;
@@ -55,28 +82,29 @@ export default {
 					this.$store.dispatch('nioServices/SET_PAYMENT_METHOD', evt.data.payload)
 					break;
 				case 'setRegisteredPath': 
-					this.$store.dispatch('nioServices/SET_REGISTERED_PATH', evt.data.payload)
+					// this.$store.dispatch('nioServices/SET_REGISTERED_PATH', evt.data.payload)
+					this.nioSetRegisteredPath(evt.data.payload)
 					this.$router.push(evt.data.payload)
 					break;
 				default:
 					break;
 			}	
 		},
-		initServices() {
+		nioInitServices() {
       this.nioServices.forEach(serviceName => {
         switch (serviceName) {
           case 'lists':
-            this.fetchLists()
+            this.nioFetchLists()
             break;
           default:
             break;
         }
       })
     },
-    fetchLists() {
+    nioFetchLists() {
       return new Promise((resolve, reject) => {
         this.$store.dispatch('nioServices/SET_LISTS_LOADING', true)
-        this.$nioAxios.get(
+        this.$axios.get(
           '/lists?schema=id&status=active'
         ).then(res => {
           this.$store.dispatch('nioServices/SET_LISTS_LOADING', false)
@@ -93,7 +121,7 @@ export default {
 					'Authorization': `Bearer ${token}`
 				}
 			}
-			Vue.prototype.$nioAxios = axios.create(axiosConfig)
+			Vue.prototype.$axios = axios.create(axiosConfig)
 		}
 	},
 	mounted() {
