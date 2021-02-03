@@ -10,7 +10,7 @@ export default {
 	methods: {
 		nioInitializeApplication: (app) => {
 			app.$router.beforeEach((to, from, next) => {
-				if (this.$store.state.nioServices.registeredPath && this.$store.state.nioServices.registeredPath === to.fullPath) {
+				if (app.$store.state.nioServices.registeredPath && app.$store.state.nioServices.registeredPath === to.fullPath) {
 					next()
 				} else {
 					parent.postMessage({
