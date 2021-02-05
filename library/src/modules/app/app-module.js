@@ -48,7 +48,6 @@ export default {
 			heightObserver.removeTrackedElement(elementName)
 		},
 		nioHandleMessage (evt) {
-			console.log(evt)
 			switch (evt.data.name) {
 				case 'auth':
 					this.$store.dispatch('nioServices/SET_USER', evt.data.payload.user)

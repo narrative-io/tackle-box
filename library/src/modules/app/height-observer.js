@@ -12,12 +12,12 @@ const heightObserver = {
 			name: elementName,
 			height: 0
 		})
-		console.log(_trackedElements)
 	},
-	removeTrackedElement() {
-		_trackedElements.pop()
-		postMessage(_trackedElements[_trackedElements.length - 1].height)
-		console.log(_trackedElements)
+	removeTrackedElement(elementName) {
+		if (_trackedElements.length > 1 && _trackedElements[_trackedElements.length - 1].name === elementName) {
+			_trackedElements.pop()
+			postMessage(_trackedElements[_trackedElements.length - 1].height)
+		}	
 	},
 	elementHeightChanged(elementName, newHeight) {
 		if (_trackedElements.find(element => element.name === elementName)) {

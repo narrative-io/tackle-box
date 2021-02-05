@@ -13,10 +13,7 @@ export default {
   },
   mutations: {
 		[ServicesMutations.SET_REGISTERED_PATH] (state, registeredPath) {
-			console.log("Mutation: set registered Path")
-			console.log(registeredPath)
 			state.registeredPath = registeredPath
-			console.log(state)
 		},
     [ServicesMutations.SET_LISTS] (state, lists) {
 			state.lists = lists
@@ -36,8 +33,6 @@ export default {
   },
   actions: {
 		[ServicesMutations.SET_REGISTERED_PATH] (store, registeredPath) {
-			console.log('Store: set registered path')
-			console.log(registeredPath)
       store.commit(ServicesMutations.SET_REGISTERED_PATH, registeredPath)
     },
     [ServicesMutations.SET_USER] (store, usr) {

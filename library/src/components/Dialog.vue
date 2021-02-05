@@ -1,12 +1,12 @@
 <template lang="pug">
   .nio-dialog(v-if="model" :class="{visible: model}")
     .nio-dialog-scrim
-      transition(appear)
-        .nio-dialog-content(
-          ref="dialog"
-          v-if="model && visible" 
-          :style="{maxWidth: maxWidth}")
-          slot
+    transition(appear)
+      .nio-dialog-content(
+        ref="dialog"
+        v-if="model && visible" 
+        :style="{maxWidth: maxWidth}")
+        slot
 </template>
 
 <script>
@@ -35,27 +35,20 @@
         return result;
       }
     },
-    mounted() {	
+    mounted() {
       this.dialogId = this.makeid()
       this.visible = true
       this.$emit('mounted')
     },
     watch: {
-      visible(val) {
-        if (val === true && this.model === true && this.tracked === false) {
-          this.$nextTick(() => {
-            this.tracked = true
-            this.nioAddHeightTrackedElement(this.dialogId, this.$refs.dialog) 
-          })	
-        }
-      },
       model(val) {
-        if (val === true && this.visible === true && this.tracked === false) {
+        if (val === true && this.tracked === false) {
           this.$nextTick(() => {
             this.tracked = true
             this.nioAddHeightTrackedElement(this.dialogId, this.$refs.dialog) 
           })	
         } else if (val === false && this.tracked === true) {
+          this.tracked = false
           this.nioRemoveHeightTrackedElement(this.dialogId) 
         }
       }
