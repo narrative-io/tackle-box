@@ -5,7 +5,7 @@ import servicesStore from './store/servicesStore'
 
 export default {
 	data: () => ({
-    nioServices: null
+		nioServices: null
   }),	
 	methods: {
 		nioInitializeApplication: (app) => {
@@ -27,15 +27,14 @@ export default {
 			} 
 			if (window.addEventListener) {
 				window.addEventListener("message", app.nioHandleMessage, false);
-			}
-			else {
+			} else {
 				window.attachEvent("onmessage", app.nioHandleMessage);
 			}
 			app.$store.registerModule('nioServices', servicesStore);
 			heightObserver.addTrackedElement('document')
-      const resizeObserver = new ResizeObserver((val) => {
+    	const resizeObserver = new ResizeObserver((val) => {
         heightObserver.elementHeightChanged('document', val[0].contentRect.height)
-      });
+      })
 			resizeObserver.observe(document.getElementsByTagName('main')[0])
 		},
 		nioAddHeightTrackedElement: (elementName, elementRef) => {
