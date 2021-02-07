@@ -9,17 +9,8 @@ export default {
   }),	
 	methods: {
 		nioInitializeApplication: (app) => {
-			app.$router.beforeEach((to, from, next) => {
-				if (app.$store.state.nioServices.registeredPath && app.$store.state.nioServices.registeredPath === to.fullPath) {
-					next()
-				} else {
-					parent.postMessage({
-						name: 'routeChanged',
-						payload: to.fullPath
-					},"*")
-				}
-			})
 			window.onpopstate = () => {
+				console.log("BACK")
 				parent.postMessage({
 					name: 'browserBack',
 					payload: null
@@ -48,7 +39,7 @@ export default {
 			heightObserver.removeTrackedElement(elementName)
 		},
 		nioHandleMessage (evt) {
-			switch (evt.data.name) {
+			switch (evt.data.name) {	
 				case 'auth':
 					this.$store.dispatch('nioServices/SET_USER', evt.data.payload.user)
 					this.nioSetupAxios(evt.data.payload.baseurl, evt.data.payload.token)
@@ -65,10 +56,6 @@ export default {
 				case 'paymentMethod':
 					this.$store.dispatch('nioServices/SET_PAYMENT_METHOD_LOADING', false)
 					this.$store.dispatch('nioServices/SET_PAYMENT_METHOD', evt.data.payload)
-					break;
-				case 'setRegisteredPath': 
-					this.$store.dispatch('nioServices/SET_REGISTERED_PATH', evt.data.payload)
-					this.$router.push(evt.data.payload)
 					break;
 				default:
 					break;
