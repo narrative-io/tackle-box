@@ -2,7 +2,6 @@ import Vue from "vue"
 import Vuetify from "vuetify/lib"
 import AppModule from '@/modules/app/app-module'
 
-import NioApplication from './components/Application'
 import NioButton from "./components/Button"
 import NioTextField from "./components/TextField"
 import NioSelect from "./components/Select"
@@ -44,7 +43,6 @@ Vue.use(Vuetify)
 Vue.mixin(AppModule)
 
 const Components = {
-	NioApplication,
 	NioButton,
 	NioTextField,
 	NioSelect,
@@ -82,7 +80,6 @@ const Components = {
 	FontAwesomeIcon
 }
 
-Vue.component("NioApplication", NioApplication)
 Vue.component("NioButton", NioButton)
 Vue.component("NioTextField", NioTextField)
 Vue.component("NioSelect", NioSelect)
@@ -118,7 +115,6 @@ Vue.component("NioChargeSummary", NioChargeSummary)
 Vue.component("NioDialog", NioDialog)
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
-export { NioApplication }
 export { NioButton }
 export { NioTextField }
 export { NioSelect }

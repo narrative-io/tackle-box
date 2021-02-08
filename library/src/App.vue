@@ -1,5 +1,5 @@
 <template lang="pug">
-  Application
+  v-app
     div.menu-container(style="background-color: #010A28").d-flex.align-center
       div.container
         .links
@@ -50,7 +50,6 @@
 
 <script>
 
-import Application from './components/Application'
 import DropdownNav from './components-private/DropdownNav'
 import SideNav from './components-private/SideNav'
 import TestAlert from './test-components/TestAlert'
@@ -78,7 +77,6 @@ import TestDialog from './test-components/TestDialog'
 export default {
   name: "App",
   components: {
-		Application,
     DropdownNav,
     DropdownNav,
     SideNav,
@@ -243,11 +241,6 @@ export default {
     },
 	},
 	mounted() {
-		console.log(this.$store)
-		this.$store.dispatch('nioServices/SET_LISTS_LOADING', true)
-		console.log(this.$store.getters['nioServices/listsLoading'])
-		this.$store.dispatch('nioServices/SET_LISTS_LOADING', false)
-		console.log(this.$store.getters['nioServices/listsLoading'])
 	}
 };
 </script>
