@@ -4,7 +4,6 @@ import ServicesMutations from './servicesMutations'
 export default {
 	namespaced: true,
   state: {
-		registeredPath: null,
     lists: [],
     listsLoading: false,
     paymentMethod: null,
@@ -12,9 +11,6 @@ export default {
     user: null
   },
   mutations: {
-		[ServicesMutations.SET_REGISTERED_PATH] (state, registeredPath) {
-			state.registeredPath = registeredPath
-		},
     [ServicesMutations.SET_LISTS] (state, lists) {
 			state.lists = lists
     },
@@ -32,9 +28,6 @@ export default {
     }
   },
   actions: {
-		[ServicesMutations.SET_REGISTERED_PATH] (store, registeredPath) {
-      store.commit(ServicesMutations.SET_REGISTERED_PATH, registeredPath)
-    },
     [ServicesMutations.SET_USER] (store, usr) {
       store.commit(ServicesMutations.SET_USER, usr)
     },
@@ -52,7 +45,6 @@ export default {
     }
   },
   getters: {
-		registeredPath: state => state.registeredPath,
     lists: state => state.lists,
     listsLoading: state => state.listsLoading,
     paymentMethod: state => state.paymentMethod,

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import heightObserver from './height-observer'
 import servicesStore from './store/servicesStore'
+import routerModule from './router-module'
 
 export default {
 	data: () => ({
@@ -9,13 +10,6 @@ export default {
   }),	
 	methods: {
 		nioInitializeApplication: (app) => {
-			window.onpopstate = () => {
-				console.log("BACK")
-				parent.postMessage({
-					name: 'browserBack',
-					payload: null
-				},"*")
-			} 
 			if (window.addEventListener) {
 				window.addEventListener("message", app.nioHandleMessage, false);
 			} else {
@@ -57,6 +51,10 @@ export default {
 					this.$store.dispatch('nioServices/SET_PAYMENT_METHOD_LOADING', false)
 					this.$store.dispatch('nioServices/SET_PAYMENT_METHOD', evt.data.payload)
 					break;
+				case 'setRegisteredPath': 
+					routerModule.setRegisteredPath(evt.data.payload)
+					this.$router.push(evt.data.payload)
+					break;	
 				default:
 					break;
 			}	
