@@ -1,5 +1,6 @@
 import Vue from "vue"
 import Vuetify from "vuetify/lib"
+import AppModule from '@/modules/app/app-module'
 
 import NioButton from "./components/Button"
 import NioTextField from "./components/TextField"
@@ -34,10 +35,12 @@ import NioSourceOption from "./components/options-grid/SourceOption"
 import NioPill from "./components/Pill"
 import NioChargeSummary from "./components/ChargeSummary"
 import NioDialog from './components/Dialog'
+import NioRouterModule from './modules/app/router-module'
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
 Vue.use(Vuetify)
+Vue.mixin(AppModule)
 
 const Components = {
 	NioButton,
@@ -73,6 +76,7 @@ const Components = {
 	NioPill,
 	NioChargeSummary,
 	NioDialog,
+	NioRouterModule,
 	FontAwesomeIcon
 }
 
@@ -145,5 +149,6 @@ export { NioPill }
 export { NioChargeSummary }
 export { NioDialog }
 export { FontAwesomeIcon }
+export { NioRouterModule }
 
 export default Components

@@ -180,8 +180,6 @@ export default {
       if (this.action === 'expand') {
         expandFn(!isExpanded)
         isExpanded ? this.$emit('itemCollapsed', item) : this.$emit('itemExpanded', item)
-      } else if (this.action === 'link'){
-        this.$emit('itemClicked', item)
       } else if (this.singleSelect) {
         this.selection = item.id
         this.itemSelected(item)

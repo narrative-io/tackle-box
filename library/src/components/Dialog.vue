@@ -2,7 +2,10 @@
   .nio-dialog(v-if="model" :class="{visible: model}")
     .nio-dialog-scrim
     transition(appear)
-      .nio-dialog-content(v-if="model && visible" :style="{maxWidth: maxWidth}")
+      .nio-dialog-content(
+        ref="dialog"
+        v-if="model && visible" 
+        :style="{maxWidth: maxWidth}")
         slot
 </template>
 
@@ -17,18 +20,43 @@
       prop: "model"
     },
     data: () => ({
-      visible: false
+      visible: false,
+      dialogId: null,
+      tracked: false
     }),
     methods: {
-      
+      makeid() {
+        let result = '';
+        let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let charactersLength = characters.length;
+        for (let i = 0; i < 16; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+      }
     },
-    mounted() {	
+    mounted() {
+      this.dialogId = this.makeid()
       this.visible = true
       this.$emit('mounted')
     },
+    watch: {
+      model(val) {
+        if (val === true && this.tracked === false) {
+          this.$nextTick(() => {
+            this.tracked = true
+            this.nioAddHeightTrackedElement(this.dialogId, this.$refs.dialog) 
+          })	
+        } else if (val === false && this.tracked === true) {
+          this.tracked = false
+          this.nioRemoveHeightTrackedElement(this.dialogId) 
+        }
+      }
+    },
     destroyed() {
+      this.nioRemoveHeightTrackedElement(this.dialogId)
       this.$emit('destroyed')
-    }
+    },
   }
 </script>
 

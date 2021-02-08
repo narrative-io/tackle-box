@@ -34,7 +34,7 @@
         //- TestStepper
         //- TestSlatTable
         //- TestSlat
-        TestFileChooser
+        //- TestFileChooser
         //- TestCheckbox
         //- TestSwitch
         //- TestRadioGroup
@@ -45,7 +45,7 @@
         //- TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
-        //- TestDialog
+        TestDialog
 </template>
 
 <script>
@@ -238,8 +238,10 @@ export default {
     },
     login() {
       this.loggedIn = true
-    }
-  }
+    },
+	},
+	mounted() {
+	}
 };
 </script>
 

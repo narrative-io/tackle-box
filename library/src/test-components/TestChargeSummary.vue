@@ -3,6 +3,10 @@
     NioChargeSummary(
       :lineItems="lineItems"
     )
+    NioChargeSummary(
+      :lineItems="lineItems"
+    )
+      template(v-slot:support-message) I'm custom
 </template>
 
 <script>
@@ -17,12 +21,12 @@ export default {
     lineItems: [
       {
         name: "Monthly Budget",
-				value: "2800"
-			},
-			{
-				name: "Narrative Fees",
-				value: 0
-			}
+        value: "2800"
+      },
+      {
+        name: "Narrative Fees",
+        value: 0
+      }
     ]
   })
 };
