@@ -2,7 +2,6 @@ import Vue from 'vue'
 import axios from 'axios'
 import heightObserver from './height-observer'
 import servicesStore from './store/servicesStore'
-import routingModule from '@/modules/app/routing-module'
 
 export default {
 	data: () => ({
@@ -10,19 +9,6 @@ export default {
   }),	
 	methods: {
 		nioInitializeApplication: (app) => {
-			app.$router.beforeEach((to, from, next) => {
-				routingModule.setRouteInitialized(true)
-				console.log(routingModule.getRegisteredPath())
-				console.log(to.fullPath)
-				if (routingModule.getRegisteredPath() && routingModule.getRegisteredPath() === to.fullPath) {
-					next()
-				} else {
-					parent.postMessage({
-						name: 'routeChanged',
-						payload: to.fullPath
-					},"*")
-				}
-			})
 			window.onpopstate = () => {
 				console.log("BACK")
 				parent.postMessage({
@@ -70,16 +56,6 @@ export default {
 				case 'paymentMethod':
 					this.$store.dispatch('nioServices/SET_PAYMENT_METHOD_LOADING', false)
 					this.$store.dispatch('nioServices/SET_PAYMENT_METHOD', evt.data.payload)
-					break;
-				case 'setRegisteredPath': 
-					console.log('this.$route.fullPath')
-					console.log(this.$route.fullPath)
-					console.log("PAYLOAD")
-					console.log(evt.data.payload)
-					routingModule.setRegisteredPath(evt.data.payload)
-					if (routingModule.getRouteInitialized() === true && evt.data.payload !== this.$route.fullPath) {
-						this.$router.push(evt.data.payload)
-					}
 					break;
 				default:
 					break;
