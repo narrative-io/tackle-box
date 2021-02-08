@@ -44,7 +44,7 @@ export default {
 				case 'initServices':
 					this.nioServices = evt.data.payload
 					if (this.$axios) {
-						this.initServices()
+						this.nioInitServices()
 					}
 					break;
 				case 'paymentMethod':
