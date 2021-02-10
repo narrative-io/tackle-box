@@ -83,9 +83,6 @@ export default {
 		testOpenApiInit() {
 			console.log("test open api init")
 		}
-  },
-  mounted() {
-    openApiModule.initialize(this.testOpenApiInit)
   }
 }
 
