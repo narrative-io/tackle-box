@@ -6,23 +6,20 @@ let _initCallbackFn = null
 let _initialized = false
 
 const openApiModule = {
-	initialize(callbackFn) {
+	initCallback(callbackFn) {
 		_initCallbackFn = callbackFn
 		if (_initialized) {
 			_initCallbackFn()
 		}
 	},	
 	setupAxios(baseurl, token) {
-		console.log("setupAxios")
 		const axiosConfig = {
 			baseURL: baseurl,
 			headers: {
 				'Authorization': `Bearer ${token}`
 			}
 		}
-		Vue.prototype.$axios = axios.create(axiosConfig)
-		console.log("vue")
-		console.log(Vue)
+		Vue.prototype.$nioOpenApi = axios.create(axiosConfig)
 		_initialized = true
 		_initCallbackFn()
 	}

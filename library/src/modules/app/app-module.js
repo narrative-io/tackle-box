@@ -1,5 +1,3 @@
-import Vue from 'vue'
-import axios from 'axios'
 import heightObserver from './height-observer'
 import servicesStore from './store/servicesStore'
 import routerModule from './router-module'
@@ -44,9 +42,7 @@ export default {
           break;
         case 'initServices':
           this.nioServices = evt.data.payload
-          if (this.$axios) {
-            this.nioInitServices()
-          }
+          openApiModule.initCallback(this.nioInitServices)
           break;
         case 'paymentMethod':
           this.$store.dispatch('nioServices/SET_PAYMENT_METHOD_LOADING', false)
@@ -74,7 +70,7 @@ export default {
     nioFetchLists() {
       return new Promise((resolve, reject) => {
         this.$store.dispatch('nioServices/SET_LISTS_LOADING', true)
-        this.$axios.get(
+        this.$nioOpenApi.get(
           '/lists?schema=id&status=active'
         ).then(res => {
           this.$store.dispatch('nioServices/SET_LISTS_LOADING', false)
