@@ -3,6 +3,7 @@ import axios from 'axios'
 import heightObserver from './height-observer'
 import servicesStore from './store/servicesStore'
 import routerModule from './router-module'
+import openApiModule from './open-api-module'
 
 export default {
   data: () => ({
@@ -36,7 +37,7 @@ export default {
       switch (evt.data.name) {	
         case 'auth':
           this.$store.dispatch('nioServices/SET_USER', evt.data.payload.user)
-          this.nioSetupAxios(evt.data.payload.baseurl, evt.data.payload.token)
+          openApiModule.setupAxios(evt.data.payload.baseurl, evt.data.payload.token)
           if (this.nioServices && this.nioServices.length) {
             this.nioInitServices()
           }
@@ -82,19 +83,13 @@ export default {
           console.log(err.response)
         })
       }) 
-    },
-    nioSetupAxios(baseurl, token) {
-      const axiosConfig = {
-        baseURL: baseurl,
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      }
-      Vue.prototype.$axios = axios.create(axiosConfig)
-    }
+		},
+		testOpenApiInit() {
+			console.log("test open api init")
+		}
   },
   mounted() {
-    
+    openApiModule.initialize(this.testOpenApiInit)
   }
 }
 
