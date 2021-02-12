@@ -44,8 +44,8 @@
         //- TestTextField
         //- TestSelect
         //- TestCardGrid
-        //- TestOptionsGrid
-        TestDialog
+        TestOptionsGrid
+        //- TestDialog
 </template>
 
 <script>

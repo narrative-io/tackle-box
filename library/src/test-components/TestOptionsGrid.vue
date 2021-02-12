@@ -71,7 +71,8 @@ export default {
       {
         name: "small",
         amount: "$2,500",
-        forecast: '10,000'
+				forecast: '10,000',
+				disabled: true
       },
       {
         name: "medium",

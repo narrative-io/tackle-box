@@ -17,8 +17,6 @@ export default {
 		},
 		[ServicesMutations.SET_TIER] (state, val) {
 			state.tier = val
-			console.log("MUTATION TIER")
-			console.log(val)
     },
     [ServicesMutations.SET_LISTS] (state, lists) {
 			state.lists = lists
@@ -38,8 +36,6 @@ export default {
       store.commit(ServicesMutations.SET_USER, usr)
 		},
 		[ServicesMutations.SET_TIER] (store, tier) {
-			console.log("ACTION TIER")
-			console.log(tier)
       store.commit(ServicesMutations.SET_TIER, tier)
     },
     [ServicesMutations.SET_LISTS] ({ commit, dispatch, state }, lists) {
