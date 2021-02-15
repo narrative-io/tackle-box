@@ -37,6 +37,7 @@ import NioChargeSummary from "./components/ChargeSummary"
 import NioDialog from './components/Dialog'
 import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
+import NioHeightObserver from './modules/app/height-observer'
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
@@ -77,8 +78,6 @@ const Components = {
 	NioPill,
 	NioChargeSummary,
 	NioDialog,
-	NioRouterModule,
-	NioOpenApiModule,
 	FontAwesomeIcon
 }
 
@@ -152,6 +151,7 @@ export { NioChargeSummary }
 export { NioDialog }
 export { FontAwesomeIcon }
 export { NioRouterModule }
+export { NioHeightObserver }
 export { NioOpenApiModule }
 
 export default Components

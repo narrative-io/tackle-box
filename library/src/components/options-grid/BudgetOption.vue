@@ -1,7 +1,7 @@
 <template lang="pug">
   NioOptionsGridItem.nio-budget-option(
     :option="option"
-    :class="{'selected': selected}"
+    :class="{'selected': selected, 'disabled': option.disabled}"
     @optionSelected="optionSelected"
   )
     template(v-slot:name)
@@ -21,7 +21,8 @@ export default {
   name: 'nio-budget-option',
   props: {
     "option": { type: Object, required: true },
-    "selected": { type: Boolean, required: false, default: false }
+		"selected": { type: Boolean, required: false, default: false },
+		"disabled": { type: Boolean, required: false, default: false }
   },
   methods: {
     formatNumber(number) {

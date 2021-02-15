@@ -5,7 +5,8 @@ import openApiModule from './open-api-module'
 
 export default {
   data: () => ({
-    nioServices: null
+		nioServices: null,
+		nioUserTier: null
   }),	
   methods: {
     nioInitializeApplication: (app) => {
@@ -34,7 +35,8 @@ export default {
     nioHandleMessage (evt) {
       switch (evt.data.name) {	
         case 'auth':
-          this.$store.dispatch('nioServices/SET_USER', evt.data.payload.user)
+					this.$store.dispatch('nioServices/SET_USER', evt.data.payload.user)
+					this.$store.dispatch('nioServices/SET_TIER', evt.data.payload.tier)
           openApiModule.setupAxios(evt.data.payload.baseurl, evt.data.payload.token)
           if (this.nioServices && this.nioServices.length) {
             this.nioInitServices()
@@ -79,13 +81,7 @@ export default {
           console.log(err.response)
         })
       }) 
-		},
-		testOpenApiInit() {
-			console.log("test open api init")
 		}
-  },
-  mounted() {
-    openApiModule.initialize(this.testOpenApiInit)
   }
 }
 
