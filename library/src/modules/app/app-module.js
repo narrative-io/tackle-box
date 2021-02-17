@@ -1,13 +1,23 @@
 import heightObserver from './height-observer'
-import servicesStore from './store/servicesStore'
 import routerModule from './router-module'
 import openApiModule from './open-api-module'
+import { mapGetters } from 'vuex'
 
 export default {
   data: () => ({
 		nioServices: null,
 		nioUserTier: null
-  }),	
+	}),	
+	computed: {
+		...mapGetters('nioServices', {
+			nioLists: 'lists',
+			nioListsLoading: 'listsLoading',
+			nioPaymentMethod: 'paymentMethod',
+			nioPaymentMethodLoading: 'paymentMethodLoading',
+			nioUser: 'user',
+			nioTier: 'tier'
+		})
+	},	
   methods: {
     nioInitializeApplication: (app) => {
       if (window.addEventListener) {
@@ -15,7 +25,6 @@ export default {
       } else {
         window.attachEvent("onmessage", app.nioHandleMessage);
       }
-      app.$store.registerModule('nioServices', servicesStore);
       heightObserver.addTrackedElement('document')
       const resizeObserver = new ResizeObserver((val) => {
         heightObserver.elementHeightChanged('document', val[0].contentRect.height)
