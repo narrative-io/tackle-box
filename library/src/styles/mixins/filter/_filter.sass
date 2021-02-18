@@ -1,7 +1,18 @@
+@import '../../global/_colors'
+
 =nio-filter
-	.v-expansion-panel-header
-		padding: 0px
-	::v-deep .v-expansion-panel-header__icon
-		display: none
+  .v-expansion-panel-header
+    padding: 0px
+
+  ::v-deep .v-expansion-panel-header__icon
+    display: none
+  ::v-deep .v-expansion-panel-header--active
+    background-color: $c-canvas
+  ::v-deep .v-expansion-panel-content__wrap
+    padding: 0px
+  &:not(:last-child)
+    border-bottom: 0.0625rem solid $c-primary-lighter
+  &:after
+    border: none
 .nio-filter
-	+nio-filter
+  +nio-filter
