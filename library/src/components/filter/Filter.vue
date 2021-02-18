@@ -1,11 +1,11 @@
 <template lang="pug">
   v-expansion-panel.nio-filter(
-    :key="name"
+    :key="filter.name"
   )
     v-expansion-panel-header
       NioFilterHeader(
-        :title="title"
-        :description="description"
+        :title="filter.title"
+        :description="filter.description"
       )
     v-expansion-panel-content
       NioFilterBody(
@@ -21,9 +21,7 @@ import NioFilterBody from './FilterBody'
 export default {
   name: 'nio-filter',
   props: {
-    "name": { type: String, required: true },
-    "title": { type: String, required: true },
-    "description": { type: String, required: false, default: null }
+    "filter": { type: Object, required: true }
   },
   data: () => ({
     
