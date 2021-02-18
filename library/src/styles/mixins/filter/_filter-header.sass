@@ -1,4 +1,24 @@
+@import '../../global/_colors'
+	
 =nio-filter-header
+	min-height: 122px
+	padding: 24px 32px
+	display: flex
+	position: relative
+	justify-content: space-between
+
+	.title-description, .selections
+		width: 50%
+
+	.action
+		position: absolute
+		top: 24px
+		right: 32px
+		::v-deep svg
+			color: $c-primary-dark
+
+	.title
+		margin-bottom: 4px
 
 .nio-filter-header
 	+nio-filter-header

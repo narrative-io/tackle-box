@@ -3,7 +3,8 @@
 
   )
     NioFilterHeader(
-
+      :title="title"
+      :description="description"
     )
     NioFilterBody(
 
@@ -19,7 +20,9 @@ import NioFilterBody from './FilterBody'
 export default {
   name: 'nio-filter',
   props: {
- 
+    "name": { type: String, required: true },
+    "title": { type: String, required: true },
+    "description": { type: String, required: false, default: null }
   },
   data: () => ({
     
