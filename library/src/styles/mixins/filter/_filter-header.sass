@@ -6,6 +6,7 @@
 	display: flex
 	position: relative
 	justify-content: space-between
+	background-color: $c-white
 
 	.title-description, .selections
 		width: 50%
@@ -16,6 +17,9 @@
 		right: 32px
 		::v-deep svg
 			color: $c-primary-dark
+			&:hover
+				cursor: pointer
+				opacity: 0.7
 
 	.title
 		margin-bottom: 4px

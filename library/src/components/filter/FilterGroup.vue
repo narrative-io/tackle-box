@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-group
+  v-expansion-panels.nio-filter-group(accordion)
     slot
 </template>
 
@@ -11,7 +11,7 @@ export default {
   props: {
   },
   data: () => ({
-
+		
 	})
 }
 </script>

@@ -1,7 +1,11 @@
 @import '../slat/_slat-group'
+@import '../../global/_colors'
 
 =nio-filter-group 
 	+nio-slat-group
+
+	& > .nio-filter + .nio-filter
+		border-top: 1px solid $c-primary-lighter
 
 .nio-filter-group
 	+nio-filter-group

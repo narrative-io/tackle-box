@@ -1,14 +1,16 @@
 <template lang="pug">
-  .nio-filter(
-
+  v-expansion-panel.nio-filter(
+    :key="name"
   )
-    NioFilterHeader(
-      :title="title"
-      :description="description"
-    )
-    NioFilterBody(
+    v-expansion-panel-header
+      NioFilterHeader(
+        :title="title"
+        :description="description"
+      )
+    v-expansion-panel-content
+      NioFilterBody(
 
-    )
+      )
 
 </template>
 
