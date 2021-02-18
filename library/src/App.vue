@@ -44,8 +44,9 @@
         //- TestTextField
         //- TestSelect
         //- TestCardGrid
-        TestOptionsGrid
+        //- TestOptionsGrid
         //- TestDialog
+        TestFilters
 </template>
 
 <script>
@@ -73,6 +74,7 @@ import TestSlatTable from './test-components/TestSlatTable'
 import TestOptionsGrid from './test-components/TestOptionsGrid'
 import TestChargeSummary from './test-components/TestChargeSummary'
 import TestDialog from './test-components/TestDialog'
+import TestFilters from './test-components/TestFilters'
 
 export default {
   name: "App",
@@ -100,7 +102,8 @@ export default {
     TestSlatTable,
     TestOptionsGrid,
     TestChargeSummary,
-    TestDialog
+    TestDialog,
+    TestFilters
   },
   data: () => ({
     loggedIn: false,
@@ -239,9 +242,9 @@ export default {
     login() {
       this.loggedIn = true
     },
-	},
-	mounted() {
-	}
+  },
+  mounted() {
+  }
 };
 </script>
 
