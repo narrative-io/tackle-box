@@ -1,11 +1,20 @@
 <template lang="pug">
   .nio-filter(
 
-  ) hi
+  )
+    NioFilterHeader(
+
+    )
+    NioFilterBody(
+
+    )
 
 </template>
 
 <script>
+
+import NioFilterHeader from './FilterHeader'
+import NioFilterBody from './FilterBody'
 
 export default {
   name: 'nio-filter',
@@ -17,7 +26,8 @@ export default {
   }),	
   methods: {
     
-  }
+  },
+  components: { NioFilterHeader, NioFilterBody }
 }
 </script>
 
