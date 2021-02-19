@@ -5,6 +5,7 @@
       :options="options"
       v-bind:value.sync="filter.value"
     )
+      template(v-slot:custom-option)
 </template>
 
 <script>

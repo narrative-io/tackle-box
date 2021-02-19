@@ -6,13 +6,13 @@
     .options
       .option.nio-p.nio-bold.text-primary-dark(
         v-for="option in options"
-        :class="{'selected': value.name === option.value.name}"
+        :class="{'selected': value.name === option.value.name, 'custom-selected': value.name === 'custom' }"
         @click="update(option.value)"
       ) {{ option.label }}
+        .custom-selected-pointer(v-if="value.name === 'custom' && option.value.name === 'custom'")
     .custom-option(
       v-if="value.name === 'custom'"
     )  
-      .pointer
       .option-content
         slot(name="custom-option")  
 </template>
