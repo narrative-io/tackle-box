@@ -1,10 +1,10 @@
 <template lang="pug">
-  .nio-filter-properties.number
+  .nio-filter-properties.number {{ filter }}
     NioFilterProperty(
       :description="description"
       :options="options"
+      v-bind:value.sync="filter.value"
     )
-    
 </template>
 
 <script>
@@ -14,7 +14,7 @@ import NioFilterProperty from '../FilterProperty'
 export default {
   name: 'nio-filter-properties-number',
   props: {
-    "filter": { type: Object, required: true }
+    "filter": { type: Object, required: true },
   },
   data: () => ({
     description: 'Select the data to include'
@@ -37,7 +37,7 @@ export default {
       ]
     }
   },
-  components: { NioFilterProperty }
+  components: { NioFilterProperty },
 }
 </script>
 

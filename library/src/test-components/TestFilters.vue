@@ -13,13 +13,15 @@ const filters = [
     name: "filter1",
     type: "timestamp",
     title: "Filter 1",
-    description: "Test description"
+    description: "Test description",
+    value: 'all'
   },
   {
     name: "filter2",
     type: "number",
     title: "Filter 2",
-    description: "Test description 2"
+    description: "Test description 2",
+    value: 'all'
   },
   {
     name: "filter2",

@@ -1,10 +1,14 @@
 <template lang="pug">
   .nio-filter-property
-    .title-description(:class="{'centered': !title}")
+    .title-description
       .title.nio-h5.text-primary-darker(v-if="title") {{ title }}
-      .description.nio-p.text-primary-dark {{ description }}
+      .description.nio-p.text-primary-dark(:class="{'centered': !title}") {{ description }}
     .options
-      .option.nio-p.nio-bold.text-primary-dark(v-for="option in options" @click="optionClicked(option)") {{ option.label }}
+      .option.nio-p.nio-bold.text-primary-dark(
+        v-for="option in options" 
+        :class="{'selected': value === option.value}"
+        @click="update(option.value)"
+      ) {{ option.label }}
 </template>
 
 <script>
@@ -14,14 +18,19 @@ export default {
   props: {
     "title": { type: String, required: false },
     "description": { type: String, required: true },
-    "options": { type: Array, required: true }
+    "options": { type: Array, required: true },
+    "value": { required: true }
   },
   data: () => ({
     
   }),	
+  model: {
+    prop: "value",
+    event: "update"
+  },
   methods: {
-    optionClicked(option) {
-      this.$emit('optionClicked', option)
+    update(value) {
+      this.$emit('update:value', value)
     }
   }
 }

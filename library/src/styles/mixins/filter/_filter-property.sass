@@ -1,14 +1,24 @@
 @import '../../global/_colors'
 
 =nio-filter-property 
-  padding: 24px 32px
+  padding: 0px
   .title-description
     margin-bottom: 24px
     .title
       margin-bottom: 6px
+    .description.centered
+      text-align: center
 
   .options
+    display: flex
+    justify-content: space-between
+
+    & > .option + .option
+      margin-left: 24px
+
     .option
+      flex-basis: 0
+      flex-grow: 2
       padding: 24px 16px
       display: flex
       justify-content: center
@@ -16,5 +26,8 @@
       background: $c-white
       border: 1.5px solid $c-primary-lighter
       border-radius: 12px
+
+      &.selected
+        background-color: red
 .nio-filter-property
   +nio-filter-property 
