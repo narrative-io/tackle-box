@@ -1,4 +1,19 @@
+@import '../global/_colors'
+  
 =nio-slider 
-
-.nio-slider
-	+nio-slider
+  ::v-deep .v-slider__track-container
+   height: 2px
+   color: rgba(0, 0, 0, 0) !important
+   .v-slider__track-background  
+    background-color: $c-primary-lighter !important
+  ::v-deep .v-slider__track
+    height: 2px
+  ::v-deep .v-slider__thumb
+    background-color: $c-primary-dark !important
+    border-color: $c-primary-dark !important
+    &::before
+     background-color: rgba(0, 0, 0, 0) 
+  ::v-deep .v-slider__track-fill
+    background-color: $c-primary-dark !important
+.nio-slider 
+  +nio-slider
