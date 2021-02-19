@@ -47,6 +47,7 @@
         //- TestOptionsGrid
         //- TestDialog
         TestFilters
+        TestSlider
 </template>
 
 <script>
@@ -75,6 +76,7 @@ import TestOptionsGrid from './test-components/TestOptionsGrid'
 import TestChargeSummary from './test-components/TestChargeSummary'
 import TestDialog from './test-components/TestDialog'
 import TestFilters from './test-components/TestFilters'
+import TestSlider from './test-components/TestSlider'
 
 export default {
   name: "App",
@@ -103,7 +105,8 @@ export default {
     TestOptionsGrid,
     TestChargeSummary,
     TestDialog,
-    TestFilters
+    TestFilters,
+    TestSlider
   },
   data: () => ({
     loggedIn: false,
