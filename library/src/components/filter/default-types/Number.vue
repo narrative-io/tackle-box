@@ -6,12 +6,18 @@
       :config="filter.config"
       v-bind:value.sync="filter.value"
     )
-      template(v-slot:custom-option="config") {{ config }}
+      template(v-slot:custom-option="config")
+        NioSlider(
+          :min="config.min"
+          :max="config.max"
+          :model="selection"
+        ) {{ selection }}
 </template>
 
 <script>
 
 import NioFilterProperty from '../FilterProperty'
+import NioSlider from '../../Slider'
 
 export default {
   name: 'nio-filter-properties-number',
@@ -19,7 +25,8 @@ export default {
     "filter": { type: Object, required: true },
   },
   data: () => ({
-    description: 'Select the data to include'
+    description: 'Select the data to include',
+    selection: 15
   }),	
   computed: {
     options() {
@@ -46,7 +53,7 @@ export default {
       ]
     }
   },
-  components: { NioFilterProperty },
+  components: { NioFilterProperty, NioSlider },
 }
 </script>
 

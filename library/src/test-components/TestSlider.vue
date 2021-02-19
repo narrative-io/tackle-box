@@ -1,6 +1,18 @@
 <template lang="pug">
   .test-slider
-    NioSlider
+    NioSlider(
+      v-model="model1"
+      :min="10"
+      :max="100"
+      :value="15"
+    ) 
+    .test {{ model1 }}
+    NioSlider(
+      v-model="model2"
+      :min="10"
+      :max="100"
+    ) 
+    .test {{ model2 }}
    
 </template>
 
@@ -13,7 +25,8 @@ export default {
     NioSlider
   },
   data: () => ({
-   
+    model1: 15,
+    model2: 15
   })
 };
 </script>

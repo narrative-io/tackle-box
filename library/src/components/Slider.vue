@@ -1,10 +1,10 @@
 <template lang="pug">
   v-slider.nio-slider(
-    :min="min"
-    :max="max"
-    
+    v-bind="$attrs"
+    v-on="$listeners" 
+    :value="model"
+    @input="$emit('update', $event)"
   )
-   
 </template>
 
 <script>
@@ -13,19 +13,17 @@
 export default {
   name: 'nio-slider',
   props: {
-    "model": { required: true },
-    "min": { type: Number, required: false, default: null },
-    "max": { type: Number, required: false, default: null }
+    model: { required: true },
+    value: { required: false }
   },
-  data: () => ({
-
-  }),		
   model: {
     prop: "model",
     event: "update"
   },
-  methods: {
-  
+  mounted() {
+    if (!this.value) {
+      this.$emit('update', this.model)
+    }
   }
 }
 </script>
