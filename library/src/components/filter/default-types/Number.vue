@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-properties.number {{ filter }}
+  .nio-filter-properties.number
     NioFilterProperty(
       :description="description"
       :options="options"
@@ -23,16 +23,23 @@ export default {
     options() {
       return [
         {
-          value: 'all',
-          label: `All ${this.filter.name}s`
+          label: `All ${this.filter.name}s`,
+          value: {
+            name:'all'
+          }
         },
         {
-          value: 'ifPresent',
-          label: "Include if present"
+          label: "Include if present",
+          value: {
+            name: 'ifPresent'
+          }, 
         },
         {
-          value: 'custom',
-          label: 'Custom'
+          label: 'Custom',
+          value: {
+            name: 'custom',
+            details: null
+          }
         }
       ]
     }

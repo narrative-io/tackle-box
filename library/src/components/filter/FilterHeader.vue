@@ -1,7 +1,5 @@
 <template lang="pug">
-  .nio-filter-header(
-
-  )
+  .nio-filter-header
     .title-description
       .title.nio-h4.text-primary-darker {{ title }}
       .description.nio-p.text-primary-dark {{ description }}

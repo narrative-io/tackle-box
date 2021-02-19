@@ -5,8 +5,8 @@
       .description.nio-p.text-primary-dark(:class="{'centered': !title}") {{ description }}
     .options
       .option.nio-p.nio-bold.text-primary-dark(
-        v-for="option in options" 
-        :class="{'selected': value === option.value}"
+        v-for="option in options"
+        :class="{'selected': value.name === option.value.name}"
         @click="update(option.value)"
       ) {{ option.label }}
 </template>
@@ -19,7 +19,7 @@ export default {
     "title": { type: String, required: false },
     "description": { type: String, required: true },
     "options": { type: Array, required: true },
-    "value": { required: true }
+    "value": { type: Object, required: true }
   },
   data: () => ({
     

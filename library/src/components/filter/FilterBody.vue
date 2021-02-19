@@ -1,7 +1,5 @@
 <template lang="pug">
-  .nio-filter-body(
-
-  )
+  .nio-filter-body
     template(v-if="filter.type === 'number'")
       NioFilterPropertiesNumber(
         :filter="filter"

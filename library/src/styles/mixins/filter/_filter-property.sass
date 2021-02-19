@@ -28,6 +28,14 @@
       border-radius: 12px
 
       &.selected
-        background-color: red
+        background: $c-canvas-darker
+        border: 1.5px solid $c-primary-light
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1)
+        color: $c-primary-darker
+
+      &:not(.selected):hover
+        cursor: pointer
+        background-color: lighten($c-canvas-darker, 1)
+
 .nio-filter-property
   +nio-filter-property 

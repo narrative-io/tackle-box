@@ -1,5 +1,5 @@
 <template lang="pug">
-  .test-filters {{ activeFilterName}}
+  .test-filters {{ filters }}
     NioFilterGroup(:filters="filters")
 </template>
 
@@ -14,14 +14,15 @@ const filters = [
     type: "timestamp",
     title: "Filter 1",
     description: "Test description",
-    value: 'all'
   },
   {
     name: "filter2",
     type: "number",
     title: "Filter 2",
     description: "Test description 2",
-    value: 'all'
+    value: {
+
+    }
   },
   {
     name: "filter2",
