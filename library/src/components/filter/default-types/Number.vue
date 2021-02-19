@@ -3,9 +3,10 @@
     NioFilterProperty(
       :description="description"
       :options="options"
+      :config="filter.config"
       v-bind:value.sync="filter.value"
     )
-      template(v-slot:custom-option)
+      template(v-slot:custom-option="config") {{ config }}
 </template>
 
 <script>

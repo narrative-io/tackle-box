@@ -18,6 +18,10 @@ const filters = [
   {
     name: "filter2",
     type: "number",
+    config: {
+      min: 10,
+      max: 100
+    },
     title: "Filter 2",
     description: "Test description 2",
     value: {

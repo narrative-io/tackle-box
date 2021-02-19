@@ -14,7 +14,7 @@
       v-if="value.name === 'custom'"
     )  
       .option-content
-        slot(name="custom-option")  
+        slot(name="custom-option" v-bind="{ config, value } ")  
 </template>
 
 <script>
@@ -22,6 +22,7 @@
 export default {
   name: 'nio-filter-property',
   props: {
+    "config": { type: Object, reqiured: false },
     "title": { type: String, required: false },
     "description": { type: String, required: true },
     "options": { type: Array, required: true },

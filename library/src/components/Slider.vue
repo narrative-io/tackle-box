@@ -1,5 +1,9 @@
 <template lang="pug">
-  .nio-slider slider
+  v-slider.nio-slider(
+    :min="min"
+    :max="max"
+    
+  )
    
 </template>
 
@@ -8,9 +12,18 @@
 
 export default {
   name: 'nio-slider',
-	data: () => ({
+  props: {
+    "model": { required: true },
+    "min": { type: Number, required: false, default: null },
+    "max": { type: Number, required: false, default: null }
+  },
+  data: () => ({
 
-	}),		
+  }),		
+  model: {
+    prop: "model",
+    event: "update"
+  },
   methods: {
   
   }
