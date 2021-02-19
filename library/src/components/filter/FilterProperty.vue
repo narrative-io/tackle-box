@@ -9,6 +9,12 @@
         :class="{'selected': value.name === option.value.name}"
         @click="update(option.value)"
       ) {{ option.label }}
+    .custom-option(
+      v-if="value.name === 'custom'"
+    )  
+      .pointer
+      .option-content
+        slot(name="custom-option")  
 </template>
 
 <script>
