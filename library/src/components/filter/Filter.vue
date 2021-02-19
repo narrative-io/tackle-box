@@ -9,7 +9,7 @@
       )
     v-expansion-panel-content
       NioFilterBody(
-
+        :filter="filter"
       )
 </template>
 
