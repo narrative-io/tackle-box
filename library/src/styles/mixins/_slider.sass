@@ -3,17 +3,18 @@
 =nio-slider 
   display: flex
   justify-content: space-between
-  
-
   height: 40px
+
+  ::v-deep .v-input__control
+    height: 100%
   ::v-deep .v-input__slot
     margin-bottom: 0px
     height: 100%
   ::v-deep .v-slider__track-container
-  height: 2px
-  color: rgba(0, 0, 0, 0) !important
-  .v-slider__track-background  
-    background-color: $c-primary-lighter !important
+    height: 2px
+    color: rgba(0, 0, 0, 0) !important
+    .v-slider__track-background  
+      background-color: $c-primary-lighter !important
   ::v-deep .v-slider__track
     height: 2px
   ::v-deep .v-slider__thumb

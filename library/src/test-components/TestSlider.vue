@@ -13,6 +13,13 @@
       :max="100"
     ) 
     .test {{ model2 }}
+    NioSlider(
+      range
+      v-model="rangeModel"
+      :min="10"
+      :max="100"
+    ) 
+    .test {{ rangeModel }}
    
 </template>
 
@@ -26,7 +33,8 @@ export default {
   },
   data: () => ({
     model1: 15,
-    model2: 15
+    model2: 15,
+    rangeModel: [20, 40]
   })
 };
 </script>
