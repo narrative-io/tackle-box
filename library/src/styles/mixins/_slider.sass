@@ -1,10 +1,18 @@
 @import '../global/_colors'
   
 =nio-slider 
+  display: flex
+  justify-content: space-between
+  
+
+  height: 40px
+  ::v-deep .v-input__slot
+    margin-bottom: 0px
+    height: 100%
   ::v-deep .v-slider__track-container
-   height: 2px
-   color: rgba(0, 0, 0, 0) !important
-   .v-slider__track-background  
+  height: 2px
+  color: rgba(0, 0, 0, 0) !important
+  .v-slider__track-background  
     background-color: $c-primary-lighter !important
   ::v-deep .v-slider__track
     height: 2px
@@ -12,8 +20,12 @@
     background-color: $c-primary-dark !important
     border-color: $c-primary-dark !important
     &::before
-     background-color: rgba(0, 0, 0, 0) 
+    background-color: rgba(0, 0, 0, 0) 
   ::v-deep .v-slider__track-fill
     background-color: $c-primary-dark !important
+
+  .input-max
+    flex-basis: 80px  
+    flex-grow: 0
 .nio-slider 
   +nio-slider
