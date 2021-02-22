@@ -7,9 +7,10 @@
     )
       template(v-slot:custom-option)
         NioSlider(
+          :range="filter.customOption.config.range"
           :min="filter.customOption.config.min"
           :max="filter.customOption.config.max"
-          v-model="filter.customOption.value.amount"
+          v-model="filter.customOption.value"
         )
 </template>
 

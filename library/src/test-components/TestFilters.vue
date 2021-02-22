@@ -26,9 +26,7 @@ const filters = [
 				min: 10,
 				max: 100
 			},
-			value: {
-				amount: 20
-			}
+			value: 20
 		}
   },
   {
@@ -39,13 +37,11 @@ const filters = [
 		value: 'custom',
 		customOption: {
 			config: {
+				range: true,
 				min: 10,
-				max: 100
+				max: 200
 			},
-			value: {
-				minAmount: 25,
-				maxAmount: 135
-			}
+			value: [25, 135]
 		}
   },
   {
