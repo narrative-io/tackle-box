@@ -20,9 +20,7 @@ const filters = [
     type: "number",
     title: "Filter 2",
     description: "Test description 2",
-    value: {
-			name: 'custom'
-		},
+    value: 'custom',
 		customOption: {
 			config: {
 				min: 10,
@@ -36,15 +34,9 @@ const filters = [
   {
     name: "filter3",
 		type: "number",
-		config: {
-      min: 20,
-      max: 200
-    },
     title: "Filter 3",
 		description: "Test description 3",
-		value: {
-			name: 'custom'
-		},
+		value: 'custom',
 		customOption: {
 			config: {
 				min: 10,

@@ -34,22 +34,15 @@ export default {
       return [
         {
           label: `All ${this.filter.name}s`,
-          value: {
-            name:'all'
-          }
+          value: 'all'
         },
         {
           label: "Include if present",
-          value: {
-            name: 'ifPresent'
-          }, 
+          value: 'ifPresent'
         },
         {
           label: 'Custom',
-          value: {
-            name: 'custom',
-            
-          }
+          value: 'custom'
         }
       ]
     }

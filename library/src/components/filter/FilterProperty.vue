@@ -6,12 +6,12 @@
     .options
       .option.nio-p.nio-bold.text-primary-dark(
         v-for="option in options"
-        :class="{'selected': value.name === option.value.name, 'custom-selected': value.name === 'custom' }"
+        :class="{'selected': value === option.value, 'custom-selected': value === 'custom' }"
         @click="update(option.value)"
       ) {{ option.label }}
-        .custom-selected-pointer(v-if="value.name === 'custom' && option.value.name === 'custom'")
+        .custom-selected-pointer(v-if="value === 'custom' && option.value === 'custom'")
     .custom-option(
-      v-if="value.name === 'custom'"
+      v-if="value === 'custom'"
     )  
       .option-content
         slot(name="custom-option")  
@@ -25,7 +25,7 @@ export default {
     "title": { type: String, required: false },
     "description": { type: String, required: true },
     "options": { type: Array, required: true },
-    "value": { type: Object, required: true }
+    "value": { type: String, required: true }
   },
   data: () => ({
     
