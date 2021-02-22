@@ -55,7 +55,7 @@ export default {
         ],
         rollingLookback: [
           {
-            label: 'Lookback 90 Days',
+            label: 'Lookback 90 days',
             value: 'default'
           },
           {

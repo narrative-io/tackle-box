@@ -8,6 +8,18 @@
       NioFilterPropertiesEventTimestamp(
         :filter="filter"
       )
+    template(v-else-if="filter.type === 'stringMany'")
+      NioFilterPropertiesStringMany(
+        :filter="filter"
+      )
+    template(v-else-if="filter.type === 'stringLimited'")
+      NioFilterPropertiesStringMLimited(
+        :filter="filter"
+      )
+    template(v-else-if="filter.type === 'frequency'")
+      NioFilterPropertiesFrequency(
+        :filter="filter"
+      )      
     template(v-else)
 </template>
 
@@ -16,6 +28,9 @@
 import NioFilterProperty from './FilterProperty'
 import NioFilterPropertiesNumber from './default-types/Number'
 import NioFilterPropertiesEventTimestamp from './default-types/EventTimestamp'
+import NioFilterPropertiesStringMany from './default-types/StringMany'
+import NioFilterPropertiesStringMLimited from './default-types/StringLimited'
+import NioFilterPropertiesFrequency from './default-types/Frequency'
 
 export default {
   name: 'nio-filter-body',
@@ -30,7 +45,10 @@ export default {
   components: { 
     NioFilterProperty, 
     NioFilterPropertiesNumber,
-    NioFilterPropertiesEventTimestamp 
+    NioFilterPropertiesEventTimestamp ,
+    NioFilterPropertiesStringMany,
+    NioFilterPropertiesStringMLimited,
+    NioFilterPropertiesFrequency
   }
 }
 </script>

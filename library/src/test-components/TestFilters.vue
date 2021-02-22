@@ -36,7 +36,7 @@ const filters = [
   {
     name: "filter3",
 		type: "number",
-    title: "Filter 3",
+    title: "Number",
 		description: "Test description 3",
 		value: 'custom',
 		customOption: {
@@ -49,16 +49,25 @@ const filters = [
 		}
   },
   {
-    name: "filter2",
+    name: "stringMany",
     type: "stringMany",
-    title: "Filter 2",
-    description: "Test description 2"
+    title: "String Many",
+		description: "Test description 2",
+		value: "default"
   },
   {  
-    name: "filter2",
+    name: "stringLimited",
+    type: "stringLimited",
+    title: "String Limited",
+    description: "Test description 2",
+		value: "default"
+	},
+	{  
+    name: "frequency",
     type: "frequency",
-    title: "Filter 2",
-    description: "Test description 2"
+    title: "Frequency",
+    description: "Test description 2",
+		value: "default"
   }
 ]
 
