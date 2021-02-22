@@ -4,6 +4,10 @@
       NioFilterPropertiesNumber(
         :filter="filter"
       )
+    template(v-else-if="filter.type === 'eventTimestamp'")
+      NioFilterPropertiesEventTimestamp(
+        :filter="filter"
+      )
     template(v-else)
 </template>
 
@@ -11,6 +15,7 @@
 
 import NioFilterProperty from './FilterProperty'
 import NioFilterPropertiesNumber from './default-types/Number'
+import NioFilterPropertiesEventTimestamp from './default-types/EventTimestamp'
 
 export default {
   name: 'nio-filter-body',
@@ -22,7 +27,11 @@ export default {
   methods: {
     
   },
-  components: { NioFilterProperty, NioFilterPropertiesNumber }
+  components: { 
+    NioFilterProperty, 
+    NioFilterPropertiesNumber,
+    NioFilterPropertiesEventTimestamp 
+  }
 }
 </script>
 

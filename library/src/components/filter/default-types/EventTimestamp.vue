@@ -1,31 +1,27 @@
 <template lang="pug">
-  .nio-filter-properties.number
+  .nio-filter-properties.event-timestamp
     NioFilterProperty(
+      :title="title"
       :description="description"
       :options="options"
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
-        NioSlider(
-          :range="filter.customOption.config.range"
-          :min="filter.customOption.config.min"
-          :max="filter.customOption.config.max"
-          v-model="filter.customOption.value"
-        )
+       
 </template>
 
 <script>
 
 import NioFilterProperty from '../FilterProperty'
-import NioSlider from '../../Slider'
 
 export default {
-  name: 'nio-filter-properties-number',
+  name: 'nio-filter-properties-event-timestamp',
   props: {
     "filter": { type: Object, required: true },
   },
   data: () => ({
-    description: 'Select the data to include'
+    title: 'Event Timestamps',
+    description: 'Define the timestamps you want included in your subscription.'
   }),	
   computed: {
     options() {
@@ -34,12 +30,8 @@ export default {
       }
       return [
         {
-          label: `All ${this.filter.name}s`,
+          label: 'Start today until I stop',
           value: 'default'
-        },
-        {
-          label: "Include if present",
-          value: 'ifPresent'
         },
         {
           label: 'Custom',
@@ -48,7 +40,7 @@ export default {
       ]
     }
   },
-  components: { NioFilterProperty, NioSlider }
+  components: { NioFilterProperty }
 }
 </script>
 

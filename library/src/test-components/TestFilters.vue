@@ -11,9 +11,10 @@ import NioFilter from '@/components/filter/Filter'
 const filters = [
   {
     name: "filter1",
-    type: "timestamp",
+    type: "eventTimestamp",
     title: "Filter 1",
-    description: "Test description",
+		description: "Test description",
+		value: "default"
   },
   {
     name: "filter2",
