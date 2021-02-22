@@ -12,9 +12,12 @@ const filters = [
   {
     name: "filter1",
     type: "eventTimestamp",
-    title: "Filter 1",
-		description: "Test description",
-		value: "default"
+    title: "Event Timestamps",
+		description: "Define the timestamps you want included in your subscription.",
+		value: {
+			dateRange: "default",
+			rollingLookback: "default"
+		}
   },
   {
     name: "filter2",

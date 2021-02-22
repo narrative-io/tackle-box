@@ -1,7 +1,9 @@
 @import '../../global/_colors'
 
 =nio-filter-property 
-  padding: 0px
+  padding: 24px 32px
+  border-top: 0.0625rem solid $c-primary-lighter
+
   .title-description
     margin-bottom: 24px
     .title
@@ -32,7 +34,7 @@
         border: 1.5px solid $c-primary-light
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1)
         color: $c-primary-darker
-
+        
       &.custom-selected
         margin-bottom: 48px
         .custom-selected-pointer
@@ -54,6 +56,7 @@
       width: 100%
       padding: 16px
       background-color: $c-white
+      border-radius: 12px
 
 .nio-filter-property
   +nio-filter-property 

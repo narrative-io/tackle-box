@@ -1,12 +1,19 @@
 <template lang="pug">
   .nio-filter-properties.event-timestamp
     NioFilterProperty(
-      :title="title"
-      :description="description"
-      :options="options"
-      v-bind:value.sync="filter.value"
+      :title="dateRange.title"
+      :description="dateRange.description"
+      :options="options.dateRange"
+      v-bind:value.sync="filter.value.dateRange"
     )
       template(v-slot:custom-option)
+    NioFilterProperty(
+      :title="dateRange.title"
+      :description="dateRange.description"
+      :options="options.rollingLookback"
+      v-bind:value.sync="filter.value.rollingLookback"
+    )
+      template(v-slot:custom-option)  
        
 </template>
 
@@ -20,24 +27,43 @@ export default {
     "filter": { type: Object, required: true },
   },
   data: () => ({
-    title: 'Event Timestamps',
-    description: 'Define the timestamps you want included in your subscription.'
+    dateRange: {
+      title: "Date Range",
+      description: "Pick a start and end date of event timestamps to include."
+    },
+    rollingLookback: {
+      title: "Rolling Lookback",
+      description: "From your start date, define how far back in time you'd like to include."
+    }
+    
   }),	
   computed: {
     options() {
       if (!this.filter) {
         return []
       }
-      return [
-        {
-          label: 'Start today until I stop',
-          value: 'default'
-        },
-        {
-          label: 'Custom',
-          value: 'custom'
-        }
-      ]
+      return {
+        dateRange: [
+          {
+            label: 'Start today until I stop',
+            value: 'default'
+          },
+          {
+            label: 'Custom',
+            value: 'custom'
+          }
+        ],
+        rollingLookback: [
+          {
+            label: 'Lookback 90 Days',
+            value: 'default'
+          },
+          {
+            label: 'Custom',
+            value: 'custom'
+          }
+        ]
+      }  
     }
   },
   components: { NioFilterProperty }
