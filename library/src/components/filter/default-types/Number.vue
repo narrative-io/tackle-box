@@ -10,7 +10,7 @@
         NioSlider(
           :min="config.min"
           :max="config.max"
-          :model="selection"
+          v-model="filter.value.details.amount"
         ) {{ selection }}
 </template>
 
@@ -25,8 +25,7 @@ export default {
     "filter": { type: Object, required: true },
   },
   data: () => ({
-    description: 'Select the data to include',
-    selection: 15
+    description: 'Select the data to include'
   }),	
   computed: {
     options() {
@@ -47,7 +46,9 @@ export default {
           label: 'Custom',
           value: {
             name: 'custom',
-            details: null
+            details: {
+              amount: 10
+            }
           }
         }
       ]

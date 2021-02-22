@@ -49,9 +49,6 @@ export default {
     prop: "model",
     event: "update"
 	},
-	// data: () => ({
-
-	// }),	
   mounted() {
     if (!this.value) {
       this.$emit('update', this.model)
