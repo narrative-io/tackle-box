@@ -6,10 +6,12 @@
       NioFilterHeader(
         :title="filter.title"
         :description="filter.description"
+        :value="value"
       )
     v-expansion-panel-content
       NioFilterBody(
         :filter="filter"
+        @valueChanged="handleValueChange($event)"
       )
 </template>
 
@@ -24,10 +26,12 @@ export default {
     "filter": { type: Object, required: true }
   },
   data: () => ({
-    
+    value: null
   }),	
   methods: {
-    
+    handleValueChange(newValue) {
+      this.value = newValue
+    }
   },
   components: { NioFilterHeader, NioFilterBody }
 }

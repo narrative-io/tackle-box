@@ -35,17 +35,39 @@ export default {
       return [
         {
           label: `All ${this.filter.name}s`,
-          value: 'default'
+          value: 'default',
+          selected: 'Include all Ages'
         },
         {
           label: "Include if present",
-          value: 'ifPresent'
+          value: 'ifPresent',
+          selected: 'Include if present'
         },
         {
           label: 'Custom',
-          value: 'custom'
+          value: 'custom',
+          selected: this.customSelectedLabel
         }
       ]
+    }
+  },
+  methods: {
+    customSelectedLabel(value) {
+      console.log(value)
+    }
+  },
+  watch: {
+    filter: {
+      deep: true,
+      handler() {
+        console.log("here")
+        if (this.filter.value === 'custom') {
+          this.$emit('valueChanged', this.filter.customOption.value)
+        } else {
+          this.$emit('valueChanged', this.options.find(option => option.value === this.filter.value).selected)
+        }
+
+      }
     }
   },
   components: { NioFilterProperty, NioSlider }

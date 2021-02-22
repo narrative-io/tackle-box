@@ -2,22 +2,27 @@
   .nio-filter-body
     template(v-if="filter.type === 'number'")
       NioFilterPropertiesNumber(
+        @valueChanged="valueChanged($event)"
         :filter="filter"
       )
     template(v-else-if="filter.type === 'eventTimestamp'")
       NioFilterPropertiesEventTimestamp(
+        @valueChanged="valueChanged($event)"
         :filter="filter"
       )
     template(v-else-if="filter.type === 'stringMany'")
       NioFilterPropertiesStringMany(
+        @valueChanged="valueChanged($event)"
         :filter="filter"
       )
     template(v-else-if="filter.type === 'stringLimited'")
       NioFilterPropertiesStringMLimited(
+        @valueChanged="valueChanged($event)"
         :filter="filter"
       )
     template(v-else-if="filter.type === 'frequency'")
       NioFilterPropertiesFrequency(
+        @valueChanged="valueChanged($event)"
         :filter="filter"
       )      
     template(v-else)
@@ -40,7 +45,9 @@ export default {
   data: () => ({
   }),	
   methods: {
-    
+    valueChanged(val) {
+      this.$emit('valueChanged', val)
+    }
   },
   components: { 
     NioFilterProperty, 
