@@ -2,7 +2,7 @@
   .nio-filter-properties.number
     NioFilterProperty(
       :description="description"
-      :options="options"
+      :options="filter.options ? filter.options : defaultOptions"
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
@@ -22,13 +22,13 @@ import NioSlider from '../../Slider'
 export default {
   name: 'nio-filter-properties-number',
   props: {
-    "filter": { type: Object, required: true },
+    "filter": { type: Object, required: true }
   },
   data: () => ({
     description: 'Select the data to include'
   }),	
   computed: {
-    options() {
+    defaultOptions() {
       if (!this.filter) {
         return []
       }
@@ -36,31 +36,24 @@ export default {
         {
           label: `All ${this.filter.name}s`,
           value: 'default',
-          selected: 'Include all Ages'
         },
         {
           label: "Include if present",
           value: 'ifPresent',
-          selected: 'Include if present'
         },
         {
           label: 'Custom',
           value: 'custom',
-          selected: 'Custom'
         }
       ]
-    }
-  },
-  methods: {
-    customSelectedLabel(value) {
-      console.log(value)
     }
   },
   watch: {
     filter: {
       deep: true,
       handler() {
-        this.$emit('valueChanged', this.options.find(option => option.value === this.filter.value).selected)
+        const options = this.filter.options ? this.filter.options : this.defaultOptions
+        this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
       }
     }
   },

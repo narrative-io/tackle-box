@@ -20,11 +20,25 @@ const filters = [
 		}
   },
   {
-    name: "filter2",
+    name: "age",
     type: "number",
-    title: "Filter 2",
-    description: "Test description 2",
-    value: 'custom',
+    title: "Age",
+    description: "Number",
+		value: 'default',
+		options: [
+        {
+				label: `Include all ages 13 and up`,
+				value: 'default',
+			},
+			{
+				label: "Include if present",
+				value: 'ifPresent',
+			},
+			{
+				label: 'Custom',
+				value: 'custom',
+			}
+		],
 		customOption: {
 			config: {
 				min: 10,
