@@ -18,21 +18,43 @@ const filters = [
   {
     name: "filter2",
     type: "number",
-    config: {
-      min: 10,
-      max: 100
-    },
     title: "Filter 2",
     description: "Test description 2",
     value: {
-
-    }
+			name: 'custom'
+		},
+		customOption: {
+			config: {
+				min: 10,
+				max: 100
+			},
+			value: {
+				amount: 20
+			}
+		}
   },
   {
-    name: "filter2",
-    type: "stringLimited",
-    title: "Filter 2",
-    description: "Test description 2"
+    name: "filter3",
+		type: "number",
+		config: {
+      min: 20,
+      max: 200
+    },
+    title: "Filter 3",
+		description: "Test description 3",
+		value: {
+			name: 'custom'
+		},
+		customOption: {
+			config: {
+				min: 10,
+				max: 100
+			},
+			value: {
+				minAmount: 25,
+				maxAmount: 135
+			}
+		}
   },
   {
     name: "filter2",

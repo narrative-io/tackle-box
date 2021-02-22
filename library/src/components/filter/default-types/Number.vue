@@ -3,15 +3,14 @@
     NioFilterProperty(
       :description="description"
       :options="options"
-      :config="filter.config"
       v-bind:value.sync="filter.value"
     )
-      template(v-slot:custom-option="config")
+      template(v-slot:custom-option)
         NioSlider(
-          :min="config.min"
-          :max="config.max"
-          v-model="filter.value.details.amount"
-        ) {{ selection }}
+          :min="filter.customOption.config.min"
+          :max="filter.customOption.config.max"
+          v-model="filter.customOption.value.amount"
+        )
 </template>
 
 <script>
@@ -29,6 +28,9 @@ export default {
   }),	
   computed: {
     options() {
+      if (!this.filter) {
+        return []
+      }
       return [
         {
           label: `All ${this.filter.name}s`,
@@ -46,15 +48,13 @@ export default {
           label: 'Custom',
           value: {
             name: 'custom',
-            details: {
-              amount: 10
-            }
+            
           }
         }
       ]
     }
   },
-  components: { NioFilterProperty, NioSlider },
+  components: { NioFilterProperty, NioSlider }
 }
 </script>
 
