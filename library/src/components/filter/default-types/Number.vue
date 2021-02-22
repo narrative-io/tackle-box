@@ -46,7 +46,7 @@ export default {
         {
           label: 'Custom',
           value: 'custom',
-          selected: this.customSelectedLabel
+          selected: 'Custom'
         }
       ]
     }
@@ -60,13 +60,7 @@ export default {
     filter: {
       deep: true,
       handler() {
-        console.log("here")
-        if (this.filter.value === 'custom') {
-          this.$emit('valueChanged', this.filter.customOption.value)
-        } else {
-          this.$emit('valueChanged', this.options.find(option => option.value === this.filter.value).selected)
-        }
-
+        this.$emit('valueChanged', this.options.find(option => option.value === this.filter.value).selected)
       }
     }
   },

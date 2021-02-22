@@ -8,8 +8,22 @@
 	justify-content: space-between
 	background-color: $c-white
 
-	.title-description, .selections
+	.title-description, .filter-value
 		width: 50%
+
+	.filter-value
+		display: flex
+		align-items: flex-start
+		
+		.value
+			display: flex
+			align-items: center
+			background: $c-white
+			border: 1px solid $c-primary-lighter
+			border-radius: 100px
+			padding: 4px 16px 4px 12px
+			.text
+				margin-left: 8px
 
 	.action
 		position: absolute
