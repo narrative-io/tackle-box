@@ -11,10 +11,14 @@
           .nio-p.text-primary-dark Include timestamps between
           NioDateField(
             v-model="filter.customOption.dateRange.value[0]"
+            :min="startMinDate"
+            :max="startMaxDate"
           )
           .nio-p.text-primary-dark to
           NioDateField(
             v-model="filter.customOption.dateRange.value[1]"
+            :min="stopMinDate"
+            :max="stopMaxDate"
           )
     NioFilterProperty(
       :title="dateRange.title"
@@ -33,7 +37,7 @@ import NioDateField from '../../DateField'
 export default {
   name: 'nio-filter-properties-event-timestamp',
   props: {
-    "filter": { type: Object, required: true },
+    "filter": { type: Object, required: true }
   },
   data: () => ({
     dateRange: {
@@ -72,6 +76,18 @@ export default {
           }
         ]
       }  
+    },
+    startMinDate() {
+      return this.filter.customOption.dateRange.config ? this.filter.customOption.dateRange.config.startMin : undefined 
+    },
+    startMaxDate() {
+      return this.filter.customOption.dateRange.config ? this.filter.customOption.dateRange.config.startMax : undefined 
+    },
+    stopMinDate() {
+      return this.filter.customOption.dateRange.config ? this.filter.customOption.dateRange.config.stopMin : undefined 
+    },
+    stopMaxDate() {
+      return this.filter.customOption.dateRange.config ? this.filter.customOption.dateRange.config.stopMax : undefined 
     }
   },
   watch: {

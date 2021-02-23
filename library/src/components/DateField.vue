@@ -3,7 +3,6 @@
       v-menu(
         v-model="datepickerVisible"
         :close-on-content-click="false"
-        lazy
         transition="scale-transition"
         bottom
         nudge-bottom="60"
@@ -25,8 +24,8 @@
         v-date-picker(
           full-width
           locale="en-in"
-          :min="minDate"
-          :max="maxDate"
+          :min="min"
+          :max="max"
           :value="model"
           no-title
           @input="handleDateInput($event)"
@@ -41,8 +40,8 @@ export default {
   name: 'nio-date-field',
   props: {
     "model": { required: false },
-    "minDate": { required: false },
-    "maxDate": { required: false }
+    "min": { required: false },
+    "max": { required: false }
   },
   model: {
     prop: "model",
