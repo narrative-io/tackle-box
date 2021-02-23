@@ -14,7 +14,7 @@
       v-if="value === 'custom'"
     )  
       .option-content
-        slot(name="custom-option")  
+        slot(name="custom-option")
 </template>
 
 <script>

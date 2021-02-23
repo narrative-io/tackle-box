@@ -20,6 +20,7 @@
             :min="stopMinDate"
             :max="stopMaxDate"
           )
+        .validation-error.nio-p-small.text-error(v-if="!valid") {{ error }}
     NioFilterProperty(
       :title="dateRange.title"
       :description="dateRange.description"
@@ -40,6 +41,7 @@ export default {
     "filter": { type: Object, required: true }
   },
   data: () => ({
+    error: null,
     dateRange: {
       title: "Date Range",
       description: "Pick a start and end date of event timestamps to include."
@@ -90,10 +92,34 @@ export default {
       return this.filter.customOption.dateRange.config ? this.filter.customOption.dateRange.config.stopMax : undefined 
     }
   },
+  methods: {
+    validate() {
+      if (this.filter.value.dateRange === 'custom') {
+        if (Date.parse(this.filter.customOption.dateRange.value[0]) >= Date.parse(this.filter.customOption.dateRange.value[1])) {
+          this.error = 'Stop date cannot be before start date'
+          this.setValid(false)
+        } else {
+          this.setValid(true)
+        }
+      } else {
+        this.setValid(true)
+      }
+    },
+    setValid(val) {
+      if (val) {
+        this.valid = true
+        this.$emit('validChanged', true)
+      } else {
+        this.valid = false
+        this.$emit('validChanged', false)
+      }
+    }
+  },
   watch: {
     filter: {
       deep: true,
       handler() {
+        this.validate()
         this.$emit('valueChanged', [
           this.defaultOptions.dateRange.find(option => option.value === this.filter.value.dateRange).label,
           this.defaultOptions.rollingLookback.find(option => option.value === this.filter.value.rollingLookback).label
