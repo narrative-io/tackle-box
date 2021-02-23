@@ -6,7 +6,7 @@
         lazy
         transition="scale-transition"
         bottom
-        nudge-bottom="100"
+        nudge-bottom="60"
         :min-width="datepickerWidth"
         :max-width="datepickerWidth"
       )
@@ -49,7 +49,6 @@ export default {
     event: "update"
   },
   data: () => ({
-    node: null,
     datepickerVisible: false,
     datepickerWidth: 300
   }),
@@ -61,12 +60,6 @@ export default {
     },
   },
   methods: {
-    // applyHelperAttributes() {
-      // const attributes = this.$el.attributes
-      // if (attributes.getNamedItem('attach-to-parent')) {
-      //   this.attach = true
-      // }
-    // },
     handleDateInput(val) {
       this.$emit('update', val)
     },
@@ -78,8 +71,7 @@ export default {
     const resizeObserver = new ResizeObserver((val) => {
       this.textFieldResize(val[0].contentRect.width)
     })
-    this.node = this.$refs['nio-date-ref'].$vnode.elm
-    resizeObserver.observe(this.node)
+    resizeObserver.observe(this.$refs['nio-date-ref'].$vnode.elm)
     this.$emit('mounted')
   },
   destroyed() {
