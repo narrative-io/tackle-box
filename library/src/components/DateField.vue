@@ -1,31 +1,27 @@
 <template lang="pug">
     .nio-date-field
       v-menu(
-        v-model="fromDateMenu"
+        v-model="datepickerVisible"
         :close-on-content-click="false"
-        :nudge-right="40"
         lazy
         transition="scale-transition"
         offset-y
-        full-width
-        max-width="290px"
-        min-width="290px"
       )
         template(v-slot:activator="{ on }")
           v-text-field(
             label="From Date"
             prepend-icon="event"
             readonly
-            :value="fromDateDisp"
+            :value="fromDatepicker"
             v-on="on"
           )
         v-date-picker(
           locale="en-in"
           :min="minDate"
           :max="maxDate"
-          v-model="fromDateVal"
+          :value="model"
           no-title
-          @input="fromDateMenu = false"
+          @input="handleDateInput($event)"
         )  
 </template>
 
@@ -34,23 +30,20 @@
 export default {
   name: 'nio-date-field',
   props: {
-    "model": { required: false }
+    "model": { required: false },
+    "minDate": { required: false },
+    "maxDate": { required: false }
   },
   model: {
     prop: "model",
     event: "update"
   },
   data: () => ({
-    fromDateMenu: false,
-    fromDateVal: null,
-    minDate: "2019-07-04",
-    maxDate: "2019-08-30"
+    datepickerVisible: false,
   }),
   computed: {
-    fromDateDisp() {
-      return this.fromDateVal;
-      // format date, apply validations, etc. Example below.
-      // return this.fromDateVal ? this.formatDate(this.fromDateVal) : "";
+    fromDatepicker() {
+      return this.model
     },
   },
   methods: {
@@ -60,6 +53,9 @@ export default {
       //   this.appendAttr = true
       // }	
     },
+    handleDateInput(val) {
+      this.$emit('update', val)
+    }
   },
   mounted() {	
     this.applyHelperAttributes()

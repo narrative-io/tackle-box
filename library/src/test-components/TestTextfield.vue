@@ -21,7 +21,7 @@ export default {
     NioTextField
   },
   data: () => ({
-		model: ""
+		model: "2-12-2021"
   })
 };
 </script>
