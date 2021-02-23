@@ -46,8 +46,9 @@
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
-        TestFilters
-        TestSlider
+        //- TestFilters
+        //- TestSlider
+        TestDateField
 </template>
 
 <script>
@@ -77,6 +78,7 @@ import TestChargeSummary from './test-components/TestChargeSummary'
 import TestDialog from './test-components/TestDialog'
 import TestFilters from './test-components/TestFilters'
 import TestSlider from './test-components/TestSlider'
+import TestDateField from './test-components/TestDateField'
 
 export default {
   name: "App",
@@ -106,7 +108,8 @@ export default {
     TestChargeSummary,
     TestDialog,
     TestFilters,
-    TestSlider
+    TestSlider,
+    TestDateField
   },
   data: () => ({
     loggedIn: false,
