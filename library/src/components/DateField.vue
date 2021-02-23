@@ -5,7 +5,11 @@
         :close-on-content-click="false"
         lazy
         transition="scale-transition"
-        offset-y
+        :attach="node"
+        top
+        left
+        nudgeBottom="12"
+        
       )
         template(v-slot:activator="{ on }")
           NioTextField(
@@ -16,9 +20,11 @@
             v-on="on"
             append
             iconName="utility-chevron-down"
+            ref="nio-date-field-ref"
             iconColor="#4F64AF"
           )
         v-date-picker(
+          full-width
           locale="en-in"
           :min="minDate"
           :max="maxDate"
@@ -44,7 +50,8 @@ export default {
     event: "update"
   },
   data: () => ({
-    datepickerVisible: false,
+    node: null,
+    datepickerVisible: false
   }),
   computed: {
     fromDatepicker() {
@@ -56,9 +63,9 @@ export default {
   methods: {
     applyHelperAttributes() {
       const attributes = this.$el.attributes
-      // if (attributes.getNamedItem('append')) {
-      //   this.appendAttr = true
-      // }	
+      // if (attributes.getNamedItem('attach-to-parent')) {
+      //   this.attach = true
+      // }
     },
     handleDateInput(val) {
       this.$emit('update', val)
@@ -66,6 +73,7 @@ export default {
   },
   mounted() {	
     this.applyHelperAttributes()
+    this.node = this.$refs['nio-date-field-ref'].$vnode.elm
     this.$emit('mounted')
   },
   destroyed() {
