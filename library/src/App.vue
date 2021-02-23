@@ -41,14 +41,14 @@
         //- TestImageTile
         //- TestIconFramer
         //- TestIcons
-        //- TestTextField
+        TestTextField
+        TestDateField
         //- TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
         //- TestFilters
         //- TestSlider
-        TestDateField
 </template>
 
 <script>

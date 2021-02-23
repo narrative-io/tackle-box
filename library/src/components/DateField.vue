@@ -8,12 +8,13 @@
         offset-y
       )
         template(v-slot:activator="{ on }")
-          v-text-field(
+          NioTextField(
             label="From Date"
-            prepend-icon="event"
-            readonly
             :value="fromDatepicker"
+            v-model="fromDatepicker"
             v-on="on"
+            iconName="utility-chevron-down"
+            iconColor="#4F64AF"
           )
         v-date-picker(
           locale="en-in"
@@ -26,6 +27,8 @@
 </template>
 
 <script>
+
+import NioTextField from './TextField'
 
 export default {
   name: 'nio-date-field',
@@ -64,7 +67,7 @@ export default {
   destroyed() {
     this.$emit('destroyed')
   },
-  components: { }
+  components: { NioTextField }
 }
 </script>
 
