@@ -14,7 +14,7 @@ export default {
     NioDateField
   },
   data: () => ({
-    date: null
+    date: "2021-02-12"
   })
 };
 </script>

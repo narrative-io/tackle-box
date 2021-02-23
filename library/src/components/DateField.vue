@@ -9,10 +9,12 @@
       )
         template(v-slot:activator="{ on }")
           NioTextField(
+            readonly
             label="From Date"
             :value="fromDatepicker"
             v-model="fromDatepicker"
             v-on="on"
+            append
             iconName="utility-chevron-down"
             iconColor="#4F64AF"
           )
@@ -46,7 +48,9 @@ export default {
   }),
   computed: {
     fromDatepicker() {
-      return this.model
+      const options = { year: 'numeric', month: 'short', day: 'numeric' }
+      const date = new Date(this.model)
+      return date.toLocaleDateString(undefined, options)
     },
   },
   methods: {
