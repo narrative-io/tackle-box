@@ -13,8 +13,7 @@
       :options="options.rollingLookback"
       v-bind:value.sync="filter.value.rollingLookback"
     )
-      template(v-slot:custom-option)  
-       
+      template(v-slot:custom-option)
 </template>
 
 <script>
@@ -35,7 +34,6 @@ export default {
       title: "Rolling Lookback",
       description: "From your start date, define how far back in time you'd like to include."
     }
-    
   }),	
   computed: {
     options() {
@@ -65,6 +63,18 @@ export default {
         ]
       }  
     }
+  },
+  watch: {
+    filter: {
+      deep: true,
+      handler() {
+        const options = this.filter.options ? this.filter.options : this.defaultOptions
+        this.$emit('valueChanged', [
+          this.options.dateRange.find(option => option.value === this.filter.value.dateRange).label,
+          this.options.rollingLookback.find(option => option.value === this.filter.value.rollingLookback).label
+        ])
+      }
+    }  
   },
   components: { NioFilterProperty }
 }
