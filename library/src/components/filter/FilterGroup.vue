@@ -16,7 +16,23 @@ export default {
     "filters": { type: Array, required: true },
   },
   data: () => ({
+    model: null
 	}),
+	computed: {
+		valid() {
+			return this.filters.find(filter => !filter.valid) === undefined
+		}
+	},
+	mounted() {
+		this.$emit('validChanged', this.valid)
+		console.log(this.valid)
+	},
+	watch: {
+		valid(val) {
+			this.$emit('validChanged', this.valid)
+			console.log(this.valid)
+		}
+	},
   components: { NioFilter }
 }
 </script>

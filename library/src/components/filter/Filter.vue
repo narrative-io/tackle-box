@@ -8,7 +8,7 @@
         :description="filter.description"
         :value="value"
       )
-    v-expansion-panel-content
+    v-expansion-panel-content(eager)
       NioFilterBody(
         :filter="filter"
         @valueChanged="handleValueChange($event)"
@@ -32,9 +32,6 @@ export default {
     handleValueChange(newValue) {
       this.value = newValue
     }
-  },
-  mounted() {
-    this.filter.valid = true
   },
   components: { NioFilterHeader, NioFilterBody }
 }

@@ -107,24 +107,30 @@ export default {
     setValid(val) {
       if (val) {
         this.valid = true
-        this.$emit('validChanged', true)
+        this.filter.valid = true
       } else {
         this.valid = false
-        this.$emit('validChanged', false)
+        this.filter.valid = false
       }
+    },
+    updateValue() {
+      this.$emit('valueChanged', [
+        this.defaultOptions.dateRange.find(option => option.value === this.filter.value.dateRange).label,
+        this.defaultOptions.rollingLookback.find(option => option.value === this.filter.value.rollingLookback).label
+      ])
+      this.validate()
     }
   },
   watch: {
     filter: {
       deep: true,
       handler() {
-        this.validate()
-        this.$emit('valueChanged', [
-          this.defaultOptions.dateRange.find(option => option.value === this.filter.value.dateRange).label,
-          this.defaultOptions.rollingLookback.find(option => option.value === this.filter.value.rollingLookback).label
-        ])
+        this.updateValue()
       }
     }  
+  },
+  mounted() {
+    this.updateValue()
   },
   components: { NioFilterProperty, NioDateField }
 }

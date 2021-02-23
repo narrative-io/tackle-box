@@ -25,7 +25,8 @@ const filters = [
         },
         value: ["2021-02-24", "2021-03-21"]
       }
-    }	
+    },
+    valid: true
   },
   {
     name: "filter2",
@@ -46,9 +47,9 @@ const filters = [
         },
         value: ["2021-02-24", "2021-03-21"]
       }
-    }	
+    },
+    valid: true
   },
-
   // {
   //   name: "age",
   //   type: "number",
