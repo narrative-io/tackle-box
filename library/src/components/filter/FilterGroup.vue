@@ -16,8 +16,7 @@ export default {
     "filters": { type: Array, required: true },
   },
   data: () => ({
-    model: null
-  }),
+	}),
   components: { NioFilter }
 }
 </script>

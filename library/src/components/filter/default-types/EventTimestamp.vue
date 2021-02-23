@@ -20,7 +20,7 @@
             :min="stopMinDate"
             :max="stopMaxDate"
           )
-        .validation-error.nio-p-small.text-error(v-if="!valid") {{ error }}
+        .validation-error.nio-p-small.text-error(v-if="!valid") Start date must be after stop date
     NioFilterProperty(
       :title="dateRange.title"
       :description="dateRange.description"
@@ -41,7 +41,7 @@ export default {
     "filter": { type: Object, required: true }
   },
   data: () => ({
-    error: null,
+    valid: true,
     dateRange: {
       title: "Date Range",
       description: "Pick a start and end date of event timestamps to include."
@@ -96,7 +96,6 @@ export default {
     validate() {
       if (this.filter.value.dateRange === 'custom') {
         if (Date.parse(this.filter.customOption.dateRange.value[0]) >= Date.parse(this.filter.customOption.dateRange.value[1])) {
-          this.error = 'Stop date cannot be before start date'
           this.setValid(false)
         } else {
           this.setValid(true)

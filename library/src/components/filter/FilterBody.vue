@@ -44,6 +44,27 @@ export default {
   },
   data: () => ({
   }),	
+  computed: {
+    defaultOptions() {
+      if (!this.filter) {
+        return []
+      }
+      return [
+        {
+          label: `All ${this.filter.name}s`,
+          value: 'default',
+        },
+        {
+          label: "Include if present",
+          value: 'ifPresent',
+        },
+        {
+          label: 'Custom',
+          value: 'custom',
+        }
+      ]
+    }
+  },
   methods: {
     valueChanged(val) {
       this.$emit('valueChanged', val)

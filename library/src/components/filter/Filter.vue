@@ -33,6 +33,9 @@ export default {
       this.value = newValue
     }
   },
+  mounted() {
+    this.filter.valid = true
+  },
   components: { NioFilterHeader, NioFilterBody }
 }
 </script>
