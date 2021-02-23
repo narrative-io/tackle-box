@@ -6,7 +6,7 @@
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
-        NioSlider(
+        NioSlider.number-custom(
           :range="filter.customOption.config.range"
           :min="filter.customOption.config.min"
           :max="filter.customOption.config.max"

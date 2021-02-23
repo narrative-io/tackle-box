@@ -56,7 +56,20 @@
       width: 100%
       padding: 16px
       background-color: $c-white
-      border-radius: 12px
+      border-radius: 12px 
+
+      .timestamp-custom
+        display: flex
+        justify-content: space-between
+        align-items: center
+        .nio-date-field
+          // width: 285px
+          flex-grow: 2
+          ::v-deep .nio-text-field
+            margin-bottom: 0px
+        & > * + * 
+          margin-left: 16px   
+    
 
 .nio-filter-property
   +nio-filter-property 

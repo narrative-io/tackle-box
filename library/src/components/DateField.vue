@@ -5,14 +5,14 @@
         :close-on-content-click="false"
         lazy
         transition="scale-transition"
-        :attach="node"
-        top
-        left
-        nudgeBottom="12"
-        
+        bottom
+        nudge-bottom="100"
+        :min-width="datepickerWidth"
+        :max-width="datepickerWidth"
       )
         template(v-slot:activator="{ on }")
           NioTextField(
+            ref="nio-date-ref"
             readonly
             label="From Date"
             :value="fromDatepicker"
@@ -20,7 +20,6 @@
             v-on="on"
             append
             iconName="utility-chevron-down"
-            ref="nio-date-field-ref"
             iconColor="#4F64AF"
           )
         v-date-picker(
@@ -51,29 +50,36 @@ export default {
   },
   data: () => ({
     node: null,
-    datepickerVisible: false
+    datepickerVisible: false,
+    datepickerWidth: 300
   }),
   computed: {
     fromDatepicker() {
-      const options = { year: 'numeric', month: 'short', day: 'numeric' }
+      const options = { timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric' }
       const date = new Date(this.model)
       return date.toLocaleDateString(undefined, options)
     },
   },
   methods: {
-    applyHelperAttributes() {
-      const attributes = this.$el.attributes
+    // applyHelperAttributes() {
+      // const attributes = this.$el.attributes
       // if (attributes.getNamedItem('attach-to-parent')) {
       //   this.attach = true
       // }
-    },
+    // },
     handleDateInput(val) {
       this.$emit('update', val)
+    },
+    textFieldResize(val) {
+      this.datepickerWidth = val
     }
   },
   mounted() {	
-    this.applyHelperAttributes()
-    this.node = this.$refs['nio-date-field-ref'].$vnode.elm
+    const resizeObserver = new ResizeObserver((val) => {
+      this.textFieldResize(val[0].contentRect.width)
+    })
+    this.node = this.$refs['nio-date-ref'].$vnode.elm
+    resizeObserver.observe(this.node)
     this.$emit('mounted')
   },
   destroyed() {

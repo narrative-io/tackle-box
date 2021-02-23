@@ -41,13 +41,13 @@
         //- TestImageTile
         //- TestIconFramer
         //- TestIcons
-        TestTextField
+        //- TestTextField
         TestDateField
         //- TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
-        //- TestFilters
+        TestFilters
         //- TestSlider
 </template>
 

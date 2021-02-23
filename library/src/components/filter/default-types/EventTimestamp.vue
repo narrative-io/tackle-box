@@ -7,6 +7,15 @@
       v-bind:value.sync="filter.value.dateRange"
     )
       template(v-slot:custom-option)
+        .timestamp-custom
+          .nio-p.text-primary-dark Include timestamps between
+          NioDateField(
+            v-model="filter.customOption.dateRange.value[0]"
+          )
+          .nio-p.text-primary-dark to
+          NioDateField(
+            v-model="filter.customOption.dateRange.value[1]"
+          )
     NioFilterProperty(
       :title="dateRange.title"
       :description="dateRange.description"
@@ -19,6 +28,7 @@
 <script>
 
 import NioFilterProperty from '../FilterProperty'
+import NioDateField from '../../DateField'
 
 export default {
   name: 'nio-filter-properties-event-timestamp',
@@ -75,7 +85,7 @@ export default {
       }
     }  
   },
-  components: { NioFilterProperty }
+  components: { NioFilterProperty, NioDateField }
 }
 </script>
 
