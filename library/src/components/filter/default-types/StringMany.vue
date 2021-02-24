@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-properties.string-many
+  .nio-filter-properties.string-many {{ activeTab }}
     NioFilterProperty(
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
@@ -11,7 +11,13 @@
           v-model="activeTab"
         )
           template(v-slot:list)
-
+            NioSlatTable(
+              no-slat
+              listing-plain
+              v-if="filter.customOption.list.config.items.length > 0 && filter.customOption.list.config.columns.length > 0"
+              :items="filter.customOption.list.config.items"
+              :columns="filter.customOption.list.config.columns"
+            )
           template(v-slot:manual)
         
 </template>
@@ -20,6 +26,7 @@
 
 import NioFilterProperty from '../FilterProperty'
 import NioTabs from '../../Tabs'
+import NioSlatTable from '../../table/SlatTable'
 
 export default {
   name: 'nio-filter-properties-string-many',
@@ -30,7 +37,7 @@ export default {
     description: 'Select the data to include',
     tabs: [
       {
-        name: 'lsit',
+        name: 'list',
         label: 'Select from list'
       },
       {
@@ -70,7 +77,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty, NioTabs }
+  components: { NioFilterProperty, NioTabs, NioSlatTable }
 }
 </script>
 

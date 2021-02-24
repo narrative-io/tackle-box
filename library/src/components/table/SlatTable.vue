@@ -45,7 +45,7 @@
               :key="item.id"
             )
             
-          td.slat-cell
+          td.slat-cell(v-if="hasSlat")
             NioImageTitleSubtitleSlot(
               :imgSrc="item.slat.image"
               :size="dense ? 'small' : 'normal'"
@@ -140,7 +140,8 @@ export default {
       sort: false,
       selected: false,
       count: false
-    },
+		},
+		hasSlat: true,
     selection: null,
     headers: null,
     computedItems: null,
@@ -214,12 +215,14 @@ export default {
       let computedItems = []
       this.items.forEach(item => {
         const computedItem = item
-        const slatColumn = this.columns.find(column => column.name === 'slat')
-        computedItem.slat = {
-          image: typeof slatColumn.props.image === 'function' ? slatColumn.props.image(item) : item[slatColumn.props.image],
-          title: typeof slatColumn.props.title === 'function' ? slatColumn.props.title(item) : item[slatColumn.props.title],
-          subtitle: typeof slatColumn.props.subtitle === 'function' ? slatColumn.props.subtitle(item) : item[slatColumn.props.subtitle]
-        }
+				const slatColumn = this.columns.find(column => column.name === 'slat')
+				if (slatColumn) {
+					computedItem.slat = {
+						image: typeof slatColumn.props.image === 'function' ? slatColumn.props.image(item) : item[slatColumn.props.image],
+						title: typeof slatColumn.props.title === 'function' ? slatColumn.props.title(item) : item[slatColumn.props.title],
+						subtitle: typeof slatColumn.props.subtitle === 'function' ? slatColumn.props.subtitle(item) : item[slatColumn.props.subtitle]
+					}
+				}
         
         const columnValues = {}
         this.columns.filter(column => column.name !== "slat").forEach(column => {
@@ -247,10 +250,13 @@ export default {
     makeHeaders() {
       const headers = []
 
-      headers.push({
-        name: 'slat',
-        value: 'slat'
-      })
+			if (this.hasSlat) {
+				headers.push({
+					name: 'slat',
+					value: 'slat'
+				})
+			}
+      
       this.columns.filter(column => column.name !== "slat").forEach(column => {
         headers.push({
           name: column.name,
@@ -304,6 +310,9 @@ export default {
         this.actions = false
         this.pagination = false
         this.listingPlain = true
+			}
+			if (attributes.getNamedItem('no-slat')) {
+        this.hasSlat = false
       }
     },
     searchChange(val) {
