@@ -1,20 +1,30 @@
 <template lang="pug">
-  .test-tabs
+  .test-tabs Test {{ activeTab }}
     NioTabs(
-      :activeTab="activeTab"
+      v-model="activeTab"
     )
+      NioTab(
+        :key="1"
+      )
+        .tab-content tab 1
+      NioTab(
+        :key="2"
+      )
+        .tab-content tab 2
 </template>
 
 <script>
 
 import NioTabs from '../components/Tabs'
+import NioTab from '../components/Tab'
 
 export default {
   components: {
-    NioTabs
+    NioTabs,
+    NioTab
   },
   data: () => ({
-    activeTab: null
+    activeTab: 1
   })
 };
 </script>

@@ -1,19 +1,36 @@
 <template lang="pug">
-    .nio-tabs tabs
+    v-tabs.nio-tabs(
+      :value="model"
+      :model="computedModel"
+      @change="change($event)"
+    ) 
+      slot
 </template>
 
 <script>
   export default {
     name: 'nio-tabs',
     props: {
-      "activeTab": { required: false },
+      "model": { required: true },
+    },
+    model: {
+      prop: "model",
+      event: "update"
     },
     data: () => ({
     }),
+    computed: {
+      computedModel() {
+        return this.model
+      }
+    },
     methods: {
-     
+      change(val) {
+        this.$emit('update', val)
+      }
     },
     mounted() {	
+      this.activeTab = this.model
       this.$emit('mounted')
     },
     destroyed() {

@@ -1,4 +1,13 @@
+@import '../global/_colors'
+  
 =nio-tabs 
-
+  ::v-deep .theme--light.v-tabs > .v-tabs-bar
+    background-color: $c-white
+  ::v-deep .theme--light.v-tabs > .v-tabs-bar
+    height: 80px
+    .v-slide-group__content.v-tabs-bar__content
+      justify-content: center
+      color: $c-primary-darker
+  
 .nio-tabs
-	+nio-tabs 
+  +nio-tabs 
