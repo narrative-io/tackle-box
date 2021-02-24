@@ -58,7 +58,10 @@
       background-color: $c-white
       border-radius: 12px 
       position: relative
-      .timestamp-custom
+
+      // filter proprty types
+
+      .date-range-custom
         display: flex
         justify-content: space-between
         align-items: center
@@ -69,6 +72,38 @@
             margin-bottom: 0px
         & > * + * 
           margin-left: 16px   
+      .rolling-lookback-custom
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        .selection
+          display: flex
+          justify-content: flex-start
+          .nio-text-field, .nio-select
+            margin-bottom: 0px
+          .nio-text-field
+            width: 60px
+            ::v-deep .v-input__slot
+              min-width: unset
+              border-right: none
+              border-width: 1px
+              border-top-right-radius: 0px
+              border-bottom-right-radius: 0px
+          .nio-select
+            width: 114px
+            ::v-deep .v-input__slot
+              border-top-left-radius: 0px
+              border-bottom-left-radius: 0px
+            ::v-deep .v-select__selections
+              padding-top: 0.55rem
+              .v-select__selection.v-select__selection--comma
+                overflow: visible
+                color: $c-primary-dark
+            ::v-deep .v-input__append-inner
+              margin-top: 15px
+        & > * + * 
+          margin-left: 16px   
+
       .validation-error
         position: absolute
         left: 0px

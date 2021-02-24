@@ -7,7 +7,7 @@
       v-bind:value.sync="filter.value.dateRange"
     )
       template(v-slot:custom-option)
-        .timestamp-custom
+        .date-range-custom
           .nio-p.text-primary-dark Include timestamps between
           NioDateField(
             v-model="filter.customOption.dateRange.value[0]"
@@ -29,15 +29,20 @@
     )
       template(v-slot:custom-option)
         .rolling-lookback-custom
-          NioTextField(
-            v-model="filter.customOption.rollingLookback.value[0]"
-            numeric
-            solo
-          )
-          NioSelect(
-            v-model="filter.customOption.rollingLookback.value[1]"
-            solo
-          )
+          .nio-p.text-primary-dark Include timestamps from 
+          .selection
+            NioTextField(
+              v-model="filter.customOption.rollingLookback.value[0]"
+              numeric
+              solo
+            )
+            NioSelect(
+              v-model="filter.customOption.rollingLookback.value[1]"
+              :items="filter.customOption.rollingLookback.config.periodOptions"
+              item-text="label"
+              item-value="value" 
+            )
+          .nio-p.text-primary-dark from the current day within a date range.
 </template>
 
 <script>
