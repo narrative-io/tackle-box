@@ -47,9 +47,9 @@
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
-        //- TestFilters
+        TestFilters
         //- TestSlider
-        TestTabs
+        //- TestTabs
 </template>
 
 <script>

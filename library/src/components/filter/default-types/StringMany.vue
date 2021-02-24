@@ -6,12 +6,20 @@
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
+        NioTabs(
+          :tabs="tabs"
+          v-model="activeTab"
+        )
+          template(v-slot:list)
+
+          template(v-slot:manual)
         
 </template>
 
 <script>
 
 import NioFilterProperty from '../FilterProperty'
+import NioTabs from '../../Tabs'
 
 export default {
   name: 'nio-filter-properties-string-many',
@@ -19,7 +27,18 @@ export default {
     "filter": { type: Object, required: true },
   },
   data: () => ({
-    description: 'Select the data to include'
+    description: 'Select the data to include',
+    tabs: [
+      {
+        name: 'lsit',
+        label: 'Select from list'
+      },
+      {
+        name: 'manual',
+        label: 'Manual entry'
+      }
+    ],
+    activeTab: 'list'
   }),	
   computed: {
     defaultOptions() {
@@ -41,8 +60,8 @@ export default {
         }
       ]
     }
-	},
-	watch: {
+  },
+  watch: {
     filter: {
       deep: true,
       handler() {
@@ -51,7 +70,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty }
+  components: { NioFilterProperty, NioTabs }
 }
 </script>
 
