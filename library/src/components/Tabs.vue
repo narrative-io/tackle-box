@@ -1,10 +1,20 @@
 <template lang="pug">
-    v-tabs.nio-tabs(
-      :value="model"
-      :model="computedModel"
+  .nio-tabs
+    v-tabs(
+      v-model="activeTab"
       @change="change($event)"
     ) 
-      slot
+      v-tab(
+        v-for="tab in tabs"
+        :key="getTabIndex(tab)"
+      ) {{ tab }}
+    v-divider  
+    v-tabs-items(v-model="activeTab")
+      v-tab-item(
+        v-for="tab in tabs"
+        :key="getTabIndex(tab)"
+      )
+        slot(:name="tab")   
 </template>
 
 <script>
@@ -12,12 +22,14 @@
     name: 'nio-tabs',
     props: {
       "model": { required: true },
+      "tabs": { type: Array, required: true }
     },
     model: {
       prop: "model",
       event: "update"
     },
     data: () => ({
+      activeTab: 0
     }),
     computed: {
       computedModel() {
@@ -26,7 +38,10 @@
     },
     methods: {
       change(val) {
-        this.$emit('update', val)
+        this.$emit('update', this.tabs[val])
+      },
+      getTabIndex(tabName) {
+        return this.tabs.indexOf(tabName)
       }
     },
     mounted() {	
