@@ -8,14 +8,14 @@
         v-for="tab in tabs"
         :key="getTabIndex(tab)"
       ) 
-        .nio-h5 {{ tab }}
+        .nio-h5 {{ tab.label }}
     NioDivider(horizontal-solo-emphasis)
     v-tabs-items(v-model="activeTab")
       v-tab-item(
         v-for="tab in tabs"
         :key="getTabIndex(tab)"
       )
-        slot(:name="tab")   
+        slot(:name="tab.name")   
 </template>
 
 <script>
@@ -44,8 +44,8 @@ import NioDivider from './Divider'
       change(val) {
         this.$emit('update', this.tabs[val])
       },
-      getTabIndex(tabName) {
-        return this.tabs.indexOf(tabName)
+      getTabIndex(tab) {
+        return this.tabs.indexOf(tab)
       }
     },
     mounted() {	

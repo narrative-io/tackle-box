@@ -1,5 +1,5 @@
 <template lang="pug">
-  .test-tabs ActiveTab: {{ activeTab }}
+  .test-tabs ActiveTab: {{ activeTab.name }}
     NioTabs(
       :tabs="tabs"
       v-model="activeTab"
@@ -23,7 +23,16 @@ export default {
     NioTabs
   },
   data: () => ({
-    tabs: ['tab1', 'tab2'],
+    tabs: [
+      {
+        name: 'tab1',
+        label: 'Tab 1'
+      },
+      {
+        name: 'tab2',
+        label: 'Tab 2'
+      }
+    ],
     activeTab: 'tab1'
   })
 };
