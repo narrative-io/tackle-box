@@ -7,8 +7,9 @@
       v-tab(
         v-for="tab in tabs"
         :key="getTabIndex(tab)"
-      ) {{ tab }}
-    v-divider  
+      ) 
+        .nio-h5 {{ tab }}
+    NioDivider(horizontal-solo-emphasis)
     v-tabs-items(v-model="activeTab")
       v-tab-item(
         v-for="tab in tabs"
@@ -18,6 +19,9 @@
 </template>
 
 <script>
+
+import NioDivider from './Divider'
+
   export default {
     name: 'nio-tabs',
     props: {
@@ -50,7 +54,8 @@
     },
     destroyed() {
       this.$emit('destroyed')
-    }
+    },
+    components: { NioDivider }
   }
 </script>
 
