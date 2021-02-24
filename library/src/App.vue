@@ -43,12 +43,13 @@
         //- TestIcons
         //- TestTextField
         //- TestDateField
-        TestSelect
+        //- TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
-        TestFilters
+        //- TestFilters
         //- TestSlider
+        TestTabs
 </template>
 
 <script>
@@ -79,6 +80,7 @@ import TestDialog from './test-components/TestDialog'
 import TestFilters from './test-components/TestFilters'
 import TestSlider from './test-components/TestSlider'
 import TestDateField from './test-components/TestDateField'
+import TestTabs from './test-components/TestTabs'
 
 export default {
   name: "App",
@@ -109,7 +111,8 @@ export default {
     TestDialog,
     TestFilters,
     TestSlider,
-    TestDateField
+    TestDateField,
+    TestTabs
   },
   data: () => ({
     loggedIn: false,
