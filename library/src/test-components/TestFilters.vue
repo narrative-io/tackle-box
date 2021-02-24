@@ -46,6 +46,25 @@ const filters = [
           stopMax: "2021-12-30"
         },
         value: ["2021-02-24", "2021-03-21"]
+      },
+      rollingLookback: {
+        config: {
+          periodOptions: [
+            {
+              label: 'Days',
+              value: 'day'
+            },
+            {
+              label: 'Weeks',
+              value: 'week'
+            },
+            {
+              label: 'Months',
+              value: 'months'
+            }
+          ]  
+        },
+        value: ['15', 'Days']
       }
     },
     valid: true

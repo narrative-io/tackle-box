@@ -25,12 +25,10 @@ export default {
 	},
 	mounted() {
 		this.$emit('validChanged', this.valid)
-		console.log(this.valid)
 	},
 	watch: {
 		valid(val) {
 			this.$emit('validChanged', this.valid)
-			console.log(this.valid)
 		}
 	},
   components: { NioFilter }

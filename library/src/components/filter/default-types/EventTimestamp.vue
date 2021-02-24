@@ -28,12 +28,24 @@
       v-bind:value.sync="filter.value.rollingLookback"
     )
       template(v-slot:custom-option)
+        .rolling-lookback-custom
+          NioTextField(
+            v-model="filter.customOption.rollingLookback.value[0]"
+            numeric
+            solo
+          )
+          NioSelect(
+            v-model="filter.customOption.rollingLookback.value[1]"
+            solo
+          )
 </template>
 
 <script>
 
 import NioFilterProperty from '../FilterProperty'
 import NioDateField from '../../DateField'
+import NioTextField from '../../TextField'
+import NioSelect from '../../Select'
 
 export default {
   name: 'nio-filter-properties-event-timestamp',
@@ -132,7 +144,7 @@ export default {
   mounted() {
     this.updateValue()
   },
-  components: { NioFilterProperty, NioDateField }
+  components: { NioFilterProperty, NioDateField, NioTextField, NioSelect }
 }
 </script>
 
