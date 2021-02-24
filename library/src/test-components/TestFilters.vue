@@ -64,7 +64,7 @@ const filters = [
             }
           ]  
         },
-        value: ['15', 'Days']
+        value: [15, 'day']
       }
     },
     valid: true

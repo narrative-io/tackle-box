@@ -20,7 +20,7 @@
             :min="stopMinDate"
             :max="stopMaxDate"
           )
-        .validation-error.nio-p-small.text-error(v-if="!valid") Start date must be after stop date
+        .validation-error.nio-p-small.text-error(v-if="!valid") Start date must be later than stop date
     NioFilterProperty(
       :title="dateRange.title"
       :description="dateRange.description"
@@ -33,12 +33,15 @@
           .selection
             NioTextField(
               v-model="filter.customOption.rollingLookback.value[0]"
-              numeric
+              :value="filter.customOption.rollingLookback.value[0]"
+              :min="1"
+              type="number"
               solo
             )
             NioSelect(
               v-model="filter.customOption.rollingLookback.value[1]"
               :items="filter.customOption.rollingLookback.config.periodOptions"
+              :value="filter.customOption.rollingLookback.value[1]"
               item-text="label"
               item-value="value" 
             )
