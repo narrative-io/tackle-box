@@ -32,7 +32,7 @@
         //- TestButtons
         //- TestAutocomplete
         //- TestStepper
-        TestSlatTable
+        //- TestSlatTable
         //- TestSlat
         //- TestFileChooser
         //- TestCheckbox

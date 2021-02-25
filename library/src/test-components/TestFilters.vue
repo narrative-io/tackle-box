@@ -149,7 +149,14 @@ export default {
           value: {
             entryType: 'list',
             listType: 'include',
-            items: []
+            items: [{
+							id: 1,
+							orderNum: 245,
+							name: 'item1',
+							label: 'Item 1',
+							listId: 103324,
+							count: 123521345234
+						}]
           }
         }
       },
@@ -184,7 +191,7 @@ export default {
       return `${item.count} ids`
 		},
 		computeSubtitle(item) {
-			return `Order #${item.listId}`
+			return `Order #${item.orderNum}`
 		},
     getColumns() {
       return [
@@ -197,19 +204,20 @@ export default {
         },
         {
           name: "listId",
-          label: "List ID"
+          label: "List ID",
         },
         {
           name: "idCount",
           label: "ID Count",
-          computed: this.computeSpentBudget
+          computed: this.computeIdCount
         } 
       ]
     },
     getListItems() {
       return [
         {
-          id: 1,
+					id: 1,
+					orderNum: 245,
           name: 'item1',
           label: 'Item 1',
           listId: 103324,
@@ -217,14 +225,16 @@ export default {
         },
         {
           id: 2,
-          name: 'item2',
+					name: 'item2',
+					orderNum: 246,
           label: 'Item 2',
           listId: 5345533,
           count: 2342341234
         },
         {
           id: 3,
-          name: 'item2',
+					name: 'item2',
+					orderNum: 247,
           label: 'Item 2',
           listId: 23466564,
           count: 2342134543

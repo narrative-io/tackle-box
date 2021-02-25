@@ -12,23 +12,27 @@
             v-model="activeTab"
           )
             template(v-slot:list)
-              NioRadioGroup(v-model="filter.customOption.value.listType")
-                NioRadioButton(value="include" label="Include")
-                NioRadioButton(value="exclude" label="Exclude")
               NioSlatTable(
                 multi-select		
                 dense-rows				
                 v-if="filter.customOption.config.list.items.length > 0 && filter.customOption.config.list.columns.length > 0"
                 :items="filter.customOption.config.list.items"
                 :columns="filter.customOption.config.list.columns"
+                :defaultSelection="initialListItems"
+                pagination
+                @selectionChanged="listSelectionChanged($event)"
               )
+                template(v-slot:custom-header-element)
+                  NioRadioGroup(v-model="filter.customOption.value.listType")
+                    NioRadioButton(value="include" label="Include")
+                    NioRadioButton(value="exclude" label="Exclude")
             template(v-slot:manual)
               NioRadioGroup(v-model="filter.customOption.value.listType")
                 NioRadioButton(value="include" label="Include")
                 NioRadioButton(value="exclude" label="Exclude")
               NioTextarea(
                 v-model="test"
-              )           
+              )
 </template>
 
 <script>
@@ -46,6 +50,7 @@ export default {
     "filter": { type: Object, required: true },
   },
   data: () => ({
+    initialListItems: [],
     test: 'a',
     description: 'Select the data to include',
     tabs: [
@@ -79,6 +84,14 @@ export default {
           value: 'custom'
         }
       ]
+    }
+  },
+  mounted() {
+    this.initialListItems = this.filter.customOption.value.items.length ? this.filter.customOption.value.items.map(item => item.id) : []
+  },
+  methods: {
+    listSelectionChanged(val) {
+      this.filter.customOption.value.items = val
     }
   },
   watch: {
