@@ -144,6 +144,10 @@ export default {
             config: {
               columns: null,
               items: null
+            },
+            value: {
+              type: 'include',
+              items: []
             }
           },
           manual: {

@@ -6,19 +6,23 @@
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
-        NioTabs(
-          :tabs="tabs"
-          v-model="activeTab"
-        )
-          template(v-slot:list)
-            NioSlatTable(
-              no-slat
-              listing-plain
-              v-if="filter.customOption.list.config.items.length > 0 && filter.customOption.list.config.columns.length > 0"
-              :items="filter.customOption.list.config.items"
-              :columns="filter.customOption.list.config.columns"
-            )
-          template(v-slot:manual)
+        .string-many-custom
+          NioTabs(
+            :tabs="tabs"
+            v-model="activeTab"
+          )
+            template(v-slot:list)
+              NioRadioGroup(v-model="filter.customOption.list.value.type")
+                NioRadioButton(value="include" label="Include")
+                NioRadioButton(value="exclude" label="Exclude")
+              NioSlatTable(
+                listing-plain
+                no-slat
+                v-if="filter.customOption.list.config.items.length > 0 && filter.customOption.list.config.columns.length > 0"
+                :items="filter.customOption.list.config.items"
+                :columns="filter.customOption.list.config.columns"
+              )
+            template(v-slot:manual)
         
 </template>
 
@@ -27,6 +31,8 @@
 import NioFilterProperty from '../FilterProperty'
 import NioTabs from '../../Tabs'
 import NioSlatTable from '../../table/SlatTable'
+import NioRadioGroup from '../../RadioGroup'
+import NioRadioButton from '../../RadioButton'
 
 export default {
   name: 'nio-filter-properties-string-many',
@@ -77,7 +83,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty, NioTabs, NioSlatTable }
+  components: { NioFilterProperty, NioTabs, NioSlatTable, NioRadioGroup, NioRadioButton }
 }
 </script>
 
