@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-slat-table(:class="[`action-${action}`, {'single-select': singleSelect, 'multi-select': multiSelect, 'listing-plain': listingPlain}]")
+  .nio-slat-table(:class="[`action-${action}`, {'single-select': singleSelect, 'multi-select': multiSelect, 'listing-plain': listingPlain}]")  
     NioSlatTableHeader(
       v-if="!listingPlain"
       :elements="headerElements"
@@ -13,6 +13,8 @@
       @sortChange="sortChange($event)"
       @allSelectedChange="allSelectedChange($event)"
     )
+      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+        slot(:name="name" v-bind="data")   
     v-data-table(
       v-if="headers && computedItems"
       item-key="id"
@@ -109,7 +111,7 @@
           @itemsPerPageChange="itemsPerPageChange($event)"
           @nextPage="nextPage"
           @prevPage="prevPage"
-        )
+        ) 
 </template>
 
 <script>

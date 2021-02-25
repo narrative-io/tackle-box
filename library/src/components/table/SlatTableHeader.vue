@@ -4,7 +4,7 @@
   )
     template(v-slot:content)  
       .header-selected(
-        v-if="elements.selected || elements.count"
+        v-if="elements.selected || elements.count && !$scopedSlots.customHeader"
       )
         NioCheckbox(
           v-if="selectionType === 'multiSelect'"
@@ -14,7 +14,10 @@
         .count.nio-p.nio-bold.text-primary-dark(v-if="selectedCount > 0")
           span.selected-count {{ selectedCount }}
           span.label {{ selectedCount > 1 ? ' items' : ' item' }} selected
-      .count.nio-p.nio-bold.text-primary-dark(v-if="!pagination && numItems > 0 && !elements.search && !elements.sort && !elements.selected") Showing {{ numItems }} {{ numItems > 1 ? 'items' : 'item'}}
+      slot(name="custom-header-element")
+      .count.nio-p.nio-bold.text-primary-dark(
+        v-if="!pagination && numItems > 0 && !elements.search && !elements.sort && !elements.selected && !$scopedSlots.customHeader"
+      ) Showing {{ numItems }} {{ numItems > 1 ? 'items' : 'item'}}
       NioTextField(
         v-if="elements.search"
         search-small-subdued
