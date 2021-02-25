@@ -13,12 +13,14 @@
           )
             template(v-slot:list)
               NioSlatTable(
+                v-if="filter.customOption.config.list.items.length > 0 && filter.customOption.config.list.columns.length > 0 && filter.customOption.config.list.searchableProps"
                 multi-select		
+                search-header
                 dense-rows				
-                v-if="filter.customOption.config.list.items.length > 0 && filter.customOption.config.list.columns.length > 0"
                 :items="filter.customOption.config.list.items"
                 :columns="filter.customOption.config.list.columns"
                 :defaultSelection="initialListItems"
+                :searchableProps="filter.customOption.config.list.searchableProps"
                 pagination
                 @selectionChanged="listSelectionChanged($event)"
               )

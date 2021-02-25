@@ -143,7 +143,8 @@ export default {
           config: {
             list: {
               columns: null,
-              items: null
+							items: null,
+							searchableProps: ['name']
             }
           },
           value: {
@@ -180,7 +181,8 @@ export default {
   mounted() {
     this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.items = this.getListItems() 
     this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.columns = this.getColumns() 
-    this.activeFilterName = this.filters[0].name
+		this.activeFilterName = this.filters[0].name
+		console.log(this.filters)
   },
   watch: {
     activeFilterName(val) {
@@ -219,14 +221,14 @@ export default {
         {
 					id: 1,
 					orderNum: 245,
-          name: 'item1',
+          name: 'item1 test',
           label: 'Item 1',
           listId: 103324,
           count: 123521345234
         },
         {
           id: 2,
-					name: 'item2',
+					name: 'item2 apple',
 					orderNum: 246,
           label: 'Item 2',
           listId: 5345533,
@@ -234,7 +236,7 @@ export default {
         },
         {
           id: 3,
-					name: 'item2',
+					name: 'item2 banana',
 					orderNum: 247,
           label: 'Item 2',
           listId: 23466564,

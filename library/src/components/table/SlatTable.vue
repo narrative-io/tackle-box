@@ -289,6 +289,9 @@ export default {
       if (attributes.getNamedItem('dense-rows')) {
         this.dense = true
       }
+      if (attributes.getNamedItem('search-header')) {
+        this.headerElements.search = true
+      }
       if (attributes.getNamedItem('search-sort-header')) {
         this.headerElements.search = true
         this.headerElements.sort = true
