@@ -12,18 +12,23 @@
             v-model="activeTab"
           )
             template(v-slot:list)
-              NioRadioGroup(v-model="filter.customOption.list.value.type")
+              NioRadioGroup(v-model="filter.customOption.value.listType")
                 NioRadioButton(value="include" label="Include")
                 NioRadioButton(value="exclude" label="Exclude")
               NioSlatTable(
                 listing-plain
                 no-slat
-                v-if="filter.customOption.list.config.items.length > 0 && filter.customOption.list.config.columns.length > 0"
-                :items="filter.customOption.list.config.items"
-                :columns="filter.customOption.list.config.columns"
+                v-if="filter.customOption.config.list.items.length > 0 && filter.customOption.config.list.columns.length > 0"
+                :items="filter.customOption.config.list.items"
+                :columns="filter.customOption.config.list.columns"
               )
             template(v-slot:manual)
-        
+              NioRadioGroup(v-model="filter.customOption.value.listType")
+                NioRadioButton(value="include" label="Include")
+                NioRadioButton(value="exclude" label="Exclude")
+              NioTextarea(
+                v-model="test"
+              )           
 </template>
 
 <script>
@@ -33,6 +38,7 @@ import NioTabs from '../../Tabs'
 import NioSlatTable from '../../table/SlatTable'
 import NioRadioGroup from '../../RadioGroup'
 import NioRadioButton from '../../RadioButton'
+import NioTextarea from '../../Textarea'
 
 export default {
   name: 'nio-filter-properties-string-many',
@@ -40,6 +46,7 @@ export default {
     "filter": { type: Object, required: true },
   },
   data: () => ({
+    test: 'a',
     description: 'Select the data to include',
     tabs: [
       {
@@ -83,7 +90,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty, NioTabs, NioSlatTable, NioRadioGroup, NioRadioButton }
+  components: { NioFilterProperty, NioTabs, NioSlatTable, NioRadioGroup, NioRadioButton, NioTextarea }
 }
 </script>
 

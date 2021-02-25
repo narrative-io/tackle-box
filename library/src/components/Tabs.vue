@@ -22,41 +22,41 @@
 
 import NioDivider from './Divider'
 
-  export default {
-    name: 'nio-tabs',
-    props: {
-      "model": { required: true },
-      "tabs": { type: Array, required: true }
+export default {
+  name: 'nio-tabs',
+  props: {
+    "model": { required: true },
+    "tabs": { type: Array, required: true }
+  },
+  model: {
+    prop: "model",
+    event: "update"
+  },
+  data: () => ({
+    activeTab: 0
+  }),
+  computed: {
+    computedModel() {
+      return this.model
+    }
+  },
+  methods: {
+    change(val) {
+      this.$emit('update', this.tabs[val])
     },
-    model: {
-      prop: "model",
-      event: "update"
-    },
-    data: () => ({
-      activeTab: 0
-    }),
-    computed: {
-      computedModel() {
-        return this.model
-      }
-    },
-    methods: {
-      change(val) {
-        this.$emit('update', this.tabs[val])
-      },
-      getTabIndex(tab) {
-        return this.tabs.indexOf(tab)
-      }
-    },
-    mounted() {	
-      this.activeTab = this.model
-      this.$emit('mounted')
-    },
-    destroyed() {
-      this.$emit('destroyed')
-    },
-    components: { NioDivider }
-  }
+    getTabIndex(tab) {
+      return this.tabs.indexOf(tab)
+    }
+  },
+  mounted() {	
+    this.activeTab = this.model
+    this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
+  },
+  components: { NioDivider }
+}
 </script>
 
 <style lang="sass" scoped>

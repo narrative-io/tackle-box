@@ -140,18 +140,16 @@ export default {
           }
         ],
         customOption: {
-          list: {
-            config: {
+          config: {
+            list: {
               columns: null,
               items: null
-            },
-            value: {
-              type: 'include',
-              items: []
             }
           },
-          manual: {
-
+          value: {
+            entryType: 'list',
+            listType: 'include',
+            items: []
           }
         }
       },
@@ -172,8 +170,8 @@ export default {
     ]
   }),
   mounted() {
-    this.filters.find(filter => filter.name === 'resourceID').customOption.list.config.items = this.getListItems() 
-    this.filters.find(filter => filter.name === 'resourceID').customOption.list.config.columns = this.getColumns() 
+    this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.items = this.getListItems() 
+    this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.columns = this.getColumns() 
     this.activeFilterName = this.filters[0].name
   },
   watch: {
