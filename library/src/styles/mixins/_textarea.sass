@@ -1,4 +1,11 @@
-=nio-textarea 
+@import '../global/_colors'
 
+=nio-textarea 
+  ::v-deep .v-input__slot
+    border-radius: 8px
+    box-shadow: none !important
+    border: 1px solid $c-primary-lighter     
+    textarea
+      color: $c-primary-dark
 .nio-textarea
-	+nio-textarea
+  +nio-textarea

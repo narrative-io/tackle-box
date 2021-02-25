@@ -2,7 +2,10 @@
     v-textarea.nio-textarea(
       solo
       :model="model"
+      :value="value"
       @input="$emit('update', $event)"
+      v-bind="$attrs"
+      v-on="$listeners" 
     )
 </template>
 
@@ -17,9 +20,10 @@
       event: "update"
     },
     data: () => ({
-      
+      value: ''
     }),
     mounted() {	
+      this.value = this.model
       this.$emit('mounted') 
     },
     destroyed() {

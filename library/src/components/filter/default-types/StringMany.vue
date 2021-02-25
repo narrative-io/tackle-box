@@ -31,7 +31,7 @@
                 NioRadioButton(value="include" label="Include")
                 NioRadioButton(value="exclude" label="Exclude")
               NioTextarea(
-                v-model="test"
+                v-model="filter.customOption.value.manualEntry"
               )
 </template>
 

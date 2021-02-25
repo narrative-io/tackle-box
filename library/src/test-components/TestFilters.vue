@@ -156,7 +156,8 @@ export default {
 							label: 'Item 1',
 							listId: 103324,
 							count: 123521345234
-						}]
+						}],
+						manualEntry: 'stuff'
           }
         }
       },
