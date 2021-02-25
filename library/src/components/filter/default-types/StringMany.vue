@@ -16,8 +16,8 @@
                 NioRadioButton(value="include" label="Include")
                 NioRadioButton(value="exclude" label="Exclude")
               NioSlatTable(
-                listing-plain
-                no-slat
+                multi-select		
+                dense-rows				
                 v-if="filter.customOption.config.list.items.length > 0 && filter.customOption.config.list.columns.length > 0"
                 :items="filter.customOption.config.list.items"
                 :columns="filter.customOption.config.list.columns"

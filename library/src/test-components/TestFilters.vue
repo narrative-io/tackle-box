@@ -182,12 +182,18 @@ export default {
   methods: {
     computeIdCount(item) {
       return `${item.count} ids`
-    },
+		},
+		computeSubtitle(item) {
+			return `Order #${item.listId}`
+		},
     getColumns() {
       return [
         {
-          name: "name",
-          label: "Name"
+					name: "slat",
+					props: {
+						title: "name",
+						subtitle: this.computeSubtitle
+					}
         },
         {
           name: "listId",

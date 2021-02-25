@@ -45,7 +45,7 @@
               :key="item.id"
             )
             
-          td.slat-cell(v-if="hasSlat")
+          td.slat-cell
             NioImageTitleSubtitleSlot(
               :imgSrc="item.slat.image"
               :size="dense ? 'small' : 'normal'"
@@ -141,7 +141,6 @@ export default {
       selected: false,
       count: false
 		},
-		hasSlat: true,
     selection: null,
     headers: null,
     computedItems: null,
@@ -250,12 +249,10 @@ export default {
     makeHeaders() {
       const headers = []
 
-			if (this.hasSlat) {
-				headers.push({
-					name: 'slat',
-					value: 'slat'
-				})
-			}
+			headers.push({
+				name: 'slat',
+				value: 'slat'
+			})
       
       this.columns.filter(column => column.name !== "slat").forEach(column => {
         headers.push({
@@ -311,9 +308,6 @@ export default {
         this.pagination = false
         this.listingPlain = true
 			}
-			if (attributes.getNamedItem('no-slat')) {
-        this.hasSlat = false
-      }
     },
     searchChange(val) {
       this.currentPage = 1
