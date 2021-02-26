@@ -170,7 +170,7 @@ export default {
         value: "default",
         options: [
           {
-            label: `All Resource IDs`,
+            label: `All Country Codes`,
             value: 'default',
           },
           {
@@ -188,9 +188,10 @@ export default {
 							items: null,
             }
           },
-          value: {
-            items: [],
-          }
+          value: [{ 
+					value: 'US',
+					label: 'US'
+				}]
         }
       },
       // {  

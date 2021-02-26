@@ -7,10 +7,13 @@
     )
       template(v-slot:custom-option)
         NioSelect(
+          multiple
           v-if="filter.customOption.config.items.length > 0"
           v-model="filter.customOption.value" 
           :items="filter.customOption.config.items"
           :label="'Select'"
+          item-text="label"
+          item-value="value" 
         )
         
 </template>
