@@ -214,7 +214,26 @@ export default {
               ]  
             },
             value: [15, 'day']
-          } 
+          },
+          supportingOption: {
+            config: {
+              items: [
+                {
+                  label: 'Days',
+                  value: 'day'
+                },
+                {
+                  label: 'Weeks',
+                  value: 'week'
+                },
+                {
+                  label: 'Months',
+                  value: 'months'
+                }
+              ]
+            },
+            value: []
+          }
         }
       },
       // {  

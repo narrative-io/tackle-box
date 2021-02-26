@@ -8,22 +8,35 @@
       template(v-slot:custom-option)
         .frequency-custom
           .frequency-section
-            .nio-p.text-primary-dark Buy once every 
+            .label.nio-p.text-primary-dark Buy once every 
             .selection
-              NioTextField(
-                v-model="filter.customOption.frequency.value[0]"
-                :value="filter.customOption.frequency.value[0]"
-                :min="1"
-                type="number"
-                solo
-              )
-              NioSelect(
-                v-model="filter.customOption.frequency.value[1]"
-                :items="filter.customOption.frequency.config.periodOptions"
-                :value="filter.customOption.frequency.value[1]"
-                item-text="label"
-                item-value="value" 
-              )
+              .fields
+                NioTextField(
+                  v-model="filter.customOption.frequency.value[0]"
+                  :value="filter.customOption.frequency.value[0]"
+                  :min="1"
+                  type="number"
+                  solo
+                )
+                NioSelect(
+                  v-model="filter.customOption.frequency.value[1]"
+                  :items="filter.customOption.frequency.config.periodOptions"
+                  :value="filter.customOption.frequency.value[1]"
+                  item-text="label"
+                  item-value="value" 
+                )
+          .supporting-option-section
+            .label.nio-p.text-primary-dark Receive a single record for IDs that has
+            NioSelect.selection(
+              multiple
+              v-if="filter.customOption.supportingOption.config.items.length > 0"
+              v-model="filter.customOption.supportingOption.value" 
+              :items="filter.customOption.supportingOption.config.items"
+              :label="'Select'"
+              item-text="label"
+              item-value="value" 
+              selection-pills
+            )
 </template>
 
 <script>

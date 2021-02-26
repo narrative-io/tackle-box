@@ -118,7 +118,32 @@
       .string-limited-custom
         .nio-select
           margin-bottom: 0px      
-      
+
+      .frequency-custom
+        .frequency-section
+          justify-content: flex-end
+        .nio-text-field, .nio-select
+          margin-bottom: 0px
+        .supporting-option-section
+          margin-top: 16px
+          display: flex
+          justify-content: flex-end
+          align-items: center
+          & > * + *
+            margin-left: 16px    
+
+        .label
+          width: 33%
+          min-width: 300px
+        .selection
+          flex-grow: 2
+        
+        .frequency-section .selection 
+          .fields
+            width: 174px  
+            display: flex
+            justify-content: flex-start
+
       .validation-error
         position: absolute
         left: 0px
