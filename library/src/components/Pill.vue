@@ -1,7 +1,7 @@
 <template lang="pug">
   .nio-pill(:class="[text, {'selected-value': selectedValueAttr}]" :style="{backgroundColor: backgroundColor}") 
     .nio-pill-content-wrapper
-      .nio-pill-content.text-c-white {{ text }}
+      .nio-pill-content {{ text }}
 </template>
 
 <script>
