@@ -6,12 +6,19 @@
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
+        NioSelect(
+          v-if="filter.customOption.config.items.length > 0"
+          v-model="filter.customOption.value" 
+          :items="filter.customOption.config.items"
+          :label="'Select'"
+        )
         
 </template>
 
 <script>
 
 import NioFilterProperty from '../FilterProperty'
+import NioSelect from '../../Select'
 
 export default {
   name: 'nio-filter-properties-string-limited',
@@ -41,8 +48,8 @@ export default {
         }
       ]
     }
-	},
-	watch: {
+  },
+  watch: {
     filter: {
       deep: true,
       handler() {
@@ -51,7 +58,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty }
+  components: { NioFilterProperty, NioSelect }
 }
 </script>
 

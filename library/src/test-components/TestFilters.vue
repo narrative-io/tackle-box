@@ -119,10 +119,53 @@ export default {
       //     value: [25, 135]
       //   }
       // },
-      {
-        name: "resourceID",
-        type: "stringMany",
-        title: "Resource ID",
+      // {
+      //   name: "resourceID",
+      //   type: "stringMany",
+      //   title: "Resource ID",
+      //   description: "Test description 2",
+      //   value: "default",
+      //   options: [
+      //     {
+      //       label: `All Resource IDs`,
+      //       value: 'default',
+      //     },
+      //     {
+      //       label: "Include if present",
+      //       value: 'ifPresent',
+      //     },
+      //     {
+      //       label: 'Custom',
+      //       value: 'custom',
+      //     }
+      //   ],
+      //   customOption: {
+      //     config: {
+      //       list: {
+      //         columns: null,
+			// 				items: null,
+			// 				searchableProps: ['name']
+      //       }
+      //     },
+      //     value: {
+      //       entryType: 'list',
+      //       listType: 'include',
+      //       items: [{
+			// 				id: 1,
+			// 				orderNum: 245,
+			// 				name: 'item1',
+			// 				label: 'Item 1',
+			// 				listId: 103324,
+			// 				count: 123521345234
+			// 			}],
+			// 			manualEntry: 'stuff'
+      //     }
+      //   }
+			// },
+			{
+        name: "countryCodes",
+        type: "stringLimited",
+        title: "Country Codes",
         description: "Test description 2",
         value: "default",
         options: [
@@ -142,23 +185,11 @@ export default {
         customOption: {
           config: {
             list: {
-              columns: null,
 							items: null,
-							searchableProps: ['name']
             }
           },
           value: {
-            entryType: 'list',
-            listType: 'include',
-            items: [{
-							id: 1,
-							orderNum: 245,
-							name: 'item1',
-							label: 'Item 1',
-							listId: 103324,
-							count: 123521345234
-						}],
-						manualEntry: 'stuff'
+            items: [],
           }
         }
       },
@@ -179,10 +210,10 @@ export default {
     ]
   }),
   mounted() {
-    this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.items = this.getListItems() 
-    this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.columns = this.getColumns() 
+    // this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.items = this.getListItems() 
+		// this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.columns = this.getColumns() 
+		this.filters.find(filter => filter.name === 'countryCodes').customOption.config.items = this.getLimitedItems() 
 		this.activeFilterName = this.filters[0].name
-		console.log(this.filters)
   },
   watch: {
     activeFilterName(val) {
@@ -215,7 +246,23 @@ export default {
           computed: this.computeIdCount
         } 
       ]
-    },
+		},
+		getLimitedItems() {
+			return [
+				{ 
+					value: 'US',
+					label: 'US'
+				},
+				{
+					value: 'CD',
+					label: 'Canada'
+				},
+				{
+					value: 'AU',
+					label: 'Australia'
+				}
+			]	
+		},
     getListItems() {
       return [
         {
