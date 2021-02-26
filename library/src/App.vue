@@ -43,7 +43,7 @@
         //- TestIcons
         //- TestTextField
         //- TestDateField
-        TestSelect
+        //- TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog

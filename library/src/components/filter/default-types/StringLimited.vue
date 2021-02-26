@@ -14,6 +14,7 @@
           :label="'Select'"
           item-text="label"
           item-value="value" 
+          selection-pills
         )
         
 </template>

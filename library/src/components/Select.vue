@@ -1,6 +1,6 @@
 <template lang="pug">
     v-select.nio-select(
-      :class="{ small: smallAttr, 'hide-selections': hideSelections }"
+      :class="{ small: smallAttr, 'hide-selections': hideSelections, 'selection-pills': selectionPills }"
       :solo="smallAttr"
       :model="model"
       :menu-props="{contentClass: 'nio-select-menu', offsetY: true, nudgeBottom: 10  }"

@@ -39,6 +39,10 @@
         letter-spacing: 0.0375rem
         font-size: 0.875rem
         color: $c-primary-darker
+  .v-select__selections
+      margin-left: 1rem
+      font-size: 0.875rem
+      color: $c-primary-dark    
   & .v-select__selection.v-select__selection--comma			
     margin: 0.4375rem 0.25rem 0.4375rem 0
     overflow: hidden
@@ -50,6 +54,19 @@
   ::v-deep .v-menu__content
     +nio-menu
 
+  &.selection-pills
+    &.v-select--is-menu-active 
+    ::v-deep .v-input__slot label.v-label.v-label--active     
+      top: 1.9rem !important  
+    .v-select__selections
+      margin-left: 1rem
+      font-size: 0.875rem
+      color: $c-primary-dark   
+      .nio-pill
+        margin-top: 2px
+      & > .nio-pill + .nio-pill
+        margin-left: 6px     
+        
 =nio-select-small
   +nio-text-field
   +nio-text-field-small 
@@ -71,6 +88,7 @@
       margin-left: 1rem
       font-size: 0.875rem
       color: $c-primary-dark   
+			
 .nio-select:not(.small)
   +nio-select
 
