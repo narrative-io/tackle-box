@@ -6,12 +6,31 @@
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
-        
+        .frequency-custom
+          .frequency-section
+            .nio-p.text-primary-dark Buy once every 
+            .selection
+              NioTextField(
+                v-model="filter.customOption.frequency.value[0]"
+                :value="filter.customOption.frequency.value[0]"
+                :min="1"
+                type="number"
+                solo
+              )
+              NioSelect(
+                v-model="filter.customOption.frequency.value[1]"
+                :items="filter.customOption.frequency.config.periodOptions"
+                :value="filter.customOption.frequency.value[1]"
+                item-text="label"
+                item-value="value" 
+              )
 </template>
 
 <script>
 
 import NioFilterProperty from '../FilterProperty'
+import NioSelect from '../../Select'
+import NioTextField from '../../TextField'
 
 export default {
   name: 'nio-filter-properties-frequency',
@@ -41,8 +60,8 @@ export default {
         }
       ]
     }
-	},
-	watch: {
+  },
+  watch: {
     filter: {
       deep: true,
       handler() {
@@ -51,7 +70,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty }
+  components: { NioFilterProperty, NioSelect, NioTextField }
 }
 </script>
 
