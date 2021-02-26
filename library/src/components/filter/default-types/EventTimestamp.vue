@@ -39,11 +39,12 @@
               solo
             )
             NioSelect(
+              v-if="filter.customOption.rollingLookback.config.periodOptions.length > 0"
               v-model="filter.customOption.rollingLookback.value[1]"
               :items="filter.customOption.rollingLookback.config.periodOptions"
               :value="filter.customOption.rollingLookback.value[1]"
-              item-text="label"
-              item-value="value" 
+              :item-text="!filter.customOption.rollingLookback.config.periodOptions[0].length ? 'label' : undefined"
+              :item-value="!filter.customOption.rollingLookback.config.periodOptions[0].length ? 'value' : undefined" 
             )
           .nio-p.text-primary-dark from the current day within a date range.
 </template>

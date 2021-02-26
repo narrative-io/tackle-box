@@ -33,8 +33,8 @@
               v-model="filter.customOption.supportingOption.value" 
               :items="filter.customOption.supportingOption.config.items"
               :label="'Select'"
-              item-text="label"
-              item-value="value" 
+              :item-text="!filter.customOption.supportingOption.config.items[0].length ? 'label' : undefined"
+              :item-value="!filter.customOption.supportingOption.config.items[0].length ? 'value' : undefined" 
               selection-pills
             )
 </template>
