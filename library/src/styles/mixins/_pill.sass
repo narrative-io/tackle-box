@@ -3,6 +3,7 @@
   
 =nio-pill
   flex: none
+  display: inline-block
   border-radius: 0.125rem
   height: 0.75rem
   padding: 0.125rem 0.1875rem 0.0625rem 0.25rem
@@ -25,6 +26,25 @@
       letter-spacing: 0.025rem
       text-transform: uppercase
       color: $c-white            
+
+  &.selected-value
+    background-color: blue    
+    padding: 0px
+    border-radius: 100px
+    background-color: $c-canvas-darker
+    height: unset
+    .nio-pill-content-wrapper
+      padding: 4px 8px
+      .nio-pill-content
+        color: $c-primary-dark !important
+        font-size: 12px !important
+        line-height: 12px !important
+        display: flex
+        align-items: center
+        letter-spacing: 0.6px !important
+        font-weight: normal
+        text-transform: none
+        
 
 =nio-pill-hover
   &.new

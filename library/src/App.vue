@@ -50,6 +50,7 @@
         TestFilters
         //- TestSlider
         //- TestTabs
+        TestPills
 </template>
 
 <script>
@@ -81,6 +82,7 @@ import TestFilters from './test-components/TestFilters'
 import TestSlider from './test-components/TestSlider'
 import TestDateField from './test-components/TestDateField'
 import TestTabs from './test-components/TestTabs'
+import TestPills from './test-components/TestPills'
 
 export default {
   name: "App",
@@ -112,7 +114,8 @@ export default {
     TestFilters,
     TestSlider,
     TestDateField,
-    TestTabs
+    TestTabs,
+    TestPills
   },
   data: () => ({
     loggedIn: false,
