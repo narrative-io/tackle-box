@@ -43,14 +43,14 @@
         //- TestIcons
         //- TestTextField
         //- TestDateField
-        //- TestSelect
+        TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
         TestFilters
         //- TestSlider
         //- TestTabs
-        TestPills
+        //- TestPills
 </template>
 
 <script>
