@@ -46,14 +46,22 @@ export default {
           value: 'custom',
         }
       ]
-    }
-  },
+		}
+	},
+	mounted() {
+		this.updateValue()
+	},
+	methods: {
+		updateValue() {
+			const options = this.filter.options ? this.filter.options : this.defaultOptions
+			this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+		}
+	},
   watch: {
     filter: {
       deep: true,
       handler() {
-        const options = this.filter.options ? this.filter.options : this.defaultOptions
-        this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+        this.updateValue()
       }
     }
   },

@@ -90,18 +90,22 @@ export default {
   },
   mounted() {
     this.initialListItems = this.filter.customOption.value.items.length ? this.filter.customOption.value.items.map(item => item.id) : []
+    this.updateValue()
   },
   methods: {
     listSelectionChanged(val) {
       this.filter.customOption.value.items = val
-    }
+    },
+    updateValue() {
+			const options = this.filter.options ? this.filter.options : this.defaultOptions
+			this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+		}
   },
   watch: {
     filter: {
       deep: true,
       handler() {
-        const options = this.filter.options ? this.filter.options : this.defaultOptions
-        this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+        this.updateValue()
       }
     }
   },
