@@ -43,11 +43,11 @@
         //- TestIcons
         //- TestTextField
         //- TestDateField
-        //- TestSelect
+        TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
-        TestFilters
+        //- TestFilters
         //- TestSlider
         //- TestTabs
         //- TestPills
