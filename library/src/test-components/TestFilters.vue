@@ -71,7 +71,10 @@ export default {
                 }
               ]  
             },
-            value: [15, 'day']
+            value: [15, {
+              label: 'Days',
+              value: 'day'
+            }]
           }
         },
         valid: true
@@ -213,31 +216,38 @@ export default {
                 }
               ]  
             },
-            value: [15, 'day']
+            value: [15, {
+              label: 'Days',
+              value: 'day'
+            }]
           },
           supportingOption: {
             config: {
-              items: [
-                {
-                  label: 'Days',
-                  value: 'day'
-                },
-                {
-                  label: 'Weeks',
-                  value: 'week'
-                },
-                {
-                  label: 'Months',
-                  value: 'months'
-                }
-              ]
               // items: [
-              //   'apple',
-              //   'banana',
-              //   'pear'
+              //   {
+              //     label: 'Days',
+              //     value: 'day'
+              //   },
+              //   {
+              //     label: 'Weeks',
+              //     value: 'week'
+              //   },
+              //   {
+              //     label: 'Months',
+              //     value: 'months'
+              //   }
               // ]
+              items: [
+                'apple',
+                'banana',
+                'pear'
+              ]
             },
-            value: []
+            // value: [{
+            //   label: 'Days',
+            //   value: 'day'
+            // }]
+            value: ['pear']
           }
         }
       },
