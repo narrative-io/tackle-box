@@ -1,8 +1,8 @@
 <template lang="pug">
   .nio-filter-property
-    .title-description
-      .title.nio-h5.text-primary-darker(v-if="title") {{ title }}
-      .description.nio-p.text-primary-dark(:class="{'centered': !title}") {{ description }}
+    .heading-description
+      .heading.nio-h5.text-primary-darker(v-if="heading") {{ heading }}
+      .description.nio-p.text-primary-dark(:class="{'centered': !heading}") {{ description }}
     .options
       .option.nio-p.nio-bold.text-primary-dark(
         v-for="option in options"
@@ -22,7 +22,7 @@
 export default {
   name: 'nio-filter-property',
   props: {
-    "title": { type: String, required: false },
+    "heading": { type: String, required: false },
     "description": { type: String, required: true },
     "options": { type: Array, required: true },
     "value": { type: String, required: true }

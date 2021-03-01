@@ -7,6 +7,8 @@
     )
       template(v-slot:custom-option)
         .frequency-custom
+          .heading.nio-h5.text-primary-darker(v-if="customTitle") {{ customTitle }}
+          .description.nio-p.text-primary-dark(v-if="customDescription") {{ customDescription }}
           .frequency-section
             .label.nio-p.text-primary-dark Buy once every 
             .selection
@@ -72,6 +74,12 @@ export default {
           value: 'custom'
         }
       ]
+    },
+    customTitle() {
+      return this.filter.customOption && this.filter.customOption.heading ? this.filter.customOption.heading : null
+    },
+    customDescription() {
+      return this.filter.customOption && this.filter.customOption.description ? this.filter.customOption.description : null
     }
   },
   watch: {

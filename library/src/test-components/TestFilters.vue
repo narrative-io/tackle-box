@@ -42,11 +42,11 @@ export default {
 				description: "Define the timestamps you want included in your subscription.",
 				text: {
 					dateRange: {
-						title: "Date Range",
+						heading: "Date Range",
 						description: "Pick a start and end date of event timestamps to include."
 					},
 					rollingLookback: {
-						title: "Rolling Lookback",
+						heading: "Rolling Lookback",
 						description: "From your start date, define how far back in time you'd like to include."
 					}
 				},
@@ -196,7 +196,7 @@ export default {
         name: "deduplication",
         type: "frequency",
         title: "Deduplication",
-        description: "Test description 2",
+        description: "Detail how often do you want to buy the same data point.",
         value: "default",
         options: [
           {
@@ -209,6 +209,8 @@ export default {
           }
         ],
         customOption: {
+					heading: 'Deduplication Strategy',
+					description: 'Exclude irrelevant or redundant data even when you buy from multiple suppliers.',
           frequency: {
             config: {
               periodOptions: [
@@ -232,6 +234,7 @@ export default {
             }]
           },
           supportingOption: {
+						
             config: {
               // items: [
               //   {
