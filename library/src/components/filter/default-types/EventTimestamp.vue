@@ -1,8 +1,8 @@
 <template lang="pug">
   .nio-filter-properties.event-timestamp
     NioFilterProperty(
-      :title="dateRange.title"
-      :description="dateRange.description"
+      :title="filter.text.dateRange.title ? filter.text.dateRange.title : '' "
+      :description="filter.text.dateRange.description ? filter.text.dateRange.description : ''"
       :options="defaultOptions.dateRange"
       v-bind:value.sync="filter.value.dateRange"
     )
@@ -22,8 +22,8 @@
           )
         .validation-error.nio-p-small.text-error(v-if="!valid") Start date must be later than stop date
     NioFilterProperty(
-      :title="dateRange.title"
-      :description="dateRange.description"
+      :title="filter.text.rollingLookback.title ? filter.text.rollingLookback.title : ''"
+      :description="filter.text.rollingLookback.description ? filter.text.rollingLookback.description : ''"
       :options="defaultOptions.rollingLookback"
       v-bind:value.sync="filter.value.rollingLookback"
     )
@@ -62,15 +62,7 @@ export default {
     "filter": { type: Object, required: true }
   },
   data: () => ({
-    valid: true,
-    dateRange: {
-      title: "Date Range",
-      description: "Pick a start and end date of event timestamps to include."
-    },
-    rollingLookback: {
-      title: "Rolling Lookback",
-      description: "From your start date, define how far back in time you'd like to include."
-    }
+    valid: true
   }),	
   computed: {
     defaultOptions() {

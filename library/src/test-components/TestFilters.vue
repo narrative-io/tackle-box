@@ -39,13 +39,23 @@ export default {
         name: "filter2",
         type: "eventTimestamp",
         title: "Event Timestamps",
-        description: "Define the timestamps you want included in your subscription.",
+				description: "Define the timestamps you want included in your subscription.",
+				text: {
+					dateRange: {
+						title: "Date Range",
+						description: "Pick a start and end date of event timestamps to include."
+					},
+					rollingLookback: {
+						title: "Rolling Lookback",
+						description: "From your start date, define how far back in time you'd like to include."
+					}
+				},
         value: {
           dateRange: "default",
           rollingLookback: "default"
         },
         customOption: {
-          dateRange: {
+          dateRange: {			
             config: {
               startMin: "2021-01-01",
               startMax: "2021-03-30",
@@ -55,7 +65,7 @@ export default {
             value: ["2021-02-24", "2021-03-21"]
           },
           rollingLookback: {
-            config: {
+						config: {
               periodOptions: [
                 {
                   label: 'Days',
