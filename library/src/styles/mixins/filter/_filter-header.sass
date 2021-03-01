@@ -1,8 +1,8 @@
 @import '../../global/_colors'
 	
 =nio-filter-header
-	min-height: 122px
-	padding: 24px 32px
+	min-height: 7.625rem
+	padding: 1.5rem 2rem
 	display: flex
 	position: relative
 	justify-content: space-between
@@ -17,22 +17,22 @@
 		align-items: flex-start
 
 		& > * + *
-			margin-top: 10px
+			margin-top: 0.625rem
 		
 		.value
 			display: flex
 			align-items: center
 			background: $c-white
-			border: 1px solid $c-primary-lighter
-			border-radius: 100px
-			padding: 4px 16px 4px 12px
+			border: 0.0625rem solid $c-primary-lighter
+			border-radius: 6.25rem
+			padding: 0.25rem 1rem 0.25rem 0.75rem
 			.text
-				margin-left: 8px
+				margin-left: 0.5rem
 
 	.action
 		position: absolute
-		top: 24px
-		right: 32px
+		top: 1.5rem
+		right: 2rem
 		::v-deep svg
 			color: $c-primary-dark
 			&:hover
@@ -40,7 +40,7 @@
 				opacity: 0.7
 
 	.filter-title
-		margin-bottom: 4px
+		margin-bottom: 0.25rem
 
 .nio-filter-header
 	+nio-filter-header

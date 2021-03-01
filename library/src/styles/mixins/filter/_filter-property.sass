@@ -1,13 +1,13 @@
 @import '../../global/_colors'
 
 =nio-filter-property 
-  padding: 24px 32px
+  padding: 1.5rem 2rem
   border-top: 0.0625rem solid $c-primary-lighter
 
   .heading-description
-    margin-bottom: 24px
+    margin-bottom: 1.5rem
     .heading
-      margin-bottom: 6px
+      margin-bottom: 0.375rem
     .description.centered
       text-align: center
 
@@ -16,35 +16,35 @@
     justify-content: space-between
 
     & > .option + .option
-      margin-left: 24px
+      margin-left: 1.5rem
 
     .option
       flex-basis: 0
       flex-grow: 2
-      height: 68px
+      height: 4.25rem
       display: flex
       justify-content: center
       align-items: center
       background: $c-white
-      border: 1.5px solid $c-primary-lighter
-      border-radius: 12px
+      border: 0.0938rem solid $c-primary-lighter
+      border-radius: 0.75rem
       position: relative
       &.selected
         background: $c-canvas-darker
-        border: 1.5px solid $c-primary-light
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1)
+        border: 0.0938rem solid $c-primary-light
+        box-shadow: 0rem 0.25rem 0.75rem rgba(0, 0, 0, 0.1)
         color: $c-primary-darker
         
       &.custom-selected
-        margin-bottom: 48px
+        margin-bottom: 3rem
         .custom-selected-pointer
           position: absolute
-          width: 38px
-          height: 64px
-          bottom: -49px
-          border-left: 19px solid transparent
-          border-right: 19px solid transparent
-          border-bottom: 32px solid $c-white
+          width: 2.375rem
+          height: 4rem
+          bottom: -3.0625rem
+          border-left: 1.1875rem solid transparent
+          border-right: 1.1875rem solid transparent
+          border-bottom: 2rem solid $c-white
 
       &:not(.selected):hover
         cursor: pointer
@@ -54,9 +54,9 @@
     position: relative
     .option-content
       width: 100%
-      padding: 16px
+      padding: 1rem
       background-color: $c-white
-      border-radius: 12px 
+      border-radius: 0.75rem 
       position: relative
 
       // filter proprty types
@@ -68,9 +68,9 @@
         .nio-date-field
           flex-grow: 2
           ::v-deep .nio-text-field
-            margin-bottom: 0px
+            margin-bottom: 0rem
         & > * + * 
-          margin-left: 16px   
+          margin-left: 1rem   
 
       .rolling-lookback-custom,  .frequency-custom .frequency-section
         display: flex
@@ -80,76 +80,76 @@
           display: flex
           justify-content: flex-start
           .nio-text-field, .nio-select
-            margin-bottom: 0px
+            margin-bottom: 0rem
           .nio-text-field
-            width: 60px
+            width: 3.75rem
             ::v-deep .v-input__slot
               min-width: unset
               border-right: none
-              border-width: 1px
-              border-top-right-radius: 0px
-              border-bottom-right-radius: 0px
+              border-width: 0.0625rem
+              border-top-right-radius: 0rem
+              border-bottom-right-radius: 0rem
           .nio-select
-            width: 114px
+            width: 7.125rem
             ::v-deep .v-input__slot
-              border-top-left-radius: 0px
-              border-bottom-left-radius: 0px
+              border-top-left-radius: 0rem
+              border-bottom-left-radius: 0rem
             ::v-deep .v-select__selections
               padding-top: 0.55rem
               .v-select__selection.v-select__selection--comma
                 overflow: visible
                 color: $c-primary-dark
             ::v-deep .v-input__append-inner
-              margin-top: 15px
+              margin-top: 0.9375rem
         & > * + * 
-          margin-left: 16px
+          margin-left: 1rem
 
       .string-many-custom    
         .nio-radio-group
-          margin-top: 0px
-          padding-top: 0px
+          margin-top: 0rem
+          padding-top: 0rem
         ::v-deep .v-input--radio-group__input
           flex-direction: row
           .nio-radio-button
-            margin-bottom: 0px
+            margin-bottom: 0rem
           & > .nio-radio-button + .nio-radio-button
-            margin-left: 26px  
+            margin-left: 1.625rem  
 
       .string-limited-custom
         .nio-select
-          margin-bottom: 0px      
+          margin-bottom: 0rem      
 
       .frequency-custom
         & > .description
-          margin-top: 6px
+          margin-top: 0.375rem
         .frequency-section
           justify-content: flex-end
-          margin-top: 16px
+          margin-top: 1rem
         .nio-text-field, .nio-select
-          margin-bottom: 0px
+          margin-bottom: 0rem
         .supporting-option-section
-          margin-top: 16px
+          margin-top: 1rem
           display: flex
           justify-content: flex-end
           align-items: center
           & > * + *
-            margin-left: 16px    
+            margin-left: 1rem    
 
         .label
           width: 33%
-          min-width: 300px
+          min-width: 18.75rem
         .selection
           flex-grow: 2
         
         .frequency-section .selection 
           .fields
-            width: 174px  
+            width: 10.875rem  
             display: flex
             justify-content: flex-start
 
       .validation-error
         position: absolute
-        left: 0px
-        bottom: -20px
+        left: 0rem
+        bottom: -1.25rem
 .nio-filter-property
   +nio-filter-property 
