@@ -7,6 +7,10 @@
       text="value 1"
       selected-value
     )
+    NioPill(
+      text="tag value"
+      tag
+    )
 </template>
 
 <script>

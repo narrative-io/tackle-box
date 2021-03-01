@@ -47,10 +47,10 @@
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
-        TestFilters
+        //- TestFilters
         //- TestSlider
         //- TestTabs
-        //- TestPills
+        TestPills
 </template>
 
 <script>
