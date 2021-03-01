@@ -66,6 +66,25 @@
         span.v-select__selection(v-if="index === 1") , {{ item.name }}
         span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
         span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
+    NioSelect(
+      label="Preferred Data Regions"
+      v-model="selectedRegions"
+      :items="regions"
+      item-text="name"
+      item-value="value" 
+      multiple 
+      selection-pills
+      key="8"
+    )
+    NioSelect(
+      label="Preferred Data Regions"
+      v-model="selectedItems"
+      :items="items"
+      multiple 
+      selection-pills
+      key="9"
+    )
+    
 </template>
 
 <script>

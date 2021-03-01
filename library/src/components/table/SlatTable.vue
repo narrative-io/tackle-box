@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-slat-table(:class="[`action-${action}`, {'single-select': singleSelect, 'multi-select': multiSelect, 'listing-plain': listingPlain}]")
+  .nio-slat-table(:class="[`action-${action}`, {'single-select': singleSelect, 'multi-select': multiSelect, 'listing-plain': listingPlain}]")  
     NioSlatTableHeader(
       v-if="!listingPlain"
       :elements="headerElements"
@@ -13,6 +13,8 @@
       @sortChange="sortChange($event)"
       @allSelectedChange="allSelectedChange($event)"
     )
+      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+        slot(:name="name" v-bind="data")   
     v-data-table(
       v-if="headers && computedItems"
       item-key="id"
@@ -30,7 +32,11 @@
           :class="{'selected': itemSelected(item)}"
           @click="handleItemClick(item, expand, isExpanded)"
         )
-          td.selection-cell(v-if="singleSelect || multiSelect" @click.stop)
+          td.selection-cell(
+            v-if="singleSelect || multiSelect" 
+            :class="{'dense': dense}"
+            @click.stop
+          )
             NioRadioGroup(
               v-model="selection"
               v-if="singleSelect"
@@ -58,7 +64,9 @@
           )
             .label.nio-table-label.text-primary-dark {{ column.label }}
             .value.nio-table-value.text-primary-dark {{ item.columnValues[column.name]}}
-          td.action-cell(v-if="action")
+          td.action-cell(
+            v-if="action" 
+          )
             NioButton(container v-if="action !== 'custom'")
               NioIcon(
                 v-if="action === 'link'"
@@ -103,7 +111,7 @@
           @itemsPerPageChange="itemsPerPageChange($event)"
           @nextPage="nextPage"
           @prevPage="prevPage"
-        )
+        ) 
 </template>
 
 <script>
@@ -215,10 +223,12 @@ export default {
       this.items.forEach(item => {
         const computedItem = item
         const slatColumn = this.columns.find(column => column.name === 'slat')
-        computedItem.slat = {
-          image: typeof slatColumn.props.image === 'function' ? slatColumn.props.image(item) : item[slatColumn.props.image],
-          title: typeof slatColumn.props.title === 'function' ? slatColumn.props.title(item) : item[slatColumn.props.title],
-          subtitle: typeof slatColumn.props.subtitle === 'function' ? slatColumn.props.subtitle(item) : item[slatColumn.props.subtitle]
+        if (slatColumn) {
+          computedItem.slat = {
+            image: typeof slatColumn.props.image === 'function' ? slatColumn.props.image(item) : item[slatColumn.props.image],
+            title: typeof slatColumn.props.title === 'function' ? slatColumn.props.title(item) : item[slatColumn.props.title],
+            subtitle: typeof slatColumn.props.subtitle === 'function' ? slatColumn.props.subtitle(item) : item[slatColumn.props.subtitle]
+          }
         }
         
         const columnValues = {}
@@ -251,6 +261,7 @@ export default {
         name: 'slat',
         value: 'slat'
       })
+      
       this.columns.filter(column => column.name !== "slat").forEach(column => {
         headers.push({
           name: column.name,
@@ -277,6 +288,9 @@ export default {
       }
       if (attributes.getNamedItem('dense-rows')) {
         this.dense = true
+      }
+      if (attributes.getNamedItem('search-header')) {
+        this.headerElements.search = true
       }
       if (attributes.getNamedItem('search-sort-header')) {
         this.headerElements.search = true

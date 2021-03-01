@@ -15,23 +15,23 @@
     width: 100%
     height: 0rem
     transition: all 100ms ease-in-out
-    padding: 0px
+    padding: 0rem
     .message
       flex-grow: 2
-      padding-right: 24px
+      padding-right: 1.5rem
     .graphic, .dismiss
       flex-grow: 0
       flex-shrink: 0  
     .graphic
-      width: 20px
-      height: 20px
-      border-radius: 10px    
+      width: 1.25rem
+      height: 1.25rem
+      border-radius: 0.625rem    
       display: flex
       justify-content: center
       align-items: center
-      margin-right: 18px
+      margin-right: 1.125rem
       .nio-icon
-        margin-top: 1px
+        margin-top: 0.0625rem
     .dismiss
       &:hover 
         cursor: pointer
@@ -40,7 +40,7 @@
     &.nio-alert-warning
       justify-content: flex-start
       background-color: $c-white  
-      border: 0px solid rgba(0,0,0,0)
+      border: 0rem solid rgba(0,0,0,0)
       padding-left: 1.6875rem
       text-align: left
       ::v-deep .nio-icon.dismiss svg
@@ -49,11 +49,11 @@
         background-color: $c-warning	
                 
     &.nio-visible
-      padding: 24px
+      padding: 1.5rem
       height: unset
       margin-bottom: 1.5rem
       &.nio-alert-warning
-        border: 2px solid $c-warning
+        border: 0.125rem solid $c-warning
     a
       text-decoration: none
       color: $c-primary  

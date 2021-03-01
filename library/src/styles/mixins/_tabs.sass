@@ -1,0 +1,31 @@
+@import '../global/_colors'
+  
+=nio-tabs 
+  ::v-deep .theme--light.v-tabs > .v-tabs-bar
+    background-color: $c-white
+  ::v-deep .theme--light.v-tabs > .v-tabs-bar
+    .v-slide-group__content.v-tabs-bar__content
+      justify-content: center
+      color: $c-primary-darker
+      .v-tab      
+        color: $c-primary-dark
+        max-width: unset
+        & .full-name
+          margin-left: 0.3125rem
+        .v-ripple__container
+          display: none
+        &:before 
+          opacity: 0
+        &:hover
+          opacity: 0.5  
+        &.v-tab--active  
+          color: $c-primary !important
+          padding: 0rem 0.875rem
+  ::v-deep .v-tabs-slider-wrapper
+    color: $c-primary        
+    height: 0.25rem !important
+  .nio-divider
+    margin-top: -1.0625rem     
+    margin-bottom: 0.25rem   
+.nio-tabs
+  +nio-tabs 

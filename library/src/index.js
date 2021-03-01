@@ -35,6 +35,13 @@ import NioSourceOption from "./components/options-grid/SourceOption"
 import NioPill from "./components/Pill"
 import NioChargeSummary from "./components/ChargeSummary"
 import NioDialog from './components/Dialog'
+import NioFilterGroup from './components/filter/FilterGroup'
+import NioFilter from './components/filter/Filter'
+import NioTabs from './components/Tabs'
+import NioSlider from './components/Slider'
+import NioDateField from './components/DateField'
+import NioTextarea from './components/Textarea'
+
 import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
 import NioHeightObserver from './modules/app/height-observer'
@@ -78,6 +85,12 @@ const Components = {
 	NioPill,
 	NioChargeSummary,
 	NioDialog,
+	NioFilterGroup,
+	NioFilter,
+	NioTabs,
+	NioSlider,
+	NioDateField,
+	NioTextarea,
 	FontAwesomeIcon
 }
 
@@ -114,6 +127,13 @@ Vue.component("NioSourceOption", NioSourceOption)
 Vue.component("NioPill", NioPill)
 Vue.component("NioChargeSummary", NioChargeSummary)
 Vue.component("NioDialog", NioDialog)
+Vue.component("NioFilterGroup", NioFilterGroup)
+Vue.component("NioDialog", NioDialog)
+Vue.component("NioTabs", NioTabs)
+Vue.component("NioSlider", NioSlider)
+Vue.component("NioDateField", NioDateField)
+Vue.component("NioTextarea", NioTextarea)
+
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
 export { NioButton }
@@ -149,6 +169,12 @@ export { NioSourceOption }
 export { NioPill }
 export { NioChargeSummary }
 export { NioDialog }
+export { NioFilterGroup }
+export { NioFilter }
+export { NioTabs }
+export { NioSlider }
+export { NioDateField }
+export { NioTextarea }
 export { FontAwesomeIcon }
 export { NioRouterModule }
 export { NioHeightObserver }

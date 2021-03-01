@@ -3,10 +3,12 @@
   
 =nio-pill
   flex: none
+  display: inline-block
   border-radius: 0.125rem
   height: 0.75rem
   padding: 0.125rem 0.1875rem 0.0625rem 0.25rem
   margin-bottom: 0.125rem
+  color: $c-white
   &.new
     background-color: $c-seagreen-light
   &.coming
@@ -26,6 +28,44 @@
       text-transform: uppercase
       color: $c-white            
 
+  &.selected-value
+    background-color: blue    
+    padding: 0rem
+    border-radius: 6.25rem
+    background-color: $c-canvas-darker
+    height: unset
+    .nio-pill-content-wrapper
+      padding: 0.25rem 0.5rem
+      .nio-pill-content
+        color: $c-primary-dark
+        font-size: 0.75rem
+        line-height: 0.75rem
+        display: flex
+        align-items: center
+        letter-spacing: 0.0375rem
+        font-weight: normal
+        text-transform: none
+        
+  &.tag
+    padding: 0rem
+    border-radius: 6.25rem
+    border: 0.0625rem solid $c-primary-lighter
+    background-color: $c-canvas-darker
+    height: 1.25rem
+    .nio-pill-content-wrapper
+      padding: 0rem 0.625rem
+      .nio-pill-content
+        color: $c-primary-dark
+        font-style: normal
+        font-weight: bold
+        font-size: 0.75rem
+        line-height: 1.25rem
+        display: flex
+        align-items: center
+        text-align: center
+        letter-spacing: 0.05rem
+        text-transform: uppercase
+          
 =nio-pill-hover
   &.new
     background-color: darken($c-seagreen-light, 15)

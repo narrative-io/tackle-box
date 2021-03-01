@@ -6,7 +6,7 @@
       small
     )
     NioImageTile.nio-slat-image(
-      v-else
+      v-else-if="imgSrc"
       :src="imgSrc"
       :size="imageSize ? imageSize : size"
     )

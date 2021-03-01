@@ -1,5 +1,25 @@
 <template lang="pug">
   .test-slat-table
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      action="expand"
+      multi-select
+      dense-rows
+      key="5"
+      footer-actions
+      pagination
+      search-sort-header
+      :searchableProps="['orderName']"
+      :sortOptions="sortOptions"
+    )
+      template(v-slot:custom-header-element)
+        .test Test Custom Header
+      template(v-slot:footer-actions)
+        NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
+        NioButton(normal-primary-append iconName="utility-plus") New Item
+      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}  
     h2 Listing plain
     NioSlatTable(
       v-if="items && plainColumns"
@@ -54,22 +74,7 @@
     )
       template(v-slot:footer-actions)
         NioButton(normal-primary-append iconName="utility-plus") New Item
-      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}    
-    NioSlatTable(
-      v-if="columns && items"
-      :items="items"
-      :columns="columns"
-      action="expand"
-      dense-rows
-      key="5"
-      footer-actions
-      pagination
-      :sortOptions="sortOptions"
-    )
-      template(v-slot:footer-actions)
-        NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
-        NioButton(normal-primary-append iconName="utility-plus") New Item
-      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}   
+      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}     
     NioSlatTable(
       v-if="columns && items"
       :items="items"

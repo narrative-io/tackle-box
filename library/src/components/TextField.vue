@@ -3,7 +3,7 @@
       :class="{small: smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr }"
       outlined 
       flat
-      :solo="soloAttr || smallAttr || prependAttr || appendAttr"
+      :solo="soloAttr || smallAttr || prependAttr"
       @input="$emit('update', $event)"
       :model="model"
       :rules="parsedRules"

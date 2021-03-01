@@ -1,0 +1,13 @@
+@import './_menu'
+  
+=nio-date-field
+  ::v-deep .v-menu__content
+    +nio-menu
+    min-width: unset !important    
+    max-width: unset !important
+
+  .nio-text-field &:hover, ::v-deep input, ::v-deep .v-input__slot
+      cursor: pointer !important
+.nio-date-field
+  +nio-date-field 
+
