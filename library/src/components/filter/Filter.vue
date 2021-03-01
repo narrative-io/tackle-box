@@ -30,7 +30,6 @@ export default {
   }),	
   methods: {
     handleValueChange(newValue) {
-			console.log(newValue)
       this.value = newValue
     }
   },
