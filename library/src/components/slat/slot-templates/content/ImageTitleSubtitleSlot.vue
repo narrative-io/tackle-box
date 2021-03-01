@@ -27,22 +27,22 @@ export default {
   name: 'image-title-subtitle-slot',
   props: {
     "imgSrc": { type: String, required: false },
-		"iconName": { type: String, required: false },
-		"size": { type: String, required: false, default: 'normal' }
+    "iconName": { type: String, required: false },
+    "size": { type: String, required: false, default: 'normal' }
   },
   data: () => ({
-		imageSize: null
+    imageSize: null
   }),
   mounted() {
-		this.applyHelperAttributes()
-	},
+    this.applyHelperAttributes()
+  },
   methods: {
-		applyHelperAttributes() {
-			const attributes = this.$el.attributes
-			if (attributes.getNamedItem('small')) {
-				this.imageSize = 'small'
-			}
-		},	
+    applyHelperAttributes() {
+      const attributes = this.$el.attributes
+      if (attributes.getNamedItem('small')) {
+        this.imageSize = 'small'
+      }
+    },	
     click() {
       this.$emit('click')
     }
