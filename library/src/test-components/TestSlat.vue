@@ -35,10 +35,11 @@
         template(v-slot:title) Item 1 title
         template(v-slot:subtitle) Item 1 subtitle  
       NioImageTileLinkSlat(
-        imgSrc="https://picsum.photos/464/64"
+        imgSrc="https://cdn.narrative.io/data-studio/images/data-package-gender.svg"
+        imgBackground="#654545"
         small
       )
-        template(v-slot:title) Item 1 title  
+        template(v-slot:title) Background test  
       NioImageTileLinkSlat
         .test Content
 

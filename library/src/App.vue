@@ -33,7 +33,7 @@
         //- TestAutocomplete
         //- TestStepper
         //- TestSlatTable
-        //- TestSlat
+        TestSlat
         //- TestFileChooser
         //- TestCheckbox
         //- TestSwitch
@@ -50,7 +50,7 @@
         //- TestFilters
         //- TestSlider
         //- TestTabs
-        TestPills
+        //- TestPills
 </template>
 
 <script>

@@ -3,6 +3,7 @@
     :class="[size]"
     :width="sizes[size]"
     :height="sizes[size]"
+    :style="{background: imgBackground}"
     aspect-ratio="1"
     v-bind="$attrs"
     v-on="$listeners" 
@@ -17,14 +18,15 @@
     name: 'nio-image-tile',
     data: () => ({
       sizes: {
-				'extra-small': 32,
+        'extra-small': 32,
         'small': 48,
         'normal': 64,
         'large': 96
       }
     }),
     props: {
-      "size": { type: String, required: false, default: "normal" }
+      "size": { type: String, required: false, default: "normal" },
+      "imgBackground": { type: String, required: false }
     },
     mounted() {	
       this.$emit('mounted')

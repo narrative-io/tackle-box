@@ -9,6 +9,7 @@
       v-else-if="imgSrc"
       :src="imgSrc"
       :size="imageSize ? imageSize : size"
+      :imgBackground="imgBackground"
     )
     .nio-slat-title-subtitle
       .nio-slat-title
@@ -28,6 +29,7 @@ export default {
   props: {
     "imgSrc": { type: String, required: false },
     "iconName": { type: String, required: false },
+    "imgBackground": { type: String, required: false },
     "size": { type: String, required: false, default: 'normal' }
   },
   data: () => ({

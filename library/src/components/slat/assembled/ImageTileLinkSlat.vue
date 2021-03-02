@@ -3,6 +3,7 @@
     ImageTitleSubtitleSlot(
       :size="size"
       :imgSrc="imgSrc"
+      :imgBackground="imgBackground"
       v-bind="$attrs"
     )
       template(v-slot:title)
@@ -21,6 +22,7 @@ export default {
   name: 'nio-image-tile-link-slat',
   props: {
     "imgSrc": { type: String, required: false },
+    "imgBackground": { type: String, required: false },
     "size": { type: String, required: false, default: 'normal' }
   },
   data: () => ({
