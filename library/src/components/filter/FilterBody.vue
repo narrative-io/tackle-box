@@ -16,7 +16,7 @@
         :filter="filter"
       )
     template(v-else-if="filter.type === 'stringLimited'")
-      NioFilterPropertiesStringMLimited(
+      NioFilterPropertiesStringLimited(
         @valueChanged="valueChanged($event)"
         :filter="filter"
       )
@@ -26,6 +26,7 @@
         :filter="filter"
       )      
     template(v-else)
+      slot(name="filter-properties-custom" v-bind:filter="filter")
 </template>
 
 <script>
@@ -34,7 +35,7 @@ import NioFilterProperty from './FilterProperty'
 import NioFilterPropertiesNumber from './default-types/Number'
 import NioFilterPropertiesEventTimestamp from './default-types/EventTimestamp'
 import NioFilterPropertiesStringMany from './default-types/StringMany'
-import NioFilterPropertiesStringMLimited from './default-types/StringLimited'
+import NioFilterPropertiesStringLimited from './default-types/StringLimited'
 import NioFilterPropertiesFrequency from './default-types/Frequency'
 
 export default {
@@ -75,7 +76,7 @@ export default {
     NioFilterPropertiesNumber,
     NioFilterPropertiesEventTimestamp ,
     NioFilterPropertiesStringMany,
-    NioFilterPropertiesStringMLimited,
+    NioFilterPropertiesStringLimited,
     NioFilterPropertiesFrequency
   }
 }

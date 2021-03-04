@@ -1,6 +1,13 @@
 <template lang="pug">
   .test-filters
-    NioFilterGroup(:filters="filters")
+    NioFilterGroup(:filters="[...filters, customFilter]")
+      template(v-slot:filter-body-custom-customFilter="{ customFilter }")
+        .test {{ customFilter }} hello
+    NioFilter(
+      :filter="customFilter"
+    )
+      template(v-slot:filter-properties-custom="{ customFilter }")
+        .test {{ customFilter }} hello
 </template>
 
 <script>
@@ -15,6 +22,34 @@ export default {
   },
   data: () => ({
     activeFilterName: null,
+    customFilter: {
+      name: "customFilter",
+      type: "custom",
+      title: "Custom Filter",
+      description: "Test description 2",
+      value: "default",
+      options: [
+        {
+          label: `All Country Codes`,
+          value: 'default',
+        },
+        {
+          label: 'Custom',
+          value: 'custom',
+        }
+      ],
+      customOption: {
+        config: {
+          list: {
+            items: null,
+          }
+        },
+        value: [{ 
+          value: 'US',
+          label: 'US'
+        }]
+      }
+    },
     filters: [
       // {
       //   name: "filter1",
@@ -39,17 +74,17 @@ export default {
         name: "filter2",
         type: "eventTimestamp",
         title: "Event Timestamps",
-				description: "Define the timestamps you want included in your subscription.",
-				text: {
-					dateRange: {
-						heading: "Date Range",
-						description: "Pick a start and end date of event timestamps to include."
-					},
-					rollingLookback: {
-						heading: "Rolling Lookback",
-						description: "From your start date, define how far back in time you'd like to include."
-					}
-				},
+        description: "Define the timestamps you want included in your subscription.",
+        text: {
+          dateRange: {
+            heading: "Date Range",
+            description: "Pick a start and end date of event timestamps to include."
+          },
+          rollingLookback: {
+            heading: "Rolling Lookback",
+            description: "From your start date, define how far back in time you'd like to include."
+          }
+        },
         value: {
           dateRange: "default",
           rollingLookback: "default"
@@ -65,7 +100,7 @@ export default {
             value: ["2021-02-24", "2021-03-21"]
           },
           rollingLookback: {
-						config: {
+            config: {
               periodOptions: [
                 {
                   label: 'Days',
@@ -209,8 +244,8 @@ export default {
           }
         ],
         customOption: {
-					heading: 'Deduplication Strategy',
-					description: 'Exclude irrelevant or redundant data even when you buy from multiple suppliers.',
+          heading: 'Deduplication Strategy',
+          description: 'Exclude irrelevant or redundant data even when you buy from multiple suppliers.',
           frequency: {
             config: {
               periodOptions: [
@@ -234,7 +269,7 @@ export default {
             }]
           },
           supportingOption: {
-						
+            
             config: {
               // items: [
               //   {

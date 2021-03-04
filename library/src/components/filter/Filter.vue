@@ -9,10 +9,13 @@
         :value="value"
       )
     v-expansion-panel-content(eager)
+      template(v-if="$scopedSlots")
+        slot(:name="`filter-body-custom-${filter.name}`" v-bind="filter")   	
       NioFilterBody(
         :filter="filter"
         @valueChanged="handleValueChange($event)"
       )
+        
 </template>
 
 <script>
@@ -32,6 +35,9 @@ export default {
     handleValueChange(newValue) {
       this.value = newValue
     }
+  },
+  mounted() {
+    console.log(this.$scopedSlots)
   },
   components: { NioFilterHeader, NioFilterBody }
 }
