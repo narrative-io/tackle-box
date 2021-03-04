@@ -55,6 +55,26 @@
     ::v-deep .v-input__slot
       background-color: $c-canvas !important
 
+  &.currency
+    ::v-deep .v-input__prepend-inner
+      width: 40px
+      height: 100%
+      background-color: red
+      margin: 0
+      margin-left: 0px !important
+      overflow: hidden
+      transform: translateY(0)
+      display: flex
+      justify-content: center
+      align-items: center
+      background-color: $c-canvas-darker
+      border-top-left-radius: 0.5rem
+      border-bottom-left-radius: 0.5rem
+      border-right: 1px solid $c-primary-lighter
+      svg
+        color: $c-primary-dark
+        margin-left: 3px			
+
 =nio-text-field-small
   height: 2.5rem
   ::v-deep input

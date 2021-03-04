@@ -1,22 +1,24 @@
 <template lang="pug">
     v-text-field.nio-text-field(
-      :class="{small: smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr }"
+      :class="{small: smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr, 'currency': currencyAttr }"
       outlined 
       flat
-      :solo="soloAttr || smallAttr || prependAttr"
+      :solo="soloAttr || smallAttr || prependAttr || currencyAttr"
       @input="$emit('update', $event)"
       :model="model"
       :rules="parsedRules"
       v-bind="$attrs"
-      v-on="$listeners" 
+      v-on="$listeners"
       ref="nio-text-field-ref"
     )
       template(
-        v-if="prependAttr || prependIconAttr"
+        v-if="prependAttr || prependIconAttr || currencyAttr"
         v-slot:prepend-inner
       )
+        .currency(v-if="currencyAttr")
+          NioIcon(name="utility-dollar-sign" :size="14")
         NioIcon(
-          v-if="iconName || prependIconAttr"
+          v-else-if="iconName || prependIconAttr"
           @click="clickPrepend"
           :name="prependIconAttr ? prependIconAttr : iconName"
           :color="iconColor ? iconColor : defaultIconColor"
@@ -39,6 +41,7 @@
 </template>
 
 <script>
+
 import { VTextField } from 'vuetify/lib'
 import NioIcon from './icon/Icon'
 
@@ -62,6 +65,7 @@ export default {
     prependIconAttr: null,
     soloAttr: false,
     smallAttr: false,
+    currencyAttr: false,
     defaultIconColor: '#1438F5',
     defaultIconSize: 16
   }),
@@ -101,6 +105,9 @@ export default {
         this.prependIconAttr = 'utility-search'
         this.defaultIconColor = '#AEB9E8'
       }
+      if (attributes.getNamedItem('currency')) {
+        this.currencyAttr = true
+      }  
     },
     clickAppend() {
       this.$emit('click:append')
