@@ -1,8 +1,10 @@
 <template lang="pug">
   .test-filters
     NioFilterGroup(:filters="[...filters, customFilter]")
-      template(v-slot:filter-body-custom-customFilter="{ customFilter }")
-        .test {{ customFilter }} hello
+      template(v-slot:filter-header-custom-customFilter="{ filter: customFilter }")
+        .test {{ customFilter }} Custom Header  
+      template(v-slot:filter-body-custom-customFilter="{ filter: customFilter }")
+        .test {{ customFilter }} Custom Body
     NioFilter(
       :filter="customFilter"
     )

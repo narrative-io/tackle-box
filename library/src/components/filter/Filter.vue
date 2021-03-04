@@ -3,15 +3,29 @@
     :key="filter.name"
   )
     v-expansion-panel-header
+      template(
+        v-if="hasScopedSlot(`filter-header-custom-${filter.name}`)"
+      )
+        slot(
+          :name="`filter-header-custom-${filter.name}`" 
+          :filter="filter"
+        )   	
       NioFilterHeader(
+        v-else
         :title="filter.title"
         :description="filter.description"
         :value="value"
       )
     v-expansion-panel-content(eager)
-      template(v-if="$scopedSlots")
-        slot(:name="`filter-body-custom-${filter.name}`" v-bind="filter")   	
+      template(
+        v-if="hasScopedSlot(`filter-body-custom-${filter.name}`)"
+      )
+        slot(
+          :name="`filter-body-custom-${filter.name}`"
+          :filter="filter"  
+        )   	
       NioFilterBody(
+        v-else
         :filter="filter"
         @valueChanged="handleValueChange($event)"
       )
@@ -34,6 +48,9 @@ export default {
   methods: {
     handleValueChange(newValue) {
       this.value = newValue
+    },
+    hasScopedSlot(slotName) {
+      return this.$scopedSlots[slotName] !== undefined
     }
   },
   mounted() {
