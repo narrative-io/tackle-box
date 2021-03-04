@@ -26,7 +26,7 @@
         :filter="filter"
       )      
     template(v-else)
-      slot(name="filter-properties-custom" v-bind:filter="filter")
+      slot(name="filter-properties-custom" :filter="filter")
 </template>
 
 <script>

@@ -1,6 +1,7 @@
 <template lang="pug">
   v-expansion-panel.nio-filter(
     :key="filter.name"
+    v-if="!solo"
   )
     v-expansion-panel-header
       template(
@@ -29,6 +30,23 @@
         :filter="filter"
         @valueChanged="handleValueChange($event)"
       )
+  .nio-filter.solo(
+    v-else
+  )
+    template(
+      v-if="hasScopedSlot(`filter-body-custom-${filter.name}`)"
+    )
+      slot(
+        :name="`filter-body-custom-${filter.name}`"
+        :filter="filter"  
+      )   	
+    NioFilterBody(
+      v-else
+      :filter="filter"
+      @valueChanged="handleValueChange($event)"
+    )
+      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+        slot(:name="name" v-bind="data")   
         
 </template>
 
@@ -40,7 +58,8 @@ import NioFilterBody from './FilterBody'
 export default {
   name: 'nio-filter',
   props: {
-    "filter": { type: Object, required: true }
+    "filter": { type: Object, required: true },
+    "solo": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     value: null

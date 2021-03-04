@@ -2,14 +2,16 @@
   .test-filters
     NioFilterGroup(:filters="[...filters, customFilter]")
       template(v-slot:filter-header-custom-customFilter="{ filter: customFilter }")
-        .test {{ customFilter }} Custom Header  
+        .test {{ customFilter }} 
       template(v-slot:filter-body-custom-customFilter="{ filter: customFilter }")
-        .test {{ customFilter }} Custom Body
+        .test {{ customFilter }}
     NioFilter(
+      solo
       :filter="customFilter"
     )
-      template(v-slot:filter-properties-custom="{ customFilter }")
-        .test {{ customFilter }} hello
+      template(v-slot:filter-properties-custom="{ filter: customFilter }")
+        .test {{ customFilter }}
+      
 </template>
 
 <script>
