@@ -15,3 +15,5 @@ NioFilterGroup
 Added **selected-value** and **tag** variants for NioPill (affects styling only)
 
 Added optional **imgBackground** prop to NioImageTileLinkSlat and NioImageTile components
+
+Added **currency** prop to NioSlider and NioTextField
