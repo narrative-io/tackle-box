@@ -1,13 +1,17 @@
 <template lang="pug">
-	.nio-slider
-		NioTextField.input-max(
+	.nio-slider(
+		:class="{'currency': currency, 'prepend': prepend && !range}"
+	)
+		NioTextField.input-min(
 			v-if="range"
+			:currency="currency"
 			hide-details
 			small
 			solo
 			type="number"
 			v-model="model[0]"
 			:value="model[0]"
+			:class="{'prepend-field': !range && prepend}"
 		)
 		v-slider(
 			v-if="!range"
@@ -24,6 +28,7 @@
 			@input="$emit('update', $event)"
 		)
 		NioTextField.input-max(
+			:currency="currency"
 			hide-details
 			small
 			solo
@@ -43,12 +48,17 @@ export default {
   props: {
 		model: { required: true },
 		value: { required: false },
-		range: { type: Boolean, required: false, default: false }
+		range: { type: Boolean, required: false, default: false },
+		currency: { type: Boolean, required: false, default: false },
+		prepend: { type: Boolean, required: false, default: false }
   },
   model: {
     prop: "model",
     event: "update"
 	},
+	data: () => ({
+	
+	}),
   mounted() {
     if (!this.value) {
       this.$emit('update', this.model)

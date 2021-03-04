@@ -5,6 +5,21 @@
       :min="10"
       :max="100"
       :value="15"
+      prepend
+      currency
+    ) 
+    NioSlider(
+      v-model="model1"
+      :min="10"
+      :max="100"
+      :value="15"
+      prepend
+    ) 
+    NioSlider(
+      v-model="model1"
+      :min="10"
+      :max="100"
+      :value="15"
     ) 
     .test {{ model1 }}
     NioSlider(
@@ -19,8 +34,14 @@
       :min="10"
       :max="100"
     ) 
+    NioSlider(
+      range
+      currency
+      v-model="rangeModel"
+      :min="10"
+      :max="100"
+    )
     .test {{ rangeModel }}
-   
 </template>
 
 <script>

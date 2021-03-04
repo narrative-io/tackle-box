@@ -25,8 +25,18 @@
   ::v-deep .v-slider__track-fill
     background-color: $c-primary-dark !important
 
-  .input-max
+  .input-min, .input-max
     flex-basis: 5rem  
     flex-grow: 0
+
+  &.currency
+    .input-min, .input-max
+      flex-basis: 8.125rem
+
+  &.prepend
+    flex-direction: row-reverse
+    .input-max
+          
+
 .nio-slider 
   +nio-slider

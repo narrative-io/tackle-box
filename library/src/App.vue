@@ -48,7 +48,7 @@
         //- TestOptionsGrid
         //- TestDialog
         //- TestFilters
-        //- TestSlider
+        TestSlider
         //- TestTabs
         //- TestPills
 </template>
