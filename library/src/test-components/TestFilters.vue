@@ -7,6 +7,10 @@
         .test {{ customFilter }}
     NioFilter(
       solo
+      :filter="filters[0]"
+    )
+    NioFilter(
+      solo
       :filter="customFilter"
     )
       template(v-slot:filter-properties-custom="{ filter: customFilter }")
