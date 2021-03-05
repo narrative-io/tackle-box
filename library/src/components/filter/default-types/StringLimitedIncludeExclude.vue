@@ -12,9 +12,7 @@
               NioRadioButton(value="include" label="Include")
               NioRadioButton(value="exclude" label="Exclude")
           .filter-selection    
-            .custom-text(
-              v-if="filter.customOption.config.text"
-            )
+            .custom-text
               .inclusion(
                 v-if="filter.customOption.value.listType === 'include'"
               )
@@ -56,9 +54,9 @@ export default {
     listTypeDescription() {
       const listType = this.filter.customOption.value.listType
       if (listType === 'include') {
-        return this.filter.customOption.config.text && this.filter.customOption.config.text.include && this.filter.customOption.config.text.include.description ?  this.filter.customOption.config.text.include.description : 'Select the values to include'
+        return this.filter.customOption.config.text && this.filter.customOption.config.text.include ? this.filter.customOption.config.text.include : 'Select the values to include'
       } else {
-        return this.filter.customOption.config.text && this.filter.customOption.config.text.exclude && this.filter.customOption.config.text.exclude.description ?  this.filter.customOption.config.text.exclude.description : 'Select the values to exclude'
+        return this.filter.customOption.config.text && this.filter.customOption.config.text.exclude ? this.filter.customOption.config.text.exclude : 'Select the values to exclude'
       }
     },
     defaultOptions() {

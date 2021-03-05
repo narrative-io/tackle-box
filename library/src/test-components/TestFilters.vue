@@ -227,14 +227,8 @@ export default {
           config: {
             items: null,
             text: {
-              include: {
-                heading: 'Inclusion list',
-                description: 'Select the countries you want to buy from.'
-              },
-              exclude: {
-                heading: 'Exclusion list',
-                description: 'Select the countries you don’t want to buy from.'
-              }
+              include: 'Select the countries you want to buy from.',
+              exclude: 'Select the countries you don’t want to buy from.'
             }
           },
           value: {
