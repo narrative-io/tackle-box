@@ -15,11 +15,21 @@
         @valueChanged="valueChanged($event)"
         :filter="filter"
       )
+    template(v-else-if="filter.type === 'stringManyIncludeExclude'")
+      NioFilterPropertiesStringMany(
+        @valueChanged="valueChanged($event)"
+        :filter="filter"
+      )  
     template(v-else-if="filter.type === 'stringLimited'")
-      NioFilterPropertiesStringLimited(
+      NioFilterPropertiesStringLimitedIncludeExclude(
         @valueChanged="valueChanged($event)"
         :filter="filter"
       )
+    template(v-else-if="filter.type === 'stringLimitedIncludeExclude'")
+      NioFilterPropertiesStringLimitedIncludeExclude(
+        @valueChanged="valueChanged($event)"
+        :filter="filter"
+      )  
     template(v-else-if="filter.type === 'frequency'")
       NioFilterPropertiesFrequency(
         @valueChanged="valueChanged($event)"
@@ -35,7 +45,9 @@ import NioFilterProperty from './FilterProperty'
 import NioFilterPropertiesNumber from './default-types/Number'
 import NioFilterPropertiesEventTimestamp from './default-types/EventTimestamp'
 import NioFilterPropertiesStringMany from './default-types/StringMany'
+import NioFilterPropertiesStringManyIncludeExclude from './default-types/StringManyIncludeExclude'
 import NioFilterPropertiesStringLimited from './default-types/StringLimited'
+import NioFilterPropertiesStringLimitedIncludeExclude from './default-types/StringLimitedIncludeExclude'
 import NioFilterPropertiesFrequency from './default-types/Frequency'
 
 export default {
@@ -74,9 +86,11 @@ export default {
   components: { 
     NioFilterProperty, 
     NioFilterPropertiesNumber,
-    NioFilterPropertiesEventTimestamp ,
+    NioFilterPropertiesEventTimestamp,
     NioFilterPropertiesStringMany,
+    NioFilterPropertiesStringManyIncludeExclude,
     NioFilterPropertiesStringLimited,
+    NioFilterPropertiesStringLimitedIncludeExclude,
     NioFilterPropertiesFrequency
   }
 }
