@@ -225,16 +225,15 @@ export default {
         ],
         customOption: {
           config: {
-            
             items: null,
             text: {
               include: {
-                heading: 'test inclusion title',
-                deascription: 'test description'
+                heading: 'Inclusion list',
+                description: 'Select the countries you want to buy from.'
               },
               exclude: {
-                heading: 'test exclusion title',
-                deascription: 'test description'
+                heading: 'Exclusion list',
+                description: 'Select the countries you don’t want to buy from.'
               }
             }
           },

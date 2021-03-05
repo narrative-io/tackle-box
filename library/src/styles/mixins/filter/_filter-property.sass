@@ -4,6 +4,16 @@
   padding: 1.5rem 2rem
   border-top: 0.0625rem solid $c-primary-lighter
 
+  .nio-radio-group
+    margin-top: 0rem
+    padding-top: 0rem
+  ::v-deep .v-input--radio-group__input
+    flex-direction: row
+    .nio-radio-button
+      margin-bottom: 0rem
+    & > .nio-radio-button + .nio-radio-button
+      margin-left: 1.625rem  
+
   .heading-description
     margin-bottom: 1.5rem
     .heading
@@ -105,19 +115,22 @@
           margin-left: 1rem
 
       .string-many-custom    
-        .nio-radio-group
-          margin-top: 0rem
-          padding-top: 0rem
-        ::v-deep .v-input--radio-group__input
-          flex-direction: row
-          .nio-radio-button
-            margin-bottom: 0rem
-          & > .nio-radio-button + .nio-radio-button
-            margin-left: 1.625rem  
-
+      
       .string-limited-custom
         .nio-select
           margin-bottom: 0rem      
+
+      .string-limited-include-exclude-custom
+        .filter-selection
+          display: flex
+          justify-content: space-between
+          .custom-text
+            width: 50%
+            .heading
+              margin-bottom: 0.375rem
+              
+          .nio-select
+            margin-bottom: 0rem    
 
       .frequency-custom
         & > .description

@@ -1,12 +1,12 @@
 <template lang="pug">
-  .nio-filter-properties.string-limited
+  .nio-filter-properties.string-limited-include-exclude
     NioFilterProperty(
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
-        .string-limited-custom
+        .string-limited-include-exclude-custom
           .list-type
             NioRadioGroup(v-model="filter.customOption.value.listType" :value="filter.customOption.value.listType")
               NioRadioButton(value="include" label="Include")
@@ -16,17 +16,19 @@
               v-if="filter.customOption.config.text"
             )
               .inclusion(
-                v-if="filter.customOption.config.text.include && filter.customOption.value.listType === 'include'"
+                v-if="filter.customOption.value.listType === 'include'"
               )
-                .heading.nio-h5.text-primary-darker(v-if="filter.customOption.config.text.include.heading") {{ filter.customOption.config.text.include.heading }}
-                .description.nio-p.text-primary-dark(v-if="filter.customOption.config.text.include.heading") {{ filter.customOption.config.text.include.description }}
-              .inclusion(v-if="filter.customOption.config.text.exclude && filter.customOption.value.listType === 'exclude'")
-                .heading.nio-h5.text-primary-darker(v-if="filter.customOption.config.text.exclude.heading") {{ filter.customOption.config.text.exclude.heading }}
-                .description.nio-p.text-primary-dark(v-if="filter.customOption.config.text.exclude.heading") {{ filter.customOption.config.text.exclude.description }}	
+                .heading.nio-h5.text-primary-darker Inclusion list
+                .description.nio-p.text-primary-dark {{ listTypeDescription }}
+              .exclusion(
+                v-if="filter.customOption.value.listType === 'exclude'"
+              )
+                .heading.nio-h5.text-primary-darker Exclusion list
+                .description.nio-p.text-primary-dark {{ listTypeDescription }}
             NioSelect(
               multiple
               v-if="filter.customOption.config.items.length > 0"
-              v-model="filter.customOption.value" 
+              v-model="filter.customOption.value.items" 
               :items="filter.customOption.config.items"
               :label="'Select'"
               item-text="label"
@@ -51,6 +53,14 @@ export default {
     description: 'Select the data to include'
   }),	
   computed: {
+    listTypeDescription() {
+      const listType = this.filter.customOption.value.listType
+      if (listType === 'include') {
+        return this.filter.customOption.config.text && this.filter.customOption.config.text.include && this.filter.customOption.config.text.include.description ?  this.filter.customOption.config.text.include.description : 'Select the values to include'
+      } else {
+        return this.filter.customOption.config.text && this.filter.customOption.config.text.exclude && this.filter.customOption.config.text.exclude.description ?  this.filter.customOption.config.text.exclude.description : 'Select the values to exclude'
+      }
+    },
     defaultOptions() {
       if (!this.filter) {
         return []
