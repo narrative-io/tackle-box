@@ -1,20 +1,20 @@
 <template lang="pug">
   .test-filters
     NioFilterGroup(:filters="[...filters, customFilter]")
-      template(v-slot:filter-header-custom-customFilter="{ filter: customFilter }")
-        .test {{ customFilter }} 
-      template(v-slot:filter-body-custom-customFilter="{ filter: customFilter }")
-        .test {{ customFilter }}
-    NioFilter(
-      solo
-      :filter="filters[0]"
-    )
-    NioFilter(
-      solo
-      :filter="customFilter"
-    )
-      template(v-slot:filter-properties-custom="{ filter: customFilter }")
-        .test {{ customFilter }}
+      //- template(v-slot:filter-header-custom-customFilter="{ filter: customFilter }")
+      //-   .test {{ customFilter }} 
+      //- template(v-slot:filter-body-custom-customFilter="{ filter: customFilter }")
+      //-   .test {{ customFilter }}
+    //- NioFilter(
+    //-   solo
+    //-   :filter="filters[0]"
+    //- )
+    //- NioFilter(
+    //-   solo
+    //-   :filter="customFilter"
+    //- )
+    //-   template(v-slot:filter-properties-custom="{ filter: customFilter }")
+    //-     .test {{ customFilter }}
       
 </template>
 
@@ -78,60 +78,60 @@ export default {
       //   },
       //   valid: true
       // },
-      {
-        name: "filter2",
-        type: "eventTimestamp",
-        title: "Event Timestamps",
-        description: "Define the timestamps you want included in your subscription.",
-        text: {
-          dateRange: {
-            heading: "Date Range",
-            description: "Pick a start and end date of event timestamps to include."
-          },
-          rollingLookback: {
-            heading: "Rolling Lookback",
-            description: "From your start date, define how far back in time you'd like to include."
-          }
-        },
-        value: {
-          dateRange: "default",
-          rollingLookback: "default"
-        },
-        customOption: {
-          dateRange: {			
-            config: {
-              startMin: "2021-01-01",
-              startMax: "2021-03-30",
-              stopMin: "2021-02-30",
-              stopMax: "2021-12-30"
-            },
-            value: ["2021-02-24", "2021-03-21"]
-          },
-          rollingLookback: {
-            config: {
-              periodOptions: [
-                {
-                  label: 'Days',
-                  value: 'day'
-                },
-                {
-                  label: 'Weeks',
-                  value: 'week'
-                },
-                {
-                  label: 'Months',
-                  value: 'months'
-                }
-              ]  
-            },
-            value: [15, {
-              label: 'Days',
-              value: 'day'
-            }]
-          }
-        },
-        valid: true
-      },
+      // {
+      //   name: "filter2",
+      //   type: "eventTimestamp",
+      //   title: "Event Timestamps",
+      //   description: "Define the timestamps you want included in your subscription.",
+      //   text: {
+      //     dateRange: {
+      //       heading: "Date Range",
+      //       description: "Pick a start and end date of event timestamps to include."
+      //     },
+      //     rollingLookback: {
+      //       heading: "Rolling Lookback",
+      //       description: "From your start date, define how far back in time you'd like to include."
+      //     }
+      //   },
+      //   value: {
+      //     dateRange: "default",
+      //     rollingLookback: "default"
+      //   },
+      //   customOption: {
+      //     dateRange: {			
+      //       config: {
+      //         startMin: "2021-01-01",
+      //         startMax: "2021-03-30",
+      //         stopMin: "2021-02-30",
+      //         stopMax: "2021-12-30"
+      //       },
+      //       value: ["2021-02-24", "2021-03-21"]
+      //     },
+      //     rollingLookback: {
+      //       config: {
+      //         periodOptions: [
+      //           {
+      //             label: 'Days',
+      //             value: 'day'
+      //           },
+      //           {
+      //             label: 'Weeks',
+      //             value: 'week'
+      //           },
+      //           {
+      //             label: 'Months',
+      //             value: 'months'
+      //           }
+      //         ]  
+      //       },
+      //       value: [15, {
+      //         label: 'Days',
+      //         value: 'day'
+      //       }]
+      //     }
+      //   },
+      //   valid: true
+      // },
       // {
       //   name: "age",
       //   type: "number",
@@ -203,48 +203,20 @@ export default {
       //     }
       //   }
       // },
-      // {
-      //   name: "countryCodes",
-      //   type: "stringLimited",
-      //   title: "Country Codes",
-      //   description: "Test description 2",
-      //   value: "default",
-      //   options: [
-      //     {
-      //       label: `All Country Codes`,
-      //       value: 'default',
-      //     },
-      //     {
-      //       label: "Include if present",
-      //       value: 'ifPresent',
-      //     },
-      //     {
-      //       label: 'Custom',
-      //       value: 'custom',
-      //     }
-      //   ],
-      //   customOption: {
-      //     config: {
-      //       list: {
-      //         items: null,
-      //       }
-      //     },
-      //     value: [{ 
-      //       value: 'US',
-      //       label: 'US'
-      //     }]
-      //   }
-      // },
       {
-        name: "deduplication",
-        type: "frequency",
-        title: "Deduplication",
-        description: "Detail how often do you want to buy the same data point.",
+        name: "countryCodes",
+        type: "stringLimitedIncludeExclude",
+        title: "Country Codes",
+        description: "Test description 2",
         value: "default",
         options: [
           {
-            label: `Inlclude all Data Points`,
+            label: `All Country Codes`,
             value: 'default',
+          },
+          {
+            label: "Include if present",
+            value: 'ifPresent',
           },
           {
             label: 'Custom',
@@ -252,61 +224,101 @@ export default {
           }
         ],
         customOption: {
-          heading: 'Deduplication Strategy',
-          description: 'Exclude irrelevant or redundant data even when you buy from multiple suppliers.',
-          frequency: {
-            config: {
-              periodOptions: [
-                {
-                  label: 'Days',
-                  value: 'day'
-                },
-                {
-                  label: 'Weeks',
-                  value: 'week'
-                },
-                {
-                  label: 'Months',
-                  value: 'months'
-                }
-              ]  
-            },
-            value: [15, {
-              label: 'Days',
-              value: 'day'
-            }]
-          },
-          supportingOption: {
+          config: {
             
-            config: {
-              // items: [
-              //   {
-              //     label: 'Days',
-              //     value: 'day'
-              //   },
-              //   {
-              //     label: 'Weeks',
-              //     value: 'week'
-              //   },
-              //   {
-              //     label: 'Months',
-              //     value: 'months'
-              //   }
-              // ]
-              items: [
-                'apple',
-                'banana',
-                'pear'
-              ]
-            },
-            // value: [{
-            //   label: 'Days',
-            //   value: 'day'
-            // }]
-            value: ['pear']
-          }
+            items: null,
+            text: {
+              include: {
+                heading: 'test inclusion title',
+                deascription: 'test description'
+              },
+              exclude: {
+                heading: 'test exclusion title',
+                deascription: 'test description'
+              }
+            }
+          },
+          value: {
+            listType: 'include',
+            items: [{ 
+              value: 'US',
+              label: 'US'
+            }]
+          }  
         }
       },
+      // {
+      //   name: "deduplication",
+      //   type: "frequency",
+      //   title: "Deduplication",
+      //   description: "Detail how often do you want to buy the same data point.",
+      //   value: "default",
+      //   options: [
+      //     {
+      //       label: `Inlclude all Data Points`,
+      //       value: 'default',
+      //     },
+      //     {
+      //       label: 'Custom',
+      //       value: 'custom',
+      //     }
+      //   ],
+      //   customOption: {
+      //     heading: 'Deduplication Strategy',
+      //     description: 'Exclude irrelevant or redundant data even when you buy from multiple suppliers.',
+      //     frequency: {
+      //       config: {
+      //         periodOptions: [
+      //           {
+      //             label: 'Days',
+      //             value: 'day'
+      //           },
+      //           {
+      //             label: 'Weeks',
+      //             value: 'week'
+      //           },
+      //           {
+      //             label: 'Months',
+      //             value: 'months'
+      //           }
+      //         ]  
+      //       },
+      //       value: [15, {
+      //         label: 'Days',
+      //         value: 'day'
+      //       }]
+      //     },
+      //     supportingOption: {
+            
+      //       config: {
+      //         // items: [
+      //         //   {
+      //         //     label: 'Days',
+      //         //     value: 'day'
+      //         //   },
+      //         //   {
+      //         //     label: 'Weeks',
+      //         //     value: 'week'
+      //         //   },
+      //         //   {
+      //         //     label: 'Months',
+      //         //     value: 'months'
+      //         //   }
+      //         // ]
+      //         items: [
+      //           'apple',
+      //           'banana',
+      //           'pear'
+      //         ]
+      //       },
+      //       // value: [{
+      //       //   label: 'Days',
+      //       //   value: 'day'
+      //       // }]
+      //       value: ['pear']
+      //     }
+      //   }
+      // },
       // {  
       //   name: "stringLimited",
       //   type: "stringLimited",
@@ -326,7 +338,7 @@ export default {
   mounted() {
     // this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.items = this.getListItems() 
     // this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.columns = this.getColumns() 
-    // this.filters.find(filter => filter.name === 'countryCodes').customOption.config.items = this.getLimitedItems() 
+    this.filters.find(filter => filter.type === 'stringLimitedIncludeExclude').customOption.config.items = this.getLimitedItems() 
     this.activeFilterName = this.filters[0].name
   },
   methods: {
