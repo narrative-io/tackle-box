@@ -17,6 +17,7 @@
       template(v-slot:summary)
         NioSummarySlat.summary(v-if="summary && complete")(
           :imageSrc="summary.imageSrc"
+          :imageBackground="summary.imageBackground"
           :title="summary.title"
           :subtitle="summary.subtitle"
           :detailsLabel="summary.detailsLabel"

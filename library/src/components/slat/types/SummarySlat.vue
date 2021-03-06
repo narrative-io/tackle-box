@@ -6,6 +6,7 @@
       .summary
         NioImageTile(
           :src="imageSrc"
+          :imageBackground="imageBackground"
         )
         .title-subtitle
           .nio-h4.text-primary-darker {{ title }}
@@ -26,6 +27,7 @@ export default {
   name: 'nio-icon-link-slat',
   props: {
     "imageSrc": { type: String, required: false },
+    "imageBackground": { type: String, required: false },
     "title": { type: String, required: false },
     "subtitle": { type: String, required: false },
     "detailsLabel": { type: String, required: false },
