@@ -60,9 +60,9 @@ export default {
     },
     filters: [
       {
-        name: "countryCode",
+        name: "idMapping",
         type: "stringLimitedMapping",
-        title: "Country Code",
+        title: "ID Mapping",
         description: "Test description 2",
         value: "default",
         options: [
@@ -80,13 +80,25 @@ export default {
           }
         ],
         customOption: {
-          config: {
-            items: null
+          label: "Map IDs to:",
+          left: {
+            config: {
+              items: null
+            },
+            value: [{ 
+              value: 'US',
+              label: 'US'
+            }]
           },
-          value: [{ 
-            value: 'US',
-            label: 'US'
-          }]
+          right: {
+            config: {
+              items: null
+            },
+            value: [{ 
+              value: 'US',
+              label: 'US'
+            }]
+          }
         }
       },
       // {
@@ -362,7 +374,8 @@ export default {
     // this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.items = this.getListItems() 
     // this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.columns = this.getColumns() 
     this.filters.find(filter => filter.type === 'stringLimitedIncludeExclude').customOption.config.items = this.getLimitedItems() 
-    this.filters.find(filter => filter.type === 'stringLimitedMapping').customOption.config.items = this.getLimitedItems() 
+    this.filters.find(filter => filter.type === 'stringLimitedMapping').customOption.left.config.items = this.getLimitedItems() 
+    this.filters.find(filter => filter.type === 'stringLimitedMapping').customOption.right.config.items = this.getLimitedItems() 
     this.activeFilterName = this.filters[0].name
   },
   methods: {
