@@ -80,7 +80,11 @@ export default {
           }
         ],
         customOption: {
-          label: "Map IDs to:",
+          valid: true,
+          mapping: {
+            label: "Map IDs to:",
+            value: true
+          },
           left: {
             config: {
               items: null

@@ -7,28 +7,32 @@
     )
       template(v-slot:custom-option)
         .string-limited-custom
-          NioSelect(
-            multiple
-            v-if="filter.customOption.left.config.items.length > 0"
-            v-model="filter.customOption.left.value" 
-            :items="filter.customOption.left.config.items"
-            :label="'Select'"
-            item-text="label"
-            item-value="value" 
-            selection-pills
-          )
-          NioCheckbox(v-model="includeMapping" :label="filter.customOption.label ? filter.customOption.label : 'Map to:'") 
-          NioSelect(
-            multiple
-            v-if="filter.customOption.right.config.items.length > 0"
-            v-model="filter.customOption.right.value" 
-            :items="filter.customOption.right.config.items"
-            :label="'Select'"
-            :disabled="!includeMapping"
-            item-text="label"
-            item-value="value" 
-            selection-pills
-          )
+          .left
+            NioSelect(
+              multiple
+              v-if="filter.customOption.left.config.items.length > 0"
+              v-model="filter.customOption.left.value" 
+              :items="filter.customOption.left.config.items"
+              :label="'Select'"
+              item-text="label"
+              item-value="value" 
+              selection-pills
+            )
+            .validation-error.nio-p-small.text-error(v-if="!leftValid") You must choose at least 1 value to map from
+          NioCheckbox(v-model="filter.customOption.mapping.value" :label="filter.customOption.mapping.label ? filter.customOption.mapping.label : 'Map to:'") 
+          .right
+            NioSelect(
+              multiple
+              v-if="filter.customOption.right.config.items.length > 0"
+              v-model="filter.customOption.right.value" 
+              :items="filter.customOption.right.config.items"
+              :label="'Select'"
+              :disabled="!filter.customOption.mapping.value"
+              item-text="label"
+              item-value="value" 
+              selection-pills
+            )
+            .validation-error.nio-p-small.text-error(v-if="!rightValid && leftValid") You must choose at least 1 value to map to
 </template>
 
 <script>
@@ -44,7 +48,8 @@ export default {
   },
   data: () => ({
     description: 'Select the data to include',
-    includeMapping: false
+    leftValid: true,
+    rightValid: true
   }),	
   computed: {
     defaultOptions() {
@@ -71,9 +76,24 @@ export default {
     this.updateValue()
   },
   methods: {
+    validate() {
+      if (this.filter.customOption.mapping.value) {
+        this.leftValid = !this.filter.customOption.left.value.length ? false : true
+        this.rightValid = !this.filter.customOption.right.value.length ? false : true
+      } else {
+        this.leftValid = true
+        this.rightValid = true
+      }
+      if (!this.leftValid || !this.rightValid) {
+        this.filter.valid = false
+      } else {
+        this.filter.valid = true
+      }
+    },
     updateValue() {
       const options = this.filter.options ? this.filter.options : this.defaultOptions
       this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+      this.validate()
     }
   },
   watch: {
@@ -81,11 +101,6 @@ export default {
       deep: true,
       handler() {
         this.updateValue()
-      }
-    },
-    includeMapping(val) {
-      if (val === false) {
-        this.filter.customOption.right.value = []
       }
     }
   },
