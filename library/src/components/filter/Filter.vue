@@ -72,9 +72,6 @@ export default {
       return this.$scopedSlots[slotName] !== undefined
     }
   },
-  mounted() {
-    console.log(this.$scopedSlots)
-  },
   components: { NioFilterHeader, NioFilterBody }
 }
 </script>

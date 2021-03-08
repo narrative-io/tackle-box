@@ -16,7 +16,7 @@
         :filter="filter"
       )
     template(v-else-if="filter.type === 'stringManyIncludeExclude'")
-      NioFilterPropertiesStringMany(
+      NioFilterPropertiesStringManyIncludeExclude(
         @valueChanged="valueChanged($event)"
         :filter="filter"
       )  

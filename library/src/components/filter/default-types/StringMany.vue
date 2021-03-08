@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-properties.string-many {{ activeTab }}
+  .nio-filter-properties.string-many
     NioFilterProperty(
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
@@ -24,14 +24,7 @@
                 pagination
                 @selectionChanged="listSelectionChanged($event)"
               )
-                template(v-slot:custom-header-element)
-                  NioRadioGroup(v-model="filter.customOption.value.listType")
-                    NioRadioButton(value="include" label="Include")
-                    NioRadioButton(value="exclude" label="Exclude")
             template(v-slot:manual)
-              NioRadioGroup(v-model="filter.customOption.value.listType")
-                NioRadioButton(value="include" label="Include")
-                NioRadioButton(value="exclude" label="Exclude")
               NioTextarea(
                 v-model="filter.customOption.value.manualEntry"
               )

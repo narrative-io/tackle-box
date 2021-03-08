@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-properties.string-many {{ activeTab }}
+  .nio-filter-properties.string-many
     NioFilterProperty(
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"

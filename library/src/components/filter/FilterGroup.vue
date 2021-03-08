@@ -33,9 +33,6 @@ export default {
       this.$emit('validChanged', this.valid)
     }
   },
-  mounted() {
-    console.log(this.$scopedSlots)
-  },
   components: { NioFilter }
 }
 </script>

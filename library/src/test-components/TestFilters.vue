@@ -1,6 +1,6 @@
 <template lang="pug">
   .test-filters
-    NioFilterGroup(:filters="[...filters, customFilter]")
+    NioFilterGroup(:filters="[...filters]")
       //- template(v-slot:filter-header-custom-customFilter="{ filter: customFilter }")
       //-   .test {{ customFilter }} 
       //- template(v-slot:filter-body-custom-customFilter="{ filter: customFilter }")
@@ -59,52 +59,52 @@ export default {
       }
     },
     filters: [
-      {
-        name: "idMapping",
-        type: "stringLimitedMapping",
-        title: "ID Mapping",
-        description: "Test description 2",
-        value: "default",
-        options: [
-          {
-            label: `All Country Codes`,
-            value: 'default',
-          },
-          {
-            label: "Include if present",
-            value: 'ifPresent',
-          },
-          {
-            label: 'Custom',
-            value: 'custom',
-          }
-        ],
-        customOption: {
-          valid: true,
-          mapping: {
-            label: "Map IDs to:",
-            value: true
-          },
-          left: {
-            config: {
-              items: null
-            },
-            value: [{ 
-              value: 'US',
-              label: 'US'
-            }]
-          },
-          right: {
-            config: {
-              items: null
-            },
-            value: [{ 
-              value: 'US',
-              label: 'US'
-            }]
-          }
-        }
-      },
+      // {
+      //   name: "idMapping",
+      //   type: "stringLimitedMapping",
+      //   title: "ID Mapping",
+      //   description: "Test description 2",
+      //   value: "default",
+      //   options: [
+      //     {
+      //       label: `All Country Codes`,
+      //       value: 'default',
+      //     },
+      //     {
+      //       label: "Include if present",
+      //       value: 'ifPresent',
+      //     },
+      //     {
+      //       label: 'Custom',
+      //       value: 'custom',
+      //     }
+      //   ],
+      //   customOption: {
+      //     valid: true,
+      //     mapping: {
+      //       label: "Map IDs to:",
+      //       value: true
+      //     },
+      //     left: {
+      //       config: {
+      //         items: null
+      //       },
+      //       value: [{ 
+      //         value: 'US',
+      //         label: 'US'
+      //       }]
+      //     },
+      //     right: {
+      //       config: {
+      //         items: null
+      //       },
+      //       value: [{ 
+      //         value: 'US',
+      //         label: 'US'
+      //       }]
+      //     }
+      //   }
+      // },
       // {
       //   name: "filter1",
       //   type: "eventTimestamp",
@@ -206,58 +206,15 @@ export default {
       //     value: 20
       //   }
       // },
-      // {
-      //   name: "resourceID",
-      //   type: "stringMany",
-      //   title: "Resource ID",
-      //   description: "Test description 2",
-      //   value: "default",
-      //   options: [
-      //     {
-      //       label: `All Resource IDs`,
-      //       value: 'default',
-      //     },
-      //     {
-      //       label: "Include if present",
-      //       value: 'ifPresent',
-      //     },
-      //     {
-      //       label: 'Custom',
-      //       value: 'custom',
-      //     }
-      //   ],
-      //   customOption: {
-      //     config: {
-      //       list: {
-      //         columns: null,
-      //         items: null,
-      //         searchableProps: ['name']
-      //       }
-      //     },
-      //     value: {
-      //       entryType: 'list',
-      //       listType: 'include',
-      //       items: [{
-      //         id: 1,
-      //         orderNum: 245,
-      //         name: 'item1',
-      //         label: 'Item 1',
-      //         listId: 103324,
-      //         count: 123521345234
-      //       }],
-      //       manualEntry: 'stuff'
-      //     }
-      //   }
-      // },
       {
-        name: "countryCodes",
-        type: "stringLimitedIncludeExclude",
-        title: "Country Codes",
+        name: "stringMany",
+        type: "stringMany",
+        title: "stringMany",
         description: "Test description 2",
         value: "default",
         options: [
           {
-            label: `All Country Codes`,
+            label: `All Resource IDs`,
             value: 'default',
           },
           {
@@ -271,21 +228,106 @@ export default {
         ],
         customOption: {
           config: {
-            items: null,
-            text: {
-              include: 'Select the countries you want to buy from.',
-              exclude: 'Select the countries you don’t want to buy from.'
+            list: {
+              columns: null,
+              items: null,
+              searchableProps: ['name']
             }
           },
           value: {
-            listType: 'include',
-            items: [{ 
-              value: 'US',
-              label: 'US'
-            }]
-          }  
+            entryType: 'list',
+            items: [{
+              id: 1,
+              orderNum: 245,
+              name: 'item1',
+              label: 'Item 1',
+              listId: 103324,
+              count: 123521345234
+            }],
+            manualEntry: 'stuff'
+          }
         }
       },
+      {
+        name: "stringManyIncludeExclude",
+        type: "stringManyIncludeExclude",
+        title: "stringManyIncludeExclude",
+        description: "Test description 2",
+        value: "default",
+        options: [
+          {
+            label: `All Resource IDs`,
+            value: 'default',
+          },
+          {
+            label: "Include if present",
+            value: 'ifPresent',
+          },
+          {
+            label: 'Custom',
+            value: 'custom',
+          }
+        ],
+        customOption: {
+          config: {
+            list: {
+              columns: null,
+              items: null,
+              searchableProps: ['name']
+            }
+          },
+          value: {
+            entryType: 'list',
+            listType: 'include',
+            items: [{
+              id: 1,
+              orderNum: 245,
+              name: 'item1',
+              label: 'Item 1',
+              listId: 103324,
+              count: 123521345234
+            }],
+            manualEntry: 'stuff'
+          }
+        }
+      },
+      // {
+      //   name: "countryCodes",
+      //   type: "stringLimitedIncludeExclude",
+      //   title: "Country Codes",
+      //   description: "Test description 2",
+      //   value: "default",
+      //   options: [
+      //     {
+      //       label: `All Country Codes`,
+      //       value: 'default',
+      //     },
+      //     {
+      //       label: "Include if present",
+      //       value: 'ifPresent',
+      //     },
+      //     {
+      //       label: 'Custom',
+      //       value: 'custom',
+      //     }
+      //   ],
+      //   customOption: {
+      //     config: {
+      //       items: null,
+      //       text: {
+      //         include: 'Select the countries you want to buy from.',
+      //         exclude: 'Select the countries you don’t want to buy from.'
+      //       }
+      //     },
+      //     value: {
+      //       listType: 'include',
+      //       items: [{ 
+      //         value: 'US',
+      //         label: 'US'
+      //       }]
+      //     }  
+      //   }
+      // },
       // {
       //   name: "deduplication",
       //   type: "frequency",
@@ -375,11 +417,14 @@ export default {
     ]
   }),
   mounted() {
-    // this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.items = this.getListItems() 
-    // this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.columns = this.getColumns() 
-    this.filters.find(filter => filter.type === 'stringLimitedIncludeExclude').customOption.config.items = this.getLimitedItems() 
-    this.filters.find(filter => filter.type === 'stringLimitedMapping').customOption.left.config.items = this.getLimitedItems() 
-    this.filters.find(filter => filter.type === 'stringLimitedMapping').customOption.right.config.items = this.getLimitedItems() 
+    this.filters.find(filter => filter.type === 'stringMany').customOption.config.list.items = this.getListItems() 
+    this.filters.find(filter => filter.type === 'stringMany').customOption.config.list.columns = this.getColumns() 
+    this.filters.find(filter => filter.type === 'stringManyIncludeExclude').customOption.config.list.items = this.getListItems() 
+    this.filters.find(filter => filter.type === 'stringManyIncludeExclude').customOption.config.list.columns = this.getColumns() 
+
+    // this.filters.find(filter => filter.type === 'stringLimitedIncludeExclude').customOption.config.items = this.getLimitedItems() 
+    // this.filters.find(filter => filter.type === 'stringLimitedMapping').customOption.left.config.items = this.getLimitedItems() 
+    // this.filters.find(filter => filter.type === 'stringLimitedMapping').customOption.right.config.items = this.getLimitedItems() 
     this.activeFilterName = this.filters[0].name
   },
   methods: {
