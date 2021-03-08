@@ -6,7 +6,7 @@
       .summary
         NioImageTile(
           :src="imageSrc"
-          :imageBackground="imageBackground"
+          :imgBackground="imageBackground"
         )
         .title-subtitle
           .nio-h4.text-primary-darker {{ title }}

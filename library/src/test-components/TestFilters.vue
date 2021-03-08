@@ -59,6 +59,36 @@ export default {
       }
     },
     filters: [
+      {
+        name: "countryCode",
+        type: "stringLimitedMapping",
+        title: "Country Code",
+        description: "Test description 2",
+        value: "default",
+        options: [
+          {
+            label: `All Country Codes`,
+            value: 'default',
+          },
+          {
+            label: "Include if present",
+            value: 'ifPresent',
+          },
+          {
+            label: 'Custom',
+            value: 'custom',
+          }
+        ],
+        customOption: {
+          config: {
+            items: null
+          },
+          value: [{ 
+            value: 'US',
+            label: 'US'
+          }]
+        }
+      },
       // {
       //   name: "filter1",
       //   type: "eventTimestamp",
@@ -332,6 +362,7 @@ export default {
     // this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.items = this.getListItems() 
     // this.filters.find(filter => filter.name === 'resourceID').customOption.config.list.columns = this.getColumns() 
     this.filters.find(filter => filter.type === 'stringLimitedIncludeExclude').customOption.config.items = this.getLimitedItems() 
+    this.filters.find(filter => filter.type === 'stringLimitedMapping').customOption.config.items = this.getLimitedItems() 
     this.activeFilterName = this.filters[0].name
   },
   methods: {

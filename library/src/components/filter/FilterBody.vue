@@ -21,10 +21,15 @@
         :filter="filter"
       )  
     template(v-else-if="filter.type === 'stringLimited'")
-      NioFilterPropertiesStringLimitedIncludeExclude(
+      NioFilterPropertiesStringLimited(
         @valueChanged="valueChanged($event)"
         :filter="filter"
       )
+    template(v-else-if="filter.type === 'stringLimitedMapping'")
+      NioFilterPropertiesStringLimitedMapping(
+        @valueChanged="valueChanged($event)"
+        :filter="filter"
+      )  
     template(v-else-if="filter.type === 'stringLimitedIncludeExclude'")
       NioFilterPropertiesStringLimitedIncludeExclude(
         @valueChanged="valueChanged($event)"
@@ -47,6 +52,7 @@ import NioFilterPropertiesEventTimestamp from './default-types/EventTimestamp'
 import NioFilterPropertiesStringMany from './default-types/StringMany'
 import NioFilterPropertiesStringManyIncludeExclude from './default-types/StringManyIncludeExclude'
 import NioFilterPropertiesStringLimited from './default-types/StringLimited'
+import NioFilterPropertiesStringLimitedMapping from './default-types/StringLimitedMapping'
 import NioFilterPropertiesStringLimitedIncludeExclude from './default-types/StringLimitedIncludeExclude'
 import NioFilterPropertiesFrequency from './default-types/Frequency'
 
@@ -90,6 +96,7 @@ export default {
     NioFilterPropertiesStringMany,
     NioFilterPropertiesStringManyIncludeExclude,
     NioFilterPropertiesStringLimited,
+    NioFilterPropertiesStringLimitedMapping,
     NioFilterPropertiesStringLimitedIncludeExclude,
     NioFilterPropertiesFrequency
   }
