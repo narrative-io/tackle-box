@@ -9,9 +9,11 @@
         .string-limited-custom
           .left
             NioSelect(
+              keep-alive
               multiple
               v-if="filter.customOption.left.config.items.length > 0"
               v-model="filter.customOption.left.value" 
+              :value="filter.customOption.left.value"
               :items="filter.customOption.left.config.items"
               :label="'Select'"
               item-text="label"
@@ -25,6 +27,7 @@
               multiple
               v-if="filter.customOption.right.config.items.length > 0"
               v-model="filter.customOption.right.value" 
+              :value="filter.customOption.right.value"
               :items="filter.customOption.right.config.items"
               :label="'Select'"
               :disabled="!filter.customOption.mapping.value"
