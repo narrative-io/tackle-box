@@ -18,7 +18,7 @@
               item-value="value" 
               selection-pills
             )
-            .validation-error.nio-p-small.text-error(v-if="!leftValid") You must choose at least 1 value to map from
+            .validation-error.nio-p-small.text-error(v-if="!leftValid") {{ filter.customOption.mapping.value ? 'You must choose at least 1 value to map from' : 'You must select at least 1 value' }} 
           NioCheckbox(v-model="filter.customOption.mapping.value" :label="filter.customOption.mapping.label ? filter.customOption.mapping.label : 'Map to:'") 
           .right
             NioSelect(
@@ -77,11 +77,10 @@ export default {
   },
   methods: {
     validate() {
+      this.leftValid = !this.filter.customOption.left.value.length ? false : true
       if (this.filter.customOption.mapping.value) {
-        this.leftValid = !this.filter.customOption.left.value.length ? false : true
         this.rightValid = !this.filter.customOption.right.value.length ? false : true
       } else {
-        this.leftValid = true
         this.rightValid = true
       }
       if (!this.leftValid || !this.rightValid) {
