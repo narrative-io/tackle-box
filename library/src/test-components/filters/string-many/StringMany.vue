@@ -1,5 +1,6 @@
 <template lang="pug">
-  .test-filters
+  div
+    h1 StringMany
     NioFilterGroup(:filters="filters")
 </template>
 
@@ -18,12 +19,12 @@ export default {
   data: () => ({
     activeFilterName: null,
     filters: [
-			Default,
-			IncludeExclude
+      Default,
+      IncludeExclude
     ]
   }),
   mounted() {
-		this.activeFilterName = this.filters[0].name
+    this.activeFilterName = this.filters[0].name
   }
 };
 </script>

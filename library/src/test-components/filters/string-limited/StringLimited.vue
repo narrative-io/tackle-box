@@ -1,5 +1,6 @@
 <template lang="pug">
-  .test-filters
+  div
+    h1 StringLimited
     NioFilterGroup(:filters="filters")
 </template>
 
@@ -19,13 +20,13 @@ export default {
   data: () => ({
     activeFilterName: null,
     filters: [
-			Single,
-			Multiple,
-			SingleLabel
+      Single,
+      Multiple,
+      SingleLabel
     ]
   }),
   mounted() {
-		this.activeFilterName = this.filters[0].name
+    this.activeFilterName = this.filters[0].name
   },
   methods: {
     getLimitedItems() {
@@ -49,6 +50,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.test-filters
- 
+
+  
 </style>

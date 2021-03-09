@@ -4,7 +4,7 @@ import Items from '../data/Items'
 const IncludeExclude = {
 	name: "stringMany",
 	type: "stringMany",
-	title: "stringMany",
+	title: "Include Exclude",
 	description: "Test description 2",
 	value: "default",
 	options: [

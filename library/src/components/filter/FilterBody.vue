@@ -14,12 +14,7 @@
       NioFilterPropertiesStringMany(
         @valueChanged="valueChanged($event)"
         :filter="filter"
-      )
-    template(v-else-if="filter.type === 'stringManyIncludeExclude'")
-      NioFilterPropertiesStringManyIncludeExclude(
-        @valueChanged="valueChanged($event)"
-        :filter="filter"
-      )  
+      ) 
     template(v-else-if="filter.type === 'stringLimited'")
       NioFilterPropertiesStringLimited(
         @valueChanged="valueChanged($event)"
@@ -27,11 +22,6 @@
       )
     template(v-else-if="filter.type === 'stringLimitedMapping'")
       NioFilterPropertiesStringLimitedMapping(
-        @valueChanged="valueChanged($event)"
-        :filter="filter"
-      )  
-    template(v-else-if="filter.type === 'stringLimitedIncludeExclude'")
-      NioFilterPropertiesStringLimitedIncludeExclude(
         @valueChanged="valueChanged($event)"
         :filter="filter"
       )  
@@ -50,10 +40,8 @@ import NioFilterProperty from './FilterProperty'
 import NioFilterPropertiesNumber from './default-types/Number'
 import NioFilterPropertiesEventTimestamp from './default-types/EventTimestamp'
 import NioFilterPropertiesStringMany from './default-types/StringMany'
-import NioFilterPropertiesStringManyIncludeExclude from './default-types/StringManyIncludeExclude'
 import NioFilterPropertiesStringLimited from './default-types/StringLimited'
 import NioFilterPropertiesStringLimitedMapping from './default-types/StringLimitedMapping'
-import NioFilterPropertiesStringLimitedIncludeExclude from './default-types/StringLimitedIncludeExclude'
 import NioFilterPropertiesFrequency from './default-types/Frequency'
 
 export default {
@@ -94,10 +82,8 @@ export default {
     NioFilterPropertiesNumber,
     NioFilterPropertiesEventTimestamp,
     NioFilterPropertiesStringMany,
-    NioFilterPropertiesStringManyIncludeExclude,
     NioFilterPropertiesStringLimited,
     NioFilterPropertiesStringLimitedMapping,
-    NioFilterPropertiesStringLimitedIncludeExclude,
     NioFilterPropertiesFrequency
   }
 }

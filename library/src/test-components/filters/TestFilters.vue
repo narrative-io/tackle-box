@@ -18,7 +18,8 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass" >
 .test-filters
- 
+  h1 
+    margin: 40px auto 20px auto
 </style>
