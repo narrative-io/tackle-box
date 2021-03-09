@@ -1,9 +1,9 @@
 import LimitedItems from '../data/LimitedItems'
 
 const Multiple = {
-	name: "single",
+	name: "multiple",
 	type: "stringLimited",
-	title: "Single",
+	title: "Multiple",
 	description: "Description",
 	value: "default",
 	options: [
