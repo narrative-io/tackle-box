@@ -1,7 +1,6 @@
 <template lang="pug">
   .test-filters
     NioFilterGroup(:filters="filters")
-   
 </template>
 
 <script>
@@ -9,6 +8,8 @@
 import NioFilterGroup from '@/components/filter/FilterGroup'
 import NioFilter from '@/components/filter/Filter'
 import Single from './instances/Single'
+import Multiple from './instances/Multiple'
+import SingleLabel from './instances/SingleLabel'
 
 export default {
   components: {
@@ -18,21 +19,12 @@ export default {
   data: () => ({
     activeFilterName: null,
     filters: [
-      Single
+			Single,
+			Multiple,
+			SingleLabel
     ]
   }),
   mounted() {
-    // this.filters.find(filter => filter.type === 'stringLimited').customOption.config.items = this.getLimitedItems() 
-    // this.filters.find(filter => filter.type === 'stringMany').customOption.config.list.items = this.getListItems() 
-    // this.filters.find(filter => filter.type === 'stringMany').customOption.config.list.columns = this.getColumns() 
-    // this.filters.find(filter => filter.type === 'stringManyIncludeExclude').customOption.config.list.items = this.getListItems() 
-    // this.filters.find(filter => filter.type === 'stringManyIncludeExclude').customOption.config.list.columns = this.getColumns() 
-
-    // this.filters.find(filter => filter.type === 'stringLimitedIncludeExclude').customOption.config.items = this.getLimitedItems() 
-    
-    // this.filters.find(filter => filter.type === 'stringLimitedMapping').customOption.left.config.items = this.getLimitedItems() 
-    // this.filters.find(filter => filter.type === 'stringLimitedMapping').customOption.right.config.items = this.getLimitedItems() 
-		console.log(this.filters)
 		this.activeFilterName = this.filters[0].name
   },
   methods: {

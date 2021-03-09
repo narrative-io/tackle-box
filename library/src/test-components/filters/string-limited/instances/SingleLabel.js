@@ -1,9 +1,9 @@
 import LimitedItems from '../data/LimitedItems'
 
-const Multiple = {
-	name: "single",
+const Single = {
+	name: "singleLabel",
 	type: "stringLimited",
-	title: "Single",
+	title: "Single with Label",
 	description: "Description",
 	value: "default",
 	options: [
@@ -22,7 +22,7 @@ const Multiple = {
 	],
 	customOption: {
 		config: {
-			multiple: true,
+			selectLabel: "Custom label:",
 			items: LimitedItems
 		},
 		value: [{ 
@@ -32,4 +32,4 @@ const Multiple = {
 	}
 }
 
-export default Multiple
+export default Single

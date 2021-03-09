@@ -1,3 +1,5 @@
+import LimitedItems from '../data/LimitedItems'
+
 const Single = {
 	name: "single",
 	type: "stringLimited",
@@ -20,7 +22,7 @@ const Single = {
 	],
 	customOption: {
 		config: {
-			items: null
+			items: LimitedItems
 		},
 		value: [{ 
 			value: 'US',
