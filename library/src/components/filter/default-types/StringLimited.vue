@@ -8,11 +8,16 @@
       template(v-slot:custom-option)
         .string-limited-custom
           .list-type(v-if="filter.customOption.value.listType")
-            NioRadioGroup(v-model="filter.customOption.value.listType" :value="filter.customOption.value.listType")
+            NioRadioGroup(
+              v-model="filter.customOption.value.listType" 
+              :value="filter.customOption.value.listType"
+            )
               NioRadioButton(value="include" label="Include")
               NioRadioButton(value="exclude" label="Exclude")
           .filter-selection    
-            .custom-text
+            .custom-text(
+              v-if="filter.customOption.value.listType"
+            )
               .inclusion(
                 v-if="filter.customOption.value.listType === 'include'"
               )

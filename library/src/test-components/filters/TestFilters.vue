@@ -2,6 +2,7 @@
   .test-filters
     StringLimited
     StringMany
+    EventTimestamp
       
 </template>
 
@@ -9,11 +10,13 @@
 
 import StringLimited from './string-limited/StringLimited'
 import StringMany from './string-many/StringMany'
+import EventTimestamp from './event-timestamp/EventTimestamp'
 
 export default {
   components: {
     StringLimited,
-    StringMany
+    StringMany,
+    EventTimestamp
   }
 }
 </script>
