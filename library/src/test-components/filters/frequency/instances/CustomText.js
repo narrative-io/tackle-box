@@ -1,7 +1,7 @@
 const Default = {
 	name: "deduplication",
 	type: "frequency",
-	title: "Default",
+	title: "Custom Text",
 	description: "Description",
 	value: "default",
 	options: [
@@ -16,8 +16,9 @@ const Default = {
 	],
 	customOption: {
 		heading: 'Deduplication Strategy',
-		description: 'Exclude irrelevant or redundant data even when you buy from multiple suppliers.',
+		description: 'Exclude irrelevant or redundant data even when you buy from multiple suppliers.',	
 		config: {
+			text: "Custom text here",
 			periodOptions: [
 				{
 					label: 'Days',
@@ -32,11 +33,34 @@ const Default = {
 					value: 'months'
 				}
 			]  
-		},		
+		},
 		value: [15, {
 			label: 'Days',
 			value: 'day'
-		}]
+		}],
+		supportingOption: {
+			config: {
+				text: "Custom text here",
+				items: [
+				  {
+				    label: 'Days',
+				    value: 'day'
+				  },
+				  {
+				    label: 'Weeks',
+				    value: 'week'
+				  },
+				  {
+				    label: 'Months',
+				    value: 'months'
+				  }
+				]
+			},
+			value: [{
+				label: 'Days',
+				value: 'day'
+			}]
+		}
 	}
 }
 

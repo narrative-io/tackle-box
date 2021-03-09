@@ -1,7 +1,7 @@
 const Default = {
 	name: "deduplication",
 	type: "frequency",
-	title: "Default",
+	title: "Supporting Option",
 	description: "Description",
 	value: "default",
 	options: [
@@ -32,11 +32,33 @@ const Default = {
 					value: 'months'
 				}
 			]  
-		},		
+		},
 		value: [15, {
 			label: 'Days',
 			value: 'day'
-		}]
+		}],
+		supportingOption: {
+			config: {
+				items: [
+				  {
+				    label: 'Days',
+				    value: 'day'
+				  },
+				  {
+				    label: 'Weeks',
+				    value: 'week'
+				  },
+				  {
+				    label: 'Months',
+				    value: 'months'
+				  }
+				]
+			},
+			value: [{
+				label: 'Days',
+				value: 'day'
+			}]
+		}
 	}
 }
 

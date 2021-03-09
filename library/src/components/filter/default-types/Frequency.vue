@@ -10,25 +10,25 @@
           .heading.nio-h5.text-primary-darker(v-if="customTitle") {{ customTitle }}
           .description.nio-p.text-primary-dark(v-if="customDescription") {{ customDescription }}
           .frequency-section
-            .label.nio-p.text-primary-dark Buy once every 
+            .label.nio-p.text-primary-dark {{ filter.customOption.config.text ? filter.customOption.config.text : 'Buy once every' }} 
             .selection
               .fields
                 NioTextField(
-                  v-model="filter.customOption.frequency.value[0]"
-                  :value="filter.customOption.frequency.value[0]"
+                  v-model="filter.customOption.value[0]"
+                  :value="filter.customOption.value[0]"
                   :min="1"
                   type="number"
                   solo
                 )
                 NioSelect(
-                  v-model="filter.customOption.frequency.value[1]"
-                  :items="filter.customOption.frequency.config.periodOptions"
-                  :value="filter.customOption.frequency.value[1]"
+                  v-model="filter.customOption.value[1]"
+                  :items="filter.customOption.config.periodOptions"
+                  :value="filter.customOption.value[1]"
                   item-text="label"
                   item-value="value" 
                 )
-          .supporting-option-section
-            .label.nio-p.text-primary-dark Receive a single record for IDs that has
+          .supporting-option-section(v-if="filter.customOption.supportingOption")
+            .label.nio-p.text-primary-dark {{ filter.customOption.supportingOption.config.text ? filter.customOption.supportingOption.config.text : 'Receive a single record for IDs that has' }}
             NioSelect.selection(
               multiple
               v-if="filter.customOption.supportingOption.config.items.length > 0"
