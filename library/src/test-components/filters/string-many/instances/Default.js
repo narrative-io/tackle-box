@@ -31,7 +31,7 @@ const Default = {
 		},
 		value: {
 			entryType: 'list',
-			items: [],
+			items: Items[0],
 			manualEntry: 'stuff'
 		}
 	}

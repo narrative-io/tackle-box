@@ -32,7 +32,7 @@ const IncludeExclude = {
 		value: {
 			listType: 'include',
 			entryType: 'list',
-			items: [],
+			items: [Items[0]],
 			manualEntry: 'stuff'
 		}
 	}

@@ -25,12 +25,7 @@ const Single = {
 			items: LimitedItems
 		},
 		value: {
-			items: [
-				{ 
-					value: 'US',
-					label: 'US'
-				}
-			]
+			items: [LimitedItems[0]]
 		}	
 	}
 }

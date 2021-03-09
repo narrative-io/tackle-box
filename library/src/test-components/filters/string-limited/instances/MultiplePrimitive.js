@@ -1,9 +1,10 @@
 import LimitedItems from '../data/LimitedItems'
+import LimitedItemsPrimitive from '../data/LimitedItemsPrimitive'
 
 const Multiple = {
-	name: "includeExclude",
+	name: "multiple",
 	type: "stringLimited",
-	title: "Include/Exclude",
+	title: "Multiple Primitive",
 	description: "Description",
 	value: "default",
 	options: [
@@ -23,11 +24,10 @@ const Multiple = {
 	customOption: {
 		config: {
 			multiple: true,
-			items: LimitedItems
+			items: LimitedItemsPrimitive
 		},
 		value: {
-			listType: 'include', 
-			items: [LimitedItems[0]]
+			items: [LimitedItemsPrimitive[0]]
 		}	
 	}
 }

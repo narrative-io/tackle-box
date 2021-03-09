@@ -9,8 +9,10 @@
 import NioFilterGroup from '@/components/filter/FilterGroup'
 import NioFilter from '@/components/filter/Filter'
 import Default from './instances/Default'
+import DefaultPrimitive from './instances/DefaultPrimitive'
 import Multiple from './instances/Multiple'
-import SingleLabel from './instances/SingleLabel'
+import MultiplePrimitive from './instances/MultiplePrimitive'
+import CustomLabel from './instances/CustomLabel'
 import IncludeExclude from './instances/IncludeExclude'
 
 export default {
@@ -22,8 +24,10 @@ export default {
     activeFilterName: null,
     filters: [
       Default,
+      DefaultPrimitive,
       Multiple,
-      SingleLabel,
+      MultiplePrimitive,
+      CustomLabel,
       IncludeExclude
     ]
   }),

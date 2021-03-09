@@ -1,6 +1,6 @@
 import LimitedItems from '../data/LimitedItems'
 
-const Single = {
+const CustomLabel = {
 	name: "singleLabel",
 	type: "stringLimited",
 	title: "Single with Label",
@@ -26,14 +26,9 @@ const Single = {
 			items: LimitedItems
 		},
 		value: {
-			items: [
-				{ 
-					value: 'US',
-					label: 'US'
-				}
-			]
+			items: [LimitedItems[0]]
 		}	
 	}
 }
 
-export default Single
+export default CustomLabel
