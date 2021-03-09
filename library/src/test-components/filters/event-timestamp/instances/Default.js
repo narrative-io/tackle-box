@@ -1,7 +1,7 @@
 const Default = {
 	name: "filter2",
 	type: "eventTimestamp",
-	title: "Event Timestamps",
+	title: "Default",
 	description: "Define the timestamps you want included in your subscription.",
 	text: {
 		dateRange: {

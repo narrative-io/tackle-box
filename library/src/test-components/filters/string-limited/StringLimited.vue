@@ -8,7 +8,7 @@
 
 import NioFilterGroup from '@/components/filter/FilterGroup'
 import NioFilter from '@/components/filter/Filter'
-import Single from './instances/Single'
+import Default from './instances/Default'
 import Multiple from './instances/Multiple'
 import SingleLabel from './instances/SingleLabel'
 import IncludeExclude from './instances/IncludeExclude'
@@ -21,7 +21,7 @@ export default {
   data: () => ({
     activeFilterName: null,
     filters: [
-      Single,
+      Default,
       Multiple,
       SingleLabel,
       IncludeExclude

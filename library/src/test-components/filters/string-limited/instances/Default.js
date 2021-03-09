@@ -3,7 +3,7 @@ import LimitedItems from '../data/LimitedItems'
 const Single = {
 	name: "single",
 	type: "stringLimited",
-	title: "Single",
+	title: "Default",
 	description: "Descscription",
 	value: "default",
 	options: [

@@ -4,7 +4,7 @@ import Items from '../data/Items'
 const Default = {
 	name: "stringMany",
 	type: "stringMany",
-	title: "stringMany",
+	title: "Default",
 	description: "Test description 2",
 	value: "default",
 	options: [
