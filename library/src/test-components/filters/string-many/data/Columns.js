@@ -3,7 +3,7 @@ const Columns = [
 		name: "slat",
 		props: {
 			title: "name",
-			subtitle: this.computeSubtitle
+			subtitle: "label"
 		}
 	},
 	{
@@ -13,8 +13,7 @@ const Columns = [
 	{
 		name: "idCount",
 		label: "ID Count",
-		computed: this.computeIdCount
-	} 
+	}
 ]
 
 export default Columns

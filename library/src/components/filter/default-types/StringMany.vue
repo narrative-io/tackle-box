@@ -24,7 +24,20 @@
                 pagination
                 @selectionChanged="listSelectionChanged($event)"
               )
+                template(v-slot:custom-header-element)
+                  NioRadioGroup(
+                    v-model="filter.customOption.value.listType"
+                    v-if="filter.customOption.value.listType"
+                  )
+                    NioRadioButton(value="include" label="Include")
+                    NioRadioButton(value="exclude" label="Exclude")
             template(v-slot:manual)
+              NioRadioGroup(
+                v-if="filter.customOption.value.listType"
+                v-model="filter.customOption.value.listType"
+              )
+                NioRadioButton(value="include" label="Include")
+                NioRadioButton(value="exclude" label="Exclude")
               NioTextarea(
                 v-model="filter.customOption.value.manualEntry"
               )
@@ -46,7 +59,6 @@ export default {
   },
   data: () => ({
     initialListItems: [],
-    test: 'a',
     description: 'Select the data to include',
     tabs: [
       {
@@ -90,9 +102,9 @@ export default {
       this.filter.customOption.value.items = val
     },
     updateValue() {
-			const options = this.filter.options ? this.filter.options : this.defaultOptions
-			this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
-		}
+      const options = this.filter.options ? this.filter.options : this.defaultOptions
+      this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+    }
   },
   watch: {
     filter: {
