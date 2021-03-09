@@ -7,6 +7,8 @@
     )
       template(v-slot:custom-option)
         NioSlider.number-custom(
+          :currency="filter.customOption.config.currency"
+          :prepend="filter.customOption.config.currency && !filter.customOption.config.range"
           :range="filter.customOption.config.range"
           :min="filter.customOption.config.min"
           :max="filter.customOption.config.max"
@@ -46,17 +48,17 @@ export default {
           value: 'custom',
         }
       ]
-		}
-	},
-	mounted() {
-		this.updateValue()
-	},
-	methods: {
-		updateValue() {
-			const options = this.filter.options ? this.filter.options : this.defaultOptions
-			this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
-		}
-	},
+    }
+  },
+  mounted() {
+    this.updateValue()
+  },
+  methods: {
+    updateValue() {
+      const options = this.filter.options ? this.filter.options : this.defaultOptions
+      this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+    }
+  },
   watch: {
     filter: {
       deep: true,
