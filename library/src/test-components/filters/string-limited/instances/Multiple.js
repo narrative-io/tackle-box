@@ -25,10 +25,14 @@ const Multiple = {
 			multiple: true,
 			items: LimitedItems
 		},
-		value: [{ 
-			value: 'US',
-			label: 'US'
-		}]
+		value: {
+			items: [
+				{ 
+					value: 'US',
+					label: 'US'
+				}
+			]
+		}	
 	}
 }
 

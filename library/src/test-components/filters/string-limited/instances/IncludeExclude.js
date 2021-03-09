@@ -1,9 +1,9 @@
 import LimitedItems from '../data/LimitedItems'
 
-const Single = {
-	name: "singleLabel",
+const Multiple = {
+	name: "includeExclude",
 	type: "stringLimited",
-	title: "Single with Label",
+	title: "Include/Exclude",
 	description: "Description",
 	value: "default",
 	options: [
@@ -22,18 +22,19 @@ const Single = {
 	],
 	customOption: {
 		config: {
-			selectLabel: "Custom label:",
+			multiple: true,
 			items: LimitedItems
 		},
 		value: {
+			listType: 'include', 
 			items: [
 				{ 
-					value: 'US',
-					label: 'US'
+				value: 'US',
+				label: 'US'
 				}
 			]
 		}	
 	}
 }
 
-export default Single
+export default Multiple

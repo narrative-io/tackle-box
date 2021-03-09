@@ -24,10 +24,14 @@ const Single = {
 		config: {
 			items: LimitedItems
 		},
-		value: [{ 
-			value: 'US',
-			label: 'US'
-		}]
+		value: {
+			items: [
+				{ 
+					value: 'US',
+					label: 'US'
+				}
+			]
+		}	
 	}
 }
 

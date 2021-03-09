@@ -11,6 +11,7 @@ import NioFilter from '@/components/filter/Filter'
 import Single from './instances/Single'
 import Multiple from './instances/Multiple'
 import SingleLabel from './instances/SingleLabel'
+import IncludeExclude from './instances/IncludeExclude'
 
 export default {
   components: {
@@ -22,7 +23,8 @@ export default {
     filters: [
       Single,
       Multiple,
-      SingleLabel
+      SingleLabel,
+      IncludeExclude
     ]
   }),
   mounted() {
