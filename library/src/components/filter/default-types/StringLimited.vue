@@ -8,13 +8,13 @@
       template(v-slot:custom-option)
         .string-limited-custom
           NioSelect(
-            multiple
+            :multiple="filter.customOption.config.multiple"
             v-if="filter.customOption.config.items.length > 0"
             v-model="filter.customOption.value" 
             :items="filter.customOption.config.items"
-            :label="'Select'"
+            :label="filter.customOption.config.selectLabel ? filter.customOption.config.selectLabel : 'Select'"
             item-text="label"
-            item-value="value" 
+            item-value="value"
             selection-pills
           )
 </template>
