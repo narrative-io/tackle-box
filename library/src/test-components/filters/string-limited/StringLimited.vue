@@ -14,6 +14,7 @@ import Multiple from './instances/Multiple'
 import MultiplePrimitive from './instances/MultiplePrimitive'
 import CustomLabel from './instances/CustomLabel'
 import IncludeExclude from './instances/IncludeExclude'
+import IncludeExcludeCustomText from './instances/IncludeExcludeCustomText'
 
 export default {
   components: {
@@ -28,29 +29,15 @@ export default {
       Multiple,
       MultiplePrimitive,
       CustomLabel,
-      IncludeExclude
+			IncludeExclude,
+			IncludeExcludeCustomText
     ]
   }),
   mounted() {
     this.activeFilterName = this.filters[0].name
   },
   methods: {
-    getLimitedItems() {
-      return [
-        { 
-          value: 'US',
-          label: 'US'
-        },
-        {
-          value: 'CD',
-          label: 'Canada'
-        },
-        {
-          value: 'AU',
-          label: 'Australia'
-        }
-      ]	
-    }
+    
   }
 };
 </script>
