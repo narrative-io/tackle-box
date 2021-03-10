@@ -7,9 +7,22 @@
     )
       template(v-slot:custom-option)
         .string-many-custom
+          .manual-entry-only(
+            v-if="filter.customOption.config.manualEntryOnly"
+          )
+            NioRadioGroup(
+              v-if="filter.customOption.value.listType"
+              v-model="filter.customOption.value.listType"
+            )
+              NioRadioButton(value="include" label="Include")
+              NioRadioButton(value="exclude" label="Exclude")
+            NioTextarea(
+              v-model="filter.customOption.value.manualEntry"
+            )
           NioTabs(
             :tabs="tabs"
             v-model="activeTab"
+            v-else
           )
             template(v-slot:list)
               NioSlatTable(
@@ -94,7 +107,9 @@ export default {
     }
   },
   mounted() {
-    this.initialListItems = this.filter.customOption.value.items.length ? this.filter.customOption.value.items.map(item => item.id) : []
+    if (!this.filter.customOption.config.manualEntryOnly) {
+      this.initialListItems = this.filter.customOption.value.items.length ? this.filter.customOption.value.items.map(item => item.id) : []
+    }
     this.updateValue()
   },
   methods: {

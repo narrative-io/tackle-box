@@ -10,6 +10,8 @@ import NioFilterGroup from '@/components/filter/FilterGroup'
 import NioFilter from '@/components/filter/Filter'
 import Default from './instances/Default'
 import IncludeExclude from './instances/IncludeExclude'
+import ManualEntryOnly from './instances/ManualEntryOnly'
+import ManualEntryOnlyIncludeExclude from './instances/ManualEntryOnlyIncludeExclude'
 
 export default {
   components: {
@@ -20,7 +22,9 @@ export default {
     activeFilterName: null,
     filters: [
       Default,
-      IncludeExclude
+      IncludeExclude,
+      ManualEntryOnly,
+      ManualEntryOnlyIncludeExclude
     ]
   }),
   mounted() {
