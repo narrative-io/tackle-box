@@ -13,6 +13,7 @@ import NioFilter from '@/components/filter/Filter'
 import Default from './instances/Default'
 import Range from './instances/Range'
 import Currency from './instances/Currency'
+import CustomText from './instances/CustomText'
 
 export default {
   components: {
@@ -24,7 +25,8 @@ export default {
     filters: [
       Default,
       Range,
-      Currency
+      Currency,
+      CustomText
     ]
   }),
   mounted() {

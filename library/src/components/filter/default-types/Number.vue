@@ -6,14 +6,16 @@
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
-        NioSlider.number-custom(
-          :currency="filter.customOption.config.currency"
-          :prepend="filter.customOption.config.currency && !filter.customOption.config.range"
-          :range="filter.customOption.config.range"
-          :min="filter.customOption.config.min"
-          :max="filter.customOption.config.max"
-          v-model="filter.customOption.value"
-        )
+        .number-custom
+          .nio-p.text-primary-dark(v-if="filter.customOption.config.text") {{ filter.customOption.config.text }}
+          NioSlider(
+            :currency="filter.customOption.config.currency"
+            :prepend="filter.customOption.config.currency && !filter.customOption.config.range"
+            :range="filter.customOption.config.range"
+            :min="filter.customOption.config.min"
+            :max="filter.customOption.config.max"
+            v-model="filter.customOption.value"
+          )
 </template>
 
 <script>
