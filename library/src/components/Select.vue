@@ -9,9 +9,9 @@
     :attach="attach ? node : undefined"
     v-bind="$attrs"
     v-on="$listeners"
-    @input="$emit('update', $event)"
+    @input="updateModel($event)"
     ref="nio-select-ref"
-    :value="model"
+    :value="value"
     :item-value="valueKey"
     :item-text="textKey"
   )
@@ -27,7 +27,6 @@
         :text="textKey ? item[textKey] : item"
         selected-value
       )
-        
 </template>
 
 
@@ -55,7 +54,8 @@ export default {
     selectionPills: false,
     labelText: null,
     textKey: null,
-    valueKey: null
+		valueKey: null,
+		value: null
   }),
   methods: {
     applyKeys() {
@@ -95,11 +95,16 @@ export default {
       if (attributes.getNamedItem('selection-pills')) {
         this.selectionPills = true
       }
-    }  
+		},
+		updateModel(event) {
+			this.$emit('update', event)
+		}
   },
   mounted() {	
     this.applyHelperAttributes()
-    this.applyKeys()
+		this.applyKeys()
+		this.updateModel(this.model)
+		this.value = this.model
     this.$emit('mounted')
     this.node = this.$refs['nio-select-ref'].$vnode.elm
   },

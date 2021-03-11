@@ -38,7 +38,6 @@
               item-value="value"
               selection-pills
             )
-            .test {{ filter.customOption.value.items }}
 </template>
 
 <script>
