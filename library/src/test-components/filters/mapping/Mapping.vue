@@ -9,6 +9,7 @@
 import NioFilterGroup from '@/components/filter/FilterGroup'
 import NioFilter from '@/components/filter/Filter'
 import Default from './instances/Default'
+import CustomText from './instances/CustomText'
 
 export default {
   components: {
@@ -18,7 +19,8 @@ export default {
   data: () => ({
     activeFilterName: null,
     filters: [
-      Default
+			Default,
+			CustomText
     ]
   }),
   mounted() {

@@ -15,7 +15,7 @@
               v-model="filter.customOption.left.value" 
               :value="filter.customOption.left.value"
               :items="filter.customOption.left.config.items"
-              :label="'Select'"
+              :label="filter.customOption.left.config.selectLabel ? filter.customOption.left.config.selectLabel : 'Select'"
               item-text="label"
               item-value="value" 
               selection-pills
@@ -29,7 +29,7 @@
               v-model="filter.customOption.right.value" 
               :value="filter.customOption.right.value"
               :items="filter.customOption.right.config.items"
-              :label="'Select'"
+              :label="filter.customOption.right.config.selectLabel ? filter.customOption.right.config.selectLabel : 'Select'"
               :disabled="!filter.customOption.mapping.value"
               item-text="label"
               item-value="value" 
