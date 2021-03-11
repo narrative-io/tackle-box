@@ -34,7 +34,7 @@
               v-if="filter.customOption.supportingOption.config.items.length > 0"
               v-model="filter.customOption.supportingOption.value" 
               :items="filter.customOption.supportingOption.config.items"
-              :label="'Select'"
+              :label="filter.customOption.supportingOption.config.selectLabel ? filter.customOption.supportingOption.config.selectLabel : 'Select'"
               item-text="label"
               item-value="value" 
               selection-pills
