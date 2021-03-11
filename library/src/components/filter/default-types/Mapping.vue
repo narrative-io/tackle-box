@@ -45,7 +45,7 @@ import NioSelect from '../../Select'
 import NioCheckbox from '../../Checkbox'
 
 export default {
-  name: 'nio-filter-properties-string-limited-mapping',
+  name: 'nio-filter-properties-mapping',
   props: {
     "filter": { type: Object, required: true },
   },
