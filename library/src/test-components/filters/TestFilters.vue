@@ -5,6 +5,7 @@
     EventTimestamp
     Number
     Frequency
+    Mapping
 </template>
 
 <script>
@@ -14,6 +15,7 @@ import StringMany from './string-many/StringMany'
 import EventTimestamp from './event-timestamp/EventTimestamp'
 import Number from './number/Number'
 import Frequency from './frequency/Frequency'
+import Mapping from './mapping/Mapping'
 
 export default {
   components: {
@@ -21,7 +23,8 @@ export default {
     StringMany,
     EventTimestamp,
     Number,
-    Frequency
+    Frequency,
+    Mapping
   }
 }
 </script>

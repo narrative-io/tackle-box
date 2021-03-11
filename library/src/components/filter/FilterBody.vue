@@ -20,8 +20,8 @@
         @valueChanged="valueChanged($event)"
         :filter="filter"
       )
-    template(v-else-if="filter.type === 'stringLimitedMapping'")
-      NioFilterPropertiesStringLimitedMapping(
+    template(v-else-if="filter.type === 'mapping'")
+      NioFilterPropertiesMapping(
         @valueChanged="valueChanged($event)"
         :filter="filter"
       )  
@@ -41,7 +41,7 @@ import NioFilterPropertiesNumber from './default-types/Number'
 import NioFilterPropertiesEventTimestamp from './default-types/EventTimestamp'
 import NioFilterPropertiesStringMany from './default-types/StringMany'
 import NioFilterPropertiesStringLimited from './default-types/StringLimited'
-import NioFilterPropertiesStringLimitedMapping from './default-types/StringLimitedMapping'
+import NioFilterPropertiesMapping from './default-types/Mapping'
 import NioFilterPropertiesFrequency from './default-types/Frequency'
 
 export default {
@@ -83,7 +83,7 @@ export default {
     NioFilterPropertiesEventTimestamp,
     NioFilterPropertiesStringMany,
     NioFilterPropertiesStringLimited,
-    NioFilterPropertiesStringLimitedMapping,
+    NioFilterPropertiesMapping,
     NioFilterPropertiesFrequency
   }
 }
