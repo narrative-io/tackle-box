@@ -1,4 +1,4 @@
-import LimitedItems from '../data/LimitedItems'
+import { LeftItems, RightItems} from '../data/MappingItems'
 
 const Default = {
 	name: "single",
@@ -23,13 +23,13 @@ const Default = {
 	customOption: {
 		left: {
 			config: {
-				items: LimitedItems
+				items: LeftItems
 			},
 			value: []
 		},
 		right: {
 			config: {
-				items: LimitedItems
+				items: RightItems
 			},
 			value: []
 		},

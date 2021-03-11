@@ -1,4 +1,4 @@
-import LimitedItems from '../data/LimitedItems'
+import { LeftItems, RightItems} from '../data/MappingItems'
 
 const CustomText = {
 	name: "single",
@@ -24,14 +24,14 @@ const CustomText = {
 		left: {
 			config: {
 				selectLabel: 'Custom Label',
-				items: LimitedItems
+				items: LeftItems
 			},
 			value: []
 		},
 		right: {
 			config: {
 				selectLabel: 'Custom Label',
-				items: LimitedItems
+				items: RightItems
 			},
 			value: []
 		},

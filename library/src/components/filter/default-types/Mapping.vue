@@ -96,10 +96,20 @@ export default {
     },
     updateValue() {
       if (this.filter.customOption.mapping.mutuallyExclusive) {
-        this.filter.customOption.left.value.map(leftValue => {
-          const item = this.filter.customOption.right.config.items.find(item => item.value === leftValue)
-          if (item) {
+        this.filter.customOption.left.config.items.map(item => {
+          const matchingItem = this.filter.customOption.right.value.find(val => val === item.value)
+          if (matchingItem) {
             item.disabled = true
+          } else {
+            item.disabled = false
+          }
+        })
+        this.filter.customOption.right.config.items.map(item => {
+          const matchingItem = this.filter.customOption.left.value.find(val => val === item.value)
+          if (matchingItem) {
+            item.disabled = true
+          } else {
+            item.disabled = false
           }
         })
       }
