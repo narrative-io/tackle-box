@@ -10,6 +10,7 @@ import NioFilterGroup from '@/components/filter/FilterGroup'
 import NioFilter from '@/components/filter/Filter'
 import Default from './instances/Default'
 import CustomText from './instances/CustomText'
+import MutuallyExclusive from './instances/MutuallyExclusive'
 
 export default {
   components: {
@@ -19,8 +20,9 @@ export default {
   data: () => ({
     activeFilterName: null,
     filters: [
-			Default,
-			CustomText
+      Default,
+      CustomText,
+      MutuallyExclusive
     ]
   }),
   mounted() {

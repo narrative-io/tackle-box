@@ -17,7 +17,8 @@
               :items="filter.customOption.left.config.items"
               :label="filter.customOption.left.config.selectLabel ? filter.customOption.left.config.selectLabel : 'Select'"
               item-text="label"
-              item-value="value" 
+              item-value="value"
+              item-disabled="disabled"
               selection-pills
             )
             .validation-error.nio-p-small.text-error(v-if="!leftValid") {{ filter.customOption.mapping.value ? 'You must choose at least 1 value to map from' : 'You must select at least 1 value' }} 
@@ -32,7 +33,8 @@
               :label="filter.customOption.right.config.selectLabel ? filter.customOption.right.config.selectLabel : 'Select'"
               :disabled="!filter.customOption.mapping.value"
               item-text="label"
-              item-value="value" 
+              item-value="value"
+              item-disabled="disabled"
               selection-pills
             )
             .validation-error.nio-p-small.text-error(v-if="!rightValid && leftValid") You must choose at least 1 value to map to
@@ -93,6 +95,14 @@ export default {
       }
     },
     updateValue() {
+      if (this.filter.customOption.mapping.mutuallyExclusive) {
+        this.filter.customOption.left.value.map(leftValue => {
+          const item = this.filter.customOption.right.config.items.find(item => item.value === leftValue)
+          if (item) {
+            item.disabled = true
+          }
+        })
+      }
       const options = this.filter.options ? this.filter.options : this.defaultOptions
       this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
       this.validate()

@@ -66,6 +66,7 @@
         span.v-select__selection(v-if="index === 1") , {{ item.name }}
         span.v-select__selection(v-if="index === 2 && selectedRegions.length === 3")  , (+{{ selectedRegions.length - 2 }} other)
         span.v-select__selection(v-if="index === 2 && selectedRegions.length > 3 ")  , (+{{ selectedRegions.length - 2 }} others)
+    .value {{ selectedRegions }}	
     NioSelect(
       label="Preferred Data Regions"
       v-model="selectedRegions"
