@@ -80,14 +80,20 @@ export default {
     },
     customDescription() {
       return this.filter.customOption && this.filter.customOption.description ? this.filter.customOption.description : null
-    }
-  },
+		},
+		updateValue() {
+			const options = this.filter.options ? this.filter.options : this.defaultOptions
+        this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+		}
+	},
+	mounted() {
+		this.updateValue()
+	},
   watch: {
     filter: {
       deep: true,
       handler() {
-        const options = this.filter.options ? this.filter.options : this.defaultOptions
-        this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+        this.updateValue()
       }
     }
   },
