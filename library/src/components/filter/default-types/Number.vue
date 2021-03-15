@@ -16,6 +16,7 @@
             :max="filter.customOption.config.max"
             v-model="filter.customOption.value"
           )
+          .nio-p.text-primary-dark.units(v-if="filter.customOption.config.units") {{ filter.customOption.config.units }}
 </template>
 
 <script>

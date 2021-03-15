@@ -20,7 +20,8 @@ const CustomText = {
 	],
 	customOption: {
 		config: {
-			text: "Custom label text",
+			text: "Accurate to ",
+			units: "meters",
 			min: 10,
 			max: 100
 		},
