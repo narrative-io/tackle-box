@@ -6,6 +6,17 @@
       :value="'banana'"
       :ref="'text'" 
       :label="'Label'"
+      key="1"
+    )
+    NioAutocomplete(
+      label="Preferred Data Regions"
+      v-model="selectedRegions"
+      :value="selectedRegions"
+      :items="regions"
+      item-text="name"
+      item-value="value" 
+      multiple 
+      key="2"
     )
     NioAutocomplete(
       label="Preferred Data Regions"
@@ -14,6 +25,8 @@
       item-text="name"
       item-value="value" 
       multiple 
+      selection-pills
+      key="3"
     )
 </template>
 
@@ -46,7 +59,10 @@ export default {
         value: 4
       }
     ],
-    selectedRegions: [],
+    selectedRegions: [{
+        name: 'US',
+        value: 1
+      }],
 
   })
 };

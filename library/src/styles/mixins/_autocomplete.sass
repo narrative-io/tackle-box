@@ -3,6 +3,12 @@
 =nio-autocomplete
   +nio-select
 
+  &.v-select--is-multi ::v-deep .v-input__slot
+    input
+      padding-left: 0rem
+      padding-top: 0.5rem
+  &.selection-pills ::v-deep .v-input__slot label.v-label.v-label--active
+    top: 2.125rem !important
 .nio-autocomplete
   +nio-autocomplete
     

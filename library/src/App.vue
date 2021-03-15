@@ -30,7 +30,7 @@
         //- TestAlert
         //- TestChargeSummary
         //- TestButtons
-        //- TestAutocomplete
+        TestAutocomplete
         //- TestStepper
         //- TestSlatTable
         //- TestSlat
@@ -41,9 +41,9 @@
         //- TestImageTile
         //- TestIconFramer
         //- TestIcons
-        //- TestTextField
+        TestTextField
         //- TestDateField
-        //- TestSelect
+        TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog

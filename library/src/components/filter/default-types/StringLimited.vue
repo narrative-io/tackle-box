@@ -28,9 +28,19 @@
               )
                 .heading.nio-h5.text-primary-darker Exclusion list
                 .description.nio-p.text-primary-dark {{ listTypeDescription }}
+            NioAutocomplete((
+              :multiple="filter.customOption.config.multiple"
+              v-if="filter.customOption.config.items.length > 0 && filter.customOption.config.searchable"
+              v-model="filter.customOption.value.items" 
+              :items="filter.customOption.config.items"
+              :label="filter.customOption.config.selectLabel ? filter.customOption.config.selectLabel : 'Select'"
+              item-text="label"
+              item-value="value"
+              selection-pills
+            ))
             NioSelect(
               :multiple="filter.customOption.config.multiple"
-              v-if="filter.customOption.config.items.length > 0"
+              v-if="filter.customOption.config.items.length > 0 && !filter.customOption.config.searchable"
               v-model="filter.customOption.value.items" 
               :items="filter.customOption.config.items"
               :label="filter.customOption.config.selectLabel ? filter.customOption.config.selectLabel : 'Select'"
@@ -44,6 +54,7 @@
 
 import NioFilterProperty from '../FilterProperty'
 import NioSelect from '../../Select'
+import NioAutocomplete from '../../Autocomplete'
 import NioRadioGroup from '../../RadioGroup'
 import NioRadioButton from '../../RadioButton'
 
@@ -101,7 +112,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty, NioSelect, NioRadioGroup, NioRadioButton }
+  components: { NioFilterProperty, NioSelect, NioAutocomplete, NioRadioGroup, NioRadioButton }
 }
 </script>
 
