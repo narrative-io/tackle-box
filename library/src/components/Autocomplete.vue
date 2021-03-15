@@ -3,8 +3,8 @@
       :items="items"
       :model="model"
       :class="{ 'selection-pills': selectionPills }"
-      :menu-props="{ offsetY: true, nudgeBottom: 10  }"
-      :attach="node"
+      :attach="attachAttr ? node : undefined"
+      :menu-props="{contentClass: 'nio-select-menu', offsetY: !attachAttr ? true : false, nudgeBottom: !attachAttr ? 10 : undefined  }"
       outlined
       v-bind="$attrs"
       v-on="$listeners"
@@ -36,7 +36,8 @@ export default {
   props: {
     "model": { required: false },
     "rules": { required: false },
-    "items": { required: true }
+    "items": { required: true },
+    "attach-to-parent": { required: false, default: false }
   },
   model: {
     prop: "model",
@@ -47,6 +48,7 @@ export default {
     selectionPills: false,
     textKey: null,
     valueKey: null,
+    attachAttr: false,
     value: null
   }),
   methods: {
@@ -54,6 +56,9 @@ export default {
       const attributes = this.$el.attributes
       if (attributes.getNamedItem('selection-pills')) {
         this.selectionPills = true
+      }
+      if (attributes.getNamedItem('attach-to-parent')) {
+        this.attachAttr = true
       }
     },
     applyKeys() {

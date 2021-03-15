@@ -28,7 +28,7 @@
               )
                 .heading.nio-h5.text-primary-darker Exclusion list
                 .description.nio-p.text-primary-dark {{ listTypeDescription }}
-            NioAutocomplete((
+            NioAutocomplete(
               :multiple="filter.customOption.config.multiple"
               v-if="filter.customOption.config.items.length > 0 && filter.customOption.config.searchable"
               v-model="filter.customOption.value.items" 
@@ -37,7 +37,7 @@
               item-text="label"
               item-value="value"
               selection-pills
-            ))
+            )
             NioSelect(
               :multiple="filter.customOption.config.multiple"
               v-if="filter.customOption.config.items.length > 0 && !filter.customOption.config.searchable"

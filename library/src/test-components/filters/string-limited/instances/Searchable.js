@@ -1,9 +1,9 @@
 import LimitedItems from '../data/LimitedItems'
 
-const Single = {
+const Searchable = {
 	name: "single",
 	type: "stringLimited",
-	title: "Default",
+	title: "Searchable",
 	description: "Description",
 	value: "default",
 	options: [
@@ -22,6 +22,9 @@ const Single = {
 	],
 	customOption: {
 		config: {
+			selectLabel: 'Test Label',
+			multiple: true,
+			searchable: true,
 			items: LimitedItems
 		},
 		value: {
@@ -30,4 +33,4 @@ const Single = {
 	}
 }
 
-export default Single
+export default Searchable

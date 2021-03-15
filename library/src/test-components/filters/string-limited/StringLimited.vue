@@ -15,6 +15,7 @@ import MultiplePrimitive from './instances/MultiplePrimitive'
 import CustomLabel from './instances/CustomLabel'
 import IncludeExclude from './instances/IncludeExclude'
 import IncludeExcludeCustomText from './instances/IncludeExcludeCustomText'
+import Searchable from './instances/Searchable'
 
 export default {
   components: {
@@ -30,7 +31,8 @@ export default {
       MultiplePrimitive,
       CustomLabel,
 			IncludeExclude,
-			IncludeExcludeCustomText
+			IncludeExcludeCustomText,
+			Searchable
     ]
   }),
   mounted() {
