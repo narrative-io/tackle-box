@@ -15,7 +15,6 @@
       :items="regions"
       item-text="name"
       item-value="value" 
-      multiple 
       key="2"
     )
     NioAutocomplete(
@@ -27,6 +26,7 @@
       multiple 
       selection-pills
       key="3"
+      attach-to-parent
     )
 </template>
 

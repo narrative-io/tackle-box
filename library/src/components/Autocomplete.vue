@@ -36,8 +36,7 @@ export default {
   props: {
     "model": { required: false },
     "rules": { required: false },
-    "items": { required: true },
-    "attach-to-parent": { required: false, default: false }
+    "items": { required: true }
   },
   model: {
     prop: "model",
@@ -82,7 +81,6 @@ export default {
       }
     },
     updateModel(event) {
-      console.log(event)
       this.$emit('update', event)
     }
   },
