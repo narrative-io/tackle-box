@@ -15,18 +15,18 @@
     :item-value="valueKey"
     :item-text="textKey"
   )
+    template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+      slot(:name="name" v-bind="data") 
     template(v-slot:append)
       svg(style="width:24px;height:24px" viewBox="0 0 24 24")
         path(fill="#425290" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z")
     template(v-slot:selection="{ item, index }" v-if="hideSelections")
       span(v-if="index === 0") {{ labelText }}
-    template(v-slot:selection="{ item, index }" v-if="selectionPills && !hideSelections")
+    template(v-slot:selection="{ item, index }" v-else-if="selectionPills && !hideSelections")
       NioPill(
         :text="textKey ? item[textKey] : item"
         selected-value
       )
-    template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-      slot(:name="name" v-bind="data")
 </template>
 
 

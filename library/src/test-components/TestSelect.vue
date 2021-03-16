@@ -41,7 +41,7 @@
       v-model="selectedItems" 
       :items="items"
       :ref="'text'" 
-      :label="'Label'"
+      :label="'Small Label'"
       key="5"
     )
     NioSelect.select(
