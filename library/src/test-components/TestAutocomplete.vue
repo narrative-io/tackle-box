@@ -26,7 +26,17 @@
       multiple 
       selection-pills
       key="3"
+    )
+    NioAutocomplete.viewing-as-menu(
+      label="Viewing As"
+      v-model="selectedCompany"
+      :value="selectedCompany"
+      :items="companies"
+      item-value="id"
+      item-text="name"
+      outlined
       attach-to-parent
+      key="4"
     )
 </template>
 
@@ -39,6 +49,19 @@ export default {
     NioAutocomplete
   },
   data: () => ({
+    selectedCompany: null,
+    companies: [
+      {
+        id: 289,
+        imageUrl: null,
+        name: "0onboardingTestedit"
+      },
+      {
+        id: 290,
+        imageUrl: null,
+        name: "company 2"
+      }  
+    ],
     items: ['apple', 'banana', 'orange', 'your mom'],
     selectedItems: ['apple'],
     regions: [

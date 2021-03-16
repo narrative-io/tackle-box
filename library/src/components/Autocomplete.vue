@@ -2,7 +2,7 @@
     v-autocomplete.nio-autocomplete(
       :items="items"
       :model="model"
-      :class="{ 'selection-pills': selectionPills }"
+      :class="{ 'selection-pills': selectionPills, 'attached': attachAttr }"
       :attach="attachAttr ? node : undefined"
       :menu-props="{contentClass: 'nio-select-menu', offsetY: !attachAttr ? true : false, nudgeBottom: !attachAttr ? 10 : undefined  }"
       outlined
