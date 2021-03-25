@@ -34,6 +34,7 @@
       NioIcon(name="display-budget")
       NioIcon(name="display-list-warning")
       NioIcon(name="display-curvy-arrow")
+      NioIcon(name="display-manager")
     br
     br
     .icons.utility-icons

@@ -31,6 +31,7 @@ import { IconKb } from './icons/kb'
 import { IconBudget } from './icons/budget'
 import { IconListWarning } from './icons/listWarning'
 import { IconCurvyArrow } from './icons/curvyArrow'
+import { IconManager } from './icons/manager'
 
 const NioIconLibrary = {
 	"display-new": IconNew,
@@ -66,6 +67,7 @@ const NioIconLibrary = {
 	"display-budget": IconBudget,
 	"display-list-warning": IconListWarning,
 	"display-curvy-arrow": IconCurvyArrow,
+	"display-manager": IconManager,
 	"utility-exclamation": ["fas", "exclamation"],
 	"utility-code": ["fas","code"],
 	"utility-plus": ["fas", "plus"],
