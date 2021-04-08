@@ -28,8 +28,8 @@
         v-if="elements.sort"
         :items="sortOptions"
         v-model="selectedSort"
-        itemText="label"
-        itemValue="value"
+        item-text="label"
+        item-value="value"
         small
         @change="sortChange($event)"
       )

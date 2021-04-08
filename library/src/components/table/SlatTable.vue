@@ -381,8 +381,13 @@ export default {
     staticColumns(val) {
       this.getNumColumns()
     },
-    items(val) {
-      this.computeItems()
+    items: {
+			deep: true,
+      handler(val) {
+				console.log(val)
+				this.computeItems()
+				console.log(this.items)
+      }
     }
   },
   components: {

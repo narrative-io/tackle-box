@@ -32,7 +32,7 @@
         //- TestButtons
         //- TestAutocomplete
         //- TestStepper
-        //- TestSlatTable
+        TestSlatTable
         //- TestSlat
         //- TestFileChooser
         //- TestCheckbox
@@ -40,7 +40,7 @@
         //- TestRadioGroup
         //- TestImageTile
         //- TestIconFramer
-        TestIcons
+        //- TestIcons
         //- TestTextField
         //- TestDateField
         //- TestSelect
