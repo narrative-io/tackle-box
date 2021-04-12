@@ -30,15 +30,16 @@ const GlobalColors = {
 } 
 
 function setGlobalStyles(styles) {
-	Object.keys(GlobalColors).forEach(color => {
-		console.log(color)
-		if (!styles.getPropertyValue(color.key)) {
-			console.log("setting ", color.key)
-			styles.setProperty(color.key, color.default)
+	console.log("set global styles")
+	Object.keys(GlobalColors).forEach(key => {
+		console.log(GlobalColors[key])
+		if (!styles.getPropertyValue(GlobalColors[key].key)) {
+			console.log("setting ", GlobalColors[key].key)
+			styles.setProperty(GlobalColors[key].key, GlobalColors[key].default)
 		}
 	})
 }
 
-export default {
+export {
 	setGlobalStyles
 }

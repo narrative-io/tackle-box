@@ -50,6 +50,7 @@ import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
 import { setTheme } from './modules/app/theme/theme'
 
+console.log("start")
 setTheme()
 
 Vue.use(Vuetify)
