@@ -26,15 +26,20 @@ const GlobalColors = {
 	primaryDarkest: {
 		key: "--nio-theme-primary-darkest",
 		default: "#010A28"
-	}	
+	},
+	canvas: {
+		key: "--nio-theme-canvas",
+		default: "#F4F7FB"
+	},
+	canvasDarker: {
+		key: "--nio-theme-canvas-darker",
+		default: "#ECF1F9"
+	}
 } 
 
 function setGlobalStyles(styles) {
-	console.log("set global styles")
 	Object.keys(GlobalColors).forEach(key => {
-		console.log(GlobalColors[key])
 		if (!styles.getPropertyValue(GlobalColors[key].key)) {
-			console.log("setting ", GlobalColors[key].key)
 			styles.setProperty(GlobalColors[key].key, GlobalColors[key].default)
 		}
 	})
