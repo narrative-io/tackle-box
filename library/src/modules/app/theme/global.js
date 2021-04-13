@@ -46,5 +46,6 @@ function setGlobalStyles(styles) {
 }
 
 export {
+	GlobalColors,
 	setGlobalStyles
 }
