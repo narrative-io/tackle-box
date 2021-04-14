@@ -83,6 +83,7 @@ import TestSlider from './test-components/TestSlider'
 import TestDateField from './test-components/TestDateField'
 import TestTabs from './test-components/TestTabs'
 import TestPills from './test-components/TestPills'
+import { setTheme } from './modules/app/theme/theme'
 
 export default {
   name: "App",
@@ -256,6 +257,7 @@ export default {
     },
   },
   mounted() {
+		setTheme()
   }
 };
 </script>

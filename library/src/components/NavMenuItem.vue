@@ -5,8 +5,8 @@
     :class="status ? `status-${status}` : ''"
   )
     v-list-item-icon(v-if="icon")
-      NioIcon.icon-light(:name="icon" color="#4B5FA7")
-      NioIcon.icon-dark(:name="icon" color="#323f6f")
+      NioIcon.icon-light(:name="icon" :color="iconColor(false)")
+      NioIcon.icon-dark(:name="icon" :color="iconColor(true)")
     v-list-item-content
       .item.nio-p.text-primary-dark {{ label }}
       .modifiers
@@ -31,9 +31,12 @@ export default {
   },
   data: () => ({
     
-  }),
+	}),
   methods: {
-  
+		iconColor(isActive) {
+			let styles = document.documentElement.style
+			return isActive ? styles.getPropertyValue('--nio-theme-primary-darker') : styles.getPropertyValue('--nio-theme-primary-dark')
+    },
   },
   mounted() {	
     this.$emit('mounted')
