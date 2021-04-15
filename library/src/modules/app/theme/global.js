@@ -1,6 +1,6 @@
 const GlobalColors = {
 	primaryLightest: {
-		key: "--nio-theme-primary-lighest",
+		key: "--nio-theme-primary-lightest",
 		default: "#EAECF9"
 	},
 	primaryLighter: { 
