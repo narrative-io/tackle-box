@@ -13,6 +13,14 @@
     nio-text-field.text-field(append iconName="utility-chevron-down" solo :ref="'text'" v-model="model" :label="'Search'")
     nio-text-field.text-field(append iconName="utility-chevron-down" :ref="'text'" v-model="model" :label="'Search'")
     nio-text-field.text-field(currency type="number" :ref="'text'" v-model="currency")
+    nio-text-field(
+      hide-details
+      clearable
+      solo
+      append
+      iconName="utility-search"
+      v-model="model" label="search"
+    )
 
 </template>
 

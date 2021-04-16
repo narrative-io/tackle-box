@@ -48,6 +48,10 @@ import NioHeightObserver from './modules/app/height-observer'
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
+import { setTheme } from './modules/app/theme/theme'
+
+setTheme()
+
 Vue.use(Vuetify)
 Vue.mixin(AppModule)
 

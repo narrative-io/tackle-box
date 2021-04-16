@@ -9,6 +9,10 @@
   background-color: $c-white
   ::v-deep .v-input__append-inner	
     margin-right: 1rem
+    .v-input__icon--clear .v-icon
+      color: $c-primary-light
+      &.primary--text
+        color: $c-primary !important
   ::v-deep .v-input__prepend-inner	
     margin-left: 1rem !important
     transform: translateY(-0.125rem)
@@ -75,7 +79,7 @@
       svg
         color: $c-primary-dark
         margin-left: 3px			
-
+  
 =nio-text-field-small
   height: 2.5rem
   ::v-deep input

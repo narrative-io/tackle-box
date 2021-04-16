@@ -32,7 +32,7 @@
         //- TestButtons
         //- TestAutocomplete
         //- TestStepper
-        TestSlatTable
+        //- TestSlatTable
         //- TestSlat
         //- TestFileChooser
         //- TestCheckbox
@@ -43,7 +43,7 @@
         //- TestIcons
         //- TestTextField
         //- TestDateField
-        //- TestSelect
+        TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
@@ -66,7 +66,7 @@ import TestCheckbox from './test-components/TestCheckbox'
 import TestSwitch from './test-components/TestSwitch'
 import TestImageTile from './test-components/TestImageTile'
 import TestIcons from './test-components/TestIcons'
-// import TestTextField from './test-components/TestTextField'
+import TestTextField from './test-components/TestTextField'
 import TestSelect from './test-components/TestSelect'
 import TestRadioGroup from './test-components/TestRadioGroup'
 import TestIconFramer from './test-components/TestIconFramer'
@@ -83,6 +83,7 @@ import TestSlider from './test-components/TestSlider'
 import TestDateField from './test-components/TestDateField'
 import TestTabs from './test-components/TestTabs'
 import TestPills from './test-components/TestPills'
+import { setTheme } from './modules/app/theme/theme'
 
 export default {
   name: "App",
@@ -99,7 +100,7 @@ export default {
     TestSwitch,
     TestImageTile,
     TestIcons,
-    // TestTextField,
+    TestTextField,
     TestSelect,
     TestRadioGroup,
     TestIconFramer,
@@ -256,6 +257,7 @@ export default {
     },
   },
   mounted() {
+		setTheme()
   }
 };
 </script>
