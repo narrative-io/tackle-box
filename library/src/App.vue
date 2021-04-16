@@ -41,9 +41,9 @@
         //- TestImageTile
         //- TestIconFramer
         //- TestIcons
-        TestTextField
+        //- TestTextField
         //- TestDateField
-        //- TestSelect
+        TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog

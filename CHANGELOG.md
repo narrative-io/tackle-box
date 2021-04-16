@@ -23,3 +23,9 @@ Added **filter-header-custom-${filterName}** and **filter-body-custom-${filterNa
 Added **filter-properties-custom** slot to NioFilter
 
 Added **solo** attribute option to NioFilter to support single filters (no NioFilterGroup) and custom filters
+
+v0.3.5
+
+Added theme module and converted primary/canvas color to populate from global css variables
+
+Miscellaneous changes required to retrofit Tacklebox for Whitelabel Data Shops
