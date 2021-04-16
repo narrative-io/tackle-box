@@ -34,6 +34,10 @@ const GlobalColors = {
 	canvasDarker: {
 		key: "--nio-theme-canvas-darker",
 		default: "#ECF1F9"
+	},
+	pageBackground: {
+		key: "--nio-theme-page-background",
+		default: "#F4F7FB"
 	}
 } 
 
