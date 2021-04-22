@@ -27,6 +27,7 @@
       @navItemClicked="navItemClicked" 
       @navEvent="fireNavEvent($event)"
     )
+    slot
 </template>
 
 <script>

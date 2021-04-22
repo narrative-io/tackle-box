@@ -14,16 +14,17 @@
           @logout="logout"
         )
     .main
-      //- SideNav(
-      //-   appName="Universal Onboarding" 
-      //-   developerName="Narrative I/O"
-      //-   :companies="[]" 
-      //-   :navItems="navItems" 
-      //-   :lockItems="{'profile': true }"
-      //-   :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
-      //-   @login="login"
-      //-   @logout="logout"
-      //- )
+      SideNav(
+        appName="Universal Onboarding" 
+        developerName="Narrative I/O"
+        :companies="[]" 
+        :navItems="navItems" 
+        :lockItems="{'profile': true }"
+        :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
+        @login="login"
+        @logout="logout"
+      )
+        template Test
       .wrapper
         //- TestExpansionPanel
         //- TestDivider
@@ -257,7 +258,7 @@ export default {
     },
   },
   mounted() {
-		setTheme()
+    setTheme()
   }
 };
 </script>
