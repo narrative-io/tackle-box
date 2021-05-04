@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-expansion-panel
+  v-expansion-panel.nio-expansion-panel
     v-expansion-panel-header
       template(v-slot:default)
         slot(name="header")

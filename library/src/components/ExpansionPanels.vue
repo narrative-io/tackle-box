@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-expansion-panels
+  v-expansion-panels.nio-expansion-panels
     slot
 </template>
 

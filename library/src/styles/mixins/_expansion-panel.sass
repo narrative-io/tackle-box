@@ -1,4 +1,30 @@
+@import '../global/_colors'
+	
 =nio-expansion-panel 
+	&::before
+		box-shadow: none
+		-webkit-box-shadow: none
+	&.v-expansion-panel--disabled > .v-expansion-panel-header .text-primary-darker
+		opacity: 0.5
+	& > .v-expansion-panel-header
+		padding: 20px 40px
+		.v-expansion-panel-header__icon
+			display: none
+	&.v-expansion-panel--active > .v-expansion-panel-header    
+		.v-expansion-panel-header__icon
+			display: none
+	&:not(:first-child)::after
+		border-top: 1px solid $c-primary-lighter
+	&.v-expansion-panel--active.v-item--active:not(:first-child)
+		border-top: 1px solid $c-primary-lighter
+		margin-top: 0rem
+	&.v-expansion-panel--active.v-item--active + .v-expansion-panel
+		border-top: 1px solid $c-primary-lighter
+		margin-top: 0rem
+	.v-expansion-panel-content__wrap
+		padding: 10px 40px 60px 40px
+	&:not(:first-child)::after
+		border-color: $c-primary-lighter
 
 .nio-expansion-panel
 	+nio-expansion-panel 
