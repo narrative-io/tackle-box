@@ -41,6 +41,8 @@ import NioTabs from './components/Tabs'
 import NioSlider from './components/Slider'
 import NioDateField from './components/DateField'
 import NioTextarea from './components/Textarea'
+import NioExpansionPanels from './components/ExpansionPanels'
+import NioExpansionPanel from './components/ExpansionPanel'
 
 import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
@@ -95,6 +97,8 @@ const Components = {
 	NioSlider,
 	NioDateField,
 	NioTextarea,
+	NioExpansionPanels,
+	NioExpansionPanel,
 	FontAwesomeIcon
 }
 
@@ -138,6 +142,8 @@ Vue.component("NioTabs", NioTabs)
 Vue.component("NioSlider", NioSlider)
 Vue.component("NioDateField", NioDateField)
 Vue.component("NioTextarea", NioTextarea)
+Vue.component("NioExpansionPanels", NioExpansionPanels)
+Vue.component("NioExpansionPanel", NioExpansionPanel)
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
@@ -180,6 +186,8 @@ export { NioTabs }
 export { NioSlider }
 export { NioDateField }
 export { NioTextarea }
+export { NioExpansionPanels }
+export { NioExpansionPanel }
 export { FontAwesomeIcon }
 export { NioRouterModule }
 export { NioHeightObserver }
