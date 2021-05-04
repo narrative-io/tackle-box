@@ -1,18 +1,16 @@
 <template lang="pug">
-  v-expansion-panels
-    v-expansion-panel
-      v-expansion-panel-header
-        template(v-slot:default)
-          slot(name="header")
-        template(v-slot:actions)
-          NioIcon(
-            name="utility-chevron-down"
-            :color="actionColor"
-            :size="14"
-          )
-      v-expansion-panel-content
-        slot(name="content")
-   
+  v-expansion-panel
+    v-expansion-panel-header
+      template(v-slot:default)
+        slot(name="header")
+      template(v-slot:actions)
+        NioIcon(
+          name="utility-chevron-down"
+          :color="actionColor"
+          :size="14"
+        )
+    v-expansion-panel-content
+      slot(name="content")
 </template>
 
 <script>
