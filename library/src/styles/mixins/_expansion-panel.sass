@@ -1,16 +1,24 @@
 @import '../global/_colors'
 	
 =nio-expansion-panel 
+	border-radius: 0px
+	&.v-expansion-panel--active
+		border-radius: 0px !important
 	&::before
 		box-shadow: none
 		-webkit-box-shadow: none
 	&.v-expansion-panel--disabled > .v-expansion-panel-header .text-primary-darker
 		opacity: 0.5
 	& > .v-expansion-panel-header
-		padding: 20px 40px
+		min-height: unset
+		padding: 16px 32px
+		background-color: $c-canvas
+		&.v-expansion-panel-header--active
+			border-bottom: 1px solid $c-primary-lighter
 		.v-expansion-panel-header__icon
 			display: none
 	&.v-expansion-panel--active > .v-expansion-panel-header    
+		min-height: unset
 		.v-expansion-panel-header__icon
 			display: none
 	&:not(:first-child)::after
@@ -21,11 +29,13 @@
 	&.v-expansion-panel--active.v-item--active + .v-expansion-panel
 		border-top: 1px solid $c-primary-lighter
 		margin-top: 0rem
-	.v-expansion-panel-content__wrap
-		padding: 10px 40px 60px 40px
+	::v-deep .v-expansion-panel-content__wrap
+		padding: 32px
 	&:not(:first-child)::after
-		border-color: $c-primary-lighter
-
+		border-color: $c-primary-lighter !important
+	&.v-expansion-panel--active + .v-expansion-panel
+		border-top-left-radius: 0px !important
+		border-top-right-radius: 0px !important
 .nio-expansion-panel
 	+nio-expansion-panel 
 	
