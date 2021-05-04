@@ -29,3 +29,9 @@ v0.3.5
 Added theme module and converted primary/canvas color to populate from global css variables
 
 Miscellaneous changes required to retrofit Tacklebox for Whitelabel Data Shops
+
+v0.3.6
+Various bug fixes for Data Shops functionality
+
+v0.3.7
+Added NioExpansionPanels and NioExpansionPanel components

@@ -17,7 +17,6 @@ import NioFileChooser from "./components/FileChooser"
 import NioCard from "./components/Card"
 import NioAlert from "./components/Alert"
 import NioDivider from "./components/Divider"
-import NioExpansionPanel from "./components/ExpansionPanel"
 import NioSlatGroup from "./components/slat/SlatGroup"
 import NioSlat from "./components/slat/Slat"
 import NioLinkSlat from "./components/slat/types/LinkSlat"
@@ -73,7 +72,6 @@ const Components = {
 	NioCard,
 	NioAlert,
 	NioDivider,
-	NioExpansionPanel,
 	NioSlatGroup,
 	NioSlat,
 	NioLinkSlat,
@@ -117,7 +115,6 @@ Vue.component("NioFileChooser", NioFileChooser)
 Vue.component("NioCard", NioCard)
 Vue.component("NioAlert", NioAlert)
 Vue.component("NioDivider", NioDivider)
-Vue.component("NioExpansionPanel", NioExpansionPanel)
 Vue.component("NioSlatGroup", NioSlatGroup)
 Vue.component("NioSlat", NioSlat)
 Vue.component("NioLinkSlat", NioLinkSlat)
@@ -162,7 +159,6 @@ export { NioFileChooser }
 export { NioCard }
 export { NioAlert }
 export { NioDivider }
-export { NioExpansionPanel }
 export { NioSlatGroup }
 export { NioSlat }
 export { NioLinkSlat }
