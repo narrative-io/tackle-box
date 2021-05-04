@@ -1,5 +1,10 @@
 <template lang="pug">
-  v-expansion-panels.nio-expansion-panels
+  v-expansion-panels.nio-expansion-panels(
+    v-bind="$attrs"
+    v-on="$listeners" 
+    v-model="model"
+    :multiple="multiple"
+  )
     slot
 </template>
 
@@ -7,8 +12,11 @@
 
 export default {
   name: 'nio-expansion-panels',
+  props: {
+    "multiple": { type: Boolean, required: false, default: true },
+  },
   data: () => ({
-    
+    model: []
   }),
   mounted() {	
     this.$emit('mounted')

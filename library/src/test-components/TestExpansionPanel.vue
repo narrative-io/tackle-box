@@ -1,10 +1,10 @@
 <template lang="pug">
   .test-expansion-panel
     NioExpansionPanels
-      NioExpansionPanel
+      NioExpansionPanel(:key="0")
         template(v-slot:header) Header
         template(v-slot:content) Content
-      NioExpansionPanel
+      NioExpansionPanel(:key="1")
         template(v-slot:header) Header
         template(v-slot:content) Content
 </template>

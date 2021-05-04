@@ -1,10 +1,22 @@
 <template lang="pug">
-  v-expansion-panel.nio-expansion-panel
+  v-expansion-panel.nio-expansion-panel(
+    v-bind="$attrs"
+    v-on="$listeners" 
+  )
     v-expansion-panel-header
       template(v-slot:default)
         slot(name="header")
-      template(v-slot:actions)
+      template(v-slot:actions="slotProps")
         NioIcon(
+          key="1"
+          v-if="isActive"
+          name="utility-chevron-up"
+          :color="actionColor"
+          :size="14"
+        )
+        NioIcon(
+          v-else
+          key="2"
           name="utility-chevron-down"
           :color="actionColor"
           :size="14"
@@ -21,21 +33,28 @@ import { getThemeColor } from '../modules/app/theme/theme'
 export default {
   name: 'nio-expansion-panel',
   data: () => ({
-    
+    panelKey: null
   }),
   mounted() {	
     this.$emit('mounted')
+    this.key = this.$vnode.key
   },
   destroyed() {
     this.$emit('destroyed')
   },
   computed: {
+    isActive() {
+      return this.activePanels.includes(this.key)
+    },
     actionColor() {
       return getThemeColor('primaryDark')
-    }
+    },
+    activePanels() {
+      return this.$parent.$parent.model
+    },
   },
   methods: {
-  
+    
   },
   components: { NioIcon }
 }
