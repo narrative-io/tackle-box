@@ -1,4 +1,5 @@
 import { setGlobalStyles } from './global'
+import { GlobalColors } from './global'
 
 function setTheme() {
 	let styles = document.documentElement.style
@@ -13,8 +14,8 @@ function toKebabCase(string) {
 }
 
 function getThemeColor(colorName) {
-	let styles = document.documentElement.style
-	return styles.getPropertyValue(`--nio-theme-${toKebabCase(colorName)}`)
+	let cssVar = document.documentElement.style.getPropertyValue(`--nio-theme-${toKebabCase(colorName)}`)
+	return cssVar ? cssVar : GlobalColors[colorName].default
 }
 
 export {
