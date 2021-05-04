@@ -2,28 +2,45 @@
   v-expansion-panels
     v-expansion-panel
       v-expansion-panel-header
-        slot(name="header")
+        template(v-slot:default)
+          slot(name="header")
+        template(v-slot:actions)
+          NioIcon(
+            name="utility-chevron-down"
+            :color="actionColor"
+            :size="14"
+          )
       v-expansion-panel-content
         slot(name="content")
    
 </template>
 
 <script>
-  export default {
-    name: 'nio-expansion-panel',
-    data: () => ({
-     
-    }),
-    mounted() {	
-      this.$emit('mounted')
-    },
-    destroyed() {
-      this.$emit('destroyed')
-    },
-    methods: {
+
+import NioIcon from '../components/icon/Icon'
+import { getThemeColor } from '../modules/app/theme/theme'
+
+export default {
+  name: 'nio-expansion-panel',
+  data: () => ({
     
+  }),
+  mounted() {	
+    this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
+  },
+  computed: {
+    actionColor() {
+      return getThemeColor('primaryDark')
     }
-  }
+  },
+  methods: {
+  
+  },
+  components: { NioIcon }
+}
 </script>
 
 <style lang="sass" scoped>
