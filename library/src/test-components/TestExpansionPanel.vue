@@ -1,7 +1,11 @@
 <template lang="pug">
   .test-expansion-panel
     NioExpansionPanel
-         
+      template(v-slot:header) Header
+      template(v-slot:content) Content
+    NioExpansionPanel
+      template(v-slot:header) Header
+      template(v-slot:content) Content
 </template>
 
 <script>

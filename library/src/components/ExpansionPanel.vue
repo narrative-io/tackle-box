@@ -1,6 +1,10 @@
 <template lang="pug">
-  .nio-expansion-panel(
-  ) EpxansionPanel
+  v-expansion-panels
+    v-expansion-panel
+      v-expansion-panel-header
+        slot(name="header")
+      v-expansion-panel-content
+        slot(name="content")
    
 </template>
 
@@ -17,8 +21,8 @@
       this.$emit('destroyed')
     },
     methods: {
-		
-		}
+    
+    }
   }
 </script>
 
