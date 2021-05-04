@@ -44,7 +44,11 @@ export default {
   },
   computed: {
     isActive() {
-      return this.activePanels.includes(this.key)
+      if (this.activePanels && this.activePanels.length) {
+        return this.activePanels.includes(this.key)
+      } else {
+        return this.activePanels === this.key
+      }
     },
     actionColor() {
       return getThemeColor('primaryDark')
