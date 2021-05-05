@@ -11,6 +11,13 @@
       text="tag value"
       tag
     )
+    NioPill(
+      price
+    ) $1.50
+    NioPill(
+      text="tag value"
+      tag
+    )
 </template>
 
 <script>

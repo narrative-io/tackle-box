@@ -1,7 +1,8 @@
 <template lang="pug">
-  .nio-pill(:class="[supportedVariantClass, {'selected-value': selectedValueAttr, 'tag': tagAttr}]" :style="{backgroundColor: backgroundColor}") 
+  .nio-pill(:class="[supportedVariantClass, {'selected-value': selectedValueAttr, 'tag': tagAttr, 'price': priceAttr}]" :style="{backgroundColor: backgroundColor}") 
     .nio-pill-content-wrapper
       .nio-pill-content {{ text }}
+        slot
 </template>
 
 <script>
@@ -11,10 +12,11 @@
     data: () => ({
       selectedValueAttr: false,
       tagAttr: false,
+      priceAttr: false,
       supportedVariants: ['new', 'coming', 'updated', 'alpha', 'beta']
     }),
     props: {
-      "text": { type: String, required: true },
+      "text": { type: String, required: false },
       "backgroundColor": { type: String, required: false }
     },
     computed: {
@@ -30,6 +32,9 @@
         }	
         if (attributes.getNamedItem('tag')) {
           this.tagAttr = true
+        }	
+        if (attributes.getNamedItem('price')) {
+          this.priceAttr = true
         }	
       }
     },

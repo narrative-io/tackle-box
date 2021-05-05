@@ -25,7 +25,7 @@
       //-   @logout="logout"
       //- )
       .wrapper
-        TestExpansionPanel
+        //- TestExpansionPanel
         //- TestDivider
         //- TestAlert
         //- TestChargeSummary
@@ -50,7 +50,7 @@
         //- TestFilters
         //- TestSlider
         //- TestTabs
-        //- TestPills
+        TestPills
 </template>
 
 <script>
