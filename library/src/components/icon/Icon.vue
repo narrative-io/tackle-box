@@ -109,7 +109,7 @@ export default {
   watch: {
     name() {
       this.icon = this.iconLibrary[this.name]
-    }
+		}
   },
   components: { StreamlineIcon, FontAwesomeIcon }
 }

@@ -17,7 +17,6 @@ import NioFileChooser from "./components/FileChooser"
 import NioCard from "./components/Card"
 import NioAlert from "./components/Alert"
 import NioDivider from "./components/Divider"
-import NioExpansionPanel from "./components/ExpansionPanel"
 import NioSlatGroup from "./components/slat/SlatGroup"
 import NioSlat from "./components/slat/Slat"
 import NioLinkSlat from "./components/slat/types/LinkSlat"
@@ -41,6 +40,8 @@ import NioTabs from './components/Tabs'
 import NioSlider from './components/Slider'
 import NioDateField from './components/DateField'
 import NioTextarea from './components/Textarea'
+import NioExpansionPanels from './components/ExpansionPanels'
+import NioExpansionPanel from './components/ExpansionPanel'
 
 import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
@@ -71,7 +72,6 @@ const Components = {
 	NioCard,
 	NioAlert,
 	NioDivider,
-	NioExpansionPanel,
 	NioSlatGroup,
 	NioSlat,
 	NioLinkSlat,
@@ -95,6 +95,8 @@ const Components = {
 	NioSlider,
 	NioDateField,
 	NioTextarea,
+	NioExpansionPanels,
+	NioExpansionPanel,
 	FontAwesomeIcon
 }
 
@@ -113,7 +115,6 @@ Vue.component("NioFileChooser", NioFileChooser)
 Vue.component("NioCard", NioCard)
 Vue.component("NioAlert", NioAlert)
 Vue.component("NioDivider", NioDivider)
-Vue.component("NioExpansionPanel", NioExpansionPanel)
 Vue.component("NioSlatGroup", NioSlatGroup)
 Vue.component("NioSlat", NioSlat)
 Vue.component("NioLinkSlat", NioLinkSlat)
@@ -138,6 +139,8 @@ Vue.component("NioTabs", NioTabs)
 Vue.component("NioSlider", NioSlider)
 Vue.component("NioDateField", NioDateField)
 Vue.component("NioTextarea", NioTextarea)
+Vue.component("NioExpansionPanels", NioExpansionPanels)
+Vue.component("NioExpansionPanel", NioExpansionPanel)
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
@@ -156,7 +159,6 @@ export { NioFileChooser }
 export { NioCard }
 export { NioAlert }
 export { NioDivider }
-export { NioExpansionPanel }
 export { NioSlatGroup }
 export { NioSlat }
 export { NioLinkSlat }
@@ -180,6 +182,8 @@ export { NioTabs }
 export { NioSlider }
 export { NioDateField }
 export { NioTextarea }
+export { NioExpansionPanels }
+export { NioExpansionPanel }
 export { FontAwesomeIcon }
 export { NioRouterModule }
 export { NioHeightObserver }

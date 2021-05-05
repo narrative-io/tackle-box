@@ -25,7 +25,7 @@
       //-   @logout="logout"
       //- )
       .wrapper
-        //- TestExpansionPanel
+        TestExpansionPanel
         //- TestDivider
         //- TestAlert
         //- TestChargeSummary
@@ -43,7 +43,7 @@
         //- TestIcons
         //- TestTextField
         //- TestDateField
-        TestSelect
+        //- TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
