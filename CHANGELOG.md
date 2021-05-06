@@ -36,3 +36,4 @@ Various bug fixes for Data Shops functionality
 v0.3.7
 Added NioExpansionPanels and NioExpansionPanel components
 Added "price" variant to NioPill
+Fixed bug regarding DropdownNav menu activator sizing
