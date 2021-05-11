@@ -13,6 +13,7 @@
         stepName="source"
         :valid="valid.source"
         :summary="stepSummary"
+        :simpleSummary="true"
       )
         template(v-slot:content)
           .test        

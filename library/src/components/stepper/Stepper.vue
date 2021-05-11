@@ -15,7 +15,7 @@ export default {
     "completedSteps": { type: Array, required: false, default: [] },
     "nextStepLabel": { type: String, required: false, default: "continue"},
     "previousStepLabel": { type: String, required: false, default: "back"},
-    "finalStepLabel": { type: String, required: false, default: "finish"}
+		"finalStepLabel": { type: String, required: false, default: "finish"}
   },
   data: () => ({
     activeStep: 0

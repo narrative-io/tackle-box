@@ -5,6 +5,7 @@
     template(v-slot:content)
       .summary
         NioImageTile(
+          v-if="imageSrc"
           :src="imageSrc"
           :imgBackground="imageBackground"
         )

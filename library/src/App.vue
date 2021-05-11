@@ -31,7 +31,7 @@
         //- TestChargeSummary
         //- TestButtons
         //- TestAutocomplete
-        //- TestStepper
+        TestStepper
         //- TestSlatTable
         //- TestSlat
         //- TestFileChooser
@@ -50,7 +50,7 @@
         //- TestFilters
         //- TestSlider
         //- TestTabs
-        TestPills
+        //- TestPills
 </template>
 
 <script>

@@ -11,6 +11,8 @@
       :isFirstStep="isFirstStep"
       :isLastStep="isLastStep"
       :summary="summary"
+      :simpleSummary="simpleSummary"
+      
     )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data") 
@@ -41,7 +43,8 @@ export default {
   props: {
     "stepName": { type: String, required: true },
     "valid": { type: Boolean, required: false, default: false },
-    "summary": { type: Object, required: false }
+    "summary": { type: Object, required: false },
+    "simpleSummary": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     orderedSteps: null

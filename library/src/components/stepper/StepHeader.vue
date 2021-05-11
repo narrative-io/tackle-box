@@ -15,7 +15,7 @@
             .step-number {{ stepIndex + 1 }}
           .step-name.nio-h6.text-primary-dark {{ stepName }}
       template(v-slot:summary)
-        NioSummarySlat.summary(v-if="summary && complete")(
+        NioSummarySlat.summary(v-if="summary && complete && !simpleSummary")(
           :imageSrc="summary.imageSrc"
           :imageBackground="summary.imageBackground"
           :title="summary.title"
@@ -23,6 +23,9 @@
           :detailsLabel="summary.detailsLabel"
           :detailsValue="summary.detailsValue"
           :detailsAnnotation="summary.detailsAnnotation"
+        )
+        NioSummarySlat.summary(v-if="summary && complete && simpleSummary")(
+          :title="summary.title"
         )
       template(v-slot:action v-if="complete")
         NioIcon.expand(
@@ -47,7 +50,8 @@ export default {
     "stepIndex": { type: Number, requied: true },
     "isFirstStep": { type: Boolean, required: false, default: false },
     "isLastStep": { type: Boolean, required: false, default: false },
-    "summary": { type: Object, required: false }
+    "summary": { type: Object, required: false },
+    "simpleSummary": { type: Boolean, required: false, default: false },
   },
   data: () => ({
   }),
