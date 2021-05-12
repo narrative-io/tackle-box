@@ -40,3 +40,4 @@ Fixed bug regarding DropdownNav menu activator sizing
 
 v0.3.9
 Added optional **simpleSummary** prop to NioStep
+Added optional **custom-content** slot to NioSlat and NioSummarySlat which will override all other content
