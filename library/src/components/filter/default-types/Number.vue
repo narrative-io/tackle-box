@@ -11,7 +11,8 @@
           .unconstrained-controls(
             v-if="filter.customOption.config.unconstrained"
           )
-            .nio-p.text-primary-dark.instructions Enter the minimum and/or maximum value:
+            .heading.nio-h5.text-primary-darker Set which values you want to include.
+            .description.nio-p.text-primary-dark Enter the minimum and/or maximum values. Leave blank for no contraint to minimum or maximum value.
             .controls
               .inputs
                 NioTextField.min-field(
