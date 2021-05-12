@@ -13,7 +13,7 @@
         stepName="source"
         :valid="valid.source"
         :summary="stepSummary"
-        :simpleSummary="true"
+        simpleSummary
       )
         template(v-slot:content)
           .test        
@@ -23,7 +23,10 @@
         stepName="match"
         :valid="valid.match"
         :summary="stepSummary"
+        customSummary
       )
+        template(v-slot:custom-summary)
+          .stuff Test
         template(v-slot:header-complete)
         template(v-slot:content) 
           .test

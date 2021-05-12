@@ -31,7 +31,7 @@
         //- TestChargeSummary
         //- TestButtons
         //- TestAutocomplete
-        //- TestStepper
+        TestStepper
         //- TestSlatTable
         TestSlat
         //- TestFileChooser
