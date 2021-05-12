@@ -1,7 +1,7 @@
 const Unconstrained = { 
 	name: "age",
 	type: "number",
-	title: "Range",
+	title: "Unconstrained",
 	description: "Number",
 	value: 'default',
 	options: [
@@ -20,9 +20,7 @@ const Unconstrained = {
 	],
 	customOption: {
 		config: {
-			unconstrained: true,
-			min: 10,
-			max: 100
+			unconstrained: true
 		},
 		value: [20, 40]
 	}

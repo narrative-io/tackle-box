@@ -6,6 +6,7 @@
     Number
     Frequency
     Mapping
+    Boolean
 </template>
 
 <script>
@@ -16,6 +17,7 @@ import EventTimestamp from './event-timestamp/EventTimestamp'
 import Number from './number/Number'
 import Frequency from './frequency/Frequency'
 import Mapping from './mapping/Mapping'
+import Boolean from './boolean/Boolean'
 
 export default {
   components: {
@@ -24,7 +26,8 @@ export default {
     EventTimestamp,
     Number,
     Frequency,
-    Mapping
+    Mapping,
+    Boolean
   }
 }
 </script>
