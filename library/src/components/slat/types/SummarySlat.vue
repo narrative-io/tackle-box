@@ -1,7 +1,7 @@
 <template lang="pug">
   NioSlat.nio-summary-slat(:class="{'active': active}")
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-      slot(:name="name" v-bind="data") 	
+      slot(name="name" v-bind="data") 	
     template(v-slot:content)
       .summary
         NioImageTile(
@@ -10,13 +10,14 @@
           :imgBackground="imageBackground"
         )
         .title-subtitle
-          .nio-h4.text-primary-darker {{ title }}
+          .nio-h4.text-primary-darker(v-if="title") {{ title }}
           .nio-p-small.text-primary-dark(v-if="subtitle") {{ subtitle }}
       .details
         .nio-h7.text-primary-dark(v-if="!loading && detailsLabel") {{ detailsLabel }}
         .nio-h4.text-primary-darker(v-if="!loading && detailsValue") {{ detailsValue }}
         .nio-h4.text-primary-dark(v-if="loading") {{ loadingMsg }}
         .nio-p-small.text-primary-dark(v-if="!loading && detailsAnnotation") {{ detailsAnnotation }}
+      slot(name="custom-content")
 </template>
 
 <script>

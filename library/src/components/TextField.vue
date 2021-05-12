@@ -1,6 +1,6 @@
 <template lang="pug">
     v-text-field.nio-text-field(
-      :class="{small: smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr, 'currency': currencyAttr }"
+      :class="{'small': smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr, 'currency': currencyAttr }"
       outlined 
       flat
       :solo="soloAttr || smallAttr || prependAttr || currencyAttr"

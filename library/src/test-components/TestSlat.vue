@@ -70,6 +70,9 @@
       )  	
         template(v-slot:loading)
           .test
+      NioSummarySlat
+        template(v-slot:custom-content)
+          .custom Test
 </template>
 
 <script>
