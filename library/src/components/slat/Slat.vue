@@ -1,13 +1,16 @@
 <template lang="pug">
   .nio-slat
-    .nio-slat-content
-      slot(name="content")
-    .nio-slat-summary
-      slot(name="summary")
-    .nio-slat-action
-      slot(name="action")
-    .nio-slat-loading(v-if="$scopedSlots.loading")
-      slot(name="loading")
+    template(v-if="$scopedSlots['custom-content']")
+      slot(name="custom-content")
+    template(v-else)
+      .nio-slat-content
+        slot(name="content")
+      .nio-slat-summary
+        slot(name="summary")
+      .nio-slat-action
+        slot(name="action")
+      .nio-slat-loading(v-if="$scopedSlots.loading")
+        slot(name="loading")
 </template>
 
 <script>
