@@ -14,6 +14,7 @@ import Default from './instances/Default'
 import Range from './instances/Range'
 import Currency from './instances/Currency'
 import CustomText from './instances/CustomText'
+import Unconstrained from './instances/Unconstrained'
 
 export default {
   components: {
@@ -26,7 +27,8 @@ export default {
       Default,
       Range,
       Currency,
-      CustomText
+      CustomText,
+      Unconstrained
     ]
   }),
   mounted() {
