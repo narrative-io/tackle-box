@@ -1,4 +1,18 @@
-=nio-tags-field 
+@import './_select'
 
+=nio-tags-field 
+  +nio-select
+  ::v-deep .v-select__selections
+    padding-top: 30px !important
+    padding-left: 12px !important
+  ::v-deep .v-input__slot input
+    padding-top: 6px !important
+    padding-left: 4px !important
+  ::v-deep .selected-value
+    margin-right: 4px
+  .pill-wrapper
+    padding-top: 6px
+    .nio-pill
+      transform: translateY(-3px)
 .nio-tags-field
-	+nio-tags-field 
+  +nio-tags-field 

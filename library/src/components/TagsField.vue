@@ -3,12 +3,19 @@
     v-combobox(
       outlined 
       flat
-      @input="update"
+      multiple
+      :label="label"
       :model="model"
+      @input="$emit('update', $event)"
       v-bind="$attrs"
       v-on="$listeners"
       ref="nio-tags-field-ref"
     )
+      template(v-slot:selection="{ item, index }")
+        .pill-wrapper
+          NioPill(
+            selected-value
+          ) {{ item }}
 </template>
 
 <script>
@@ -22,17 +29,14 @@ export default {
       "model": { required: true }
     },
     data: () => ({
-
+      
     }),
     model: {
       prop: "model",
       event: "update"
     },
     methods: {
-     update(event) {
-       console.log(event)
-       $emit('update', event)
-     }
+     
     },
     mounted() {	
       this.value = this.model

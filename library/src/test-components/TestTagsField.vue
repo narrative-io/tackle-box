@@ -12,7 +12,7 @@ export default {
     NioTagsField
   },
   data: () => ({
-   model: []
+   model: [],
   })
 };
 </script>
