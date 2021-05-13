@@ -43,3 +43,4 @@ Added optional **simpleSummary** prop to NioStep
 Added optional **custom-content** slot to NioSlat and NioSummarySlat which will override all other content
 Added **Boolean** default filter type
 Added unconstrained option to default Numeric filter type
+Added **NioTagsField** 
