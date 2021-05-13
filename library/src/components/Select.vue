@@ -31,8 +31,8 @@
 
 
 <script>
-import { text } from '../plugins/fontawesome-svg-core'
 
+import { text } from '../plugins/fontawesome-svg-core'
 import NioPill from './Pill'
 
 export default {

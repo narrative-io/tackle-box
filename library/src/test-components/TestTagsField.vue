@@ -1,6 +1,7 @@
 <template lang="pug">
   .test-tags-field
-    NioTagsField(v-model="model")
+    NioTagsField(v-model="model" key="1")
+    NioTagsField(v-model="model1" :items="items" key="2")
 </template>
 
 <script>
@@ -13,6 +14,8 @@ export default {
   },
   data: () => ({
    model: [],
+   model1: [],
+   items: ['test', 'another']
   })
 };
 </script>

@@ -14,5 +14,15 @@
     padding-top: 6px
     .nio-pill
       transform: translateY(-3px)
+  &.no-items ::v-deep .v-input__append-inner
+    display: none
+  &:not(.no-items) .v-input:not(.v-input--is-focused)
+    &:hover
+      ::v-deep .v-input__slot:hover, 
+      ::v-deep .v-select__selections:hover, 
+      ::v-deep input:hover
+        cursor: pointer !important
+      ::v-deep .v-input__append-inner
+        opacity: 0.7
 .nio-tags-field
   +nio-tags-field 
