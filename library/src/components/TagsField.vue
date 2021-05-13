@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-tags-field
+  .nio-tags-field(:id="elementId")
     v-combobox(
       outlined 
       flat
@@ -21,6 +21,7 @@
 <script>
 
 import NioPill from './Pill'
+import { makeRandomId } from '@/modules/helpers'
 
 export default {
     name: 'nio-tags-field',
@@ -29,18 +30,24 @@ export default {
       "model": { required: true }
     },
     data: () => ({
-      
+      elementId: null
     }),
     model: {
       prop: "model",
       event: "update"
     },
+    mounted() {	
+      this.elementId = makeRandomId()
+      this.value = this.model
+      this.$emit('mounted') 
+    },
     methods: {
      
     },
-    mounted() {	
-      this.value = this.model
-      this.$emit('mounted') 
+    watch: {
+      model() {
+        const el = document.querySelector('');
+      }
     },
     destroyed() {
       this.$emit('destroyed')
@@ -51,4 +58,8 @@ export default {
 
 <style lang="sass" scoped>
   @import '../styles/mixins/_tags-field'  
+
+  // 180px
 </style>
+
+
