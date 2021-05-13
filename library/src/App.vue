@@ -47,10 +47,11 @@
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
-        TestFilters
+        //- TestFilters
         //- TestSlider
         //- TestTabs
         //- TestPills
+        TestTagsField
 </template>
 
 <script>
@@ -83,6 +84,7 @@ import TestSlider from './test-components/TestSlider'
 import TestDateField from './test-components/TestDateField'
 import TestTabs from './test-components/TestTabs'
 import TestPills from './test-components/TestPills'
+import TestTagsField from './test-components/TagsField'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -116,7 +118,8 @@ export default {
     TestSlider,
     TestDateField,
     TestTabs,
-    TestPills
+    TestPills,
+    TestTagsField
   },
   data: () => ({
     loggedIn: false,
@@ -257,7 +260,7 @@ export default {
     },
   },
   mounted() {
-		setTheme()
+    setTheme()
   }
 };
 </script>
