@@ -1,19 +1,14 @@
 <template lang="pug">
   .nio-tags-field
-    v-text-field(
+    v-combobox(
       outlined 
       flat
-      @keydown="keyPressed($event)"
-      v-model="currentEntry"
+      @input="update"
+      :model="model"
       v-bind="$attrs"
       v-on="$listeners"
       ref="nio-tags-field-ref"
     )
-    .tags 
-      NioPill(
-        tag
-        v-for="tag of model"
-      ) {{ tag }}
 </template>
 
 <script>
@@ -27,21 +22,17 @@ export default {
       "model": { required: true }
     },
     data: () => ({
-      currentEntry: ''
+
     }),
     model: {
       prop: "model",
       event: "update"
     },
     methods: {
-      keyPressed(event) {
-        console.log(event.key)
-        console.log(this.currentEntry.length)
-        if (event.key === 'Enter' && this.currentEntry.length > 0) {
-          this.model.push(this.currentEntry)
-          this.currentEntry = ''
-        }
-      }
+     update(event) {
+       console.log(event)
+       $emit('update', event)
+     }
     },
     mounted() {	
       this.value = this.model
