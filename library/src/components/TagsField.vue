@@ -11,7 +11,16 @@
       v-on="$listeners"
       ref="nio-tags-field-ref"
     )
-      template(v-slot:selection="{ item, index }")
+      template(v-slot:selection="{ item, index }" v-if="!truncateResults")
+        .pill-wrapper
+          NioPill(
+            selected-value
+          ) {{ item }}
+      template(v-slot:selection="{ item, index }" v-if="truncateResults")
+        span.v-select__selection(v-if="index === 0") {{ item }}
+        span.v-select__selection(v-if="index === 1") , {{ item }}
+        span.v-select__selection(v-if="index === 2 && model.length === 3")  , (+{{ model.length - 2 }} other)
+        span.v-select__selection(v-if="index === 2 && model.length > 3 ")  , (+{{ model.length - 2 }} others)
         .pill-wrapper
           NioPill(
             selected-value
@@ -30,7 +39,8 @@ export default {
       "model": { required: true }
     },
     data: () => ({
-      elementId: null
+      elementId: null,
+      truncateResults: false
     }),
     model: {
       prop: "model",
@@ -46,7 +56,10 @@ export default {
     },
     watch: {
       model() {
-        const el = document.querySelector('');
+        const selectionsHeight = document.querySelector(`#${this.elementId} .v-select__selections`).offsetHeight
+        if (selectionsHeight > 68) {
+          this.truncateResults = true
+        }
       }
     },
     destroyed() {
