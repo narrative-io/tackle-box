@@ -11,16 +11,15 @@
       v-on="$listeners"
       ref="nio-tags-field-ref"
     )
-      template(v-slot:selection="{ item, index }" v-if="!truncateResults")
-        .pill-wrapper
-          NioPill(
-            selected-value
-          ) {{ item }}
       template(v-slot:selection="{ item, index }" v-if="truncateResults")
-        span.v-select__selection(v-if="index === 0") {{ item }}
-        span.v-select__selection(v-if="index === 1") , {{ item }}
-        span.v-select__selection(v-if="index === 2 && model.length === 3")  , (+{{ model.length - 2 }} other)
-        span.v-select__selection(v-if="index === 2 && model.length > 3 ")  , (+{{ model.length - 2 }} others)
+        span.v-select__selection(v-if="index < selectionsVisible")
+          .pill-wrapper
+            NioPill(
+              selected-value
+            ) {{ item }}
+        span.v-select__selection(v-if="index === selectionsVisible && model.length === selectionsVisible + 1") (+{{ model.length - selectionsVisible }} other)
+        span.v-select__selection(v-if="index === selectionsVisible && model.length > selectionsVisible + 1") (+{{ model.length - selectionsVisible }} others)
+      template(v-slot:selection="{ item, index }" v-else)
         .pill-wrapper
           NioPill(
             selected-value
@@ -40,7 +39,8 @@ export default {
     },
     data: () => ({
       elementId: null,
-      truncateResults: false
+      truncateResults: false,
+      selectionsVisible: null
     }),
     model: {
       prop: "model",
@@ -57,8 +57,14 @@ export default {
     watch: {
       model() {
         const selectionsHeight = document.querySelector(`#${this.elementId} .v-select__selections`).offsetHeight
-        if (selectionsHeight > 68) {
-          this.truncateResults = true
+        if (selectionsHeight > 180) {
+          if (!this.truncateResults) {
+            this.truncateResults = true
+            this.selectionsVisible = this.model.length - 1
+          }
+        } else {
+          this.truncateResults = false
+          this.selectionsVisible = null
         }
       }
     },
