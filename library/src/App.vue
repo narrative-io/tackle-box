@@ -84,7 +84,7 @@ import TestSlider from './test-components/TestSlider'
 import TestDateField from './test-components/TestDateField'
 import TestTabs from './test-components/TestTabs'
 import TestPills from './test-components/TestPills'
-import TestTagsField from './test-components/TagsField'
+import TestTagsField from './test-components/TestTagsField'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
