@@ -28,7 +28,7 @@ export default {
 		tracked: false
 	}),
 	mounted() {
-		this.dialogId = this.makeRandomId()
+		this.dialogId = makeRandomId()
 		this.visible = true
 		this.$emit('mounted')
 	},
