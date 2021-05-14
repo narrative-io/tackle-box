@@ -2,12 +2,22 @@
 
 =nio-tags-field 
   +nio-select
+  height: unset
+  border: 0.0625rem solid
+  border-color: $c-primary-light
+  border-radius: 0.5rem
+  overflow: hidden
+  ::v-deep .v-text-field__details
+    display: none
   ::v-deep .v-select__selections
     padding-top: 30px !important
     padding-left: 12px !important
-  ::v-deep .v-input__slot input
-    padding-top: 6px !important
-    padding-left: 4px !important
+  ::v-deep .v-input__slot 
+    background-color: white
+    border: none
+    input
+      padding-top: 6px !important
+      padding-left: 4px !important
   ::v-deep .selected-value
     margin-right: 4px
   .pill-wrapper

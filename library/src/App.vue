@@ -41,7 +41,7 @@
         //- TestImageTile
         //- TestIconFramer
         //- TestIcons
-        //- TestTextField
+        TestTextField
         //- TestDateField
         //- TestSelect
         //- TestCardGrid
@@ -278,6 +278,7 @@ export default {
 .main
   padding: 30px
   display: flex
+  background-color: white
 
 .wrapper
   flex-grow: 2
