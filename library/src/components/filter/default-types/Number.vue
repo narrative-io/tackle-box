@@ -8,7 +8,32 @@
       template(v-slot:custom-option)
         .number-custom
           .nio-p.text-primary-dark(v-if="filter.customOption.config.text") {{ filter.customOption.config.text }}
+          .unconstrained-controls(
+            v-if="filter.customOption.config.unconstrained"
+          )
+            .heading.nio-h5.text-primary-darker Set which values you want to include.
+            .description.nio-p.text-primary-dark Enter the minimum and/or maximum values. Leave blank for no contraint to minimum or maximum value.
+            .controls
+              .inputs
+                NioTextField.min-field(
+                  type="number"
+                  label="Minimum value"
+                  v-model="filter.customOption.value.min"
+                  :value="filter.customOption.value.min"
+                )
+                NioTextField.max-field(
+                  type="number"
+                  label="Maximum value"
+                  v-model="filter.customOption.value.max"
+                  :value="filter.customOption.value.max"
+                )
+              .result.nio-p.text-primary-dark.nio-bold
+                span(v-if="filter.customOption.value.min && filter.customOption.value.max") Include values between {{ filter.customOption.value.min }} and {{ filter.customOption.value.max }} (inclusive)
+                span(v-if="!filter.customOption.value.min && filter.customOption.value.max") Include values less than or equal to {{ filter.customOption.value.max }}
+                span(v-if="filter.customOption.value.min && !filter.customOption.value.max") Include values greater than or equal to {{ filter.customOption.value.min }}
+                span(v-if="!filter.customOption.value.min && !filter.customOption.value.max") Include all values
           NioSlider(
+            v-else
             :currency="filter.customOption.config.currency"
             :prepend="filter.customOption.config.currency && !filter.customOption.config.range"
             :range="filter.customOption.config.range"
@@ -23,6 +48,7 @@
 
 import NioFilterProperty from '../FilterProperty'
 import NioSlider from '../../Slider'
+import NioTextField from '../../TextField'
 
 export default {
   name: 'nio-filter-properties-number',
@@ -70,7 +96,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty, NioSlider }
+  components: { NioFilterProperty, NioSlider, NioTextField }
 }
 </script>
 

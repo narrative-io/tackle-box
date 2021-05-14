@@ -30,6 +30,11 @@
         @valueChanged="valueChanged($event)"
         :filter="filter"
       )      
+    template(v-else-if="filter.type === 'boolean'")
+      NioFilterPropertiesBoolean(
+        @valueChanged="valueChanged($event)"
+        :filter="filter"
+      )      
     template(v-else)
       slot(name="filter-properties-custom" :filter="filter")
 </template>
@@ -43,6 +48,7 @@ import NioFilterPropertiesStringMany from './default-types/StringMany'
 import NioFilterPropertiesStringLimited from './default-types/StringLimited'
 import NioFilterPropertiesMapping from './default-types/Mapping'
 import NioFilterPropertiesFrequency from './default-types/Frequency'
+import NioFilterPropertiesBoolean from './default-types/Boolean'
 
 export default {
   name: 'nio-filter-body',
@@ -84,7 +90,8 @@ export default {
     NioFilterPropertiesStringMany,
     NioFilterPropertiesStringLimited,
     NioFilterPropertiesMapping,
-    NioFilterPropertiesFrequency
+    NioFilterPropertiesFrequency,
+    NioFilterPropertiesBoolean
   }
 }
 </script>

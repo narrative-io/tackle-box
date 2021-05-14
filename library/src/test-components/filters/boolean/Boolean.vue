@@ -1,9 +1,8 @@
 @@ -1,508 +0,0 @@
 <template lang="pug">
   div
-    h1 Number
+    h1 Boolean
     NioFilterGroup(:filters="filters")
-      
 </template>
 
 <script>
@@ -11,10 +10,6 @@
 import NioFilterGroup from '@/components/filter/FilterGroup'
 import NioFilter from '@/components/filter/Filter'
 import Default from './instances/Default'
-import Range from './instances/Range'
-import Currency from './instances/Currency'
-import CustomText from './instances/CustomText'
-import Unconstrained from './instances/Unconstrained'
 
 export default {
   components: {
@@ -24,15 +19,11 @@ export default {
   data: () => ({
     activeFilterName: null,
     filters: [
-      Default,
-      Range,
-      Currency,
-      CustomText,
-      Unconstrained
+      Default
     ]
   }),
   mounted() {
-   this.activeFilterName = this.filters[0].name
+    this.activeFilterName = this.filters[0].name
   },
   methods: {
     
