@@ -54,11 +54,7 @@ export default {
     },
     mounted() {	
       this.elementId = makeRandomId()
-      this.value = this.model
       this.$emit('mounted') 
-    },
-    methods: {
-     
     },
     watch: {
       model() {
