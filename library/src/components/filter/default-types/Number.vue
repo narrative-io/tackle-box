@@ -18,13 +18,13 @@
                 NioTextField.min-field(
                   type="number"
                   label="Minimum value"
-                  v-model="filter.customOption.value[0]"
+                  v-model.number="filter.customOption.value[0]"
                   :value="filter.customOption.value[0]"
                 )
                 NioTextField.max-field(
                   type="number"
                   label="Maximum value"
-                  v-model="filter.customOption.value[1]"
+                  v-model.number="filter.customOption.value[1]"
                   :value="filter.customOption.value[1]"
                 )
               .result.nio-p.text-primary-dark.nio-bold
@@ -32,7 +32,7 @@
                 span(v-if="!filter.customOption.value[0] && filter.customOption.value[1]") Include values less than or equal to {{ filter.customOption.value[1] }}
                 span(v-if="filter.customOption.value[0] && !filter.customOption.value[1]") Include values greater than or equal to {{ filter.customOption.value[0] }}
                 span(v-if="!filter.customOption.value[0] && !filter.customOption.value[1]") Include all values
-            .validation-error.nio-p-small.text-error(v-if="!valid") Max value must be greater than min value   
+            .validation-error.nio-p-small.text-error(v-if="minNotLossThanMax") Max value must be greater than min value   
           NioSlider(
             v-else
             :currency="filter.customOption.config.currency"
@@ -58,7 +58,8 @@ export default {
   },
   data: () => ({
     description: 'Select the data to include',
-    valid: true
+    valid: true,
+    minNotLossThanMax: false
   }),	
   computed: {
     defaultOptions() {
@@ -91,15 +92,19 @@ export default {
       this.validate()
     },
     validate() {
-      if (this.filter.value === 'custom') {
-        if (this.filter.customOption.value.length === 2 && this.filter.customOption.value[0] >= this.filter.customOption.value[1]) {
-          console.log(this.filter.customOption.value)
-          this.setValid(false)
+      if (this.filter.customOption.config.unconstrained && this.filter.value === 'custom') {
+        if (this.filter.customOption.value[0] && this.filter.customOption.value[1]) {
+          if (this.filter.customOption.value[0] >= this.filter.customOption.value[1]) {
+            this.minNotLossThanMax = true
+            this.setValid(false)
+          } else {
+            this.minNotLossThanMax = false
+            this.setValid(true)
+          }
         } else {
-          this.setValid(true)
+          this.minNotLossThanMax = false
+          this.setValid(false)
         }
-      } else {
-        this.setValid(true)
       }
     },
     setValid(val) {
