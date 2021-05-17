@@ -22,7 +22,7 @@ const Unconstrained = {
 		config: {
 			unconstrained: true
 		},
-		value: [20, 40]
+		value: [null, null]
 	}
 }
 

@@ -41,17 +41,17 @@
         //- TestImageTile
         //- TestIconFramer
         //- TestIcons
-        TestTextField
+        //- TestTextField
         //- TestDateField
         //- TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
-        //- TestFilters
+        TestFilters
         //- TestSlider
         //- TestTabs
         //- TestPills
-        TestTagsField
+        //- TestTagsField
 </template>
 
 <script>

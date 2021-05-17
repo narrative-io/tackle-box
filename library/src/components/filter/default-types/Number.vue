@@ -18,20 +18,21 @@
                 NioTextField.min-field(
                   type="number"
                   label="Minimum value"
-                  v-model="filter.customOption.value.min"
-                  :value="filter.customOption.value.min"
+                  v-model="filter.customOption.value[0]"
+                  :value="filter.customOption.value[0]"
                 )
                 NioTextField.max-field(
                   type="number"
                   label="Maximum value"
-                  v-model="filter.customOption.value.max"
-                  :value="filter.customOption.value.max"
+                  v-model="filter.customOption.value[1]"
+                  :value="filter.customOption.value[1]"
                 )
               .result.nio-p.text-primary-dark.nio-bold
-                span(v-if="filter.customOption.value.min && filter.customOption.value.max") Include values between {{ filter.customOption.value.min }} and {{ filter.customOption.value.max }} (inclusive)
-                span(v-if="!filter.customOption.value.min && filter.customOption.value.max") Include values less than or equal to {{ filter.customOption.value.max }}
-                span(v-if="filter.customOption.value.min && !filter.customOption.value.max") Include values greater than or equal to {{ filter.customOption.value.min }}
-                span(v-if="!filter.customOption.value.min && !filter.customOption.value.max") Include all values
+                span(v-if="filter.customOption.value[0] && filter.customOption.value[1]") Include values between {{ filter.customOption.value[0] }} and {{ filter.customOption.value[1] }} (inclusive)
+                span(v-if="!filter.customOption.value[0] && filter.customOption.value[1]") Include values less than or equal to {{ filter.customOption.value[1] }}
+                span(v-if="filter.customOption.value[0] && !filter.customOption.value[1]") Include values greater than or equal to {{ filter.customOption.value[0] }}
+                span(v-if="!filter.customOption.value[0] && !filter.customOption.value[1]") Include all values
+            .validation-error.nio-p-small.text-error(v-if="!valid") Max value must be greater than min value   
           NioSlider(
             v-else
             :currency="filter.customOption.config.currency"
@@ -56,7 +57,8 @@ export default {
     "filter": { type: Object, required: true }
   },
   data: () => ({
-    description: 'Select the data to include'
+    description: 'Select the data to include',
+    valid: true
   }),	
   computed: {
     defaultOptions() {
@@ -86,7 +88,29 @@ export default {
     updateValue() {
       const options = this.filter.options ? this.filter.options : this.defaultOptions
       this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
-    }
+      this.validate()
+    },
+    validate() {
+      if (this.filter.value === 'custom') {
+        if (this.filter.customOption.value.length === 2 && this.filter.customOption.value[0] >= this.filter.customOption.value[1]) {
+          console.log(this.filter.customOption.value)
+          this.setValid(false)
+        } else {
+          this.setValid(true)
+        }
+      } else {
+        this.setValid(true)
+      }
+    },
+    setValid(val) {
+      if (val) {
+        this.valid = true
+        this.filter.valid = true
+      } else {
+        this.valid = false
+        this.filter.valid = false
+      }
+    },
   },
   watch: {
     filter: {
