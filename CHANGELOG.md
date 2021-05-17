@@ -44,3 +44,6 @@ Added optional **custom-content** slot to NioSlat and NioSummarySlat which will 
 Added **Boolean** default filter type
 Added unconstrained option to default Numeric filter type
 Added **NioTagsField** 
+
+v0.3.10
+Added validations to numerical unconstrained vilter variant

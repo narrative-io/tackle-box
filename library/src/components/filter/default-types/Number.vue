@@ -105,6 +105,9 @@ export default {
           this.minNotLossThanMax = false
           this.setValid(false)
         }
+      } else {
+        this.setValid(true)
+        this.minNotLossThanMax = false
       }
     },
     setValid(val) {
