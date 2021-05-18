@@ -40,7 +40,7 @@
         //- TestRadioGroup
         //- TestImageTile
         //- TestIconFramer
-        //- TestIcons
+        TestIcons
         //- TestTextField
         //- TestDateField
         //- TestSelect
@@ -51,7 +51,7 @@
         //- TestSlider
         //- TestTabs
         //- TestPills
-        TestTagsField
+        //- TestTagsField
 </template>
 
 <script>

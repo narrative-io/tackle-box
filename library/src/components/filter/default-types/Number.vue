@@ -118,7 +118,7 @@ export default {
         this.valid = false
         this.filter.valid = false
       }
-    },
+    }
   },
   watch: {
     filter: {

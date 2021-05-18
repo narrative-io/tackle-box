@@ -71,6 +71,7 @@ const NioIconLibrary = {
 	"utility-exclamation": ["fas", "exclamation"],
 	"utility-code": ["fas","code"],
 	"utility-plus": ["fas", "plus"],
+	"utility-minus": ["fas", "minus"],
 	"utility-chevron-left": ["fas", "chevron-left"],
 	"utility-times": ["fas", "times"],
 	"utility-trash": ["fas", "trash"],
