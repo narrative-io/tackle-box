@@ -47,3 +47,4 @@ Added **NioTagsField**
 
 v0.3.10
 Added validations to numerical unconstrained vilter variant
+Added **utility-minus** icon
