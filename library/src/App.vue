@@ -31,7 +31,7 @@
         //- TestChargeSummary
         //- TestButtons
         //- TestAutocomplete
-        //- TestStepper
+        TestStepper
         //- TestSlatTable
         //- TestSlat
         //- TestFileChooser
@@ -40,7 +40,7 @@
         //- TestRadioGroup
         //- TestImageTile
         //- TestIconFramer
-        TestIcons
+        //- TestIcons
         //- TestTextField
         //- TestDateField
         //- TestSelect

@@ -1,6 +1,7 @@
 <template lang="pug">
   v-expansion-panel.nio-step(
     :disabled="isLocked"
+    :class="stepClass"
     @change="stepSelected"
   )
     NioStepHeader(
@@ -87,6 +88,9 @@ export default {
     },
     finalStepLabel() {
       return this.$parent.$parent.finalStepLabel
+    },
+    stepClass() {
+      return `nio-step-name-${this.stepName}`
     }
   },
   mounted() {
