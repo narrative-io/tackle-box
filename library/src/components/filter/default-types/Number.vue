@@ -38,6 +38,7 @@
             :currency="filter.customOption.config.currency"
             :prepend="filter.customOption.config.currency && !filter.customOption.config.range"
             :range="filter.customOption.config.range"
+            :step="filter.customOption.config.stepSize"
             :min="filter.customOption.config.min"
             :max="filter.customOption.config.max"
             v-model="filter.customOption.value"

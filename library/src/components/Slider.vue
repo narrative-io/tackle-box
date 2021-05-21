@@ -20,14 +20,14 @@
 			v-bind="$attrs"
 			v-on="$listeners" 
 			:value="model"
-			@change="sliderMoved($event)"
+			@input="sliderMoved($event)"
 		)
 		v-range-slider(
 			v-if="range"
 			v-bind="$attrs"
 			v-on="$listeners" 
 			:value="model"
-			@change="sliderMoved($event)"
+			@input="sliderMoved($event)"
 		)
 		NioTextField.input-max(
 			:currency="currency"
@@ -61,7 +61,9 @@ export default {
 	},
 	data: () => ({
 		minModel: null,
-		maxModel: null
+		maxModel: null,
+		sliderMinModel: null,
+		sliderMaxModel: null
 	}),
   mounted() {
     if (!this.value) {
@@ -70,13 +72,14 @@ export default {
 		if (this.range) {
 			this.minModel = this.model[0]
 			this.maxModel = this.model[1]
+			this.sliderMinModel = this.model[0]
+			this.sliderMaxModel = this.model[1]
 		} else {
 			this.maxModel = this.model
 		}
 	},
 	methods: {
 		sliderMoved(val) {
-			console.log(val)
 			if (this.range) {
 				this.minModel = val[0]
 				this.maxModel = val[1]
@@ -84,6 +87,9 @@ export default {
 				this.maxModel = val
 			}
 			this.$emit('update', val)
+		},
+		sliderEnd(val) {
+
 		},
 		updateMinModel(val) {
 			this.minModel = val
@@ -93,18 +99,15 @@ export default {
 		},
 		applyMinModel() {
 			if(event.key == "Enter") {
-				this.model[0] = this.minModel
-				this.$emit('update', [this.model[0], this.model[1]])
+				this.$emit('update', [this.minModel, this.model[1]])
 			}
 		},
 		applyMaxModel(val) {
 			if(event.key == "Enter") {
 				if (this.range) {
-					this.model[1] = this.maxModel
-					this.$emit('update', [this.model[0], this.model[1]])
+					this.$emit('update', [this.model[0], this.maxModel])
 				} else {
-					this.model = this.maxModel
-					this.$emit('update',  this.model)
+					this.$emit('update',  this.maxModel)
 				}
 			}
 		}	

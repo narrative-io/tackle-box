@@ -22,7 +22,8 @@ const Range = {
 		config: {
 			range: true,
 			min: 10,
-			max: 100
+			max: 100,
+			stepSize: 0.1
 		},
 		value: [20, 40]
 	}
