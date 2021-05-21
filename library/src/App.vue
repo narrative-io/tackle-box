@@ -31,7 +31,7 @@
         //- TestChargeSummary
         //- TestButtons
         //- TestAutocomplete
-        TestStepper
+        //- TestStepper
         //- TestSlatTable
         //- TestSlat
         //- TestFileChooser
@@ -47,7 +47,7 @@
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
-        //- TestFilters
+        TestFilters
         //- TestSlider
         //- TestTabs
         //- TestPills
