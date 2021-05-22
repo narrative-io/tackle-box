@@ -4,7 +4,6 @@ import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
 import nioServices from '../src/modules/app/store/servicesStore'
 import AppModule from "@/modules/app/app-module"
-
 import Vuex from 'vuex'
 
 Vue.use(Vuex)

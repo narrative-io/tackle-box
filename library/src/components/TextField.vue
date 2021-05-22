@@ -4,7 +4,7 @@
       outlined 
       flat
       :solo="soloAttr || smallAttr || prependAttr || currencyAttr"
-      @input="$emit('update', $event)"
+      @input="update($event)"
       :model="model"
       :rules="parsedRules"
       v-bind="$attrs"
@@ -70,6 +70,9 @@ export default {
     defaultIconSize: 16
   }),
   methods: {
+		update(val) {
+			this.$emit('update', this.currencyAttr ? parseFloat(val).toFixed(2) : val)
+		},
     focus() {
       this.$refs['nio-text-field-ref'].focus()
     },

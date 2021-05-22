@@ -1,7 +1,7 @@
 const Default = { 
 	name: "age",
 	type: "number",
-	title: "Currency",
+	title: "Currency Range",
 	description: "Number",
 	value: 'default',
 	options: [
@@ -20,12 +20,13 @@ const Default = {
 	],
 	customOption: {
 		config: {
+			range: true,
 			min: 10,
 			max: 100,
 			currency: true,
 			stepSize: 0.1
 		},
-		value: 20
+		value: [20, 40]
 	}
 }
 

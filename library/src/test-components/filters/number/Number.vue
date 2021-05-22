@@ -2,8 +2,7 @@
 <template lang="pug">
   div
     h1 Number
-    NioFilterGroup(:filters="filters")
-      
+    NioFilterGroup(:filters="filters")   
 </template>
 
 <script>
@@ -15,6 +14,7 @@ import Range from './instances/Range'
 import Currency from './instances/Currency'
 import CustomText from './instances/CustomText'
 import Unconstrained from './instances/Unconstrained'
+import CurrencyRange from './instances/CurrencyRange'
 
 export default {
   components: {
@@ -26,9 +26,10 @@ export default {
     filters: [
       Default,
       Range,
-      Currency,
       CustomText,
-      Unconstrained
+			Unconstrained,
+      Currency,
+			CurrencyRange
     ]
   }),
   mounted() {
