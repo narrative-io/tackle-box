@@ -48,8 +48,9 @@ Added **NioTagsField**
 v0.3.10
 Added validations to numerical unconstrained vilter variant
 Added **utility-minus** icon
-Add dynamic step-name class to **NioStep**
+Add dynamic **step-name** class to **NioStep**
 Fixed currency input masking to two decimal places
 Changed binding of slider text/number field values to apply on Enter keyup
 Added support for v-model biding on **NioExpansionPanels**
 Updated **NioStepper** to support multiword step names
+Added **ctaButtons** prop to **NioSidenav** to display CTAs for apps
