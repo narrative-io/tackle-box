@@ -20,7 +20,7 @@
         h4.nio-h4.text-primary-darker {{ appName }} 
         .nio-p-small.text-primary-dark By <span class="nio-bold">{{ developerName }}</span>
     .ctas
-      NioButton(
+      NioButton.cta-button(
         v-for="item of ctaButtons"
         @click="buttonClicked($event)"
         v-bind="buttonVariant(item)"
@@ -68,9 +68,6 @@ export default {
       this.items = this.navItems.filter(item => !item.showAsButton)
       this.buttons = this.navItems.filter(item => item.showAsButton)
     },
-    // buttonMount(el) {
-    //   el.setAttribute('normal-primary', "")
-    // },
     buttonClicked(item) {
       if (item.event) {
         this.fireNavEvent(item.event)

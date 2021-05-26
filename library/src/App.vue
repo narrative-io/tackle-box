@@ -128,10 +128,17 @@ export default {
       {
         label: "Saved Providers",
         to: "/apps",
-        icon: "display-payment",
         status: "new",
         showAsButton: true,
         buttonVariant: "normal-primary",
+        hidden: false
+      },
+      {
+        label: "Another One",
+        to: "/apps",
+        status: "new",
+        showAsButton: true,
+        buttonVariant: "normal-secondary",
         hidden: false
       }
     ],
