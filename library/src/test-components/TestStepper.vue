@@ -10,15 +10,15 @@
       @submit="submit"
     )
       NioStep(
-        stepName="source"
-        :valid="valid.source"
+        stepName="source test"
+        :valid="valid['source test']"
         :summary="stepSummary"
         simpleSummary
       )
         template(v-slot:content)
           .test        
-            NioButton(normal-primary v-if="!valid.source" @click="valid.source = true") Set Valid
-            NioButton(normal-secondary v-if="valid.source" @click="valid.source = false") Set Invalid
+            NioButton(normal-primary v-if="!valid['source test']" @click="valid['source test'] = true") Set Valid
+            NioButton(normal-secondary v-if="valid['source test']" @click="valid['source test'] = false") Set Invalid
       NioStep(
         stepName="match"
         :valid="valid.match"
@@ -33,7 +33,7 @@
             NioButton(normal-primary v-if="!valid.match" @click="valid.match = true") Set Valid
             NioButton(normal-secondary v-if="valid.match" @click="valid.match = false") Set Invalid
       NioStep(
-        stepName="destination"
+        stepName="destination test stuff"
         :valid="valid.destination"
         :summary="stepSummary"
       )
@@ -91,11 +91,11 @@ export default {
     NioButton
   },
   data: () => ({
-    steps: ['source', 'match', 'destination', 'budget', 'payment', 'confirmation'],
-    currentStep: 'source',
+    steps: ['source test', 'match', 'destination test stuff', 'budget', 'payment', 'confirmation'],
+    currentStep: 'source test',
     completedSteps: [],
     valid: {
-      source: false,
+      'source test': false,
       match: false,
       destination: false, 
       budget: false,

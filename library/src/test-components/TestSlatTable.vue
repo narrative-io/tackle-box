@@ -4,6 +4,14 @@
       v-if="columns && items"
       :items="items"
       :columns="columns"
+      :sortOptions="sortOptions"
+      sort-header
+      key="7"
+    )
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
       action="expand"
       multi-select
       dense-rows
@@ -137,14 +145,7 @@
       count-header
       key="8"
     )
-    NioSlatTable(
-      v-if="columns && items"
-      :items="items"
-      :columns="columns"
-      multi-select
-      @selectionChanged="selectionChanged($event)"
-      key="7"
-    )
+   
 </template>
 
 <script>
@@ -298,18 +299,18 @@ export default {
     this.makeItems()
     this.computeHeaders()
     this.computeSmallHeaders()
-		this.makePlainColumns()
-		setTimeout(() => {
-			this.items.push({
-				id: 15,
-				imageSrc: "https://picsum.photos/64/64",
-				orderName: "Added list",
-				orderNumber: 426,
-				spent: 500,
-				budget: 24000,
-				expires: "Jan 01 2020"
-			})
-		}, 5000);
+    this.makePlainColumns()
+    setTimeout(() => {
+      this.items.push({
+        id: 15,
+        imageSrc: "https://picsum.photos/64/64",
+        orderName: "Added list",
+        orderNumber: 426,
+        spent: 500,
+        budget: 24000,
+        expires: "Jan 01 2020"
+      })
+    }, 5000);
   }
 };
 </script>

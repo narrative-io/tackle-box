@@ -288,7 +288,10 @@ export default {
       }
       if (attributes.getNamedItem('dense-rows')) {
         this.dense = true
-      }
+			}
+			if (attributes.getNamedItem('sort-header')) {
+				this.headerElements.sort = true
+			}
       if (attributes.getNamedItem('search-header')) {
         this.headerElements.search = true
       }
@@ -384,9 +387,7 @@ export default {
     items: {
 			deep: true,
       handler(val) {
-				console.log(val)
 				this.computeItems()
-				console.log(this.items)
       }
     }
   },

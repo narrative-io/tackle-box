@@ -52,3 +52,4 @@ Add dynamic step-name class to **NioStep**
 Fixed currency input masking to two decimal places
 Changed binding of slider text/number field values to apply on Enter keyup
 Added support for v-model biding on **NioExpansionPanels**
+Updated **NioStepper** to support multiword step names

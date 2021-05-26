@@ -39,6 +39,7 @@
 
 import NioStepHeader from './StepHeader'
 import NioStepContent from './StepContent'
+import { toKebabCase } from '@/modules/helpers'
 
 export default {
   name: 'nio-step',
@@ -90,7 +91,7 @@ export default {
       return this.$parent.$parent.finalStepLabel
     },
     stepClass() {
-      return `nio-step-name-${this.stepName}`
+      return `nio-step-name-${toKebabCase(this.stepName)}`
     }
   },
   mounted() {
