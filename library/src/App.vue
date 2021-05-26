@@ -14,16 +14,17 @@
           @logout="logout"
         )
     .main
-      //- SideNav(
-      //-   appName="Universal Onboarding" 
-      //-   developerName="Narrative I/O"
-      //-   :companies="[]" 
-      //-   :navItems="navItems" 
-      //-   :lockItems="{'profile': true }"
-      //-   :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
-      //-   @login="login"
-      //-   @logout="logout"
-      //- )
+      SideNav(
+        appName="Universal Onboarding" 
+        developerName="Narrative I/O"
+        :companies="[]" 
+        :navItems="navItems" 
+        :ctaButtons="ctaButtons"
+        :lockItems="{'profile': true }"
+        :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
+        @login="login"
+        @logout="logout"
+      )
       .wrapper
         //- TestExpansionPanel
         //- TestDivider
@@ -31,7 +32,7 @@
         //- TestChargeSummary
         //- TestButtons
         //- TestAutocomplete
-        TestStepper
+        //- TestStepper
         //- TestSlatTable
         //- TestSlat
         //- TestFileChooser
@@ -123,18 +124,22 @@ export default {
   },
   data: () => ({
     loggedIn: false,
+    ctaButtons: [
+      {
+        label: "Saved Providers",
+        to: "/apps",
+        icon: "display-payment",
+        status: "new",
+        showAsButton: true,
+        buttonVariant: "normal-primary",
+        hidden: false
+      }
+    ],
     navItems: [
       {
         groupName: "manage",
         groupLabel: "Manage",
         items: [
-          {
-            label: "Saved Providers",
-            to: "/apps",
-            icon: "display-payment",
-            status: "new",
-            hidden: false
-          },
           {
             label: "Stuffs",
             to: "/apps",
