@@ -19,10 +19,10 @@
       .app-info
         h4.nio-h4.text-primary-darker {{ appName }} 
         .nio-p-small.text-primary-dark By <span class="nio-bold">{{ developerName }}</span>
-    .ctas
+    .ctas(v-if="ctaButtons.length > 0")
       NioButton.cta-button(
         v-for="item of ctaButtons"
-        @click="buttonClicked($event)"
+        @click="buttonClicked(item)"
         v-bind="buttonVariant(item)"
       ) {{ item.label }}
     NavMenu(
