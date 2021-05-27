@@ -14,19 +14,19 @@
           @logout="logout"
         )
     .main
-      SideNav(
-        appName="Universal Onboarding" 
-        developerName="Narrative I/O"
-        :companies="[]" 
-        :navItems="navItems" 
-        :ctaButtons="ctaButtons"
-        :lockItems="{'profile': true }"
-        :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
-        @login="login"
-        @logout="logout"
-      )
+      //- SideNav(
+      //-   appName="Universal Onboarding" 
+      //-   developerName="Narrative I/O"
+      //-   :companies="[]" 
+      //-   :navItems="navItems" 
+      //-   :ctaButtons="ctaButtons"
+      //-   :lockItems="{'profile': true }"
+      //-   :hideItems="{'login': loggedIn, 'logout': !loggedIn}"
+      //-   @login="login"
+      //-   @logout="logout"
+      //- )
       .wrapper
-        //- TestExpansionPanel
+        TestExpansionPanel
         //- TestDivider
         //- TestAlert
         //- TestChargeSummary

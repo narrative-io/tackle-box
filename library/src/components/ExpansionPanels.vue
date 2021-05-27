@@ -17,7 +17,7 @@ export default {
     "model": { required: false }
   },
   data: () => ({
-    tempModel: null
+    tempModel: []
   }),
   model: {
     prop: "model",

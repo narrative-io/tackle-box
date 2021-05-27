@@ -7,13 +7,12 @@
       NioExpansionPanel(:key="1")
         template(v-slot:header) Header
         template(v-slot:content) Content
-
-				
-    NioExpansionPanels(:multiple="false")
-      NioExpansionPanel(:key="2")
+    .model(style="margin-top:30px") {{ openPanel }}	
+    NioExpansionPanels(v-model="openPanel" :multiple="false")
+      NioExpansionPanel(:key="0")
         template(v-slot:header) Header
         template(v-slot:content) Content
-      NioExpansionPanel(:key="3")
+      NioExpansionPanel(:key="1")
         template(v-slot:header) Header
         template(v-slot:content) Content
 </template>
@@ -29,7 +28,8 @@ export default {
     NioExpansionPanels
   },
   data: () => ({
-		openPanels: []
+    openPanels: [],
+    openPanel: 0
   })
 };
 </script>
