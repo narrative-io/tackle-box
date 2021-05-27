@@ -26,14 +26,14 @@
       //-   @logout="logout"
       //- )
       .wrapper
-        TestExpansionPanel
+        //- TestExpansionPanel
         //- TestDivider
         //- TestAlert
         //- TestChargeSummary
         //- TestButtons
         //- TestAutocomplete
         //- TestStepper
-        //- TestSlatTable
+        TestSlatTable
         //- TestSlat
         //- TestFileChooser
         //- TestCheckbox

@@ -2,7 +2,7 @@
   .nio-slat-table(:class="[`action-${action}`, {'single-select': singleSelect, 'multi-select': multiSelect, 'listing-plain': listingPlain}]")  
     NioSlatTableHeader(
       v-if="!listingPlain"
-      :elements="headerElements"
+      :modules="orderedHeaderModules"
       :sortOptions="sortOptions"
       :selectionType="multiSelect ? 'multiSelect' : 'singleSelect'"
       :allSelected="allSelected"
@@ -138,12 +138,14 @@ export default {
     "initialItemsPerPage": { type: Number, required: false, default: 5 },
     "sortOptions": { type: Array, required: false },
     "searchableProps": { type: Array, required: false },
-    "defaultSelection": { type: Array | Number, required: false }
+    "defaultSelection": { type: Array | Number, required: false },
+    "headerModules": { type: Array, required: false }
   },
   data: () => ({
     multiSelect: false,
     singleSelect: false,
-    headerElements: {
+    orderedHeaderModules: [],
+    showHeaderModules: {
       search: false,
       sort: false,
       selected: false,
@@ -172,10 +174,10 @@ export default {
   mounted() {
     this.applyHelperAttributes()
     this.itemsPerPage = this.initialItemsPerPage
-    if (this.headerElements.sort || this.sortOptions) {
+    if (this.showHeaderModules.sort || this.sortOptions) {
       this.selectedSortOption = this.sortOptions[0].value
     } 
-    if (this.headerElements.search) {
+    if (this.showHeaderModules.search) {
       this.searchOptions.keys = this.searchableProps			
     }	
     this.makeHeaders()
@@ -239,7 +241,7 @@ export default {
         computedItems.push(computedItem)
       })
       // apply search
-      if (this.headerElements.search && this.searchTerm && this.searchTerm.length > 2) {
+      if (this.showHeaderModules.search && this.searchTerm && this.searchTerm.length > 2) {
         this.fuseInstance = new Fuse(computedItems, this.searchOptions)
         this.fuseInstance.search(this.searchTerm)
         computedItems = this.fuseInstance.search(this.searchTerm).map(result => result.item)
@@ -288,26 +290,32 @@ export default {
       }
       if (attributes.getNamedItem('dense-rows')) {
         this.dense = true
-			}
-			if (attributes.getNamedItem('sort-header')) {
-				this.headerElements.sort = true
-			}
+      }
+      if (attributes.getNamedItem('sort-header')) {
+        this.showHeaderModules.sort = true
+        this.orderedHeaderModules = ['sort']
+      }
       if (attributes.getNamedItem('search-header')) {
-        this.headerElements.search = true
+        this.showHeaderModules.search = true
+        this.orderedHeaderModules = ['search']
       }
       if (attributes.getNamedItem('search-sort-header')) {
-        this.headerElements.search = true
-        this.headerElements.sort = true
+        this.showHeaderModules.search = true
+        this.showHeaderModules.sort = true
+        this.orderedHeaderModules = ['search', 'sort']
       }
       if (attributes.getNamedItem('selected-search-header')) {
-        this.headerElements.selected = true
-        this.headerElements.search = true
+        this.showHeaderModules.selected = true
+        this.showHeaderModules.search = true
+        this.orderedHeaderModules = ['selected', 'search']
       }
       if (attributes.getNamedItem('selected-header')) {
-        this.headerElements.selected = true
+        this.showHeaderModules.selected = true
+        this.orderedHeaderModules = ['selected']
       }
       if (attributes.getNamedItem('count-header')) {
-        this.headerElements.count = true
+        this.showHeaderModules.count = true
+        this.orderedHeaderModules = ['count']
       }
       if (attributes.getNamedItem('footer-actions')) {
         this.actions = true
@@ -321,6 +329,30 @@ export default {
         this.actions = false
         this.pagination = false
         this.listingPlain = true
+      }
+      if (this.showHeaderModules && this.showHeaderModules.length) {
+        this.headerModules.map(module => {
+          switch (module) {
+            case 'search':
+              this.showHeaderModules.search = true
+              this.orderedHeaderModules.push('sort')
+              break;
+            case 'sort':
+              this.showHeaderModules.sort = true
+              this.orderedHeaderModules.push('sort')
+              break;
+            case 'count':
+              this.showHeaderModules.count = true
+              this.orderedHeaderModules.push('count')
+              break;
+            case 'selected':
+              this.showHeaderModules.selected = true
+              this.orderedHeaderModules.push('selected')
+              break;
+            default:
+              break;
+          }
+        })
       }
     },
     searchChange(val) {
@@ -385,9 +417,9 @@ export default {
       this.getNumColumns()
     },
     items: {
-			deep: true,
+      deep: true,
       handler(val) {
-				this.computeItems()
+        this.computeItems()
       }
     }
   },

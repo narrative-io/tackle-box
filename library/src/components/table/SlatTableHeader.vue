@@ -2,38 +2,35 @@
   NioSlat.nio-slat-table-header(
 
   )
-    template(v-slot:content)  
-      .header-selected(
-        v-if="elements.selected || elements.count && !$scopedSlots.customHeader"
-      )
-        NioCheckbox(
-          v-if="selectionType === 'multiSelect'"
-          :checked="allSelected"
-          @change="allSelectedChange($event)"
-        )
-        .count.nio-p.nio-bold.text-primary-dark(v-if="selectedCount > 0")
-          span.selected-count {{ selectedCount }}
-          span.label {{ selectedCount > 1 ? ' items' : ' item' }} selected
+    template(v-slot:content)
+      template(v-for="module of modules")
+        template(v-if="module === 'search'")
+          NioTextField(
+            search-small-subdued
+            placeholder="Search"
+            @input="searchChange($event)"
+          )
+        template(v-if="module === 'sort'")
+          NioSelect(
+            :items="sortOptions"
+            v-model="selectedSort"
+            item-text="label"
+            item-value="value"
+            small
+            @change="sortChange($event)"
+          )
+        template(v-if="module === 'count'")
+          .count.nio-p.nio-bold.text-primary-dark Showing {{ numItems }} {{ numItems > 1 ? 'items' : 'item'}}
+        template(v-if="module === 'selected'")
+          NioCheckbox(
+            v-if="selectionType === 'multiSelect'"
+            :checked="allSelected"
+            @change="allSelectedChange($event)"
+          )
+          .count.nio-p.nio-bold.text-primary-dark(v-if="selectedCount > 0")
+            span.selected-count {{ selectedCount }}
+            span.label {{ selectedCount > 1 ? ' items' : ' item' }} selected
       slot(name="custom-header-element")
-      .count.nio-p.nio-bold.text-primary-dark(
-        v-if="!pagination && numItems > 0 && !elements.search && !elements.sort && !elements.selected && !$scopedSlots.customHeader"
-      ) Showing {{ numItems }} {{ numItems > 1 ? 'items' : 'item'}}
-      NioTextField(
-        v-if="elements.search"
-        search-small-subdued
-        placeholder="Search"
-        @input="searchChange($event)"
-      )
-      NioSelect(
-        v-if="elements.sort"
-        :items="sortOptions"
-        v-model="selectedSort"
-        item-text="label"
-        item-value="value"
-        small
-        @change="sortChange($event)"
-      )
-
 </template>
 
 <script>
@@ -46,7 +43,7 @@ import NioCheckbox from '../Checkbox'
 export default {
   name: 'nio-slat-table-header',
   props: {
-    "elements": { type: Object, required: true },
+    "modules": { type: Array, required: true },
     "sortOptions": { type: Array, required: false, default: function() { return []} },
     "selectedCount": { type: Number, required: false, default: 0 },
     "numItems": { type: Number, required: false },
