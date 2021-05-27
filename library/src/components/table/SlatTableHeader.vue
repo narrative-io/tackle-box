@@ -1,6 +1,6 @@
 <template lang="pug">
   NioSlat.nio-slat-table-header(
-
+    :class="{'sort-only': modules.length === 1 && modules[0] === 'sort'}"
   )
     template(v-slot:content)
       template(v-for="module of modules")
