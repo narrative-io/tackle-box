@@ -22,14 +22,15 @@
         template(v-if="module === 'count'")
           .count.nio-p.nio-bold.text-primary-dark Showing {{ numItems }} {{ numItems > 1 ? 'items' : 'item'}}
         template(v-if="module === 'selected'")
-          NioCheckbox(
-            v-if="selectionType === 'multiSelect'"
-            :checked="allSelected"
-            @change="allSelectedChange($event)"
-          )
-          .count.nio-p.nio-bold.text-primary-dark(v-if="selectedCount > 0")
-            span.selected-count {{ selectedCount }}
-            span.label {{ selectedCount > 1 ? ' items' : ' item' }} selected
+          .selected-module
+            NioCheckbox(
+              v-if="selectionType === 'multiSelect'"
+              :checked="allSelected"
+              @change="allSelectedChange($event)"
+            )
+            .count.nio-p.nio-bold.text-primary-dark(v-if="selectedCount > 0")
+              span.selected-count {{ selectedCount }}
+              span.label {{ selectedCount > 1 ? ' items' : ' item' }} selected
       slot(name="custom-header-element")
 </template>
 

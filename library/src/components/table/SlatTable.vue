@@ -330,12 +330,12 @@ export default {
         this.pagination = false
         this.listingPlain = true
       }
-      if (this.showHeaderModules && this.showHeaderModules.length) {
+      if (this.headerModules && this.headerModules.length) {
         this.headerModules.map(module => {
           switch (module) {
             case 'search':
               this.showHeaderModules.search = true
-              this.orderedHeaderModules.push('sort')
+              this.orderedHeaderModules.push('search')
               break;
             case 'sort':
               this.showHeaderModules.sort = true

@@ -1,5 +1,63 @@
 <template lang="pug">
   .test-slat-table
+    h2 Header modules
+    h3 ['sort']
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      :sortOptions="sortOptions"
+      :headerModules="['sort']"
+      key="200"
+    )
+    h3 ['search']
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      key="201"
+      :searchableProps="['orderName', 'orderNumber']"
+      :headerModules="['search']"
+    )
+    h3 ['count']
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      key="202"
+      :headerModules="['count']"
+    )
+    h3 ['selected']
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      multi-select
+      key="203"
+      :headerModules="['selected']"
+    )
+    h3 ['selected', 'sort']
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      multi-select
+      key="204"
+      :headerModules="['selected', 'sort']"
+      :sortOptions="sortOptions"
+    )
+    h3 ['search', 'sort']
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      multi-select
+      key="205"
+      :headerModules="['search', 'sort']"
+      :searchableProps="['orderName', 'orderNumber']"
+      :sortOptions="sortOptions"
+    )
+
     NioSlatTable(
       v-if="columns && items"
       :items="items"
