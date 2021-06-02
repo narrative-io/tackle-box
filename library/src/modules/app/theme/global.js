@@ -17,11 +17,11 @@ const GlobalColors = {
 	},
 	primaryDark: {
 		key: "--nio-theme-primary-dark",
-		default: "#415298"
+		default: "#4F64AF"
 	},	
 	primaryDarker: {
 		key: "--nio-theme-primary-darker",
-		default: "#031553"
+		default: "#1B3078"
 	},
 	primaryDarkest: {
 		key: "--nio-theme-primary-darkest",
