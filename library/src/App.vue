@@ -35,13 +35,13 @@
         //- TestStepper
         //- TestSlatTable
         //- TestSlat
-        TestFileChooser
+        //- TestFileChooser
         //- TestCheckbox
         //- TestSwitch
         //- TestRadioGroup
         //- TestImageTile
         //- TestIconFramer
-        //- TestIcons
+        TestIcons
         //- TestTextField
         //- TestDateField
         //- TestSelect
@@ -53,6 +53,7 @@
         //- TestTabs
         //- TestPills
         //- TestTagsField
+        TestTooltip
 </template>
 
 <script>
@@ -86,6 +87,7 @@ import TestDateField from './test-components/TestDateField'
 import TestTabs from './test-components/TestTabs'
 import TestPills from './test-components/TestPills'
 import TestTagsField from './test-components/TestTagsField'
+import TestTooltip from './test-components/TestTooltip'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -120,7 +122,8 @@ export default {
     TestDateField,
     TestTabs,
     TestPills,
-    TestTagsField
+    TestTagsField,
+    TestTooltip
   },
   data: () => ({
     loggedIn: false,
