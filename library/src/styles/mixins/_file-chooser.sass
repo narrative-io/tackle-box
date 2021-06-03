@@ -5,85 +5,97 @@
 @import "../global/_transitions"
 
 =nio-file-chooser
-  position: relative
-  background-color: $c-canvas
-  border: 0.0625rem solid $c-primary-lighter
-  box-sizing: border-box
-  border-radius: 0.75rem
-  height: 26.25rem
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  width: 100%
-  text-align: center
-  .nio-icon-framer
-    margin-bottom: 1rem
-  .graphic
-    background: $c-canvas
-    width: 7.5rem
-    height: 7.5rem
-    border-radius: 3.75rem
-    border: 0.0625rem solid $c-primary-lighter
-    margin-bottom: 1rem
+  &:not(.inline)
     position: relative
-    +nio-center-content
-    .v-progress-circular
-      width: 6.25rem !important
-      height: 6.25rem !important
-      position: absolute
-      left: 0.5625rem
-      top: 0.5625rem
-      ::v-deep circle:nth-child(1)
-        stroke: $c-primary-lighter !important
-  .details
-    .nio-h3
-      margin-bottom: 0.5rem
-    .nio-p
-      margin-bottom: 0.5rem	     
-    .selected-file
-      display: flex
-      justify-content: center  
-      align-items: center
-      .nio-button
-        margin-left: 1rem 
-        margin-top: 0.0625rem
-      .nio-p
-        margin-bottom: 0rem	       
-    .spacer
-        margin-top: 1rem
-        margin-bottom: 1rem
-        width: 100%
-        height: 1.25rem
-        .content
-          display: flex
-          justify-content: space-between
-          align-items: center
-          .left, .right
-            flex-grow: 2
-            height: 0rem
-            border-top: 0.0625rem solid $c-primary-lighter
-          .nio-h6
-            margin: 0rem 0.625rem  
-  .actions
+    background-color: $c-canvas
+    border: 0.0625rem solid $c-primary-lighter
+    box-sizing: border-box
+    border-radius: 0.75rem
+    height: 26.25rem
     display: flex
+    flex-direction: column
     justify-content: center
     align-items: center
-    & > * + * 
-      margin-left: 1rem
-    
-  .invalid-message
-    text-align: center
-    position: absolute
     width: 100%
-    bottom: 2.5rem
-   
-  // states	
-  &.state-initial
+    text-align: center
+    .nio-icon-framer
+      margin-bottom: 1rem
+    .graphic
+      background: $c-canvas
+      width: 7.5rem
+      height: 7.5rem
+      border-radius: 3.75rem
+      border: 0.0625rem solid $c-primary-lighter
+      margin-bottom: 1rem
+      position: relative
+      +nio-center-content
+      .v-progress-circular
+        width: 6.25rem !important
+        height: 6.25rem !important
+        position: absolute
+        left: 0.5625rem
+        top: 0.5625rem
+        ::v-deep circle:nth-child(1)
+          stroke: $c-primary-lighter !important
+    .details
+      .nio-h3
+        margin-bottom: 0.5rem
+      .nio-p
+        margin-bottom: 0.5rem	     
+      .selected-file
+        display: flex
+        justify-content: center  
+        align-items: center
+        .nio-button
+          margin-left: 1rem 
+          margin-top: 0.0625rem
+        .nio-p
+          margin-bottom: 0rem	       
+      .spacer
+          margin-top: 1rem
+          margin-bottom: 1rem
+          width: 100%
+          height: 1.25rem
+          .content
+            display: flex
+            justify-content: space-between
+            align-items: center
+            .left, .right
+              flex-grow: 2
+              height: 0rem
+              border-top: 0.0625rem solid $c-primary-lighter
+            .nio-h6
+              margin: 0rem 0.625rem  
+    .actions
+      display: flex
+      justify-content: center
+      align-items: center
+      & > * + * 
+        margin-left: 1rem
+      
+    .invalid-message
+      text-align: center
+      position: absolute
+      width: 100%
+      bottom: 2.5rem
+    
+    // states	
+    &.state-initial
 
-  &.state-selected, &.state-inprogress, &.state-success, &.state-error
-    background-color: $c-white   
-    border: 0.0625rem solid $c-primary-lighter 
+    &.state-selected, &.state-inprogress, &.state-success, &.state-error
+      background-color: $c-white   
+      border: 0.0625rem solid $c-primary-lighter 
+
+  &.inline
+    ::v-deep .v-text-field__slot
+      background-color: $c-white
+      border-radius: 0.75rem
+      overflow: hidden
+      border: none
+    ::v-deep .v-input__slot
+      border: none
+    ::v-deep .v-text-field__slot
+      border: 1px solid $c-primary-light !important
 
 .nio-file-chooser
   +nio-file-chooser

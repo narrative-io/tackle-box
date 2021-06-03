@@ -2,11 +2,23 @@
   .nio-file-chooser.inline(
     v-if="variant === 'inline'"
   )
+    input(
+      ref="fsFileInput" 
+      id="getFile" 
+      type="file" 
+      tabindex="-1" 
+      :multiple="multiple" 
+      @change="handleFilesChange"
+      style="display: none;"
+    )
     NioTextField(
-
+      disabled
+      :value="`${currentState === 'selected' ? `${filename} (${readableFilesize})` : '' }`"
+      solo
     )
     NioButton(
       normal-secondary
+      @click="browseClicked"
     ) {{ actionLabel }}
   .nio-file-chooser(
     v-else
@@ -52,7 +64,7 @@
         )
         .nio-p.text-primary-dark.nio-bold {{ percentComplete }}%
     .details
-      .nio-h3.text-primary-darker 
+      .nio-h3.text-primary-darker
         span(v-if="currentState === 'initial'") Drag and drop
         span(v-if="currentState === 'selected'") Your File
         span(v-if="currentState === 'inProgress'") {{ inProgressMsg }}
@@ -195,6 +207,7 @@ export default {
       return this.validateFn(files);
     },
     preprocessFiles(files) {
+      console.log(files)
       const result = this.validate(files);
       this.$emit("validated", result, files);
       // validation

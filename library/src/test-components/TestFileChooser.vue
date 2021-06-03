@@ -2,6 +2,7 @@
   .test-file-chooser
     NioFileChooser(
       variant="inline"
+      :state="inlineDownloaderState"
       v-model="file"
       actionLabel="Upload File"
       validationErrorMsg="Your file does not contain any valid IDs."
@@ -70,6 +71,7 @@ export default {
   },
   data: () => ({
     downloaderState: 'initial',
+    inlineDownloaderState: 'initial',
     file: null
   }),
   methods: {
@@ -91,4 +93,6 @@ export default {
 
 <style lang="sass" scoped>
 .test-file-chooser
+  .nio-file-chooser
+    margin-bottom: 100px
 </style>
