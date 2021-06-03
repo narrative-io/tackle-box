@@ -14,6 +14,7 @@
     :value="value"
     :item-value="valueKey"
     :item-text="textKey"
+    :id="elementId"
   )
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
       slot(:name="name" v-bind="data") 
@@ -34,6 +35,7 @@
 
 import { text } from '../plugins/fontawesome-svg-core'
 import NioPill from './Pill'
+import { makeRandomId } from '@/modules/helpers'
 
 export default {
   name: 'nio-select',
@@ -47,6 +49,7 @@ export default {
     event: "update"
   },
   data: () => ({
+    elementId: null,
     node: null,
     smallAttr: false,
     attach: false,
@@ -55,7 +58,8 @@ export default {
     labelText: null,
     textKey: null,
     valueKey: null,
-    value: null
+    value: null,
+    fluidWidthAttr: false
   }),
   methods: {
     applyKeys() {
@@ -95,12 +99,34 @@ export default {
       if (attributes.getNamedItem('selection-pills')) {
         this.selectionPills = true
       }
+      if (attributes.getNamedItem('fluid-width')) {
+        this.fluidWidthAttr = true
+      }
     },
     updateModel(event) {
+      HTMLCollection.prototype.find = Array.prototype.find
+      DOMTokenList.prototype.includes = Array.prototype.includes
+      if (this.fluidWidthAttr) {
+        this.$nextTick(() => {
+          console.log(
+            this.$refs['nio-select-ref'].$vnode.elm.children
+              .find(child => child.classList.includes('v-input__control')).children
+                .find(child => child.classList.includes('v-input__slot')).children
+                  .find(child => child.classList.includes('v-select__slot')).children
+                    .find(child => child.classList.includes('v-select__selections')).children
+                      .find(child => child.classList.includes('v-select__selection'))
+      
+
+        )
+          })
+      }
       this.$emit('update', event)
     }
   },
-  mounted() {	
+  created() {
+    this.elementId = makeRandomId()
+  },
+  mounted() {
     this.applyHelperAttributes()
     this.applyKeys()
     this.updateModel(this.model)

@@ -6,6 +6,15 @@
       :ref="'text'" 
       small
       :label="'Label'"
+      key="0"
+      fluid-width
+    )
+    NioSelect.select(
+      v-model="selectedItems" 
+      :items="items"
+      :ref="'text'" 
+      small
+      :label="'Label'"
       key="1"
     )
     NioSelect.select(
