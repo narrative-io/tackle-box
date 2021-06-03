@@ -60,6 +60,7 @@
       NioIcon(name="utility-eye-slash")
       NioIcon(name="utility-exclamation")
       NioIcon(name="utility-minus")
+      NioIcon(name="utility-info")
 </template>
 
 <script>
