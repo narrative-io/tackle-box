@@ -35,7 +35,6 @@
 
 import { text } from '../plugins/fontawesome-svg-core'
 import NioPill from './Pill'
-import { makeRandomId } from '@/modules/helpers'
 
 export default {
   name: 'nio-select',
@@ -59,7 +58,8 @@ export default {
     textKey: null,
     valueKey: null,
     value: null,
-    fluidWidthAttr: false
+    fluidWidthAttr: false,
+    selectionElement: null
   }),
   methods: {
     applyKeys() {
@@ -104,35 +104,38 @@ export default {
       }
     },
     updateModel(event) {
-      HTMLCollection.prototype.find = Array.prototype.find
-      DOMTokenList.prototype.includes = Array.prototype.includes
       if (this.fluidWidthAttr) {
-        this.$nextTick(() => {
-          console.log(
-            this.$refs['nio-select-ref'].$vnode.elm.children
-              .find(child => child.classList.includes('v-input__control')).children
-                .find(child => child.classList.includes('v-input__slot')).children
-                  .find(child => child.classList.includes('v-select__slot')).children
-                    .find(child => child.classList.includes('v-select__selections')).children
-                      .find(child => child.classList.includes('v-select__selection'))
-      
-
-        )
-          })
+        this.setSelectionElement()
       }
       this.$emit('update', event)
+    },
+    setSelectionElement() {
+      if (!HTMLCollection.prototype.find) {
+        HTMLCollection.prototype.find = Array.prototype.find
+      }
+      if (!DOMTokenList.prototype.includes) {
+        DOMTokenList.prototype.includes = Array.prototype.includes
+      }
+      if (this.fluidWidthAttr) {
+        this.$nextTick(() => {
+          this.selectionElement = this.$refs['nio-select-ref'].$vnode.elm.children
+            .find(child => child.classList.includes('v-input__control')).children
+            .find(child => child.classList.includes('v-input__slot')).children
+            .find(child => child.classList.includes('v-select__slot')).children
+            .find(child => child.classList.includes('v-select__selections')).children
+            .find(child => child.classList.includes('v-select__selection'))
+        })
+      }
     }
   },
-  created() {
-    this.elementId = makeRandomId()
-  },
   mounted() {
+    this.node = this.$refs['nio-select-ref'].$vnode.elm
     this.applyHelperAttributes()
     this.applyKeys()
     this.updateModel(this.model)
     this.value = this.model
     this.$emit('mounted')
-    this.node = this.$refs['nio-select-ref'].$vnode.elm
+    
   },
   destroyed() {
     this.$emit('destroyed')
