@@ -97,6 +97,30 @@
     ::v-deep .v-text-field__slot
       border: 1px solid $c-primary-light !important
 
+    .selected-file
+      border: 1px solid $c-primary-light
+      border-radius: 0.5rem
+      display: flex
+      align-items: center    
+      height: 54px
+      width: 100%
+      pointer-events: none
+      .file-details
+        display: flex
+        align-items: center
+        padding: 0rem 1.375rem
+        width: 100%
+        .filename, .filesize
+          white-space: nowrap
+          color: $c-primary-dark
+        .filename
+          overflow: hidden
+          text-overflow: ellipsis
+          margin-right: 8px
+          flex-shrink: 2
+        .filesize
+          // flex-grow: 0
+
 .nio-file-chooser
   +nio-file-chooser
 

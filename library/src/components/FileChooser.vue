@@ -11,11 +11,10 @@
       @change="handleFilesChange"
       style="display: none;"
     )
-    NioTextField(
-      disabled
-      :value="`${currentState === 'selected' ? `${filename} (${readableFilesize})` : '' }`"
-      solo
-    )
+    .selected-file
+      .file-details(v-if="currentState === 'selected'")
+        .filename {{ filename }}
+        .filesize.nio-bold ({{ readableFilesize }})
     NioButton(
       normal-secondary
       @click="browseClicked"
