@@ -71,10 +71,15 @@
 =fluid-width
   display: inline-block
   ::v-deep .v-input__control
-    // flex-grow: 0
-    // flex-shrink: 0
+    flex-grow: 0
+    flex-shrink: 0
+    // padding-right: 100px
   ::v-deep .v-select__selections input
     display: none
+  ::v-deep .v-select__selection
+    max-width: unset
+  ::v-deep .v-select__selection--comma
+    overflow: visible
 
 =nio-select-small
   +nio-text-field
