@@ -64,8 +64,18 @@
       color: $c-primary-dark   
       .nio-pill
         margin-top: 0.125rem
-        margin-right: 0.375rem        
-        
+        margin-right: 0.375rem             
+  
+
+
+=fluid-width
+  display: inline-block
+  ::v-deep .v-input__control
+    // flex-grow: 0
+    // flex-shrink: 0
+  ::v-deep .v-select__selections input
+    display: none
+
 =nio-select-small
   +nio-text-field
   +nio-text-field-small 
@@ -85,10 +95,14 @@
     .v-select__selections
       margin-left: 1rem
       font-size: 0.875rem
-      color: $c-primary-dark   
+      color: $c-primary-dark
       
 .nio-select:not(.small)
   +nio-select
+  &.fluid-width
+    +fluid-width
 
 .nio-select.small
   +nio-select-small
+  &.fluid-width
+    +fluid-width

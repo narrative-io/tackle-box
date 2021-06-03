@@ -1,7 +1,7 @@
 <template lang="pug">
   v-select.nio-select(
     :items="items"
-    :class="{ small: smallAttr, 'hide-selections': hideSelections, 'selection-pills': selectionPills }"
+    :class="{ small: smallAttr, 'hide-selections': hideSelections, 'selection-pills': selectionPills, 'fluid-width': fluidWidthAttr }"
     :solo="smallAttr"
     :model="model"
     :menu-props="{contentClass: 'nio-select-menu', offsetY: true, nudgeBottom: 10  }"
@@ -59,7 +59,11 @@ export default {
     valueKey: null,
     value: null,
     fluidWidthAttr: false,
-    selectionElement: null
+    internal: {
+      inputControlEl: null,
+      selectionEl: null
+
+    }
   }),
   methods: {
     applyKeys() {
@@ -105,11 +109,11 @@ export default {
     },
     updateModel(event) {
       if (this.fluidWidthAttr) {
-        this.setSelectionElement()
+        this.updateInternalElements()
       }
       this.$emit('update', event)
     },
-    setSelectionElement() {
+    updateInternalElements() {
       if (!HTMLCollection.prototype.find) {
         HTMLCollection.prototype.find = Array.prototype.find
       }
@@ -118,12 +122,20 @@ export default {
       }
       if (this.fluidWidthAttr) {
         this.$nextTick(() => {
-          this.selectionElement = this.$refs['nio-select-ref'].$vnode.elm.children
-            .find(child => child.classList.includes('v-input__control')).children
+          this.internal.inputControlEl = this.$refs['nio-select-ref'].$vnode.elm.children
+            .find(child => child.classList.includes('v-input__control'))
+          this.internal.inputControlEl.style['width'] = `unset`
+
+          this.internal.selectionEl = this.internal.inputControlEl.children
             .find(child => child.classList.includes('v-input__slot')).children
             .find(child => child.classList.includes('v-select__slot')).children
             .find(child => child.classList.includes('v-select__selections')).children
             .find(child => child.classList.includes('v-select__selection'))
+          // console.log(`${this.internal.selectionEl.offsetWidth + 100}px`)
+          console.log(window.getComputedStyle(this.internal.selectionEl).width)
+          this.internal.inputControlEl.style['width'] = `${this.internal.selectionEl.offsetWidth + 70}px`
+          // console.log(this.internal.inputControlEl)
+         
         })
       }
     }
