@@ -35,7 +35,7 @@
         //- TestStepper
         //- TestSlatTable
         //- TestSlat
-        //- TestFileChooser
+        TestFileChooser
         //- TestCheckbox
         //- TestSwitch
         //- TestRadioGroup
@@ -44,7 +44,7 @@
         //- TestIcons
         //- TestTextField
         //- TestDateField
-        TestSelect
+        //- TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog

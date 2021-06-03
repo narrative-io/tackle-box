@@ -1,5 +1,15 @@
 <template lang="pug">
+  .nio-file-chooser.inline(
+    v-if="variant === 'inline'"
+  )
+    NioTextField(
+
+    )
+    NioButton(
+      normal-secondary
+    ) {{ actionLabel }}
   .nio-file-chooser(
+    v-else
     :class="`state-${ currentState.toLowerCase() }`"
     ref="fsDroppable" 
     @dragenter.stop.prevent="isDragEnter = true" 
@@ -106,10 +116,12 @@
 
 import NioButton from './Button'
 import NioIconFramer from'./icon/IconFramer'
+import NioTextField from './TextField'
 
 export default {
   name: 'nio-file-chooser',
   props: {
+    variant: { type: String, required: false, default: 'default' },
     instructions: { type: String, required: false, default: "Choose a file" },
     actionLabel: { type: String, required: false, default: "Go" },
     inProgressMsg: { type: String, required: false, default: "Working on it..." },
@@ -223,7 +235,7 @@ export default {
       this.currentState = val
     }
   },
-  components: { NioButton, NioIconFramer }
+  components: { NioButton, NioIconFramer, NioTextField }
 }
 
 </script>
