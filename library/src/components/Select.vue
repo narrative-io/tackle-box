@@ -124,18 +124,17 @@ export default {
         this.$nextTick(() => {
           this.internal.inputControlEl = this.$refs['nio-select-ref'].$vnode.elm.children
             .find(child => child.classList.includes('v-input__control'))
-          this.internal.inputControlEl.style['width'] = `unset`
-
-          this.internal.selectionEl = this.internal.inputControlEl.children
-            .find(child => child.classList.includes('v-input__slot')).children
-            .find(child => child.classList.includes('v-select__slot')).children
-            .find(child => child.classList.includes('v-select__selections')).children
-            .find(child => child.classList.includes('v-select__selection'))
-          // console.log(`${this.internal.selectionEl.offsetWidth + 100}px`)
-          console.log(window.getComputedStyle(this.internal.selectionEl).width)
-          this.internal.inputControlEl.style['width'] = `${this.internal.selectionEl.offsetWidth + 70}px`
-          // console.log(this.internal.inputControlEl)
-         
+          if (this.internal.inputControlEl){
+						this.internal.inputControlEl.style['width'] = `unset`
+						this.internal.selectionEl = this.internal.inputControlEl.children
+							.find(child => child.classList.includes('v-input__slot')).children
+							.find(child => child.classList.includes('v-select__slot')).children
+							.find(child => child.classList.includes('v-select__selections')).children
+							.find(child => child.classList.includes('v-select__selection'))
+						if (this.internal.selectionEl) {
+							this.internal.inputControlEl.style['width'] = `${parseInt(window.getComputedStyle(this.internal.selectionEl).width.replace('px', '')) + 80}px`
+						}
+					}
         })
       }
     }
