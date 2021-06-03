@@ -58,12 +58,7 @@ export default {
     textKey: null,
     valueKey: null,
     value: null,
-    fluidWidthAttr: false,
-    internal: {
-      inputControlEl: null,
-      selectionEl: null
-
-    }
+    fluidWidthAttr: false
   }),
   methods: {
     applyKeys() {
@@ -122,29 +117,18 @@ export default {
       }
       if (this.fluidWidthAttr) {
         this.$nextTick(() => {
-          this.internal.inputControlEl = this.$refs['nio-select-ref'].$vnode.elm.children
+         	const inputControlEl = this.$refs['nio-select-ref'].$vnode.elm.children
             .find(child => child.classList.includes('v-input__control'))
-          if (this.internal.inputControlEl){
-						this.internal.inputControlEl.style['width'] = 'unset'
+          if (inputControlEl){
+						inputControlEl.style['width'] = 'unset'
 						this.node.style['width'] = 'unset'
-						this.internal.selectionEl = this.internal.inputControlEl.children
+						const labelEl = inputControlEl.children
 							.find(child => child.classList.includes('v-input__slot')).children
 							.find(child => child.classList.includes('v-select__slot')).children
-							.find(child => child.classList.includes('v-select__selections')).children
-							.find(child => child.classList.includes('v-select__selection'))
-						this.internal.labelEl = this.internal.selectionEl = this.internal.inputControlEl.children
-							.find(child => child.classList.includes('v-input__slot')).children
-							.find(child => child.classList.includes('v-select__slot')).children
-						console.log(this.internal.labelEl)
-						if (this.internal.selectionEl) {
-							console.log(window.getComputedStyle(this.internal.selectionEl).width.replace('px', ''))
-							const inputControlElWidth = parseInt(window.getComputedStyle(this.internal.selectionEl).width.replace('px', '')) + 70
-							console.log(inputControlElWidth)
-							this.internal.inputControlEl.style['width'] = `${inputControlElWidth}px`
-							this.node.style['width'] = `${inputControlElWidth + 150}px`
-							console.log(this.internal.inputControlEl.style['width'])
-							console.log(this.node.style['width'])
-							console.log("----")
+							.find(child => child.nodeName === "LABEL")
+						if (labelEl) {
+							const labelWidth = parseInt(window.getComputedStyle(labelEl).width.replace('px', ''))
+							this.node.style['width'] = `${labelWidth + 55}px`
 						}
 					}
         })

@@ -73,14 +73,15 @@
   ::v-deep .v-input__control
     flex-grow: 0
     flex-shrink: 0
-    // padding-right: 100px
   ::v-deep .v-select__selections input
     display: none
   ::v-deep .v-select__selection
     max-width: unset
-  ::v-deep .v-select__selection--comma
+    padding-right: 5px
     overflow: visible
-
+  ::v-deep label
+    max-width: unset
+  
 =nio-select-small
   +nio-text-field
   +nio-text-field-small 
