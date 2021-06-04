@@ -117,20 +117,20 @@ export default {
       }
       if (this.fluidWidthAttr) {
         this.$nextTick(() => {
-         	const inputControlEl = this.$refs['nio-select-ref'].$vnode.elm.children
+           const inputControlEl = this.$refs['nio-select-ref'].$vnode.elm.children
             .find(child => child.classList.includes('v-input__control'))
           if (inputControlEl){
-						inputControlEl.style['width'] = 'unset'
-						this.node.style['width'] = 'unset'
-						const labelEl = inputControlEl.children
-							.find(child => child.classList.includes('v-input__slot')).children
-							.find(child => child.classList.includes('v-select__slot')).children
-							.find(child => child.nodeName === "LABEL")
-						if (labelEl) {
-							const labelWidth = parseInt(window.getComputedStyle(labelEl).width.replace('px', ''))
-							this.node.style['width'] = `${labelWidth + 55}px`
-						}
-					}
+            inputControlEl.style['width'] = 'unset'
+            this.node.style['width'] = 'unset'
+            const labelEl = inputControlEl.children
+              .find(child => child.classList.includes('v-input__slot')).children
+              .find(child => child.classList.includes('v-select__slot')).children
+              .find(child => child.nodeName === "LABEL")
+            if (labelEl) {
+              const labelWidth = parseInt(window.getComputedStyle(labelEl).width.replace('px', ''))
+              this.node.style['width'] = `${labelWidth + 55}px`
+            }
+          }
         })
       }
     }

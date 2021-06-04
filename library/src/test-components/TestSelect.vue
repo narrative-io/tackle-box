@@ -106,15 +106,15 @@ export default {
     NioSelect
   },
   data: () => ({
-		items: ['apple', 'banana', 'orange', 'your mom'],
-		fluidItems: [
-			'apple', 
-			'something longer than the others',
-			'banana', 
-			'orange', 
-			'something that will wrap multiple line s and stuff and stuff and stuff and stuff',
-			'your mom'
-		],
+    items: ['apple', 'banana', 'orange', 'your mom'],
+    fluidItems: [
+      'apple', 
+      'something longer than the others',
+      'banana', 
+      'orange', 
+      'something that will wrap multiple line s and stuff and stuff and stuff and stuff',
+      'your mom'
+    ],
     selectedItems: ['apple'],
     selectedRegions: [],
     radio: 'Jacob',
