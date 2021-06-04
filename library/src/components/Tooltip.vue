@@ -1,17 +1,13 @@
 <template lang="pug">
   .nio-tooltip
-    NioIcon(
-      v-if="!openOnHover"
-      name="utility-info"
-      @click="visible = !visible"
-      :color="iconColor"
-      :size="12"
-    )
     v-tooltip(
       v-model="visible"
-      top
+      :open-on-hover="openOnHover === true"
+      :open-on-click="openOnHover === false"
+      contentClass="nio-tooltip-content"
+      right
     )
-      template(v-slot:activator="{ on, attrs }" v-if="openOnHover")
+      template(v-slot:activator="{ on, attrs }")
         v-btn.activator(
           icon
           v-bind="attrs"
@@ -23,11 +19,9 @@
             :color="iconColor"
             :size="12"
           )
-      .nio-tooltip-content
-        .title.nio-p-large.text-primary-darker.nio-bold {{ heading }}
-        .body.nio-p.text-primary-dark {{ message }}
-        .link
-
+      .tooltip-title.nio-p.text-primary-darkest.nio-bold {{ heading }}
+      .nio-p.text-primary-darker {{ message }}
+      .link
 </template>
 
 <script>
@@ -69,6 +63,10 @@ export default {
 }
 </script>
 
+<style lang="sass">
+@import '../styles/mixins/_tooltip-content'  
+</style>
+
 <style lang="sass" scoped>
-  @import '../styles/mixins/_tooltip'  
+@import '../styles/mixins/_tooltip'  
 </style>
