@@ -1,5 +1,26 @@
 <template lang="pug">
+  .nio-file-chooser.inline(
+    v-if="variant === 'inline'"
+  )
+    input(
+      ref="fsFileInput" 
+      id="getFile" 
+      type="file" 
+      tabindex="-1" 
+      :multiple="multiple" 
+      @change="handleFilesChange"
+      style="display: none;"
+    )
+    .selected-file
+      .file-details(v-if="currentState === 'selected'")
+        .filename {{ filename }}
+        .filesize.nio-bold ({{ readableFilesize }})
+    NioButton(
+      normal-secondary
+      @click="browseClicked"
+    ) {{ actionLabel }}
   .nio-file-chooser(
+    v-else
     :class="`state-${ currentState.toLowerCase() }`"
     ref="fsDroppable" 
     @dragenter.stop.prevent="isDragEnter = true" 
@@ -42,7 +63,7 @@
         )
         .nio-p.text-primary-dark.nio-bold {{ percentComplete }}%
     .details
-      .nio-h3.text-primary-darker 
+      .nio-h3.text-primary-darker
         span(v-if="currentState === 'initial'") Drag and drop
         span(v-if="currentState === 'selected'") Your File
         span(v-if="currentState === 'inProgress'") {{ inProgressMsg }}
@@ -106,10 +127,12 @@
 
 import NioButton from './Button'
 import NioIconFramer from'./icon/IconFramer'
+import NioTextField from './TextField'
 
 export default {
   name: 'nio-file-chooser',
   props: {
+    variant: { type: String, required: false, default: 'default' },
     instructions: { type: String, required: false, default: "Choose a file" },
     actionLabel: { type: String, required: false, default: "Go" },
     inProgressMsg: { type: String, required: false, default: "Working on it..." },
@@ -183,6 +206,7 @@ export default {
       return this.validateFn(files);
     },
     preprocessFiles(files) {
+      console.log(files)
       const result = this.validate(files);
       this.$emit("validated", result, files);
       // validation
@@ -223,7 +247,7 @@ export default {
       this.currentState = val
     }
   },
-  components: { NioButton, NioIconFramer }
+  components: { NioButton, NioIconFramer, NioTextField }
 }
 
 </script>

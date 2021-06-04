@@ -55,3 +55,7 @@ Added support for v-model biding on **NioExpansionPanels**
 Updated **NioStepper** to support multiword step names
 Added **ctaButtons** prop to **NioSidenav** to display CTAs for apps
 Added **headerModules** prop to **NioSlatTable** to simplify customizing table header
+Updated primary colors
+Added **NioTooltip** component
+Added filter tooltip optional object in config to add tooltip to **NioFilterHeader** and provided custom tooltip slot
+Added optional **fluid-width** attribute to **NioTextField**

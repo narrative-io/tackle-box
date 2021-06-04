@@ -1,7 +1,7 @@
 <template lang="pug">
   v-select.nio-select(
     :items="items"
-    :class="{ small: smallAttr, 'hide-selections': hideSelections, 'selection-pills': selectionPills }"
+    :class="{ small: smallAttr, 'hide-selections': hideSelections, 'selection-pills': selectionPills, 'fluid-width': fluidWidthAttr }"
     :solo="smallAttr"
     :model="model"
     :menu-props="{contentClass: 'nio-select-menu', offsetY: true, nudgeBottom: 10  }"
@@ -14,6 +14,7 @@
     :value="value"
     :item-value="valueKey"
     :item-text="textKey"
+    :id="elementId"
   )
     template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
       slot(:name="name" v-bind="data") 
@@ -47,6 +48,7 @@ export default {
     event: "update"
   },
   data: () => ({
+    elementId: null,
     node: null,
     smallAttr: false,
     attach: false,
@@ -55,7 +57,8 @@ export default {
     labelText: null,
     textKey: null,
     valueKey: null,
-    value: null
+    value: null,
+    fluidWidthAttr: false
   }),
   methods: {
     applyKeys() {
@@ -95,18 +98,51 @@ export default {
       if (attributes.getNamedItem('selection-pills')) {
         this.selectionPills = true
       }
+      if (attributes.getNamedItem('fluid-width')) {
+        this.fluidWidthAttr = true
+      }
     },
     updateModel(event) {
+      if (this.fluidWidthAttr) {
+        this.updateInternalElements()
+      }
       this.$emit('update', event)
+    },
+    updateInternalElements() {
+      if (!HTMLCollection.prototype.find) {
+        HTMLCollection.prototype.find = Array.prototype.find
+      }
+      if (!DOMTokenList.prototype.includes) {
+        DOMTokenList.prototype.includes = Array.prototype.includes
+      }
+      if (this.fluidWidthAttr) {
+        this.$nextTick(() => {
+           const inputControlEl = this.$refs['nio-select-ref'].$vnode.elm.children
+            .find(child => child.classList.includes('v-input__control'))
+          if (inputControlEl){
+            inputControlEl.style['width'] = 'unset'
+            this.node.style['width'] = 'unset'
+            const labelEl = inputControlEl.children
+              .find(child => child.classList.includes('v-input__slot')).children
+              .find(child => child.classList.includes('v-select__slot')).children
+              .find(child => child.nodeName === "LABEL")
+            if (labelEl) {
+              const labelWidth = parseInt(window.getComputedStyle(labelEl).width.replace('px', ''))
+              this.node.style['width'] = `${labelWidth + 55}px`
+            }
+          }
+        })
+      }
     }
   },
-  mounted() {	
+  mounted() {
+    this.node = this.$refs['nio-select-ref'].$vnode.elm
     this.applyHelperAttributes()
     this.applyKeys()
     this.updateModel(this.model)
     this.value = this.model
     this.$emit('mounted')
-    this.node = this.$refs['nio-select-ref'].$vnode.elm
+    
   },
   destroyed() {
     this.$emit('destroyed')

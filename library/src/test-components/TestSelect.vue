@@ -2,6 +2,15 @@
   .test-select
     NioSelect.select(
       v-model="selectedItems" 
+      :items="fluidItems"
+      :ref="'text'" 
+      small
+      :label="'Label'"
+      key="0"
+      fluid-width
+    )
+    NioSelect.select(
+      v-model="selectedItems" 
       :items="items"
       :ref="'text'" 
       small
@@ -98,6 +107,14 @@ export default {
   },
   data: () => ({
     items: ['apple', 'banana', 'orange', 'your mom'],
+    fluidItems: [
+      'apple', 
+      'something longer than the others',
+      'banana', 
+      'orange', 
+      'something that will wrap multiple line s and stuff and stuff and stuff and stuff',
+      'your mom'
+    ],
     selectedItems: ['apple'],
     selectedRegions: [],
     radio: 'Jacob',

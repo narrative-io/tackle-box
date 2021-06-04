@@ -1,0 +1,29 @@
+@import '../global/_colors'
+
+=nio-tooltip-content 
+  width: 400px
+  padding: 24px
+  background-color: $c-white
+  border: none
+  box-shadow: 0rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.1) !important
+  opacity: 0.95 !important
+  transform: translate(20px, 0px)
+  pointer-events: unset
+  cursor: initial
+  .tooltip-title
+    margin-bottom: 8px
+  .link
+    margin-top: 6px
+    display: block
+    a
+      text-decoration: none
+      pointer-events: all
+      color: $c-primary !important
+    a:hover
+      cursor: pointer
+      text-decoration: underline
+  .custom-content
+    pointer-events: all
+  
+.nio-tooltip-content
+  +nio-tooltip-content 
