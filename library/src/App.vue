@@ -48,12 +48,12 @@
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
-        TestFilters
+        //- TestFilters
         //- TestSlider
         //- TestTabs
         //- TestPills
         //- TestTagsField
-        //- TestTooltip
+        TestTooltip
 </template>
 
 <script>

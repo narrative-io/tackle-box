@@ -21,10 +21,10 @@
             :color="iconColor"
             :size="12"
           )
-      .tooltip-title.nio-p.text-primary-darkest.nio-bold {{ heading }}
-      .nio-p.text-primary-darker {{ message }}
+      .tooltip-title.nio-p.text-primary-darkest.nio-bold(v-if="(data && data.heading) || heading") {{ data && data.heading ? data.heading : heading }}
+      .nio-p.text-primary-darker {{ data && data.message ? data.message : message }}
       .link
-        a(v-if="linkText && linkHref" :href="linkHref" target="_blank") {{ formatLinkText(linkText) }}
+        a.nio-h6(v-if="(linkText && linkHref) || (data && data.linkText && data.linkHref)" :href="data && data.linkHref ? data.linkHref : linkHref" target="_blank") {{ formatLinkText(data && data.linkText ? data.linkText : linkText) }}
       .custom-content
         slot
 </template>
@@ -37,6 +37,7 @@ import { getThemeColor } from '@/modules/app/theme/theme'
 export default {
   name: 'nio-tooltip',
   props: {
+    "data": { type: Object, required: false },
     "message": { type: String, required: false, default: '' },
     "heading": { type: String, required: false },
     "linkText": { type: String, required: false },

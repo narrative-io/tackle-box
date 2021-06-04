@@ -28,6 +28,10 @@
       key="5"
     )
       .default-slot.text-primary-darker This is a custom template
+    NioTooltip.test(
+      key="6"
+      :data="tooltipObj"
+    )
 </template>
 
 <script>
@@ -39,6 +43,12 @@ export default {
     NioTooltip
   },
   data: () => ({
+    tooltipObj: {
+      heading: "Sed do eiusmod tempor incididunt ut",
+      message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      linkText: "more info",
+      linkHref: "http://www.google.com"
+    }
   })
 };
 </script>
