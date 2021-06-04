@@ -1,6 +1,7 @@
 <template lang="pug">
   .nio-tooltip
     NioIcon(
+      v-if="!openOnHover"
       name="utility-info"
       @click="visible = !visible"
       :color="iconColor"
@@ -10,7 +11,7 @@
       v-model="visible"
       top
     )
-      template(v-slot:activator="{ on, attrs }")
+      template(v-slot:activator="{ on, attrs }" v-if="openOnHover")
         v-btn.activator(
           icon
           v-bind="attrs"
@@ -22,7 +23,10 @@
             :color="iconColor"
             :size="12"
           )
-        span Programmatic tooltip
+      .nio-tooltip-content
+        .title.nio-p-large.text-primary-darker.nio-bold {{ heading }}
+        .body.nio-p.text-primary-dark {{ message }}
+        .link
 
 </template>
 
@@ -35,17 +39,18 @@ export default {
   name: 'nio-tooltip',
   props: {
     "message": { type: String, required: false, default: '' },
-    "messageTitle": { type: String, required: false },
+    "heading": { type: String, required: false },
     "linkText": { type: String, required: false },
     "linkHref": { type: String, required: false },
   },
   data() {
     return {
-      visible: false
+      visible: false,
+      openOnHover: false
     }
   },		
   mounted() {
-
+    this.applyHelperAttributes()
   },
   computed: {
     iconColor() {
@@ -53,7 +58,12 @@ export default {
     }
   },
   methods: {
-   
+    applyHelperAttributes() {
+      const attributes = this.$el.attributes
+      if (attributes.getNamedItem('open-on-hover')) {
+        this.openOnHover = true
+      }
+    }
   },
   components: { NioIcon }
 }
