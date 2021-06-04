@@ -1,20 +1,27 @@
 <template lang="pug">
-  .nio-tooptip
+  .nio-tooltip
     NioIcon(
-      name="utility-plus"
+      name="utility-info"
       @click="visible = !visible"
+      :color="iconColor"
+      :size="12"
     )
     v-tooltip(
       v-model="visible"
       top
     )
       template(v-slot:activator="{ on, attrs }")
-        v-btn(
+        v-btn.activator(
           icon
           v-bind="attrs"
           v-on="on"
         )
-          NioIcon(name="utlilty-plus")
+          NioIcon(
+            name="utility-info"
+            @click="visible = !visible"
+            :color="iconColor"
+            :size="12"
+          )
         span Programmatic tooltip
 
 </template>
@@ -22,6 +29,7 @@
 <script>
 
 import NioIcon from './icon/Icon'
+import { getThemeColor } from '@/modules/app/theme/theme'
 
 export default {
   name: 'nio-tooltip',
@@ -39,8 +47,13 @@ export default {
   mounted() {
 
   },
+  computed: {
+    iconColor() {
+      return getThemeColor('primary')
+    }
+  },
   methods: {
-    
+   
   },
   components: { NioIcon }
 }
