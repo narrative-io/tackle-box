@@ -2,10 +2,12 @@
   .nio-tooltip
     v-tooltip(
       v-model="visible"
-      :open-on-hover="openOnHover === true"
-      :open-on-click="openOnHover === false"
+      :open-on-hover="openOnHover"
+      :open-on-click="!openOnHover"
       contentClass="nio-tooltip-content"
       right
+      v-bind="$attrs"
+      v-on="$listeners"
     )
       template(v-slot:activator="{ on, attrs }")
         v-btn.activator(
@@ -21,7 +23,8 @@
           )
       .tooltip-title.nio-p.text-primary-darkest.nio-bold {{ heading }}
       .nio-p.text-primary-darker {{ message }}
-      .link
+      a.link(v-if="linkText && linkHref" :href="linkHref" target="_blank") {{ formatLinkText(linkText) }}
+      slot
 </template>
 
 <script>
@@ -57,6 +60,9 @@ export default {
       if (attributes.getNamedItem('open-on-hover')) {
         this.openOnHover = true
       }
+    },
+    formatLinkText(text) {
+      return ` ${text.toUpperCase()}`
     }
   },
   components: { NioIcon }
