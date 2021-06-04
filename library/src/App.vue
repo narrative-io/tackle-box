@@ -41,19 +41,19 @@
         //- TestRadioGroup
         //- TestImageTile
         //- TestIconFramer
-        TestIcons
+        //- TestIcons
         //- TestTextField
         //- TestDateField
         //- TestSelect
         //- TestCardGrid
         //- TestOptionsGrid
         //- TestDialog
-        //- TestFilters
+        TestFilters
         //- TestSlider
         //- TestTabs
         //- TestPills
         //- TestTagsField
-        TestTooltip
+        //- TestTooltip
 </template>
 
 <script>

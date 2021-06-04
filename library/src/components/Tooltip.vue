@@ -1,9 +1,9 @@
 <template lang="pug">
   .nio-tooltip
-    v-tooltip(
-      v-model="visible"
+    v-menu(
       :open-on-hover="openOnHover"
       :open-on-click="!openOnHover"
+      :closeOnContentClick="false"
       contentClass="nio-tooltip-content"
       right
       v-bind="$attrs"
@@ -23,8 +23,10 @@
           )
       .tooltip-title.nio-p.text-primary-darkest.nio-bold {{ heading }}
       .nio-p.text-primary-darker {{ message }}
-      a.link(v-if="linkText && linkHref" :href="linkHref" target="_blank") {{ formatLinkText(linkText) }}
-      slot
+      .link
+        a(v-if="linkText && linkHref" :href="linkHref" target="_blank") {{ formatLinkText(linkText) }}
+      .custom-content
+        slot
 </template>
 
 <script>

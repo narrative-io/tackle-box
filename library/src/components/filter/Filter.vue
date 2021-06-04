@@ -16,6 +16,7 @@
         :title="filter.title"
         :description="filter.description"
         :value="value"
+        :tooltip="filter.tooltip"
       )
     v-expansion-panel-content(eager)
       template(

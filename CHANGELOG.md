@@ -56,3 +56,5 @@ Updated **NioStepper** to support multiword step names
 Added **ctaButtons** prop to **NioSidenav** to display CTAs for apps
 Added **headerModules** prop to **NioSlatTable** to simplify customizing table header
 Updated primary colors
+Added **NioTooltip** component
+Added optional **fluid-width** attribute to **NioTextField**
