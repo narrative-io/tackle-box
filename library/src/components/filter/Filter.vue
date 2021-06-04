@@ -18,6 +18,8 @@
         :value="value"
         :tooltip="filter.tooltip"
       )
+        template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+          slot(:name="name" v-bind="data")   
     v-expansion-panel-content(eager)
       template(
         v-if="hasScopedSlot(`filter-body-custom-${filter.name}`)"

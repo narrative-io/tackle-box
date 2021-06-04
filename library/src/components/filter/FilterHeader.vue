@@ -10,7 +10,7 @@
             :linkText="tooltip.linkText"
             :linkHref="tooltip.linkHref"
           )
-          slot(name="tooltip" v-else)
+          slot(name="header-tooltip" v-else)
       .description.nio-p.text-primary-dark {{ description }}
     .filter-value
       .value(v-for="item in value")
