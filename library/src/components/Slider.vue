@@ -11,7 +11,7 @@
 			type="number"
 			@keyup.native="applyMinModel($event)"
 			@update="updateMinModel($event)"
-			:value="currency ? parseFloat(model[0]).toFixed(2) : model[0]"
+			:model="currency ? parseFloat(model[0]).toFixed(2) : model[0]"
 			:class="{'prepend-field': !range && prepend}"
 		)
 		v-slider(
@@ -34,7 +34,7 @@
 			small
 			solo
 			type="number"
-			:value="range ? currency ? parseFloat(model[1]).toFixed(2) : model[1] : currency ? parseFloat(model).toFixed(2) : model"
+			:model="range ? currency ? parseFloat(model[1]).toFixed(2) : model[1] : currency ? parseFloat(model).toFixed(2) : model"
 			@keyup.native="applyMaxModel($event)"
 			@update="updateMaxModel($event)"
 		)
@@ -65,9 +65,6 @@ export default {
 		sliderMaxModel: null
 	}),
   mounted() {
-    if (!this.value) {
-      this.$emit('update', this.model)
-		}
 		if (this.range) {
 			this.minModel = this.model[0]
 			this.maxModel = this.model[1]

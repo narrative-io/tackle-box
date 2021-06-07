@@ -5,8 +5,7 @@
       flat
       :solo="soloAttr || smallAttr || prependAttr || currencyAttr"
       @input="update($event)"
-      :model="model"
-      :value="model"
+      v-model="tempModel"
       :rules="parsedRules"
       v-bind="$attrs"
       v-on="$listeners"
@@ -60,6 +59,7 @@ export default {
     event: "update"
   },
   data: () => ({
+    tempModel: null,
     parsedRules: [],
     appendAttr: false,
     prependAttr: false,
@@ -121,12 +121,9 @@ export default {
     }
   },
   mounted() {	
-    
+    this.tempModel = this.model
     this.parseRules()
     this.applyHelperAttributes()
-    if (this.model) {
-      this.update(this.model)
-    }
     this.$emit('mounted')
   },
   destroyed() {
@@ -135,6 +132,12 @@ export default {
   watch: {
     rules() {
       this.parseRules()
+    },
+    tempModel(val) {
+      this.update(val)
+    },
+    model(val) {
+      this.tempModel = val
     }
   },
   components: { VTextField, NioIcon }
