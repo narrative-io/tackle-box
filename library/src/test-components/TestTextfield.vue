@@ -1,6 +1,6 @@
 <template lang="pug">
   .test-text-field
-    nio-text-field.text-field(small v-model="model" label="search" placeholder="hello")
+    nio-text-field.text-field(small v-model="model" label="search")
     nio-text-field.text-field(search-small v-model="model" label="search" placeholder="hello")
     nio-text-field.text-field(search-small-subdued v-model="model" label="search" placeholder="hello")
     nio-text-field.text-field(prepend iconName="utility-dollar-sign" :ref="'text'" v-model="model" :label="'Search'" solo)

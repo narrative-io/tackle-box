@@ -6,6 +6,7 @@
       :solo="soloAttr || smallAttr || prependAttr || currencyAttr"
       @input="update($event)"
       :model="model"
+      :value="model"
       :rules="parsedRules"
       v-bind="$attrs"
       v-on="$listeners"
@@ -70,9 +71,9 @@ export default {
     defaultIconSize: 16
   }),
   methods: {
-		update(val) {
-			this.$emit('update', this.currencyAttr ? parseFloat(val).toFixed(2) : val)
-		},
+    update(val) {
+      this.$emit('update', this.currencyAttr ? parseFloat(val).toFixed(2) : val)
+    },
     focus() {
       this.$refs['nio-text-field-ref'].focus()
     },
@@ -120,8 +121,12 @@ export default {
     }
   },
   mounted() {	
+    
     this.parseRules()
     this.applyHelperAttributes()
+    if (this.model) {
+      this.update(this.model)
+    }
     this.$emit('mounted')
   },
   destroyed() {

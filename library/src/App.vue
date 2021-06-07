@@ -42,7 +42,7 @@
         //- TestImageTile
         //- TestIconFramer
         //- TestIcons
-        //- TestTextField
+        TestTextField
         //- TestDateField
         //- TestSelect
         //- TestCardGrid
@@ -53,7 +53,7 @@
         //- TestTabs
         //- TestPills
         //- TestTagsField
-        TestTooltip
+        //- TestTooltip
 </template>
 
 <script>
