@@ -14,6 +14,7 @@ export default {
 			nioListsLoading: 'listsLoading',
 			nioPaymentMethod: 'paymentMethod',
 			nioPaymentMethodLoading: 'paymentMethodLoading',
+			nioInvoiceAuthorized: 'invoiceAuthorized',
 			nioUser: 'user',
 			nioTier: 'tier'
 		})
@@ -58,7 +59,10 @@ export default {
         case 'paymentMethod':
           this.$store.dispatch('nioServices/SET_PAYMENT_METHOD_LOADING', false)
           this.$store.dispatch('nioServices/SET_PAYMENT_METHOD', evt.data.payload)
-          break;
+					break;
+				case 'invoiceAuthorized': 
+					this.$store.dispatch('nioServices/SET_INVOICE_AUTHORIZED', true)
+					break;
         case 'setRegisteredPath': 
           routerModule.setRegisteredPath(evt.data.payload)
           this.$router.push(evt.data.payload)

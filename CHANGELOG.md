@@ -64,3 +64,4 @@ Bug Fix: fixed two-way binding on **NioTextField**, **NioSlider** and **NioTagsF
 v0.3.12
 Support copy and pasting comma-delimited string into **NioTagsField** to create tag list
 Support deleting a tag from any position in **NioTagsField**
+Added prop for invoicing authorized to servicesStore
