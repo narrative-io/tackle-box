@@ -24,9 +24,10 @@
             ) {{ item }}
         span.v-select__selection(v-if="index === selectionsVisible && model.length === selectionsVisible + 1") (+{{ model.length - selectionsVisible }} other)
         span.v-select__selection(v-if="index === selectionsVisible && model.length > selectionsVisible + 1") (+{{ model.length - selectionsVisible }} others)
-      template(v-slot:selection="{ item, index }" v-else)
+      template(v-slot:selection="{ item, index, selected }" v-else)
         .pill-wrapper
           NioPill(
+            :class="{'selected': selected}"
             selected-value
           ) {{ item }}
 </template>

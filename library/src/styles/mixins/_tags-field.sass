@@ -12,6 +12,10 @@
   ::v-deep .v-select__selections
     padding-top: 1.875rem !important
     padding-left: 0.75rem !important
+    .selected
+      box-shadow: 0px 0px 1px $c-primary-dark
+      .nio-pill-content
+        color: $c-primary 
   ::v-deep .v-input__slot 
     background-color: white
     border: none
@@ -30,7 +34,7 @@
     display: none
   &:not(.no-items) .v-input:not(.v-input--is-focused)
     &:hover
-      ::v-deep .v-input__slot:hover, 
+      ::v-deep .v-input__slot:hover,
       ::v-deep .v-select__selections:hover, 
       ::v-deep input:hover
         cursor: pointer !important
@@ -43,5 +47,6 @@
     ::v-deep .v-input__append-inner
       margin-top: 0.5rem !important
     
+
 .nio-tags-field
   +nio-tags-field 
