@@ -4,7 +4,7 @@
     nio-text-field.text-field(search-small v-model="model" label="search" placeholder="hello")
     nio-text-field.text-field(search-small-subdued v-model="model" label="search" placeholder="hello")
     nio-text-field.text-field(prepend iconName="utility-dollar-sign" :ref="'text'" v-model="model" :label="'Search'" solo)
-    nio-text-field.text-field(prepend iconName="utility-dollar-sign" :ref="'text'" v-model="model" :label="'Search'")
+    nio-text-field.text-field(prepend iconName="utility-check-circle" :ref="'text'" v-model="model" :label="'Search'")
     nio-text-field.text-field(:ref="'text'" v-model="model" value="test" :label="'Label'")
     nio-text-field.text-field(name="test" :ref="'text'" v-model="model" :label="'Label'" placeholder="test")
     nio-text-field.text-field(:ref="'text'" v-model="model" :label="'Label'" disabled)

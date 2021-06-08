@@ -26,6 +26,10 @@
 				name="utility-chevron-left"
 				color="#415298"
 			)
+		NioButton(caution-filled-prepend iconName="utility-alert") Dont click this
+		NioButton(caution-outlined) Delete Item
+		NioButton(caution-text) Cancel Order
+		NioButton(caution-icon-small iconName="utility-times") 
 </template>
 
 <script>

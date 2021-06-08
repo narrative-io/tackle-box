@@ -8,16 +8,16 @@
       :label="'Label'"
       key="1"
     )
-    NioAutocomplete(
-      label="Preferred Data Regions"
-      v-model="selectedRegions"
-      :value="selectedRegions"
-      :items="regions"
-      item-text="name"
-      item-value="value" 
-      key="2"
-    )
-    NioAutocomplete(
+    //- NioAutocomplete(
+    //-   label="Preferred Data Regions"
+    //-   v-model="selectedRegions"
+    //-   :value="selectedRegions"
+    //-   :items="regions"
+    //-   item-text="name"
+    //-   item-value="value" 
+    //-   key="2"
+    //- )
+    NioAutocomplete.autocomplete(
       label="Preferred Data Regions"
       v-model="selectedRegions"
       :items="regions"
@@ -27,7 +27,7 @@
       selection-pills
       key="3"
     )
-    NioAutocomplete.viewing-as-menu(
+    NioAutocomplete.autocomplete(
       label="Viewing As"
       v-model="selectedCompany"
       :value="selectedCompany"
