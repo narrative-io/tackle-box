@@ -26,34 +26,147 @@
       //-   @logout="logout"
       //- )
       .wrapper
-        //- TestExpansionPanel
-        //- TestDivider
-        //- TestAlert
-        //- TestChargeSummary
-        //- TestButtons
-        //- TestAutocomplete
-        //- TestStepper
-        //- TestSlatTable
-        //- TestSlat
-        //- TestFileChooser
-        //- TestCheckbox
-        //- TestSwitch
-        //- TestRadioGroup
-        //- TestImageTile
-        //- TestIconFramer
-        //- TestIcons
-        TestTextField
-        //- TestDateField
-        //- TestSelect
-        //- TestCardGrid
-        //- TestOptionsGrid
-        //- TestDialog
-        //- TestFilters
-        //- TestSlider
-        //- TestTabs
-        //- TestPills
-        //- TestTagsField
-        //- TestTooltip
+        NioExpansionPanels(multiple)
+          NioExpansionPanel(:key="0")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Alert
+            template(v-slot:content) 
+              TestAlert
+          NioExpansionPanel(:key="1")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Autocomplete
+            template(v-slot:content) 
+              TestAutocomplete
+          NioExpansionPanel(:key="3")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Buttons
+            template(v-slot:content) 
+              TestButtons
+          NioExpansionPanel(:key="4")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Card Grid
+            template(v-slot:content) 
+              TestCardGrid
+          NioExpansionPanel(:key="5")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Charge Summary
+            template(v-slot:content) 
+              TestChargeSummary
+          NioExpansionPanel(:key="6")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Checkbox
+            template(v-slot:content) 
+              TestCheckbox
+          NioExpansionPanel(:key="7")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold DateField
+            template(v-slot:content) 
+              TestDateField
+          NioExpansionPanel(:key="8")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Dialog
+            template(v-slot:content) 
+              TestDialog
+          NioExpansionPanel(:key="9")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Divider
+            template(v-slot:content) 
+              TestDivider
+          NioExpansionPanel(:key="10")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold ExpansionPanels
+            template(v-slot:content) 
+              TestExpansionPanel
+          NioExpansionPanel(:key="11")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold FileChooser
+            template(v-slot:content) 
+              TestFileChooser
+          NioExpansionPanel(:key="12")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Filters
+            template(v-slot:content) 
+              TestFilters
+          NioExpansionPanel(:key="13")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold IconFramer
+            template(v-slot:content) 
+              TestIconFramer
+          NioExpansionPanel(:key="14")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Icons
+            template(v-slot:content) 
+              TestIcons
+          NioExpansionPanel(:key="15")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold ImageTile
+            template(v-slot:content) 
+              TestImageTile
+          NioExpansionPanel(:key="16")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold OptionsGrid
+            template(v-slot:content) 
+              TestOptionsGrid
+          NioExpansionPanel(:key="17")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Pill
+            template(v-slot:content) 
+              TestPills
+          NioExpansionPanel(:key="18")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold RadioGroup
+            template(v-slot:content) 
+              TestRadioGroup
+          NioExpansionPanel(:key="19")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Select
+            template(v-slot:content) 
+              TestSelect
+          NioExpansionPanel(:key="20")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Slat
+            template(v-slot:content) 
+              TestSlat
+          NioExpansionPanel(:key="21")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold SlatTable
+            template(v-slot:content) 
+              TestSlatTable
+          NioExpansionPanel(:key="22")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Slider
+            template(v-slot:content) 
+              TestSlider
+          NioExpansionPanel(:key="23")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Stepper
+            template(v-slot:content) 
+              TestStepper
+          NioExpansionPanel(:key="24")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Switch
+            template(v-slot:content) 
+              TestSwitch
+          NioExpansionPanel(:key="25")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Tabs
+            template(v-slot:content) 
+              TestTabs
+          NioExpansionPanel(:key="26")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold TagsField
+            template(v-slot:content) 
+              TestTagsField
+          NioExpansionPanel(:key="27")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold TextField
+            template(v-slot:content) 
+              TestTextField
+          NioExpansionPanel(:key="28")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Tooltip
+            template(v-slot:content) 
+              TestTooltip
 </template>
 
 <script>
@@ -75,6 +188,8 @@ import TestRadioGroup from './test-components/TestRadioGroup'
 import TestIconFramer from './test-components/TestIconFramer'
 import TestDivider from './test-components/TestDivider'
 import TestExpansionPanel from './test-components/TestExpansionPanel'
+import NioExpansionPanels from './components/ExpansionPanels'
+import NioExpansionPanel from './components/ExpansionPanel'
 import TestSlat from './test-components/TestSlat'
 import TestStepper from './test-components/TestStepper'
 import TestSlatTable from './test-components/TestSlatTable'
@@ -123,7 +238,9 @@ export default {
     TestTabs,
     TestPills,
     TestTagsField,
-    TestTooltip
+    TestTooltip,
+    NioExpansionPanels,
+    NioExpansionPanel
   },
   data: () => ({
     loggedIn: false,
