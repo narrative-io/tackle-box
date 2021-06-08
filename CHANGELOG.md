@@ -59,6 +59,6 @@ Updated primary colors
 Added **NioTooltip** component
 Added filter tooltip optional object in config to add tooltip to **NioFilterHeader** and provided custom tooltip slot
 Added optional **fluid-width** attribute to **NioTextField**
-Bug Fix: fixed two-way binding on **NioTextField** and **NioSlider**
+Bug Fix: fixed two-way binding on **NioTextField**, **NioSlider** and **NioTagsField**
 
 v0.3.12
