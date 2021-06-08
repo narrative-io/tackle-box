@@ -17,8 +17,14 @@ export default {
    model: [],
    model1: [],
    filledModel: ['test', 'stuff'],
+   delayModel: ['sometimes', 'orange', 'yes'],
    items: ['test', 'another']
-  })
+  }),
+  mounted() {
+    setTimeout(() => {
+      this.filledModel = this.delayModel
+    }, 1000)
+  }
 };
 </script>
 

@@ -77,9 +77,12 @@ export default {
           }
         })
       },
+      updateTempModel(val) {
+        this.tempModel = val
+      },
       updateModel(val) {
         if (val) {
-           this.$emit('update', val)
+          this.$emit('update', val)
           this.tempModel = val && val.length ? val : []
         }
       },
@@ -106,7 +109,7 @@ export default {
     },
     watch: {
       model(val) {
-        this.updateModel()
+        this.updateTempModel(val)
       }
     },
     destroyed() {
