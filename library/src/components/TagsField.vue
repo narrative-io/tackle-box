@@ -5,7 +5,7 @@
       flat
       multiple
       :label="label"
-      :model="model"
+      v-model="model"
       :items="items ? items : []"
       @input="$emit('update', $event)"
       v-bind="$attrs"
