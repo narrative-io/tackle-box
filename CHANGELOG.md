@@ -62,3 +62,5 @@ Added optional **fluid-width** attribute to **NioTextField**
 Bug Fix: fixed two-way binding on **NioTextField**, **NioSlider** and **NioTagsField**
 
 v0.3.12
+Support copy and pasting comma-delimited string into **NioTagsField** to create tag list
+Support deleting a tag from any position in **NioTagsField**
