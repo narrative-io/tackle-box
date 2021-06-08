@@ -5,9 +5,10 @@
       flat
       multiple
       :label="label"
-      v-model="model"
+      v-model="tempModel"
       :items="items ? items : []"
-      @input="$emit('update', $event)"
+      @input="updateModel($event)"
+      @paste="onPaste"
       v-bind="$attrs"
       v-on="$listeners"
       ref="nio-tags-field-ref"
@@ -47,7 +48,8 @@ export default {
     data: () => ({
       elementId: null,
       truncateSelections: false,
-      selectionsVisible: null
+      selectionsVisible: null,
+      tempModel: []
     }),
     model: {
       prop: "model",
@@ -55,20 +57,56 @@ export default {
     },
     mounted() {	
       this.elementId = makeRandomId()
+      this.tempModel = this.model
+      this.checkHeight()
+      this.addPasteListener()
       this.$emit('mounted') 
     },
-    watch: {
-      model() {
-        const selectionsHeight = document.querySelector(`#${this.elementId} .v-select__selections`).offsetHeight
-        if (selectionsHeight > 180) {
-          if (!this.truncateSelections) {
-            this.truncateSelections = true
-            this.selectionsVisible = this.model.length - 1
+    methods: {
+      checkHeight() {
+        this.$nextTick(() => {
+          const selectionsHeight = document.querySelector(`#${this.elementId} .v-select__selections`).offsetHeight
+          if (selectionsHeight > 180) {
+            if (!this.truncateSelections) {
+              this.truncateSelections = true
+              this.selectionsVisible = this.model.length - 1
+            }
+          } else {
+            this.truncateSelections = false
+            this.selectionsVisible = null
           }
-        } else {
-          this.truncateSelections = false
-          this.selectionsVisible = null
+        })
+      },
+      updateModel(val) {
+        if (val) {
+           this.$emit('update', val)
+          this.tempModel = val && val.length ? val : []
         }
+      },
+      addPasteListener() {
+        this.$nextTick(() => {
+          const input = document.querySelector(`#${this.elementId} .v-select__selections input`)
+          input.addEventListener("paste", (event) => {
+            this.onPaste(event)
+          })
+        })
+      },
+      onPaste(e) { 
+          function unique(value, index, self) {
+            return self.indexOf(value) === index;
+          }
+          var clipboardData, pastedData;
+          e.stopPropagation();
+          e.preventDefault();
+          clipboardData = e.clipboardData || window.clipboardData;
+          pastedData = clipboardData.getData('Text');
+          const splitValue = pastedData.split(',').map(val => val.trim())
+          this.updateModel([...this.tempModel, ...splitValue].filter(unique))
+      }
+    },
+    watch: {
+      model(val) {
+        this.updateModel()
       }
     },
     destroyed() {
