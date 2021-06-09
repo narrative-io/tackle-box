@@ -65,3 +65,5 @@ v0.3.12
 Support copy and pasting comma-delimited string into **NioTagsField** to create tag list
 Support deleting a tag from any position in **NioTagsField**
 Added prop for invoicing authorized to servicesStore
+Added optional **append-icon** attribute to **NioPill**
+Added ability to delete tag by clicking on clear icon
