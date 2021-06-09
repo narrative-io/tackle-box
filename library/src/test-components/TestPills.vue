@@ -18,6 +18,12 @@
       text="tag value"
       tag
     )
+    NioPill(
+      text="tag value"
+      tag
+      append-icon
+      iconName="utility-times"
+    )
 </template>
 
 <script>
