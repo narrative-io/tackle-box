@@ -7,6 +7,8 @@
           v-if="appendAttr && iconName"
           :name="iconName"
           :size="12"
+          :color="iconColor"
+          @click="$emit('appendClicked')"
         )
 
 </template>
@@ -27,7 +29,8 @@ export default {
   props: {
     "text": { type: String, required: false },
     "backgroundColor": { type: String, required: false },
-    "iconName": { type: String, required: false, default: null }
+    "iconName": { type: String, required: false, default: null },
+    "iconColor": { type: String, required: false, default: '#000' }
   },
   computed: {
     supportedVariantClass() {

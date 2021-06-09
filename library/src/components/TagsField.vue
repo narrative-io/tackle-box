@@ -30,6 +30,10 @@
           NioPill(
             :class="{'selected': selected}"
             selected-value
+            append-icon
+            iconName="utility-times"
+            :iconColor="clearIconColor()"
+            @appendClicked="clear(index)"
           ) {{ item }}
 </template>
 
@@ -37,6 +41,7 @@
 
 import NioPill from './Pill'
 import { makeRandomId } from '@/modules/helpers'
+import { getThemeColor } from '@/modules/app/theme/theme'
 
 export default {
     name: 'nio-tags-field',
@@ -63,6 +68,9 @@ export default {
       this.$emit('mounted') 
     },
     methods: {
+      clearIconColor() {
+        return getThemeColor('primaryLight')
+      },
       checkHeight() {
         this.$nextTick(() => {
           const selectionsHeight = document.querySelector(`#${this.elementId} .v-select__selections`).offsetHeight
@@ -105,6 +113,10 @@ export default {
           pastedData = clipboardData.getData('Text');
           const splitValue = pastedData.split(',').map(val => val.trim())
           this.updateModel([...this.tempModel, ...splitValue].filter(unique))
+      },
+      clear(index) {
+        this.tempModel.splice(index, 1)
+        this.updateModel(this.tempModel)
       }
     },
     watch: {
