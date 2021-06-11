@@ -3,7 +3,7 @@
     :items="items"
     :class="{ small: smallAttr, 'hide-selections': hideSelections, 'selection-pills': selectionPills, 'fluid-width': fluidWidthAttr }"
     :solo="smallAttr"
-    :model="model"
+    v-model="tempModel"
     :menu-props="{contentClass: 'nio-select-menu', offsetY: true, nudgeBottom: 10  }"
     outlined
     :attach="attach ? node : undefined"
@@ -11,7 +11,6 @@
     v-on="$listeners"
     @input="updateModel($event)"
     ref="nio-select-ref"
-    :value="value"
     :item-value="valueKey"
     :item-text="textKey"
     :id="elementId"
@@ -58,7 +57,8 @@ export default {
     textKey: null,
     valueKey: null,
     value: null,
-    fluidWidthAttr: false
+		fluidWidthAttr: false,
+		tempModel: null
   }),
   methods: {
     applyKeys() {
@@ -127,8 +127,10 @@ export default {
               .find(child => child.classList.includes('v-select__slot')).children
               .find(child => child.nodeName === "LABEL")
             if (labelEl) {
-              const labelWidth = parseInt(window.getComputedStyle(labelEl).width.replace('px', ''))
-              this.node.style['width'] = `${labelWidth + 55}px`
+							setTimeout(() => {
+								const labelWidth = parseInt(window.getComputedStyle(labelEl).width.replace('px', ''))
+								this.node.style['width'] = `${labelWidth + 55}px`
+							}, 10);
             }
           }
         })
@@ -136,11 +138,13 @@ export default {
     }
   },
   mounted() {
+    this.tempModel = this.model
     this.node = this.$refs['nio-select-ref'].$vnode.elm
     this.applyHelperAttributes()
     this.applyKeys()
-    this.updateModel(this.model)
-    this.value = this.model
+    if (this.fluidWidthAttr) {
+			this.updateInternalElements()
+		}
     this.$emit('mounted')
     
   },
@@ -150,6 +154,12 @@ export default {
   watch: {
     items(val) {
       this.applyKeys()
+		},
+		model: {
+      deep: true,
+      handler(val) {
+				this.tempModel = val
+      }
     }
   },
   components: { NioPill }

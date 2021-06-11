@@ -116,7 +116,10 @@ export default {
       'your mom'
     ],
     selectedItems: ['apple'],
-    selectedRegions: [],
+    selectedRegions: [ {
+			name: 'US',
+			value: 1
+		}],
     radio: 'Jacob',
     size: null,
     regions: [
@@ -137,7 +140,17 @@ export default {
         value: 4
       }
     ]  
-  })
+	}),
+	mounted() {
+		setTimeout(() => {
+			this.selectedRegions = [
+				{
+					name: 'G',
+					value: 4
+				}
+			]
+		}, 1000);
+	}
 };
 </script>
 
