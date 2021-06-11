@@ -3,6 +3,10 @@
     NioDateField(
       v-model="date"
     )
+    NioDateField(
+      v-model="date"
+      label="Test"
+    )
 </template>
 
 <script>

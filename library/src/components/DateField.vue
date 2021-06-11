@@ -1,5 +1,5 @@
 <template lang="pug">
-    .nio-date-field
+    .nio-date-field(v-on="$listeners")
       v-menu(
         v-model="datepickerVisible"
         :close-on-content-click="false"
@@ -13,13 +13,14 @@
           NioTextField(
             ref="nio-date-ref"
             readonly
-            label="From Date"
+            :label="$attrs.label ? $attrs.label : 'Select date'"
             :value="fromDatepicker"
             v-model="fromDatepicker"
             v-on="on"
             append
             iconName="utility-chevron-down"
             iconColor="#4F64AF"
+            v-bind="$attrs"
           )
         v-date-picker(
           full-width
