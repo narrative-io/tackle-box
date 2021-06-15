@@ -15,7 +15,18 @@ const Default = {
 			stopMin: "2021-02-30",
 			stopMax: "2021-12-30"
 		},
-		value: ["2021-02-24", "2021-03-21"]
+		value: {
+			start: {
+				enabled: true,
+				inclusive: false,
+				timestamp: "2021-02-24",
+			},
+			end: {
+				enabled: true,
+				inclusive: false,
+				timestamp: "2021-03-21"
+			} 
+		}
 	},
 	valid: true
 }

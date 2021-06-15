@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-properties.event-timestamp
+  .nio-filter-properties.simple-timestamp
     NioFilterProperty(
       :title="filter.text.title ? filter.text.title : '' "
       :description="filter.text.description ? filter.text.description : ''"
@@ -7,19 +7,54 @@
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
-        .date-range-custom
+        .simple-timestamp-custom
           .nio-p.text-primary-dark Select the data to include
-          NioDateField(
-            v-model="filter.customOption.value[0]"
-            :min="startMinDate"
-            :max="startMaxDate"
-          )
-          .nio-p.text-primary-dark to
-          NioDateField(
-            v-model="filter.customOption.value[1]"
-            :min="stopMinDate"
-            :max="stopMaxDate"
-          )
+          .timestamps
+            .start(
+              :class="{'disabled': !filter.customOption.value.start.enabled}"
+            )
+              .controls
+                NioCheckbox(
+                  v-model="filter.customOption.value.start.enabled"
+                  label="Set a start date"
+                ) 
+                .options
+                  NioCheckbox.include-time(
+                    v-model="filter.customOption.value.start.inclusive"
+                    label="Include time"
+                  )
+                  NioCheckbox.inclusive(
+                    v-model="includeStartTime"
+                    label="Inclusive"
+                  )
+              NioDateField(
+                v-model="filter.customOption.value.start.timestamp"
+                :min="startMinDate"
+                :max="startMaxDate"
+              )
+            .end(
+              :class="{'disabled': !filter.customOption.value.end.enabled}"
+            )
+              .controls
+                NioCheckbox(
+                  v-model="filter.customOption.value.end.enabled"
+                  label="Set an end date"
+                ) 
+                .options
+                  NioCheckbox.include-time(
+                    v-model="filter.customOption.value.end.inclusive"
+                    label="Include time"
+                  )
+                  NioCheckbox.inclusive(
+                    v-model="includeEndTime"
+                    label="Inclusive"
+                  )
+              NioDateField(
+                v-model="filter.customOption.value.end.timestamp"
+                :min="startMinDate"
+                :max="startMaxDate"
+              )
+          .result.nio-p.text-primary-dark Include timestamps on or after February 24, 2021
         .validation-error.nio-p-small.text-error(v-if="!valid") Start date must be later than stop date
 </template>
 
@@ -27,6 +62,7 @@
 
 import NioFilterProperty from '../FilterProperty'
 import NioDateField from '../../DateField'
+import NioCheckbox from '../../Checkbox'
 
 export default {
   name: 'nio-filter-properties-simple-timestamp',
@@ -34,7 +70,9 @@ export default {
     "filter": { type: Object, required: true }
   },
   data: () => ({
-    valid: true
+    valid: true,
+    includeStartTime: false,
+    includeEndTime: false
   }),	
   computed: {
     defaultOptions() {
@@ -42,19 +80,19 @@ export default {
         return []
       }
       return [
-				{
-					label: `All ${this.filter.name}s`,
-					value: 'default',
-				},
-				{
-					label: "Include if present",
-					value: 'ifPresent',
-				},
-				{
-					label: 'Custom',
-					value: 'custom',
-				}
-			] 
+        {
+          label: `All ${this.filter.name}s`,
+          value: 'default',
+        },
+        {
+          label: "Include if present",
+          value: 'ifPresent',
+        },
+        {
+          label: 'Custom',
+          value: 'custom',
+        }
+      ] 
     },
     startMinDate() {
       return this.filter.customOption.config ? this.filter.customOption.config.startMin : undefined 
@@ -72,7 +110,7 @@ export default {
   methods: {
     validate() {
       if (this.filter.value === 'custom') {
-        if (Date.parse(this.filter.customOption.value[0]) >= Date.parse(this.filter.customOption.value[1])) {
+        if (Date.parse(this.filter.customOption.value.start.timestamp) >= Date.parse(this.filter.customOption.value.end.timestamp)) {
           this.setValid(false)
         } else {
           this.setValid(true)
@@ -91,6 +129,7 @@ export default {
       }
     },
     updateValue() {
+      console.log(this.defaultOptions)
       this.$emit('valueChanged', [
         this.defaultOptions.find(option => option.value === this.filter.value).label
       ])
@@ -108,7 +147,7 @@ export default {
   mounted() {
     this.updateValue()
   },
-  components: { NioFilterProperty, NioDateField }
+  components: { NioFilterProperty, NioDateField, NioCheckbox }
 }
 </script>
 
