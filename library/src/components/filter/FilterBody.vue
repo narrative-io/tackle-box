@@ -10,6 +10,11 @@
         @valueChanged="valueChanged($event)"
         :filter="filter"
       )
+    template(v-else-if="filter.type === 'simpleTimestamp'")
+      NioFilterPropertiesSimpleTimestamp(
+        @valueChanged="valueChanged($event)"
+        :filter="filter"
+      )
     template(v-else-if="filter.type === 'stringMany'")
       NioFilterPropertiesStringMany(
         @valueChanged="valueChanged($event)"
@@ -44,6 +49,7 @@
 import NioFilterProperty from './FilterProperty'
 import NioFilterPropertiesNumber from './default-types/Number'
 import NioFilterPropertiesEventTimestamp from './default-types/EventTimestamp'
+import NioFilterPropertiesSimpleTimestamp from './default-types/SimpleTimestamp'
 import NioFilterPropertiesStringMany from './default-types/StringMany'
 import NioFilterPropertiesStringLimited from './default-types/StringLimited'
 import NioFilterPropertiesMapping from './default-types/Mapping'
@@ -87,6 +93,7 @@ export default {
     NioFilterProperty, 
     NioFilterPropertiesNumber,
     NioFilterPropertiesEventTimestamp,
+    NioFilterPropertiesSimpleTimestamp,
     NioFilterPropertiesStringMany,
     NioFilterPropertiesStringLimited,
     NioFilterPropertiesMapping,
