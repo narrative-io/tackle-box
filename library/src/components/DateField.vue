@@ -14,7 +14,6 @@
             ref="nio-date-ref"
             readonly
             :label="$attrs.label ? $attrs.label : 'Select date'"
-            :value="fromDatepicker"
             v-model="localModel"
             v-on="on"
             append
@@ -53,16 +52,6 @@ export default {
     datepickerWidth: 300,
     localModel: null
   }),
-  mounted() {
-    this.localModel = this.model
-  },
-  computed: {
-    fromDatepicker() {
-      const options = { timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric' }
-      const date = new Date(this.model)
-      return date.toLocaleDateString(undefined, options)
-    },
-  },
   methods: {
     handleDateInput(val) {
       this.$emit('update', val)
@@ -72,6 +61,7 @@ export default {
     }
   },
   mounted() {	
+    this.localModel = this.model
     const resizeObserver = new ResizeObserver((val) => {
       this.textFieldResize(val[0].contentRect.width)
     })
@@ -81,9 +71,6 @@ export default {
   watch: {
     model(val) {
       this.localModel = val
-    },
-    localModel(val) {
-
     }
   },
   destroyed() {
