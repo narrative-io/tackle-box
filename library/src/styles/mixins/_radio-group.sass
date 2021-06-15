@@ -1,0 +1,43 @@
+@import '../global/_colors'
+
+=nio-radio-group
+  &.display-slat
+    border-radius: 8px
+    padding: 0px 
+    height: 46px
+    ::v-deep .v-input__control
+      height: 46px
+      .v-input__slot
+        height: 46px !important
+        margin-bottom: 0px
+        .v-input--radio-group__input
+          height: 46px
+          margin-bottom: 0px
+          flex-direction: row
+          .nio-radio-button
+            flex-grow: 1
+            flex-basis: 0
+            margin-bottom: 0px
+            border: 1px solid $c-primary-lighter
+            transition: all 0.1s ease-out
+            .v-label
+              justify-content: center
+            .v-input--selection-controls__input
+              display: none
+            &.v-item--active
+              border: 1px solid $c-primary
+              background-color: $c-canvas
+              .v-label
+                color: $c-primary
+            &:first-child
+              border-top-left-radius: 8px
+              border-bottom-left-radius: 8px
+            &:last-child
+              border-top-right-radius: 8px
+              border-bottom-right-radius: 8px
+          & > .nio-radio-button:not(.v-item--active) + .nio-radio-button:not(.v-item--active)    
+            border-left: 1px solid $c-primary-lighter
+            display: flex
+
+.nio-radio-group
+  +nio-radio-group

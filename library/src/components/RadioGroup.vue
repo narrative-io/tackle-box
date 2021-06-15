@@ -1,6 +1,7 @@
 <template lang="pug">
     v-radio-group.nio-radio-group(
       @change="$emit('update', $event)"
+      :class="{'display-slat': slatAttr}"
       :model="model" 
       :rules="parsedRules"
       :value="model"
@@ -26,10 +27,11 @@
       event: "update"
     },
     data: () => ({
-      parsedRules: []
+      parsedRules: [],
+      slatAttr: false
     }),
     methods: {
-     parseRules() {
+       parseRules() {
         if (this.rules) {
           this.rules.map((rule, index) => {
             let func = rule.toString()
@@ -37,9 +39,17 @@
             this.parsedRules[index] = new Function("value", funcBody)
           });
         }
+      },
+      applyHelperAttributes() {
+        const attributes = this.$el.attributes
+        if (attributes.getNamedItem('slat')) {
+          this.slatAttr = true
+        }
       }
+    
     },
     mounted() {	
+      this.applyHelperAttributes()
       this.$emit('mounted')
     },
     destroyed() {
@@ -47,3 +57,8 @@
     }
   }
 </script>
+
+<style lang="sass" scoped>
+  @import '../styles/mixins/_radio-group'  
+</style>
+

@@ -2,6 +2,7 @@
     v-switch.nio-switch(
       @change="$emit('update', $event)"
       :rules="parsedRules"
+      v-model="model"
       v-bind="$attrs"
       v-on="$listeners" 
       ref="nio-switch-ref"
