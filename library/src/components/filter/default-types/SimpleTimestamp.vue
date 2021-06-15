@@ -18,15 +18,10 @@
                   v-model="filter.customOption.value.start.enabled"
                   label="Set a start date"
                 ) 
-                .options
-                  NioCheckbox.include-time(
-                    v-model="filter.customOption.value.start.inclusive"
-                    label="Include time"
-                  )
-                  NioCheckbox.inclusive(
-                    v-model="includeStartTime"
-                    label="Inclusive"
-                  )
+                NioCheckbox.inclusive(
+                  v-model="includeStartTime"
+                  label="Inclusive"
+                )
               NioDateField(
                 v-model="filter.customOption.value.start.timestamp"
                 :min="startMinDate"
@@ -40,15 +35,10 @@
                   v-model="filter.customOption.value.end.enabled"
                   label="Set an end date"
                 ) 
-                .options
-                  NioCheckbox.include-time(
-                    v-model="filter.customOption.value.end.inclusive"
-                    label="Include time"
-                  )
-                  NioCheckbox.inclusive(
-                    v-model="includeEndTime"
-                    label="Inclusive"
-                  )
+                NioCheckbox.inclusive(
+                  v-model="includeEndTime"
+                  label="Inclusive"
+                )
               NioDateField(
                 v-model="filter.customOption.value.end.timestamp"
                 :min="startMinDate"
@@ -71,8 +61,8 @@ export default {
   },
   data: () => ({
     valid: true,
-    includeStartTime: false,
-    includeEndTime: false
+    // includeStartTime: false,
+    // includeEndTime: false
   }),	
   computed: {
     defaultOptions() {

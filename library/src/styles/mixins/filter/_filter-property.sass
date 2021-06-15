@@ -124,23 +124,17 @@
             width: calc(50% - 16px)
             flex-shrink: 0
             &.disabled
-              .options, .nio-date-field
+              .inclusive, .nio-date-field
                 opacity: 0.4
                 pointer-events: none
           .start
             margin-right: 32px
           .controls
             display: flex
-            justify-content: space-between
+            justify-content: flex-start
             align-items: center
-            .options
-              display: flex
-              flex-grow: 2
-              justify-content: flex-end
-              align-items: center
-              padding-right: 7px
-              .include-time
-                margin-right: 24px
+            & > * + *
+              margin-left: 24px
         .result
           margin-bottom: 16px
 
