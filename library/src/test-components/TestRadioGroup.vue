@@ -29,7 +29,12 @@ export default {
   data: () => ({
     radio: 'Jacob',
     radioLong: 'Jacob'
-  })
+  }),
+  mounted() {
+    setTimeout(() => {
+      this.radioLong = "Bob"
+    }, 1500);
+  }
 };
 </script>
 

@@ -1,9 +1,9 @@
 <template lang="pug">
   .test-switch
-    NioSwitch(v-model="switch1" :input-value="switch1") 
+    NioSwitch(v-model="switch1") 
     .value value: {{ switch1 }}
-    NioSwitch(v-model="switch2" :input-value="switch2" value="John")
-    NioSwitch(v-model="switch2" :input-value="switch2" value="Jacob")       
+    NioSwitch(v-model="switch2" value="John")
+    NioSwitch(v-model="switch2" value="Jacob")       
     .value value: {{ switch2 }}
 </template>
 
@@ -17,8 +17,14 @@ export default {
   },
   data: () => ({
     switch1: true,
-    switch2: ['Jacob', 'John']
-  })
+    switch2: ['Jacob']
+	}),
+	mounted() {
+    setTimeout(() => {
+			this.switch2 = ['John']
+			this.switch1 = false
+    }, 1500);
+  }
 };
 </script>
 
