@@ -32,12 +32,10 @@ const Default = {
 		value: {
 			start: {
 				enabled: true,
-				inclusive: false,
 				timestamp: "2021-02-24",
 			},
 			end: {
 				enabled: true,
-				inclusive: false,
 				timestamp: "2021-03-21"
 			} 
 		}

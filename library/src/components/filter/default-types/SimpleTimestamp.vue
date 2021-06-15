@@ -17,10 +17,10 @@
                   v-model="filter.customOption.value.start.enabled"
                   label="Set a start date"
                 ) 
-                NioCheckbox.inclusive(
-                  v-model="filter.customOption.value.start.inclusive"
-                  label="Inclusive"
-                )
+                //- NioCheckbox.inclusive(
+                //-   v-model="filter.customOption.value.start.inclusive"
+                //-   label="Inclusive"
+                //- )
               NioDateField(
                 v-model="filter.customOption.value.start.timestamp"
                 :min="startMinDate"
@@ -34,10 +34,10 @@
                   v-model="filter.customOption.value.end.enabled"
                   label="Set an end date"
                 ) 
-                NioCheckbox.inclusive(
-                  v-model="filter.customOption.value.end.inclusive"
-                  label="Inclusive"
-                )
+                //- NioCheckbox.inclusive(
+                //-   v-model="filter.customOption.value.end.inclusive"
+                //-   label="Inclusive"
+                //- )
               NioDateField(
                 v-model="filter.customOption.value.end.timestamp"
                 :min="startMinDate"
@@ -49,13 +49,13 @@
             ) Include all timestamps
             span(
               v-if="filter.customOption.value.start.enabled && !filter.customOption.value.end.enabled"
-            ) Include timestamps {{ filter.customOption.value.start.inclusive ? 'on or' : '' }} after {{ filter.customOption.value.start.timestamp }}
+            ) Include timestamps on or after {{ filter.customOption.value.start.timestamp }}
             span(
               v-if="!filter.customOption.value.start.enabled && filter.customOption.value.end.enabled"
-            ) Include timestamps {{ filter.customOption.value.end.inclusive ? 'on or' : '' }} before {{ filter.customOption.value.end.timestamp }}
+            ) Include timestamps on or before {{ filter.customOption.value.end.timestamp }}
             span(
               v-if="filter.customOption.value.start.enabled && filter.customOption.value.end.enabled"
-            ) Include timestamps from {{ filter.customOption.value.start.inclusive ? 'on or' : '' }} after {{ filter.customOption.value.start.timestamp }} to {{ filter.customOption.value.end.inclusive ? 'on or' : '' }} before {{ filter.customOption.value.end.timestamp }}
+            ) Include timestamps from {{ filter.customOption.value.start.timestamp }} to {{ filter.customOption.value.end.timestamp }} (inclusive)
         .validation-error.nio-p-small.text-error(v-if="!valid") Start date must be later than stop date
 </template>
 
