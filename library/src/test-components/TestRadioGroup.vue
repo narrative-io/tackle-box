@@ -4,6 +4,10 @@
       NioRadioButton(value="John" label="John")
       NioRadioButton(value="Jacob" label="Jacob")
     .value value: {{ radio }}
+    NioRadioGroup(slat v-model="radio")
+      NioRadioButton(value="John" label="John")
+      NioRadioButton(value="Jacob" label="Jacob")
+    .value value: {{ radio }}
 </template>
 
 <script>
