@@ -19,7 +19,7 @@
                   label="Set a start date"
                 ) 
                 NioCheckbox.inclusive(
-                  v-model="includeStartTime"
+                  v-model="filter.customOption.value.start.inclusive"
                   label="Inclusive"
                 )
               NioDateField(
@@ -36,7 +36,7 @@
                   label="Set an end date"
                 ) 
                 NioCheckbox.inclusive(
-                  v-model="includeEndTime"
+                  v-model="filter.customOption.value.end.inclusive"
                   label="Inclusive"
                 )
               NioDateField(
@@ -44,7 +44,19 @@
                 :min="startMinDate"
                 :max="startMaxDate"
               )
-          .result.nio-p.text-primary-dark Include timestamps on or after February 24, 2021
+          .result.nio-p.text-primary-dark
+            span(
+              v-if="!filter.customOption.value.start.enabled && !filter.customOption.value.end.enabled"
+            ) Include all timestamps
+            span(
+              v-if="filter.customOption.value.start.enabled && !filter.customOption.value.end.enabled"
+            ) Include timestamps {{ filter.customOption.value.start.inclusive ? 'on or' : '' }} after {{ filter.customOption.value.start.timestamp }}
+            span(
+              v-if="!filter.customOption.value.start.enabled && filter.customOption.value.end.enabled"
+            ) Include timestamps {{ filter.customOption.value.end.inclusive ? 'on or' : '' }} before {{ filter.customOption.value.end.timestamp }}
+            span(
+              v-if="filter.customOption.value.start.enabled && filter.customOption.value.end.enabled"
+            ) Include timestamps from {{ filter.customOption.value.start.inclusive ? 'on or' : '' }} after {{ filter.customOption.value.start.timestamp }} to {{ filter.customOption.value.end.inclusive ? 'on or' : '' }} before {{ filter.customOption.value.end.timestamp }}
         .validation-error.nio-p-small.text-error(v-if="!valid") Start date must be later than stop date
 </template>
 
@@ -60,9 +72,7 @@ export default {
     "filter": { type: Object, required: true }
   },
   data: () => ({
-    valid: true,
-    // includeStartTime: false,
-    // includeEndTime: false
+    valid: true
   }),	
   computed: {
     defaultOptions() {
@@ -119,7 +129,6 @@ export default {
       }
     },
     updateValue() {
-      console.log(this.defaultOptions)
       this.$emit('valueChanged', [
         this.defaultOptions.find(option => option.value === this.filter.value).label
       ])
