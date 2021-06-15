@@ -36,7 +36,7 @@ export default {
       }
       return [
         {
-          label: `All ${this.filter.name}s`,
+          label: 'Include all values',
           value: 'default',
         },
         {

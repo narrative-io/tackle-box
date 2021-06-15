@@ -7,6 +7,20 @@ const Default = {
 		heading: "Date Range",
 		description: "Pick a start and end date of event timestamps to include."
 	},
+	options: [
+		{
+			label: `Inlcude all values`,
+			value: 'default',
+		},
+		{
+			label: "Include if present",
+			value: 'ifPresent',
+		},
+		{
+			label: 'Custom',
+			value: 'custom',
+		}
+	],
 	value: "default",
 	customOption: {
 		config: {

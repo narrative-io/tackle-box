@@ -1,9 +1,8 @@
 <template lang="pug">
   .nio-filter-properties.simple-timestamp
     NioFilterProperty(
-      :title="filter.text.title ? filter.text.title : '' "
-      :description="filter.text.description ? filter.text.description : ''"
-      :options="defaultOptions"
+      :description="description"
+      :options="filter.options ? filter.options : defaultOptions"
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
@@ -72,7 +71,8 @@ export default {
     "filter": { type: Object, required: true }
   },
   data: () => ({
-    valid: true
+    valid: true,
+    description: 'Select the data to include'
   }),	
   computed: {
     defaultOptions() {
@@ -81,7 +81,7 @@ export default {
       }
       return [
         {
-          label: `All ${this.filter.name}s`,
+          label: 'Include all values',
           value: 'default',
         },
         {
