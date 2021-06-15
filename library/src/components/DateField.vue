@@ -14,8 +14,7 @@
             ref="nio-date-ref"
             readonly
             :label="$attrs.label ? $attrs.label : 'Select date'"
-            :value="fromDatepicker"
-            v-model="fromDatepicker"
+            v-model="localModel"
             v-on="on"
             append
             iconName="utility-chevron-down"
@@ -27,7 +26,7 @@
           locale="en-in"
           :min="min"
           :max="max"
-          :value="model"
+          :value="localModel"
           no-title
           @input="handleDateInput($event)"
         )  
@@ -50,15 +49,9 @@ export default {
   },
   data: () => ({
     datepickerVisible: false,
-    datepickerWidth: 300
+    datepickerWidth: 300,
+    localModel: null
   }),
-  computed: {
-    fromDatepicker() {
-      const options = { timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric' }
-      const date = new Date(this.model)
-      return date.toLocaleDateString(undefined, options)
-    },
-  },
   methods: {
     handleDateInput(val) {
       this.$emit('update', val)
@@ -68,11 +61,17 @@ export default {
     }
   },
   mounted() {	
+    this.localModel = this.model
     const resizeObserver = new ResizeObserver((val) => {
       this.textFieldResize(val[0].contentRect.width)
     })
     resizeObserver.observe(this.$refs['nio-date-ref'].$vnode.elm)
     this.$emit('mounted')
+  },
+  watch: {
+    model(val) {
+      this.localModel = val
+    }
   },
   destroyed() {
     this.$emit('destroyed')

@@ -3,6 +3,7 @@
     StringLimited
     StringMany
     EventTimestamp
+    SimpleTimestamp
     Number
     Frequency
     Mapping
@@ -14,6 +15,7 @@
 import StringLimited from './string-limited/StringLimited'
 import StringMany from './string-many/StringMany'
 import EventTimestamp from './event-timestamp/EventTimestamp'
+import SimpleTimestamp from './simple-timestamp/SimpleTimestamp'
 import Number from './number/Number'
 import Frequency from './frequency/Frequency'
 import Mapping from './mapping/Mapping'
@@ -24,6 +26,7 @@ export default {
     StringLimited,
     StringMany,
     EventTimestamp,
+    SimpleTimestamp,
     Number,
     Frequency,
     Mapping,

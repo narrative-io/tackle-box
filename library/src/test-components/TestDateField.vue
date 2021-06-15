@@ -19,7 +19,12 @@ export default {
   },
   data: () => ({
     date: "2021-02-12"
-  })
+  }),
+  mounted() {
+    setTimeout(() => {
+      this.date = "2024-12-30"
+    }, 1500);
+  }
 };
 </script>
 

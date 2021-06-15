@@ -114,6 +114,30 @@
         & > * + * 
           margin-left: 1rem
 
+      .simple-timestamp-custom
+        .nio-p
+          text-align: center
+          margin: 24px auto
+        .timestamps
+          display: flex
+          .start, .end
+            width: calc(50% - 16px)
+            flex-shrink: 0
+            &.disabled
+              .inclusive, .nio-date-field
+                opacity: 0.4
+                pointer-events: none
+          .start
+            margin-right: 32px
+          .controls
+            display: flex
+            justify-content: flex-start
+            align-items: center
+            & > * + *
+              margin-left: 24px
+        .result
+          margin-bottom: 16px
+
       .string-many-custom    
     
       .number-custom
@@ -206,5 +230,6 @@
         position: absolute
         left: 0rem
         bottom: -1.25rem
+        
 .nio-filter-property
   +nio-filter-property 
