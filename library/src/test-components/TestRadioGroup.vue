@@ -8,6 +8,12 @@
       NioRadioButton(value="John" label="John")
       NioRadioButton(value="Jacob" label="Jacob")
     .value value: {{ radio }}
+    NioRadioGroup(slat v-model="radioLong")
+      NioRadioButton(value="John" label="John")
+      NioRadioButton(value="Jacob" label="Jacob")
+      NioRadioButton(value="Bob" label="Bob")
+      NioRadioButton(value="Cindy" label="Cindy")
+    .value value: {{ radioLong }}
 </template>
 
 <script>
@@ -21,7 +27,8 @@ export default {
     NioRadioButton
   },
   data: () => ({
-    radio: 'Jacob'
+    radio: 'Jacob',
+    radioLong: 'Jacob'
   })
 };
 </script>

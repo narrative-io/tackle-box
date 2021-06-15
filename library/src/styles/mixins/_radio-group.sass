@@ -2,7 +2,6 @@
 
 =nio-radio-group
   &.display-slat
-    border: 1px solid $c-primary-lighter
     border-radius: 8px
     padding: 0px 
     height: 46px
@@ -18,7 +17,25 @@
           .nio-radio-button
             flex-grow: 1
             flex-basis: 0
-          & > .nio-radio-button + .nio-radio-button       
+            margin-bottom: 0px
+            border: 1px solid $c-primary-lighter
+            transition: all 0.1s ease-out
+            .v-label
+              justify-content: center
+            .v-input--selection-controls__input
+              display: none
+            &.v-item--active
+              border: 1px solid $c-primary
+              background-color: $c-canvas
+              .v-label
+                color: $c-primary
+            &:first-child
+              border-top-left-radius: 8px
+              border-bottom-left-radius: 8px
+            &:last-child
+              border-top-right-radius: 8px
+              border-bottom-right-radius: 8px
+          & > .nio-radio-button:not(.v-item--active) + .nio-radio-button:not(.v-item--active)    
             border-left: 1px solid $c-primary-lighter
             display: flex
 
