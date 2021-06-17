@@ -39,6 +39,17 @@
               item-value="value"
               selection-pills
             )
+              template(v-slot:selection="{ item, index }" v-if="filter.customOption.config.multiple")
+                span.v-select__selection(v-if="index === 0") 
+                  NioPill(
+                    selected-value
+                  ) {{ item.label ? item.label : item }}
+                span.v-select__selection(v-if="index === 1")
+                  NioPill(
+                    selected-value
+                  ) {{ item.label ? item.label : item }}
+                span.v-select__selection.more(v-if="index === 2 && filter.customOption.value.items.length === 3") (+{{ filter.customOption.value.items.length - 2 }} other)
+                span.v-select__selection.more(v-if="index === 2 && filter.customOption.value.items.length > 3 ") (+{{ filter.customOption.value.items.length - 2 }} others)
             NioSelect(
               :multiple="filter.customOption.config.multiple"
               v-if="filter.customOption.config.items.length > 0 && !filter.customOption.config.searchable"
@@ -49,6 +60,17 @@
               item-value="value"
               selection-pills
             )
+              template(v-slot:selection="{ item, index }" v-if="filter.customOption.config.multiple")
+                span.v-select__selection(v-if="index === 0") 
+                  NioPill(
+                    selected-value
+                  ) {{ item.label ? item.label : item }}
+                span.v-select__selection(v-if="index === 1")
+                  NioPill(
+                    selected-value
+                  ) {{ item.label ? item.label : item }}
+                span.v-select__selection.more(v-if="index === 2 && filter.customOption.value.items.length === 3") (+{{ filter.customOption.value.items.length - 2 }} other)
+                span.v-select__selection.more(v-if="index === 2 && filter.customOption.value.items.length > 3 ") (+{{ filter.customOption.value.items.length - 2 }} others)
 </template>
 
 <script>
@@ -58,6 +80,7 @@ import NioSelect from '../../Select'
 import NioAutocomplete from '../../Autocomplete'
 import NioRadioGroup from '../../RadioGroup'
 import NioRadioButton from '../../RadioButton'
+import NioPill from '../../Pill'
 
 export default {
   name: 'nio-filter-properties-string-limited',
@@ -114,7 +137,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty, NioSelect, NioAutocomplete, NioRadioGroup, NioRadioButton }
+  components: { NioFilterProperty, NioSelect, NioAutocomplete, NioRadioGroup, NioRadioButton, NioPill }
 }
 </script>
 

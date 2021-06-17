@@ -20,9 +20,9 @@
     template(v-slot:append)
       svg(style="width:24px;height:24px" viewBox="0 0 24 24")
         path(fill="#425290" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z")
-    template(v-slot:selection="{ item, index }" v-if="hideSelections")
+    template(v-slot:selection="{ item, index }" v-if="hideSelections && !hasScopedSlot('selection')")
       span(v-if="index === 0") {{ labelText }}
-    template(v-slot:selection="{ item, index }" v-else-if="selectionPills && !hideSelections")
+    template(v-slot:selection="{ item, index }" v-else-if="selectionPills && !hideSelections && !hasScopedSlot('selection')")
       NioPill(
         :text="textKey ? item[textKey] : item"
         selected-value
@@ -61,6 +61,9 @@ export default {
 		tempModel: null
   }),
   methods: {
+		hasScopedSlot(slotName) {
+      return this.$scopedSlots[slotName] !== undefined
+    },
     applyKeys() {
       const attributes = this.$el.attributes
       const textKey = attributes.getNamedItem('item-text') ? attributes.getNamedItem('item-text').value : undefined
