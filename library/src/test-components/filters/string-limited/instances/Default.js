@@ -21,6 +21,7 @@ const Single = {
     }
   ],
   customOption: {
+		// loading: true,
     config: {
       items: LimitedItems
     },

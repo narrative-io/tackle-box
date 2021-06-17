@@ -68,8 +68,13 @@
       background-color: $c-white
       border-radius: 0.75rem 
       position: relative
+      &.loading
+        .v-progress-circular
+          margin: 0 auto
+          display: block
+          position: relative
 
-      // filter proprty types
+      // filter property types
 
       .date-range-custom
         display: flex
@@ -223,6 +228,10 @@
       .boolean-custom
         .description
           margin-bottom: 1.5rem
+        .nio-radio-group
+          height: 24px
+        ::v-deep .v-inpu--slot
+          margin-bottom: 0px
         .nio-radio-button
           margin-bottom: 0rem
 

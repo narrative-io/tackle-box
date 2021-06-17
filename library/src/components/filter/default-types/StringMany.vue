@@ -68,7 +68,8 @@ import NioTextarea from '../../Textarea'
 export default {
   name: 'nio-filter-properties-string-many',
   props: {
-    "filter": { type: Object, required: true },
+		"filter": { type: Object, required: true },
+		"customOptionLoading": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     initialListItems: [],

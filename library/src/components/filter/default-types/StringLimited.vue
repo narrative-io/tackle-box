@@ -3,6 +3,7 @@
     NioFilterProperty(
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
+      :customOptionLoading="customOptionLoading"
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
@@ -62,6 +63,7 @@ export default {
   name: 'nio-filter-properties-string-limited',
   props: {
     "filter": { type: Object, required: true },
+    "customOptionLoading": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     description: 'Select the data to include'

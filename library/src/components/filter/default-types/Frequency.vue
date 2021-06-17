@@ -3,6 +3,7 @@
     NioFilterProperty(
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
+      :customOptionLoading="customOptionLoading"
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
@@ -51,6 +52,7 @@ export default {
   name: 'nio-filter-properties-frequency',
   props: {
     "filter": { type: Object, required: true },
+    "customOptionLoading": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     description: 'Select the data to include'
@@ -80,17 +82,17 @@ export default {
     },
     customDescription() {
       return this.filter.customOption && this.filter.customOption.description ? this.filter.customOption.description : null
-		}
-	},
-	mounted() {
-		this.updateValue()
-	},
-	methods: {
-		updateValue() {
-			const options = this.filter.options ? this.filter.options : this.defaultOptions
-			this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
-		}
-	},
+    }
+  },
+  mounted() {
+    this.updateValue()
+  },
+  methods: {
+    updateValue() {
+      const options = this.filter.options ? this.filter.options : this.defaultOptions
+      this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+    }
+  },
   watch: {
     filter: {
       deep: true,

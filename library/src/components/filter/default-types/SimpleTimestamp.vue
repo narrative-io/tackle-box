@@ -3,6 +3,7 @@
     NioFilterProperty(
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
+      :customOptionLoading="customOptionLoading"
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
@@ -68,7 +69,8 @@ import NioCheckbox from '../../Checkbox'
 export default {
   name: 'nio-filter-properties-simple-timestamp',
   props: {
-    "filter": { type: Object, required: true }
+    "filter": { type: Object, required: true },
+    "customOptionLoading": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     valid: true,

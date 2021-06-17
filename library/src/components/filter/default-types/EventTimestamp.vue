@@ -4,6 +4,7 @@
       :title="filter.text.dateRange.title ? filter.text.dateRange.title : '' "
       :description="filter.text.dateRange.description ? filter.text.dateRange.description : ''"
       :options="defaultOptions.dateRange"
+      :customOptionLoading="customOptionLoading"
       v-bind:value.sync="filter.value.dateRange"
     )
       template(v-slot:custom-option)
@@ -59,7 +60,8 @@ import NioSelect from '../../Select'
 export default {
   name: 'nio-filter-properties-event-timestamp',
   props: {
-    "filter": { type: Object, required: true }
+    "filter": { type: Object, required: true },
+    "customOptionLoading": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     valid: true

@@ -13,7 +13,9 @@
     .custom-option(
       v-if="value === 'custom'"
     )  
-      .option-content
+      .option-content.loading(v-if="customOptionLoading")
+        v-progress-circular.progress(size="40" indeterminate color="#1438F5")
+      .option-content(v-else)
         slot(name="custom-option")
 </template>
 
@@ -25,7 +27,8 @@ export default {
     "heading": { type: String, required: false },
     "description": { type: String, required: true },
     "options": { type: Array, required: true },
-    "value": { type: String, required: true }
+    "value": { type: String, required: true },
+    "customOptionLoading": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     

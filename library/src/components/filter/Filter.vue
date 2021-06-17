@@ -31,6 +31,7 @@
       NioFilterBody(
         v-else
         :filter="filter"
+        :customOptionLoading="customOptionLoading || filterObjCustomOptionLoading"
         @valueChanged="handleValueChange($event)"
       )
   .nio-filter.solo(
@@ -46,7 +47,8 @@
     NioFilterBody(
       v-else
       :filter="filter"
-      @valueChanged="handleValueChange($event)"
+      :customOptionLoading="customOptionLoading || filterObjCustomOptionLoading"
+      @valueChanged="handleValueChange($event)" 
     )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data")   
@@ -62,7 +64,9 @@ export default {
   name: 'nio-filter',
   props: {
     "filter": { type: Object, required: true },
-    "solo": { type: Boolean, required: false, default: false }
+    "solo": { type: Boolean, required: false, default: false },
+    "customOptionLoading": { type: Boolean, required: false, default: false },
+    "filterObjCustomOptionLoading": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     value: null
