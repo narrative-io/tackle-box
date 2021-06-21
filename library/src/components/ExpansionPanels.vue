@@ -36,7 +36,10 @@ export default {
   watch: {
     tempModel(val) {
       this.$emit('update', this.tempModel)
-    }
+		},
+		model(val) {
+			this.tempModel = val
+		}
   }
 }
 </script>
