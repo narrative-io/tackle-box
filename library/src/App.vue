@@ -164,6 +164,11 @@
               TestTextField
           NioExpansionPanel(:key="28")
             template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Textarea
+            template(v-slot:content) 
+              TestTextarea
+          NioExpansionPanel(:key="29")
+            template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Tooltip
             template(v-slot:content) 
               TestTooltip
@@ -202,6 +207,7 @@ import TestDateField from './test-components/TestDateField'
 import TestTabs from './test-components/TestTabs'
 import TestPills from './test-components/TestPills'
 import TestTagsField from './test-components/TestTagsField'
+import TestTextarea from './test-components/TestTextarea'
 import TestTooltip from './test-components/TestTooltip'
 import { setTheme } from './modules/app/theme/theme'
 
@@ -237,6 +243,7 @@ export default {
     TestDateField,
     TestTabs,
     TestPills,
+    TestTextarea,
     TestTagsField,
     TestTooltip,
     NioExpansionPanels,
