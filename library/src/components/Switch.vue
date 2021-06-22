@@ -1,8 +1,8 @@
 <template lang="pug">
     v-switch.nio-switch(
-      @change="$emit('update', $event)"
+      @change="update($event)"
       :rules="parsedRules"
-      v-model="model"
+      v-model="tempModel"
       v-bind="$attrs"
       v-on="$listeners" 
       ref="nio-switch-ref"
@@ -25,10 +25,14 @@
       event: "update"
     },
     data: () => ({
-      parsedRules: []
+			parsedRules: [],
+			tempModel: null
     }),
     methods: {
-     parseRules() {
+			update(val) {
+				this.$emit('update', val)
+			},
+			parseRules() {
         if (this.rules) {
           this.rules.map((rule, index) => {
             let func = rule.toString()
@@ -39,11 +43,20 @@
       }
     },
     mounted() {	
+			this.tempModel = this.model
       this.$emit('mounted')
     },
     destroyed() {
       this.$emit('destroyed')
-    }
+		},
+		watch: {
+			rules() {
+				this.parseRules()
+			},
+			model(val) {
+				this.tempModel = val
+			}
+		}
   }
 </script>
 
