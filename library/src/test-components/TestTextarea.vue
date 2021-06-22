@@ -5,7 +5,8 @@
       small 
       :rules="[rules.required]"
       validate-on-blur
-      v-model="model" 
+      v-model="validateModel" 
+      placeholder="stuff"
     )
 
 </template>
@@ -20,6 +21,7 @@ export default {
   },
   data: () => ({
     model: "stuff",
+    validateModel: null,
     rules: {
       required(value) {
         return !!value || 'Required'

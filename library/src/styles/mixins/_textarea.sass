@@ -7,7 +7,8 @@
     border: 0.0625rem solid $c-primary-lighter     
     textarea
       color: $c-primary-dark
-  
+    textarea::placeholder
+      color: $c-primary-dark !important
   &.error--text 
     ::v-deep .v-input__slot
       border-color: $c-error !important
@@ -16,5 +17,7 @@
     ::v-deep .v-text-field__details
       margin-left: -12px
       margin-top: 2px
+    ::v-deep textarea::placeholder
+      color: $c-error !important
 .nio-textarea
   +nio-textarea

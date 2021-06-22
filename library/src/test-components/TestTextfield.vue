@@ -1,5 +1,6 @@
 <template lang="pug">
   .test-text-field
+    nio-text-field.text-field(small v-model="nullModel" label="search" placeholder="stuff")
     nio-text-field.text-field(small v-model="model" label="search" placeholder="stuff")
     nio-text-field.text-field(search-small v-model="model" label="search" placeholder="hello")
     nio-text-field.text-field(search-small-subdued v-model="model" label="search" placeholder="hello")
@@ -34,7 +35,8 @@ export default {
   },
   data: () => ({
     model: "02-12-2021",
-    currency: 1
+    currency: 1,
+    nullModel: null
   })
 };
 </script>
