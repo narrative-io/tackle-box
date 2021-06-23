@@ -22,7 +22,6 @@
       hide-default-footer
       :headers="headers"
       :items-per-page="500"
-      :numSelections="selection && selection.length ? selection.length : 0"
       :items="pagination ? paginatedItems : computedItems"
     )
       template(
@@ -412,6 +411,11 @@ export default {
   watch: {
     selection(val) {
       const value = this.multiSelect ? this.items.filter(item => val.includes(item.id)) : this.items.find(item => item.id === val)
+      if (value.length === this.computedItems.length) {
+        this.allSelected = true
+      } else {
+        this.allSelected = false
+      }
       this.$emit('selectionChanged', value)
     },
     staticColumns(val) {

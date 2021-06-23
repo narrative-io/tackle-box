@@ -25,7 +25,7 @@
           .selected-module
             NioCheckbox(
               v-if="selectionType === 'multiSelect'"
-              v-model="allSelected"
+              v-model="tempAllSelected"
               @change="allSelectedChange($event)"
             )
             .count.nio-p.nio-bold.text-primary-dark(v-if="selectedCount > 0")
@@ -49,19 +49,20 @@ export default {
     "selectedCount": { type: Number, required: false, default: 0 },
     "numItems": { type: Number, required: false },
 		"selectionType": { type: String, required: false },
-		"numSelections": { type: Number, required: false, default: 0},
     "allSelected": { type: Boolean, required: false, default: false },
     "pagination": { type: Boolean, requied: false, default: false }
   },
   data: () => ({
     selectedSort: null,
-    singleSelect: false
+		singleSelect: false,
+		tempAllSelected: false
   }),
   mounted() {
     this.applyHelperAttributes()
     if (this.sortOptions && this.sortOptions.length) {
       this.selectedSort = this.sortOptions[0]
-    }
+		}
+		this.tempAllSelected = this.allSelected
   },
   methods: {
     applyHelperAttributes() {
@@ -78,10 +79,8 @@ export default {
     }
 	},
 	watch: {
-		numSelections(val) {
-			if (val === this.numItems) {
-				this.allSelected = true
-			}
+		allSelected(val) {
+			this.tempAllSelected = val
 		}
 	},
   components: { NioSlat, NioSelect, NioTextField, NioCheckbox }
