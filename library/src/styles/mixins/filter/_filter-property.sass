@@ -144,7 +144,12 @@
           margin-bottom: 16px
 
       .string-many-custom    
-    
+        ::v-deep .textarea
+          position: relative
+          .instructions
+            position: absolute
+            bottom: 0px
+            right: 0px        
       .number-custom
         display: flex
         align-items: center

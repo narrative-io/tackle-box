@@ -3,6 +3,7 @@
     NioFilterProperty(
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
+      :customOptionLoading="customOptionLoading"
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
@@ -16,9 +17,11 @@
             )
               NioRadioButton(value="include" label="Include")
               NioRadioButton(value="exclude" label="Exclude")
-            NioTextarea(
-              v-model="filter.customOption.value.manualEntry"
-            )
+            .textarea
+              NioTextarea(
+                v-model="filter.customOption.value.manualEntry"
+              )
+              .instructions.nio-p.text-primary-dark Enter each value on a separate line
           NioTabs(
             :tabs="tabs"
             v-model="activeTab"
@@ -51,9 +54,11 @@
               )
                 NioRadioButton(value="include" label="Include")
                 NioRadioButton(value="exclude" label="Exclude")
-              NioTextarea(
-                v-model="filter.customOption.value.manualEntry"
-              )
+              .textarea
+                NioTextarea(
+                  v-model="filter.customOption.value.manualEntry"
+                )
+                .instructions.nio-p.text-primary-dark Enter each value on a separate line
 </template>
 
 <script>
@@ -68,8 +73,8 @@ import NioTextarea from '../../Textarea'
 export default {
   name: 'nio-filter-properties-string-many',
   props: {
-		"filter": { type: Object, required: true },
-		"customOptionLoading": { type: Boolean, required: false, default: false }
+    "filter": { type: Object, required: true },
+    "customOptionLoading": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     initialListItems: [],
