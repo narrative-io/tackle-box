@@ -106,7 +106,11 @@ export default {
           }
         } else {
           this.minNotLossThanMax = false
-          this.setValid(false)
+          if (this.filter.customOption.value[0] || this.filter.customOption.value[1]) {
+            this.setValid(true)
+          } else {
+            this.setValid(false)
+          }
         }
       } else {
         this.setValid(true)
