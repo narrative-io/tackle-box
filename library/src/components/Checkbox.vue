@@ -2,26 +2,23 @@
     v-checkbox.nio-checkbox(
       v-if="Array.isArray(this.model)"
       @change="updateModel($event)"
-      :model="model" 
+      v-model="tempModel" 
       :rules="parsedRules"
       v-bind="$attrs"
       v-on="$listeners" 
       ref="nio-checkbox-ref"
-      :value="value"
-      :input-value="this.model.find(val => val === this.value)"
     )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data")  
       slot
     v-checkbox.nio-checkbox(
       v-else
-      @change="$emit('update', $event)"
-      :model="model" 
+      @change="updateModel($event)"
+      v-model="tempModel" 
       :rules="parsedRules"
       v-bind="$attrs"
       v-on="$listeners" 
       ref="nio-checkbox-ref"
-      :input-value="model"
     )  
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data")  
@@ -33,28 +30,19 @@
     name: 'nio-checkbox',
     props: {
       "model": { required: false },
-      "rules": { required: false },
-      "value": { required: false}
+      "rules": { required: false }
     },
     model: {
       prop: "model",
       event: "update"
     },
     data: () => ({
+			tempModel: null,
       parsedRules: []
     }),
     methods: {
       updateModel(state) {
-        if (Array.isArray(this.model)) {
-          if (state === null) {
-            this.$emit('update', this.model.filter(val => val !== this.value))
-          } else {
-            this.model.push(state)
-            this.$emit('update', this.model)
-          }
-        } else {
-          this.$emit('update', this.state === true ? true : false)
-        }
+				this.$emit('update', this.tempModel)
       },
       parseRules() {
         if (this.rules) {
@@ -65,8 +53,14 @@
           });
         }
       }
-    },
+		},
+		watch: {
+			model(val) {
+				this.tempModel = this.model
+			}
+		},
     mounted() {	
+			this.tempModel = this.model
       this.$emit('mounted')
     },
     destroyed() {

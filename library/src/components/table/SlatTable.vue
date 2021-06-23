@@ -22,6 +22,7 @@
       hide-default-footer
       :headers="headers"
       :items-per-page="500"
+      :numSelections="selection && selection.length ? selection.length : 0"
       :items="pagination ? paginatedItems : computedItems"
     )
       template(
