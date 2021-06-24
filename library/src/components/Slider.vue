@@ -86,25 +86,9 @@ export default {
 		},
 		updateMinModel(val) {
 			this.minModel = this.currency ? parseFloat(val).toFixed(2) : val
-			if (this.currency) {
-				const currencyRegex  = /^\d+(?:\.\d{2})$/
-				if (currencyRegex.test(this.minModel)) {
-					this.$emit('update', [this.minModel, this.model[1]])
-				}
-			}
 		},
 		updateMaxModel(val) {
 			this.maxModel = this.currency ? parseFloat(val).toFixed(2) : val
-			if (this.currency) {
-				const currencyRegex  = /^\d+(?:\.\d{2})$/
-				if (currencyRegex.test(this.maxModel)) {
-					if (this.range) {
-						this.$emit('update', [this.model[0], this.maxModel])
-					} else {
-						this.$emit('update',  this.maxModel)
-					}
-				}
-			}
 		},
 		applyMinModel() {
 			if (event.key == "Enter") {

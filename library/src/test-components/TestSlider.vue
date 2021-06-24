@@ -17,28 +17,28 @@
     ) 
     NioSlider(
       v-model="model1"
-      :min="1"
+      :min="10"
       :max="100"
       :value="15"
     ) 
     .test {{ model1 }}
     NioSlider(
       v-model="model2"
-      :min="1"
+      :min="10"
       :max="100"
     ) 
     .test {{ model2 }}
     NioSlider(
       range
       v-model="rangeModel"
-      :min="1"
+      :min="10"
       :max="100"
     ) 
     NioSlider(
       range
       currency
       v-model="rangeModel"
-      :min="1"
+      :min="10"
       :max="100"
     )
     .test {{ rangeModel }}
