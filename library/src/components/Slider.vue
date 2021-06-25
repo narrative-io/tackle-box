@@ -14,7 +14,7 @@
         :model="currency ? parseFloat(model[0]).toFixed(2) : model[0]"
         :class="{'prepend-field': !range && prepend}"
       )
-      .min-apply-message(v-if="showMinApplyMsg") press enter to apply
+      .min-apply-message.nio-p.text-primary-dark(v-if="showMinApplyMsg") press enter to apply
     v-slider(
       v-if="!range"
       v-bind="$attrs"
@@ -40,7 +40,7 @@
         @keyup.native="applyMaxModel($event)"
         @update="updateMaxModel($event)"
       )
-      .max-apply-message(v-if="showMaxApplyMsg") press enter to apply
+      .max-apply-message.nio-p.text-primary-dark(v-if="showMaxApplyMsg") press enter to apply
 
 </template>
 
