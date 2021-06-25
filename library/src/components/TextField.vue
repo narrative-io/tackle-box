@@ -72,7 +72,7 @@ export default {
   }),
   methods: {
     update(val) {
-      this.$emit('update', this.currencyAttr ? parseFloat(val).toFixed(2) : val)
+      this.$emit('update', val)
     },
     focus() {
       this.$refs['nio-text-field-ref'].focus()

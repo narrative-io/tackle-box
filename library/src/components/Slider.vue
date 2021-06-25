@@ -11,7 +11,7 @@
         type="number"
         @keyup.native="applyMinModel($event)"
         @update="updateMinModel($event)"
-        v-model="currency ? parseFloat(model[0]).toFixed(2) : model[0]"
+        :model="currency ? parseFloat(model[0]).toFixed(2) : model[0]"
         :class="{'prepend-field': !range && prepend}"
       )
       .min-apply-message(v-if="showMinApplyMsg") press enter to apply
@@ -91,20 +91,26 @@ export default {
     },
     updateMinModel(val) {
       this.minModel = this.currency ? parseFloat(val).toFixed(2) : val
+      if (parseFloat(val) !== parseFloat(this.model[0])) {
+        this.showMinApplyMsg = true
+      } else {
+        this.showMinApplyMsg = false
+      }
     },
     updateMaxModel(val) {
       this.maxModel = this.currency ? parseFloat(val).toFixed(2) : val
-      if (this.range && val !== this.model[1]) {
-        this.showMaxApplyMsg = true
+      if (this.range) {
+        if (parseFloat(val) !== parseFloat(this.model[1])) {
+          this.showMaxApplyMsg = true
+        } else {
+          this.showMaxApplyMsg = false
+        }
       } else {
-        this.showMaxApplyMsg = false
-      }
-      console.log(val)
-      console.log(this.model)
-      if (!this.range && val !== this.model) {
-        this.showMinApplyMsg = true
-      } else {
-        this.showMaxApplyMsg = true
+        if (parseFloat(val) !== parseFloat(this.model)) {
+          this.showMaxApplyMsg = true
+        } else {
+          this.showMaxApplyMsg = false
+        }
       }
     },
     applyMinModel() {
