@@ -25,9 +25,14 @@
   ::v-deep .v-slider__track-fill
     background-color: $c-primary-dark !important
 
-  .input-min, .input-max
+  .min, .max
     flex-basis: 8rem  
     flex-grow: 0
+    position: relative
+    .min-apply-message, .max-apply-message
+      position: abolute
+      bottom: 0px
+      left: 0px
 
   &.currency
     .input-min, .input-max

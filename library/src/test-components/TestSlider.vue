@@ -8,39 +8,39 @@
       prepend
       currency
     ) 
-    NioSlider(
-      v-model="model1"
-      :min="10"
-      :max="100"
-      :value="15"
-      prepend
-    ) 
-    NioSlider(
-      v-model="model1"
-      :min="10"
-      :max="100"
-      :value="15"
-    ) 
-    .test {{ model1 }}
-    NioSlider(
-      v-model="model2"
-      :min="10"
-      :max="100"
-    ) 
-    .test {{ model2 }}
-    NioSlider(
-      range
-      v-model="rangeModel"
-      :min="10"
-      :max="100"
-    ) 
-    NioSlider(
-      range
-      currency
-      v-model="rangeModel"
-      :min="10"
-      :max="100"
-    )
+    //- NioSlider(
+    //-   v-model="model1"
+    //-   :min="10"
+    //-   :max="100"
+    //-   :value="15"
+    //-   prepend
+    //- ) 
+    //- NioSlider(
+    //-   v-model="model1"
+    //-   :min="10"
+    //-   :max="100"
+    //-   :value="15"
+    //- ) 
+    //- .test {{ model1 }}
+    //- NioSlider(
+    //-   v-model="model2"
+    //-   :min="10"
+    //-   :max="100"
+    //- ) 
+    //- .test {{ model2 }}
+    //- NioSlider(
+    //-   range
+    //-   v-model="rangeModel"
+    //-   :min="10"
+    //-   :max="100"
+    //- ) 
+    //- NioSlider(
+    //-   range
+    //-   currency
+    //-   v-model="rangeModel"
+    //-   :min="10"
+    //-   :max="100"
+    //- )
     .test {{ rangeModel }}
 </template>
 
@@ -62,5 +62,7 @@ export default {
 
 <style lang="sass" scoped>
 .test-slider
+	.nio-slider
+		margin-bottom: 100px
   
 </style>
