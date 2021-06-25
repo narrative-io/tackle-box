@@ -2,14 +2,14 @@
   .nio-slider(
     :class="{'currency': currency, 'prepend': prepend && !range}"
   )
-    .test
-      .model Model: {{ model }}
-      .min SliderMinModel {{ sliderMinModel }}
-      .text-min TextMinModel {{ textMinModel }}
-      .min SliderMaxModel {{ sliderMaxModel }}
-      .text-min TextMaxModel {{ textMaxModel }}
+    //- .test
+    //-   .model Model: {{ model }}
+    //-   .min SliderMinModel {{ sliderMinModel }}
+    //-   .text-min TextMinModel {{ textMinModel }}
+    //-   .min SliderMaxModel {{ sliderMaxModel }}
+    //-   .text-min TextMaxModel {{ textMaxModel }}
+    .validation-error.min-error(v-if="minError") {{ minError }}
     NioTextField.input-min(
-      v-if="range"
       :currency="currency"
       hide-details
       small
@@ -17,7 +17,8 @@
       type="number"
       @input="updateTextMinModel($event)"
       v-model="textMinModel"
-      :class="{'prepend-field': !range && prepend}"
+      :class="{'prepend-field': !range && prepend,'error--text': true}"
+      ref="text-min"
     )
     v-slider(
       v-if="!range"
@@ -36,14 +37,16 @@
       @input="sliderMoved($event)"
     )
     NioTextField.input-max(
+      v-if="range"
       :currency="currency"
       hide-details
       small
       solo
       type="number"
-      v-model="range ? textMaxModel : textMinModel"
-      @input="range ? updateTextMaxModel($event) : updateTextMinModel($event)"
+      v-model="textMaxModel"
+      @input="updateTextMaxModel($event)"
     )
+    .validation-error.max-error(v-if="maxError") {{ maxError }}
 
 </template>
 
@@ -72,7 +75,10 @@ export default {
     textMaxModel: null,
     sliderMinModel: null,
     sliderMaxModel: null,
-    init: false
+    minError: null,
+    maxError: null,
+    init: false,
+
   }),
   mounted() {
     this.updateLocalModels(this.model)
@@ -99,6 +105,11 @@ export default {
             }
           } else {
             this.$emit('update', [val, this.model[1]])
+          }
+        } else {
+          if (val < this.min || val > this.max) {
+            this.minError = `must be between ${this.min} and ${this.max}`
+
           }
         }
       } else {
