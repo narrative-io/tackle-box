@@ -48,15 +48,16 @@
                   v-model="filter.customOption.value.recency.value"
                   :min="1"
                   type="number"
+                  @input="parseLookbackValue($event)"
                   solo
                 )
                 NioSelect(
                   v-model="filter.customOption.value.recency.period"
-                  :items="recencyPeriodOptions"
+                  :items="filter.customOption.config.periodOptions"
                   item-text="label"
                   item-value="value" 
                 )
-              .nio-p.text-primary-dark from the current day within a date range.
+              .nio-p.text-primary-dark from the current day within the date range.
           .result.nio-p.text-primary-dark
             span(
               v-if="!filter.customOption.value.start.enabled && !filter.customOption.value.end.enabled"
@@ -70,7 +71,8 @@
             span(
               v-if="filter.customOption.value.start.enabled && filter.customOption.value.end.enabled"
             ) Include timestamps from {{ filter.customOption.value.start.timestamp }} to {{ filter.customOption.value.end.timestamp }} (inclusive)
-          .validation-error.nio-p-small.text-error(v-if="!valid") Start date must be later than stop date
+          .validation-error.nio-p-small.text-error(v-if="!valid && dateRangeError") Start date must be later than stop date
+          .validation-error.nio-p-small.text-error(v-else-if="!valid && rollingLookbackError") Rolling lookback value must be greater than 0
 </template>
 
 <script>
@@ -90,24 +92,8 @@ export default {
   data: () => ({
     valid: true,
     description: 'Select the data to include',
-    recencyPeriodOptions: [
-      {
-        label: 'Minute(s)',
-        value: 'm'
-      },
-      {
-        label: 'Hour(s)',
-        value: 'H'
-      },
-      {
-        label: 'Day(s)',
-        value: 'D'
-      },
-      {
-        label: 'Month(s)',
-        value: 'M'
-      }
-    ]
+    dateRangeError: false,
+    rollingLookbackError: false
   }),	
   computed: {
     defaultOptions() {
@@ -146,12 +132,23 @@ export default {
     validate() {
       if (this.filter.value === 'custom') {
         if (Date.parse(this.filter.customOption.value.start.timestamp) >= Date.parse(this.filter.customOption.value.end.timestamp)) {
+          this.dateRangeError = true
+        } else {
+          this.dateRangeError = false
+        }
+        if (this.filter.customOption.value.recency.enabled && this.filter.customOption.value.recency.value < 1) {
+          this.rollingLookbackError = true
+        } else {
+          this.rollingLookbackError = false
+        }
+        if (this.dateRangeError || this.rollingLookbackError) {
           this.setValid(false)
         } else {
           this.setValid(true)
         }
       } else {
         this.setValid(true)
+        this.dateRangeError = false
       }
     },
     setValid(val) {
@@ -168,6 +165,13 @@ export default {
         this.defaultOptions.find(option => option.value === this.filter.value).label
       ])
       this.validate()
+    },
+    parseLookbackValue(val) {
+      console.log(val)
+      console.log(parseInt(val))
+      this.$nextTick(() => {
+        this.filter.customOption.value.recency.value = parseInt(this.filter.customOption.value.recency.value)
+      })
     }
   },
   watch: {
@@ -176,7 +180,7 @@ export default {
       handler() {
         this.updateValue()
       }
-    }  
+    } 
   },
   mounted() {
     this.updateValue()

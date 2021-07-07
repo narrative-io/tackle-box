@@ -27,13 +27,27 @@ const Default = {
 			startMin: "2021-01-01",
 			startMax: "2021-03-30",
 			stopMin: "2021-02-30",
-			stopMax: "2021-12-30"
+			stopMax: "2021-12-30",
+			periodOptions: [
+				{
+					label: 'Days',
+					value: 'day'
+				},
+				{
+					label: 'Weeks',
+					value: 'week'
+				},
+				{
+					label: 'Months',
+					value: 'month'
+				}
+			]  
 		},
 		value: {
 			recency: {
 				enabled: false,
-				period: null,
-				value: null
+				period: 'day',
+				value: 30
 			},
 			start: {
 				enabled: true,
