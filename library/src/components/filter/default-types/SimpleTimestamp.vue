@@ -18,10 +18,6 @@
                   v-model="filter.customOption.value.start.enabled"
                   label="Set a start date"
                 ) 
-                //- NioCheckbox.inclusive(
-                //-   v-model="filter.customOption.value.start.inclusive"
-                //-   label="Inclusive"
-                //- )
               NioDateField(
                 v-model="filter.customOption.value.start.timestamp"
                 :min="startMinDate"
@@ -44,7 +40,27 @@
                 :min="startMinDate"
                 :max="startMaxDate"
               )
-          .result.nio-p.text-primary-dark
+          .recency
+            NioCheckbox.inclusive(
+              v-model="filter.customOption.value.recency.enabled"
+              label="Set a rolling lookback window"
+            )
+            .rolling-lookback-custom
+              .nio-p.text-primary-dark Include timestamps from 
+              .selection
+                NioTextField(
+                  v-model="filter.customOption.value.recency.value"
+                  :min="1"
+                  type="number"
+                  solo
+                )
+                NioSelect(
+                  v-model="filter.customOption.value.recency.period"
+                  :items="recencyPeriodOptions"
+                  item-text="label"
+                  item-value="value" 
+                )
+              .nio-p.text-primary-dark from the current day within a date range.
             span(
               v-if="!filter.customOption.value.start.enabled && !filter.customOption.value.end.enabled"
             ) Include all timestamps
@@ -74,7 +90,25 @@ export default {
   },
   data: () => ({
     valid: true,
-    description: 'Select the data to include'
+    description: 'Select the data to include',
+    recencyPeriodOptions: [
+      {
+        label: 'Minute(s)',
+        value: 'm'
+      },
+      {
+        label: 'Hour(s)',
+        value: 'H'
+      },
+      {
+        label: 'Day(s)',
+        value: 'D'
+      },
+      {
+        label: 'Month(s)',
+        value: 'M'
+      }
+    ]
   }),	
   computed: {
     defaultOptions() {

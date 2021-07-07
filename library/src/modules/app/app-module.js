@@ -10,8 +10,6 @@ export default {
 	}),	
 	computed: {
 		...mapGetters('nioServices', {
-			nioLists: 'lists',
-			nioListsLoading: 'listsLoading',
 			nioPaymentMethod: 'paymentMethod',
 			nioPaymentMethodLoading: 'paymentMethodLoading',
 			nioInvoiceAuthorized: 'invoiceAuthorized',
@@ -48,13 +46,6 @@ export default {
 					this.$store.dispatch('nioServices/SET_USER', evt.data.payload.user)
 					this.$store.dispatch('nioServices/SET_TIER', evt.data.payload.tier)
           openApiModule.setupAxios(evt.data.payload.baseurl, evt.data.payload.token)
-          if (this.nioServices && this.nioServices.length) {
-            this.nioInitServices()
-          }
-          break;
-        case 'initServices':
-          this.nioServices = evt.data.payload
-          openApiModule.initCallback(this.nioInitServices)
           break;
         case 'paymentMethod':
           this.$store.dispatch('nioServices/SET_PAYMENT_METHOD_LOADING', false)
@@ -70,31 +61,7 @@ export default {
         default:
           break;
       }	
-    },
-    nioInitServices() {
-      this.nioServices.forEach(serviceName => {
-        switch (serviceName) {
-          case 'lists':
-            this.nioFetchLists()
-            break;
-          default:
-            break;
-        }
-      })
-    },
-    nioFetchLists() {
-      return new Promise((resolve, reject) => {
-        this.$store.dispatch('nioServices/SET_LISTS_LOADING', true)
-        this.$nioOpenApi.get(
-          '/lists?schema=id&status=active'
-        ).then(res => {
-          this.$store.dispatch('nioServices/SET_LISTS_LOADING', false)
-          this.$store.dispatch('nioServices/SET_LISTS', res.data.records)
-        }).catch(err => {
-          console.log(err.response)
-        })
-      }) 
-		}
+    }
   }
 }
 

@@ -30,6 +30,11 @@ const Default = {
 			stopMax: "2021-12-30"
 		},
 		value: {
+			recency: {
+				enabled: false,
+				period: null,
+				value: null
+			},
 			start: {
 				enabled: true,
 				timestamp: "2021-02-24",
