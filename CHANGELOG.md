@@ -69,3 +69,4 @@ Added optional **append-icon** attribute to **NioPill**
 Added ability to delete tag by clicking on clear icon
 Added **slat** variant of NioRadioGroup
 Added **SimpleTimestamp** filter type
+Added rolling lookback option to SimpleTimestamp filter

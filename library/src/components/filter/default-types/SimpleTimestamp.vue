@@ -167,8 +167,6 @@ export default {
       this.validate()
     },
     parseLookbackValue(val) {
-      console.log(val)
-      console.log(parseInt(val))
       this.$nextTick(() => {
         this.filter.customOption.value.recency.value = parseInt(this.filter.customOption.value.recency.value)
       })
