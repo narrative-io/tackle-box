@@ -8,7 +8,7 @@
     )
       template(v-slot:custom-option)
         .simple-timestamp-custom
-          .nio-p.text-primary-dark Select the data to include
+          .instructions.nio-p.text-primary-dark Select the data to include
           .timestamps
             .start(
               :class="{'disabled': !filter.customOption.value.start.enabled}"
@@ -30,11 +30,7 @@
                 NioCheckbox(
                   v-model="filter.customOption.value.end.enabled"
                   label="Set an end date"
-                ) 
-                //- NioCheckbox.inclusive(
-                //-   v-model="filter.customOption.value.end.inclusive"
-                //-   label="Inclusive"
-                //- )
+                )
               NioDateField(
                 v-model="filter.customOption.value.end.timestamp"
                 :min="startMinDate"
@@ -43,9 +39,9 @@
           .recency
             NioCheckbox.inclusive(
               v-model="filter.customOption.value.recency.enabled"
-              label="Set a rolling lookback window"
+              label="Add a rolling lookback window"
             )
-            .rolling-lookback-custom
+            .rolling-lookback-custom(v-if="filter.customOption.value.recency.enabled")
               .nio-p.text-primary-dark Include timestamps from 
               .selection
                 NioTextField(
@@ -61,6 +57,7 @@
                   item-value="value" 
                 )
               .nio-p.text-primary-dark from the current day within a date range.
+          .result.nio-p.text-primary-dark
             span(
               v-if="!filter.customOption.value.start.enabled && !filter.customOption.value.end.enabled"
             ) Include all timestamps
@@ -73,7 +70,7 @@
             span(
               v-if="filter.customOption.value.start.enabled && filter.customOption.value.end.enabled"
             ) Include timestamps from {{ filter.customOption.value.start.timestamp }} to {{ filter.customOption.value.end.timestamp }} (inclusive)
-        .validation-error.nio-p-small.text-error(v-if="!valid") Start date must be later than stop date
+          .validation-error.nio-p-small.text-error(v-if="!valid") Start date must be later than stop date
 </template>
 
 <script>
@@ -81,6 +78,8 @@
 import NioFilterProperty from '../FilterProperty'
 import NioDateField from '../../DateField'
 import NioCheckbox from '../../Checkbox'
+import NioTextField from '../../TextField'
+import NioSelect from '../../Select'
 
 export default {
   name: 'nio-filter-properties-simple-timestamp',
@@ -182,7 +181,7 @@ export default {
   mounted() {
     this.updateValue()
   },
-  components: { NioFilterProperty, NioDateField, NioCheckbox }
+  components: { NioFilterProperty, NioDateField, NioCheckbox, NioTextField, NioSelect }
 }
 </script>
 

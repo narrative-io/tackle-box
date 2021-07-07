@@ -120,7 +120,9 @@
           margin-left: 1rem
 
       .simple-timestamp-custom
-        .nio-p
+        .nio-date-field ::v-deep .nio-text-field
+          margin-bottom: 0px
+        .instructions
           text-align: center
           margin: 24px auto
         .timestamps
@@ -140,8 +142,11 @@
             align-items: center
             & > * + *
               margin-left: 24px
+        .recency
+          .rolling-lookback-custom
         .result
-          margin-bottom: 16px
+          text-align: center
+          margin: 24px auto 16px auto
 
       .string-many-custom    
         ::v-deep .textarea
