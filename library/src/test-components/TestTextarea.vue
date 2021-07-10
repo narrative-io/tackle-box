@@ -1,6 +1,6 @@
 <template lang="pug">
   .test-text-field
-    nio-textarea.text-field(small v-model="model" rows="5")
+    nio-textarea.text-field(small v-model="model" rows="5" label="label")
     nio-textarea.text-field(
       small 
       :rules="[rules.required]"
@@ -20,7 +20,7 @@ export default {
     NioTextarea
   },
   data: () => ({
-    model: "stuff",
+    model: null,
     validateModel: null,
     rules: {
       required(value) {

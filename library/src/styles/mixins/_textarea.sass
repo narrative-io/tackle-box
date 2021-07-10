@@ -1,13 +1,14 @@
 @import '../global/_colors'
 
 =nio-textarea 
+  width: 100%
   ::v-deep .v-input__slot
     border-radius: 0.5rem
     box-shadow: none !important
     border: 0.0625rem solid $c-primary-lighter     
     textarea
       color: $c-primary-dark
-    textarea::placeholder
+    label, textarea::placeholder
       color: $c-primary-dark !important
   &.error--text 
     ::v-deep .v-input__slot
