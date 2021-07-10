@@ -1,6 +1,6 @@
 <template lang="pug">
   .test-switch
-    NioSwitch(v-model="switch1") 
+    NioSwitch(v-model="switch1" label="Select value") 
     .value value: {{ switch1 }}
     NioSwitch(v-model="switch2" value="John")
     NioSwitch(v-model="switch2" value="Jacob")       
