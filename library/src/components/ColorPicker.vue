@@ -1,6 +1,6 @@
 <template lang="pug">
   .nio-color-picker
-    .label.nio-p.text-primary-dark {{ label ? label : name }}
+    .label.nio-p.text-primary-dark(v-if="label") {{ label }}
     NioTextField.text-field(
       small
       v-model="localModel"
@@ -34,7 +34,6 @@ import NioTextField from './TextField'
 export default {
 	name: 'nio-color-picker',
 	props: { 
-		"name": { type: String, required: true },
 		"model": { type: String, required: true },
 		"label": { type: String, required: false }
 	},

@@ -1,7 +1,9 @@
 <template lang="pug">
   .test-color-picker
     NioColorPicker(
-      name="myColor"
+      v-model="color"
+    )
+    NioColorPicker(
       label="My Color"
       v-model="color"
     )
