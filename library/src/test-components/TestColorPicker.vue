@@ -3,7 +3,7 @@
     NioColorPicker(
       name="myColor"
       label="My Color"
-      :value="color"
+      v-model="color"
     )
 </template>
 
@@ -19,9 +19,9 @@ export default {
     color: "#000000"
   }),
   mounted() {
-    // setTimeout(() => {
-    //   this.date = "2024-12-30"
-    // }, 1500);
+    setTimeout(() => {
+      this.color = '#999999'
+    }, 1500);
   },
   components: { NioColorPicker }
 };

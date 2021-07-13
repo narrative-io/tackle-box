@@ -3,7 +3,7 @@
     .label.nio-p.text-primary-dark {{ label ? label : name }}
     NioTextField.text-field(
       small
-      v-model="value"
+      v-model="localModel"
       @input="colorChanged($event)"
     )
     v-menu(
@@ -12,13 +12,13 @@
     )
       template(v-slot:activator="{ on, attrs }")
         .swatch(
-          :style="{backgroundColor: value}"
+          :style="{backgroundColor: model}"
           v-bind="attrs"
           v-on="on"  
         )
       .color-picker
         v-color-picker(
-          :value="value"
+          :value="localModel"
           dot-size="25"
           mode="hexa"
           show-swatches
@@ -29,37 +29,48 @@
 
 <script>
 
+import NioTextField from './TextField'
 
 export default {
 	name: 'nio-color-picker',
 	props: { 
 		"name": { type: String, required: true },
-		"value": { type: String, required: false },
+		"model": { type: String, required: true },
 		"label": { type: String, required: false }
 	},
   data() {
     return {
-     
+			localModel: null
     }
-  },
+	},
+	model: {
+		prop: "model",
+		event: "update"
+	},
+	mounted() {
+		this.localModel = this.model
+	},
   methods: {
     colorChanged(value) { 
       if (value.length === 7 && value[0] === '#' || (value.length === 6 && value.indexOf('#') === -1)) {
         if (value[0] !== '#') {
           value = '#' + value
         }
-        this.$emit('colorChanged', {
-          name: this.name, 
-          value: value
-        })
+        this.$emit('update', value)
       }  
     }
-  }
+	},
+	watch: {
+		model(val) {
+			this.localModel = val
+		}
+	},
+	components: { NioTextField }
 }
 </script>
 
 <style lang="sass" scoped>
-  .color-control
+  .nio-color-picker
     display: flex
     align-items: center
     height: 2.5rem
