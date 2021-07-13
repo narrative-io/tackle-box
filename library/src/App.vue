@@ -59,115 +59,120 @@
               TestCheckbox
           NioExpansionPanel(:key="7")
             template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Color Picker
+            template(v-slot:content) 
+              TestColorPicker
+          NioExpansionPanel(:key="8")
+            template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold DateField
             template(v-slot:content) 
               TestDateField
-          NioExpansionPanel(:key="8")
+          NioExpansionPanel(:key="9")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Dialog
             template(v-slot:content) 
               TestDialog
-          NioExpansionPanel(:key="9")
+          NioExpansionPanel(:key="10")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Divider
             template(v-slot:content) 
               TestDivider
-          NioExpansionPanel(:key="10")
+          NioExpansionPanel(:key="11")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold ExpansionPanels
             template(v-slot:content) 
               TestExpansionPanel
-          NioExpansionPanel(:key="11")
+          NioExpansionPanel(:key="12")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold FileChooser
             template(v-slot:content) 
               TestFileChooser
-          NioExpansionPanel(:key="12")
+          NioExpansionPanel(:key="13")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Filters
             template(v-slot:content) 
               TestFilters
-          NioExpansionPanel(:key="13")
+          NioExpansionPanel(:key="14")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold IconFramer
             template(v-slot:content) 
               TestIconFramer
-          NioExpansionPanel(:key="14")
+          NioExpansionPanel(:key="15")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Icons
             template(v-slot:content) 
               TestIcons
-          NioExpansionPanel(:key="15")
+          NioExpansionPanel(:key="16")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold ImageTile
             template(v-slot:content) 
               TestImageTile
-          NioExpansionPanel(:key="16")
+          NioExpansionPanel(:key="17")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold OptionsGrid
             template(v-slot:content) 
               TestOptionsGrid
-          NioExpansionPanel(:key="17")
+          NioExpansionPanel(:key="18")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Pill
             template(v-slot:content) 
               TestPills
-          NioExpansionPanel(:key="18")
+          NioExpansionPanel(:key="19")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold RadioGroup
             template(v-slot:content) 
               TestRadioGroup
-          NioExpansionPanel(:key="19")
+          NioExpansionPanel(:key="20")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Select
             template(v-slot:content) 
               TestSelect
-          NioExpansionPanel(:key="20")
+          NioExpansionPanel(:key="21")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Slat
             template(v-slot:content) 
               TestSlat
-          NioExpansionPanel(:key="21")
+          NioExpansionPanel(:key="22")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold SlatTable
             template(v-slot:content) 
               TestSlatTable
-          NioExpansionPanel(:key="22")
+          NioExpansionPanel(:key="23")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Slider
             template(v-slot:content) 
               TestSlider
-          NioExpansionPanel(:key="23")
+          NioExpansionPanel(:key="24")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Stepper
             template(v-slot:content) 
               TestStepper
-          NioExpansionPanel(:key="24")
+          NioExpansionPanel(:key="25")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Switch
             template(v-slot:content) 
               TestSwitch
-          NioExpansionPanel(:key="25")
+          NioExpansionPanel(:key="26")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Tabs
             template(v-slot:content) 
               TestTabs
-          NioExpansionPanel(:key="26")
+          NioExpansionPanel(:key="27")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold TagsField
             template(v-slot:content) 
               TestTagsField
-          NioExpansionPanel(:key="27")
+          NioExpansionPanel(:key="28")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold TextField
             template(v-slot:content) 
               TestTextField
-          NioExpansionPanel(:key="28")
+          NioExpansionPanel(:key="29")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Textarea
             template(v-slot:content) 
               TestTextarea
-          NioExpansionPanel(:key="29")
+          NioExpansionPanel(:key="30")
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Tooltip
             template(v-slot:content) 
@@ -209,6 +214,7 @@ import TestPills from './test-components/TestPills'
 import TestTagsField from './test-components/TestTagsField'
 import TestTextarea from './test-components/TestTextarea'
 import TestTooltip from './test-components/TestTooltip'
+import TestColorPicker from './test-components/TestColorPicker'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -246,6 +252,7 @@ export default {
     TestTextarea,
     TestTagsField,
     TestTooltip,
+    TestColorPicker,
     NioExpansionPanels,
     NioExpansionPanel
   },
