@@ -1,19 +1,21 @@
 <template lang="pug">
   .nio-tabs
     v-tabs(
-      v-model="activeTab"
+      v-model="localModel"
       @change="change($event)"
     ) 
       v-tab(
-        v-for="tab in tabs"
-        :key="getTabIndex(tab)"
+        v-for="(tab, index) in tabs"
+        :key="index"
       ) 
         .nio-h5 {{ tab.label }}
     NioDivider(horizontal-solo-emphasis)
-    v-tabs-items(v-model="activeTab")
+    v-tabs-items(
+      v-model="localModel"
+    )
       v-tab-item(
-        v-for="tab in tabs"
-        :key="getTabIndex(tab)"
+        v-for="(tab, index) in tabs"
+        :key="index"
       )
         slot(:name="tab.name")   
 </template>
@@ -33,27 +35,24 @@ export default {
     event: "update"
   },
   data: () => ({
-    activeTab: 0
+    localModel: 0
   }),
-  computed: {
-    computedModel() {
-      return this.model
-    }
-  },
   methods: {
     change(val) {
-      this.$emit('update', this.tabs[val])
-    },
-    getTabIndex(tab) {
-      return this.tabs.indexOf(tab)
+      this.$emit('update', val)
     }
   },
   mounted() {	
-    this.activeTab = this.model
+    this.localModel = this.model
     this.$emit('mounted')
   },
   destroyed() {
     this.$emit('destroyed')
+  },
+  watch: {
+    model(val) {
+      this.localModel = val
+    }
   },
   components: { NioDivider }
 }
