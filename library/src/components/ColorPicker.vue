@@ -1,8 +1,7 @@
 <template lang="pug">
   .nio-color-picker
-    .label.nio-p.text-primary-dark(v-if="label") {{ label }}
     NioTextField.text-field(
-      small
+      :label="label"
       v-model="localModel"
       @input="colorChanged($event)"
     )
@@ -18,7 +17,7 @@
         )
       .color-picker
         v-color-picker(
-          :value="localModel"
+          v-model="pickerModel"
           dot-size="25"
           mode="hexa"
           show-swatches
@@ -39,7 +38,8 @@ export default {
 	},
   data() {
     return {
-			localModel: null
+			localModel: null,
+			pickerModel: null
     }
 	},
 	model: {
@@ -56,12 +56,20 @@ export default {
           value = '#' + value
         }
         this.$emit('update', value)
-      }  
+			}
     }
 	},
 	watch: {
 		model(val) {
 			this.localModel = val
+		},
+		localModel(value) {
+			if (value.length === 7 && value[0] === '#' || (value.length === 6 && value.indexOf('#') === -1)) {
+        if (value[0] !== '#') {
+          value = '#' + value
+        }
+        this.pickerModel = value
+			}
 		}
 	},
 	components: { NioTextField }
@@ -72,18 +80,18 @@ export default {
   .nio-color-picker
     display: flex
     align-items: center
-    height: 2.5rem
-    margin-bottom: 0.5rem  
+    height: 3.375rem
+    margin-bottom: 0rem  
     & > * + *
-       margin-left: 0.5rem
+       margin-left: 1rem
     .label
       width: 8.125rem
     .text-field
       width: 6.25rem !important
       margin-bottom: 0rem
     .swatch
-      width: 2.5rem
-      height: 2.5rem
+      width: 3.375rem
+      height: 3.375rem
       border-radius: 0.5rem
       border: 0.0625rem solid #DDD
 </style>
