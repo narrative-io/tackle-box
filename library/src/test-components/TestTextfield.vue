@@ -1,5 +1,6 @@
 <template lang="pug">
   .test-text-field
+    nio-text-field.text-field(v-model="nullModel" label="search" placeholder="stuff")
     nio-text-field.text-field(small v-model="nullModel" label="search" placeholder="stuff")
     nio-text-field.text-field(small v-model="model" label="search" placeholder="stuff")
     nio-text-field.text-field(search-small v-model="model" label="search" placeholder="hello")
