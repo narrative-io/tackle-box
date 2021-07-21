@@ -1,6 +1,12 @@
 <template lang="pug">
   .test-text-field
-    nio-text-field.text-field(v-model="nullModel" label="search" placeholder="stuff")
+    nio-text-field.text-field(
+      v-model="nullModel" 
+      label="search" 
+      placeholder="stuff"
+      :rules="[rules.required]"
+      validate-on-blur
+    )
     nio-text-field.text-field(small v-model="nullModel" label="search" placeholder="stuff")
     nio-text-field.text-field(small v-model="model" label="search" placeholder="stuff")
     nio-text-field.text-field(search-small v-model="model" label="search" placeholder="hello")
@@ -37,7 +43,10 @@ export default {
   data: () => ({
     model: "02-12-2021",
     currency: 1,
-    nullModel: null
+    nullModel: null,
+    rules: {
+      required: function(value) { return !!value || 'Required' }
+    }
   })
 };
 </script>

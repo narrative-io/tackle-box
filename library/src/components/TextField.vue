@@ -80,12 +80,22 @@ export default {
     parseRules() {
       if (this.rules) {
         this.rules.map((rule, index) => {
-          let func = rule.toString()
-          let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
-          this.parsedRules[index] = new Function("value", funcBody)
-        });
+					const paramNames = this.getParamNames(rule)
+					let func = rule.toString()
+					let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
+          this.parsedRules[index] = new Function(paramNames[0], funcBody)
+				});
       }
-    },
+		},
+		getParamNames(func) {
+			var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
+			var ARGUMENT_NAMES = /([^\s,]+)/g;
+			var fnStr = func.toString().replace(STRIP_COMMENTS, '');
+			var result = fnStr.slice(fnStr.indexOf('(')+1, fnStr.indexOf(')')).match(ARGUMENT_NAMES);
+			if(result === null)
+				result = [];
+			return result;
+		},
     applyHelperAttributes() {
       const attributes = this.$el.attributes
       if (attributes.getNamedItem('append')) {
