@@ -16,46 +16,50 @@
 </template>
 
 <script>
-  export default {
-    name: 'nio-radio-group',
-    props: {
-      "model": { required: false },
-      "rules": { required: false }
-    },
-    model: {
-      prop: "model",
-      event: "update"
-    },
-    data: () => ({
-      parsedRules: [],
-      slatAttr: false
-    }),
-    methods: {
-       parseRules() {
-        if (this.rules) {
-          this.rules.map((rule, index) => {
-            let func = rule.toString()
-            let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
-            this.parsedRules[index] = new Function("value", funcBody)
-          });
-        }
-      },
-      applyHelperAttributes() {
-        const attributes = this.$el.attributes
-        if (attributes.getNamedItem('slat')) {
-          this.slatAttr = true
-        }
+
+import { getParamNames } from '@/modules/helpers'
+
+export default {
+	name: 'nio-radio-group',
+	props: {
+		"model": { required: false },
+		"rules": { required: false }
+	},
+	model: {
+		prop: "model",
+		event: "update"
+	},
+	data: () => ({
+		parsedRules: [],
+		slatAttr: false
+	}),
+	methods: {
+		parseRules() {
+      if (this.rules) {
+        this.rules.map((rule, index) => {
+					const paramNames = getParamNames(rule)
+					let func = rule.toString()
+					let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
+          this.parsedRules[index] = new Function(paramNames[0], funcBody)
+				});
       }
-    
-    },
-    mounted() {	
-      this.applyHelperAttributes()
-      this.$emit('mounted')
-    },
-    destroyed() {
-      this.$emit('destroyed')
-    }
-  }
+		},
+		applyHelperAttributes() {
+			const attributes = this.$el.attributes
+			if (attributes.getNamedItem('slat')) {
+				this.slatAttr = true
+			}
+		}
+	
+	},
+	mounted() {	
+		this.applyHelperAttributes()
+		this.$emit('mounted')
+	},
+	destroyed() {
+		this.$emit('destroyed')
+	}
+}
 </script>
 
 <style lang="sass" scoped>

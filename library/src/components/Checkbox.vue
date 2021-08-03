@@ -26,47 +26,51 @@
 </template>
 
 <script>
-  export default {
-    name: 'nio-checkbox',
-    props: {
-      "model": { required: false },
-      "rules": { required: false }
-    },
-    model: {
-      prop: "model",
-      event: "update"
-    },
-    data: () => ({
-			tempModel: null,
-      parsedRules: []
-    }),
-    methods: {
-      updateModel(state) {
-				this.$emit('update', this.tempModel)
-      },
-      parseRules() {
-        if (this.rules) {
-          this.rules.map((rule, index) => {
-            let func = rule.toString()
-            let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
-            this.parsedRules[index] = new Function("value", funcBody)
-          });
-        }
-      }
+
+import { getParamNames } from '@/modules/helpers'
+
+export default {
+	name: 'nio-checkbox',
+	props: {
+		"model": { required: false },
+		"rules": { required: false }
+	},
+	model: {
+		prop: "model",
+		event: "update"
+	},
+	data: () => ({
+		tempModel: null,
+		parsedRules: []
+	}),
+	methods: {
+		updateModel(state) {
+			this.$emit('update', this.tempModel)
 		},
-		watch: {
-			model(val) {
-				this.tempModel = this.model
+		parseRules() {
+			if (this.rules) {
+				this.rules.map((rule, index) => {
+					const paramNames = getParamNames(rule)
+					let func = rule.toString()
+					let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
+					this.parsedRules[index] = new Function(paramNames[0], funcBody)
+				});
 			}
-		},
-    mounted() {	
+		}
+	},
+	watch: {
+		model(val) {
 			this.tempModel = this.model
-      this.$emit('mounted')
-    },
-    destroyed() {
-      this.$emit('destroyed')
-    }
-  }
+		}
+	},
+	mounted() {	
+		this.tempModel = this.model
+		this.$emit('mounted')
+	},
+	destroyed() {
+		this.$emit('destroyed')
+	}
+}
 </script>
 
 <style lang="sass" scoped>

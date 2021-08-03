@@ -33,7 +33,8 @@
       text-align: left
 
     td.action-cell
-      width: 0.875rem	
+      &:not(.expand-custom-action)
+        width: 0.875rem	
       ::v-deep .activator:hover, & > .nio-icon:hover
         cursor: pointer
         opacity: 0.5f
@@ -57,6 +58,9 @@
           
   ::v-deep td.expanded-row:not(:last-child)
     box-shadow: inset 0rem -0.0625rem 0rem #DAE0F9
+
+  ::v-deep .expand-custom-icon
+    padding-left: 24px
 
   .actions-row:hover
     cursor: initial !important

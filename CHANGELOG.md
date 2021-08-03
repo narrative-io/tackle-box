@@ -73,3 +73,4 @@ Added rolling lookback option to SimpleTimestamp filter
 Added **NioColorPicker** component
 Added model binding to **NioTabs**
 Updated border and placeholder colors for **nio-input** mixin
+Use dynamic argument names for function in rules array to support minified code in all components that use rules

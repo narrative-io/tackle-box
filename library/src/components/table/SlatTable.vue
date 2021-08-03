@@ -66,6 +66,7 @@
             .value.nio-table-value.text-primary-dark {{ item.columnValues[column.name]}}
           td.action-cell(
             v-if="action" 
+            :class="{'expand-custom-action': action === 'expand-custom'}"
           )
             NioButton(container v-if="action !== 'custom'")
               NioIcon(
@@ -73,8 +74,10 @@
                 name="utility-chevron-right"
                 color="#415298"
               )
+              slot(name="custom-action" v-bind:item="item" v-if="action === 'expand-custom'")
               NioIcon(
-                v-if="action === 'expand'"
+                v-if="action === 'expand' || action === 'expand-custom'"
+                :class="{'expand-custom-icon': action === 'expand-custom'}"
                 :name="isExpanded ? 'utility-chevron-up' : 'utility-chevron-down'"
                 color="#415298"
               )
@@ -90,7 +93,7 @@
                       name="utility-more"
                       color="#415298"
                     )        
-                slot(name="item-menu" v-bind:item="item")
+                slot(name="item-menu" v-beind:item="item")
             slot(name="custom-action" v-bind:item="item" v-if="action === 'custom'")
       template(v-slot:expanded-item="{ headers, item }")
         td.expanded-row(:colspan="numColumns") 
@@ -187,7 +190,7 @@ export default {
   methods: {
     handleItemClick(item, expandFn, isExpanded) {
       this.$emit('itemClicked', item)
-      if (this.action === 'expand') {
+      if (this.action === 'expand' || this.action === 'expand-custom') {
         expandFn(!isExpanded)
         isExpanded ? this.$emit('itemCollapsed', item) : this.$emit('itemExpanded', item)
       } else if (this.singleSelect) {

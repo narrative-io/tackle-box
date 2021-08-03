@@ -8,8 +8,11 @@
       :columns="columns"
       :sortOptions="sortOptions"
       :headerModules="['sort']"
+      action="expand-custom"
       key="200"
     )
+      template(v-slot:item-expanded="slotProps") Test
+      template(v-slot:custom-action="slotProps") Custom Action
     h3 ['search']
     NioSlatTable(
       v-if="columns && items"
