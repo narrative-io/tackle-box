@@ -74,3 +74,7 @@ Added **NioColorPicker** component
 Added model binding to **NioTabs**
 Updated border and placeholder colors for **nio-input** mixin
 Use dynamic argument names for function in rules array to support minified code in all components that use rules
+
+v0.3.14
+Added **expand-custom** to available options for **action** prop in **SlatTable**
+Added **searchConfig** as optional prop **NioSlatTable** to override default Fuse search options
