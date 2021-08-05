@@ -142,7 +142,8 @@ export default {
     "sortOptions": { type: Array, required: false },
     "searchableProps": { type: Array, required: false },
     "defaultSelection": { type: Array | Number, required: false },
-    "headerModules": { type: Array, required: false }
+    "headerModules": { type: Array, required: false },
+    "searchConfig": { type: Object, required: false }
   },
   data: () => ({
     multiSelect: false,
@@ -245,7 +246,7 @@ export default {
       })
       // apply search
       if (this.showHeaderModules.search && this.searchTerm && this.searchTerm.length > 2) {
-        this.fuseInstance = new Fuse(computedItems, this.searchOptions)
+        this.fuseInstance = new Fuse(computedItems, this.searchConfig ? this.searchConfig : this.searchOptions)
         this.fuseInstance.search(this.searchTerm)
         computedItems = this.fuseInstance.search(this.searchTerm).map(result => result.item)
       }
