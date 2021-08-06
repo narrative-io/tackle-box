@@ -2,23 +2,32 @@
   .test-slat-table
     h2 Header modules
     h3 ['sort']
-    NioSlatTable(
-      v-if="columns && items"
-      :items="items"
-      :columns="columns"
-      :sortOptions="sortOptions"
-      :headerModules="['sort']"
-      action="expand-custom"
-      key="200"
-    )
-      template(v-slot:item-expanded="slotProps") Test
-      template(v-slot:custom-action="slotProps") Custom Action
+    //- NioSlatTable(
+    //-   v-if="columns && items"
+    //-   :items="items"
+    //-   :columns="columns"
+    //-   :sortOptions="sortOptions"
+    //-   :headerModules="['sort']"
+    //-   action="expand-custom"
+    //-   key="200"
+    //- )
+    //-   template(v-slot:item-expanded="slotProps") Test
+    //-   template(v-slot:custom-action="slotProps") Custom Action
     h3 ['search']
     NioSlatTable(
       v-if="columns && items"
       :items="items"
       :columns="columns"
       key="201"
+      :searchableProps="['orderName', 'orderNumber']"
+      :headerModules="['search']"
+    )
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      :searchConfig="searchOptions"
+      key="2013"
       :searchableProps="['orderName', 'orderNumber']"
       :headerModules="['search']"
     )
@@ -232,6 +241,9 @@ export default {
     oneItem: [testItems[0]],
     items: testItems,
     sortOptions: testSortOptions,
+    searchOptions: {
+      findAllMatches: true
+    }, 
     headers: null,
     smallHeaders: null,
     paymentMethods: [

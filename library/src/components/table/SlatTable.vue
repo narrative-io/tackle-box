@@ -181,9 +181,6 @@ export default {
     if (this.showHeaderModules.sort || this.sortOptions) {
       this.selectedSortOption = this.sortOptions[0].value
     } 
-    if (this.showHeaderModules.search) {
-      this.searchOptions.keys = this.searchableProps			
-    }	
     this.makeHeaders()
     this.computeItems()
     this.initSelections()
@@ -246,7 +243,13 @@ export default {
       })
       // apply search
       if (this.showHeaderModules.search && this.searchTerm && this.searchTerm.length > 2) {
-        this.fuseInstance = new Fuse(computedItems, this.searchConfig ? this.searchConfig : this.searchOptions)
+        console.log(this.searchConfig)
+        const searchOptions = this.searchConfig ? this.searchConfig : this.searchOptions
+        if (this.showHeaderModules.search) {
+          searchOptions.keys = this.searchableProps			
+        }	
+        this.fuseInstance = new Fuse(computedItems, searchOptions)
+        console.log(this.fuseInstance)
         this.fuseInstance.search(this.searchTerm)
         computedItems = this.fuseInstance.search(this.searchTerm).map(result => result.item)
       }
