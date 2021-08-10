@@ -230,8 +230,10 @@ export default {
         if (slatColumn) {
           computedItem.slat = {
             image: typeof slatColumn.props.image === 'function' ? slatColumn.props.image(item) : item[slatColumn.props.image],
+            imageBackground: typeof slatColumn.props.imageBackground === 'function' ? slatColumn.props.imageBackground(item) : item[slatColumn.props.imageBackground],
             title: typeof slatColumn.props.title === 'function' ? slatColumn.props.title(item) : item[slatColumn.props.title],
             subtitle: typeof slatColumn.props.subtitle === 'function' ? slatColumn.props.subtitle(item) : item[slatColumn.props.subtitle]
+
           }
         }
         
