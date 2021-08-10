@@ -55,6 +55,7 @@
             NioImageTitleSubtitleSlot(
               :imgSrc="item.slat.image"
               :size="dense ? 'small' : 'normal'"
+              :imgBackground="item.slat.imageBackground ? item.slat.imageBackground : 'none'"
             )
               template(v-slot:title) {{ item.slat.title }}
               template(v-slot:subtitle) {{ item.slat.subtitle }}
