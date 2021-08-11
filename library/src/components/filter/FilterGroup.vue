@@ -3,7 +3,7 @@
     NioFilter(
       v-for="filter in filters"
       :filter="filter"
-      :filterObjCustomOptionLoading="filter.customOption.loading"
+      :filterObjCustomOptionLoading="filter.customOption && filter.customOption.loading"
     )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data")

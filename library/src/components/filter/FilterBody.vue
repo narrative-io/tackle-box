@@ -77,11 +77,11 @@ export default {
   data: () => ({
   }),	
   computed: {
-    defaultOptions() {
+		defaultOptions() {
       if (!this.filter) {
         return []
-      }
-      return [
+			}
+			const options = [
         {
           label: `All ${this.filter.name}s`,
           value: 'default',
@@ -94,9 +94,16 @@ export default {
           label: 'Custom',
           value: 'custom',
         }
-      ]
-    }
-  },
+			]
+			if (this.filter.type !== 'object') {
+				options.push({
+          label: 'Custom',
+          value: 'custom',
+        })
+			}
+			return options
+		}
+	},
   methods: {
     valueChanged(val) {
       this.$emit('valueChanged', val)
