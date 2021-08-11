@@ -1,7 +1,14 @@
 <template lang="pug">
   .nio-filter-header
     .title-description
-      .filter-title.nio-h4.text-primary-darker {{ title }}
+      template(
+        v-if="hasScopedSlot(`filter-header-name-custom`)"
+      )
+        slot(
+          :name="`filter-header-name-custom`" 
+          v-bind:filter="filter"
+        )   	
+      .filter-title.nio-h4.text-primary-darker(v-else) {{ title }}
         .filter-tooltip
           NioTooltip(
             v-if="tooltip"
@@ -35,13 +42,16 @@ export default {
      "title": { type: String, required: true },
      "description": { type: String, required: false, default: null },
      "value": { type: Array, required: false, default: null},
-     "tooltip": { type: Object, required: false }
+     "tooltip": { type: Object, required: false },
+     "filter": { type: Object, required: false}
   },
   data: () => ({
     
   }),	
   methods: {
-    
+    hasScopedSlot(slotName) {
+      return this.$scopedSlots[slotName] !== undefined
+    }
   },
   components: { NioIcon, NioTooltip }
 }

@@ -3,6 +3,8 @@
   div
     h1 Boolean
     NioFilterGroup(:filters="filters")
+      template(v-slot:filter-header-name-custom="slotProps")
+        .test {{ slotProps }}
 </template>
 
 <script>

@@ -17,6 +17,7 @@
         :description="filter.description"
         :value="value"
         :tooltip="filter.tooltip"
+        :filter="filter"
       )
         template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
           slot(:name="name" v-bind="data")   
@@ -27,7 +28,7 @@
         slot(
           :name="`filter-body-custom-${filter.name}`"
           :filter="filter"  
-        )   	
+        )
       NioFilterBody(
         v-else
         :filter="filter"
@@ -52,7 +53,6 @@
     )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data")   
-        
 </template>
 
 <script>
