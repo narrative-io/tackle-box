@@ -1,5 +1,11 @@
 <template lang="pug">
   .nio-filter-body
+    template(v-if="filter.type === 'object'")
+      NioFilterPropertiesObject(
+        @valueChanged="valueChanged($event)"
+        :filter="filter"
+        :customOptionLoading="customOptionLoading"
+      )
     template(v-if="filter.type === 'number'")
       NioFilterPropertiesNumber(
         @valueChanged="valueChanged($event)"
@@ -59,6 +65,7 @@
 <script>
 
 import NioFilterProperty from './FilterProperty'
+import NioFilterPropertiesObject from './default-types/Object'
 import NioFilterPropertiesNumber from './default-types/Number'
 import NioFilterPropertiesEventTimestamp from './default-types/EventTimestamp'
 import NioFilterPropertiesSimpleTimestamp from './default-types/SimpleTimestamp'
@@ -77,11 +84,11 @@ export default {
   data: () => ({
   }),	
   computed: {
-		defaultOptions() {
+    defaultOptions() {
       if (!this.filter) {
         return []
-			}
-			const options = [
+      }
+      const options = [
         {
           label: `All ${this.filter.name}s`,
           value: 'default',
@@ -94,16 +101,16 @@ export default {
           label: 'Custom',
           value: 'custom',
         }
-			]
-			if (this.filter.type !== 'object') {
-				options.push({
+      ]
+      if (this.filter.type !== 'object') {
+        options.push({
           label: 'Custom',
           value: 'custom',
         })
-			}
-			return options
-		}
-	},
+      }
+      return options
+    }
+  },
   methods: {
     valueChanged(val) {
       this.$emit('valueChanged', val)
@@ -111,6 +118,7 @@ export default {
   },
   components: { 
     NioFilterProperty, 
+    NioFilterPropertiesObject,
     NioFilterPropertiesNumber,
     NioFilterPropertiesEventTimestamp,
     NioFilterPropertiesSimpleTimestamp,
