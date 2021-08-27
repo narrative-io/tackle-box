@@ -94,7 +94,7 @@
                       name="utility-more"
                       color="#415298"
                     )        
-                slot(name="item-menu" v-beind:item="item")
+                slot(name="item-menu" v-bind:item="item")
             slot(name="custom-action" v-bind:item="item" v-if="action === 'custom'")
       template(v-slot:expanded-item="{ headers, item }")
         td.expanded-row(:colspan="numColumns") 
@@ -233,7 +233,6 @@ export default {
             imageBackground: typeof slatColumn.props.imageBackground === 'function' ? slatColumn.props.imageBackground(item) : item[slatColumn.props.imageBackground],
             title: typeof slatColumn.props.title === 'function' ? slatColumn.props.title(item) : item[slatColumn.props.title],
             subtitle: typeof slatColumn.props.subtitle === 'function' ? slatColumn.props.subtitle(item) : item[slatColumn.props.subtitle]
-
           }
         }
         
@@ -246,13 +245,11 @@ export default {
       })
       // apply search
       if (this.showHeaderModules.search && this.searchTerm && this.searchTerm.length > 2) {
-        console.log(this.searchConfig)
         const searchOptions = this.searchConfig ? this.searchConfig : this.searchOptions
         if (this.showHeaderModules.search) {
           searchOptions.keys = this.searchableProps			
         }	
         this.fuseInstance = new Fuse(computedItems, searchOptions)
-        console.log(this.fuseInstance)
         this.fuseInstance.search(this.searchTerm)
         computedItems = this.fuseInstance.search(this.searchTerm).map(result => result.item)
       }
