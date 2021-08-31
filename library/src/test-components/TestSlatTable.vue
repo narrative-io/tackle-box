@@ -91,6 +91,7 @@
       search-sort-header
       :searchableProps="['orderName']"
       :sortOptions="sortOptions"
+      @paginationPageChanged="paginationPageChanged($event)"
     )
       template(v-slot:custom-header-element)
         .test Test Custom Header
@@ -256,6 +257,9 @@ export default {
     ]
   }),
   methods: {
+    paginationPageChanged(page) {
+      console.log(page)
+    },
     selectionChanged(val) {
       console.log(val)
     },

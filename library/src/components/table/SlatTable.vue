@@ -391,7 +391,8 @@ export default {
         this.paginatedItems = this.computedItems
       } else {
         this.paginatedItems = this.computedItems.slice(this.currentPage * this.itemsPerPage - this.itemsPerPage, this.currentPage * this.itemsPerPage)
-      }
+			}
+			this.$emit('paginationPageChanged', page)
     },
     sortByKey(items, key, order = 'ascending') {
       return items.sort(this.compareValues(key, order))

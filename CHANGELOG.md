@@ -80,3 +80,5 @@ Added **expand-custom** to available options for **action** prop in **SlatTable*
 Added **searchConfig** as optional prop **NioSlatTable** to override default Fuse search options
 Added **object** filter type
 Added **filter-header-name-custom** scoped slot to **NioFilterHeader**
+Truncate selections list in **supportingOptions** section of the **Freqquency** variant of **NioFilter**
+Added **paginationPageChanged** event emitted to **NioSlatTable** pagination section
