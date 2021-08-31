@@ -40,6 +40,13 @@
               item-value="value" 
               selection-pills
             )
+              template(v-slot:selection="{ item, index }")
+                span.v-select__selection(v-if="index === 0") 
+                  NioPill(
+                    selected-value
+                  ) {{ item.label ? item.label : item }}
+                span.v-select__selection.more(v-if="index === 1 && filter.customOption.supportingOption.value.length === 2") (+{{ filter.customOption.value.length - 1 }} other)
+                span.v-select__selection.more(v-if="index === 1 && filter.customOption.supportingOption.value.length > 2") (+{{ filter.customOption.supportingOption.value.length - 1 }} others)
 </template>
 
 <script>
@@ -47,6 +54,7 @@
 import NioFilterProperty from '../FilterProperty'
 import NioSelect from '../../Select'
 import NioTextField from '../../TextField'
+import NioPill from '../../Pill'
 
 export default {
   name: 'nio-filter-properties-frequency',
@@ -101,7 +109,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty, NioSelect, NioTextField }
+  components: { NioFilterProperty, NioSelect, NioTextField, NioPill }
 }
 </script>
 

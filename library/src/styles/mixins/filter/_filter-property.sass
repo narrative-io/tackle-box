@@ -235,6 +235,10 @@
           min-width: 18.75rem
         .selection
           flex-grow: 2
+        ::v-deep .v-select__selection 
+          .nio-pill
+            margin-right: 4px
+            margin-top: 2px
         
         .frequency-section .selection 
           .fields
@@ -244,6 +248,7 @@
             ::v-deep .v-input--is-label-active
               .v-input__slot
                 border-color: $c-primary-lighter
+            
       .boolean-custom
         .description
           margin-bottom: 1.5rem
