@@ -193,8 +193,8 @@ export default {
       // all file size are valid
       return invalidFileIndex === -1;
     },
-    validate(files) {
-      // file selection
+    
+    validate(files) {  // file selection
       if (!this.multiple && files.length > 1) {
         return "MULTIFILES_ERROR";
       }
@@ -206,7 +206,6 @@ export default {
       return this.validateFn(files);
     },
     preprocessFiles(files) {
-      console.log(files)
       const result = this.validate(files);
       this.$emit("validated", result, files);
       // validation
@@ -245,6 +244,9 @@ export default {
   watch: {
     state(val) {
       this.currentState = val
+    },
+    currentState(val) {
+      this.$emit('stateChanged', val)
     }
   },
   components: { NioButton, NioIconFramer, NioTextField }

@@ -1,3 +1,4 @@
+
 const IconCart = ['shopping-cart-1', 24, 24, [{
 	fill: 'none',
 	stroke: '#000',
