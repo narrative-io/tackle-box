@@ -29,6 +29,9 @@
 <script>
 
 import UpdatePaymentDialog from './UpdatePaymentDialog'
+import NioButton from '../components/Button'
+import NioSlatTable from '../components/table/SlatTable'
+import NioDialog from '../components/Dialog'
 
 export default {
   name: 'nio-choose-payment-method',
@@ -60,7 +63,7 @@ export default {
       this.computeHeaders()
     },
     selectionChanged() {
-      this.$emit('stepPayloadChanged', {
+      this.$emit('paymentMethodChanged', {
         imageSrc: this.computeImgSrc(this.paymentMethod),
         title: this.computeTitle(this.paymentMethod)
       })
@@ -120,7 +123,7 @@ export default {
       this.refreshPaymentMethod()
     }
   },
-  components: { UpdatePaymentDialog }
+  components: { UpdatePaymentDialog, NioButton, NioSlatTable, NioDialog}
 }
 </script>
 

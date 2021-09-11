@@ -14,6 +14,9 @@
 
 <script>
 
+import NioButton from '../components/Button'
+import NioIconFramer from '../components/icon/IconFramer'
+
 export default {
   mounted() {
     this.prevPaymentMethod = this.paymentMethod
@@ -45,32 +48,12 @@ export default {
       }
     }
   },
-  components: { }
+  components: { NioButton, NioIconFramer }
 };
 </script>
 
 <style lang="sass" scoped>
 
-@import "@narrative.io/tackle-box/src/styles/global/_colors"
+	@import "../styles-private/_update-payment-dialog"
 
-.update-payment-dialog
-  padding: 100px 24px 78px 24px
-  background-color: $c-white
-  border: 1px solid $c-primary-lighter
-  border-radius: 12px
-  display: flex
-  flex-direction: column
-  align-items: center
-  .nio-icon-framer
-    margin-bottom: 16px
-  h3
-    margin-bottom: 8px
-  p    
-    margin-bottom: 40px
-  .actions
-    display: flex
-    justify-content: center
-    align-items: center
-    & > * + * 
-      margin-left: 16px  
 </style>
