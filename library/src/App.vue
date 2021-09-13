@@ -177,6 +177,11 @@
               .nio-p.text-primary-darker.nio-bold Tooltip
             template(v-slot:content) 
               TestTooltip
+          NioExpansionPanel(:key="31")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Choose Payment Method
+            template(v-slot:content) 
+              TestChoosePaymentMethod
 </template>
 
 <script>
@@ -215,6 +220,7 @@ import TestTagsField from './test-components/TestTagsField'
 import TestTextarea from './test-components/TestTextarea'
 import TestTooltip from './test-components/TestTooltip'
 import TestColorPicker from './test-components/TestColorPicker'
+import TestChoosePaymentMethod from './test-components/TestChoosePaymentMethod'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -253,6 +259,7 @@ export default {
     TestTagsField,
     TestTooltip,
     TestColorPicker,
+    TestChoosePaymentMethod,
     NioExpansionPanels,
     NioExpansionPanel
   },

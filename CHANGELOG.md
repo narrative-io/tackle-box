@@ -83,3 +83,4 @@ Added **filter-header-name-custom** scoped slot to **NioFilterHeader**
 Truncate selections list in **supportingOptions** section of the **Freqquency** variant of **NioFilter**
 Added **paginationPageChanged** event emitted to **NioSlatTable** pagination section
 Added **stateChanged** event emmited whenevewr the internal state of **NioFileChooser** changes
+Created **NioChoosePaymentMethod** for apps requiring payment

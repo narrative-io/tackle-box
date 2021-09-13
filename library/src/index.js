@@ -45,6 +45,7 @@ import NioExpansionPanel from './components/ExpansionPanel'
 import NioTagsField from './components/TagsField'
 import NioTooltip from './components/Tooltip'
 import NioColorPicker from './components/ColorPicker'
+import NioChoosePaymentMethod from './components-private/ChoosePaymentMethod'
 
 import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
@@ -103,6 +104,7 @@ const Components = {
 	NioTagsField,
 	NioTooltip,
 	NioColorPicker,
+	NioChoosePaymentMethod,
 	FontAwesomeIcon
 }
 
@@ -150,6 +152,7 @@ Vue.component("NioExpansionPanel", NioExpansionPanel)
 Vue.component("NioTagsField", NioTagsField)
 Vue.component("NioTooltip", NioTooltip)
 Vue.component("NioColorPicker", NioColorPicker)
+Vue.component("NioChoosePaymentMethod", NioChoosePaymentMethod)
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
@@ -196,6 +199,7 @@ export { NioExpansionPanel }
 export { NioTagsField }
 export { NioTooltip }
 export { NioColorPicker }
+export { NioChoosePaymentMethod }
 export { FontAwesomeIcon }
 export { NioRouterModule }
 export { NioHeightObserver }
