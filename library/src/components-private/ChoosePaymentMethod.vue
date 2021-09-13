@@ -132,6 +132,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  @import '../styles-private/_choose-payment-method'  
+
 </style>
 
