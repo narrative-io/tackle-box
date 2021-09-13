@@ -1,7 +1,7 @@
 <template lang="pug">
    .nio-choose-payment-method
     NioSlatTable(
-      v-if="paymentMethod && paymentMethod.paymentMethodId && headers"
+      v-if="items && paymentMethod && paymentMethod.paymentMethodId && headers && !updatePaymentDialog"
       :items="items"
       :columns="headers"
       @selectionChanged="selectionChanged"
@@ -11,7 +11,7 @@
     )
       template(v-slot:footer-actions)
         NioButton(normal-secondary @click="updatePaymentMethod") Update Payment Method
-    .no-payment-method(v-else)    
+    .no-payment-method(v-else-if="!updatePaymentDialog")    
       p.nio-p-large.text-primary-dark You have not added a payment method yet
       NioButton(
         normal-secondary
@@ -32,6 +32,7 @@ import UpdatePaymentDialog from './UpdatePaymentDialog'
 import NioButton from '../components/Button'
 import NioSlatTable from '../components/table/SlatTable'
 import NioDialog from '../components/Dialog'
+import { makeRandomId } from '../modules/helpers'
 
 export default {
   name: 'nio-choose-payment-method',
@@ -40,18 +41,10 @@ export default {
     updatePaymentDialog: false,
     updateId: null,
     selection: null,
-    tableId: Math.random()
+    tableId: makeRandomId(),
+    items: null
   }),	
   computed: {
-    items() {
-      const items = [this.paymentMethod]
-      if (this.invoiceAuthorized) {
-        items.push({
-          id: 0
-        })
-      }
-      return items
-    },
     paymentMethod() { return {...this.nioPaymentMethod, id: 1} },
     invoiceAuthorized() { return this.nioInvoiceAuthorized } 
   },
@@ -60,6 +53,7 @@ export default {
   },
   methods: {
     refreshPaymentMethod() {
+      this.computeItems()
       this.computeHeaders()
     },
     selectionChanged() {
@@ -67,6 +61,15 @@ export default {
         imageSrc: this.computeImgSrc(this.paymentMethod),
         title: this.computeTitle(this.paymentMethod)
       })
+    },
+    computeItems() {
+      const items = [this.paymentMethod]
+      if (this.invoiceAuthorized) {
+        items.push({
+          id: 0
+        })
+      }
+      this.items = items
     },
     computeHeaders() {
       this.headers = [
@@ -108,18 +111,19 @@ export default {
     },
     updatePaymentMethod() {
       this.selection = null
-      this.$emit('stepPayloadChanged', this.selection)
+      this.$emit('paymentMethodChanged', this.selection)
       this.updateId = Math.random()
       window.open('https://app.narrative.io/settings/payment', '_blank')
       this.updatePaymentDialog = true
     },
     closePaymentDialog() {
-      this.tableId = Math.random()
+      this.tableId = makeRandomId()
       this.updatePaymentDialog = false
     }
   },
   watch: {
-    paymentMethod() {
+    paymentMethod(val) {
+      this.items = null
       this.refreshPaymentMethod()
     }
   },

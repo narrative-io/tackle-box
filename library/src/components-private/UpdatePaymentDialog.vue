@@ -1,5 +1,5 @@
 <template lang="pug">
-  .update-payment-dialog(ref="dialog")
+  .nio-update-payment-dialog(ref="dialog")
     NioIconFramer(
       iconName="display-warning"
     )
