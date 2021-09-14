@@ -53,6 +53,11 @@ import { faEyeSlash } from './fa-icons/eye-slash'
 import { faExclamation } from './fa-icons/exclamation'
 import { faCheckCircle } from './fa-icons/check-circle'
 import { faInfoCircle } from './fa-icons/info'
+import { faAsterisk } from './fa-icons/asterisk'
+import { faClock } from './fa-icons/clock'
+import { faFont } from './fa-icons/font'
+import { faHashtag } from './fa-icons/hashtag'
+import { faToggleOn } from './fa-icons/toggle-on'
  
 export default {
   name: 'nio-icon',
@@ -104,6 +109,11 @@ export default {
 		library.add(faExclamation)
 		library.add(faCheckCircle)
 		library.add(faInfoCircle)
+		library.add(faAsterisk)
+		library.add(faClock)
+		library.add(faFont)
+		library.add(faHashtag)
+		library.add(faToggleOn)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },

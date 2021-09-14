@@ -61,6 +61,11 @@
       NioIcon(name="utility-exclamation")
       NioIcon(name="utility-minus")
       NioIcon(name="utility-info")
+      NioIcon(name="utility-asterisk")
+      NioIcon(name="utility-clock")
+      NioIcon(name="utility-font")
+      NioIcon(name="utility-hashtag")
+      NioIcon(name="utility-switch")
 </template>
 
 <script>

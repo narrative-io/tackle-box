@@ -96,7 +96,12 @@ const NioIconLibrary = {
 	"utility-eye-slash": ["fas", "eye-slash"],
 	"utility-check-circle": ["fas", "check-circle"],
 	"utility-chevron-up": ["fas", "chevron-up"],
-	"utility-info": ["fas", "info-circle"]
+	"utility-info": ["fas", "info-circle"],
+	"utility-asterisk": ["fas", "asterisk"],
+	"utility-clock": ["fas", "clock"],
+	"utility-font": ["fas", "font"],
+	"utility-hashtag": ["fas", "hashtag"],
+	"utility-switch": ["fas", "toggle-on"]
 }
 
 export { NioIconLibrary }
