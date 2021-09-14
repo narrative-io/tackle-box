@@ -24,6 +24,13 @@
       append-icon
       iconName="utility-times"
     )
+    NioPill(
+      text="Complete"
+      list-item
+      prepend-icon
+      iconName="utility-check-circle"
+      iconColor="green"
+    )
 </template>
 
 <script>

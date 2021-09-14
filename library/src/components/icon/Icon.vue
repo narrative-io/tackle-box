@@ -42,6 +42,7 @@ import { faPlus } from './fa-icons/plus'
 import { faMinus } from './fa-icons/minus'
 import { faSearch } from './fa-icons/search'
 import { faTimes } from './fa-icons/times'
+import { faTimesCircle } from './fa-icons/times-circle'
 import { faTrash } from './fa-icons/trash'
 import { faDollarSign } from './fa-icons/dollar-sign'
 import { faEnvelope } from './fa-icons/envelope'
@@ -114,6 +115,7 @@ export default {
 		library.add(faFont)
 		library.add(faHashtag)
 		library.add(faToggleOn)
+		library.add(faTimesCircle)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },

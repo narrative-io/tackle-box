@@ -1,7 +1,14 @@
 <template lang="pug">
-  .nio-pill(:class="[supportedVariantClass, {'selected-value': selectedValueAttr, 'tag': tagAttr, 'price': priceAttr, 'append-icon' : appendAttr}]" :style="{backgroundColor: backgroundColor}") 
+  .nio-pill(:class="[supportedVariantClass, {'selected-value': selectedValueAttr, 'tag': tagAttr, 'price': priceAttr, 'append-icon' : appendAttr}, {'disabled': disabled}]" :style="{backgroundColor: backgroundColor}") 
     .nio-pill-content-wrapper
       .nio-pill-content {{ text }}
+        NioIcon.prepend(
+          v-if="prependAttr && iconName"
+          :name="iconName"
+          :size="12"
+          :color="iconColor"
+          @click="$emit('prependClicked')"
+        )
         slot
         NioIcon.append(
           v-if="appendAttr && iconName"
@@ -24,13 +31,16 @@ export default {
     tagAttr: false,
     priceAttr: false,
     appendAttr: false,
+    prependAttr: false,
+    listItemAttr: false,
     supportedVariants: ['new', 'coming', 'updated', 'alpha', 'beta']
   }),
   props: {
     "text": { type: String, required: false },
     "backgroundColor": { type: String, required: false },
     "iconName": { type: String, required: false, default: null },
-    "iconColor": { type: String, required: false, default: '#000' }
+    "iconColor": { type: String, required: false, default: '#000' },
+    "disabled": { type: Boolean, required: false, default: false }
   },
   computed: {
     supportedVariantClass() {
@@ -52,7 +62,12 @@ export default {
       if (attributes.getNamedItem('append-icon')) {
         this.appendAttr = true
       }
-      
+      if (attributes.getNamedItem('prepend-icon')) {
+        this.prependAttr = true
+      }
+      if (attributes.getNamedItem('list-item')) {
+        this.listItemAttr = true
+      }
     }
   },
   mounted() {	

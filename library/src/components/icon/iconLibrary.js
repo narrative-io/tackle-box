@@ -74,6 +74,7 @@ const NioIconLibrary = {
 	"utility-minus": ["fas", "minus"],
 	"utility-chevron-left": ["fas", "chevron-left"],
 	"utility-times": ["fas", "times"],
+	"utility-times-circle": ["fas", "times-circle"],
 	"utility-trash": ["fas", "trash"],
 	"utility-external-link": ["fas", "external-link-alt"],
 	"utility-more": ["fas", "ellipsis-h"],

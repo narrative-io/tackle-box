@@ -42,6 +42,7 @@
       NioIcon(name="utility-plus")
       NioIcon(name="utility-chevron-left")
       NioIcon(name="utility-times")
+      NioIcon(name="utility-times-circle")
       NioIcon(name="utility-external-link")
       NioIcon(name="utility-more")
       NioIcon(name="utility-chevron-left")
