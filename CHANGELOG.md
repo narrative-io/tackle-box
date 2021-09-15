@@ -84,3 +84,5 @@ Truncate selections list in **supportingOptions** section of the **Freqquency** 
 Added **paginationPageChanged** event emitted to **NioSlatTable** pagination section
 Added **stateChanged** event emmited whenevewr the internal state of **NioFileChooser** changes
 Created **NioChoosePaymentMethod** for apps requiring payment
+Added additional icons to library
+Created **prepend-icon** and **list-item** variants of NioPill
