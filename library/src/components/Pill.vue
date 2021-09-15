@@ -1,19 +1,20 @@
 <template lang="pug">
-  .nio-pill(:class="[supportedVariantClass, {'selected-value': selectedValueAttr, 'tag': tagAttr, 'price': priceAttr, 'append-icon' : appendAttr}, {'disabled': disabled}]" :style="{backgroundColor: backgroundColor}") 
+  .nio-pill(:class="[supportedVariantClass, {'selected-value': selectedValueAttr, 'tag': tagAttr, 'price': priceAttr, 'append-icon' : prependAttr, 'prepend-icon' : appendAttr, 'list-item': listItemAttr, 'disabled': disabled}]" :style="{backgroundColor: backgroundColor}") 
     .nio-pill-content-wrapper
-      .nio-pill-content {{ text }}
+      .nio-pill-content
         NioIcon.prepend(
           v-if="prependAttr && iconName"
           :name="iconName"
-          :size="12"
+          :size="iconSizeAttr ? iconSizeAttr : 12"
           :color="iconColor"
           @click="$emit('prependClicked')"
         )
-        slot
+        template {{ text }}
+          slot
         NioIcon.append(
           v-if="appendAttr && iconName"
           :name="iconName"
-          :size="12"
+          :size="iconSizeAttr ? iconSizeAttr : 12"
           :color="iconColor"
           @click="$emit('appendClicked')"
         )
@@ -33,6 +34,7 @@ export default {
     appendAttr: false,
     prependAttr: false,
     listItemAttr: false,
+    iconSizeAttr: null,
     supportedVariants: ['new', 'coming', 'updated', 'alpha', 'beta']
   }),
   props: {
@@ -67,6 +69,7 @@ export default {
       }
       if (attributes.getNamedItem('list-item')) {
         this.listItemAttr = true
+        this.iconSizeAttr = 14
       }
     }
   },
