@@ -67,6 +67,7 @@
       NioIcon(name="utility-font")
       NioIcon(name="utility-hashtag")
       NioIcon(name="utility-switch")
+      NioIcon(name="utility-grip-vertical")
 </template>
 
 <script>

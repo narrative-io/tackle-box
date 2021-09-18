@@ -102,6 +102,7 @@ const NioIconLibrary = {
 	"utility-clock": ["fas", "clock"],
 	"utility-font": ["fas", "font"],
 	"utility-hashtag": ["fas", "hashtag"],
+	"utility-grip-vertical": ["fas", "grip-vertical"],
 	"utility-switch": ["fas", "toggle-on"]
 }
 

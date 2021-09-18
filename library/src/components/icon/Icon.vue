@@ -59,6 +59,7 @@ import { faClock } from './fa-icons/clock'
 import { faFont } from './fa-icons/font'
 import { faHashtag } from './fa-icons/hashtag'
 import { faToggleOn } from './fa-icons/toggle-on'
+import { faGripVertical } from './fa-icons/grip-vertical'
  
 export default {
   name: 'nio-icon',
@@ -112,7 +113,8 @@ export default {
 		library.add(faInfoCircle)
 		library.add(faAsterisk)
 		library.add(faClock)
-		library.add(faFont)
+    library.add(faFont)
+    library.add(faGripVertical)
 		library.add(faHashtag)
 		library.add(faToggleOn)
 		library.add(faTimesCircle)
