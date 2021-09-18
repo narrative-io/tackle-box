@@ -7,7 +7,7 @@
       v-if="iconName"
       :name="iconName"
       color="#415298"
-      :size="size === 'large' ? 48 : 32"
+      :size="iconSize"
     )
 </template>
 
@@ -23,6 +23,20 @@ export default {
   data: () => ({
     size: 'large'
   }),
+  computed: {
+    iconSize() {
+      switch(this.size) {
+        case 'large':
+          return 48
+        case 'small':
+          return 32
+        case 'extra-small':
+          return 12
+        default:
+          return 32
+      }
+    }
+  },
   mounted() {
     this.applyHelperAttributes()
     this.$emit('mounted')
@@ -35,6 +49,9 @@ export default {
       }
       if (attributes.getNamedItem('small')) {
         this.size = 'small'
+      }
+      if (attributes.getNamedItem('extra-small')) {
+        this.size = 'extra-small'
       }
     },	
     click() {

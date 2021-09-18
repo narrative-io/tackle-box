@@ -2,6 +2,11 @@
   .test-icon-framer
     NioIconFramer(iconName="display-new")
     NioIconFramer(small iconName="display-new")
+    NioIconFramer(extra-small iconName="utility-font")
+    NioIconFramer(extra-small iconName="utility-toggle")
+    NioIconFramer(extra-small iconName="utility-hashtag")
+    NioIconFramer(extra-small iconName="utility-clock")
+    NioIconFramer(extra-small iconName="utility-asterisk")
 </template>
 
 <script>
