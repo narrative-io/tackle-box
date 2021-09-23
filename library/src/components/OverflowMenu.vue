@@ -1,7 +1,7 @@
 <template lang="pug">
   .nio-overflow-menu
     v-menu(
-      contentClass="nio-slat-table-item-menu"
+      contentClass="nio-overflow-menu"
       left
       nudgeBottom="20"
     )
@@ -38,4 +38,12 @@ export default {
 
 <style lang="sass" scoped>
   @import '../styles/mixins/_overflow-menu'  
+</style>
+
+<style lang="sass">
+  @import '../styles/global/_colors'
+  @import '../styles/mixins/_menu'
+  .nio-overflow-menu
+    +nio-menu   
+    background-color: $c-white
 </style>
