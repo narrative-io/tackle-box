@@ -86,3 +86,4 @@ Added **stateChanged** event emmited whenevewr the internal state of **NioFileCh
 Created **NioChoosePaymentMethod** for apps requiring payment
 Added additional icons to library
 Created **prepend-icon** and **list-item** variants of NioPill
+Created **NioOverflowMenu**
