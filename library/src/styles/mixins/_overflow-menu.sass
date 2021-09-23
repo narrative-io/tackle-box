@@ -1,4 +1,13 @@
+@import './_menu'
+
 =nio-overflow-menu 
+	+nio-menu   
+	background-color: $c-white
+
+	::v-deep .activator:hover, & > .nio-icon:hover
+		cursor: pointer
+		opacity: 0.5
+
 
 .nio-overflow-menu
 	+nio-overflow-menu 
