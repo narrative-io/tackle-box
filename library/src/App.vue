@@ -182,6 +182,11 @@
               .nio-p.text-primary-darker.nio-bold Choose Payment Method
             template(v-slot:content) 
               TestChoosePaymentMethod
+          NioExpansionPanel(:key="32")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Overflow Menu
+            template(v-slot:content) 
+              TestOverflowMenu
 </template>
 
 <script>
@@ -221,6 +226,7 @@ import TestTextarea from './test-components/TestTextarea'
 import TestTooltip from './test-components/TestTooltip'
 import TestColorPicker from './test-components/TestColorPicker'
 import TestChoosePaymentMethod from './test-components/TestChoosePaymentMethod'
+import TestOverflowMenu from './test-components/TestOverflowMenu'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -260,6 +266,7 @@ export default {
     TestTooltip,
     TestColorPicker,
     TestChoosePaymentMethod,
+    TestOverflowMenu,
     NioExpansionPanels,
     NioExpansionPanel
   },
