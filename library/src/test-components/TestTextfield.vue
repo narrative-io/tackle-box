@@ -4,7 +4,14 @@
       v-model="nullModel" 
       label="search" 
       placeholder="stuff"
-      :rules="[rules.required]"
+      :rulesWithContext="[rules.required]"
+      validate-on-blur
+    )
+    nio-text-field.text-field(
+      v-model="minLengthModel" 
+      label="search" 
+      placeholder="stuff"
+      :rules="[requiredMethod]"
       validate-on-blur
     )
     nio-text-field.text-field(small v-model="nullModel" label="search" placeholder="stuff")
@@ -42,12 +49,27 @@ export default {
   },
   data: () => ({
     model: "02-12-2021",
+    minLength: 4,
+    minLengthModel: null,
     currency: 1,
     nullModel: null,
     rules: {
-      required: function(value) { return !!value || 'Required' }
+      required: function(value) { 
+        return !!value || 'Required' 
+      }
     }
-  })
+  }),
+  methods: {
+    requiredMethod(value) {
+      if (!value) {
+        return 'enter something'
+      } else if (value.length < this.minLength) {
+        return 'at least 4 characters required'
+      } else {
+        return true
+      }
+    }
+  }
 };
 </script>
 

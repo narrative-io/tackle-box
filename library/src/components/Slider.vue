@@ -115,11 +115,13 @@ export default {
     },
     applyMinModel() {
       if (event.key == "Enter") {
+				this.showMinApplyMsg = false
         this.$emit('update', [this.minModel, this.model[1]])
       }
     },
     applyMaxModel(val) {
       if (event.key == "Enter") {
+				this.showMaxApplyMsg = false
         if (this.range) {
           this.$emit('update', [this.model[0], this.maxModel])
         } else {

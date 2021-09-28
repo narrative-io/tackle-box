@@ -9,7 +9,7 @@
       )
         template(v-slot:items)  
           v-list
-            v-list-item Update budget for item # {{ item.id }}
+            v-list-item(@click="updateClicked(item)") Update budget for item # {{ item.id }}
             v-list-item View item {{ item.id }}
             v-list-item Visit item # {{ item.id }}  
 </template>
@@ -41,7 +41,12 @@ export default {
         name: 'Item 4'
       }
     ]
-  })
+  }),
+  methods: {
+    updateClicked(item) {
+      console.log(item)
+    }
+  }
 };
 </script>
 

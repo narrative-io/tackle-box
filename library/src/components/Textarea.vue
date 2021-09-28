@@ -2,7 +2,7 @@
     v-textarea.nio-textarea(
       solo
       v-model="tempModel"
-      :rules="parsedRules"
+      :rules="rules ? rules : parsedRules"
       @input="$emit('update', $event)"
       v-bind="$attrs"
       v-on="$listeners" 
@@ -17,7 +17,8 @@ export default {
 	name: 'nio-textarea',
 	props: {
 		"model": { required: false },
-		"rules": { required: false }
+		"rules": { required: false },
+		"rulesWithContext": { required: false }
 	},
 	model: {
 		prop: "model",
@@ -35,8 +36,8 @@ export default {
 	},
 	methods: {
 		makeRules() {
-			if (this.rules) {
-				this.rules.map((rule, index) => {
+			if (this.rulesWithContext) {
+				this.rulesWithContext.map((rule, index) => {
 					const paramNames = getParamNames(rule)
 					let func = rule.toString()
 					let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
