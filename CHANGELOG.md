@@ -87,3 +87,5 @@ Created **NioChoosePaymentMethod** for apps requiring payment
 Added additional icons to library
 Created **prepend-icon** and **list-item** variants of NioPill
 Created **NioOverflowMenu**
+Changed components using **rules** prop. Pass unmodified :rules value unless **rulesWithContext** prop is used, then parse rules
+Fixed bug in **NioSlider** for message display for value application on text field entry
