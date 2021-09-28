@@ -6,7 +6,7 @@
       :solo="soloAttr || smallAttr || prependAttr || currencyAttr"
       @input="update($event)"
       v-model="tempModel"
-      :rules="parsedRules"
+      :rules="rules ? rules : parsedRules"
       v-bind="$attrs"
       v-on="$listeners"
       ref="nio-text-field-ref"
@@ -49,7 +49,8 @@ export default {
   name: 'nio-text-field',
   props: {
     "model": { required: false },
-    "rules": { required: false },
+		"rules": { required: false },
+		"rulesWithContext": { required: false },
     "iconName": { type: String, required: false, default: null },
     "iconColor": { type: String, required: false },
     "iconSize": { type: Number, required: false }
@@ -78,8 +79,8 @@ export default {
       this.$refs['nio-text-field-ref'].focus()
     },
     parseRules() {
-      if (this.rules) {
-        this.rules.map((rule, index) => {
+      if (this.rulesWithContext) {
+        this.rulesWithContext.map((rule, index) => {
 					const paramNames = this.getParamNames(rule)
 					let func = rule.toString()
 					let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
