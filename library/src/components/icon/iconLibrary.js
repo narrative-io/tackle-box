@@ -82,7 +82,6 @@ const NioIconLibrary = {
 	"utility-arrow-left": ["fas", "arrow-left"],
 	"utility-arrow-right": ["fas", "arrow-right"],
 	"utility-arrow-down": ["fas", "arrow-down"],
-	"utility-trash": ["fas", "trash"],
 	"utility-android": ["fab", 'android'],
 	"utility-apple": ["fab", "apple"],
 	"utility-lock": ["fas", "lock"],
@@ -102,8 +101,8 @@ const NioIconLibrary = {
 	"utility-clock": ["fas", "clock"],
 	"utility-font": ["fas", "font"],
 	"utility-hashtag": ["fas", "hashtag"],
-	"utility-grip-vertical": ["fas", "grip-vertical"],
-	"utility-switch": ["fas", "toggle-on"]
+	"utility-switch": ["fas", "toggle-on"],
+	"utility-numbered-list": ["fas", "list-ol"]
 }
 
 export { NioIconLibrary }

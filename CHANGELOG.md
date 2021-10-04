@@ -89,3 +89,4 @@ Created **prepend-icon** and **list-item** variants of NioPill
 Created **NioOverflowMenu**
 Changed components using **rules** prop. Pass unmodified :rules value unless **rulesWithContext** prop is used, then parse rules
 Fixed bug in **NioSlider** for message display for value application on text field entry
+Added **utility-numbered-list** to fa icons in icon library
