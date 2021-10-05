@@ -1,6 +1,7 @@
 @import './_select'
 
 =nio-tags-field 
+  position: relative
   +nio-select
   height: unset
   border: 0.0625rem solid
@@ -49,7 +50,10 @@
   &:not(.no-items) .v-input.v-input--is-focused
     ::v-deep .v-input__append-inner
       margin-top: 0.5rem !important
-    
+  .validation-error
+    position: absolute
+    top: 8px
+    right: 16px
 
 .nio-tags-field
   +nio-tags-field 
