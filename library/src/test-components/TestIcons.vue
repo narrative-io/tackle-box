@@ -68,6 +68,7 @@
       NioIcon(name="utility-hashtag")
       NioIcon(name="utility-switch")
       NioIcon(name="utility-grip-vertical")
+      NioIcon(name="utility-numbered-list")
 </template>
 
 <script>

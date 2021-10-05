@@ -3,6 +3,8 @@
     NioTagsField(v-model="model" key="1")
     NioTagsField(v-model="model1" :items="items" key="2")
     NioTagsField(v-model="filledModel" key="3")
+    NioTagsField(v-model="intModel" dataType="long" key="4")
+    NioTagsField(v-model="floatModel" dataType="double" key="5")
 </template>
 
 <script>
@@ -16,6 +18,8 @@ export default {
   data: () => ({
    model: [],
    model1: [],
+   intModel: [],
+   floatModel: [],
    filledModel: ['test', 'stuff'],
    delayModel: ['sometimes', 'orange', 'yes'],
    items: ['test', 'another']

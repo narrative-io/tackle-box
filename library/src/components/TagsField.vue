@@ -35,6 +35,9 @@
             :iconColor="clearIconColor()"
             @appendClicked="clear(index)"
           ) {{ item }}
+    .validation-error
+      .nio-p-small.text-error(v-if="integerError") Value must be of type Long (an integer)
+      .nio-p-small.text-error(v-if="floatError") Value must be of type Double (a floating-point number)
 </template>
 
 <script>
@@ -42,19 +45,23 @@
 import NioPill from './Pill'
 import { makeRandomId } from '@/modules/helpers'
 import { getThemeColor } from '@/modules/app/theme/theme'
+import numeral from 'numeral'
 
 export default {
     name: 'nio-tags-field',
     props: {
       "label": { type: String, required: false, default: 'Add tags'},
       "model": { required: true },
-      "items": { required: false, default: null}
+      "items": { required: false, default: null},
+      "dataType": { required: false, default: 'string'}
     },
     data: () => ({
       elementId: null,
       truncateSelections: false,
       selectionsVisible: null,
-      tempModel: []
+      tempModel: [],
+      integerError: false,
+      floatError: false
     }),
     model: {
       prop: "model",
@@ -89,10 +96,45 @@ export default {
         this.tempModel = val
       },
       updateModel(val) {
+        let tempModelCopy = [...this.tempModel]
+        const integerRegex = /^\d+$/
+        const floatRegex = /^[+-]?\d+(\.\d+)?$/    
+    
         if (val) {
-          this.$emit('update', val)
-          this.tempModel = val && val.length ? val : []
+          const lastVal = val[val.length - 1]
+          switch (this.dataType) {
+            case 'string':
+              break;
+            case 'long':
+              if (!integerRegex.test(lastVal)) {
+                tempModelCopy = tempModelCopy.filter(modelVal => modelVal !== lastVal)
+                this.integerError = true
+              } else {
+                this.integerError = false
+              }
+              break;
+            case 'double':
+              if (!floatRegex.test(lastVal)) {
+                tempModelCopy = tempModelCopy.filter(modelVal => modelVal !== lastVal)
+                this.floatError = true
+              } else {
+                this.floatError = false
+                if (integerRegex.test(lastVal)) {
+                  tempModelCopy = tempModelCopy.filter(modelVal => modelVal !== lastVal)
+                  if (!tempModelCopy.includes(lastVal + '.0')) {
+                    tempModelCopy.push(lastVal + '.0')
+                  }
+                }
+              }
+              break;
+            default:
+              break;
+          }
+          this.tempModel = tempModelCopy && tempModelCopy.length ? tempModelCopy : []
+          this.$emit('update', tempModelCopy)
         }
+      
+
       },
       addPasteListener() {
         this.$nextTick(() => {
