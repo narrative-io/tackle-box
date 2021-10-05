@@ -163,7 +163,6 @@ export default {
     },
     watch: {
       model(val) {
-        console.log(val)
         this.updateTempModel(val)
       }
     },
