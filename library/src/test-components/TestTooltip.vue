@@ -7,9 +7,8 @@
       linkText="more info"
       linkHref="http://www.google.com"
       iconName="utility-exclamation"
-      iconColor="#FFFFFF"
-      :iconSize="8"
-      :iconBackground="'red'"
+      iconColor="red"
+      :iconSize="14"
     )
     NioTooltip.test(
       key="1"

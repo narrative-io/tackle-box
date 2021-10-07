@@ -91,3 +91,4 @@ Changed components using **rules** prop. Pass unmodified :rules value unless **r
 Fixed bug in **NioSlider** for message display for value application on text field entry
 Added **utility-numbered-list** to fa icons in icon library
 Added **dataType** prop to NioTagFields with supported values **long** and **double**
+Added **iconSize**, **iconName**, **iconColor** and **iconBackground** optional props to **NioTooltip**

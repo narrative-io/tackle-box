@@ -43,7 +43,7 @@ export default {
     "message": { type: String, required: false, default: '' },
     "heading": { type: String, required: false },
     "linkText": { type: String, required: false },
-    "iconSize": { type: String, required: false, default: 12},
+    "iconSize": { type: Number, required: false, default: 12},
     "linkHref": { type: String, required: false },
     "iconName": { type: String, required: false, default: 'utility-info' },
     "iconColor": { type: String, required: false },
