@@ -1,6 +1,17 @@
 <template lang="pug">
   .test-tooltip
     NioTooltip.test(
+      key="0"
+      heading="Sed do eiusmod tempor incididunt ut"
+      message="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      linkText="more info"
+      linkHref="http://www.google.com"
+      iconName="utility-exclamation"
+      iconColor="#FFFFFF"
+      :iconSize="8"
+      :iconBackground="'red'"
+    )
+    NioTooltip.test(
       key="1"
       heading="Sed do eiusmod tempor incididunt ut"
       message="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."

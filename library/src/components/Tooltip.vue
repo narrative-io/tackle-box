@@ -10,16 +10,18 @@
       v-on="$listeners"
     )
       template(v-slot:activator="{ on, attrs }")
+
         v-btn.activator(
           icon
           v-bind="attrs"
           v-on="on"
         )
+          .background-mask(:style="{backgroundColor: iconBackground}")
           NioIcon(
-            name="utility-info"
+            :name="iconName"
             @click="visible = !visible"
-            :color="iconColor"
-            :size="12"
+            :color="iconColor ? iconColor : defaultIconColor"
+            :size="iconSize"
           )
       .tooltip-title.nio-p.text-primary-darkest.nio-bold(v-if="(data && data.heading) || heading") {{ data && data.heading ? data.heading : heading }}
       .nio-p.text-primary-darker {{ data && data.message ? data.message : message }}
@@ -41,7 +43,11 @@ export default {
     "message": { type: String, required: false, default: '' },
     "heading": { type: String, required: false },
     "linkText": { type: String, required: false },
+    "iconSize": { type: String, required: false, default: 12},
     "linkHref": { type: String, required: false },
+    "iconName": { type: String, required: false, default: 'utility-info' },
+    "iconColor": { type: String, required: false },
+    "iconBackground": { type: String, required: false, default: 'rgba(0,0,0,0)'}
   },
   data() {
     return {
@@ -53,7 +59,7 @@ export default {
     this.applyHelperAttributes()
   },
   computed: {
-    iconColor() {
+    defaultIconColor() {
       return getThemeColor('primary')
     }
   },

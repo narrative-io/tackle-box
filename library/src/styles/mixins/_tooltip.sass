@@ -8,10 +8,19 @@
       cursor: pointer
       opacity: 0.5
   .v-btn.activator
+    position: relative
     vertical-align: top
     text-indent: none
     width: unset !important
     height: unset !important
+    .background-mask
+      width: 13px
+      height: 13px
+      position: absolute
+      z-index: 0
+      border-radius: 6.5px
+    .nio-icon
+      z-index: 1
 
 .nio-tooltip
   +nio-tooltip
