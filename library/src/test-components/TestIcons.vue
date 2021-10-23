@@ -69,6 +69,9 @@
       NioIcon(name="utility-switch")
       NioIcon(name="utility-grip-vertical")
       NioIcon(name="utility-numbered-list")
+      NioIcon(name="utility-tally")
+      NioIcon(name="utility-brackets")
+      NioIcon(name="utility-archive")
 </template>
 
 <script>

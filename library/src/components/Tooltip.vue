@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-tooltip
+  .nio-tooltip 
     v-menu(
       :open-on-hover="openOnHover"
       :open-on-click="!openOnHover"
@@ -9,8 +9,10 @@
       v-bind="$attrs"
       v-on="$listeners"
     )
+      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
+        slot(:name="name" v-bind="data")   
+      slot  
       template(v-slot:activator="{ on, attrs }")
-
         v-btn.activator(
           icon
           v-bind="attrs"
@@ -29,6 +31,7 @@
         a.nio-h6(v-if="(linkText && linkHref) || (data && data.linkText && data.linkHref)" :href="data && data.linkHref ? data.linkHref : linkHref" target="_blank") {{ formatLinkText(data && data.linkText ? data.linkText : linkText) }}
       .custom-content
         slot
+    
 </template>
 
 <script>

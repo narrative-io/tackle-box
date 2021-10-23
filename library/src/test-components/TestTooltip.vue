@@ -10,11 +10,17 @@
       iconColor="red"
       :iconSize="14"
     )
+    .test test
     NioTooltip.test(
       key="1"
       heading="Sed do eiusmod tempor incididunt ut"
       message="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     )
+      template(v-slot:activator="{ on, attrs }")
+        NioButton(
+          v-bind="attrs"
+          v-on="on"
+        )
     NioTooltip.test(
       key="2"
       open-on-hover
@@ -47,6 +53,7 @@
 <script>
 
 import NioTooltip from '../components/Tooltip'
+import NioButton from '../components/Button'
 
 export default {
   components: {

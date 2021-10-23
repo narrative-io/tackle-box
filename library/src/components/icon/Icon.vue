@@ -61,6 +61,9 @@ import { faHashtag } from './fa-icons/hashtag'
 import { faToggleOn } from './fa-icons/toggle-on'
 import { faGripVertical } from './fa-icons/grip-vertical'
 import { faListOl } from './fa-icons/numbered-list' 
+import { faTally } from './fa-icons/tally'
+import { faBrackets } from './fa-icons/brackets'
+import { faArchive } from './fa-icons/archive'
  
 export default {
   name: 'nio-icon',
@@ -120,6 +123,9 @@ export default {
 		library.add(faToggleOn)
 		library.add(faTimesCircle)
 		library.add(faListOl)
+		library.add(faTally)
+		library.add(faBrackets)
+		library.add(faArchive)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },

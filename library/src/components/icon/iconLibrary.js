@@ -103,7 +103,10 @@ const NioIconLibrary = {
 	"utility-hashtag": ["fas", "hashtag"],
 	"utility-switch": ["fas", "toggle-on"],
 	"utility-numbered-list": ["fas", "list-ol"],
-	"utility-grip-vertical": ["fas", "grip-vertical"]
+	"utility-grip-vertical": ["fas", "grip-vertical"],
+	"utility-tally": ["fas", "tally"],
+	"utility-brackets": ["fas", "brackets"],
+	"utility-archive": ["fas", "archive"]
 }
 
 export { NioIconLibrary }
