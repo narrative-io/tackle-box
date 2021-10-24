@@ -93,3 +93,4 @@ Added **utility-numbered-list** to fa icons in icon library
 Added **dataType** prop to NioTagFields with supported values **long** and **double**
 Added **iconSize**, **iconName**, **iconColor** and **iconBackground** optional props to **NioTooltip**
 Added **utility-tally**, **utility-brackets** and **utility-archive** icons to library.
+Added **custom-slat-cell** slot to **NioSlatTable**

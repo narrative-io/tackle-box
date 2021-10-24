@@ -50,8 +50,9 @@
               :value="item.id"
               :key="item.id"
             )
-            
-          td.slat-cell
+          td.slat-cell.custom-slat-cell(v-if="customSlatCell")
+            slot(name="custom-slat-cell" v-bind:item="item")
+          td.slat-cell(v-else)
             NioImageTitleSubtitleSlot(
               :imgSrc="item.slat.image"
               :size="dense ? 'small' : 'normal'"
@@ -144,7 +145,8 @@ export default {
     "searchableProps": { type: Array, required: false },
     "defaultSelection": { type: Array | Number, required: false },
     "headerModules": { type: Array, required: false },
-    "searchConfig": { type: Object, required: false }
+    "searchConfig": { type: Object, required: false },
+    "customSlatCell": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     multiSelect: false,
@@ -386,13 +388,13 @@ export default {
       this.applyPagination(this.currentPage + 1)
     },
     applyPagination(page) {
-			this.$emit('paginationPageChanged', page)
+      this.$emit('paginationPageChanged', page)
       this.currentPage = page
       if (this.itemsPerPage === -1) {
         this.paginatedItems = this.computedItems
       } else {
         this.paginatedItems = this.computedItems.slice(this.currentPage * this.itemsPerPage - this.itemsPerPage, this.currentPage * this.itemsPerPage)
-			}
+      }
     },
     sortByKey(items, key, order = 'ascending') {
       return items.sort(this.compareValues(key, order))

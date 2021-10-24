@@ -216,7 +216,16 @@
       count-header
       key="8"
     )
-   
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      action="expand"
+      key="201113"
+      customSlatCell
+    )
+      template(v-slot:custom-slat-cell="slotProps")
+        .nio-p.text-primary-dark {{ slotProps.item }}   
 </template>
 
 <script>
