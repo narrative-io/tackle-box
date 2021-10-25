@@ -94,3 +94,4 @@ Added **dataType** prop to NioTagFields with supported values **long** and **dou
 Added **iconSize**, **iconName**, **iconColor** and **iconBackground** optional props to **NioTooltip**
 Added **utility-tally**, **utility-brackets** and **utility-archive** icons to library.
 Added **custom-slat-cell** slot to **NioSlatTable**
+Add **.expanded** class to expanded item in **NioSlatTable**
