@@ -1,32 +1,32 @@
 @import '../global/_colors'
 
 =nio-switch
-	::v-deep .v-input--selection-controls__input
-		height: 1.75rem
-		width: 3rem
-		.v-input--switch__track
-			background-color: $c-primary-light
-			height: 1.75rem
-			top: 0rem
-			left: 0rem	
-			width: 3rem
-			border-radius: 0.875rem
-		.v-input--switch__thumb
-			width: 1.375rem
-			height: 1.375rem
-			box-shadow: none
-			top: 0.1875rem	
-			margin-left: 0.1875rem
-	&.v-input--is-label-active
-		::v-deep .v-input--switch__track
-			background-color: $c-primary
-			opacity: 1
-		::v-deep .v-input--switch__thumb
-			background-color: white
-	::v-deep label
-			font-size: 14px
-			line-height: 14px
-			letter-spacing: 0.4px
-			color: $c-primary-dark
+  ::v-deep .v-input--selection-controls__input
+    height: 1.75rem
+    width: 3rem
+    .v-input--switch__track
+      background-color: $c-primary-light
+      height: 1.75rem
+      top: 0rem
+      left: 0rem	
+      width: 3rem
+      border-radius: 0.875rem
+    .v-input--switch__thumb
+      width: 1.375rem
+      height: 1.375rem
+      box-shadow: none
+      top: 0.1875rem	
+      margin-left: 0.1875rem
+  &.v-input--is-label-active
+    ::v-deep .v-input--switch__track
+      background-color: $c-primary
+      opacity: 1
+    ::v-deep .v-input--switch__thumb
+      background-color: white
+  ::v-deep label
+    font-size: 14px
+    line-height: 14px
+    letter-spacing: 0.4px
+    color: $c-primary-dark
 .nio-switch
-	+nio-switch
+  +nio-switch

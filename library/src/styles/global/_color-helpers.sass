@@ -2,15 +2,15 @@
   
 =text-color-modifiers
   @each $name, $hex in $all-colors
-    &-#{$name}
+    &-#{"" + $name}
       color: $hex
 =bg-color-modifiers
   @each $name, $hex in $all-colors
-    &-#{$name}
+    &-#{"" + $name}
       background-color: $hex
 =border-color-modifiers
   @each $name, $hex in $all-colors
-    &-#{$name}
+    &-#{"" + $name}
       border: 2px solid $hex
       border-radius: 12px
   
