@@ -29,7 +29,7 @@
       )
         tr(
           :key="item.id"
-          :class="{'selected': itemSelected(item), 'expanded': expandedItem && item.id === expandedItem.id }"
+          :class="{'selected': itemSelected(item), 'expanded': expandedItemIds.includes(item.id)}"
           @click="handleItemClick(item, expand, isExpanded)"
         )
           td.selection-cell(
@@ -177,7 +177,7 @@ export default {
     fuseInstance: null,
     allSelected: false,
     listingPlain: false,
-    expandedItem: null
+    expandedItemIds: []
   }),
   mounted() {
     this.applyHelperAttributes()
@@ -196,10 +196,12 @@ export default {
         expandFn(!isExpanded)
         if (isExpanded) {
           this.$emit('itemCollapsed', item)
-          this.expandedItem = null
+          this.expandedItemIds = this.expandedItemIds.filter(id => id !== item.id)
         } else {
           this.$emit('itemExpanded', item)
-          this.expandedItem = item
+          if (!this.expandedItemIds.includes(item.id)) {
+            this.expandedItemIds.push(item.id)
+          }
         }
       } else if (this.singleSelect) {
         this.selection = item.id
