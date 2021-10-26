@@ -49,6 +49,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.test-card-grid
      
 </style>

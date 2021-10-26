@@ -42,5 +42,4 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.test-alert  
 </style>

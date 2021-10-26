@@ -32,7 +32,7 @@ import UpdatePaymentDialog from './UpdatePaymentDialog'
 import NioButton from '../components/Button'
 import NioSlatTable from '../components/table/SlatTable'
 import NioDialog from '../components/Dialog'
-import { makeRandomId } from '../modules/helpers'
+import { makeRandomId } from '@/modules/helpers'
 
 export default {
   name: 'nio-choose-payment-method',

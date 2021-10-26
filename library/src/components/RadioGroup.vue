@@ -17,7 +17,7 @@
 
 <script>
 
-import { getParamNames } from '@/modules/helpers'
+import { getParamNames } from '../modules/helpers'
 
 export default {
 	name: 'nio-radio-group',

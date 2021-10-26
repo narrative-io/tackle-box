@@ -22,6 +22,7 @@
     .ctas(v-if="ctaButtons.length > 0")
       NioButton.cta-button(
         v-for="item of ctaButtons"
+        :key="item.label"
         @click="buttonClicked(item)"
         v-bind="buttonVariant(item)"
       ) {{ item.label }}

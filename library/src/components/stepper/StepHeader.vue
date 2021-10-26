@@ -18,10 +18,12 @@
         NioSummarySlat.summary(v-if="customSummary")
           template(v-slot:custom-content)
             slot(name="custom-summary")
-        NioSummarySlat.summary(v-else-if="simpleSummary")(
+        NioSummarySlat.summary(
+          v-else-if="simpleSummary"
           :title="summary.title"
         )
-        NioSummarySlat.summary(v-else)(
+        NioSummarySlat.summary(
+          v-else
           :imageSrc="summary.imageSrc"
           :imageBackground="summary.imageBackground"
           :title="summary.title"

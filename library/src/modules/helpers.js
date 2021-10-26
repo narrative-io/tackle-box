@@ -1,4 +1,5 @@
-function makeRandomId() {
+
+export function makeRandomId() {
 	let result = ''
 	let characters = 'abcdefghijklmnopqrstuvwxyz'
 	let charactersLength = characters.length
@@ -8,14 +9,14 @@ function makeRandomId() {
 	return result;
 }
 
-function toKebabCase(string) {
+export function toKebabCase(string) {
 	return string && string
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
     .map(x => x.toLowerCase())
     .join('-')
 }
 
-function getParamNames(func) {
+export function getParamNames(func) {
 	var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
 	var ARGUMENT_NAMES = /([^\s,]+)/g;
 	var fnStr = func.toString().replace(STRIP_COMMENTS, '');
@@ -25,7 +26,7 @@ function getParamNames(func) {
 	return result;
 }
 
-export {
+export default {
 	makeRandomId,
 	toKebabCase,
 	getParamNames

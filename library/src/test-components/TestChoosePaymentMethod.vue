@@ -21,5 +21,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.test-choose-payment-method
+
 </style>

@@ -90,6 +90,5 @@ export default {
 </style>
 
 <style lang="sass">
-	.nio-slat-table-pagination
 </style>
 

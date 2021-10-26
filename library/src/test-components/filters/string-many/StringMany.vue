@@ -34,6 +34,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.test-filters
  
 </style>

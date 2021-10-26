@@ -29,5 +29,4 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.test-date-field 
 </style>

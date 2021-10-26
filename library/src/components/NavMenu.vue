@@ -6,6 +6,7 @@
         NavMenuItem(
           v-for="item in navGroup.items.filter(item => !item.hidden && !itemHidden(item))" 
           :label="item.label"
+          :key="item.label"
           :icon="item.icon"
           :hidden="item.hidden ? true : itemHidden(item)"
           :locked="item.locked ? true : itemLocked(item)"

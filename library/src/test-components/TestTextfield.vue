@@ -74,6 +74,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.test-text-field
-  
+
 </style>

@@ -25,6 +25,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.test-icon-framer
- 
+
 </style>

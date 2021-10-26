@@ -142,5 +142,4 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .nio-icon
 </style>
