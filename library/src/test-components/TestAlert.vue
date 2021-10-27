@@ -1,18 +1,21 @@
 <template lang="pug">
   .test-alert
     NioAlert(
+      :key="0"
       info
       :visible="showInfo"
       message="Your mom"
       @dismiss="showInfo = false"
     )
     NioAlert(
+      :key="1"
       warning
       :visible="showWarning"
       message="Your mom"
       @dismiss="showWarning = false"
     )
     NioAlert(
+      :key="2"
       warning
       :visible="showWarning"
       :messageTitle="messageTitle"
@@ -20,8 +23,21 @@
       :dismissable="false"
       :linkText="'MORE INFO'"
       :linkHref="'http://www.google.com'"
-
     )
+    NioAlert(
+      :key="3"
+      :visible="showInfo"
+      @dismiss="showInfo = false"
+    )
+      .nio-p.text-primary-darker Custom Content Dismissable
+
+    NioAlert(
+      :key="4"
+      :visible="showInfo"
+      @dismiss="showInfo = false"
+      :dismissable="false"
+    )
+      .nio-p.text-primary-darker Custom Content Non-Dismissable
 </template>
 
 <script>

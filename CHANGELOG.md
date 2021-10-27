@@ -95,3 +95,4 @@ Added **iconSize**, **iconName**, **iconColor** and **iconBackground** optional 
 Added **utility-tally**, **utility-brackets** and **utility-archive** icons to library.
 Added **custom-slat-cell** slot to **NioSlatTable**
 Add **.expanded** class to expanded item in **NioSlatTable**
+Added default slot to NioAlert
