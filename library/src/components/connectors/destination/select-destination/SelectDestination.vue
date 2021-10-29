@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.nio-select-destination
+  .nio-select-destination SELECT DESTINATION
   
 </template>
 
@@ -30,5 +30,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  @import '../../styles/mixins/connectors/destination/select-destination/_select-destination'
+  @import '../../../../styles/mixins/connectors/destination/select-destination/_select-destination'
 </style>

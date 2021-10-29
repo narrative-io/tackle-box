@@ -187,6 +187,11 @@
               .nio-p.text-primary-darker.nio-bold Overflow Menu
             template(v-slot:content) 
               TestOverflowMenu
+          NioExpansionPanel(:key="33")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Connectors
+            template(v-slot:content) 
+              TestConnectors
 </template>
 
 <script>
@@ -227,6 +232,7 @@ import TestTooltip from './test-components/TestTooltip'
 import TestColorPicker from './test-components/TestColorPicker'
 import TestChoosePaymentMethod from './test-components/TestChoosePaymentMethod'
 import TestOverflowMenu from './test-components/TestOverflowMenu'
+import TestConnectors from './test-components/TestConnectors'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -267,6 +273,7 @@ export default {
     TestColorPicker,
     TestChoosePaymentMethod,
     TestOverflowMenu,
+    TestConnectors,
     NioExpansionPanels,
     NioExpansionPanel
   },
