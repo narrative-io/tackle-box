@@ -1,6 +1,6 @@
 <template lang="pug">
   .test-icon-framer
-    NioIconFramer(iconName="display-new")
+    NioIconFramer(iconName="display-lightbulb" iconColor="#B08640" backgroundColor="#fff")
     NioIconFramer(small iconName="display-new")
     NioIconFramer(extra-small iconName="utility-font")
     NioIconFramer(extra-small iconName="utility-toggle")

@@ -11,6 +11,7 @@ import { IconNotification } from './icons/notification'
 import { IconReports } from './icons/reports'
 import { IconQuickStart } from './icons/quick-start'
 import { IconListmanager } from './icons/listmanager'
+import { IconLightbulb } from './icons/lightbulb'
 import { IconSources } from './icons/sources'
 import { IconDestinations } from './icons/destinations'
 import { IconPayment } from './icons/payment'
@@ -40,6 +41,7 @@ const NioIconLibrary = {
 	"display-preferences": IconPreferences,
 	"display-quick-start": IconQuickStart,
 	"display-listmanager": IconListmanager,
+	"display-lightbulb": IconLightbulb,
 	"display-sources": IconSources,
 	"display-destinations": IconDestinations,
 	"display-payment": IconPayment,

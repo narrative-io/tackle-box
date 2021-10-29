@@ -1,6 +1,6 @@
 {
   "name": "@narrative.io/tackle-box",
-  "version": "0.3.15-beta-22",
+  "version": "0.3.15-beta-24",
   "description": "The Narrative Data Stream UI library of user interface components and styles, written for use in Vue.js projects",
   "author": "Narrative, Inc.",
   "repository": {
@@ -42,10 +42,10 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
-    "axios": "^0.21.0",
+    "axios": "^0.21.4",
     "fuse.js": "^6.4.3",
     "numeral": "^2.0.6",
-    "pug": "^3.0.0",
+    "pug": "^3.0.2",
     "pug-plain-loader": "^1.0.0",
     "sass-ffi": "0.0.2",
     "vue": "^2.6.10",
