@@ -48,9 +48,13 @@ import NioColorPicker from './components/ColorPicker'
 import NioChoosePaymentMethod from './components-private/ChoosePaymentMethod'
 import NioOverflowMenu from './components/OverflowMenu'
 
+import NioSelectDestination from './components/connectors/destination/select-destination/SelectDestination'
+import NioDestinationConnectorSettings from './components/connectors/destination/connector-settings/DestinationConnectorSettings'
+
 import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
 import NioHeightObserver from './modules/app/height-observer'
+
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
@@ -107,6 +111,8 @@ const Components = {
 	NioColorPicker,
 	NioChoosePaymentMethod,
 	NioOverflowMenu,
+	NioSelectDestination,
+	NioDestinationConnectorSettings,
 	FontAwesomeIcon
 }
 
@@ -156,6 +162,8 @@ Vue.component("NioTooltip", NioTooltip)
 Vue.component("NioColorPicker", NioColorPicker)
 Vue.component("NioChoosePaymentMethod", NioChoosePaymentMethod)
 Vue.component("NioOverflowMenu", NioOverflowMenu)
+Vue.component("NioSelectDestination", NioSelectDestination)
+Vue.component("NioDestinationConnectorSettings", NioDestinationConnectorSettings)
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
@@ -204,6 +212,8 @@ export { NioTooltip }
 export { NioColorPicker }
 export { NioChoosePaymentMethod }
 export { NioOverflowMenu }
+export { NioSelectDestination }
+export { NioDestinationConnectorSettings }
 export { FontAwesomeIcon }
 export { NioRouterModule }
 export { NioHeightObserver }
