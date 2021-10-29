@@ -7,6 +7,7 @@
       NioIcon(name="display-preferences")
       NioIcon(name="display-quick-start")
       NioIcon(name="display-listmanager")
+      NioIcon(name="display-lightbulb" color="#B08640")
       NioIcon(name="display-sources")
       NioIcon(name="display-destinations")
       NioIcon(name="display-payment")

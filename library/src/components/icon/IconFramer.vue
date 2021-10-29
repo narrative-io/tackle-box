@@ -2,11 +2,12 @@
   div.nio-icon-framer(
     @click="click"
     :class="[`nio-${size}`]"
+    :style="backgroundColor ? `background-color: ${backgroundColor}` : ''"
   )
     NioIcon(
       v-if="iconName"
       :name="iconName"
-      color="#415298"
+      :color="iconColor"
       :size="iconSize"
     )
 </template>
@@ -18,7 +19,9 @@ import NioIcon from './Icon'
 export default {
   name: 'nio-icon-framer',
   props: {
-    "iconName": { type: String, required: true }
+    "iconName": { type: String, required: true },
+    "iconColor": { type: String, required: false },
+    "backgroundColor": { type: String, required: false }
   },
   data: () => ({
     size: 'large'
@@ -35,7 +38,8 @@ export default {
         default:
           return 32
       }
-    }
+    },
+
   },
   mounted() {
     this.applyHelperAttributes()
