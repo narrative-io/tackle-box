@@ -50,6 +50,7 @@ import NioOverflowMenu from './components/OverflowMenu'
 
 import NioSelectDestination from './components/connectors/destination/select-destination/SelectDestination'
 import NioDestinationConnectorSettings from './components/connectors/destination/connector-settings/DestinationConnectorSettings'
+import NioConnectorSettingsControl from './components/connectors/common/ConnectorSettingsControl'
 
 import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
@@ -113,6 +114,7 @@ const Components = {
 	NioOverflowMenu,
 	NioSelectDestination,
 	NioDestinationConnectorSettings,
+	NioConnectorSettingsControl,
 	FontAwesomeIcon
 }
 
@@ -164,6 +166,7 @@ Vue.component("NioChoosePaymentMethod", NioChoosePaymentMethod)
 Vue.component("NioOverflowMenu", NioOverflowMenu)
 Vue.component("NioSelectDestination", NioSelectDestination)
 Vue.component("NioDestinationConnectorSettings", NioDestinationConnectorSettings)
+Vue.component("NioConnectorSettingsControl", NioConnectorSettingsControl)
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
@@ -214,6 +217,7 @@ export { NioChoosePaymentMethod }
 export { NioOverflowMenu }
 export { NioSelectDestination }
 export { NioDestinationConnectorSettings }
+export { NioConnectorSettingsControl }
 export { FontAwesomeIcon }
 export { NioRouterModule }
 export { NioHeightObserver }

@@ -9,6 +9,8 @@
           NioTextField(
             label="Profile Name"
             v-model="model.name"
+            :rules="[rules.required]"
+            validate-on-blur
             @update="updateModel"
           )
       .description.filter
@@ -21,7 +23,8 @@
             v-model="model.description"
             @update="updateModel"
           )
-
+      slot(name="settings-controls")
+    slot(name="external-settings-controls")
 </template>
 
 <script>
@@ -37,6 +40,9 @@ export default {
     model: {
       name: null,
       description: null
+    },
+    rules: {
+      required: function(value) { return !!value || 'Required' }
     }
   }),
   computed: {
