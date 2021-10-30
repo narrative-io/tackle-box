@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-destination-connector-settings-control.filter
+  .nio-connector-settings-control.filter
     .title-description
       .filter-title.nio-h4.text-primary-darker {{ title }}
       .description.nio-p.text-primary-dark {{ description }}

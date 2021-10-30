@@ -23,4 +23,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+h2
+  margin-bottom: 24px
+  margin-top: 48px
 </style>

@@ -24,7 +24,8 @@
             @update="updateModel"
           )
       slot(name="settings-controls")
-    slot(name="external-settings-controls")
+    .external-settings-control(v-if="$slots['external-settings-control']")
+      slot(name="external-settings-control")
 </template>
 
 <script>
