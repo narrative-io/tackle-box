@@ -96,3 +96,7 @@ Added **utility-tally**, **utility-brackets** and **utility-archive** icons to l
 Added **custom-slat-cell** slot to **NioSlatTable**
 Add **.expanded** class to expanded item in **NioSlatTable**
 Added default slot to NioAlert
+
+v0.4.0
+Added **NioDestinationConnectorControl** for content common to all destination connectors
+Added generic **NioConnectorSettingsControl** for use in all connectors
