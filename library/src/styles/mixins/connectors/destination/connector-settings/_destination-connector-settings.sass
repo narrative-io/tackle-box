@@ -1,4 +1,28 @@
+@import '../../../../global/_colors'
+@import '../../../filter/_filter-header'
+
 =nio-destination-connector-settings
+  & .filter + .filter
+    border-top: 1px solid $c-primary-lighter
+    border-top-left-radius: 0px
+    border-top-right-radius: 0px
+  .sub-container
+    border: 1px solid $c-primary-lighter
+    border-radius: 12px
+    overflow: hidden
+  & .sub-container + .sub-container
+    margin-top: 24px
+  .filter
+    +nio-filter-header
+    background-color: $c-white
+    .title-description
+      .description
+        max-width: 360px
+    .filter-value
+      width: 518px
+      .nio-text-field, .nio-tags-field
+        width: 100%
+        flex: unset
 
 .nio-destination-connector-settings
-	+nio-destination-connector-settings
+  +nio-destination-connector-settings
