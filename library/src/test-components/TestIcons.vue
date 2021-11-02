@@ -73,6 +73,7 @@
       NioIcon(name="utility-tally")
       NioIcon(name="utility-brackets")
       NioIcon(name="utility-archive")
+      NioIcon(name="utility-ellipsis-vertical")
 </template>
 
 <script>

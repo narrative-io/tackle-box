@@ -64,6 +64,7 @@ import { faListOl } from './fa-icons/numbered-list'
 import { faTally } from './fa-icons/tally'
 import { faBrackets } from './fa-icons/brackets'
 import { faArchive } from './fa-icons/archive'
+import { faEllipsisV } from './fa-icons/ellipsis-vertical'
  
 export default {
   name: 'nio-icon',
@@ -126,6 +127,7 @@ export default {
 		library.add(faTally)
 		library.add(faBrackets)
 		library.add(faArchive)
+		library.add(faEllipsisV)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },
