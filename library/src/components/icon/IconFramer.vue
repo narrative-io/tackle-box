@@ -7,7 +7,7 @@
     NioIcon(
       v-if="iconName"
       :name="iconName"
-      :color="iconColor"
+      :color="iconColor ? iconColor : getThemeColor('primaryDark')"
       :size="iconSize"
     )
 </template>
@@ -15,6 +15,7 @@
 <script>
 
 import NioIcon from './Icon'
+import { getThemeColor } from '@/modules/app/theme/theme' 
 
 export default {
   name: 'nio-icon-framer',
@@ -60,7 +61,10 @@ export default {
     },	
     click() {
       this.$emit('click')
-    }
+		},
+		getThemeColor(colorName) {
+			return getThemeColor(colorName)
+		}
   }, 
   destroyed() {
     this.$emit('destroyed')
