@@ -18,7 +18,7 @@
           .filter-title.nio-h4.text-primary-darker Description
           .description.nio-p.text-primary-dark Maecenas faucibus mollis interdum.
         .filter-value
-          NioTextField(
+          NioTextarea(
             label="Profile Description"
             v-model="model.description"
             @update="updateModel"
@@ -31,6 +31,7 @@
 <script>
 
 import NioTextField from '../../../TextField'
+import NioTextarea from '../../../Textarea'
 
 export default {
   name: 'nio-destination-connector-settings',
@@ -60,7 +61,7 @@ export default {
   destroyed() {
     this.$emit('destroyed')
   },
-  components: { NioTextField }
+  components: { NioTextField, NioTextarea }
 }
 </script>
 
