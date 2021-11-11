@@ -15,7 +15,7 @@
 <script>
 
 import NioIcon from './Icon'
-import { getThemeColor } from '@/modules/app/theme/theme' 
+import { getThemeColor } from '../../modules/app/theme/theme'
 
 export default {
   name: 'nio-icon-framer',

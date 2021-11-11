@@ -22,6 +22,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
+@import '../../../styles-private/schema/attributes/_attributes-schema'
 </style>
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-  .attribute-properties(v-if="properties")
+  .nio-attribute-properties(v-if="properties")
     .display-row.display-table
       .display-column.properties
         NioExpansionPanels(
@@ -133,23 +133,6 @@ export default {
 
 <style lang="sass" scoped>
 
-@import "../../../styles/global/_colors"
-@import "../../../styles-private/schema/attributes/_display-row"
-@import "../../../styles-private/schema/attributes/_property-settings"
+@import '../../../styles-private/schema/attributes/_attribute-properties'
 
-.attribute-properties
-  width: 100%
-  padding-top: 0rem
-  .nest-spacer
-    width: 1.5rem
-    flex-shrink: 0
-  .attribute-details
-    padding: 1.5rem 0rem 2rem 0rem
-    display: flex
-    .details-content
-      display: flex
-      flex-direction: column
-      flex-grow: 2
-  .display-row
-    +nio-display-row
 </style>
