@@ -196,7 +196,7 @@
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Attributes Schema
             template(v-slot:content) 
-              TestAttributesSchema
+              TestAttributesList
 </template>
 
 <script>
@@ -238,7 +238,7 @@ import TestColorPicker from './test-components/TestColorPicker'
 import TestChoosePaymentMethod from './test-components/TestChoosePaymentMethod'
 import TestOverflowMenu from './test-components/TestOverflowMenu'
 import TestConnectors from './test-components/TestConnectors'
-import TestAttributesSchema from './test-components/schema/attributes/TestAttributesSchema'
+import TestAttributesList from './test-components/schema/attributes/TestAttributesList'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -280,7 +280,7 @@ export default {
     TestChoosePaymentMethod,
     TestOverflowMenu,
     TestConnectors,
-    TestAttributesSchema,
+    TestAttributesList,
     NioExpansionPanels,
     NioExpansionPanel,
   },

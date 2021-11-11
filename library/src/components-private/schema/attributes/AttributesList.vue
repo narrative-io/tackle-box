@@ -20,7 +20,7 @@
               .nio-slat-title-subtitle
                 .nio-slat-title.nio-h4.text-primary-darker.nio-bold  {{ attribute.display_name }}
                 .nio-slat-subtitle.nio-p.text-primary-dark(v-if="attribute.description") {{ attribute.description}}
-            .property-settings
+            .property-settings(v-if="!hideIndicators")
               .pills-container(v-if="displayOnly && attribute.type !== 'object' && attribute.type !=='array'")
                 NioPill(
                   list-item
@@ -56,6 +56,7 @@
               displayOnly
               :properties="attribute.properties"
               :nest="1"
+              :hideIndicators="hideIndicators"
             )
           .attribute-details(
             v-else 
@@ -90,8 +91,8 @@ import NioSwitch from '../../../components/Switch'
 export default {
   props: {
     "attributes": { type: Array, required: true },
-    "displayOnly": { type: Boolean, required: false, default: false }
-
+    "displayOnly": { type: Boolean, required: false, default: false },
+    "hideIndicators": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     openPanels: []

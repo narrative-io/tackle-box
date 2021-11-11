@@ -54,7 +54,6 @@ import NioConnectorSettingsControl from './components/connectors/common/Connecto
 
 import NioAttributeProperties from './components-private/schema/attributes/AttributeProperties'
 import NioAttributesList from './components-private/schema/attributes/AttributesList'
-import NioAttributesSchema from './components-private/schema/attributes/AttributesSchema'
 
 import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
@@ -121,7 +120,6 @@ const Components = {
 	NioConnectorSettingsControl,
 	NioAttributeProperties,
 	NioAttributesList,
-	NioAttributesSchema,
 	FontAwesomeIcon
 }
 
@@ -176,7 +174,6 @@ Vue.component("NioDestinationConnectorSettings", NioDestinationConnectorSettings
 Vue.component("NioConnectorSettingsControl", NioConnectorSettingsControl)
 Vue.component("NioAttributeProperties", NioAttributeProperties)
 Vue.component("NioAttributesList", NioAttributesList)
-Vue.component("NioAttributesSchema", NioAttributesSchema)
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
@@ -230,7 +227,6 @@ export { NioDestinationConnectorSettings }
 export { NioConnectorSettingsControl }
 export { NioAttributeProperties }
 export { NioAttributesList }
-export { NioAttributesSchema }
 export { FontAwesomeIcon }
 export { NioRouterModule }
 export { NioHeightObserver }
