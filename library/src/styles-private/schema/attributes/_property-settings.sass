@@ -1,0 +1,41 @@
+
+=nio-property-settings
+  .pills-container
+    .nio-pill
+      width: 122px
+      &:hover 
+        cursor: initial
+    .negative
+      background-color: $c-canvas
+      opacity: 0.5
+    .subdued
+      opacity: 0.45
+    .nio-pill
+      margin-right: 8px
+      &.append-icon, &.prepend-icon
+        .append, .prepend
+          &:hover
+            cursor: default
+            ::v-deep svg
+              opacity: 1
+      ::v-deep .nio-pill-content
+        display: flex
+  .property-actions
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    width: unset
+    padding-right: 26px
+    .nio-switch
+      margin-bottom: 0px
+      margin-top: 0px
+      width: 50px
+      margin-left: 16px
+      .v-input__slot
+        margin-bottom: 0px
+      .v-messages
+        display: none
+    & > .nio-switch + .nio-switch
+      margin-left: 8px
+    .nio-p-small
+      margin-left: 4px
