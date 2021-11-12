@@ -51,7 +51,7 @@
                 .nio-p-small.text-primary-dark Filterable  
         template(v-slot:content) 
           .display-row.display-table(v-if="attribute.properties")
-            NioAttributeProperties(
+            NioSchemaProperties(
               :key="index"
               displayOnly
               :properties="attribute.properties"
@@ -81,7 +81,7 @@
 <script>
 
 import { getReadableType, replacePropertyRefs, getDataTypeIconName } from '../../../modules/app/attribute/attributeModule'
-import NioAttributeProperties from './AttributeProperties'
+import NioSchemaProperties from './SchemaProperties'
 import NioExpansionPanels from '../../../components/ExpansionPanels'
 import NioExpansionPanel from '../../../components/ExpansionPanel'
 import NioIcon from '../../../components/icon/Icon'
@@ -105,7 +105,7 @@ export default {
       return getDataTypeIconName(dataType)
     }
   },
-  components: { NioAttributeProperties, NioExpansionPanels, NioExpansionPanel, NioIcon, NioPill, NioSwitch }
+  components: { NioSchemaProperties, NioExpansionPanels, NioExpansionPanel, NioIcon, NioPill, NioSwitch }
 }
 </script>
 

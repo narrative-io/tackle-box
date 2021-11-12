@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-attribute-properties(v-if="properties")
+  .nio-schema-properties(v-if="properties")
     .display-row.display-table
       .display-column.properties
         NioExpansionPanels(
@@ -55,13 +55,13 @@
             template(v-slot:content)  
               .display-row(v-if="properties[propertyName].properties")
                 .nest-spacer(v-for="index in nest")
-                AttributeProperties(
+                SchemaProperties(
                   :properties="properties[propertyName].properties"
                   @updatePayload="updatePayload"
                   :displayOnly="displayOnly"
                   :nest="nest + 1"
                 )
-              .attribute-details(
+              .property-details(
                 v-else 
               )
                 .nest-spacer(v-for="index in nest")
@@ -128,12 +128,12 @@ export default {
       return getDataTypeIconName(dataType)
     }
   },
-  components: { AttributeProperties: () => import('./AttributeProperties.vue'), NioExpansionPanels, NioExpansionPanel, NioIcon, NioPill, NioSwitch }
+  components: { SchemaProperties: () => import('./SchemaProperties.vue'), NioExpansionPanels, NioExpansionPanel, NioIcon, NioPill, NioSwitch }
 }
 </script>
 
 <style lang="sass" scoped>
 
-@import '../../../styles-private/schema/attributes/_attribute-properties'
+@import '../../../styles-private/schema/attributes/_schema-properties'
 
 </style>

@@ -1,7 +1,7 @@
 @import "../../../styles/global/_colors"
 @import "../../../styles-private/schema/attributes/_display-row"
 @import "../../../styles-private/schema/attributes/_property-settings"
-  
+@import './_schema-property-details'
 =nio-attributes-list
   margin-top: 1rem
   .nio-expansion-panels.root-panels
@@ -26,12 +26,7 @@
     padding: 0rem !important
     background-color: $c-canvas !important
   .attribute-details
-    padding: 1.5rem 0rem 2rem 0rem
-    display: flex
-    .details-content
-      display: flex
-      flex-direction: column
-      flex-grow: 2
+    +nio-schema-property-details
   .display-row
     +nio-display-row
     .enum
