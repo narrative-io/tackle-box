@@ -200,7 +200,7 @@ let hasExportableChild = (attribute) => {
 			})	
 			return exportable
 		} else if (attribute.items) {
-
+			return hasExportableChild(attribute.items)
 		} else {
 			return false
 		}

@@ -1,8 +1,8 @@
-@import "../../../styles/global/_colors"
-@import "../../../styles-private/schema/attributes/_display-row"
-@import "../../../styles-private/schema/attributes/_property-settings"
+@import "../../styles/global/_colors"
+@import "./_display-row"
+@import "./_property-settings"
 @import './_schema-property-details'
-=nio-attributes-list
+=nio-schema
   margin-top: 1rem
   .nio-expansion-panels.root-panels
     margin-top: 0.5rem
@@ -25,7 +25,7 @@
   ::v-deep .v-expansion-panel-content
     padding: 0rem !important
     background-color: $c-canvas !important
-  .attribute-details
+  .property-details
     +nio-schema-property-details
   .display-row
     +nio-display-row
@@ -65,5 +65,5 @@
     .property-settings
       +nio-property-settings
 
-.nio-attributes-list
-  +nio-attributes-list
+.nio-schema
+  +nio-schema

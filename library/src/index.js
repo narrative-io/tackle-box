@@ -52,13 +52,12 @@ import NioSelectDestination from './components/connectors/destination/select-des
 import NioDestinationConnectorSettings from './components/connectors/destination/connector-settings/DestinationConnectorSettings'
 import NioConnectorSettingsControl from './components/connectors/common/ConnectorSettingsControl'
 
-import NioAttributeProperties from './components-private/schema/attributes/AttributeProperties'
-import NioAttributesList from './components-private/schema/attributes/AttributesList'
+import NioSchema from './components-private/schema/Schema'
+import NioSchemaProperties from './components-private/schema/SchemaProperties'
 
 import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
 import NioHeightObserver from './modules/app/height-observer'
-
 
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
@@ -118,8 +117,8 @@ const Components = {
 	NioSelectDestination,
 	NioDestinationConnectorSettings,
 	NioConnectorSettingsControl,
-	NioAttributeProperties,
-	NioAttributesList,
+	NioSchema,
+	NioSchemaProperties,
 	FontAwesomeIcon
 }
 
@@ -172,8 +171,8 @@ Vue.component("NioOverflowMenu", NioOverflowMenu)
 Vue.component("NioSelectDestination", NioSelectDestination)
 Vue.component("NioDestinationConnectorSettings", NioDestinationConnectorSettings)
 Vue.component("NioConnectorSettingsControl", NioConnectorSettingsControl)
-Vue.component("NioAttributeProperties", NioAttributeProperties)
-Vue.component("NioAttributesList", NioAttributesList)
+Vue.component("NioSchema", NioSchema)
+Vue.component("NioSchemaProperties", NioSchemaProperties)
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
@@ -225,8 +224,8 @@ export { NioOverflowMenu }
 export { NioSelectDestination }
 export { NioDestinationConnectorSettings }
 export { NioConnectorSettingsControl }
-export { NioAttributeProperties }
-export { NioAttributesList }
+export { NioSchema }
+export { NioSchemaProperties }
 export { FontAwesomeIcon }
 export { NioRouterModule }
 export { NioHeightObserver }

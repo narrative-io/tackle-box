@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-attributes-list
+  .nio-schema
     NioExpansionPanels.root-panels(
       v-model="openPanels"
       multiple
@@ -59,7 +59,7 @@
               :hideIndicators="hideIndicators"
               :showExportedOnly="showExportedOnly"
             )
-          .attribute-details(
+          .property-details(
             v-else 
           )
             .details-content
@@ -81,15 +81,16 @@
 
 <script>
 
-import { getReadableType, replacePropertyRefs, getDataTypeIconName, isExportable } from '../../../modules/app/attribute/attributeModule'
+import { getReadableType, replacePropertyRefs, getDataTypeIconName, isExportable } from '../../modules/app/schema/attributeModule'
 import NioSchemaProperties from './SchemaProperties'
-import NioExpansionPanels from '../../../components/ExpansionPanels'
-import NioExpansionPanel from '../../../components/ExpansionPanel'
-import NioIcon from '../../../components/icon/Icon'
-import NioPill from '../../../components/Pill'
-import NioSwitch from '../../../components/Switch'
+import NioExpansionPanels from '../../components/ExpansionPanels'
+import NioExpansionPanel from '../../components/ExpansionPanel'
+import NioIcon from '../../components/icon/Icon'
+import NioPill from '../../components/Pill'
+import NioSwitch from '../../components/Switch'
 
 export default {
+	name: 'nio-schema',
   props: {
     "attributes": { type: Array, required: true },
     "displayOnly": { type: Boolean, required: false, default: false },
@@ -127,5 +128,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../../../styles-private/schema/attributes/_attributes-list'
+@import '../../styles-private/schema/_schema'
 </style>

@@ -62,6 +62,7 @@
                   :displayOnly="displayOnly"
                   :nest="nest + 1"
                   :showExportedOnly="showExportedOnly"
+                  :hideIndicators="hideIndicators"
                 )
               .property-details(
                 v-else 
@@ -86,12 +87,12 @@
 
 <script>
 
-import { getReadableType, setSelectionRecursively, getDataTypeIconName, isExportable } from '../../../modules/app/attribute/attributeModule'
-import NioExpansionPanels from '../../../components/ExpansionPanels'
-import NioExpansionPanel from '../../../components/ExpansionPanel'
-import NioIcon from '../../../components/icon/Icon'
-import NioPill from '../../../components/Pill'
-import NioSwitch from '../../../components/Switch'
+import { getReadableType, setSelectionRecursively, getDataTypeIconName, isExportable } from '../../modules/app/schema/attributeModule'
+import NioExpansionPanels from '../../components/ExpansionPanels'
+import NioExpansionPanel from '../../components/ExpansionPanel'
+import NioIcon from '../../components/icon/Icon'
+import NioPill from '../../components/Pill'
+import NioSwitch from '../../components/Switch'
 
 export default {
   props: {
@@ -146,6 +147,6 @@ export default {
 
 <style lang="sass" scoped>
 
-@import '../../../styles-private/schema/attributes/_schema-properties'
+@import '../../styles-private/schema/_schema-properties'
 
 </style>
