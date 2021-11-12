@@ -5,7 +5,7 @@
       multiple
     )
       NioExpansionPanel(
-        v-for="(attribute, index) of attributes"
+        v-for="(attribute, index) of computeAttributes"
         :key="index"
       )
         template(v-slot:header) 
@@ -57,6 +57,7 @@
               :properties="attribute.properties"
               :nest="1"
               :hideIndicators="hideIndicators"
+              :showExportedOnly="showExportedOnly"
             )
           .attribute-details(
             v-else 
@@ -73,14 +74,14 @@
                     .pills
                       NioPill(
                         tag
-                        v-for="value of propertiesattribute.enum"
+                        v-for="value of attribute.enum"
                       ) {{ value }}
                   .nio-p.text-primary-dark(v-else) Any value
 </template>
 
 <script>
 
-import { getReadableType, replacePropertyRefs, getDataTypeIconName } from '../../../modules/app/attribute/attributeModule'
+import { getReadableType, replacePropertyRefs, getDataTypeIconName, isExportable } from '../../../modules/app/attribute/attributeModule'
 import NioSchemaProperties from './SchemaProperties'
 import NioExpansionPanels from '../../../components/ExpansionPanels'
 import NioExpansionPanel from '../../../components/ExpansionPanel'
@@ -92,11 +93,27 @@ export default {
   props: {
     "attributes": { type: Array, required: true },
     "displayOnly": { type: Boolean, required: false, default: false },
-    "hideIndicators": { type: Boolean, required: false, default: false }
+    "hideIndicators": { type: Boolean, required: false, default: false },
+    "showExportedOnly": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     openPanels: []
   }),	
+  computed: {
+    computeAttributes() {
+      if (this.showExportedOnly) {
+        const exportable = []
+        this.attributes.map(attribute => {
+          if (isExportable(attribute)) {
+            exportable.push(attribute)
+          }
+        })
+        return exportable
+      } else {
+        return this.attributes
+      }
+    }
+  },
   methods: {
     getPropertyType(property) {
       return getReadableType(property)

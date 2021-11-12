@@ -178,6 +178,35 @@ let replacePropertyRefs = (property, attributes) => {
 	}
 }
 
+let isExportable = (attribute) => {
+	if (attribute.deliverable) {
+		return true
+	} else {
+		if (hasExportableChild(attribute)) {
+			return true
+		}
+	}
+}
+let hasExportableChild = (attribute) => {
+	if (attribute.deliverable) {
+		return true
+	} else {
+		if (attribute.properties) {
+			let exportable = false
+			Object.keys(attribute.properties).forEach(key => {
+				if (hasExportableChild(attribute.properties[key])) {
+					exportable = true
+				}
+			})	
+			return exportable
+		} else if (attribute.items) {
+
+		} else {
+			return false
+		}
+	}
+}
+
 export {
 	makePathString,
 	getAttributeFromPath,
@@ -187,5 +216,6 @@ export {
 	getDataTypeIconName,
 	replacePropertyRefs,
 	makeSelected,
-	makeSelectedFromSchemaPreset
+	makeSelectedFromSchemaPreset,
+	isExportable
 }

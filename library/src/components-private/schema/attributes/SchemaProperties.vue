@@ -1,13 +1,14 @@
 <template lang="pug">
-  .nio-schema-properties(v-if="properties")
-    .display-row.display-table
+  .nio-schema-properties(v-if="computedProperties")
+    .test
+    .display-row.display-table 
       .display-column.properties
         NioExpansionPanels(
           multiple
           v-model="openPanels"
         )
           NioExpansionPanel(
-            v-for="(propertyName, index) of makeProperties(properties)"
+            v-for="(propertyName, index) of computedProperties"
             :key="index"
           )
             template(v-slot:header) 
@@ -60,6 +61,7 @@
                   @updatePayload="updatePayload"
                   :displayOnly="displayOnly"
                   :nest="nest + 1"
+                  :showExportedOnly="showExportedOnly"
                 )
               .property-details(
                 v-else 
@@ -79,13 +81,12 @@
                             tag
                             v-for="value of properties[propertyName].enum"
                           ) {{ value }}
-                      .nio-p.text-primary-dark(v-else) Any value
-                  
+                      .nio-p.text-primary-dark(v-else) Any value   
 </template>
 
 <script>
 
-import { getReadableType, setSelectionRecursively, getDataTypeIconName } from '../../../modules/app/attribute/attributeModule'
+import { getReadableType, setSelectionRecursively, getDataTypeIconName, isExportable } from '../../../modules/app/attribute/attributeModule'
 import NioExpansionPanels from '../../../components/ExpansionPanels'
 import NioExpansionPanel from '../../../components/ExpansionPanel'
 import NioIcon from '../../../components/icon/Icon'
@@ -97,23 +98,34 @@ export default {
     "properties": { type: Object, required: false, default: null},
     "display-only": { type: Boolean, required: false, default: false },
     "nest": { type: Number, required: true},
-    "hideIndicators": { type: Boolean, required: false, default: false }
+    "hideIndicators": { type: Boolean, required: false, default: false },
+    "showExportedOnly": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     openPanels: []
   }),
   computed: {
     slatWidth() {
-      return `${ 500 - 24 * this.nest }px` 
+      return `${ 500 - 24 * this.nest }px`
+    },
+    computedProperties() {
+      if (this.showExportedOnly) {
+        const exportable = []
+        Object.keys(this.properties).map(key => {
+          if (isExportable(this.properties[key])) {
+            exportable.push(key)
+          }
+        })
+        return exportable
+      } else {
+        return Object.keys(this.properties)
+      }
     }
   },
   methods: {
     getPropertyType(property) {
       return getReadableType(property)
-    },
-    makeProperties(item) {
-      return Object.keys(item)
-    },
+    }, 
     updateRootPayload(property, selectionType, value) {
       if (selectionType === 'deliverable') {
         setSelectionRecursively(property, 'filterable', value)
