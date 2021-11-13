@@ -21,7 +21,7 @@
                 .nio-slat-title.nio-h4.text-primary-darker.nio-bold  {{ attribute.display_name }}
                 .nio-slat-subtitle.nio-p.text-primary-dark(v-if="attribute.description") {{ attribute.description}}
             .property-settings(v-if="!hideIndicators")
-              .pills-container(v-if="displayOnly && attribute.type !== 'object' && attribute.type !=='array'")
+              .pills-container(v-if="disableInteractions && attribute.type !== 'object' && attribute.type !=='array'")
                 NioPill(
                   list-item
                   prepend-icon
@@ -36,7 +36,7 @@
                   :iconColor="attribute.filterable ? '#43B463' : '#AEB9E8'"
                   :class="attribute.filterable ? '' : 'negative'"
                 ) Filterable
-              .property-actions(v-else-if="!displayOnly")
+              .property-actions(v-else-if="!disableInteractions")
                 NioSwitch(
                   @click.stop=""
                   v-model="attribute.deliverable"
@@ -53,7 +53,7 @@
           .display-row.display-table(v-if="attribute.properties")
             NioSchemaProperties(
               :key="index"
-              displayOnly
+              disableInteractions
               :properties="attribute.properties"
               :nest="1"
               :hideIndicators="hideIndicators"
@@ -93,7 +93,7 @@ export default {
 	name: 'nio-schema',
   props: {
     "attributes": { type: Array, required: true },
-    "displayOnly": { type: Boolean, required: false, default: false },
+    "disableInteractions": { type: Boolean, required: false, default: false },
     "hideIndicators": { type: Boolean, required: false, default: false },
     "showExportedOnly": { type: Boolean, required: false, default: false }
   },

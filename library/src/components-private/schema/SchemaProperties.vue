@@ -24,7 +24,7 @@
                   .nio-slat-title-subtitle
                     .nio-slat-title.nio-h4.text-primary-darker.nio-bold(:style="{width: slatWidth}") {{ propertyName }}
                     .nio-slat-subtitle.nio-p.text-primary-dark(v-if="properties[propertyName].description" :style="{width: slatWidth}") {{ properties[propertyName].description }}
-                .property-settings(v-if="!hideIndicators && displayOnly && properties[propertyName].type !== 'object' && properties[propertyName].type !=='array'")
+                .property-settings(v-if="!hideIndicators && disableInteractions && properties[propertyName].type !== 'object' && properties[propertyName].type !=='array'")
                   .pills-container
                     NioPill(
                       list-item
@@ -40,7 +40,7 @@
                       :iconColor="properties[propertyName].filterable ? '#43B463' : '#AEB9E8'"
                       :class="properties[propertyName].filterable ? '' : 'negative'"
                     ) Filterable
-                .property-actions(v-else-if="!hideIndicators && !displayOnly")
+                .property-actions(v-else-if="!hideIndicators && !disableInteractions")
                   NioSwitch(
                     @click.stop=""
                     v-model="properties[propertyName].deliverable"
@@ -59,7 +59,7 @@
                 SchemaProperties(
                   :properties="properties[propertyName].properties"
                   @updatePayload="updatePayload"
-                  :displayOnly="displayOnly"
+                  :disableInteractions="disableInteractions"
                   :nest="nest + 1"
                   :showExportedOnly="showExportedOnly"
                   :hideIndicators="hideIndicators"
@@ -97,7 +97,7 @@ import NioSwitch from '../../components/Switch'
 export default {
   props: {
     "properties": { type: Object, required: false, default: null},
-    "display-only": { type: Boolean, required: false, default: false },
+    "disableInteractions": { type: Boolean, required: false, default: false },
     "nest": { type: Number, required: true},
     "hideIndicators": { type: Boolean, required: false, default: false },
     "showExportedOnly": { type: Boolean, required: false, default: false }
