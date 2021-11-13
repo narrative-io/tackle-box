@@ -20,7 +20,7 @@
               .nio-slat-title-subtitle
                 .nio-slat-title.nio-h4.text-primary-darker.nio-bold  {{ attribute.display_name }}
                 .nio-slat-subtitle.nio-p.text-primary-dark(v-if="attribute.description") {{ attribute.description}}
-            .property-settings(v-if="!hideIndicators")
+            .property-settings(v-if="!hideIndicators && attributes")
               .pills-container(v-if="disableInteractions && attribute.type !== 'object' && attribute.type !=='array'")
                 NioPill(
                   list-item
@@ -53,11 +53,11 @@
           .display-row.display-table(v-if="attribute.properties")
             NioSchemaProperties(
               :key="index"
-              disableInteractions
+              :disableInteractions="disableInteractions"
               :properties="attribute.properties"
               :nest="1"
-              :hideIndicators="hideIndicators"
-              :showExportedOnly="showExportedOnly"
+              :hideIndicators="hideIndicators || !attributes ? true : false"
+              :showExportedOnly="!attributes || showExportedOnly"
             )
           .property-details(
             v-else 
