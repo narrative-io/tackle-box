@@ -102,3 +102,4 @@ Added **NioDestinationConnectorControl** for content common to all destination c
 Added generic **NioConnectorSettingsControl** for use in all connectors
 Added **utility-ellipsis-vertical** icon
 Added **NioAttributesList** and **NioAttributeProperties** to private components
+Added **NioSchema** and **NioSchemaProperties** components

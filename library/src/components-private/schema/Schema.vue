@@ -92,7 +92,9 @@ import NioSwitch from '../../components/Switch'
 export default {
 	name: 'nio-schema',
   props: {
-    "attributes": { type: Array, required: true },
+		"attributes": { type: Array, required: false },
+		"datasets": { type: Array, required: false },
+		"columnSets": { type: Array, required: false },
     "disableInteractions": { type: Boolean, required: false, default: false },
     "hideIndicators": { type: Boolean, required: false, default: false },
     "showExportedOnly": { type: Boolean, required: false, default: false }
@@ -102,17 +104,33 @@ export default {
   }),	
   computed: {
     computeAttributes() {
-      if (this.showExportedOnly) {
-        const exportable = []
-        this.attributes.map(attribute => {
-          if (isExportable(attribute)) {
-            exportable.push(attribute)
-          }
-        })
-        return exportable
-      } else {
-        return this.attributes
-      }
+			if (this.attributes && this.attributes.length > 0) {
+				if (this.showExportedOnly) {
+					const exportable = []
+					this.attributes.map(attribute => {
+						if (isExportable(attribute)) {
+							exportable.push(attribute)
+						}
+					})
+					return exportable
+				} else {
+					return this.attributes
+				}
+			} else if (this.datasets && this.datasets.length > 0 && this.columnSets && this.columnSets.length > 0) { // TODO Add support for nested column sets when available in seller studio
+				const attributes = []
+				this.columnSets.forEach(columnSet => {
+					const dataset = this.datasets.find(dataset =>  dataset.id === columnSet.dataset_id)
+					columnSet.fields.forEach(field => {
+						if (field.exported) {
+							attributes.push({
+								...dataset.schema.properties[field.field],
+								display_name: field.field
+							})
+						}
+					})
+				})
+				return attributes
+			}
     }
   },
   methods: {
