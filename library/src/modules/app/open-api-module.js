@@ -4,12 +4,13 @@ import axios from 'axios'
 
 let _initCallbackFn = null
 let _initialized = false
+let _token = null
 
 const openApiModule = {
 	initCallback(callbackFn) {
 		_initCallbackFn = callbackFn
 		if (_initialized) {
-			_initCallbackFn()
+			_initCallbackFn(_token)
 		}
 	},	
 	setupAxios(baseurl, token) {
@@ -21,7 +22,8 @@ const openApiModule = {
 		}
 		Vue.prototype.$nioOpenApi = axios.create(axiosConfig)
 		_initialized = true
-		_initCallbackFn()
+		_token = token
+		_initCallbackFn(token)
 	}
 }
 
