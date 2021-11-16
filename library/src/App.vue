@@ -192,6 +192,11 @@
               .nio-p.text-primary-darker.nio-bold Connectors
             template(v-slot:content) 
               TestConnectors
+          NioExpansionPanel(:key="34")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Attributes Schema
+            template(v-slot:content) 
+              TestSchema
 </template>
 
 <script>
@@ -233,6 +238,7 @@ import TestColorPicker from './test-components/TestColorPicker'
 import TestChoosePaymentMethod from './test-components/TestChoosePaymentMethod'
 import TestOverflowMenu from './test-components/TestOverflowMenu'
 import TestConnectors from './test-components/TestConnectors'
+import TestSchema from './test-components/schema/TestSchema'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -274,8 +280,9 @@ export default {
     TestChoosePaymentMethod,
     TestOverflowMenu,
     TestConnectors,
+    TestSchema,
     NioExpansionPanels,
-    NioExpansionPanel
+    NioExpansionPanel,
   },
   data: () => ({
     loggedIn: false,

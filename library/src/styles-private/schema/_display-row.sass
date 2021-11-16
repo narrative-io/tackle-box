@@ -1,0 +1,122 @@
+@import './_schema-property-details'
+  
+=nio-display-row
+  display: flex
+  .property-details
+    +nio-schema-property-details
+  ::v-deep .enum
+    margin-top: 24px
+    .nio-h7
+      margin-bottom: 6px
+    .nio-pill
+      margin-right: 4px 
+      margin-bottom: 4px
+  &:not(.display-table)
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    .nio-h7
+      margin-bottom: 0px
+  &.display-table
+    display: flex
+    justify-content: space-between
+    align-items: flex-start
+    .display-column
+      display: flex
+      flex-direction: column
+      align-items: flex-start
+      flex-grow: 2
+      margin-right: 0px
+      .properties-heading
+        display: flex
+        
+      &.description
+        max-width: 50%
+        .nio-h7, .nio-p
+          max-width: 100%
+    .nio-expansion-panels
+      width: 100%
+      border-radius: 0rem
+      border-left: none
+      border-right: none
+      overflow: hidden
+      border-top: none
+      border-bottom: none
+      .nio-expansion-panel
+        background-color: $c-canvas
+    ::v-deep .v-expansion-panel-header
+      display: flex
+      justify-content: space-between
+      padding: 16px 0px
+      .header-content
+        display: flex
+        justify-content: space-between
+        align-items: center
+        height: 100%
+        flex-grow: 2
+        .header-summary
+          display: flex
+          align-items: center
+          height: 100%
+          .nio-slat-image 
+            margin-right: 16px  
+            width: 48px
+            height: 48px 
+            justify-content: center
+            align-items: center
+            display: flex
+            background-color: $c-canvas
+            border: 1px solid $c-primary-lighter
+            border-radius: 4px     
+          .nio-slat-title-subtitle
+            display: flex
+            flex-direction: column
+            justify-content: center
+            .nio-slat-title
+              white-space: pre-wrap
+              // margin-left: -4px
+            .nio-slat-subtitle
+              white-space: pre-wrap
+              margin-top: 0.25rem
+        .property-settings
+          .pills-container
+            .nio-pill
+              width: 122px
+              &:hover 
+                cursor: initial
+            .negative
+              background-color: $c-canvas
+              opacity: 0.5
+            .subdued
+              opacity: 0.45
+            .nio-pill
+              margin-right: 8px
+              &.append-icon, &.prepend-icon
+                .append, .prepend
+                  &:hover
+                    cursor: default
+                    ::v-deep svg
+                      opacity: 1
+              .nio-pill-content
+                display: flex
+        .property-actions
+          display: flex
+          justify-content: flex-end
+          align-items: center
+          width: unset
+          padding-right: 26px
+          .nio-switch
+            margin-bottom: 0px
+            margin-top: -2px
+            width: 50px
+            margin-left: 16px
+            .v-input__slot
+              margin-bottom: 0px
+            .v-messages
+              display: none
+          & > .nio-switch + .nio-switch
+            margin-left: 8px
+          .nio-p-small
+            margin-left: 4px
+  .display-row + .display-row
+    margin-top: 0px
