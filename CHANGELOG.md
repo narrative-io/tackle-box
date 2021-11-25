@@ -103,3 +103,4 @@ Added generic **NioConnectorSettingsControl** for use in all connectors
 Added **utility-ellipsis-vertical** icon
 Added **NioAttributesList** and **NioAttributeProperties** to private components
 Added **NioSchema** and **NioSchemaProperties** components
+Fixed bug: set text input to null on model update in **NioAutocomplete**
