@@ -5,6 +5,7 @@
       :class="{ 'selection-pills': selectionPills, 'attached': attachAttr }"
       :attach="attachAttr ? node : undefined"
       :menu-props="{contentClass: 'nio-select-menu', offsetY: !attachAttr ? true : false, nudgeBottom: !attachAttr ? 10 : undefined  }"
+      :searchInput.sync="searchInput"
       outlined
       v-bind="$attrs"
       v-on="$listeners"
@@ -48,7 +49,8 @@ export default {
     textKey: null,
     valueKey: null,
     attachAttr: false,
-    value: null
+    value: null,
+    searchInput: null
   }),
   methods: {
     applyHelperAttributes() {
@@ -81,6 +83,7 @@ export default {
       }
     },
     updateModel(event) {
+      this.searchInput = null
       this.$emit('update', event)
     }
   },
