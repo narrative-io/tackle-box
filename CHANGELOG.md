@@ -104,3 +104,4 @@ Added **utility-ellipsis-vertical** icon
 Added **NioAttributesList** and **NioAttributeProperties** to private components
 Added **NioSchema** and **NioSchemaProperties** components
 Fixed bug: set text input to null on model update in **NioAutocomplete**
+Fixed bug: clicking append icon in **NioDatepicker** will launch datepicker

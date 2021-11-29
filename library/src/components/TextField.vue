@@ -125,7 +125,7 @@ export default {
       }  
     },
     clickAppend() {
-      this.$emit('click:append')
+			this.$emit('click:append')
     },
     clickPrepend() {
       this.$emit('click:prepend')

@@ -20,6 +20,7 @@
             iconName="utility-chevron-down"
             iconColor="#4F64AF"
             v-bind="$attrs"
+            @click:append="showDatepicker"
           )
         v-date-picker(
           full-width
@@ -58,6 +59,9 @@ export default {
     },
     textFieldResize(val) {
       this.datepickerWidth = val
+    },
+    showDatepicker() {
+      this.datepickerVisible = true
     }
   },
   mounted() {	
