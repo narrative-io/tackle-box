@@ -4,7 +4,7 @@
       .name.filter
         .title-description
           .filter-title.nio-h4.text-primary-darker Profile Name
-          .description.nio-p.text-primary-dark Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper.
+          .description.nio-p.text-primary-dark The name used to identify your bucket during profile management and checkout processes.
         .filter-value
           NioTextField(
             label="Profile Name"
@@ -16,7 +16,7 @@
       .description.filter
         .title-description
           .filter-title.nio-h4.text-primary-darker Description
-          .description.nio-p.text-primary-dark Maecenas faucibus mollis interdum.
+          .description.nio-p.text-primary-dark Information to describe why you used this bucket. 
         .filter-value
           NioTextarea(
             label="Profile Description"
@@ -36,7 +36,7 @@ import NioTextarea from '../../../Textarea'
 export default {
   name: 'nio-destination-connector-settings',
   props: {
-    
+		
   },
   data: () => ({
     model: {
