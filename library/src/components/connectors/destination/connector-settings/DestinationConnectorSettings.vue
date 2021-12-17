@@ -8,20 +8,20 @@
         .filter-value
           NioTextField(
             label="Profile Name"
-            v-model="model.name"
+            v-model="localModel.name"
             :rules="[rules.required]"
             validate-on-blur
-            @update="updateModel"
+            
           )
       .description.filter
         .title-description
           .filter-title.nio-h4.text-primary-darker Description
-          .description.nio-p.text-primary-dark Information to describe why you used this bucket. 
+          .description.nio-p.text-primary-dark A short description of this profile.
         .filter-value
           NioTextarea(
             label="Profile Description"
-            v-model="model.description"
-            @update="updateModel"
+            v-model="localModel.description"
+
           )
       slot(name="settings-controls")
     .external-settings-control(v-if="$slots['external-settings-control']")
@@ -36,10 +36,14 @@ import NioTextarea from '../../../Textarea'
 export default {
   name: 'nio-destination-connector-settings',
   props: {
-		
+		"model": { required: true }
+	},
+	model: {
+    prop: "model",
+    event: "update"
   },
   data: () => ({
-    model: {
+    localModel: {
       name: null,
       description: null
     },
@@ -51,13 +55,27 @@ export default {
     
   },
   mounted() {
-    
+		this.localModel = this.model
   },
   methods: {
-    updateModel() {
-      this.$emit('detailsChanged', this.model)
+    update() {
+      this.$emit('update', this.localModel)
     }
-  }, 
+	}, 
+	watch: {
+		localModel: {
+      deep: true,
+      handler(val) {
+				this.update(val)
+      }
+		},
+		model: {
+			deep: true,
+			handler(val) {
+				 this.localModel = val
+			}
+		}
+  },
   destroyed() {
     this.$emit('destroyed')
   },

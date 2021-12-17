@@ -1,7 +1,7 @@
 <template lang="pug">
   .test-destination-connector-settings
     NioDestinationConnectorSettings(
-      @detailsChanged="detailsChanged($event)"
+      v-model="model"
     )
       template(v-slot:settings-controls)
         NioConnectorSettingsControl(
@@ -39,13 +39,28 @@ export default {
     NioTextField
   },
   data: () => ({
-    test: null
+		test: null,
+		model: {
+			name: null,
+			description: null
+		}
   }),
   methods: {
-    detailsChanged(event) {
-      console.log(event)
-    }
-  }
+    
+	},
+	mounted() {
+		setTimeout(() => {
+			this.model = {
+				name: 'change',
+				description: 'change'
+			}
+		}, 1500);
+	},
+	watch: {
+		model(val) {
+			console.log(val)
+		}
+	}
 };
 </script>
 
