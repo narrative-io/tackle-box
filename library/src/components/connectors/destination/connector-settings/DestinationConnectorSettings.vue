@@ -21,7 +21,8 @@
           NioTextarea(
             label="Profile Description"
             v-model="localModel.description"
-
+            :rules="[rules.required]"
+            validate-on-blur
           )
       slot(name="settings-controls")
     .external-settings-control(v-if="$slots['external-settings-control']")
@@ -36,9 +37,9 @@ import NioTextarea from '../../../Textarea'
 export default {
   name: 'nio-destination-connector-settings',
   props: {
-		"model": { required: true }
-	},
-	model: {
+    "model": { required: true }
+  },
+  model: {
     prop: "model",
     event: "update"
   },
@@ -55,26 +56,26 @@ export default {
     
   },
   mounted() {
-		this.localModel = this.model
+    this.localModel = this.model
   },
   methods: {
     update() {
       this.$emit('update', this.localModel)
     }
-	}, 
-	watch: {
-		localModel: {
+  }, 
+  watch: {
+    localModel: {
       deep: true,
       handler(val) {
-				this.update(val)
+        this.update(val)
       }
-		},
-		model: {
-			deep: true,
-			handler(val) {
-				 this.localModel = val
-			}
-		}
+    },
+    model: {
+      deep: true,
+      handler(val) {
+         this.localModel = val
+      }
+    }
   },
   destroyed() {
     this.$emit('destroyed')
