@@ -1,90 +1,77 @@
 <template lang="pug">
   .nio-select-destination
-    .destination-header
-      h3.body-large.text-primary-dark Choose how you want to receive your data
-    .loading(v-if="loading")
-      v-progress-circular(
-        v-if="loading" 
-        indeterminate 
-        :color="getThemeColor('primary')" 
-        size="64"
+    NioExpansionPanels(
+      v-model="openPanels"
+      multiple
+    )
+      NioExpansionPanel(
+        v-for="destination in destinations"
+        :key="destination.index"
+        :class="{'no-profiles': !destination.profiles || destination.profiles.length === 0}"
       )
-    .destinations-container(v-else)
-      NioExpansionPanels(
-        v-model="openPanels"
-        multiple
-      )
-        NioExpansionPanel(
-          v-for="destination in destinations"
-          :key="destination.index"
-          :class="{'no-profiles': !destination.profiles || destination.profiles.length === 0}"
-        )
-          template(v-slot:header) 
-            NioImageTile(
-              v-if="destination.name === 'Narrative Download'"
-              :src="destination.icon"
-              alt="Narrative Download Icon"
-            ) 
-            NioImageTile(
-              v-else
-              :src="`data:${destination.icon.imageType};base64, ${destination.icon.image}`"
-              :alt="destination.icon.altText"
-            ) 
-            .destination-content
-              h2.nio-h4.text-primary-darker.name {{ destination.name }}
-              p.nio-p.text-primary-dark(v-if="destination.name !== 'Narrative Download' && destination.profiles.length > 1") <span class="nio-bold">Profile:</span> {{ getSelectedProfile(destination).name}}
-            NioSwitch(
-              v-model="destination.selected"
-              :disabled="destination.name === 'Narrative Download'"
-              @click.stop="openPanel(destination)"
-            )
-          template(
-            v-slot:content
+        template(v-slot:header) 
+          NioImageTile(
+            v-if="destination.name === 'Narrative Download'"
+            :src="destination.icon"
+            alt="Narrative Download Icon"
+          ) 
+          NioImageTile(
+            v-else
+            :src="`data:${destination.icon.imageType};base64, ${destination.icon.image}`"
+            :alt="destination.icon.altText"
+          ) 
+          .destination-content
+            h2.nio-h4.text-primary-darker.name {{ destination.name }}
+            p.nio-p.text-primary-dark(v-if="destination.name !== 'Narrative Download' && destination.profiles.length > 1") <span class="nio-bold">Profile:</span> {{ getSelectedProfile(destination).name}}
+          NioSwitch(
+            v-model="destination.selected"
+            :disabled="destination.name === 'Narrative Download'"
+            @click.stop="openPanel(destination)"
           )
-            .control(v-if="destination.profiles && destination.profiles.length > 1")     
-              .title-description
-                .filter-title.nio-h4.text-primary-darker Subscription Description
-                .description.nio-p.text-primary-dark Enter a description for this subscription
-              .filter-value           
-                NioSelect(
-                  v-model="destination.selectedProfile"
-                  :items="destination.profiles"
-                  label="App Profile"
-                  item-text="name"
-                  item-value="id"
-                  :item-disabled="profileDisabled"
-                  @change="setDisabledProfiles"
-                )
-            //- we'll use unique templates for each connector app until quick_settings contract gets solidified and is able to be generic enough to render programatically
-            .control(v-for="setting in destination.quickSettings")    
-              .title-description
-                .filter-title.nio-h4.text-primary-darker {{ setting.display_name }} <span class="nio-p text-primary-dark" v-if="!setting.required">(optional)</span>
-                .description.nio-p.text-primary-dark {{ setting.description }}
-              .filter-value
-                NioTextField(
-                  v-model="destination.quickSettings[0].value"
-                  @input="validateQuickSetting(setting)"
-                  label="Choose Prefix"
-                  :rules="[validateQuickSetting(setting)]"
-                  validate-on-blur
-                )     
-            NioButton.remove-profile(
-              v-if="canDeleteProfile(destination)"
-              caution-text
-              @click="deleteProfile(destination)"
-            ) Remove this profile  
-            NioButton.additional-profile(
-              v-if="showAddProfile(destination)"
-              normal-secondary
-              @click="addProfile(destination)"
-            ) Add an additional profile     
+        template(
+          v-slot:content
+        )
+          .control(v-if="destination.profiles && destination.profiles.length > 1")     
+            .title-description
+              .filter-title.nio-h4.text-primary-darker Subscription Description
+              .description.nio-p.text-primary-dark Enter a description for this subscription
+            .filter-value           
+              NioSelect(
+                v-model="destination.selectedProfile"
+                :items="destination.profiles"
+                label="App Profile"
+                item-text="name"
+                item-value="id"
+                :item-disabled="profileDisabled"
+                @change="setDisabledProfiles"
+              )
+          //- we'll use unique templates for each connector app until quick_settings contract gets solidified and is able to be generic enough to render programatically
+          .control(v-for="setting in destination.quickSettings")    
+            .title-description
+              .filter-title.nio-h4.text-primary-darker {{ setting.display_name }} <span class="nio-p text-primary-dark" v-if="!setting.required">(optional)</span>
+              .description.nio-p.text-primary-dark {{ setting.description }}
+            .filter-value
+              NioTextField(
+                v-model="destination.quickSettings[0].value"
+                @input="validateQuickSetting(setting)"
+                label="Choose Prefix"
+                :rules="[validateQuickSetting(setting)]"
+                validate-on-blur
+              )     
+          NioButton.remove-profile(
+            v-if="canDeleteProfile(destination)"
+            caution-text
+            @click="deleteProfile(destination)"
+          ) Remove this profile  
+          NioButton.additional-profile(
+            v-if="showAddProfile(destination)"
+            normal-secondary
+            @click="addProfile(destination)"
+          ) Add an additional profile     
     .connectors-cta
       h3.nio-h3.text-primary-darker Connect to more destinations
       p.nio-p.text-primary-dark.description Install destination connectors to streamline your data delivery.
       NioButton(normal-tertiary-append iconName="utility-chevron-right" @click="learnMore") Learn more about apps and connectors
-    .actions
-      NioButton.save-button(jumbo-primary-append iconName="utility-arrow-right" :disabled="!valid" @click="save") 
-        .span Save and Continue
 </template>	  
 
 <script>
@@ -96,19 +83,18 @@ import NioTextField from '../../../TextField'
 import NioImageTile from '../../../ImageTile'
 import NioSwitch from '../../../Switch'
 import { getThemeColor } from '../../../../modules/app/theme/theme'
-import { NioOpenApiModule } from '../../../../modules/app/open-api-module'
+import { makeDestinationOptions } from '../../../../modules/app/destinations/destinationsModule'
 
 export default {
   name: 'nio-select-destination',
+  props: {
+    destinations: { type: Array, required: true }
+  },
   data() {
     return {
       loading: true,
-      destinations: [],
       openPanels: []
     }
-  },
-  mounted() {
-    NioOpenApiModule.initCallback(this.openApiInit)
   },
   computed: {
     valid() {
@@ -129,15 +115,6 @@ export default {
     }
   },
   methods: {
-    openApiInit() {
-      this.makeDestinationOptions(this.$nioOpenApi).then(destinations => {
-        this.destinations = destinations
-        this.loading = false
-      })
-    },
-    save(event) {
-      this.$emit('save', this.destinations)
-    },
     validateQuickSetting(setting) {
       const regex = new RegExp(String.raw`${setting.schema.pattern}`)
       if (!setting.value) {
@@ -224,6 +201,9 @@ export default {
     },
     learnMore() {
       window.open('https://kb.narrative.io/what-is-a-narrative-outbound-connector', '_blank')
+    },
+    getThemeColor(colorName) {
+      return getThemeColor(colorName)
     }
   },
   components: { NioButton, NioTextField, NioExpansionPanels, NioExpansionPanel, NioSwitch, NioImageTile }
