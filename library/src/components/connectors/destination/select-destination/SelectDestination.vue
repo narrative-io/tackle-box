@@ -82,6 +82,7 @@ import NioExpansionPanel from '../../../ExpansionPanel'
 import NioTextField from '../../../TextField'
 import NioImageTile from '../../../ImageTile'
 import NioSwitch from '../../../Switch'
+import NioSelect from '../../../Select'
 import { getThemeColor } from '../../../../modules/app/theme/theme'
 import { makeDestinationOptions } from '../../../../modules/app/destinations/destinationsModule'
 
@@ -206,7 +207,7 @@ export default {
       return getThemeColor(colorName)
     }
   },
-  components: { NioButton, NioTextField, NioExpansionPanels, NioExpansionPanel, NioSwitch, NioImageTile }
+  components: { NioButton, NioTextField, NioExpansionPanels, NioExpansionPanel, NioSwitch, NioImageTile, NioSelect }
 }
 </script>
 

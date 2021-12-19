@@ -6,12 +6,12 @@
   margin-top: 2rem
   border: 0.0625rem solid $c-primary-lighter
   border-radius: 0.75rem
-  .nio-expansion-panels
+  ::v-deep .nio-expansion-panels
     border: none !important
-    ::v-deep .nio-expansion-panel
+    .nio-expansion-panel
       border: none !important
       border-top: none !important
-      & > .v-expansion-panel-header
+      .v-expansion-panel-header
         display: flex
         justify-content: space-between
         align-items:  center
@@ -21,6 +21,8 @@
         border-bottom: 0.0625rem solid $c-primary-lighter
         padding-left: 0rem !important
         padding-right: 0rem !important
+        .nio-image-tile
+          flex-grow: 0
         &.no-profiles:hover 
           cursor: initial
         .destination-content
@@ -32,7 +34,9 @@
           flex-grow: 0
           &.v-input--is-disabled
             opacity: 0.4
-      & > .v-expansion-panel-content
+        .v-expansion-panel-header__icon
+          display: none
+      .v-expansion-panel-content
         min-height: 12.5rem
         border: 0.0625rem solid $c-primary-lighter
         border-radius: 0.5rem
@@ -60,7 +64,7 @@
       &.no-profiles
         & > .v-expansion-panel-header
           pointer-events: none
-    ::v-deep .nio-expansion-panel.v-expansion-panel--active
+    .nio-expansion-panel.v-expansion-panel--active
       margin-bottom: 1.5rem !important
       border-top: 0.0625rem solid $c-primary-lighter !important   
   .connectors-cta
