@@ -2,6 +2,7 @@
   .test-select-destination
     NioSelectDestination(
       :destinations="destinations"
+      @validChanged="validChanged($event)"
     )
 </template>
 
@@ -16,7 +17,12 @@ export default {
   },
   data: () => ({
     destinations: mockDestinations
-  })
+  }),
+  methods: {
+    validChanged(val) {
+      console.log(val)
+    }
+  }
 };
 </script>
 

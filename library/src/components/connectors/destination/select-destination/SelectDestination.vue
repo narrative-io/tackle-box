@@ -53,7 +53,7 @@
             .filter-value
               NioTextField(
                 v-model="destination.quickSettings[0].value"
-                @input="validateQuickSetting(setting)"
+                @input="globalValidateQuickSettings($event)"
                 label="Choose Prefix"
                 :rules="[validateQuickSetting(setting)]"
                 validate-on-blur
@@ -97,8 +97,8 @@ export default {
       openPanels: []
     }
   },
-  computed: {
-    valid() {
+  methods: {
+    globalValidateQuickSettings() {
       let valid = true
       this.destinations.forEach(destination => {
         if (destination.selected) {
@@ -112,10 +112,8 @@ export default {
           }    
         }
       })
-      return valid
-    }
-  },
-  methods: {
+      this.$emit('validChanged', valid)
+    },
     validateQuickSetting(setting) {
       const regex = new RegExp(String.raw`${setting.schema.pattern}`)
       if (!setting.value) {
@@ -133,6 +131,7 @@ export default {
         }
       }
       this.setDisabledProfiles()
+      this.globalValidateQuickSettings()
     },
     addProfile(destination) {
       const usedProfiles = this.findUsedAppProfileIds(destination.appId)
