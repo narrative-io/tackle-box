@@ -1,5 +1,6 @@
+import axios from 'axios'
 
-let makeDestinationOptions = (openApi) => {
+let makeDestinationOptions = (openApiBaseUrl, requestHeaders) => {
 	console.log("here")
 	return new Promise((resolve, reject) => {
 		const narrativeDownload = [{
@@ -8,10 +9,10 @@ let makeDestinationOptions = (openApi) => {
 			icon: 'https://cdn.narrative.io/data-studio/images/narrative-placeholder-primary.svg',
 			selected: true
 		}]
-		
-		openApi.get(`installations?app_category=destination_connector`).then(resp => {
+	
+		axios.get(`${openApiBaseUrl}/installations?app_category=destination_connector`, requestHeaders).then(resp => {
 			const connectorInstallations = resp.data.records
-			Promise.all(connectorInstallations.map((installation, index) => this.makeDestinationConnectorSettings(installation, openApi, index + 1))).then(settings => {
+			Promise.all(connectorInstallations.map((installation, index) => makeDestinationConnectorSettings(installation, index + 1, openApiBaseUrl, requestHeaders))).then(settings => {
 				resolve([...narrativeDownload, ...settings.filter(setting => setting !== null)])
 			})
 		})
@@ -21,11 +22,11 @@ let makeDestinationOptions = (openApi) => {
 	})
 }
 
-let makeDestinationConnectorSettings = (installation, openApi, index) => {
+let makeDestinationConnectorSettings = (installation, index, openApiBaseUrl, requestHeaders) => {
 	return new Promise((resolve, reject) => {
 		Promise.all([
-			openApi.get(`apps`), 
-			openApi.get(`installations/${installation.id}/profiles`, reqHeaders)
+			axios.get(`${openApiBaseUrl}/apps`, requestHeaders), 
+		  axios.get(`${openApiBaseUrl}/installations/${installation.id}/profiles`, requestHeaders)
 		]).then(([appsResp, profilesResp]) => {
 			const apps = appsResp.data.records
 			const profiles = profilesResp.data.records.filter(profile => profile.status === 'enabled').map(profile => {
