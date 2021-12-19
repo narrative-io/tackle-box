@@ -1,7 +1,7 @@
 import axios from 'axios'
+import localApps from './localApps'
 
 let makeDestinationOptions = (openApiBaseUrl, requestHeaders) => {
-	console.log("here")
 	return new Promise((resolve, reject) => {
 		const narrativeDownload = [{
 			index: 0,
@@ -41,8 +41,7 @@ let makeDestinationConnectorSettings = (installation, index, openApiBaseUrl, req
 					index: index,
 					appId: installation.app_id,
 					name: manifest.name,
-					// icon: [].find(localApp => localApp.id === installation.app_id).icons[0],
-					icon: null,
+					icon: localApps.find(localApp => localApp.id === installation.app_id).icons[0],
 					profiles: profiles,
 					quickSettings: manifest.tiers.find(tier => tier.id === installation.tier_id).quick_settings.map(setting => {
 						return {
