@@ -59,6 +59,27 @@ let makeDestinationConnectorSettings = (installation, index, openApiBaseUrl, req
 	})
 }
 
+let getSubscriptionDestinations = (subscriptionId, openApiBaseUrl, requestHeaders) => {
+	const	selectedDestinations = []
+	return new Promise((resolve, reject) => {
+		axios.get(`${openApiBaseUrl}/destinations?subscription_id=${subscriptionId}`, requestHeaders).then(resp => {
+			makeDestinationOptions(openApiBaseUrl, requestHeaders).then(destinations => {     
+				selectedDestinations.push(destinations.find(destination => destination.name === 'Narrative Download'))
+				resp.data.records.forEach(selectedProfile => {
+					destinations.filter(destination => destination.name !== 'Narrative Download').forEach(destination => {
+						const selection = destination.profiles.find(profile => profile.id === selectedProfile.profile_id)
+						selectedDestinations.push({
+							...destination,
+							selectedProfile: selection.id
+						})
+					})
+				})
+				resolve(selectedDestinations)
+			})
+		})
+	})
+}
+
 export {
 	makeDestinationOptions
 }
