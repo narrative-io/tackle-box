@@ -81,5 +81,6 @@ let getSubscriptionDestinations = (subscriptionId, openApiBaseUrl, requestHeader
 }
 
 export {
-	makeDestinationOptions
+	makeDestinationOptions,
+	getSubscriptionDestinations
 }
