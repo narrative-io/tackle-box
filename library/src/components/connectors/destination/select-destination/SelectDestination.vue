@@ -96,7 +96,10 @@ export default {
       loading: true,
       openPanels: []
     }
-  },
+	},
+	mounted() {
+		this.globalValidateQuickSettings()
+	},
   methods: {
     globalValidateQuickSettings() {
       let valid = true
