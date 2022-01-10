@@ -68,10 +68,12 @@ let getSubscriptionDestinations = (subscriptionId, openApiBaseUrl, requestHeader
 				resp.data.records.forEach(selectedProfile => {
 					destinations.filter(destination => destination.name !== 'Narrative Download').forEach(destination => {
 						const selection = destination.profiles.find(profile => profile.id === selectedProfile.profile_id)
-						selectedDestinations.push({
-							...destination,
-							selectedProfile: selection.id
-						})
+						if (selection) {
+							selectedDestinations.push({
+								...destination,
+								selectedProfile: selection.id
+							})
+						}		
 					})
 				})
 				resolve(selectedDestinations)
