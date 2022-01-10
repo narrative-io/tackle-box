@@ -1,4 +1,85 @@
+@import '../../../_menu'
+@import '../../../filter/_filter-header'
+  
 =nio-select-destination
+  padding: 0rem 1.5rem
+  margin-top: 2rem
+  border: 0.0625rem solid $c-primary-lighter
+  border-radius: 0.75rem
+  ::v-deep .nio-expansion-panels
+    border: none !important
+    .nio-expansion-panel
+      border: none !important
+      border-top: none !important
+      .v-expansion-panel-header
+        display: flex
+        justify-content: space-between
+        align-items:  center
+        background-color: white
+        border: none !important
+        border-top: none !important
+        border-bottom: 0.0625rem solid $c-primary-lighter
+        padding-left: 0rem !important
+        padding-right: 0rem !important
+        .nio-image-tile
+          flex-grow: 0
+        &.no-profiles:hover 
+          cursor: initial
+        .destination-content
+          margin-left: 1.5rem 
+          .nio-p
+            margin-bottom: 0rem
+        .nio-switch
+          width: 3rem
+          flex-grow: 0
+          &.v-input--is-disabled
+            opacity: 0.4
+        .v-expansion-panel-header__icon
+          display: none
+      .v-expansion-panel-content
+        min-height: 12.5rem
+        border: 0.0625rem solid $c-primary-lighter
+        border-radius: 0.5rem
+        overflow: hidden
+        padding: 0rem 1.5rem 0rem 1.5rem
+        & > .v-expansion-panel-content__wrap
+          padding: 0rem !important
+          padding-bottom: 0rem !important
+          .control
+            +nio-filter-header
+            padding-left: 0rem
+            padding-right: 0rem
+            .filter-value
+              .nio-select, .nio-text-field, .nio-textarea
+                width: 100%
+              .nio-select 
+                ::v-deep .v-menu__content
+                  +nio-menu
+          & > .control + .control
+            border-top: 0.0625rem solid $c-primary-lighter
+        .remove-profile
+          margin: 1rem auto
+        .additional-profile
+          margin: 1rem auto 2rem auto
+      &.no-profiles
+        & > .v-expansion-panel-header
+          pointer-events: none
+    .nio-expansion-panel.v-expansion-panel--active
+      margin-bottom: 1.5rem !important
+      border-top: 0.0625rem solid $c-primary-lighter !important   
+  .connectors-cta
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    padding: 1.5rem 1.5rem 1.3125rem 1.5rem
+    margin: 2rem 0
+    border-radius: 0.75rem
+    overflow: hidden
+    background-color: $c-canvas
+    .description
+      padding-top: 0.5rem
+      margin-bottom: 0.25rem
 
 .nio-select-destination
   +nio-select-destination

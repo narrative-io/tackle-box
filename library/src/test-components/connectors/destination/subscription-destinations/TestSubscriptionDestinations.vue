@@ -1,6 +1,6 @@
 <template lang="pug">
   .test-select-destination
-    NioSelectDestination(
+    NioSubscriptionDestinations(
       :destinations="destinations"
       @validChanged="validChanged($event)"
     )
@@ -8,12 +8,12 @@
 
 <script>
 
-import NioSelectDestination from '../../../../components/connectors/destination/select-destination/SelectDestination'
-import mockDestinations from './mockDestinations'
+import NioSubscriptionDestinations from '../../../../components/connectors/destination/subscription-destinations/SubscriptionDestinations'
+import mockDestinations from '../select-destination/mockDestinations'
 
 export default {
   components: {
-    NioSelectDestination
+    NioSubscriptionDestinations
   },
   data: () => ({
     destinations: mockDestinations

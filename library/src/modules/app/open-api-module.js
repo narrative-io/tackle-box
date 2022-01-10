@@ -5,26 +5,28 @@ import axios from 'axios'
 let _initCallbackFn = null
 let _initialized = false
 let _token = null
+let _baseURL = null
 
 const openApiModule = {
-	initCallback(callbackFn) {
-		_initCallbackFn = callbackFn
-		if (_initialized) {
-			_initCallbackFn(_token)
-		}
-	},	
-	setupAxios(baseurl, token) {
-		const axiosConfig = {
-			baseURL: baseurl,
-			headers: {
-				'Authorization': `Bearer ${token}`
-			}
-		}
-		Vue.prototype.$nioOpenApi = axios.create(axiosConfig)
-		_initialized = true
-		_token = token
-		_initCallbackFn(token)
-	}
+  initCallback(callbackFn) {
+    _initCallbackFn = callbackFn
+    if (_initialized) {
+      _initCallbackFn(_token, _baseURL)
+    }
+  },	
+  setupAxios(baseURL, token) {
+    const axiosConfig = {
+      baseURL: baseURL,
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+    Vue.prototype.$nioOpenApi = axios.create(axiosConfig)
+    _initialized = true
+    _token = token
+    _baseURL = baseURL
+    _initCallbackFn(token, baseURL)
+  }
 }
 
 Object.freeze(openApiModule) 
