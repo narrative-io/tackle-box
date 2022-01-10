@@ -59,11 +59,19 @@
                   v-model="filter.customOption.value.manualEntry"
                 )
                 .instructions.nio-p.text-primary-dark Enter each value on a separate line
+      template(
+        v-slot:join-option
+        v-if="filter.joinOption"
+      )
+        NioFilterJoinOption(
+
+        )
 </template>
 
 <script>
 
 import NioFilterProperty from '../FilterProperty'
+import NioFilterJoinOption from '../join/JoinOption'
 import NioTabs from '../../Tabs'
 import NioSlatTable from '../../table/SlatTable'
 import NioRadioGroup from '../../RadioGroup'
@@ -135,7 +143,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty, NioTabs, NioSlatTable, NioRadioGroup, NioRadioButton, NioTextarea }
+  components: { NioFilterProperty, NioTabs, NioSlatTable, NioRadioGroup, NioRadioButton, NioTextarea, NioFilterJoinOption }
 }
 </script>
 

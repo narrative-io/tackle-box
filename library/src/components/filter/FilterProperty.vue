@@ -17,6 +17,13 @@
         v-progress-circular.progress(size="40" indeterminate color="#1438F5")
       .option-content(v-else)
         slot(name="custom-option")
+    .custom-option(
+      v-if="value === 'join'"
+    )  
+      .option-content.loading(v-if="joinOptionLoading")
+        v-progress-circular.progress(size="40" indeterminate color="#1438F5")
+      .option-content(v-else)
+        slot(name="join-option")
 </template>
 
 <script>
@@ -28,7 +35,8 @@ export default {
     "description": { type: String, required: true },
     "options": { type: Array, required: true },
     "value": { type: String, required: true },
-    "customOptionLoading": { type: Boolean, required: false, default: false }
+    "customOptionLoading": { type: Boolean, required: false, default: false },
+    "joinOptionLoading": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     
