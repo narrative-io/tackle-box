@@ -12,6 +12,7 @@ import Default from './instances/Default'
 import IncludeExclude from './instances/IncludeExclude'
 import ManualEntryOnly from './instances/ManualEntryOnly'
 import ManualEntryOnlyIncludeExclude from './instances/ManualEntryOnlyIncludeExclude'
+import DefaultWithJoin from './instances/DefaultWithJoin'
 
 export default {
   components: {
@@ -24,7 +25,8 @@ export default {
       Default,
       IncludeExclude,
       ManualEntryOnly,
-      ManualEntryOnlyIncludeExclude
+			ManualEntryOnlyIncludeExclude,
+			DefaultWithJoin
     ]
   }),
   mounted() {
