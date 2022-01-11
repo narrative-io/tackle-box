@@ -20,9 +20,7 @@
     .join-option(
       v-if="value === 'join' && joinableDatasets"
     )  
-      .option-content.loading(v-if="joinOptionLoading")
-        v-progress-circular.progress(size="40" indeterminate color="#1438F5")
-      .option-content(v-else)
+      .option-content
         slot(name="join-option")
 </template>
 
@@ -36,7 +34,6 @@ export default {
     "options": { type: Array, required: true },
     "value": { type: String, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false },
-    "joinOptionLoading": { type: Boolean, required: false, default: false },
     "joinableDatasets": { type: Array, required: false}
   },
   data: () => ({
