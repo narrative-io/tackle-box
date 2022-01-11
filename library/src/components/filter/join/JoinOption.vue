@@ -1,16 +1,35 @@
 <template lang="pug">
   .nio-filter-join-option
-    .heading.nio-h5.text-primary-darker Your Datasets
-    .description.nio-p.text-primary-dark Curabitur blandit tempus porttitor.
-    .custom-option
+    .join-type
+      NioRadioGroup(v-model="filter.joinOption.value.joinType")
+        NioRadioButton(value="include" label="Inculde")
+        NioRadioButton(value="exclude" label="Exclude")
+    NioDivider(horizontal-solo)
+    .select-dataset
       NioSelect(
-        v-model="filter.joinOption.value"
-        :items="filter.joinOption.datasets"
+        :items="filter.joinOption.config.datasets"
+        v-model="filter.joinOption.value.selectedDataset"
+        item-text="name"
+        item-value="id"
+        label="Dataset to Join"
+      )
+    .join-message
+      NioAlert(
+        warning
+        :visible="true"
+        messageTitle="Joining datasets: "
+        message="To perform a join, you’ll need to upload your dataset to Dataset Manager so you can pick it from the Dataset to Join menu."
+        :dismissable="false"
       )
 </template>
 
 <script>
 
+import NioSelect from '../../Select'
+import NioRadioGroup from '../../RadioGroup'
+import NioRadioButton from '../../RadioButton'
+import NioDivider from '../../Divider'
+import NioAlert from '../../Alert'
 
 export default {
   name: 'nio-filter-join-option',
@@ -27,7 +46,7 @@ export default {
   watch: {
    
   },
-  components: { }
+  components: { NioSelect, NioRadioGroup, NioRadioButton, NioDivider, NioAlert }
 }
 </script>
 

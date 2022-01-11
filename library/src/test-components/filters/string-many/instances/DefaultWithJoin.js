@@ -40,17 +40,22 @@ const Default = {
 		}
 	},
 	joinOption: {	
-		datasets: [
-			{
-				name: 'dataset1',
-				id: 1
-			},
-			{
-				name: 'dataset1',
-				id: 2
-			}
-		],
-		value: null
+		config: {
+			datasets: [
+				{
+					name: 'dataset1',
+					id: 1
+				},
+				{
+					name: 'dataset2',
+					id: 2
+				}
+			]
+		},
+		value: {
+			joinType: 'include',
+			selectedDataset: null
+		}
 	}
 }
 

@@ -6,10 +6,10 @@
     .options
       .option.nio-p.nio-bold.text-primary-dark(
         v-for="option in computeOptions"
-        :class="{'selected': value === option.value, 'custom-selected': value === 'custom' }"
+        :class="{'selected': value === option.value, 'custom-selected': value === 'custom', 'join-selected': value === 'join' }"
         @click="update(option.value)"
       ) {{ option.label }}
-        .custom-selected-pointer(v-if="value === 'custom' && option.value === 'custom'")
+        .option-selected-pointer(v-if="(value === 'custom' && option.value === 'custom') || (value === 'join' && option.value === 'join')")
     .custom-option(
       v-if="value === 'custom'"
     )  

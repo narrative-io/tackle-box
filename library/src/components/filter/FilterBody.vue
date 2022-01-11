@@ -112,8 +112,8 @@ export default {
       return options
     },
     joinableDatasets() {
-      if (this.filter.joinOption && this.filter.joinOption.datasets && this.filter.joinOption.datasets.length > 0) {
-        return this.filter.joinOption.datasets
+      if (this.filter.joinOption && this.filter.joinOption.config && this.filter.joinOption.config.datasets && this.filter.joinOption.config.datasets.length > 0) {
+        return this.filter.joinOption.config.datasets
       }
       return null
     }
