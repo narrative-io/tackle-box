@@ -4,25 +4,25 @@ import Items from '../data/Items'
 const Default = {
 	name: "stringMany",
 	type: "stringMany",
-	title: "Default",
+	title: "Default with Join",
 	description: "Default with Join",
 	value: "default",
 	options: [
 		{
 			label: `All Resource IDs`,
-			value: 'default',
+			value: 'default'
 		},
 		{
 			label: "Include if present",
-			value: 'ifPresent',
+			value: 'ifPresent'
 		},
 		{
 			label: 'Custom',
-			value: 'custom',
+			value: 'custom'
 		},
 		{
 			label: 'Join dataset',
-			value: 'join',
+			value: 'join'
 		}
 	],
 	customOption: {
@@ -39,19 +39,17 @@ const Default = {
 			manualEntry: 'stuff'
 		}
 	},
-	joinOption: {
-		config: {
-			items: [
-				{
-					name: 'dataset1',
-					id: 1
-				},
-				{
-					name: 'dataset1',
-					id: 2
-				}
-			]
-		},
+	joinOption: {	
+		datasets: [
+			{
+				name: 'dataset1',
+				id: 1
+			},
+			{
+				name: 'dataset1',
+				id: 2
+			}
+		],
 		value: null
 	}
 }

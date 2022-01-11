@@ -1,9 +1,10 @@
 <template lang="pug">
-  .nio-filter-properties.string-many
+  .nio-filter-properties.string
     NioFilterProperty(
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
       :customOptionLoading="customOptionLoading"
+      :joinableDatasets="joinableDatasets"
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
@@ -61,10 +62,10 @@
                 .instructions.nio-p.text-primary-dark Enter each value on a separate line
       template(
         v-slot:join-option
-        v-if="filter.joinOption"
+        v-if="joinableDatasets"
       )
         NioFilterJoinOption(
-
+          :filter="filter"
         )
 </template>
 
@@ -82,7 +83,8 @@ export default {
   name: 'nio-filter-properties-string-many',
   props: {
     "filter": { type: Object, required: true },
-    "customOptionLoading": { type: Boolean, required: false, default: false }
+    "customOptionLoading": { type: Boolean, required: false, default: false },
+    "joinableDatasets": { type: Array, required: false }
   },
   data: () => ({
     initialListItems: [],

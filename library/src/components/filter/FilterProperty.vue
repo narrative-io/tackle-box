@@ -5,7 +5,7 @@
       .description.nio-p.text-primary-dark(:class="{'centered': !heading}") {{ description }}
     .options
       .option.nio-p.nio-bold.text-primary-dark(
-        v-for="option in options"
+        v-for="option in computeOptions"
         :class="{'selected': value === option.value, 'custom-selected': value === 'custom' }"
         @click="update(option.value)"
       ) {{ option.label }}
@@ -17,8 +17,8 @@
         v-progress-circular.progress(size="40" indeterminate color="#1438F5")
       .option-content(v-else)
         slot(name="custom-option")
-    .custom-option(
-      v-if="value === 'join'"
+    .join-option(
+      v-if="value === 'join' && joinableDatasets"
     )  
       .option-content.loading(v-if="joinOptionLoading")
         v-progress-circular.progress(size="40" indeterminate color="#1438F5")
@@ -36,7 +36,8 @@ export default {
     "options": { type: Array, required: true },
     "value": { type: String, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false },
-    "joinOptionLoading": { type: Boolean, required: false, default: false }
+    "joinOptionLoading": { type: Boolean, required: false, default: false },
+    "joinableDatasets": { type: Array, required: false}
   },
   data: () => ({
     
@@ -44,6 +45,15 @@ export default {
   model: {
     prop: "value",
     event: "update"
+  },
+  computed: {
+    computeOptions() {
+      if (this.joinableDatasets && this.joinableDatasets.length > 0) {
+        return this.options
+      } else {
+        return this.options.filter(option => option.value !== 'join')
+      }
+    }
   },
   methods: {
     update(value) {
