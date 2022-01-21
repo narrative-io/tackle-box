@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-select-destinations
+  .nio-destination-connector-settings
     .sub-container
       .name.filter
         .title-description

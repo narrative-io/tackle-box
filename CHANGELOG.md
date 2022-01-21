@@ -106,3 +106,6 @@ Added **NioSchema** and **NioSchemaProperties** components
 Fixed bug: set text input to null on model update in **NioAutocomplete**
 Fixed bug: clicking append icon in **NioDatepicker** will launch datepicker
 Added model binding for name and description **NioDestinationConnectorSettings**, updated copy for descriptions
+
+v0.4.1
+Added **NioFilterJoinOption** private component and added to StringMany filter and test component
