@@ -42,7 +42,9 @@ const ObjectChildObject = {
 		object: {
 			type: "object",
 			properties: {
-				$ref: Primitive.id
+				primitive: {
+					$ref: Primitive.id
+				}
 			}
 		}
 	}
