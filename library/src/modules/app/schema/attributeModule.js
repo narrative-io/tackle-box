@@ -9,7 +9,7 @@ let makePathString = (path) => {
 			pathString += `-> ${element} `
 		}
 	})
-	return pathString
+	return pathString.trim()
 }
 
 let getAttributeFromPath = (path, attribute) => {
