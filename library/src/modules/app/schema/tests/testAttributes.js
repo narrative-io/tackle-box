@@ -66,6 +66,40 @@ const ObjectChildArray = {
 	}
 }
 
+const ArrayChildObject = {
+	description: "description",
+	display_name: "Array with Object child",
+	id: 5,
+	name: "ArrayChildObject",
+	type: "array",
+	items: {
+		object_property: {
+			type: "object",
+			properties: {
+				primitive_property: {
+					$ref: Primitive.id
+				}
+			}
+		}
+	}
+}
+
+const ArrayChildArray = {
+	description: "description",
+	display_name: "Array with Array child",
+	id: 5,
+	name: "ArrayChildArray",
+	type: "array",
+	items: {
+		another_array: {
+			type: "array",
+			items: {
+				$ref: Primitive.id
+			}
+		}
+	}
+}
+
 const AllAttributes = [
 	Primitive,
 	ArrayItemsPrimitive,
@@ -80,5 +114,7 @@ export {
 	ObjectChildPrimitive,
 	ObjectChildArray,
 	ObjectChildObject,
+	ArrayChildObject,
+	ArrayChildArray,
 	AllAttributes
 }
