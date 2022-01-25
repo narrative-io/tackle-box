@@ -58,8 +58,9 @@ const ObjectChildArray = {
 	type: "object",
 	properties: {
 		array: {
+			type: "array",
 			items: {
-				$ref: ArrayItemsPrimitive.id
+				$ref: Primitive.id
 			}
 		}
 	}

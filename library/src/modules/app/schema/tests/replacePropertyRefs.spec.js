@@ -85,7 +85,6 @@ describe("replacePropertyRefs", function() {
 			}
 		}
 		const actual = replacePropertyRefs(attribute, attributes)
-		// console.log(actual)
     expect(actual).toEqual(expected)
 	})
 	it("Ref on Primitive Items of Array", function() {
@@ -112,7 +111,37 @@ describe("replacePropertyRefs", function() {
 			}
 		}
 		const actual = replacePropertyRefs(attribute, attributes)
-		console.log(actual)
+    expect(actual).toEqual(expected)
+	})
+	it("Ref on Primitive Child of Object child of Object", function() {
+		const attributes = [Primitive, ObjectChildArray]
+		const attribute = ObjectChildArray
+		const expected = {
+			description: "description",
+			display_name: "Object with Array child",
+			id: 4,
+			name: "ObjectChildArray",
+			type: "object",
+			filterable: false,
+			deliverable: false,
+			properties: {
+				array: {
+					type: "array",
+					filterable: false,
+					deliverable: false,
+					items: {
+						description: "description",
+						display_name: "Ref Primitive",
+						id: 0,
+						name: "ref_primitive",
+						type: "string",
+						filterable: false,
+						deliverable: false,
+					}
+				}
+			}
+		}
+		const actual = replacePropertyRefs(attribute, attributes)
     expect(actual).toEqual(expected)
 	})
 })
