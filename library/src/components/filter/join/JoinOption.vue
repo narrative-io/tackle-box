@@ -43,7 +43,7 @@ export default {
   },
   mounted() {
     if (!this.filter.joinOption.value.selectedDataset) {
-      this.filter.joinOption.value.selectedDataset = this.filter.joinOption.config.datasets[0]
+      this.filter.joinOption.value.selectedDataset = this.filter.joinOption.config.datasets[0].id
     }
   },
   components: { NioSelect, NioRadioGroup, NioRadioButton, NioDivider, NioAlert }

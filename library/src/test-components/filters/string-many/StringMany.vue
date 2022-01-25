@@ -31,7 +31,7 @@ export default {
   }),
   mounted() {
     this.activeFilterName = this.filters[0].name
-  }
+	}
 };
 </script>
 
