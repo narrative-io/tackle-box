@@ -171,6 +171,7 @@ let replacePropertyRefs = (property, attributes) => {
 	
 		if (modifiedProperty.properties) {
 			Object.keys(modifiedProperty.properties).map(childPropertyName => {
+				console.log(childPropertyName)
 				modifiedProperty.properties[childPropertyName] = {
 					...replacePropertyRefs(modifiedProperty.properties[childPropertyName], attributes),
 					deliverable: false,
@@ -178,12 +179,11 @@ let replacePropertyRefs = (property, attributes) => {
 				}  
 			})
 		} else if (modifiedProperty.items) {
-			let propertyName = Object.keys(modifiedProperty.items)[0]
-			if (propertyName === '$ref') {
+			if (modifiedProperty.items["$ref"] || Object.keys(modifiedProperty.items).includes('$ref')) {
 				const refPropertyId = modifiedProperty.items['$ref'] ? modifiedProperty.items['$ref'] : modifiedProperty.items.$ref
 				modifiedProperty.items = deepCopy(replacePropertyRefs(attributes.find(attribute => attribute.id === refPropertyId), attributes))
 			} else {
-				modifiedProperty.items[propertyName] = replacePropertyRefs(modifiedProperty.items[propertyName], attributes)
+				modifiedProperty.items = replacePropertyRefs(modifiedProperty.items, attributes)
 			}
 		}
 		

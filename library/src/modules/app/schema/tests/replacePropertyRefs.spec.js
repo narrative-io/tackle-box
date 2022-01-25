@@ -1,12 +1,15 @@
 import { replacePropertyRefs } from '../attributeModule.js'
 import { 
   Primitive,
-  ArrayItemsPrimitive,
-  ObjectChildPrimitive,
-  ObjectChildArray,
-  ObjectChildObject,
-  ArrayChildObject,
-  ArrayChildArray,
+	ArrayItemsPrimitive,
+	ObjectChildPrimitive,
+	ObjectChildArray,
+	ObjectChildObject,
+	ArrayChildObject,
+	ArrayChildArray,
+	ObjectObjectSiblings,
+	ObjectArraySiblings,
+	ArrayArraySiblings,
   AllAttributes
 } from './testAttributes.js'
 
@@ -101,15 +104,13 @@ describe("replacePropertyRefs", function() {
       filterable: false,
       deliverable: false,
       items: {
-        primitive_property: {
-          description: "description",
-          display_name: "Ref Primitive",
-          id: 0,
-          name: "ref_primitive",
-          type: "string",
-          filterable: false,
-          deliverable: false,
-        }
+        description: "description",
+        display_name: "Ref Primitive",
+        id: 0,
+        name: "ref_primitive",
+        type: "string",
+        filterable: false,
+        deliverable: false   
       }
     }
     const actual = replacePropertyRefs(attribute, attributes)
@@ -158,20 +159,18 @@ describe("replacePropertyRefs", function() {
       filterable: false,
       deliverable: false,
       items: {
-        object_property: {
-          type: "object",
-          filterable: false,
-          deliverable: false,
-          properties: {
-            primitive_property: {
-              description: "description",
-              display_name: "Ref Primitive",
-              id: 0,
-              name: "ref_primitive",
-              type: "string",
-              filterable: false,
-              deliverable: false
-            }
+        type: "object",
+        filterable: false,
+        deliverable: false,
+        properties: {
+          primitive_property: {
+            description: "description",
+            display_name: "Ref Primitive",
+            id: 0,
+            name: "ref_primitive",
+            type: "string",
+            filterable: false,
+            deliverable: false
           }
         }
       }
@@ -185,24 +184,202 @@ describe("replacePropertyRefs", function() {
     const expected = {
       description: "description",
       display_name: "Array with Array child",
-      id: 5,
+      id: 6,
       name: "ArrayChildArray",
       type: "array",
       filterable: false,
       deliverable: false,
       items: {
-        another_array: {
-          type: "array",
+        type: "array",
+        filterable: false,
+        deliverable: false,
+        items: {
+          description: "description",
+          display_name: "Ref Primitive",
+          id: 0,
+          name: "ref_primitive",
+          type: "string",
           filterable: false,
-          deliverable: false,
-          items: {
+          deliverable: false
+        }
+      }
+    }
+    const actual = replacePropertyRefs(attribute, attributes)
+    expect(actual).toEqual(expected)
+  })
+  it("Array with Object child with object and object silbing children with refs", function() {
+    const attributes = [Primitive, ObjectChildPrimitive, ObjectObjectSiblings]
+    const attribute = ObjectObjectSiblings
+    const expected = {
+      description: "description",
+      display_name: "Array with Object child with object and object silbing children",
+      id: 7,
+      name: "ObjectObjectSiblings",
+      type: "array",
+      filterable: false,
+      deliverable: false,
+      items: {
+        type: "object",
+        filterable: false,
+        deliverable: false,
+        properties: {
+          object_ref_1: {
             description: "description",
-            display_name: "Ref Primitive",
-            id: 0,
-            name: "ref_primitive",
-            type: "string",
+            display_name: "Object with Primitive child",
+            id: 2,
+            name: "ObjectChildPrimitive",
+            type: "object",
             filterable: false,
-            deliverable: false
+            deliverable: false,
+            properties: {
+              primitive_property: {
+                description: "description",
+                display_name: "Ref Primitive",
+                id: 0,
+                name: "ref_primitive",
+                type: "string",
+                filterable: false,
+                deliverable: false
+              }       
+            }
+          },
+          object_ref_2: {
+            description: "description",
+            display_name: "Object with Primitive child",
+            id: 2,
+            name: "ObjectChildPrimitive",
+            type: "object",
+            filterable: false,
+            deliverable: false,
+            properties: {
+              primitive_property: {
+                description: "description",
+                display_name: "Ref Primitive",
+                id: 0,
+                name: "ref_primitive",
+                type: "string",
+                filterable: false,
+                deliverable: false
+              }       
+            }
+          }
+        }
+      }
+    }
+    const actual = replacePropertyRefs(attribute, attributes)
+    expect(actual).toEqual(expected)
+  })
+  it("Array with Object child with array and object silbing children with refs", function() {
+    const attributes = [Primitive, ObjectChildPrimitive, ArrayItemsPrimitive, ObjectArraySiblings]
+    const attribute = ObjectArraySiblings
+    const expected = {
+      description: "description",
+      display_name: "Array with Object child with array and object silbing children",
+      id: 8,
+      name: "ObjectArraySiblings",
+      type: "array",
+      filterable: false,
+      deliverable: false,
+      items: {
+        type: "object",
+        filterable: false,
+        deliverable: false,
+        properties: {
+          object_ref: {
+            description: "description",
+            display_name: "Object with Primitive child",
+            id: 2,
+            name: "ObjectChildPrimitive",
+            type: "object",
+            filterable: false,
+            deliverable: false,
+            properties: {
+              primitive_property: {
+                description: "description",
+                display_name: "Ref Primitive",
+                id: 0,
+                name: "ref_primitive",
+                type: "string",
+                filterable: false,
+                deliverable: false
+              }       
+            }
+          },
+          array_ref: {
+            description: "description",
+            display_name: "Array with Primitive Items",
+            id: 1,
+            name: "ArrayItemsPrimitive",
+            type: "array",
+            filterable: false,
+            deliverable: false,
+            items: {
+              description: "description",
+              display_name: "Ref Primitive",
+              id: 0,
+              name: "ref_primitive",
+              type: "string",
+              filterable: false,
+              deliverable: false,
+            }
+          }
+        }
+      }
+    }
+    const actual = replacePropertyRefs(attribute, attributes)
+    expect(actual).toEqual(expected)
+  })
+  it("Array with Object child with array and array silbing children with refs", function() {
+    const attributes = [Primitive, ArrayItemsPrimitive, ArrayArraySiblings]
+    const attribute = ArrayArraySiblings
+    const expected = {
+      description: "description",
+      display_name: "Array with Object child with array and array silbing children",
+      id: 9,
+      name: "ArrayArraySiblings",
+      type: "array",
+      filterable: false,
+      deliverable: false,
+      items: {
+        type: "object",
+        filterable: false,
+        deliverable: false,
+        properties: {
+          array_ref: {
+            description: "description",
+            display_name: "Array with Primitive Items",
+            id: 1,
+            name: "ArrayItemsPrimitive",
+            type: "array",
+            filterable: false,
+            deliverable: false,
+            items: {
+              description: "description",
+              display_name: "Ref Primitive",
+              id: 0,
+              name: "ref_primitive",
+              type: "string",
+              filterable: false,
+              deliverable: false,
+            }
+          },
+          array_ref: {
+            description: "description",
+            display_name: "Array with Primitive Items",
+            id: 1,
+            name: "ArrayItemsPrimitive",
+            type: "array",
+            filterable: false,
+            deliverable: false,
+            items: {
+              description: "description",
+              display_name: "Ref Primitive",
+              id: 0,
+              name: "ref_primitive",
+              type: "string",
+              filterable: false,
+              deliverable: false,
+            }
           }
         }
       }

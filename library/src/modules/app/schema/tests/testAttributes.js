@@ -13,9 +13,7 @@ const ArrayItemsPrimitive = {
 	name: "ArrayItemsPrimitive",
 	type: "array",
 	items: {
-		primitive_property: {
-			$ref: Primitive.id
-		}
+		$ref: Primitive.id
 	}
 }
 
@@ -73,12 +71,10 @@ const ArrayChildObject = {
 	name: "ArrayChildObject",
 	type: "array",
 	items: {
-		object_property: {
-			type: "object",
-			properties: {
-				primitive_property: {
-					$ref: Primitive.id
-				}
+		type: "object",
+		properties: {
+			primitive_property: {
+				$ref: Primitive.id
 			}
 		}
 	}
@@ -87,14 +83,69 @@ const ArrayChildObject = {
 const ArrayChildArray = {
 	description: "description",
 	display_name: "Array with Array child",
-	id: 5,
+	id: 6,
 	name: "ArrayChildArray",
 	type: "array",
 	items: {
-		another_array: {
-			type: "array",
-			items: {
-				$ref: Primitive.id
+		type: "array",
+		items: {
+			$ref: Primitive.id
+		}
+	}
+}
+
+const ObjectObjectSiblings = {
+	description: "description",
+	display_name: "Array with Object child with object and object silbing children",
+	id: 7,
+	name: "ObjectObjectSiblings",
+	type: "array",
+	items: {
+		type: "object",
+		properties: {
+			object_ref_1: {
+				$ref: ObjectChildPrimitive.id
+			},
+			object_ref_2: {
+				$ref: ObjectChildPrimitive.id
+			}
+		}
+	}
+}
+
+const ObjectArraySiblings = {
+	description: "description",
+	display_name: "Array with Object child with array and object silbing children",
+	id: 8,
+	name: "ObjectArraySiblings",
+	type: "array",
+	items: {
+		type: "object",
+		properties: {
+			object_ref: {
+				$ref: ObjectChildPrimitive.id
+			},
+			array_ref: {
+				$ref: ArrayItemsPrimitive.id
+			}
+		}
+	}
+}
+
+const ArrayArraySiblings = {
+	description: "description",
+	display_name: "Array with Object child with array and array silbing children",
+	id: 9,
+	name: "ArrayArraySiblings",
+	type: "array",
+	items: {
+		type: "object",
+		properties: {
+			array_ref: {
+				$ref: ArrayItemsPrimitive.id
+			},
+			array_ref: {
+				$ref: ArrayItemsPrimitive.id
 			}
 		}
 	}
@@ -116,5 +167,8 @@ export {
 	ObjectChildObject,
 	ArrayChildObject,
 	ArrayChildArray,
+	ObjectObjectSiblings,
+	ObjectArraySiblings,
+	ArrayArraySiblings,
 	AllAttributes
 }
