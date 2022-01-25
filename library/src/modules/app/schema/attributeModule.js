@@ -148,12 +148,8 @@ let getDataTypeIconName = (dataType) => {
 }
 
 let replacePropertyRefs = (property, attributes) => {
-	// console.log("PROPERTY")
 	// console.log(property)
-	// // console.log("REF:")
-	// console.log(Object.keys(property))
 	if (property["$ref"] || Object.keys(property).includes('$ref')) {
-		// console.log("PROPERTY REF")
 		const referencedProperty = property['$ref'] ? property['$ref'] : property.$ref
 		const attributeRef = deepCopy(replacePropertyRefs(attributes.find(attribute => attribute.id === referencedProperty), attributes))
 		return {
@@ -161,29 +157,33 @@ let replacePropertyRefs = (property, attributes) => {
 			deliverable: false,
 			filterable: false
 		}
-	} else if (!property.properties) {
+	} else if (!property.properties && !property.items) {
 		return {
 			...property,
 			deliverable: false,
 			filterable: false
 		}
 	} else {
-		property = {
+		let modifiedProperty = {
 			...property,
-			deliverable: false,
-			filterable: false
+			filterable: false,
+			deliverable: false
 		}
-		Object.keys(property.properties).map(childPropertyName => {
-			property.properties[childPropertyName] = {
-				...replacePropertyRefs(property.properties[childPropertyName], attributes),
-				deliverable: false,
-				filterable: false
-			}  
-		})
-		// console.log("AFTER")
-		// console.log(property)
-
-		return property
+	
+		if (modifiedProperty.properties) {
+			Object.keys(modifiedProperty.properties).map(childPropertyName => {
+				modifiedProperty.properties[childPropertyName] = {
+					...replacePropertyRefs(modifiedProperty.properties[childPropertyName], attributes),
+					deliverable: false,
+					filterable: false
+				}  
+			})
+		} else if (modifiedProperty.items) {
+			const propertyName = Object.keys(modifiedProperty.items)[0]
+			modifiedProperty.items[propertyName] = replacePropertyRefs(modifiedProperty.items[propertyName], attributes)
+		}
+		
+		return modifiedProperty
 	}
 }
 

@@ -85,7 +85,7 @@ describe("replacePropertyRefs", function() {
 			}
 		}
 		const actual = replacePropertyRefs(attribute, attributes)
-		console.log(actual)
+		// console.log(actual)
     expect(actual).toEqual(expected)
 	})
 	it("Ref on Primitive Items of Array", function() {
