@@ -18,7 +18,11 @@ let getAttributeFromPath = (path, attribute) => {
     return attribute
   } else {
     if (newPath[0].length) {
-      attribute = attribute.properties[newPath[0]]
+			if (attribute.properties) {
+				attribute = attribute.properties[newPath[0]]
+			} else if (attribute.items) {
+				attribute = attribute.items
+			} 
     }
     newPath.shift()
     return getAttributeFromPath(newPath, attribute)
@@ -171,7 +175,6 @@ let replacePropertyRefs = (property, attributes) => {
 	
 		if (modifiedProperty.properties) {
 			Object.keys(modifiedProperty.properties).map(childPropertyName => {
-				console.log(childPropertyName)
 				modifiedProperty.properties[childPropertyName] = {
 					...replacePropertyRefs(modifiedProperty.properties[childPropertyName], attributes),
 					deliverable: false,

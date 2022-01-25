@@ -141,10 +141,10 @@ const ArrayArraySiblings = {
 	items: {
 		type: "object",
 		properties: {
-			array_ref: {
+			array_ref_1: {
 				$ref: ArrayItemsPrimitive.id
 			},
-			array_ref: {
+			array_ref_2: {
 				$ref: ArrayItemsPrimitive.id
 			}
 		}
@@ -155,8 +155,13 @@ const AllAttributes = [
 	Primitive,
 	ArrayItemsPrimitive,
 	ObjectChildPrimitive,
-	// ObjectChildArray,
-	// ObjectChildObject
+	ObjectChildArray,
+	ObjectChildObject,
+	ArrayChildObject,
+	ArrayChildArray,
+	ObjectObjectSiblings,
+	ObjectArraySiblings,
+	ArrayArraySiblings
 ]
 
 export {

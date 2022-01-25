@@ -9,8 +9,7 @@ import {
 	ArrayChildArray,
 	ObjectObjectSiblings,
 	ObjectArraySiblings,
-	ArrayArraySiblings,
-  AllAttributes
+	ArrayArraySiblings
 } from './testAttributes.js'
 
 let log = (arg) => {
@@ -345,7 +344,7 @@ describe("replacePropertyRefs", function() {
         filterable: false,
         deliverable: false,
         properties: {
-          array_ref: {
+          array_ref_1: {
             description: "description",
             display_name: "Array with Primitive Items",
             id: 1,
@@ -363,7 +362,7 @@ describe("replacePropertyRefs", function() {
               deliverable: false,
             }
           },
-          array_ref: {
+          array_ref_2: {
             description: "description",
             display_name: "Array with Primitive Items",
             id: 1,
