@@ -148,7 +148,12 @@ let getDataTypeIconName = (dataType) => {
 }
 
 let replacePropertyRefs = (property, attributes) => {
-	if (property['$ref']) {
+	// console.log("PROPERTY")
+	// console.log(property)
+	// console.log("REF:")
+	// console.log(Object.keys(property))
+	if (property["$ref"] || Object.keys(property).includes('$ref')) {
+		// console.log("PROPERTY REF")
 		const attributeRef = deepCopy(replacePropertyRefs(attributes.find(attribute => attribute.id === property['$ref']), attributes))
 		return {
 			...attributeRef,
@@ -168,12 +173,16 @@ let replacePropertyRefs = (property, attributes) => {
 			filterable: false
 		}
 		Object.keys(property.properties).map(childPropertyName => {
+			console.log(childPropertyName)
 			property.properties[childPropertyName] = {
 				...replacePropertyRefs(property.properties[childPropertyName], attributes),
 				deliverable: false,
 				filterable: false
 			}  
 		})
+		// console.log("AFTER")
+		// console.log(property)
+
 		return property
 	}
 }

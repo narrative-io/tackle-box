@@ -67,10 +67,10 @@ const ObjectChildArray = {
 
 const AllAttributes = [
 	Primitive,
-	ArrayItemsPrimitive,
+	// ArrayItemsPrimitive,
 	ObjectChildPrimitive,
-	ObjectChildArray,
-	ObjectChildObject
+	// ObjectChildArray,
+	// ObjectChildObject
 ]
 
 export {
