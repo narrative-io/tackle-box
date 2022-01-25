@@ -35,7 +35,7 @@ const ObjectChildPrimitive = {
 const ObjectChildObject = {
 	description: "description",
 	display_name: "Object with Object Child",
-	id: 2,
+	id: 3,
 	name: "ObjectChildObject",
 	type: "object",
 	properties: {
@@ -53,7 +53,7 @@ const ObjectChildObject = {
 const ObjectChildArray = {
 	description: "description",
 	display_name: "Object with Array child",
-	id: 2,
+	id: 4,
 	name: "ObjectChildArray",
 	type: "object",
 	properties: {
@@ -67,7 +67,7 @@ const ObjectChildArray = {
 
 const AllAttributes = [
 	Primitive,
-	// ArrayItemsPrimitive,
+	ArrayItemsPrimitive,
 	ObjectChildPrimitive,
 	// ObjectChildArray,
 	// ObjectChildObject
