@@ -35,7 +35,7 @@ describe("findSelectionsForAttribute", function() {
 		let actual = findSelectionsForAttribute(attributePath, property, [], selectionType)
 		expect(actual).toEqual(expected)
 	})
-	it("Object -> Primitive, Object & Primitive selected", function() {
+	it("Object -> Primitive, all selected", function() {
 		const attributePath = [{id: 2}]
 		const property = findAttributeById(ObjectChildPrimitive.id)
 		const selectionType = 'filterable'
@@ -107,6 +107,37 @@ describe("findSelectionsForAttribute", function() {
 		const expected = [[{id: 3},'object'], [{id: 3},'object', 'primitive']]
 	
 		setSelectionRecursively(property.properties.object, selectionType, true)
+		let actual = findSelectionsForAttribute(attributePath, property, [], selectionType)
+		expect(actual).toEqual(expected)
+	})
+	it("Array -> Primitive, all selected", function() {
+		const attributePath = [{id: 1}]
+		const property = findAttributeById(ArrayItemsPrimitive.id)
+		const selectionType = 'filterable'
+		const expected = [[{id: 1}], [{id: 1},'items']]
+	
+		setSelectionRecursively(property, selectionType, true)
+		let actual = findSelectionsForAttribute(attributePath, property, [], selectionType)
+		expect(actual).toEqual(expected)
+	})
+	it("Array -> Primitive, Array selected", function() {
+		const attributePath = [{id: 1}]
+		const property = findAttributeById(ArrayItemsPrimitive.id)
+		const selectionType = 'filterable'
+		const expected = [[{id: 1}]]
+	
+		setSelectionRecursively(property, selectionType, true)
+		setSelectionRecursively(property.items, selectionType, false)
+		let actual = findSelectionsForAttribute(attributePath, property, [], selectionType)
+		expect(actual).toEqual(expected)
+	})
+	it("Array -> Primitive, all selected", function() {
+		const attributePath = [{id: 1}]
+		const property = findAttributeById(ArrayItemsPrimitive.id)
+		const selectionType = 'filterable'
+		const expected = [[{id: 1},'items']]
+	
+		setSelectionRecursively(property.items, selectionType, true)
 		let actual = findSelectionsForAttribute(attributePath, property, [], selectionType)
 		expect(actual).toEqual(expected)
 	})

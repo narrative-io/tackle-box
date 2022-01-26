@@ -43,7 +43,7 @@ let setSelectionRecursively = (property, selectionType, value) => {
 let findSelectionsForAttribute = (attributePath, property, result, selectionType) => {
 	const pathCopy = deepCopy(attributePath)
 	const resultCopy = deepCopy(result)
-	if (!property.properties) {
+	if (!property.properties && !property.items) {
 		if (property[selectionType]) {
 			resultCopy.push([...pathCopy])
 		}
@@ -52,20 +52,27 @@ let findSelectionsForAttribute = (attributePath, property, result, selectionType
 		if (property[selectionType]) {
 			resultCopy.push([...pathCopy])
 		}
-		return Object.keys(property.properties).reduce((acc, childPropertyName) => {
-			const accCopy = deepCopy(acc)
-			const childResult = findSelectionsForAttribute(
-				[...pathCopy, childPropertyName],
-				property.properties[childPropertyName],
+		if (property.properties) {
+			return Object.keys(property.properties).reduce((acc, childPropertyName) => {
+				const accCopy = deepCopy(acc)
+				const childResult = findSelectionsForAttribute(
+					[...pathCopy, childPropertyName],
+					property.properties[childPropertyName],
+					[],
+					selectionType
+				)
+				return childResult.length > 0 ? [...accCopy, ...childResult] : accCopy
+			}, resultCopy)
+		} else if (property.items) {
+			const itemsResult = findSelectionsForAttribute(
+				[...pathCopy, 'items'],
+				property.items,
 				[],
 				selectionType
 			)
-			if (childResult.length > 0) {
-				return [...accCopy, ...childResult]
-			} else {
-				return accCopy
-			}
-		}, resultCopy)
+			return itemsResult.length > 0 ? [...resultCopy, ...itemsResult] : deepCopy(resultCopy)
+		}
+		
 	}
 }
 
