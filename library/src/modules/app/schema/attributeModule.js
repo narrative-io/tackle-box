@@ -209,6 +209,7 @@ let isExportable = (attribute) => {
 			return true
 		}
 	}
+	return false
 }
 let hasExportableChild = (attribute) => {
 	if (attribute.deliverable) {

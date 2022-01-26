@@ -7,9 +7,6 @@ import {
 	ObjectChildObject,
 	ArrayChildObject,
 	ArrayChildArray,
-	ObjectObjectSiblings,
-	ObjectArraySiblings,
-	ArrayArraySiblings,
 	AllAttributes
 } from './testAttributes.js'
 
