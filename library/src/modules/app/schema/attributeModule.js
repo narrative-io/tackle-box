@@ -40,8 +40,8 @@ let setSelectionRecursively = (property, selectionType, value) => {
 	}
 }
 
-let findSelections = (path, property, result, selectionType) => {
-	const pathCopy = deepCopy(path)
+let findSelectionsForAttribute = (attributePath, property, result, selectionType) => {
+	const pathCopy = deepCopy(attributePath)
 	const resultCopy = deepCopy(result)
 	if (!property.properties) {
 		if (property[selectionType]) {
@@ -54,7 +54,7 @@ let findSelections = (path, property, result, selectionType) => {
 		}
 		return Object.keys(property.properties).reduce((acc, childPropertyName) => {
 			const accCopy = deepCopy(acc)
-			const childResult = findSelections(
+			const childResult = findSelectionsForAttribute(
 				[...pathCopy, childPropertyName],
 				property.properties[childPropertyName],
 				[],
@@ -73,13 +73,12 @@ let makeSelected = (attributes, selectionType) => {
 	const attributesCopy = deepCopy(attributes)
 	const result = attributesCopy.reduce((acc, attribute) => {
 		const accCopy = deepCopy(acc)
-		const filterable = findSelections(
+		const filterable = findSelectionsForAttribute(
 			[
 				{
 					id: attribute.id, 
 					displayName: attribute.display_name, 
-					name: attribute.name,
-					isObject: attribute.type === 'object'
+					name: attribute.name
 				}
 			], 
 			attribute, 
@@ -227,7 +226,7 @@ let hasExportableChild = (attribute) => {
 export {
 	makePathString,
 	getAttributeFromPath,
-	findSelections,
+	findSelectionsForAttribute,
 	setSelectionRecursively,
 	getReadableType,
 	getDataTypeIconName,
