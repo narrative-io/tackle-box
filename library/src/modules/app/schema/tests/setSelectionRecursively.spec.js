@@ -107,6 +107,130 @@ describe("setSelectionRecursively", function() {
 			
 		expect(target).toEqual(value)
 	})
+	it("Object -> Array -> Primitive, target Object", function() {
+		const property = findAttributeById(ObjectChildArray.id)
+		const selectionType = 'filterable'
+		const value = true
+
+		setSelectionRecursively(property, selectionType, value)
+		const target = 
+			findAttributeById(ObjectChildArray.id).filterable === true
+			findAttributeById(ObjectChildArray.id).properties.array.filterable === true
+			findAttributeById(ObjectChildArray.id).properties.array.items.filterable === true
+			
+		expect(target).toEqual(value)
+	})
+	it("Object -> Array -> Primitive, target Array", function() {
+		const property = findAttributeById(ObjectChildArray.id).properties.array
+		const selectionType = 'filterable'
+		const value = true
+
+		setSelectionRecursively(property, selectionType, value)
+		const target = 
+			findAttributeById(ObjectChildArray.id).properties.array.filterable === true
+			findAttributeById(ObjectChildArray.id).properties.array.items.filterable === true
+			
+		expect(target).toEqual(value)
+	})
+	it("Object -> Array -> Primitive, target Primitive", function() {
+		const property = findAttributeById(ObjectChildArray.id).properties.array.items
+		const selectionType = 'filterable'
+		const value = true
+
+		setSelectionRecursively(property, selectionType, value)
+		const target = 
+			findAttributeById(ObjectChildArray.id).properties.array.items.filterable === true
+			
+		expect(target).toEqual(value)
+	})
+	it(`
+		Array -> 
+			Object[1] -> (
+				Object[11] -> 
+					Primitive[111]
+				) + (
+				Array[12] -> 
+					Primitive[121]
+				)
+			), 
+		target Object[1]	
+	`, function() {
+		const property = findAttributeById(ObjectArraySiblings.id)
+		const selectionType = 'filterable'
+		const value = true
+
+		setSelectionRecursively(property, selectionType, value)
+		const target = 
+			findAttributeById(ObjectArraySiblings.id).filterable === true
+			findAttributeById(ObjectArraySiblings.id).items.filterable === true
+			findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === true
+			findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === true
+			findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === true
+			findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === true
+			
+		expect(target).toEqual(value)
+	})
+	it('see previous, target Object[1]', function() {
+		const property = findAttributeById(ObjectArraySiblings.id).items
+		const selectionType = 'filterable'
+		const value = true
+
+		setSelectionRecursively(property, selectionType, value)
+		const target = 
+			findAttributeById(ObjectArraySiblings.id).items.filterable === true
+			findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === true
+			findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === true
+			findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === true
+			findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === true
+			
+		expect(target).toEqual(value)
+	})
+	it('see previous, target Object[11]', function() {
+		const property = findAttributeById(ObjectArraySiblings.id).items.properties.object_ref
+		const selectionType = 'filterable'
+		const value = true
+
+		setSelectionRecursively(property, selectionType, value)
+		const target = 
+			findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === true
+			findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === true
+			
+		expect(target).toEqual(value)
+	})
+	it('see previous, target Array[12]', function() {
+		const property = findAttributeById(ObjectArraySiblings.id).items
+		const selectionType = 'filterable'
+		const value = true
+
+		setSelectionRecursively(property, selectionType, value)
+		const target = 
+			findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === true
+			findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === true
+			
+		expect(target).toEqual(value)
+	})
+	it('see previous, target Primitive[111]', function() {
+		const property = findAttributeById(ObjectArraySiblings.id).items.properties.object_ref
+		const selectionType = 'filterable'
+		const value = true
+
+		setSelectionRecursively(property, selectionType, value)
+		const target = 
+			findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === true
+			
+		expect(target).toEqual(value)
+	})
+	it('see previous, target Primitive[121]', function() {
+		const property = findAttributeById(ObjectArraySiblings.id).items
+		const selectionType = 'filterable'
+		const value = true
+
+		setSelectionRecursively(property, selectionType, value)
+		const target = 
+			findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === true
+			
+		expect(target).toEqual(value)
+	})
 })
 
-  
+	
