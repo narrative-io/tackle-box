@@ -84,6 +84,29 @@ describe("setSelectionRecursively", function() {
 			
 		expect(target).toEqual(value)
 	})
+	it("Array -> Primitive, target Array", function() {
+		const property = findAttributeById(ArrayItemsPrimitive.id)
+		const selectionType = 'filterable'
+		const value = true
+
+		setSelectionRecursively(property, selectionType, value)
+		const target = 
+			findAttributeById(ArrayItemsPrimitive.id).filterable === true && 
+			findAttributeById(ArrayItemsPrimitive.id).items.filterable === true
+			
+		expect(target).toEqual(value)
+	})
+	it("Array -> Primitive, target Primitive", function() {
+		const property = findAttributeById(ArrayItemsPrimitive.id).items
+		const selectionType = 'filterable'
+		const value = true
+
+		setSelectionRecursively(property, selectionType, value)
+		const target = 
+			findAttributeById(ArrayItemsPrimitive.id).items.filterable === true
+			
+		expect(target).toEqual(value)
+	})
 })
 
   

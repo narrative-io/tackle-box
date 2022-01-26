@@ -35,6 +35,8 @@ let setSelectionRecursively = (property, selectionType, value) => {
 		Object.keys(property.properties).forEach(childPropertyName => {
 			setSelectionRecursively(property.properties[childPropertyName], selectionType, value)
 		})
+	} else if (property.items) {
+		setSelectionRecursively(property.items, selectionType, value)
 	}
 }
 
@@ -96,8 +98,7 @@ let makeSelected = (attributes, selectionType) => {
 let makeSelectedFromSchemaPreset = (attributes, schemaPreset) => {
 	schemaPreset.details.attributes.map(presetAttribute => {
 		const relevantAttribute = attributes.find(attribute => attribute.id === presetAttribute.attribute_id)
-		presetAttribute.fields.map(field => {
-			
+		presetAttribute.fields.map(field => {		
 			const path = field.field.split('.')
 			path[0] = {
 				id: presetAttribute.attribute_id,
