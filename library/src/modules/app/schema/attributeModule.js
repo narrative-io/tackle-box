@@ -13,14 +13,14 @@ let makePathString = (path) => {
 }
 
 let getAttributeFromPath = (path, attribute) => {
-	const newPath = deepCopy(path)
+  const newPath = deepCopy(path)
 	if (newPath.length === 0) {
     return attribute
   } else {
     if (newPath[0].length) {
 			if (attribute.properties) {
 				attribute = attribute.properties[newPath[0]]
-			} else if (attribute.items) {
+			} else if (newPath[0] === 'items') {
 				attribute = attribute.items
 			} 
     }

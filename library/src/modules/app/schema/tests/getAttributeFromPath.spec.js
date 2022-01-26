@@ -11,7 +11,9 @@ import {
   ObjectArraySiblings,
   ArrayArraySiblings,
   AllAttributes
- } from './testAttributes.js'
+} from './testAttributes.js'
+
+let deepCopy = (val) => JSON.parse(JSON.stringify(val))
 
 const attributes = AllAttributes.map(attribute => replacePropertyRefs(attribute, AllAttributes))
 
@@ -61,6 +63,237 @@ describe("getAttributeFromPath", function() {
       ...Primitive,
       filterable: false,
       deliverable: false
+    }
+    expect(actual).toEqual(expected)
+  })
+  it("Object[1] -> Object[2] -> Primitive, target Primitve ", function() {
+    const path = [
+      {
+        id: 3
+      },
+      'object',
+      'primitive'
+    ]
+    const actual = getAttributeFromPath(path, findAttributeById(ObjectChildObject.id))
+    const expected = findAttributeById(Primitive.id)
+    expect(actual).toEqual(expected)
+  })
+  it("Object[1] -> Object[2] -> Primitive, target Object[2] ", function() {
+    const path = [
+      {
+        id: 3
+      },
+      'object'
+    ]
+    const actual = getAttributeFromPath(path, findAttributeById(ObjectChildObject.id))
+    const expected = {
+      type: "object",
+      filterable: false,
+      deliverable: false,
+      properties: {
+        primitive: {
+          description: "description",
+          display_name: "Ref Primitive",
+          id: 0,
+          name: "ref_primitive",
+          type: "string",
+          filterable: false,
+          deliverable: false
+        }
+      }
+    }
+    expect(actual).toEqual(expected)
+  })
+  it("Object -> Array -> Primitive, target Primitive ", function() {
+    const path = [
+      {
+        id: 4
+      },
+      'array',
+      'items'
+    ]
+    const actual = getAttributeFromPath(path, findAttributeById(ObjectChildArray.id))
+    const expected =  findAttributeById(Primitive.id)
+    expect(actual).toEqual(expected)
+  })
+  it("Object -> Array -> Primitive, target Array", function() {
+    const path = [
+      {
+        id: 4
+      },
+      'array'
+    ]
+    const actual = getAttributeFromPath(path, findAttributeById(ObjectChildArray.id))
+    const expected =  {
+      type: "array",
+      filterable: false,
+      deliverable: false,
+      items: {
+        description: "description",
+        display_name: "Ref Primitive",
+        id: 0,
+        name: "ref_primitive",
+        type: "string",
+        filterable: false,
+        deliverable: false,
+      }
+    }
+    expect(actual).toEqual(expected)
+  })
+  it("Array -> Object -> Primitive, target Primitive", function() {
+    const path = [
+      {
+        id: 5
+      },
+      'items',
+      'primitive_property'
+    ]
+    const actual = getAttributeFromPath(path, findAttributeById(ArrayChildObject.id))
+    const expected = findAttributeById(Primitive.id)
+    expect(actual).toEqual(expected)
+  })
+  it("Array -> Object -> Primitive, target Object", function() {
+    const path = [
+      {
+        id: 5
+      },
+      'items'
+    ]
+    const actual = getAttributeFromPath(path, findAttributeById(ArrayChildObject.id))
+    const expected = {
+      type: "object",
+      filterable: false,
+      deliverable: false,
+      properties: {
+        primitive_property: {
+          description: "description",
+          display_name: "Ref Primitive",
+          id: 0,
+          name: "ref_primitive",
+          type: "string",
+          filterable: false,
+          deliverable: false
+        }
+      }
+    }
+    expect(actual).toEqual(expected)
+  })
+  it("Array[1] -> Array[2] -> Primitive, target Primitive", function() {
+    const path = [
+      {
+        id: 6
+      },
+      'items',
+      'items'
+    ]
+    const actual = getAttributeFromPath(path, findAttributeById(ArrayChildArray.id))
+    const expected = findAttributeById(Primitive.id)
+    expect(actual).toEqual(expected)
+  })
+  it("Array[1] -> Array[2] -> Primitive, target Array[2]", function() {
+    const path = [
+      {
+        id: 6
+      },
+      'items'
+    ]
+    const actual = getAttributeFromPath(path, findAttributeById(ArrayChildArray.id))
+    const expected = {
+      type: "array",
+      filterable: false,
+      deliverable: false,
+      items: {
+        description: "description",
+        display_name: "Ref Primitive",
+        id: 0,
+        name: "ref_primitive",
+        type: "string",
+        filterable: false,
+        deliverable: false
+      }
+    }
+    expect(actual).toEqual(expected)
+  })
+  it(`
+      Array -> 
+        Object[1] -> (
+          Object[11] -> 
+            Primitive[111]
+          ) + (
+          Object[12] -> 
+            Primitive[121]
+          )
+        ), 
+      target Primitive[111]`, function() {
+    const path = [
+      {
+        id: 7
+      },
+      'items',
+      'object_ref_1',
+      'primitive_property'
+    ]
+
+    const parentAttribute = deepCopy(findAttributeById(ObjectObjectSiblings.id))
+    parentAttribute.items.properties.object_ref_1.properties.primitive_property.index = 1 // tag the target
+
+    const actual = getAttributeFromPath(path, parentAttribute)
+    const expected = {
+      description: "description",
+      display_name: "Ref Primitive",
+      id: 0,
+      name: "ref_primitive",
+      type: "string",
+      filterable: false,
+      deliverable: false,
+      index: 1
+    }
+    expect(actual).toEqual(expected)
+  })
+  it(`
+      Array -> 
+        Object[1] -> (
+          Object[11] -> 
+            Primitive[111]
+          ) + (
+          Object[12] -> 
+            Primitive[121]
+          )
+        ), 
+      target Object[12]`, function() {
+    
+    const path = [
+      {
+        id: 7
+      },
+      'items',
+      'object_ref_2',
+    ]
+
+    const parentAttribute = deepCopy(findAttributeById(ObjectObjectSiblings.id))
+    parentAttribute.items.properties.object_ref_2.index = 1 // tag the target
+
+    const actual = getAttributeFromPath(path, parentAttribute)
+    const expected = {
+      description: "description",
+      display_name: "Object with Primitive child",
+      id: 2,
+      name: "ObjectChildPrimitive",
+      type: "object",
+      filterable: false,
+      deliverable: false,
+      index: 1,
+      properties: {
+        primitive_property: {
+          description: "description",
+          display_name: "Ref Primitive",
+          id: 0,
+          name: "ref_primitive",
+          type: "string",
+          filterable: false,
+          deliverable: false,
+        }
+      }
     }
     expect(actual).toEqual(expected)
   })
