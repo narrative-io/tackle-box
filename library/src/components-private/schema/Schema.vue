@@ -50,11 +50,11 @@
                 ) 
                 .nio-p-small.text-primary-dark Filterable  
         template(v-slot:content) 
-          .display-row.display-table(v-if="attribute.properties")
+          .display-row.display-table(v-if="attribute.properties || attribute.items")
             NioSchemaProperties(
               :key="index"
               :disableInteractions="disableInteractions"
-              :properties="attribute.properties"
+              :properties="attribute.properties ? attribute.properties : { items: attribute.items }"
               :nest="1"
               :hideIndicators="hideIndicators || !attributes ? true : false"
               :showExportedOnly="!attributes || showExportedOnly"

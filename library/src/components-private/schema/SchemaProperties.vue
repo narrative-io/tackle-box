@@ -54,10 +54,10 @@
                   ) 
                   .nio-p-small.text-primary-dark Filterable
             template(v-slot:content)  
-              .display-row(v-if="properties[propertyName].properties")
+              .display-row(v-if="properties[propertyName].properties || properties[propertyName].items")
                 .nest-spacer(v-for="index in nest")
                 SchemaProperties(
-                  :properties="properties[propertyName].properties"
+                  :properties="properties[propertyName].properties ? properties[propertyName].properties : { items: properties[propertyName].items } "
                   @updatePayload="updatePayload"
                   :disableInteractions="disableInteractions"
                   :nest="nest + 1"
