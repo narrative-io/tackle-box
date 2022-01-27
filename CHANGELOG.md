@@ -109,3 +109,7 @@ Added model binding for name and description **NioDestinationConnectorSettings**
 
 v0.4.1
 Added **NioFilterJoinOption** private component and added to StringMany filter and test component
+
+v0.4.2
+Added support for Array attributes in **attributeModule**, **NioSchema** and **NioSchemaProperties**
+Added Jasmine for unit testing and added test for **attributeModule**

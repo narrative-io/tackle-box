@@ -1,6 +1,6 @@
 {
   "name": "@narrative.io/tackle-box",
-  "version": "0.4.1-beta-2",
+  "version": "0.4.2-beta-0",
   "description": "The Narrative Data Stream UI library of user interface components and styles, written for use in Vue.js projects",
   "author": "Narrative, Inc.",
   "repository": {
@@ -21,8 +21,8 @@
     "prepublishOnly": "$npm_execpath run build",
     "build:app": "vue-cli-service build --dest dist-app",
     "release:prod": "npm publish -access public",
-		"release:dev": "npm publish -access public --tag beta",
-		"test": "jasmine"
+    "release:dev": "npm publish -access public --tag beta",
+    "test": "jasmine"
   },
   "main": "dist/tackle-box.common.js",
   "unpkg": "dist/tackle-box.umd.min.js",
@@ -95,5 +95,5 @@
     "vue-template-compiler": "^2.6.12",
     "vuepress": "^1.0.0-rc.1",
     "vuetify-loader": "^1.6.0"
-	}
+  }
 }
