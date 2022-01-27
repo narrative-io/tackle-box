@@ -58,6 +58,7 @@
               :nest="1"
               :hideIndicators="hideIndicators || !attributes ? true : false"
               :showExportedOnly="!attributes || showExportedOnly"
+              :isArrayDescendant="Boolean(attribute.items)"
             )
           .property-details(
             v-else 

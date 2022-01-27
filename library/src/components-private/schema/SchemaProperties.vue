@@ -29,7 +29,7 @@
                     .nio-slat-subtitle.nio-p.text-primary-dark(
                       v-if="properties[propertyName].description && !properties[propertyName].isArrayItems" :style="{width: slatWidth}"
                     ) {{ properties[propertyName].description }}
-                .property-settings(v-if="!hideIndicators && disableInteractions && properties[propertyName].type !== 'object' && properties[propertyName].type !=='array'")
+                .property-settings(v-if="!hideIndicators && !isArrayDescendant && disableInteractions && properties[propertyName].type !== 'object' && properties[propertyName].type !=='array'")
                   .pills-container
                     NioPill(
                       list-item
@@ -45,7 +45,7 @@
                       :iconColor="properties[propertyName].filterable ? '#43B463' : '#AEB9E8'"
                       :class="properties[propertyName].filterable ? '' : 'negative'"
                     ) Filterable
-                .property-actions(v-else-if="!hideIndicators && !disableInteractions || properties[propertyName].isArrayItems")
+                .property-actions(v-else-if="!hideIndicators && !disableInteractions && !isArrayDescendant && !properties[propertyName].isArrayItems")
                   NioSwitch(
                     @click.stop=""
                     v-model="properties[propertyName].deliverable"
@@ -68,6 +68,7 @@
                   :nest="nest + 1"
                   :showExportedOnly="showExportedOnly"
                   :hideIndicators="hideIndicators"
+                  :isArrayDescendant="isArrayDescendant"
                 )
               .property-details(
                 v-else 
@@ -105,7 +106,8 @@ export default {
     "disableInteractions": { type: Boolean, required: false, default: false },
     "nest": { type: Number, required: true},
     "hideIndicators": { type: Boolean, required: false, default: false },
-    "showExportedOnly": { type: Boolean, required: false, default: false }
+    "showExportedOnly": { type: Boolean, required: false, default: false },
+    "isArrayDescendant": { type: Boolean, required: false, default: false } // temparary fix to disable controls on all descendants of array properties until filters are supported in the backend
   },
   data: () => ({
     openPanels: []
