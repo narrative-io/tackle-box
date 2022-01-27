@@ -22,9 +22,14 @@
                       color="#AEB9E8"
                     )
                   .nio-slat-title-subtitle
-                    .nio-slat-title.nio-h4.text-primary-darker.nio-bold(:style="{width: slatWidth}") {{ propertyName }}
-                    .nio-slat-subtitle.nio-p.text-primary-dark(v-if="properties[propertyName].description" :style="{width: slatWidth}") {{ properties[propertyName].description }}
-                .property-settings(v-if="!hideIndicators && disableInteractions && properties[propertyName].type !== 'object' && properties[propertyName].type !=='array'")
+                    .nio-slat-title.nio-h4.text-primary-darker.nio-bold(
+                      :style="{width: slatWidth}" 
+                      :class="{'is-array-items': properties[propertyName].isArrayItems}"
+                    ) {{ propertyName }}
+                    .nio-slat-subtitle.nio-p.text-primary-dark(
+                      v-if="properties[propertyName].description && !properties[propertyName].isArrayItems" :style="{width: slatWidth}"
+                    ) {{ properties[propertyName].description }}
+                .property-settings(v-if="!hideIndicators && !isArrayDescendant && disableInteractions && properties[propertyName].type !== 'object' && properties[propertyName].type !=='array'")
                   .pills-container
                     NioPill(
                       list-item
@@ -40,7 +45,7 @@
                       :iconColor="properties[propertyName].filterable ? '#43B463' : '#AEB9E8'"
                       :class="properties[propertyName].filterable ? '' : 'negative'"
                     ) Filterable
-                .property-actions(v-else-if="!hideIndicators && !disableInteractions")
+                .property-actions(v-else-if="!hideIndicators && !disableInteractions && !isArrayDescendant && !properties[propertyName].isArrayItems")
                   NioSwitch(
                     @click.stop=""
                     v-model="properties[propertyName].deliverable"
@@ -54,15 +59,16 @@
                   ) 
                   .nio-p-small.text-primary-dark Filterable
             template(v-slot:content)  
-              .display-row(v-if="properties[propertyName].properties")
+              .display-row(v-if="properties[propertyName].properties || properties[propertyName].items")
                 .nest-spacer(v-for="index in nest")
                 SchemaProperties(
-                  :properties="properties[propertyName].properties"
+                  :properties="properties[propertyName].properties ? properties[propertyName].properties : { items: {...properties[propertyName].items, isArrayItems: true}} "
                   @updatePayload="updatePayload"
                   :disableInteractions="disableInteractions"
                   :nest="nest + 1"
                   :showExportedOnly="showExportedOnly"
                   :hideIndicators="hideIndicators"
+                  :isArrayDescendant="isArrayDescendant"
                 )
               .property-details(
                 v-else 
@@ -100,7 +106,8 @@ export default {
     "disableInteractions": { type: Boolean, required: false, default: false },
     "nest": { type: Number, required: true},
     "hideIndicators": { type: Boolean, required: false, default: false },
-    "showExportedOnly": { type: Boolean, required: false, default: false }
+    "showExportedOnly": { type: Boolean, required: false, default: false },
+    "isArrayDescendant": { type: Boolean, required: false, default: false } // temparary fix to disable controls on all descendants of array properties until filters are supported in the backend
   },
   data: () => ({
     openPanels: []

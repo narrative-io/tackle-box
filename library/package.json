@@ -1,6 +1,6 @@
 {
   "name": "@narrative.io/tackle-box",
-  "version": "0.4.1-beta-1",
+  "version": "0.4.2-beta-0",
   "description": "The Narrative Data Stream UI library of user interface components and styles, written for use in Vue.js projects",
   "author": "Narrative, Inc.",
   "repository": {
@@ -21,7 +21,8 @@
     "prepublishOnly": "$npm_execpath run build",
     "build:app": "vue-cli-service build --dest dist-app",
     "release:prod": "npm publish -access public",
-    "release:dev": "npm publish -access public --tag beta"
+    "release:dev": "npm publish -access public --tag beta",
+    "test": "jasmine"
   },
   "main": "dist/tackle-box.common.js",
   "unpkg": "dist/tackle-box.umd.min.js",
@@ -80,6 +81,7 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^6.2.2",
+    "jasmine": "^4.0.2",
     "material-design-icons-iconfont": "^6.1.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
