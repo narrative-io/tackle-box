@@ -54,7 +54,7 @@
             NioSchemaProperties(
               :key="index"
               :disableInteractions="disableInteractions"
-              :properties="attribute.properties ? attribute.properties : { items: attribute.items }"
+              :properties="attribute.properties ? attribute.properties : { items: {...attribute.items, isArrayItems: true }}"
               :nest="1"
               :hideIndicators="hideIndicators || !attributes ? true : false"
               :showExportedOnly="!attributes || showExportedOnly"
@@ -81,7 +81,7 @@
 
 <script>
 
-import { getReadableType, replacePropertyRefs, getDataTypeIconName, isExportable } from '../../modules/app/schema/attributeModule'
+import { setSelectionRecursively, getReadableType, replacePropertyRefs, getDataTypeIconName, isExportable } from '../../modules/app/schema/attributeModule'
 import NioSchemaProperties from './SchemaProperties'
 import NioExpansionPanels from '../../components/ExpansionPanels'
 import NioExpansionPanel from '../../components/ExpansionPanel'
@@ -90,11 +90,11 @@ import NioPill from '../../components/Pill'
 import NioSwitch from '../../components/Switch'
 
 export default {
-	name: 'nio-schema',
+  name: 'nio-schema',
   props: {
-		"attributes": { type: Array, required: false },
-		"datasets": { type: Array, required: false },
-		"columnSets": { type: Array, required: false },
+    "attributes": { type: Array, required: false },
+    "datasets": { type: Array, required: false },
+    "columnSets": { type: Array, required: false },
     "disableInteractions": { type: Boolean, required: false, default: false },
     "hideIndicators": { type: Boolean, required: false, default: false },
     "showExportedOnly": { type: Boolean, required: false, default: false }
@@ -104,33 +104,33 @@ export default {
   }),	
   computed: {
     computeAttributes() {
-			if (this.attributes && this.attributes.length > 0) {
-				if (this.showExportedOnly) {
-					const exportable = []
-					this.attributes.map(attribute => {
-						if (isExportable(attribute)) {
-							exportable.push(attribute)
-						}
-					})
-					return exportable
-				} else {
-					return this.attributes
-				}
-			} else if (this.datasets && this.datasets.length > 0 && this.columnSets && this.columnSets.length > 0) { // TODO Add support for nested column sets when available in seller studio
-				const attributes = []
-				this.columnSets.forEach(columnSet => {
-					const dataset = this.datasets.find(dataset =>  dataset.id === columnSet.dataset_id)
-					columnSet.fields.forEach(field => {
-						if (field.exported) {
-							attributes.push({
-								...dataset.schema.properties[field.field],
-								display_name: field.field
-							})
-						}
-					})
-				})
-				return attributes
-			}
+      if (this.attributes && this.attributes.length > 0) {
+        if (this.showExportedOnly) {
+          const exportable = []
+          this.attributes.map(attribute => {
+            if (isExportable(attribute)) {
+              exportable.push(attribute)
+            }
+          })
+          return exportable
+        } else {
+          return this.attributes
+        }
+      } else if (this.datasets && this.datasets.length > 0 && this.columnSets && this.columnSets.length > 0) { // TODO Add support for nested column sets when available in seller studio
+        const attributes = []
+        this.columnSets.forEach(columnSet => {
+          const dataset = this.datasets.find(dataset =>  dataset.id === columnSet.dataset_id)
+          columnSet.fields.forEach(field => {
+            if (field.exported) {
+              attributes.push({
+                ...dataset.schema.properties[field.field],
+                display_name: field.field
+              })
+            }
+          })
+        })
+        return attributes
+      }
     }
   },
   methods: {
@@ -139,6 +139,12 @@ export default {
     },
     dataTypeIconName(dataType) {
       return getDataTypeIconName(dataType)
+    },
+    updateRootPayload(property, selectionType, value) {
+      if (selectionType === 'deliverable') {
+        setSelectionRecursively(property, 'filterable', value)
+      }
+      setSelectionRecursively(property, selectionType, value)
     }
   },
   components: { NioSchemaProperties, NioExpansionPanels, NioExpansionPanel, NioIcon, NioPill, NioSwitch }

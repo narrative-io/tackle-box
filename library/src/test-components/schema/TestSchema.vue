@@ -1,14 +1,14 @@
 <template lang="pug">
   .test-attributes-schema
-    NioSchema(
-      :datasets="fields.datasets"
-      :columnSets="fields.data_rules.column_sets"
-    )
-    NioSchema(
-      :attributes="attributes"
-      :hideIndicators="true"
-      :showExportedOnly="true"
-    )
+    //- NioSchema(
+    //-   :datasets="fields.datasets"
+    //-   :columnSets="fields.data_rules.column_sets"
+    //- )
+    //- NioSchema(
+    //-   :attributes="attributes"
+    //-   :hideIndicators="true"
+    //-   :showExportedOnly="true"
+    //- )
     NioSchema(
       :attributes="attributes"
     )
