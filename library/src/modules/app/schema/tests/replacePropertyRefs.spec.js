@@ -1,15 +1,15 @@
 import { replacePropertyRefs } from '../attributeModule.js'
 import { 
   Primitive,
-	ArrayItemsPrimitive,
-	ObjectChildPrimitive,
-	ObjectChildArray,
-	ObjectChildObject,
-	ArrayChildObject,
-	ArrayChildArray,
-	ObjectObjectSiblings,
-	ObjectArraySiblings,
-	ArrayArraySiblings
+  ArrayItemsPrimitive,
+  ObjectChildPrimitive,
+  ObjectChildArray,
+  ObjectChildObject,
+  ArrayChildObject,
+  ArrayChildArray,
+  ObjectObjectSiblings,
+  ObjectArraySiblings,
+  ArrayArraySiblings
 } from './testAttributes.js'
 
 let log = (arg) => {
