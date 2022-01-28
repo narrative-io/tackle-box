@@ -1,6 +1,5 @@
 <template lang="pug">
   .nio-schema-properties(v-if="computedProperties")
-    .test
     .display-row.display-table 
       .display-column.properties
         NioExpansionPanels(
@@ -68,7 +67,7 @@
                   :nest="nest + 1"
                   :showExportedOnly="showExportedOnly"
                   :hideIndicators="hideIndicators"
-                  :isArrayDescendant="isArrayDescendant"
+                  :isArrayDescendant="isArrayDescendant || Boolean(properties[propertyName].items)"
                 )
               .property-details(
                 v-else 
