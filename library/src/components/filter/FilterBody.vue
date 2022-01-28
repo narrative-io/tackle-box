@@ -6,6 +6,12 @@
         :filter="filter"
         :customOptionLoading="customOptionLoading"
       )
+    template(v-if="filter.type === 'array'")
+      NioFilterPropertiesObject(
+        @valueChanged="valueChanged($event)"
+        :filter="filter"
+        :customOptionLoading="customOptionLoading"
+      )
     template(v-if="filter.type === 'number'")
       NioFilterPropertiesNumber(
         @valueChanged="valueChanged($event)"

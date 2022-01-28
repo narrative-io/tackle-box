@@ -1,6 +1,7 @@
 <template lang="pug">
   .test-filters
     Object
+    Array
     StringLimited
     StringMany
     EventTimestamp
@@ -14,6 +15,7 @@
 <script>
 
 import Object from './object/Object'
+import Array from './array/Array'
 import StringLimited from './string-limited/StringLimited'
 import StringMany from './string-many/StringMany'
 import EventTimestamp from './event-timestamp/EventTimestamp'
@@ -26,6 +28,7 @@ import Boolean from './boolean/Boolean'
 export default {
   components: {
     Object,
+    Array,
     StringLimited,
     StringMany,
     EventTimestamp,
