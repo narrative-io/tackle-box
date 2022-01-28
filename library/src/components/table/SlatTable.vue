@@ -270,7 +270,7 @@ export default {
       }
       // apply pagination 
       if (this.pagination) {
-        this.paginatedItems = this.itemsPerPage === -1 ? computedItems : computedItems.slice(0, this.itemsPerPage)
+        this.paginatedItems = this.itemsPerPage === -1 ? computedItems : computedItems.slice(this.itemsPerPage * (this.currentPage - 1), this.itemsPerPage * this.currentPage)
       }
       this.computedItems = computedItems
     },
@@ -376,12 +376,14 @@ export default {
     searchChange(val) {
       this.currentPage = 1
       this.searchTerm = val
-      this.computeItems()
+			this.computeItems()
+			this.applyPagination(1)
     },
     sortChange(val) {
       this.currentPage = 1
       this.selectedSortOption = val
-      this.computeItems()
+			this.computeItems()
+			this.applyPagination(1)
     },
     allSelectedChange(val) {
       this.selection = val === true ? this.computedItems.map(item => item.id) : []

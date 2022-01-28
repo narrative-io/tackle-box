@@ -94,7 +94,7 @@ export const testItems = [
     id: 11,
     imageSrc: "https://picsum.photos/64/64",
     orderName: "Another Order",
-    orderNumber: 46658335,
+    orderNumber: 255,
     spent: 100,
     budget: 99.01,
     expires: "Jan 12 2020"
@@ -121,7 +121,7 @@ export const testItems = [
     id: 14,
     imageSrc: "https://picsum.photos/64/64",
     orderName: "02 - My Offline Customers - Onboared",
-    orderNumber: 425,
+    orderNumber: 426,
     spent: 500,
     budget: 24000,
     expires: "Jan 01 2020"

@@ -171,32 +171,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import "../../styles/mixins/_tooltip-content"
-.nio-field-type-tooltip
-  +nio-tooltip-content
-  max-width: 270px
-  &.long, &.double
-    max-width: 270px
-  &.object
-    max-width: 190px
-  &.array
-    max-width: 180px
-  &.string
-    max-width: 180px
-  &.boolean
-    max-width: 195px
-  &.timestamptz
-    max-width: 217px
-  .content
-    margin: 0 auto
-    max-width: 480px
-    overflow: hidden
-    white-space: pre-line
-    display: flex
-    .nio-h4
-      margin-bottom: 4px
-      white-space: nowrap
-      margin-right: 8px
+@import "../../styles-private/schema/_field-type-tooltip"
 </style>
 
 <style lang="sass" scoped>

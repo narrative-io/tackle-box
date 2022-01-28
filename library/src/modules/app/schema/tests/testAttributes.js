@@ -3,7 +3,7 @@ const Primitive = {
   display_name: "Ref Primitive",
   id: 0,
   name: "ref_primitive",
-  type: "timestamptz"
+  type: "string"
 }
 
 const ArrayItemsPrimitive = {

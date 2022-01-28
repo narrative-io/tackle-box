@@ -15,11 +15,26 @@
                 .header-summary
                   .nest-spacer(v-for="index in nest")
                   .nio-slat-image
-                    NioIcon(
-                      :name="dataTypeIconName(properties[propertyName].type)"
-                      :size="24"
-                      color="#AEB9E8"
-                    )
+                    v-menu(
+                      open-on-hover
+                      open-on-click
+                      :content-class="makeTooltipContentClass(properties[propertyName].type)"
+                      right
+                      :open-delay="250"
+                    ) 
+                      template(v-slot:activator="{ on, attrs }")
+                        div(
+                          v-bind="attrs"
+                          v-on="on"
+                        )
+                          NioIcon(
+                            :name="dataTypeIconName(properties[propertyName].type)"
+                            :size="24"
+                            color="#AEB9E8"
+                          )
+                      .content
+                        .nio-h4.text-primary-darker Data type:
+                        .nio-p.text-primary-dark {{ getPropertyType(properties[propertyName]) }} 
                   .nio-slat-title-subtitle
                     .nio-slat-title.nio-h4.text-primary-darker.nio-bold(
                       :style="{width: slatWidth}" 
@@ -130,6 +145,9 @@ export default {
     }
   },
   methods: {
+    makeTooltipContentClass(attributeType) {
+      return `nio-field-type-tooltip ${attributeType}`
+    },
     getPropertyType(property) {
       return getReadableType(property)
     }, 
@@ -151,8 +169,10 @@ export default {
 }
 </script>
 
+<style lang="sass">
+@import "../../styles-private/schema/_field-type-tooltip"
+</style>
+
 <style lang="sass" scoped>
-
 @import '../../styles-private/schema/_schema-properties'
-
 </style>
