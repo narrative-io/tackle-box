@@ -113,3 +113,4 @@ Added **NioFilterJoinOption** private component and added to StringMany filter a
 v0.4.2
 Added support for Array attributes in **attributeModule**, **NioSchema** and **NioSchemaProperties**
 Added Jasmine for unit testing and added test for **attributeModule**
+Added default filter type for Array property type
