@@ -133,7 +133,7 @@ let getReadableType = (property) => {
     case 'boolean':
       return 'Boolean'
     case 'array':
-      return 'List'
+      return 'Array'
     default:
       return null
   }
