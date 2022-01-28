@@ -12,11 +12,26 @@
           .header-content
             .header-summary
               .nio-slat-image
-                NioIcon(
-                  :name="dataTypeIconName(attribute.type)"
-                  :size="24"
-                  color="#AEB9E8"
-                )
+                v-menu(
+                  open-on-hover
+                  open-on-click
+                  :content-class="makeTooltipContentClass(attribute.type)"
+                  right
+                  :open-delay="250"
+                ) 
+                  template(v-slot:activator="{ on, attrs }")
+                    div(
+                      v-bind="attrs"
+                      v-on="on"
+                    )
+                      NioIcon(
+                        :name="dataTypeIconName(attribute.type)"
+                        :size="24"
+                        color="#AEB9E8"
+                      )
+                  .content
+                    .nio-h4.text-primary-darker Data type:
+                    .nio-p.text-primary-dark {{ getPropertyType(attribute) }} 
               .nio-slat-title-subtitle
                 .nio-slat-title.nio-h4.text-primary-darker.nio-bold  {{ attribute.display_name }}
                 .nio-slat-subtitle.nio-p.text-primary-dark(v-if="attribute.description") {{ attribute.description}}
@@ -135,6 +150,9 @@ export default {
     }
   },
   methods: {
+    makeTooltipContentClass(attributeType) {
+      return `nio-field-type-tooltip ${attributeType}`
+    },
     getPropertyType(property) {
       return getReadableType(property)
     },
@@ -151,6 +169,35 @@ export default {
   components: { NioSchemaProperties, NioExpansionPanels, NioExpansionPanel, NioIcon, NioPill, NioSwitch }
 }
 </script>
+
+<style lang="sass">
+@import "../../styles/mixins/_tooltip-content"
+.nio-field-type-tooltip
+  +nio-tooltip-content
+  max-width: 270px
+  &.long, &.double
+    max-width: 270px
+  &.object
+    max-width: 190px
+  &.array
+    max-width: 180px
+  &.string
+    max-width: 180px
+  &.boolean
+    max-width: 195px
+  &.timestamptz
+    max-width: 217px
+  .content
+    margin: 0 auto
+    max-width: 480px
+    overflow: hidden
+    white-space: pre-line
+    display: flex
+    .nio-h4
+      margin-bottom: 4px
+      white-space: nowrap
+      margin-right: 8px
+</style>
 
 <style lang="sass" scoped>
 @import '../../styles-private/schema/_schema'

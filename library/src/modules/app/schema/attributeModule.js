@@ -153,6 +153,8 @@ let getDataTypeIconName = (dataType) => {
       return 'utility-tally'
     case 'timestamptz':
       return 'utility-clock'
+    case 'boolean':
+      return 'utility-switch'
     default:
       return 'utility-font'
   }
