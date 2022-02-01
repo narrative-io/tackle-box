@@ -11,14 +11,17 @@ const Default = {
 		{
 			label: `All Resource IDs`,
 			value: 'default',
+			tooltip: 'test tooltip default'
 		},
 		{
 			label: "Include if present",
 			value: 'ifPresent',
+			tooltip: 'test tooltip ifPresent'
 		},
 		{
 			label: 'Custom',
 			value: 'custom',
+			tooltip: 'test custom'
 		}
 	],
 	customOption: {

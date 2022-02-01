@@ -9,7 +9,8 @@ const Single = {
   options: [
     {
       label: `All filter values`,
-      value: 'default',
+			value: 'default',
+			tooltip: 'This is a long tooltip for the all filter values filter option'
     },
     {
       label: "Include if present",

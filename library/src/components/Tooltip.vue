@@ -4,7 +4,7 @@
       :open-on-hover="openOnHover"
       :open-on-click="!openOnHover"
       :closeOnContentClick="false"
-      contentClass="nio-tooltip-content"
+      :contentClass="makeContentClass"
       right
       v-bind="$attrs"
       v-on="$listeners"
@@ -50,7 +50,8 @@ export default {
     "linkHref": { type: String, required: false },
     "iconName": { type: String, required: false, default: 'utility-info' },
     "iconColor": { type: String, required: false },
-    "iconBackground": { type: String, required: false, default: 'rgba(0,0,0,0)'}
+		"iconBackground": { type: String, required: false, default: 'rgba(0,0,0,0)'},
+		"contentClass": { type: String, required: false }
   },
   data() {
     return {
@@ -64,7 +65,10 @@ export default {
   computed: {
     defaultIconColor() {
       return getThemeColor('primary')
-    }
+		},
+		makeContentClass() {
+			return `nio-tooltip-content ${this.contentClass ? this.contentClass : ''}`
+		}
   },
   methods: {
     applyHelperAttributes() {

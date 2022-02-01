@@ -115,3 +115,4 @@ Added support for Array attributes in **attributeModule**, **NioSchema** and **N
 Added Jasmine for unit testing and added test for **attributeModule**
 Added default filter type for Array property type
 Added tooltip to display property type in **NioSchema** and **NioSchemaProperties**
+Added optional tooltip to filter option in **NioFilterProperty**

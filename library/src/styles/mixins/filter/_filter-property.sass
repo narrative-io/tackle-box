@@ -44,7 +44,7 @@
         border: 0.0938rem solid $c-primary-light
         box-shadow: 0rem 0.25rem 0.75rem rgba(0, 0, 0, 0.1)
         color: $c-primary-darker
-        
+      
       &.custom-selected, &.join-selected
         margin-bottom: 3rem
         .option-selected-pointer
@@ -59,6 +59,19 @@
       &:not(.selected):hover
         cursor: pointer
         background-color: $c-canvas-darker
+
+      .nio-tooltip
+        position: absolute
+        left: 0
+        top: 0
+        width: 100%
+        height: 100%
+        ::v-deep .activator
+          width: 100% !important
+          height: 100% !important
+          pointer-events: auto
+          // height: 100% !important
+          opacity: 0
 
   .custom-option, .join-option
     position: relative
