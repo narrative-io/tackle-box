@@ -4,6 +4,7 @@
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
       :customOptionLoading="customOptionLoading"
+      :joinOption="filter.joinOption"
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)

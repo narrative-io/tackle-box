@@ -15,6 +15,7 @@ import Currency from './instances/Currency'
 import CustomText from './instances/CustomText'
 import Unconstrained from './instances/Unconstrained'
 import CurrencyRange from './instances/CurrencyRange'
+import Join from './instances/Join'
 
 export default {
   components: {
@@ -27,9 +28,10 @@ export default {
       Default,
       Range,
       CustomText,
-			Unconstrained,
+      Unconstrained,
       Currency,
-			CurrencyRange
+      CurrencyRange,
+      Join
     ]
   }),
   mounted() {

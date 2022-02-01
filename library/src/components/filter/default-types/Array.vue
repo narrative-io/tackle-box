@@ -3,6 +3,7 @@
     NioFilterProperty(
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
+      :joinOption="filter.joinOption"
       :customOptionLoading="false"
       v-bind:value.sync="filter.value"
     )
@@ -11,6 +12,7 @@
 <script>
 
 import NioFilterProperty from '../FilterProperty'
+import NioFilterJoinOption from '../join/JoinOption'
 
 export default {
   name: 'nio-filter-properties-object',
@@ -55,7 +57,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty }
+  components: { NioFilterProperty, NioFilterJoinOption }
 }
 </script>
 

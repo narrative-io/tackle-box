@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-property {{ hasJoinableDatasets }}
+  .nio-filter-property
     .heading-description
       .heading.nio-h5.text-primary-darker(v-if="heading") {{ heading }}
       .description.nio-p.text-primary-dark(:class="{'centered': !heading}") {{ description }}
@@ -58,9 +58,6 @@ export default {
     hasJoinableDatasets() {
       return this.joinOption && this.joinOption.config && this.joinOption.config.datasets && this.joinOption.config.datasets.length > 0
     }
-  },
-  mounted() {
-    console.log(this.joinOption)
   },
   methods: {
     update(value) {

@@ -5,6 +5,7 @@
       :description="filter.text.dateRange.description ? filter.text.dateRange.description : ''"
       :options="defaultOptions.dateRange"
       :customOptionLoading="customOptionLoading"
+      :joinOption="filter.joinOption"
       v-bind:value.sync="filter.value.dateRange"
     )
       template(v-slot:custom-option)

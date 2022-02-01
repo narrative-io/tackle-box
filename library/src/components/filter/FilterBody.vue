@@ -7,7 +7,7 @@
         :customOptionLoading="customOptionLoading"
       )
     template(v-if="filter.type === 'array'")
-      NioFilterPropertiesObject(
+      NioFilterPropertiesArray(
         @valueChanged="valueChanged($event)"
         :filter="filter"
         :customOptionLoading="customOptionLoading"
@@ -35,7 +35,6 @@
         @valueChanged="valueChanged($event)"
         :filter="filter"
         :customOptionLoading="customOptionLoading"
-        :joinOption="filter.joinOption"
       ) 
     template(v-else-if="filter.type === 'stringLimited'")
       NioFilterPropertiesStringLimited(
@@ -73,6 +72,7 @@
 
 import NioFilterProperty from './FilterProperty'
 import NioFilterPropertiesObject from './default-types/Object'
+import NioFilterPropertiesArray from './default-types/Array'
 import NioFilterPropertiesNumber from './default-types/Number'
 import NioFilterPropertiesEventTimestamp from './default-types/EventTimestamp'
 import NioFilterPropertiesSimpleTimestamp from './default-types/SimpleTimestamp'
@@ -126,6 +126,7 @@ export default {
   components: { 
     NioFilterProperty, 
     NioFilterPropertiesObject,
+    NioFilterPropertiesArray,
     NioFilterPropertiesNumber,
     NioFilterPropertiesEventTimestamp,
     NioFilterPropertiesSimpleTimestamp,

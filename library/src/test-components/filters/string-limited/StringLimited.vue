@@ -16,6 +16,7 @@ import CustomLabel from './instances/CustomLabel'
 import IncludeExclude from './instances/IncludeExclude'
 import IncludeExcludeCustomText from './instances/IncludeExcludeCustomText'
 import Searchable from './instances/Searchable'
+import Join from './instances/Join'
 
 export default {
   components: {
@@ -30,9 +31,10 @@ export default {
       Multiple,
       MultiplePrimitive,
       CustomLabel,
-			IncludeExclude,
-			IncludeExcludeCustomText,
-			Searchable
+      IncludeExclude,
+      IncludeExcludeCustomText,
+      Searchable,
+      Join
     ]
   }),
   mounted() {

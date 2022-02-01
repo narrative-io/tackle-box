@@ -4,7 +4,6 @@
     h1 Boolean
     NioFilterGroup(:filters="filters")
       template(v-slot:filter-header-name-custom="slotProps")
-        .test {{ slotProps }}
 </template>
 
 <script>
@@ -12,6 +11,7 @@
 import NioFilterGroup from '@/components/filter/FilterGroup'
 import NioFilter from '@/components/filter/Filter'
 import Default from './instances/Default'
+import Join from './instances/Join'
 
 export default {
   components: {
@@ -21,7 +21,8 @@ export default {
   data: () => ({
     activeFilterName: null,
     filters: [
-      Default
+      Default,
+      Join
     ]
   }),
   mounted() {
