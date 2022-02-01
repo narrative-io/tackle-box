@@ -15,7 +15,7 @@
           nudge-top
           open-on-hover
           content-class="nio-filter-option-tooltip"
-          :open-delay="400"
+          :open-delay="250"
         )
         .option-selected-pointer(v-if="(value === 'custom' && option.value === 'custom') || (value === 'join' && option.value === 'join')")
     .custom-option(
@@ -79,10 +79,8 @@ export default {
 
 <style lang="sass">
   .nio-filter-option-tooltip
-    transform: translate(-7px, -90px) !important
     width: 272px !important
     min-width: 272px !important
-    // transform: translateX(-90px) !important
 </style>
 
 <style lang="sass" scoped>
