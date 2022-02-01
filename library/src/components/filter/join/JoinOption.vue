@@ -1,14 +1,14 @@
 <template lang="pug">
   .nio-filter-join-option
     .join-type
-      NioRadioGroup(v-model="filter.joinOption.value.joinType")
+      NioRadioGroup(v-model="joinOption.value.joinType")
         NioRadioButton(value="include" label="Inculde")
         NioRadioButton(value="exclude" label="Exclude")
     NioDivider(horizontal-solo)
     .select-dataset
       NioSelect(
-        :items="filter.joinOption.config.datasets"
-        v-model="filter.joinOption.value.selectedDataset"
+        :items="joinOption.config.datasets"
+        v-model="joinOption.value.selectedDataset"
         item-text="name"
         item-value="id"
         label="Dataset to Join"
@@ -34,16 +34,11 @@ import NioAlert from '../../Alert'
 export default {
   name: 'nio-filter-join-option',
   props: {
-    "filter": { type: Object, required: true }
-  },
-  data: () => ({
-  }),
-  computed: {
-  
+    "joinOption": { type: Object, required: true }
   },
   mounted() {
-    if (!this.filter.joinOption.value.selectedDataset) {
-      this.filter.joinOption.value.selectedDataset = this.filter.joinOption.config.datasets[0].id
+    if (!this.joinOption.value.selectedDataset) {
+      this.joinOption.value.selectedDataset = this.joinOption.config.datasets[0].id
     }
   },
   components: { NioSelect, NioRadioGroup, NioRadioButton, NioDivider, NioAlert }

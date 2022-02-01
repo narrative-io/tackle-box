@@ -4,7 +4,7 @@
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
       :customOptionLoading="customOptionLoading"
-      :joinableDatasets="joinableDatasets"
+      :joinOption="filter.joinOption"
       v-bind:value.sync="filter.value"
     )
       template(v-slot:custom-option)
@@ -60,19 +60,12 @@
                   v-model="filter.customOption.value.manualEntry"
                 )
                 .instructions.nio-p.text-primary-dark Enter each value on a separate line
-      template(
-        v-slot:join-option
-        v-if="joinableDatasets"
-      )
-        NioFilterJoinOption(
-          :filter="filter"
-        )
+
 </template>
 
 <script>
 
 import NioFilterProperty from '../FilterProperty'
-import NioFilterJoinOption from '../join/JoinOption'
 import NioTabs from '../../Tabs'
 import NioSlatTable from '../../table/SlatTable'
 import NioRadioGroup from '../../RadioGroup'
@@ -83,8 +76,7 @@ export default {
   name: 'nio-filter-properties-string-many',
   props: {
     "filter": { type: Object, required: true },
-    "customOptionLoading": { type: Boolean, required: false, default: false },
-    "joinableDatasets": { type: Array, required: false }
+    "customOptionLoading": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     initialListItems: [],
@@ -145,7 +137,7 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty, NioTabs, NioSlatTable, NioRadioGroup, NioRadioButton, NioTextarea, NioFilterJoinOption }
+  components: { NioFilterProperty, NioTabs, NioSlatTable, NioRadioGroup, NioRadioButton, NioTextarea }
 }
 </script>
 

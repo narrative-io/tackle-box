@@ -35,7 +35,7 @@
         @valueChanged="valueChanged($event)"
         :filter="filter"
         :customOptionLoading="customOptionLoading"
-        :joinableDatasets="joinableDatasets"
+        :joinOption="filter.joinOption"
       ) 
     template(v-else-if="filter.type === 'stringLimited'")
       NioFilterPropertiesStringLimited(
@@ -116,12 +116,6 @@ export default {
         })
       }
       return options
-    },
-    joinableDatasets() {
-      if (this.filter.joinOption && this.filter.joinOption.config && this.filter.joinOption.config.datasets && this.filter.joinOption.config.datasets.length > 0) {
-        return this.filter.joinOption.config.datasets
-      }
-      return null
     }
   },
   methods: {

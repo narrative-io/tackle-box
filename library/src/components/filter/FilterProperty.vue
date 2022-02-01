@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-property
+  .nio-filter-property {{ hasJoinableDatasets }}
     .heading-description
       .heading.nio-h5.text-primary-darker(v-if="heading") {{ heading }}
       .description.nio-p.text-primary-dark(:class="{'centered': !heading}") {{ description }}
@@ -18,13 +18,17 @@
       .option-content(v-else)
         slot(name="custom-option")
     .join-option(
-      v-if="value === 'join' && joinableDatasets"
+      v-if="value === 'join' && hasJoinableDatasets"
     )  
       .option-content
-        slot(name="join-option")
+        NioFilterJoinOption(
+          :joinOption="joinOption"
+        )
 </template>
 
 <script>
+
+import NioFilterJoinOption from './join/JoinOption'
 
 export default {
   name: 'nio-filter-property',
@@ -34,7 +38,7 @@ export default {
     "options": { type: Array, required: true },
     "value": { type: String, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false },
-    "joinableDatasets": { type: Array, required: false}
+    "joinOption": { type: Object, required: false}
   },
   data: () => ({
     
@@ -45,18 +49,25 @@ export default {
   },
   computed: {
     computeOptions() {
-      if (this.joinableDatasets && this.joinableDatasets.length > 0) {
+      if (this.hasJoinableDatasets) {
         return this.options
       } else {
         return this.options.filter(option => option.value !== 'join')
       }
+    },
+    hasJoinableDatasets() {
+      return this.joinOption && this.joinOption.config && this.joinOption.config.datasets && this.joinOption.config.datasets.length > 0
     }
+  },
+  mounted() {
+    console.log(this.joinOption)
   },
   methods: {
     update(value) {
       this.$emit('update:value', value)
     }
-  }
+  },
+  components: { NioFilterJoinOption }
 }
 </script>
 
