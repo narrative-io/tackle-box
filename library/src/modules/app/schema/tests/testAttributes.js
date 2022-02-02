@@ -3,7 +3,8 @@ const Primitive = {
   display_name: "Ref Primitive",
   id: 0,
   name: "ref_primitive",
-  type: "string"
+	type: "string",
+	is_join_key: true
 }
 
 const ArrayItemsPrimitive = {

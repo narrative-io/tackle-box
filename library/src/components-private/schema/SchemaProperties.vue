@@ -59,6 +59,18 @@
                       :iconColor="properties[propertyName].filterable ? '#43B463' : '#AEB9E8'"
                       :class="properties[propertyName].filterable ? '' : 'negative'"
                     ) Filterable
+                .property-actions.potential-join-target(v-else-if="!hideIndicators && !disableInteractions && (isArrayDescendant && properties[propertyName].is_join_key)")
+                  NioSwitch(
+                    @click.stop=""
+                    v-model="alwaysTrue"
+                    disabled
+                    @update="updateRootPayload(properties[propertyName], 'filterable', $event)"
+                  ) 
+                  .nio-p-small.text-primary-dark Filterable
+                  NioTooltip.array-join-target(
+                    message="This property can be joined to a dataset. If you have created a joinable dataset in Dataset manager then you will have the option to join this attribute to the dataset in the next step."
+                    content-class="nio-array-join-target-tooltip"
+                  )
                 .property-actions(v-else-if="!hideIndicators && !disableInteractions && !isArrayDescendant && !properties[propertyName].isArrayItems")
                   NioSwitch(
                     @click.stop=""
@@ -113,6 +125,7 @@ import NioExpansionPanel from '../../components/ExpansionPanel'
 import NioIcon from '../../components/icon/Icon'
 import NioPill from '../../components/Pill'
 import NioSwitch from '../../components/Switch'
+import NioTooltip from '../../components/Tooltip'
 
 export default {
   props: {
@@ -124,7 +137,8 @@ export default {
     "isArrayDescendant": { type: Boolean, required: false, default: false } // temparary fix to disable controls on all descendants of array properties until filters are supported in the backend
   },
   data: () => ({
-    openPanels: []
+    openPanels: [],
+    alwaysTrue: true
   }),
   computed: {
     slatWidth() {
@@ -165,12 +179,15 @@ export default {
       return getDataTypeIconName(dataType)
     }
   },
-  components: { SchemaProperties: () => import('./SchemaProperties.vue'), NioExpansionPanels, NioExpansionPanel, NioIcon, NioPill, NioSwitch }
+  components: { SchemaProperties: () => import('./SchemaProperties.vue'), NioExpansionPanels, NioExpansionPanel, NioIcon, NioPill, NioSwitch, NioTooltip }
 }
 </script>
 
 <style lang="sass">
 @import "../../styles-private/schema/_field-type-tooltip"
+
+.nio-array-join-target-tooltip
+  transform: translateY(40px) !important
 </style>
 
 <style lang="sass" scoped>
