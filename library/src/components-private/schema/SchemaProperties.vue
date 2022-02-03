@@ -70,6 +70,7 @@
                   NioTooltip.array-join-target(
                     message="This property can be joined to a dataset. If you have created a joinable dataset in Dataset manager then you will have the option to join this attribute to the dataset in the next step."
                     content-class="nio-array-join-target-tooltip"
+                    open-on-hover
                   )
                 .property-actions(v-else-if="!hideIndicators && !disableInteractions && !isArrayDescendant && !properties[propertyName].isArrayItems")
                   NioSwitch(
