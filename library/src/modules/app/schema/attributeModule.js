@@ -233,6 +233,10 @@ let hasExportableChild = (attribute) => {
   }
 }
 
+let getJoinableDatasets = (property, datasets) => {
+
+}
+
 export {
   makePathString,
   getAttributeFromPath,
@@ -243,5 +247,6 @@ export {
   replacePropertyRefs,
   makeSelected,
   makeSelectedFromSchemaPreset,
-  isExportable
+	isExportable,
+	getJoinableDatasets
 }
