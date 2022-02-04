@@ -239,51 +239,31 @@ let getJoinOptionsByPath = (path, parentAttribute, datasets) => {
 	const pathCopy = deepCopy(path)
 	pathCopy.shift()
 	let stringPath = makeDotDelimitedPropertyPath(pathCopy)
-	// console.log("STRING PATH")
-	// console.log(stringPath)
-	// console.log("TARGET PROPERTY")
-	// console.log(targetProperty)
 	if (targetProperty.is_join_key) {
 		if (pathCopy.includes('items') && pathCopy.lastIndexOf('items') !== pathCopy.length - 1) { // there's an array somewhere in the path and it's not the last path element
-			// create result.parentAttribute
 			const arrayPath = deepCopy(pathCopy)
-			console.log(arrayPath)
 			arrayPath.length = pathCopy.lastIndexOf('items') + 1 // remove everything from items to the end of the path
 			const arrayItemsAttribute = getAttributeFromPath(arrayPath, parentAttribute)
-			// console.log("ARRAY ITEMS ATTRIBUTE")
-			// console.log(arrayPath)
-			// console.log(arrayItemsAttribute)
-			// console.log(arrayItemsAttribute.id)
 			if (arrayItemsAttribute.id || Object.keys(arrayItemsAttribute).includes('id')) { // if it's a ref'd attribute, which it must be since we can't specify paths nested inside an array
-				// console.log("ARRAY PATH")
-				// console.log(arrayPath)
 				arrayPath.pop()
 				result.parentAttribute = {
 					attributeId: parentAttribute.id,
 					path: makeDotDelimitedPropertyPath(arrayPath)
 				}
-				const arrayChildrenPath = makeDotDelimitedPropertyPath(deepCopy(pathCopy).filter((value, index, arr) => { 
-					return index > pathCopy.lastIndexOf('items')
-				}))
-				// console.log("ARRAY CHILDREN PATH")
-				// console.log(arrayChildrenPath)
+				const arrayChildrenPath = makeDotDelimitedPropertyPath(deepCopy(pathCopy).filter((value, index, arr) => index > pathCopy.lastIndexOf('items'))) // get the tail end of the path after array.items
 				result.attributeId = arrayItemsAttribute.id
 				result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === result.attributeId && hasPropertyMappingForPath(mapping, arrayChildrenPath)))		
 			}			
-		} else if (!targetProperty.type !== 'object' && targetProperty.type !== 'array') { // if it's a primitive and is_join_key = true, return all datasets that have mappings to this attributeId and path
+		} else if (!targetProperty.type !== 'object' && targetProperty.type !== 'array') { // if it's a primitive and is_join_key = true, return all datasets that have mappings to parentAttribute and path
 			result.attributeId = parentAttribute.id
 			result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id && hasPropertyMappingForPath(mapping, stringPath)))		
 		} 
 	}
-	// console.log("RESULT")
-	// console.log(result)
 	if (result.datasets && result.datasets.length > 0) {
 		return result
 	}
-	return {}
+	return null
 }
-
-
 
 function hasPropertyMappingForPath(mapping, stringPath) {
 	const mappingToPath = mapping.mapping.property_mappings.find(propertyMapping => propertyMapping.path === stringPath)

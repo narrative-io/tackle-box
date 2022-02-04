@@ -44,22 +44,6 @@ const allAttributes = [
 			}
 		}
 	},
-	// {
-	// 	id: 1,
-	// 	name: "identifier_relation",
-	// 	type: "array",
-	// 	items: {
-	// 		type: 'object',
-	// 		properties: {
-	// 			ids: {
-	// 				$ref: 0
-	// 			},
-	// 			relation: {
-	// 				type: 'string'
-	// 			}
-	// 		}
-	// 	}
-	// },
 	{
 		id: 2,
 		name: 'something_else',
@@ -175,7 +159,7 @@ describe("getJoinableDatasets", function() {
 			'ids'
 		]
 		const actual = getJoinOptionsByPath(targetPath, findAttributeById(1), datasets)
-		const expected = {}
+		const expected = null
     expect(actual).toEqual(expected)
 	})
 	it("For array with is_join_key, child with is_join_key", function() {
@@ -211,7 +195,7 @@ describe("getJoinableDatasets", function() {
 			'context'
 		]
 		const actual = getJoinOptionsByPath(targetPath, findAttributeById(1), datasets)
-		const expected = {}
+		const expected = null
     expect(actual).toEqual(expected)
 	})
 })
