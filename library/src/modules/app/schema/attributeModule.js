@@ -233,9 +233,46 @@ let hasExportableChild = (attribute) => {
   }
 }
 
-let getJoinableDatasets = (property, datasets) => {
+let getJoinOptionsByPath = (path, parentAttribute, datasets) => {
 
+	// if it's a primitive and is_join_key = true, return all datasets that have mappings to this attributeId and path
+
+	// if it's an array type and is_join_key = true, 
+		// return all datasets that have a mapping to one of the array's descendants whose is_join_key = true
+
+	// else return []
+
+	const targetProperty = getAttributeFromPath(path, rootAttribute)
+	const pathCopy = deepCopy(path)
+	pathCopy.shift()
+	let stringPath = ''
+	pathCopy.forEach((el, index) => {
+		if (index > 0) {
+			stringPath += '.'
+		}
+		stringPath += el
+	})
+	
+	
 }
+
+function hasPropertyMappingForPath(mapping, path) {
+	const mappingToPath = mapping.mapping.property_mappings.find(propertyMapping => propertyMapping.path === makeDotDelimitedPropertyPath(path))
+	return mappingToPath !== undefined
+}
+
+// function makeDotDelimitedPropertyPath(path) {
+// 	const pathCopy = [...path]
+// 	pathCopy.shift()
+// 	let stringPath = ''
+// 	pathCopy.forEach((el, index) => {
+// 		if (index > 0) {
+// 			stringPath += '.'
+// 		}
+// 		stringPath += el
+// 	})
+// 	return stringPath
+// }
 
 export {
   makePathString,
@@ -248,5 +285,5 @@ export {
   makeSelected,
   makeSelectedFromSchemaPreset,
 	isExportable,
-	getJoinableDatasets
+	getJoinOptionsByPath
 }

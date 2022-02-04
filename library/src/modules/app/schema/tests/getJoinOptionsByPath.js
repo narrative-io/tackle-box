@@ -1,4 +1,4 @@
-import { getJoinableDatasets, replacePropertyRefs } from '../attributeModule.js'
+import { getJoinOptionsByPath, replacePropertyRefs } from '../attributeModule.js'
 
 let attributes
 
@@ -13,6 +13,7 @@ const allAttributes = [
 		id: 0,
 		name: "unique_id",
 		type: "object",
+		filterable: true,
 		properties: {
 			context: {
 				type: 'string'
@@ -42,6 +43,11 @@ const allAttributes = [
 				}
 			}
 		}
+	},
+	{
+		id: 2,
+		name: 'something_else',
+		type: 'string',
 	}
 ]
 
@@ -57,8 +63,7 @@ const datasets = [
 					type: "object_mapping",
 					property_mappings: [
 						{
-							path: "value",
-							expression: "foo"
+							path: "value"
 						}
 					]
 				},
@@ -88,7 +93,7 @@ const datasets = [
 	},
 	{
 		id: 2,
-		name: 'Dataset 1',
+		name: 'Dataset 2',
 		mappings: [
 			{
 				attribute_id: 99,
@@ -97,8 +102,7 @@ const datasets = [
 					type: "object_mapping",
 					property_mappings: [
 						{
-							path: "somethingIrrelevant",
-							expression: "foo"
+							path: "somethingIrrelevant"
 						}
 					]
 				},
@@ -111,8 +115,7 @@ const datasets = [
 					type: "object_mapping",
 					property_mappings: [
 						{
-							path: "value",
-							expression: "foo"
+							path: "value"
 						}
 					]
 				},
@@ -122,7 +125,7 @@ const datasets = [
 	},
 	{
 		id: 3,
-		name: 'Dataset 1',
+		name: 'Dataset 3',
 		mappings: []
 	}
 ]
@@ -132,11 +135,68 @@ describe("getJoinableDatasets", function() {
     attributes = deepCopy(allAttributes).map(attribute => replacePropertyRefs(attribute, allAttributes))
   });
   it("For primitive child of object, no refs", function() {
-		const actual = getJoinableDatasets(findAttributeById(0))
-		const expected = [
-			datasets.find(dataset => dataset.id === 0),
-			datasets.find(dataset => dataset.id === 2)
+		const targetPath = [
+			{
+				id: 0
+			},
+			'value'
 		]
+		const actual = getJoinableDatasetsByPath(targetPath, allAttributes, datasets)
+		const expected = {
+			attributeId: 0,
+			datasets: [
+				datasets.find(dataset => dataset.id === 0),
+				datasets.find(dataset => dataset.id === 2)
+			]
+		}
+			
+    expect(actual).toEqual(expected)
+	})
+	it("For array with is_join_key", function() {
+		const targetPath = [
+			{
+				id: 1
+			},
+			'ids'
+		]
+		const actual = getJoinableDatasetsByPath(targetPath, allAttributes, datasets)
+		const expected = {}
+    expect(actual).toEqual(expected)
+	})
+	it("For array with is_join_key, child with is_join_key", function() {
+		const targetPath = [
+			{
+				id: 1
+			},
+			'ids',
+			'items',
+			'value'
+		]
+		const actual = getJoinableDatasetsByPath(targetPath, allAttributes, datasets)
+		const expected = {
+			attributeId: 0,
+			datasets: [
+				datasets.find(dataset => dataset.id === 0),
+				datasets.find(dataset => dataset.id === 2)
+			],
+			parentAttribute: {
+				attributeId: 1,
+				path: 'ids'
+			}
+		}
+    expect(actual).toEqual(expected)
+	})
+	it("For array with is_join_key, child! !is_join_key", function() {
+		const targetPath = [
+			{
+				id: 1
+			},
+			'ids',
+			'items',
+			'context'
+		]
+		const actual = getJoinableDatasetsByPath(targetPath, allAttributes, datasets)
+		const expected = {}
     expect(actual).toEqual(expected)
 	})
 })
