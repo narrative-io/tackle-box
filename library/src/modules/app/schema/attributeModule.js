@@ -234,15 +234,10 @@ let hasExportableChild = (attribute) => {
 }
 
 let getJoinOptionsByPath = (path, parentAttribute, datasets) => {
-
-	// if it's a primitive and is_join_key = true, return all datasets that have mappings to this attributeId and path
-
-	// if it's an array type and is_join_key = true, 
-		// return all datasets that have a mapping to one of the array's descendants whose is_join_key = true
-
-	// else return []
-
-	const targetProperty = getAttributeFromPath(path, rootAttribute)
+	const result = {}
+	const targetProperty = getAttributeFromPath(path, parentAttribute)
+	console.log("TARGET PROPERTY")
+	console.log(targetProperty)
 	const pathCopy = deepCopy(path)
 	pathCopy.shift()
 	let stringPath = ''
@@ -253,11 +248,22 @@ let getJoinOptionsByPath = (path, parentAttribute, datasets) => {
 		stringPath += el
 	})
 	
-	
+	console.log("STRING PATH")
+	console.log(stringPath)
+	if (targetProperty.is_join_key) {
+		if (targetProperty.type === 'array') { // if it's an array type, return all datasets that have a mapping to one of the array's descendants whose is_join_key = true
+			
+		} else if (!targetProperty.type !== 'object') { // if it's a primitive and is_join_key = true, return all datasets that have mappings to this attributeId and path
+			result.attributeId = parentAttribute.id
+			result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id && hasPropertyMappingForPath(mapping, stringPath)))		
+		}
+
+	}
+	return result
 }
 
-function hasPropertyMappingForPath(mapping, path) {
-	const mappingToPath = mapping.mapping.property_mappings.find(propertyMapping => propertyMapping.path === makeDotDelimitedPropertyPath(path))
+function hasPropertyMappingForPath(mapping, stringPath) {
+	const mappingToPath = mapping.mapping.property_mappings.find(propertyMapping => propertyMapping.path === stringPath)
 	return mappingToPath !== undefined
 }
 
