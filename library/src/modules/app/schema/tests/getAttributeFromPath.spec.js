@@ -296,5 +296,81 @@ describe("getAttributeFromPath", function() {
       }
     }
     expect(actual).toEqual(expected)
+	})
+	it("Array[1] -> Array[2] -> Primitive, target Array[2]", function() {
+		const attribute = {
+			"id": 84,
+			"description": "Alex attr id test",
+			"display_name": "Identifier Relation",
+			"name": "identifier_relation",
+			"type": "object",
+			"properties": {
+					"ids": {
+							"type": "array",
+							"items": {
+									"id": 29,
+									"description": "A catch-all field for any miscellaneous identifier.",
+									"display_name": "Unique Identifier",
+									"name": "unique_id",
+									"type": "object",
+									"properties": {
+											"type": {
+													"type": "string",
+													"deliverable": false,
+													"filterable": false
+											},
+											"value": {
+													"is_join_key": true,
+													"type": "string",
+													"deliverable": false,
+													"filterable": false
+											},
+											"context": {
+													"type": "string",
+													"deliverable": false,
+													"filterable": false
+											}
+									},
+									"required": [
+											"value"
+									],
+									"filterable": false,
+									"deliverable": false
+							},
+							"filterable": false,
+							"deliverable": false
+					},
+					"relation": {
+							"enum": [
+									"household",
+									"individual"
+							],
+							"type": "string",
+							"deliverable": false,
+							"filterable": false
+					}
+			},
+			"required": [
+					"ids"
+			]
+	}
+
+    const path = [
+      {
+        id: 0
+			},
+			'ids',
+			'items',
+			'value'
+    ]
+		const actual = getAttributeFromPath(path, attribute)
+		console.log(actual)
+    const expected = {
+			"is_join_key": true,
+			"type": "string",
+			"deliverable": false,
+			"filterable": false
+    }
+    expect(actual).toEqual(expected)
   })
 })

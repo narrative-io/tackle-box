@@ -144,6 +144,7 @@ describe("getJoinableDatasets", function() {
 		const actual = getJoinOptionsByPath(targetPath, findAttributeById(0), datasets)
 		const expected = {
 			attributeId: 0,
+			field: 'value',
 			datasets: [
 				datasets.find(dataset => dataset.id === 0),
 				datasets.find(dataset => dataset.id === 2)
@@ -174,6 +175,7 @@ describe("getJoinableDatasets", function() {
 		const actual = getJoinOptionsByPath(targetPath, findAttributeById(1), datasets)
 		const expected = {
 			attributeId: 0,
+			field: 'value',
 			datasets: [
 				datasets.find(dataset => dataset.id === 0),
 				datasets.find(dataset => dataset.id === 2)
