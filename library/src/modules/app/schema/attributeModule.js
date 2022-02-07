@@ -248,16 +248,16 @@ let getJoinOptionsByPath = (path, parentAttribute, datasets) => {
 				arrayPath.pop()
 				result.parentAttribute = {
 					attributeId: parentAttribute.id,
-					path: makeDotDelimitedPropertyPath(arrayPath)
+					path: `${parentAttribute.name}.${makeDotDelimitedPropertyPath(arrayPath)}`
 				}
 				const arrayChildrenPath = makeDotDelimitedPropertyPath(deepCopy(pathCopy).filter((value, index, arr) => index > pathCopy.lastIndexOf('items'))) // get the tail end of the path after array.items
 				result.attributeId = arrayItemsAttribute.id
-				result.field = arrayChildrenPath
+				result.field = `${arrayItemsAttribute.name}.${arrayChildrenPath}`
 				result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === result.attributeId && hasPropertyMappingForPath(mapping, arrayChildrenPath)))		
 			}			
 		} else if (!targetProperty.type !== 'object' && targetProperty.type !== 'array') { // if it's a primitive and is_join_key = true, return all datasets that have mappings to parentAttribute and path
 			result.attributeId = parentAttribute.id
-			result.field = stringPath
+			result.field = `${parentAttribute.name}.${stringPath}`
 			result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id && hasPropertyMappingForPath(mapping, stringPath)))		
 		} 
 	}

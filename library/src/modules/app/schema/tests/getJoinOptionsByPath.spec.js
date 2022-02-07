@@ -144,7 +144,7 @@ describe("getJoinableDatasets", function() {
 		const actual = getJoinOptionsByPath(targetPath, findAttributeById(0), datasets)
 		const expected = {
 			attributeId: 0,
-			field: 'value',
+			field: 'unique_id.value',
 			datasets: [
 				datasets.find(dataset => dataset.id === 0),
 				datasets.find(dataset => dataset.id === 2)
@@ -175,14 +175,14 @@ describe("getJoinableDatasets", function() {
 		const actual = getJoinOptionsByPath(targetPath, findAttributeById(1), datasets)
 		const expected = {
 			attributeId: 0,
-			field: 'value',
+			field: 'unique_id.value',
 			datasets: [
 				datasets.find(dataset => dataset.id === 0),
 				datasets.find(dataset => dataset.id === 2)
 			],
 			parentAttribute: {
 				attributeId: 1,
-				path: 'ids'
+				path: 'identifier_relation.ids'
 			}
 		}
     expect(actual).toEqual(expected)
