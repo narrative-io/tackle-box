@@ -25,12 +25,12 @@
       :items="pagination ? paginatedItems : computedItems"
     )
       template(
-        v-slot:item="{ item, expand, isExpanded }"    
+        v-slot:item="{ item, expand, isExpanded, index }"    
       )
         tr(
           :key="item.id"
           :class="{'selected': itemSelected(item), 'expanded': expandedItemIds.includes(item.id)}"
-          @click="handleItemClick(item, expand, isExpanded)"
+          @click="handleItemClick(item, expand, isExpanded, index)"
         )
           td.selection-cell(
             v-if="singleSelect || multiSelect" 
@@ -190,15 +190,15 @@ export default {
     this.initSelections()
   },
   methods: {
-    handleItemClick(item, expandFn, isExpanded) {
-      this.$emit('itemClicked', item)
+    handleItemClick(item, expandFn, isExpanded, index) {
+      this.$emit('itemClicked', {...item, nioItemIndex: index})
       if (this.action === 'expand' || this.action === 'expand-custom') {
         expandFn(!isExpanded)
         if (isExpanded) {
-          this.$emit('itemCollapsed', item)
+          this.$emit('itemCollapsed', {...item, nioItemIndex: index})
           this.expandedItemIds = this.expandedItemIds.filter(id => id !== item.id)
         } else {
-          this.$emit('itemExpanded', item)
+          this.$emit('itemExpanded', {...item, nioItemIndex: index})
           if (!this.expandedItemIds.includes(item.id)) {
             this.expandedItemIds.push(item.id)
           }

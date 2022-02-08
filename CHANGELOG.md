@@ -117,3 +117,4 @@ Added default filter type for Array property type
 Added tooltip to display property type in **NioSchema** and **NioSchemaProperties**
 Added optional tooltip to filter option in **NioFilterProperty**
 Added **getJoinOptionsByPath** to **attributeModule** exports
+Added **nioItemIndex** to item click handler for **NioSlatTable** items template to allow tracking items with complex ids
