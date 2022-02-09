@@ -118,3 +118,4 @@ Added tooltip to display property type in **NioSchema** and **NioSchemaPropertie
 Added optional tooltip to filter option in **NioFilterProperty**
 Added **getJoinOptionsByPath** to **attributeModule** exports
 Added **nioItemIndex** to item click handler for **NioSlatTable** items template to allow tracking items with complex ids
+Added **indeterminate** loading option to **NioFileChooser**

@@ -1,5 +1,5 @@
 <template lang="pug">
-  .test-file-chooser
+  .test-file-chooser {{ downloaderState}}
     //- NioFileChooser(
     //-   variant="inline"
     //-   :state="inlineDownloaderState"
@@ -23,6 +23,7 @@
       :percentComplete="10" 
       :maxFileSize="1024*1024*10"
       :validateFn="() => true"
+      indeterminate
     )
       template(v-slot:success-actions)        
         NioButton(normal-secondary @click="resetDownloader") Reset PII Hasher

@@ -55,13 +55,14 @@
     )
     .graphic(v-if="currentState === 'inProgress'")
       .progress
-        v-progress-circular(
+        v-progress-circular#nio-file-chooser-progress(
           :value="percentComplete"
           rotate="270"
           width="1"
           color="#415298"
+          :indeterminate="indeterminate"
         )
-        .nio-p.text-primary-dark.nio-bold {{ percentComplete }}%
+        .nio-p.text-primary-dark.nio-bold(v-if="!indeterminate") {{ percentComplete }}%
     .details
       .nio-h3.text-primary-darker
         span(v-if="currentState === 'initial'") Drag and drop
@@ -148,7 +149,8 @@ export default {
     validateFn: { type: Function, required: false, default: () => true },
     percentComplete: { type: Number, required: false, default: 0 },
     valid: { type: Boolean, required: false, default: false},
-    invalidMsg: { type: String, required: false, default: 'selection is invalid'}
+    invalidMsg: { type: String, required: false, default: 'selection is invalid'},
+    indeterminate: { type: Boolean, required: false, default: false }
   },
   data: () => ({
     currentState: 'initial',

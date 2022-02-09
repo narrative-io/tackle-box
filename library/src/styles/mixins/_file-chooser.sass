@@ -5,6 +5,8 @@
 @import "../global/_transitions"
 
 =nio-file-chooser
+  #nio-file-chooser-progress, #nio-file-chooser-progress ::v-deep svg, #nio-file-chooser-progress ::v-deep svg circle
+    animation-play-state: running !important
   &:not(.inline)
     position: relative
     background-color: $c-canvas
