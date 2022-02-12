@@ -18,7 +18,7 @@
       .message.nio-p.text-primary-dark(v-if="alertType === 'warning'")
         span.nio-bold.text-primary-darker(v-if="messageTitle") {{ messageTitle }}
         span {{ message }}
-        a(v-if="linkText && linkHref" :href="linkHref") {{ formatLinkText(linkText) }}
+        a(v-if="linkText && linkHref" :href="linkHref" target="_blank") {{ formatLinkText(linkText) }}
     NioIcon.dismiss(
       v-if="dismissable"
       name="utility-times"

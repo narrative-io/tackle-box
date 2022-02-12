@@ -1,0 +1,27 @@
+@import "../../styles/global/_colors"
+  
+=nio-pretty-schema-path 
+  display: flex
+  align-items: center
+  justify-content: flex-start
+  .path-element
+    margin-left: 0.5rem
+    &.child
+      display: flex
+      align-items: center
+      .nio-icon
+        margin-right: 0.5rem
+        ::v-deep svg
+          color: $c-primary-dark
+  .nio-button
+    width: 1rem
+    min-width: unset
+    margin-left: 0.75rem
+    ::v-deep svg
+      color: $c-primary-light
+  ::v-deep .nio-icon
+    margin-top: 0.25rem
+
+
+.nio-pretty-schema-path
+  +nio-pretty-schema-path
