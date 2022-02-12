@@ -34,7 +34,7 @@ export default {
     },
     isArrayDescendant() {
       return this.path.includes('items')
-    }
+		}
   },
   methods: {
     deleteAttribute(path) {

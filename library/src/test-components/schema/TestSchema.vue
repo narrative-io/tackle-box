@@ -43,6 +43,13 @@ export default {
           id: 0,
           displayName: 'Ref Primitive'
         }
+      ],
+      [
+        {
+          id: 0,
+          displayName: 'Ref Primitive'
+        },
+        'child'
       ]
     ],
     testAttributes: AllAttributes,
