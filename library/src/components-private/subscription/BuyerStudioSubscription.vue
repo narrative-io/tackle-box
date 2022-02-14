@@ -110,6 +110,12 @@
             :openApiToken="openApiToken"
             :openApiBaseUrl="openApiBaseUrl"
           )
+    .subscription-footer
+      .subscription-actions(v-if="subscription.status !== 'archived'")
+        NioButton(
+          caution-text 
+          @click="deactivateSubscription"
+        ) Stop Subscription
 </template>
 
 <script>
@@ -117,10 +123,11 @@
 import numeral from 'numeral'
 import { getReadableType, replacePropertyRefs, getAttributeFromPath } from '@/modules/app/schema/attributeModule'
 import NioSubscriptionDestinations from '../../components/connectors/destination/subscription-destinations/SubscriptionDestinations'
+import NioButton from '../../components/Button'
 
 export default {
   name: 'nio-buyer-studio-subscription',
-  components: { NioSubscriptionDestinations }, 
+  components: { NioSubscriptionDestinations, NioButton }, 
   props: {
     subscription: { type: Object, required: true },
     attributes: { type: Array, required: true },
@@ -286,6 +293,9 @@ export default {
       } else {
         return undefined
       }
+    },
+    deactivateSubscription() {
+      this.$emit('deactivateSubscription', this.subscription.id)
     }
   }
 }
