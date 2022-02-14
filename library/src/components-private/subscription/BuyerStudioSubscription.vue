@@ -112,7 +112,7 @@
 <script>
 
 import numeral from 'numeral'
-import { getReadableType, replacePropertyRefs } from '@/modules/app/schema/attributeModule'
+import { getReadableType, replacePropertyRefs, getAttributeFromPath } from '@/modules/app/schema/attributeModule'
 
 
 export default {
@@ -173,10 +173,10 @@ export default {
       return this.datasets.find(dataset => dataset.id === id)
     },
     getAppliedFilters(subscription) {
-      return findExportedFields(subscription, this.attributes, 'filterable')
+      return this.findExportedFields(subscription, this.attributes, 'filterable')
     },
     findExportedFields(subscription) {
-      return findExportedFields(subscription, this.attributes, 'deliverable')
+      return this.findExportedFields(subscription, this.attributes, 'deliverable')
     },
     makeCompanyConstraint(companyConstraint) {
       if (companyConstraint.type === 'inclusion') {
@@ -240,7 +240,7 @@ export default {
       subscription.details.data_rules.attributes.forEach(attribute => {
         attribute.fields.forEach(field => {
           if ((type === 'deliverable' && field.exported) || (type === 'filterable' && field.filter)) {
-            const path = makeArrayPathFromString(field.field, attributes)
+            const path = this.makeArrayPathFromString(field.field, attributes)
             if (!path) { // short circuit and return undefined if an attribute has been deleted
               attributeUndefined = true
               return undefined
