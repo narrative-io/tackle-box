@@ -65,7 +65,7 @@
               multiple
             )
               NioExpansionPanel(
-                v-for="(field, index) of findExportedFields(subscription)"
+                v-for="(field, index) of getExportedFields(subscription)"
                 :key="index"
               )
                 template(v-slot:header) 
@@ -104,24 +104,31 @@
     .display-row.display-table.destinations
       .display-column
         .nio-h7.text-primary-dark Delivery Destinations
-        SubscriptionDestinations(
-          :subscriptionId="subscription.id"
-        )
+        .subscription-destinations
+          NioSubscriptionDestinations(
+            :subscriptionId="subscription.id"
+            :openApiToken="openApiToken"
+            :openApiBaseUrl="openApiBaseUrl"
+          )
 </template>
 
 <script>
 
 import numeral from 'numeral'
 import { getReadableType, replacePropertyRefs, getAttributeFromPath } from '@/modules/app/schema/attributeModule'
-
+import NioSubscriptionDestinations from '../../components/connectors/destination/subscription-destinations/SubscriptionDestinations'
 
 export default {
   name: 'nio-buyer-studio-subscription',
+  components: { NioSubscriptionDestinations }, 
   props: {
-		subscription: { type: Object, required: true },
-		attributes: { type: Array, required: true },
-		sellerCompanies: { type: Array, required: true }
-	},
+    subscription: { type: Object, required: true },
+    attributes: { type: Array, required: true },
+    sellerCompanies: { type: Array, required: true },
+    destinations: { type: Array, required: false },
+    openApiToken: { type: String, required: true },
+    openApiBaseUrl: { type: String, required: true }
+  },
   data: () => ({
   }),	
   mounted() {
@@ -175,7 +182,7 @@ export default {
     getAppliedFilters(subscription) {
       return this.findExportedFields(subscription, this.attributes, 'filterable')
     },
-    findExportedFields(subscription) {
+    getExportedFields(subscription) {
       return this.findExportedFields(subscription, this.attributes, 'deliverable')
     },
     makeCompanyConstraint(companyConstraint) {
