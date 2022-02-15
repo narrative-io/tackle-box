@@ -1,14 +1,5 @@
 <template lang="pug">
   .nio-buyer-studio-subscription
-    .split-row
-      .display-row.display-table
-        .display-column
-          .nio-h7.text-primary-dark Monthly Budget
-          .nio-p.text-primary-dark {{ computeBudget(subscription) }}  
-      .display-row.price-cap
-          .display-column.full-width
-            .nio-h7.text-primary-dark Max cost per 1000 records
-            .nio-p.text-primary-dark {{ getCPM(subscription.details.pricing.micro_cents_usd) }}
     .split-row   
       .display-row.display-table
         .display-column
@@ -26,6 +17,15 @@
                   v-if="getCompanyNameById(companyId)"
                 ) {{ getCompanyNameById(companyId) }}
           .nio-p.text-primary-dark.empty(v-else) Buy from all sellers
+    .split-row
+      .display-row.display-table
+        .display-column
+          .nio-h7.text-primary-dark Monthly Budget
+          .nio-p.text-primary-dark {{ computeBudget(subscription) }}  
+      .display-row.price-cap
+          .display-column.full-width
+            .nio-h7.text-primary-dark Max cost per 1000 records
+            .nio-p.text-primary-dark {{ getCPM(subscription.details.pricing.micro_cents_usd) }}
     .display-row.display-table.included-filters(v-if="subscription.status === 'active' || subscription.status === 'kickoff'")
       .display-column.full-width
         .nio-h7.text-primary-dark(style="margin-bottom: 8px") Included Filters
