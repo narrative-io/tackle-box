@@ -122,3 +122,5 @@ Added **indeterminate** loading option to **NioFileChooser**
 
 v0.4.3
 Added **NioPrettySchemaPath** component
+Added **NioBuyerStudioSubscription** component
+Added **NioSelectedPaymentMethod** component

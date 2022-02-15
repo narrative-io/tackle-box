@@ -46,6 +46,7 @@ import NioTagsField from './components/TagsField'
 import NioTooltip from './components/Tooltip'
 import NioColorPicker from './components/ColorPicker'
 import NioChoosePaymentMethod from './components-private/ChoosePaymentMethod'
+import NioSelectedPaymentMethod from './components-private/SelectedPaymentMethod'
 import NioOverflowMenu from './components/OverflowMenu'
 
 import NioSelectDestination from './components/connectors/destination/select-destination/SelectDestination'
@@ -117,6 +118,7 @@ const Components = {
 	NioTooltip,
 	NioColorPicker,
 	NioChoosePaymentMethod,
+	NioSelectedPaymentMethod,
 	NioOverflowMenu,
 	NioSelectDestination,
 	NioSubscriptionDestinations,
@@ -174,6 +176,7 @@ Vue.component("NioTagsField", NioTagsField)
 Vue.component("NioTooltip", NioTooltip)
 Vue.component("NioColorPicker", NioColorPicker)
 Vue.component("NioChoosePaymentMethod", NioChoosePaymentMethod)
+Vue.component("NioSelectedPaymentMethod", NioSelectedPaymentMethod)
 Vue.component("NioOverflowMenu", NioOverflowMenu)
 Vue.component("NioSelectDestination", NioSelectDestination)
 Vue.component("NioSubscriptionDestinations", NioSubscriptionDestinations)
@@ -230,6 +233,7 @@ export { NioTagsField }
 export { NioTooltip }
 export { NioColorPicker }
 export { NioChoosePaymentMethod }
+export { NioSelectedPaymentMethod }
 export { NioOverflowMenu }
 export { NioSelectDestination }
 export { NioSubscriptionDestinations }
