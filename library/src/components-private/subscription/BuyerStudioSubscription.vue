@@ -5,18 +5,11 @@
         .display-column
           .nio-h7.text-primary-dark Description
           .nio-p.text-primary-dark.description(v-if="subscription.description") {{ subscription.description }}
-          .nio-p.text-primary-dark.empty(v-else) None provided               
-      .display-row.providers
+          .nio-p.text-primary-dark.empty(v-else) None provided   
+      .display-row.display-table
         .display-column
-          .nio-h7.text-primary-dark Providers
-          .nio-p.text-primary-dark(v-if="subscription.details && subscription.details.company_constraint") {{ makeCompanyConstraint(subscription.details.company_constraint) }}
-            .pills(v-if="sellerCompanies")
-              template(v-for="companyId of subscription.details.company_constraint.company_ids")
-                NioPill(
-                  tag
-                  v-if="getCompanyNameById(companyId)"
-                ) {{ getCompanyNameById(companyId) }}
-          .nio-p.text-primary-dark.empty(v-else) Buy from all sellers
+          .nio-h7.text-primary-dark Subscription ID
+          .nio-p.text-primary-dark.description {{ subscription.id }}             
     .split-row
       .display-row.display-table
         .display-column
@@ -97,6 +90,17 @@
               ) {{ makeDataPointPath(dataPoint) }}
         .no-deduplication(v-else)
           .nio-p.text-primary-dark.empty Buy all data points     
+    .display-row.providers
+      .display-column
+        .nio-h7.text-primary-dark Providers
+        .nio-p.text-primary-dark(v-if="subscription.details && subscription.details.company_constraint") {{ makeCompanyConstraint(subscription.details.company_constraint) }}
+          .pills(v-if="sellerCompanies")
+            template(v-for="companyId of subscription.details.company_constraint.company_ids")
+              NioPill(
+                tag
+                v-if="getCompanyNameById(companyId)"
+              ) {{ getCompanyNameById(companyId) }}
+        .nio-p.text-primary-dark.empty(v-else) Buy from all sellers
     .display-row.display-table
       .display-column
         .nio-h7.text-primary-dark Delivery Cadence
