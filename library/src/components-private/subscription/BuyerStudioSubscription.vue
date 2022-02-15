@@ -132,7 +132,6 @@ export default {
     subscription: { type: Object, required: true },
     attributes: { type: Array, required: true },
     sellerCompanies: { type: Array, required: true },
-    destinations: { type: Array, required: false },
     openApiToken: { type: String, required: true },
     openApiBaseUrl: { type: String, required: true }
   },
@@ -200,7 +199,7 @@ export default {
       }
     },
     getCompanyNameById(companyId) {
-      return this.sellerCompanies.find(company => company.id === companyId) ? his.sellerCompanies.find(company => company.id === companyId).name : undefined
+      return this.sellerCompanies.find(company => company.id === companyId) ? this.sellerCompanies.find(company => company.id === companyId).name : undefined
     },
     getCPM(microcents) {
       return `${numeral((microcents / 1000000) * 1000 / 100).format('$0.00')}`
