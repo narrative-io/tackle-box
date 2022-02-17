@@ -1,6 +1,6 @@
 <template lang="pug">
 .nio-subscription-file-download
-  .container(v-if="fileDeliveries && fileDeliveries.length")
+  .download-container(v-if="fileDeliveries && fileDeliveries.length")
     .preparing-download(v-if="preparingDownload")
       v-progress-circular(
         :color="primaryColor"
@@ -150,6 +150,9 @@ export default {
     },
     delay(ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
+		},
+		seeHow() {
+			
 		}
   }
 }

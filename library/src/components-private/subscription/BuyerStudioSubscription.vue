@@ -128,7 +128,7 @@
             normal-secondary
             @click="filesVisible = false"
           ) Hide Downloadable Files
-    .display-row.display-tables(v-show="filesVisible")
+    .display-row.display-table(v-show="filesVisible")
       .display-column
         NioSubscriptionFileDownload(
           :subscription="subscription"
