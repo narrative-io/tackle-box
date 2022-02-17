@@ -136,7 +136,7 @@ export default {
     computeExpiration(item) {
 			const expiration = new Date(item.timestamp)
 			expiration.setDate(expiration.getDate() + 30)
-			return `${dateDiff(expiration, new Date())} days from today`
+			return `${this.dateDiff(expiration, new Date())} days from today`
 		},
 		dateDiff(d2, d1) {
 			let t2 = d2.getTime()

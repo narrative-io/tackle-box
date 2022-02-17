@@ -1,10 +1,10 @@
 <template lang="pug">
   .nio-subscription-destinations
-    .loading(v-if="!destinations")
+    .loading(v-if="!subscriptionDestinations")
       v-progress-circular.progress(size="24" indeterminate color="#1438F5")
     template(v-else)
       .destination(
-        v-for="destination of destinations"
+        v-for="destination of subscriptionDestinations"
       )
         NioImageTile(
           v-if="destination.name === 'Narrative Download'"
@@ -29,19 +29,24 @@ import { getSubscriptionDestinations } from '../../../../modules/app/destination
 export default {
   name: 'nio-subscription-destinations',
   props: {
-    subscriptionId: { type: String, required: true },
-    openApiToken: { type: String, required: true },
-    openApiBaseUrl: { type: String, required: true }
+    destinations: { type: Array, required: false },
+    subscriptionId: { type: String, required: false },
+    openApiToken: { type: String, required: false },
+    openApiBaseUrl: { type: String, required: false }
   },
   data() {
     return {
       loading: true,
       openPanels: [],
-      destinations: null
+      subscriptionDestinations: null
     }
   },
   mounted() {
-    this.getDestinations()
+    if (this.destinations) {
+      this.subscriptionDestinations = this.destinations
+    } else {
+      this.getDestinations()
+    }
   },
   methods: {
     getSelectedProfile(destination) {
@@ -58,7 +63,7 @@ export default {
         }
       }
       getSubscriptionDestinations(this.subscriptionId, this.openApiBaseUrl, reqHeaders).then(destinations => {
-        this.destinations = destinations
+        this.subscriptionDestinations = destinations
       })
     }
   },
