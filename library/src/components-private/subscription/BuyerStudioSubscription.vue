@@ -122,12 +122,12 @@
             v-if="!filesVisible"
             normal-secondary
             @click="filesVisible = true"
-          ) Show Downloadable Files
+          ) Show Downloads
           NioButton(
             v-if="filesVisible"
             normal-secondary
             @click="filesVisible = false"
-          ) Hide Downloadable Files
+          ) Hide Downloads
     .display-row.display-table(v-show="filesVisible")
       .display-column
         NioSubscriptionFileDownload(

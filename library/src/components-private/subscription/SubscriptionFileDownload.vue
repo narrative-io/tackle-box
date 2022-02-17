@@ -95,14 +95,36 @@ export default {
           computed: this.computeExpiration
         }
       ]
-    },
+		},
+		
+// 		const a = '2022-02-08T19:51:00Z'
+
+		// const momentDate = moment.utc(a).format("YYYY-MM-DD")
+
+		// const timestamp = new Date(a)
+		// const year = timestamp.getUTCFullYear()
+		// let month = timestamp.getUTCMonth() + 1
+		// month = String(month).length === 1 ? `0${month}` : month
+		// let date = timestamp.getUTCDate()
+		// date = String(date).length === 1 ? `0${date}` : date
+		// const js = `${year}-${month}-${date}`
+
+		// console.log("moment")
+		// console.log(momentDate)
+		// console.log("js")
+		// console.log(js)
     computeFilename(item) {
       if (item.file) {
         return item.file
       }
-			// const deliveryDate = moment.utc(item.timestamp).format("YYYY-MM-DD")
-			const deliveryDate = new Date()
-      /*
+			const timestamp = new Date(a)
+			const year = timestamp.getUTCFullYear()
+			let month = timestamp.getUTCMonth() + 1
+			month = String(month).length === 1 ? `0${month}` : month
+			let date = timestamp.getUTCDate()
+			date = String(date).length === 1 ? `0${date}` : date
+			const deliveryDate = `${year}-${month}-${date}`
+						/*
        * `transactionBatchId` is a UUID. The first 8 characters of the UUID encode the the lowest 32 bits of the time
        * input to the UUID generation algorithm. It'll be safe for a long time to assume that no two batch ids for the
        * same order will be generated at the same microsecond, and we'd expect to only see collisions after ~2^16
@@ -112,9 +134,14 @@ export default {
       return `${this.subscription.name}-${deliveryDate}-${identifier}.csv`
     },
     computeExpiration(item) {
-      // const expirationDate = moment.utc(item.timestamp).add(30, 'days')
-			// return `${expirationDate.diff(moment.utc(), 'days')} days from today`
-			return 'Test'
+			const expiration = new Date(item.timestamp)
+			expiration.setDate(expiration.getDate() + 30)
+			return `${dateDiff(expiration, new Date())} days from today`
+		},
+		dateDiff(d2, d1) {
+			let t2 = d2.getTime()
+			let t1 = d1.getTime()
+			return Math.floor((t2-t1)/(24*3600*1000));
     },
     downloadFile(fileDelivery) {
       this.preparingDownload = true
@@ -152,7 +179,7 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms))
 		},
 		seeHow() {
-			
+
 		}
   }
 }
