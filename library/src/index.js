@@ -59,6 +59,7 @@ import NioSchemaProperties from './components-private/schema/SchemaProperties'
 import NioPrettySchemaPath from './components-private/schema/PrettySchemaPath'
 
 import NioBuyerStudioSubscription from './components-private/subscription/BuyerStudioSubscription'
+import NioSubscriptionFileDownload from './components-private/subscription/SubscriptionFileDownload'
 
 import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
@@ -122,6 +123,7 @@ const Components = {
 	NioOverflowMenu,
 	NioSelectDestination,
 	NioSubscriptionDestinations,
+	NioSubscriptionFileDownload,
 	NioDestinationConnectorSettings,
 	NioConnectorSettingsControl,
 	NioSchema,
@@ -186,6 +188,7 @@ Vue.component("NioSchema", NioSchema)
 Vue.component("NioSchemaProperties", NioSchemaProperties)
 Vue.component("NioPrettySchemaPath", NioPrettySchemaPath)
 Vue.component("NioBuyerStudioSubscription", NioBuyerStudioSubscription)
+Vue.component("NioSubscriptionFileDownload", NioSubscriptionFileDownload)
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
@@ -243,6 +246,7 @@ export { NioSchema }
 export { NioSchemaProperties }
 export { NioPrettySchemaPath }
 export { NioBuyerStudioSubscription }
+export { NioSubscriptionFileDownload }
 
 export { FontAwesomeIcon }
 export { NioRouterModule }

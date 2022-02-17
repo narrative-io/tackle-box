@@ -114,6 +114,27 @@
             :openApiToken="openApiToken"
             :openApiBaseUrl="openApiBaseUrl"
           )
+    .display-row.display-table.destinations
+      .display-column
+        .nio-h7.text-primary-dark Delivery Destinations
+        .show-downloads
+          NioButton(
+            v-if="!filesVisible"
+            normal-secondary
+            @click="filesVisible = true"
+          ) Show Downloadable Files
+          NioButton(
+            v-if="filesVisible"
+            normal-secondary
+            @click="filesVisible = false"
+          ) Hide Downloadable Files
+    .display-row.display-tables(v-show="filesVisible")
+      .display-column
+        NioSubscriptionFileDownload(
+          :subscription="subscription"
+          :openApiToken="openApiToken"
+          :openApiBaseUrl="openApiBaseUrl"
+        )   
     .subscription-footer
       .subscription-actions(v-if="subscription.status !== 'archived'")
         NioButton(
@@ -127,11 +148,12 @@
 import numeral from 'numeral'
 import { getReadableType, replacePropertyRefs, getAttributeFromPath } from '@/modules/app/schema/attributeModule'
 import NioSubscriptionDestinations from '../../components/connectors/destination/subscription-destinations/SubscriptionDestinations'
+import NioSubscriptionFileDownload from './SubscriptionFileDownload'
 import NioButton from '../../components/Button'
 
 export default {
   name: 'nio-buyer-studio-subscription',
-  components: { NioSubscriptionDestinations, NioButton }, 
+  components: { NioSubscriptionDestinations, NioSubscriptionFileDownload, NioButton }, 
   props: {
     subscription: { type: Object, required: true },
     attributes: { type: Array, required: true },
@@ -140,6 +162,7 @@ export default {
     openApiBaseUrl: { type: String, required: true }
   },
   data: () => ({
+    filesVisible: false
   }),	
   mounted() {
   },
