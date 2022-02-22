@@ -124,3 +124,4 @@ v0.4.3
 Added **NioPrettySchemaPath** component
 Added **NioBuyerStudioSubscription** component
 Added **NioSelectedPaymentMethod** component
+Added optional **noResultsData** prop to **NioSlatTable**

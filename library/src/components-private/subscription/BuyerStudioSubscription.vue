@@ -114,10 +114,11 @@
             :openApiToken="openApiToken"
             :openApiBaseUrl="openApiBaseUrl"
           )
-    .display-row.display-table.destinations
+    .display-row.display-table.file-download
       .display-column
-        .nio-h7.text-primary-dark Delivery Destinations
+        .nio-h7.text-primary-dark Delivered File Download
         .show-downloads
+          .nio-p.text-primary-dark.mobile-message File downloads not support in mobile browsers
           NioButton(
             v-if="!filesVisible"
             normal-secondary

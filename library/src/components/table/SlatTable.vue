@@ -117,6 +117,15 @@
           @nextPage="nextPage"
           @prevPage="prevPage"
         ) 
+      template(
+        v-slot:no-results
+      ) 
+        .nio-p-large.text-primary-dark {{ noResultsText }}
+      template(
+        v-slot:no-data
+      )
+        .nio-p-large.text-primary-dark {{ noResultsText }}
+      
 </template>
 
 <script>
@@ -146,7 +155,8 @@ export default {
     "defaultSelection": { type: Array | Number, required: false },
     "headerModules": { type: Array, required: false },
     "searchConfig": { type: Object, required: false },
-    "customSlatCell": { type: Boolean, required: false, default: false }
+    "customSlatCell": { type: Boolean, required: false, default: false },
+    "noResultsText": { type: String, required: false, default: 'No items found' }
   },
   data: () => ({
     multiSelect: false,
@@ -376,14 +386,14 @@ export default {
     searchChange(val) {
       this.currentPage = 1
       this.searchTerm = val
-			this.computeItems()
-			this.applyPagination(1)
+      this.computeItems()
+      this.applyPagination(1)
     },
     sortChange(val) {
       this.currentPage = 1
       this.selectedSortOption = val
-			this.computeItems()
-			this.applyPagination(1)
+      this.computeItems()
+      this.applyPagination(1)
     },
     allSelectedChange(val) {
       this.selection = val === true ? this.computedItems.map(item => item.id) : []
