@@ -78,57 +78,55 @@
                             v-for="value of field.property.enum"
                           ) {{ value }}
                       .nio-p.text-primary-dark(v-else) Any value
-    .display-row.display-table(v-if="subscription.status === 'active' || subscription.status === 'kickoff'")
-      .display-column.full-width
-        .nio-h7.text-primary-dark(style="margin-bottom: 8px") Deduplication
-        .deduplication(v-if="subscription.details && subscription.details.data_rules && subscription.details.data_rules.deduplication")   
-          .nio-p.text-primary-dark Buy only unique records <span class="nio-bold">every {{ makeReadablePeriod(subscription.details.data_rules.deduplication.period) }}</span> based on these data points:
+    .split-row
+      .display-row.display-table(v-if="subscription.status === 'active' || subscription.status === 'kickoff'")
+        .display-column.full-width
+          .nio-h7.text-primary-dark(style="margin-bottom: 8px") Deduplication
+          .deduplication(v-if="subscription.details && subscription.details.data_rules && subscription.details.data_rules.deduplication")   
+            .nio-p.text-primary-dark Buy only unique records <span class="nio-bold">every {{ makeReadablePeriod(subscription.details.data_rules.deduplication.period) }}</span> based on these data points:
+              .pills(v-if="sellerCompanies")
+                NioPill(
+                  tag
+                  v-for="dataPoint of makeDeduplication(subscription.details.data_rules.deduplication)"
+                ) {{ makeDataPointPath(dataPoint) }}
+          .no-deduplication(v-else)
+            .nio-p.text-primary-dark.empty Buy all data points     
+      .display-row.providers
+        .display-column
+          .nio-h7.text-primary-dark Providers
+          .nio-p.text-primary-dark(v-if="subscription.details && subscription.details.company_constraint") {{ makeCompanyConstraint(subscription.details.company_constraint) }}
             .pills(v-if="sellerCompanies")
-              NioPill(
-                tag
-                v-for="dataPoint of makeDeduplication(subscription.details.data_rules.deduplication)"
-              ) {{ makeDataPointPath(dataPoint) }}
-        .no-deduplication(v-else)
-          .nio-p.text-primary-dark.empty Buy all data points     
-    .display-row.providers
-      .display-column
-        .nio-h7.text-primary-dark Providers
-        .nio-p.text-primary-dark(v-if="subscription.details && subscription.details.company_constraint") {{ makeCompanyConstraint(subscription.details.company_constraint) }}
-          .pills(v-if="sellerCompanies")
-            template(v-for="companyId of subscription.details.company_constraint.company_ids")
-              NioPill(
-                tag
-                v-if="getCompanyNameById(companyId)"
-              ) {{ getCompanyNameById(companyId) }}
-        .nio-p.text-primary-dark.empty(v-else) Buy from all sellers
-    .display-row.display-table
-      .display-column
-        .nio-h7.text-primary-dark Delivery Cadence
-        .nio-p.text-primary-dark {{ makeCadence(subscription) }}
-    .display-row.display-table.destinations
-      .display-column
-        .nio-h7.text-primary-dark Delivery Destinations
-        .subscription-destinations
-          NioSubscriptionDestinations(
-            :subscriptionId="subscription.id"
-            :openApiToken="openApiToken"
-            :openApiBaseUrl="openApiBaseUrl"
-          )
-    .display-row.display-table.file-download
-      .display-column
-        .nio-h7.text-primary-dark Delivered File Download
-        .show-downloads
-          .nio-p.text-primary-dark.mobile-message File downloads not support in mobile browsers
-          NioButton(
-            v-if="!filesVisible"
-            normal-secondary
-            @click="filesVisible = true"
-          ) Show Downloads
-          NioButton(
-            v-if="filesVisible"
-            normal-secondary
-            @click="filesVisible = false"
-          ) Hide Downloads
+              template(v-for="companyId of subscription.details.company_constraint.company_ids")
+                NioPill(
+                  tag
+                  v-if="getCompanyNameById(companyId)"
+                ) {{ getCompanyNameById(companyId) }}
+          .nio-p.text-primary-dark.empty(v-else) Buy from all sellers
+    .split-row
+      .display-row.display-table.destinations
+        .display-column
+          .nio-h7.text-primary-dark Delivery Destinations
+          .subscription-destinations
+            NioSubscriptionDestinations(
+              :subscriptionId="subscription.id"
+              :openApiToken="openApiToken"
+              :openApiBaseUrl="openApiBaseUrl"
+            )
+      .display-row.display-table.file-download
+        .display-column
+          .nio-h7.text-primary-dark Delivered File Download
+          .show-downloads
+            .nio-p.text-primary-dark.mobile-message File downloads not supported in mobile browsers
+            NioButton(
+              v-if="!filesVisible"
+              normal-secondary
+              @click="filesVisible = true"
+            ) Show Downloads
+            NioButton(
+              v-if="filesVisible"
+              normal-secondary
+              @click="filesVisible = false"
+            ) Hide Downloads
     .display-row.display-table(v-show="filesVisible")
       .display-column
         NioSubscriptionFileDownload(
@@ -136,6 +134,10 @@
           :openApiToken="openApiToken"
           :openApiBaseUrl="openApiBaseUrl"
         )   
+    .display-row.display-table
+      .display-column
+        .nio-h7.text-primary-dark Delivery Cadence
+        .nio-p.text-primary-dark {{ makeCadence(subscription) }}
     .subscription-footer
       .subscription-actions(v-if="subscription.status !== 'archived'")
         NioButton(
