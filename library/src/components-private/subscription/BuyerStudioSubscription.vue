@@ -3,25 +3,25 @@
     .split-row   
       .display-row.display-table
         .display-column
-          .nio-h7.text-primary-dark Description
+          .nio-h4.text-primary-darker Description
           .nio-p.text-primary-dark.description(v-if="subscription.description") {{ subscription.description }}
           .nio-p.text-primary-dark.empty(v-else) None provided   
       .display-row.display-table
         .display-column
-          .nio-h7.text-primary-dark Subscription ID
+          .nio-h4.text-primary-darker Subscription ID
           .nio-p.text-primary-dark.description {{ subscription.id }}             
     .split-row
       .display-row.display-table
         .display-column
-          .nio-h7.text-primary-dark Monthly Budget
+          .nio-h4.text-primary-darker Monthly Budget
           .nio-p.text-primary-dark {{ computeBudget(subscription) }}  
       .display-row.price-cap
           .display-column.full-width
-            .nio-h7.text-primary-dark Max cost per 1000 records
+            .nio-h4.text-primary-darker Max cost per 1000 records
             .nio-p.text-primary-dark {{ getCPM(subscription.details.pricing.micro_cents_usd) }}
     .display-row.display-table.included-filters(v-if="subscription.status === 'active' || subscription.status === 'kickoff'")
       .display-column.full-width
-        .nio-h7.text-primary-dark(style="margin-bottom: 8px") Included Filters
+        .nio-h4.text-primary-darker(style="margin-bottom: 8px") Included Filters
         .applied-filters(v-if="getAppliedFilters(subscription).length || getDatasetFilter(subscription)")
           .applied-filter(
             v-for="filter of getAppliedFilters(subscription)"
@@ -49,7 +49,7 @@
         .nio-p.text-primary-dark.empty(v-else) No filters applied
     .display-row.display-table(v-if="subscription.status === 'active' || subscription.status === 'kickoff'")
       .display-column.full-width
-        .nio-h7.text-primary-dark(style="margin-bottom: 8px") Deliverable attributes
+        .nio-h4.text-primary-darker(style="margin-bottom: 8px") Deliverable attributes
         .attributes
           .loading-attributes(v-if="!attributes")
             v-progress-circular.progress(size="40" indeterminate color="#1438F5")
@@ -66,11 +66,11 @@
                 template(v-slot:content)
                   .display-row.display-table
                     .display-column.type
-                      .nio-h7.text-primary-dark Type
+                      .nio-h4.text-primary-darker Type
                       .nio-p.text-primary-dark {{ getPropertyType(field.property) }}
                   .display-row.display-table
                     .display-column.enum
-                      .nio-h7.text-primary-dark Supported Values
+                      .nio-h4.text-primary-darker Supported Values
                       .nio-p.text-primary-dark(v-if="field.property.enum") 
                         .pills
                           NioPill(
@@ -81,7 +81,7 @@
     .split-row
       .display-row.display-table(v-if="subscription.status === 'active' || subscription.status === 'kickoff'")
         .display-column.full-width
-          .nio-h7.text-primary-dark(style="margin-bottom: 8px") Deduplication
+          .nio-h4.text-primary-darker(style="margin-bottom: 8px") Deduplication
           .deduplication(v-if="subscription.details && subscription.details.data_rules && subscription.details.data_rules.deduplication")   
             .nio-p.text-primary-dark Buy only unique records <span class="nio-bold">every {{ makeReadablePeriod(subscription.details.data_rules.deduplication.period) }}</span> based on these data points:
               .pills(v-if="sellerCompanies")
@@ -93,7 +93,7 @@
             .nio-p.text-primary-dark.empty Buy all data points     
       .display-row.providers
         .display-column
-          .nio-h7.text-primary-dark Providers
+          .nio-h4.text-primary-darker Providers
           .nio-p.text-primary-dark(v-if="subscription.details && subscription.details.company_constraint") {{ makeCompanyConstraint(subscription.details.company_constraint) }}
             .pills(v-if="sellerCompanies")
               template(v-for="companyId of subscription.details.company_constraint.company_ids")
@@ -105,7 +105,7 @@
     .split-row
       .display-row.display-table.destinations
         .display-column
-          .nio-h7.text-primary-dark Delivery Destinations
+          .nio-h4.text-primary-darker Delivery Destinations
           .subscription-destinations
             NioSubscriptionDestinations(
               :subscriptionId="subscription.id"
@@ -114,7 +114,7 @@
             )
       .display-row.display-table.file-download
         .display-column
-          .nio-h7.text-primary-dark Delivered File Download
+          .nio-h4.text-primary-darker Delivered File Download
           .show-downloads
             .nio-p.text-primary-dark.mobile-message File downloads not supported in mobile browsers
             NioButton(
@@ -136,7 +136,7 @@
         )   
     .display-row.display-table
       .display-column
-        .nio-h7.text-primary-dark Delivery Cadence
+        .nio-h4.text-primary-darker Delivery Cadence
         .nio-p.text-primary-dark {{ makeCadence(subscription) }}
     .subscription-footer
       .subscription-actions(v-if="subscription.status !== 'archived'")
