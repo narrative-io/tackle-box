@@ -73,11 +73,11 @@ export default {
       }
       return [
         {
-          label: 'Include all values',
+          label: 'Optional Attribute',
           value: 'default'
         },
         {
-          label: "Include if present",
+          label: "Required Attribute",
           value: 'ifPresent'
         },
         {
