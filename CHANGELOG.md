@@ -125,3 +125,4 @@ Added **NioPrettySchemaPath** component
 Added **NioBuyerStudioSubscription** component
 Added **NioSelectedPaymentMethod** component
 Added optional **noResultsData** prop to **NioSlatTable**
+Restructured codebase to conform to the Vue Style Guide
