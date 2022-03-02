@@ -8,8 +8,8 @@
       .nio-p.large.text-primary-dark {{ childElement }}
     NioButton(
       v-if="!displayOnly"
+      icon-name="utility-times"
       normal-tertiary-append 
-      iconName="utility-times"
       @click="deleteAttribute(path)"  
     )
 </template>
@@ -20,8 +20,8 @@ import NioButton from '../../components/Button'
 import NioIcon from '../../components/icon/Icon'
 
 export default {
-	components: { NioButton, NioIcon },
-	name: 'nio-pretty-schema-path',
+  components: { NioButton, NioIcon },
+  name: 'nio-pretty-schema-path',
   props: {
     "path": { type: Array, required: true },
     "displayOnly": { type: Boolean, required: false, default: false}
@@ -34,7 +34,7 @@ export default {
     },
     isArrayDescendant() {
       return this.path.includes('items')
-		}
+    }
   },
   methods: {
     deleteAttribute(path) {
@@ -45,5 +45,5 @@ export default {
 </script>
 
 <style lang="sass">
-	@import "../../styles-private/schema/_pretty_schema_path"
+  @import "../../styles-private/schema/_pretty_schema_path"
 </style>

@@ -5,9 +5,7 @@
 
 <script>
   export default {
-		name: 'nio-options-grid',
-		props: {
-		},
+    name: 'nio-options-grid',
     mounted() {	
       this.$emit('mounted')
     },

@@ -1,29 +1,35 @@
 <template lang="pug">
   .nio-tooltip 
     v-menu(
-      :open-on-hover="openOnHover"
-      :open-on-click="!openOnHover"
-      :closeOnContentClick="false"
-      :contentClass="makeContentClass"
-      right
       v-bind="$attrs"
       v-on="$listeners"
+      :open-on-hover="openOnHover"
+      :open-on-click="!openOnHover"
+      :close-on-content-click="false"
+      :content-class="makeContentClass"
+      right
     )
-      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data")   
+      template(
+        v-for="(index, name) in $scopedSlots" 
+        v-slot:[name]="data"
+      )
+        slot(
+          v-bind="data"
+          :name="name" 
+        )
       slot  
       template(v-slot:activator="{ on, attrs }")
         v-btn.activator(
-          icon
           v-bind="attrs"
           v-on="on"
+          icon
         )
           .background-mask(:style="{backgroundColor: iconBackground}")
           NioIcon(
             :name="iconName"
-            @click="visible = !visible"
             :color="iconColor ? iconColor : defaultIconColor"
             :size="iconSize"
+            @click="visible = !visible"
           )
       .tooltip-title.nio-p.text-primary-darkest.nio-bold(v-if="(data && data.heading) || heading") {{ data && data.heading ? data.heading : heading }}
       .nio-p.text-primary-darker {{ data && data.message ? data.message : message }}
@@ -41,6 +47,7 @@ import { getThemeColor } from '@/modules/app/theme/theme'
 
 export default {
   name: 'nio-tooltip',
+  components: { NioIcon },
   props: {
     "data": { type: Object, required: false },
     "message": { type: String, required: false, default: '' },
@@ -50,8 +57,8 @@ export default {
     "linkHref": { type: String, required: false },
     "iconName": { type: String, required: false, default: 'utility-info' },
     "iconColor": { type: String, required: false },
-		"iconBackground": { type: String, required: false, default: 'rgba(0,0,0,0)'},
-		"contentClass": { type: String, required: false }
+    "iconBackground": { type: String, required: false, default: 'rgba(0,0,0,0)'},
+    "contentClass": { type: String, required: false }
   },
   data() {
     return {
@@ -59,16 +66,16 @@ export default {
       openOnHover: false
     }
   },		
-  mounted() {
-    this.applyHelperAttributes()
-  },
   computed: {
     defaultIconColor() {
       return getThemeColor('primary')
-		},
-		makeContentClass() {
-			return `nio-tooltip-content ${this.contentClass ? this.contentClass : ''}`
-		}
+    },
+    makeContentClass() {
+      return `nio-tooltip-content ${this.contentClass ? this.contentClass : ''}`
+    }
+  },
+  mounted() {
+    this.applyHelperAttributes()
   },
   methods: {
     applyHelperAttributes() {
@@ -80,8 +87,7 @@ export default {
     formatLinkText(text) {
       return ` ${text.toUpperCase()}`
     }
-  },
-  components: { NioIcon }
+  }
 }
 </script>
 

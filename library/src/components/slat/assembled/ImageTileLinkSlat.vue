@@ -1,10 +1,10 @@
 <template lang="pug">
   NioLinkSlat.nio-image-tile-link-slat
     ImageTitleSubtitleSlot(
-      :size="size"
-      :imgSrc="imgSrc"
-      :imgBackground="imgBackground"
       v-bind="$attrs"
+      :size="size"
+      :img-src="imgSrc"
+      :img-background="imgBackground"
     )
       template(v-slot:title)
         slot(name="title")
@@ -20,22 +20,17 @@ import ImageTitleSubtitleSlot from '../slot-templates/content/ImageTitleSubtitle
 
 export default {
   name: 'nio-image-tile-link-slat',
+  components: { NioLinkSlat, ImageTitleSubtitleSlot },
   props: {
     "imgSrc": { type: String, required: false },
     "imgBackground": { type: String, required: false },
     "size": { type: String, required: false, default: 'normal' }
   },
-  data: () => ({
-
-  }),
-  mounted() {
-  },
   methods: {
     click() {
       this.$emit('click')
     }
-  },
-  components: { NioLinkSlat, ImageTitleSubtitleSlot }
+  }
 }
 </script>
 

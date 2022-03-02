@@ -8,18 +8,18 @@
         slot(name="header")
       template(v-slot:actions="slotProps")
         NioIcon(
-          key="1"
           v-if="isActive"
-          name="utility-chevron-up"
+          key="1"
           :color="actionColor"
           :size="14"
+          name="utility-chevron-up"
         )
         NioIcon(
           v-else
           key="2"
-          name="utility-chevron-down"
           :color="actionColor"
           :size="14"
+          name="utility-chevron-down"
         )
     v-expansion-panel-content
       slot(name="content")
@@ -32,16 +32,10 @@ import { getThemeColor } from '../modules/app/theme/theme'
 
 export default {
   name: 'nio-expansion-panel',
+  components: { NioIcon },
   data: () => ({
     panelKey: null
   }),
-  mounted() {	
-    this.$emit('mounted')
-    this.key = this.$vnode.key
-  },
-  destroyed() {
-    this.$emit('destroyed')
-  },
   computed: {
     isActive() {
       if (this.activePanels && this.activePanels.length) {
@@ -57,10 +51,13 @@ export default {
       return this.$parent.$parent.model
     },
   },
-  methods: {
-    
+  mounted() {	
+    this.$emit('mounted')
+    this.key = this.$vnode.key
   },
-  components: { NioIcon }
+  destroyed() {
+    this.$emit('destroyed')
+  }
 }
 </script>
 

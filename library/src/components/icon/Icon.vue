@@ -68,6 +68,7 @@ import { faEllipsisV } from './fa-icons/ellipsis-vertical'
  
 export default {
   name: 'nio-icon',
+  components: { StreamlineIcon, FontAwesomeIcon },
   props: {
     "name": { type: String, required: true },
     "size": { required: false },
@@ -82,9 +83,9 @@ export default {
       return this.name.indexOf('utility-') > -1
     }
   },
-  methods: {
-    click() {
-      this.$emit('click')
+  watch: {
+    name() {
+      this.icon = this.iconLibrary[this.name]
     }
   },
   mounted() {	
@@ -96,13 +97,13 @@ export default {
     library.add(faArrowDown)
     library.add(faChevronDown)
     library.add(faChevronLeft)
-		library.add(faChevronRight)
-		library.add(faChevronUp)
+    library.add(faChevronRight)
+    library.add(faChevronUp)
     library.add(faExternalLinkAlt)
     library.add(faLock)
     library.add(faEllipsisH)
-		library.add(faPlus)
-		library.add(faMinus)
+    library.add(faPlus)
+    library.add(faMinus)
     library.add(faSearch)
     library.add(faTimes)
     library.add(faTrash)
@@ -113,33 +114,32 @@ export default {
     library.add(faTwitter)
     library.add(faEye)
     library.add(faEyeSlash)
-		library.add(faExclamation)
-		library.add(faCheckCircle)
-		library.add(faInfoCircle)
-		library.add(faAsterisk)
-		library.add(faClock)
+    library.add(faExclamation)
+    library.add(faCheckCircle)
+    library.add(faInfoCircle)
+    library.add(faAsterisk)
+    library.add(faClock)
     library.add(faFont)
     library.add(faGripVertical)
-		library.add(faHashtag)
-		library.add(faToggleOn)
-		library.add(faTimesCircle)
-		library.add(faListOl)
-		library.add(faTally)
-		library.add(faBrackets)
-		library.add(faArchive)
-		library.add(faEllipsisV)
+    library.add(faHashtag)
+    library.add(faToggleOn)
+    library.add(faTimesCircle)
+    library.add(faListOl)
+    library.add(faTally)
+    library.add(faBrackets)
+    library.add(faArchive)
+    library.add(faEllipsisV)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },
+  methods: {
+    click() {
+      this.$emit('click')
+    }
+  },
   destroyed() {
     this.$emit('destroyed')
-  },
-  watch: {
-    name() {
-      this.icon = this.iconLibrary[this.name]
-		}
-  },
-  components: { StreamlineIcon, FontAwesomeIcon }
+  }
 }
 </script>
 

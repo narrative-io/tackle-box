@@ -23,14 +23,14 @@
       NioButton.cta-button(
         v-for="item of ctaButtons"
         :key="item.label"
-        @click="buttonClicked(item)"
         v-bind="buttonVariant(item)"
+        @click="buttonClicked(item)"
       ) {{ item.label }}
     NavMenu(
-      :navItems="navItems"
-      :hideItems="hideItems"
-      :lockItems="lockItems"
-      :activeItemName="activeItemName"
+      :nav-items="navItems"
+      :hide-items="hideItems"
+      :lock-items="lockItems"
+      :active-item-name="activeItemName"
       @navItemClicked="navItemClicked" 
       @navEvent="fireNavEvent($event)"
     )
@@ -45,6 +45,7 @@ import NioButton from '../components/Button'
 
 export default {
   name: 'nio-side-nav-menu',
+  components: { ImageTile, NavMenu, NioButton },
   props: {
     "developerName": { type: String, required: true },
     "appName": { type: String, required: true },
@@ -55,8 +56,12 @@ export default {
     "headerImage": { type: Object, required: false },
     "activeItemName": { type: String, required: false}
   },
-  data: () => ({
-  }),
+  mounted() {	
+    this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
+  },
   methods: {
     fireNavEvent(eventName) {
       this.$emit('navMenuEvent', eventName)
@@ -78,14 +83,7 @@ export default {
     buttonVariant(item) {
       return {[`${item.buttonVariant}`]: ""}
     }
-  },
-  mounted() {	
-    this.$emit('mounted')
-  },
-  destroyed() {
-    this.$emit('destroyed')
-  },
-  components: { ImageTile, NavMenu, NioButton }
+  }
 }
 </script>
 

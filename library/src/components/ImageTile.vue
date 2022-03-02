@@ -1,12 +1,12 @@
 <template lang="pug">
   v-img.nio-image-tile(
+    v-bind="$attrs"
+    v-on="$listeners"
     :class="[size]"
     :width="sizes[size]"
     :height="sizes[size]"
     :style="{background: imgBackground}"
     aspect-ratio="1"
-    v-bind="$attrs"
-    v-on="$listeners" 
   ) 
     template(v-slot:placeholder)
       slot(name="nio-image-placeholder")

@@ -8,11 +8,11 @@
       )
     NioSlatTable(
       v-if="columns && fileDeliveries"
-      action="custom"
       :items="fileDeliveries"
       :columns="columns"
+      :initial-items-per-page="5"
+      action="custom"
       pagination
-      :initialItemsPerPage="5"
     )
       template(v-slot:custom-action="slotProps") 
         NioButton(

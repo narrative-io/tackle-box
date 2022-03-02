@@ -24,13 +24,13 @@
         )
         NioSummarySlat.summary(
           v-else
-          :imageSrc="summary.imageSrc"
-          :imageBackground="summary.imageBackground"
+          :image-src="summary.imageSrc"
+          :image-background="summary.imageBackground"
           :title="summary.title"
           :subtitle="summary.subtitle"
-          :detailsLabel="summary.detailsLabel"
-          :detailsValue="summary.detailsValue"
-          :detailsAnnotation="summary.detailsAnnotation"
+          :details-label="summary.detailsLabel"
+          :details-value="summary.detailsValue"
+          :details-annotation="summary.detailsAnnotation"
         )
       template(v-slot:action v-if="complete")
         NioIcon.expand(
@@ -48,6 +48,7 @@ import NioSlatGroup from '../../components/slat/SlatGroup'
 
 export default {
   name: 'nio-step-header',
+  components: { NioSlat, NioIcon,  NioSummarySlat, NioSlatGroup },
   props: {
     "stepName": { type: String, required: true },
     "complete": { type: Boolean, required: false, default: false },
@@ -58,15 +59,7 @@ export default {
     "summary": { type: Object, required: false },
     "simpleSummary": { type: Boolean, required: false, default: false },
     "customSummary": { type: Boolean, required: false, default: false }
-  },
-  data: () => ({
-  }),
-  mounted() {
-  },
-  methods: {
-    
-  },
-  components: { NioSlat, NioIcon,  NioSummarySlat, NioSlatGroup }
+  }
 }
 </script>
 

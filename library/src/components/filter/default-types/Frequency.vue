@@ -1,11 +1,11 @@
 <template lang="pug">
   .nio-filter-properties.frequency
     NioFilterProperty(
+      v-bind:value.sync="filter.value"
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
-      :customOptionLoading="customOptionLoading"
-      :joinOption="filter.joinOption"
-      v-bind:value.sync="filter.value"
+      :custom-option-loading="customOptionLoading"
+      :join-option="filter.joinOption"
     )
       template(v-slot:custom-option)
         .frequency-custom
@@ -32,7 +32,6 @@
           .supporting-option-section(v-if="filter.customOption.supportingOption")
             .label.nio-p.text-primary-dark {{ filter.customOption.supportingOption.config.text ? filter.customOption.supportingOption.config.text : 'Receive a single record for IDs that has' }}
             NioSelect.selection(
-              multiple
               v-if="filter.customOption.supportingOption.config.items.length > 0"
               v-model="filter.customOption.supportingOption.value" 
               :items="filter.customOption.supportingOption.config.items"
@@ -40,6 +39,7 @@
               item-text="label"
               item-value="value" 
               selection-pills
+              multiple
             )
               template(v-slot:selection="{ item, index }")
                 span.v-select__selection(v-if="index === 0") 
@@ -59,6 +59,7 @@ import NioPill from '../../Pill'
 
 export default {
   name: 'nio-filter-properties-frequency',
+  components: { NioFilterProperty, NioSelect, NioTextField, NioPill },
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false }
@@ -93,15 +94,6 @@ export default {
       return this.filter.customOption && this.filter.customOption.description ? this.filter.customOption.description : null
     }
   },
-  mounted() {
-    this.updateValue()
-  },
-  methods: {
-    updateValue() {
-      const options = this.filter.options ? this.filter.options : this.defaultOptions
-      this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
-    }
-  },
   watch: {
     filter: {
       deep: true,
@@ -110,7 +102,15 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty, NioSelect, NioTextField, NioPill }
+  mounted() {
+    this.updateValue()
+  },
+  methods: {
+    updateValue() {
+      const options = this.filter.options ? this.filter.options : this.defaultOptions
+      this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+    }
+  }
 }
 </script>
 

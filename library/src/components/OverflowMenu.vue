@@ -1,9 +1,9 @@
 <template lang="pug">
   .nio-overflow-menu
     v-menu(
-      contentClass="nio-overflow-menu"
+      content-class="nio-overflow-menu"
+      nudge-bottom="20"
       left
-      nudgeBottom="20"
     )
       template(v-slot:activator="{ on, attrs }")
         .activator(v-on="on")
@@ -20,9 +20,7 @@ import NioIcon from './icon/Icon'
 
 export default {
   name: 'nio-overflow-menu',
-  data: () => ({
-  
-  }),
+  components: { NioIcon },
   props: {
     data: { type: Object, required: false }
   },
@@ -31,8 +29,7 @@ export default {
   },
   destroyed() {
     this.$emit('destroyed')
-  },
-  components: { NioIcon }
+  }
 }
 </script>
 

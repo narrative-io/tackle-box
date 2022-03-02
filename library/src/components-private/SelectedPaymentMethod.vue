@@ -1,8 +1,8 @@
 <template lang="pug">
    .nio-selected-payment-method
       NioImageTile(
-        size="small"
         :src="imgSrc"
+        size="small"
       )
       p.nio-p.text-primary-dark <strong>{{ cardBrand }}</strong> {{ cardNumber }}
 </template>
@@ -18,9 +18,6 @@ export default {
   props: {
     paymentMethod: { type: Object, required: true }
   },
-  data: () => ({
-    
-  }),	
   computed: {
     imgSrc() {
       return paymentMethodImageSrc(this.paymentMethod)
@@ -31,14 +28,6 @@ export default {
     cardNumber() {
       return `****${this.paymentMethod.cardLast4}`
     }
-  },
-  mounted() {
-  },
-  methods: {
-   
-  },
-  watch: {
-    
   }
 }
 </script>

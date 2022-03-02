@@ -2,15 +2,18 @@
    .nio-choose-payment-method
     NioSlatTable(
       v-if="items && paymentMethod && paymentMethod.paymentMethodId && headers && !updatePaymentDialog"
+      :key="tableId"
       :items="items"
       :columns="headers"
-      @selectionChanged="selectionChanged"
       single-select
       footer-actions
-      :key="tableId"
+      @selectionChanged="selectionChanged"
     )
       template(v-slot:footer-actions)
-        NioButton(normal-secondary @click="updatePaymentMethod") Update Payment Method
+        NioButton(
+          normal-secondary 
+          @click="updatePaymentMethod"
+        ) Update Payment Method
     .no-payment-method(v-else-if="!updatePaymentDialog")    
       p.nio-p-large.text-primary-dark You have not added a payment method yet
       NioButton(
@@ -18,8 +21,8 @@
         @click="updatePaymentMethod"
       ) Add one now
     NioDialog(
-      v-model="updatePaymentDialog"
       :key="updateId"
+      v-model="updatePaymentDialog"
     )
       UpdatePaymentDialog(
         @cancel="closePaymentDialog"
@@ -37,6 +40,7 @@ import { makeRandomId } from '@/modules/helpers'
 
 export default {
   name: 'nio-choose-payment-method',
+  components: { UpdatePaymentDialog, NioButton, NioSlatTable, NioDialog },
   data: () => ({
     headers: null,
     updatePaymentDialog: false,
@@ -48,6 +52,12 @@ export default {
   computed: {
     paymentMethod() { return {...this.nioPaymentMethod, id: 1} },
     invoiceAuthorized() { return this.nioInvoiceAuthorized } 
+  },
+  watch: {
+    paymentMethod(val) {
+      this.items = null
+      this.refreshPaymentMethod()
+    }
   },
   mounted() {
    this.refreshPaymentMethod()
@@ -100,14 +110,7 @@ export default {
       this.tableId = makeRandomId()
       this.updatePaymentDialog = false
     }
-  },
-  watch: {
-    paymentMethod(val) {
-      this.items = null
-      this.refreshPaymentMethod()
-    }
-  },
-  components: { UpdatePaymentDialog, NioButton, NioSlatTable, NioDialog}
+  }
 }
 </script>
 

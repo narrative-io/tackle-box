@@ -17,19 +17,10 @@
 
 export default {
   name: 'nio-slat',
-  props: {
-
-  },
-  data: () => ({
-
-  }),
-  mounted() {
-    
-  },
   methods: {
     click() {
-			this.$emit('click')
-		}
+      this.$emit('click')
+    }
   }
 }
 </script>

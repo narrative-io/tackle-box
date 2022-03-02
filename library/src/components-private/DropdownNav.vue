@@ -1,11 +1,11 @@
 <template lang="pug">
   .nio-dropdown-nav
     v-menu(
+      v-model="showMenu" 
+      :close-on-content-click="false"
+      content-class="nio-dropdown-nav-menu"
       open-on-click
       offset-y 
-      v-model="showMenu" 
-      content-class="nio-dropdown-nav-menu"
-      :close-on-content-click="false"
     )
       template(v-slot:activator="{ on }")
         .activator(@click="open")
@@ -20,9 +20,9 @@
       v-divider
       template(v-for="navGroup in navItems")      
         NavMenu.menu-group(
-          :navItems="[navGroup]"
-          :hideItems="hideItems"
-          :lockItems="lockItems"
+          :nav-items="[navGroup]"
+          :hide-items="hideItems"
+          :lock-items="lockItems"
           @navItemClicked="close" 
           @navEvent="fireNavEvent($event)"
         )          
@@ -35,6 +35,8 @@ import ImageTile from '../components/ImageTile'
 
 export default {
   name: 'nio-dropdown-nav-menu',
+  components: { NavMenu, ImageTile },
+  
   props: {
     "user": { type: Object, required: false, default: null },
     "navItems": { type: Array, required: true },
@@ -54,6 +56,12 @@ export default {
       return initials !== '' ? initials : 'U'
     }
   },
+  mounted() {	
+    this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
+  },
   methods: {
     open() {
       this.showMenu = true
@@ -64,14 +72,7 @@ export default {
     fireNavEvent(eventName) {
       this.$emit(eventName)
     }
-  },
-  mounted() {	
-    this.$emit('mounted')
-  },
-  destroyed() {
-    this.$emit('destroyed')
-  },
-  components: { NavMenu, ImageTile }
+  }
 }
 </script>
 

@@ -5,33 +5,39 @@
     @change="stepSelected"
   )
     NioStepHeader(
-      :stepName="stepName"
+      :step-name="stepName"
       :complete="isComplete"
       :locked="isLocked"
-      :stepIndex="stepIndex"
-      :isFirstStep="isFirstStep"
-      :isLastStep="isLastStep"
+      :step-index="stepIndex"
+      :is-first-step="isFirstStep"
+      :is-last-step="isLastStep"
       :summary="summary"
-      :simpleSummary="simpleSummary"
-      :customSummary="customSummary"
+      :simple-summary="simpleSummary"
+      :custom-summary="customSummary"
     )
       template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
         slot(:name="name" v-bind="data") 
     NioStepContent(
-      :stepName="stepName"
+      :step-name="stepName"
       :complete="isComplete"
-      :isFirstStep="isFirstStep"
-      :isLastStep="isLastStep"
+      :is-first-step="isFirstStep"
+      :is-last-step="isLastStep"
       :valid="valid"
-      :nextStepLabel="nextStepLabel"
-      :previousStepLabel="previousStepLabel"
-      :finalStepLabel="finalStepLabel"
+      :next-step-label="nextStepLabel"
+      :previous-step-label="previousStepLabel"
+      :final-step-label="finalStepLabel"
       @previousStep="previousStep"
       @nextStep="nextStep"
       @submit="submit"
     ) 
-      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data") 
+      template(
+        v-for="(index, name) in $scopedSlots" 
+        v-slot:[name]="data"
+      )
+        slot(
+          v-bind="data"
+          :name="name" 
+        ) 
 </template>
 
 <script>
@@ -42,6 +48,7 @@ import { toKebabCase } from '@/modules/helpers'
 
 export default {
   name: 'nio-step',
+  components: { NioStepHeader, NioStepContent },
   props: {
     "stepName": { type: String, required: true },
     "valid": { type: Boolean, required: false, default: false },
@@ -109,8 +116,7 @@ export default {
     stepSelected() {
       this.$parent.$parent.stepSelected(this.stepName)
     }
-  },
-  components: { NioStepHeader, NioStepContent }
+  }
 }
 </script>
 

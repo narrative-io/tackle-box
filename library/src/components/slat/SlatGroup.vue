@@ -7,22 +7,17 @@
 
 export default {
   name: 'nio-slat-group',
-  props: {
-  },
   data: () => ({
-		summarySlat: false
+    summarySlat: false
   }),
-  mounted() {
-  },
   methods: {
-		applyHelperAttributes() {
+    applyHelperAttributes() {
       const attributes = this.$el.attributes
       if (attributes.getNamedItem('summary')) {
         this.summarySlat = true
-			}
-		}	
-  },
-  components: { }
+      }
+    }	
+  }
 }
 </script>
 

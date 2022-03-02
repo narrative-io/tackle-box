@@ -9,17 +9,23 @@ import NioStep from './Step'
 
 export default {
   name: 'nio-stepper',
+  components: { NioStep },
   props: {
     "orderedSteps": { type: Array, required: true },
     "currentStep": { type: String, required: false, default: false },
     "completedSteps": { type: Array, required: false, default: [] },
     "nextStepLabel": { type: String, required: false, default: "continue"},
     "previousStepLabel": { type: String, required: false, default: "back"},
-		"finalStepLabel": { type: String, required: false, default: "finish"}
+    "finalStepLabel": { type: String, required: false, default: "finish"}
   },
   data: () => ({
     activeStep: 0
   }),
+  watch: {
+    currentStep() {
+      this.activeStep = this.getStepIndex(this.currentStep)
+    }
+  },
   mounted() {
     this.activeStep = this.getStepIndex(this.currentStep)
   },
@@ -29,23 +35,17 @@ export default {
     },
     nextStep() {
       this.$emit('nextStep')
-		},
-		submit() {
-			this.$emit('submit')
-		},
+    },
+    submit() {
+      this.$emit('submit')
+    },
     getStepIndex(stepName) {
       return this.orderedSteps.indexOf(stepName)
-		},
-		stepSelected(stepName) {
-			this.$emit('stepSelected', stepName)
-		}
-  },
-  watch: {
-    currentStep() {
-      this.activeStep = this.getStepIndex(this.currentStep)
+    },
+    stepSelected(stepName) {
+      this.$emit('stepSelected', stepName)
     }
-  },
-  components: { NioStep }
+  }
 }
 </script>
 

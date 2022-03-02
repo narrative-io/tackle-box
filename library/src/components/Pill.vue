@@ -27,6 +27,7 @@ import NioIcon from './icon/Icon'
 
 export default {
   name: 'nio-pill',
+  components: { NioIcon },
   data: () => ({
     selectedValueAttr: false,
     tagAttr: false,
@@ -48,6 +49,13 @@ export default {
     supportedVariantClass() {
       return this.supportedVariants.includes(this.text) ? this.text : ''
     }
+  },
+  mounted() {	
+    this.applyHelperAttributes()
+    this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
   },
   methods: {
     applyHelperAttributes() {
@@ -72,15 +80,7 @@ export default {
         this.iconSizeAttr = 14
       }
     }
-  },
-  mounted() {	
-    this.applyHelperAttributes()
-    this.$emit('mounted')
-  },
-  destroyed() {
-    this.$emit('destroyed')
-  },
-  components: { NioIcon }
+  }
 }
 </script>
 

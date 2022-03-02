@@ -6,7 +6,7 @@
   )
     template(v-slot:amount)
       NioIconFramer(
-        :iconName="option.iconName"
+        :icon-name="option.iconName"
       )
     template(v-slot:content)
       .nio-h3.text-primary-darker {{ option.title }}
@@ -26,9 +26,16 @@ import NioPill from '../Pill'
 
 export default {
   name: 'nio-budget-option',
+  components: { NioOptionsGridItem, NioIconFramer, NioPill },
   props: {
     "option": { type: Object, required: true },
     "selected": { type: Boolean, required: false, default: false }
+  },
+  mounted() {	
+    this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
   },
   methods: {
     optionSelected() {
@@ -36,14 +43,7 @@ export default {
         this.$emit('selected', this.option)
       }  
     },
-  },  
-  mounted() {	
-    this.$emit('mounted')
-  },
-  destroyed() {
-    this.$emit('destroyed')
-  },
-  components: { NioOptionsGridItem, NioIconFramer, NioPill }
+  }
 }
 </script>
 

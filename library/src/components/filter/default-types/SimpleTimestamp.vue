@@ -1,11 +1,11 @@
 <template lang="pug">
   .nio-filter-properties.simple-timestamp
     NioFilterProperty(
+      v-bind:value.sync="filter.value"
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
-      :customOptionLoading="customOptionLoading"
-      :joinOption="filter.joinOption"
-      v-bind:value.sync="filter.value"
+      :custom-option-loading="customOptionLoading"
+      :join-option="filter.joinOption"
     )
       template(v-slot:custom-option)
         .simple-timestamp-custom
@@ -49,8 +49,8 @@
                   v-model="filter.customOption.value.recency.value"
                   :min="1"
                   type="number"
-                  @input="parseLookbackValue($event)"
                   solo
+                  @input="parseLookbackValue($event)"
                 )
                 NioSelect(
                   v-model="filter.customOption.value.recency.period"
@@ -86,6 +86,7 @@ import NioSelect from '../../Select'
 
 export default {
   name: 'nio-filter-properties-simple-timestamp',
+  components: { NioFilterProperty, NioDateField, NioCheckbox, NioTextField, NioSelect },
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false }
@@ -128,6 +129,17 @@ export default {
     stopMaxDate() {
       return this.filter.customOption.config ? this.filter.customOption.config.stopMax : undefined 
     }
+  },
+  watch: {
+    filter: {
+      deep: true,
+      handler() {
+        this.updateValue()
+      }
+    } 
+  },
+  mounted() {
+    this.updateValue()
   },
   methods: {
     validate() {
@@ -172,19 +184,7 @@ export default {
         this.filter.customOption.value.recency.value = parseInt(this.filter.customOption.value.recency.value)
       })
     }
-  },
-  watch: {
-    filter: {
-      deep: true,
-      handler() {
-        this.updateValue()
-      }
-    } 
-  },
-  mounted() {
-    this.updateValue()
-  },
-  components: { NioFilterProperty, NioDateField, NioCheckbox, NioTextField, NioSelect }
+  }
 }
 </script>
 

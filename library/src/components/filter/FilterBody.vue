@@ -2,69 +2,69 @@
   .nio-filter-body
     template(v-if="filter.type === 'object'")
       NioFilterPropertiesObject(
-        @valueChanged="valueChanged($event)"
         :filter="filter"
-        :customOptionLoading="customOptionLoading"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
       )
     template(v-if="filter.type === 'array'")
       NioFilterPropertiesArray(
-        @valueChanged="valueChanged($event)"
         :filter="filter"
-        :customOptionLoading="customOptionLoading"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
       )
     template(v-if="filter.type === 'number'")
       NioFilterPropertiesNumber(
-        @valueChanged="valueChanged($event)"
         :filter="filter"
-        :customOptionLoading="customOptionLoading"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'eventTimestamp'")
       NioFilterPropertiesEventTimestamp(
-        @valueChanged="valueChanged($event)"
         :filter="filter"
-        :customOptionLoading="customOptionLoading"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'simpleTimestamp'")
       NioFilterPropertiesSimpleTimestamp(
-        @valueChanged="valueChanged($event)"
         :filter="filter"
-        :customOptionLoading="customOptionLoading"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'stringMany'")
       NioFilterPropertiesStringMany(
-        @valueChanged="valueChanged($event)"
         :filter="filter"
-        :customOptionLoading="customOptionLoading"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
       ) 
     template(v-else-if="filter.type === 'stringLimited'")
       NioFilterPropertiesStringLimited(
-        @valueChanged="valueChanged($event)"
         :filter="filter"
-        :customOptionLoading="customOptionLoading"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'mapping'")
       NioFilterPropertiesMapping(
-        @valueChanged="valueChanged($event)"
         :filter="filter"
-        :customOptionLoading="customOptionLoading"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
       )  
     template(v-else-if="filter.type === 'frequency'")
       NioFilterPropertiesFrequency(
-        @valueChanged="valueChanged($event)"
         :filter="filter"
-        :customOptionLoading="customOptionLoading"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
       )      
     template(v-else-if="filter.type === 'boolean'")
       NioFilterPropertiesBoolean(
-        @valueChanged="valueChanged($event)"
         :filter="filter"
-        :customOptionLoading="customOptionLoading"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
       )      
     template(v-else)
       slot(
-        name="filter-properties-custom"
         :filter="filter" 
-        :customOptionLoading="customOptionLoading"
+        :custom-option-loading="customOptionLoading"
+        name="filter-properties-custom"
       )
 </template>
 
@@ -84,12 +84,23 @@ import NioFilterPropertiesBoolean from './default-types/Boolean'
 
 export default {
   name: 'nio-filter-body',
+  components: { 
+    NioFilterProperty, 
+    NioFilterPropertiesObject,
+    NioFilterPropertiesArray,
+    NioFilterPropertiesNumber,
+    NioFilterPropertiesEventTimestamp,
+    NioFilterPropertiesSimpleTimestamp,
+    NioFilterPropertiesStringMany,
+    NioFilterPropertiesStringLimited,
+    NioFilterPropertiesMapping,
+    NioFilterPropertiesFrequency,
+    NioFilterPropertiesBoolean
+  },
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false }
   },
-  data: () => ({
-  }),	
   computed: {
     defaultOptions() {
       if (!this.filter) {
@@ -122,19 +133,6 @@ export default {
     valueChanged(val) {
       this.$emit('valueChanged', val)
     }
-  },
-  components: { 
-    NioFilterProperty, 
-    NioFilterPropertiesObject,
-    NioFilterPropertiesArray,
-    NioFilterPropertiesNumber,
-    NioFilterPropertiesEventTimestamp,
-    NioFilterPropertiesSimpleTimestamp,
-    NioFilterPropertiesStringMany,
-    NioFilterPropertiesStringLimited,
-    NioFilterPropertiesMapping,
-    NioFilterPropertiesFrequency,
-    NioFilterPropertiesBoolean
   }
 }
 </script>

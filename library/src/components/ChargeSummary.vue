@@ -15,7 +15,10 @@
       .cadence-message.nio-p.text-primary-dark(v-if="!$slots['append-content']") {{ rebillingMessage }}      
       .help-message(v-if="!$slots['append-content']")
         span.nio-p.text-primary-dark {{ ` Questions about your order? ` }}
-        a(href="https://kb.narrative.io" target="_blank") Visit the help center
+        a(
+          href="https://kb.narrative.io" 
+          target="_blank"
+        ) Visit the help center
       slot(name="append-content")  
 </template>
 
@@ -37,6 +40,12 @@ export default {
       }, 0)
     }
   },
+  mounted() {	
+    this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
+  },
   methods: {
     formatPrice(price) {
       return this.formatCurrencyNoCents(price)
@@ -53,13 +62,7 @@ export default {
       else
         return numeral(number).format('$0')
     }
-  },
-  mounted() {	
-    this.$emit('mounted')
-  },
-  destroyed() {
-    this.$emit('destroyed')
-	}
+  }
 }
 </script>
 

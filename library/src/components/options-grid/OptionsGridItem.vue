@@ -20,18 +20,18 @@ export default {
   props: {
     option: { type: Object, required: true }
   },
-  methods: {
-    handleClick() {
-      if (!this.$scopedSlots.cta) {
-        this.$emit('optionSelected', this.option)
-      }
-    },
-  },  
   mounted() {	
     this.$emit('mounted')
   },
   destroyed() {
     this.$emit('destroyed')
+  },
+  methods: {
+    handleClick() {
+      if (!this.$scopedSlots.cta) {
+        this.$emit('optionSelected', this.option)
+      }
+    }
   }
 }
 </script>

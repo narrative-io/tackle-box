@@ -21,9 +21,9 @@
         a(v-if="linkText && linkHref" :href="linkHref" target="_blank") {{ formatLinkText(linkText) }}
     NioIcon.dismiss(
       v-if="dismissable"
-      name="utility-times"
       :color="usingDefaultSlot ? customIconColor : 'white' "
       size="14"
+      name="utility-times"
       @click="dismiss"
     )
     
@@ -37,6 +37,7 @@ import { getThemeColor } from '@/modules/app/theme/theme'
 
 export default {
   name: 'nio-alert',
+  components: { NioIcon },
   props: {
     "visible": { type: Boolean, required: false, default: false },
     "message": { type: String, required: false, default: '' },
@@ -76,13 +77,11 @@ export default {
       if (attributes.getNamedItem('error')) {
         this.alertType = 'error'
       }
-    },
-    
+    },   
     dismiss() {
       this.$emit('dismiss')
     }
-  },
-  components: { NioIcon }
+  }
 }
 </script>
 

@@ -6,14 +6,14 @@
       template(v-for="module of modules")
         template(v-if="module === 'search'")
           NioTextField(
-            search-small-subdued
             placeholder="Search"
+            search-small-subdued
             @input="searchChange($event)"
           )
         template(v-if="module === 'sort'")
           NioSelect(
-            :items="sortOptions"
             v-model="selectedSort"
+            :items="sortOptions"
             item-text="label"
             item-value="value"
             small
@@ -43,26 +43,32 @@ import NioCheckbox from '../Checkbox'
 
 export default {
   name: 'nio-slat-table-header',
+  components: { NioSlat, NioSelect, NioTextField, NioCheckbox },
   props: {
     "modules": { type: Array, required: true },
     "sortOptions": { type: Array, required: false, default: function() { return []} },
     "selectedCount": { type: Number, required: false, default: 0 },
     "numItems": { type: Number, required: false },
-		"selectionType": { type: String, required: false },
+    "selectionType": { type: String, required: false },
     "allSelected": { type: Boolean, required: false, default: false },
     "pagination": { type: Boolean, requied: false, default: false }
   },
   data: () => ({
     selectedSort: null,
-		singleSelect: false,
-		tempAllSelected: false
+    singleSelect: false,
+    tempAllSelected: false
   }),
+  watch: {
+    allSelected(val) {
+      this.tempAllSelected = val
+    }
+  },
   mounted() {
     this.applyHelperAttributes()
     if (this.sortOptions && this.sortOptions.length) {
       this.selectedSort = this.sortOptions[0]
-		}
-		this.tempAllSelected = this.allSelected
+    }
+    this.tempAllSelected = this.allSelected
   },
   methods: {
     applyHelperAttributes() {
@@ -77,13 +83,7 @@ export default {
     allSelectedChange(val) {
       this.$emit('allSelectedChange', val)
     }
-	},
-	watch: {
-		allSelected(val) {
-			this.tempAllSelected = val
-		}
-	},
-  components: { NioSlat, NioSelect, NioTextField, NioCheckbox }
+  }	
 }
 </script>
 

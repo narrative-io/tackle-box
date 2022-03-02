@@ -35,7 +35,10 @@
               )
               .text.nio-p.text-primary-darker {{ makeFilterValue(filter.filter) }}
           .applied-filter.join-filter(v-if="getDatasetFilter(subscription)")
-            NioPrettySchemaPath(:path="getDatasetFilter(subscription).path" :displayOnly="true")
+            NioPrettySchemaPath(
+              :path="getDatasetFilter(subscription).path" 
+              :displayOnly="true"
+            )
             .selected-filter-value 
               NioIcon(
                 name="utility-check-circle"
@@ -52,7 +55,11 @@
         .nio-h4.text-primary-darker(style="margin-bottom: 8px") Deliverable attributes
         .attributes
           .loading-attributes(v-if="!attributes")
-            v-progress-circular.progress(size="40" indeterminate color="#1438F5")
+            v-progress-circular.progress(
+              size="40" 
+              color="#1438F5"
+              indeterminate 
+            )
           .attributes-list(v-else)
             NioExpansionPanels(
               multiple
@@ -108,9 +115,9 @@
           .nio-h4.text-primary-darker Delivery Destinations
           .subscription-destinations
             NioSubscriptionDestinations(
-              :subscriptionId="subscription.id"
-              :openApiToken="openApiToken"
-              :openApiBaseUrl="openApiBaseUrl"
+              :subscription-id="subscription.id"
+              :open-api-token="openApiToken"
+              :open-api-base-url="openApiBaseUrl"
             )
       .display-row.display-table.file-download
         .display-column
@@ -131,8 +138,8 @@
       .display-column
         NioSubscriptionFileDownload(
           :subscription="subscription"
-          :openApiToken="openApiToken"
-          :openApiBaseUrl="openApiBaseUrl"
+          :open-api-token="openApiToken"
+          :open-api-base-url="openApiBaseUrl"
         )   
     .display-row.display-table
       .display-column
@@ -167,8 +174,6 @@ export default {
   data: () => ({
     filesVisible: false
   }),	
-  mounted() {
-  },
   methods: {
     computeBudget(item) {
       return `${item.budget.amount.currency === 'USD' ? '$' : ''}${numeral(item.budget.amount.value.toFixed(2)).format('0,0')} ${item.budget.amount.currency !== 'USD' ? item.budget.amount.currency : ''}`

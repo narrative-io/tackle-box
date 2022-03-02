@@ -11,19 +11,10 @@ import NioSlat from '../slat/Slat'
 
 export default {
   name: 'nio-slat-table-actions',
+  components: { NioSlat },
   props: {
     colSpan: { type: Number, required: true }
-  },
-  data: () => ({
-    
-  }),
-  mounted() {
-
-  },
-  methods: {
-    
-  },
-  components: { NioSlat }
+  }
 }
 </script>
 

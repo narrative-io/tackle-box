@@ -1,17 +1,17 @@
 <template lang="pug">
   .nio-tags-field(:id="elementId" :class="{'no-items': !items}")
     v-combobox(
+      ref="nio-tags-field-ref"
+      v-model="tempModel"
+      v-bind="$attrs"
+      v-on="$listeners"
+      :label="label"
+      :items="items ? items : []"
       outlined 
       flat
       multiple
-      :label="label"
-      v-model="tempModel"
-      :items="items ? items : []"
       @input="updateModel($event)"
       @paste="onPaste"
-      v-bind="$attrs"
-      v-on="$listeners"
-      ref="nio-tags-field-ref"
     )
       template(v-slot:append v-if="items")
         svg(style="width:24px;height:24px" viewBox="0 0 24 24")
@@ -29,10 +29,10 @@
         .pill-wrapper
           NioPill(
             :class="{'selected': selected}"
+            :icon-color="clearIconColor()"
+            icon-name="utility-times"
             selected-value
             append-icon
-            iconName="utility-times"
-            :iconColor="clearIconColor()"
             @appendClicked="clear(index)"
           ) {{ item }}
     .validation-error
@@ -49,6 +49,7 @@ import numeral from 'numeral'
 
 export default {
     name: 'nio-tags-field',
+    components: { NioPill },
     props: {
       "label": { type: String, required: false, default: 'Add tags'},
       "model": { required: true },
@@ -67,12 +68,20 @@ export default {
       prop: "model",
       event: "update"
     },
+    watch: {
+      model(val) {
+        this.updateTempModel(val)
+      }
+    },
     mounted() {	
       this.elementId = makeRandomId()
       this.tempModel = this.model
       this.checkHeight()
       this.addPasteListener()
       this.$emit('mounted') 
+    },
+    destroyed() {
+      this.$emit('destroyed')
     },
     methods: {
       clearIconColor() {
@@ -160,16 +169,7 @@ export default {
         this.tempModel.splice(index, 1)
         this.updateModel(this.tempModel)
       }
-    },
-    watch: {
-      model(val) {
-        this.updateTempModel(val)
-      }
-    },
-    destroyed() {
-      this.$emit('destroyed')
-    },
-    components: { NioPill }
+    }
   }
 </script>
 

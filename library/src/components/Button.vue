@@ -3,20 +3,26 @@
     v-if="container"
     v-bind="$attrs"
     v-on="$listeners" 
-    text
     :ripple="false"
+    text
   )
-    template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-      slot(:name="name" v-bind="data")
+    template(
+      v-for="(index, name) in $scopedSlots" 
+      v-slot:[name]="data"
+    )
+      slot(
+        :name="name" 
+        v-bind="data"
+      )
     slot
   v-btn.nio-button(
+    ref="nio-button-ref"
     v-else
+    v-bind="$attrs"
+    v-on="$listeners" 
     :ripple="false" 
     :class="[`nio-button-${ sizeAttr ? sizeAttr : size }`, `nio-button-${ variantAttr ? variantAttr : variant }`, { 'nio-button-caps': caps }, { 'nio-button-prepend': prependAttr }, { 'nio-button-append': appendAttr }, { 'nio-button-icon': icon || iconAttr}]"
     :icon="icon || iconAttr"
-    v-bind="$attrs"
-    v-on="$listeners" 
-    ref="nio-button-ref"
   )
     NioIcon(
       v-if="(prependAttr || iconAttr) && iconName"
@@ -27,8 +33,14 @@
       v-if="appendAttr && iconName"
       :name="iconName" :size="size" 
     )
-    template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-      slot(:name="name" v-bind="data") 	
+    template(
+      v-for="(index, name) in $scopedSlots" 
+      v-slot:[name]="data"
+    )
+      slot(
+        v-bind="data"
+        :name="name" 
+      )
 </template>
 
 <script>
@@ -36,13 +48,22 @@ import NioIcon from './icon/Icon'
 
 export default {
   name: 'nio-button',
+  components: { NioIcon },
   props: {
     "variant": { type: String, required: false, default: "primary" },
     "size": { type: String, required: false, default: "extra-large"},
     "caps": { type: Boolean, required: false, default: true },
     "icon": { type: Boolean, required: false, default: false },
-		"iconName": { type: String, required: false, default: null },
+    "iconName": { type: String, required: false, default: null },
   },
+  data: () => ({
+    sizeAttr: undefined,
+    variantAttr: undefined,
+    prependAttr: false,
+    appendAttr: false,
+    iconAttr: false,
+    container: false
+  }),
   computed: {
     iconSize() {
       const size = this.sizeAttr ? this.sizeAttr : this.size
@@ -67,6 +88,9 @@ export default {
           break;
       }
     }
+  },
+  mounted() {
+    this.applyHelperAttributes()
   },
   methods: {
     applyHelperAttributes() {
@@ -165,19 +189,7 @@ export default {
         this.container = true
       }	
     }
-  },
-  data: () => ({
-    sizeAttr: undefined,
-    variantAttr: undefined,
-    prependAttr: false,
-    appendAttr: false,
-    iconAttr: false,
-    container: false
-  }),
-  mounted() {
-    this.applyHelperAttributes()
-  },
-  components: { NioIcon }
+  }
 }
 </script>
 

@@ -1,11 +1,11 @@
 <template lang="pug">
   .nio-filter-properties.boolean
     NioFilterProperty(
+      v-bind:value.sync="filter.value"
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
-      :customOptionLoading="customOptionLoading"
-      :joinOption="filter.joinOption"
-      v-bind:value.sync="filter.value"
+      :custom-option-loading="customOptionLoading"
+      :join-option="filter.joinOption"
     )
       template(v-slot:custom-option)
         .boolean-custom
@@ -13,8 +13,14 @@
           .description.nio-p.text-primary-dark Set which boolean value you want to include.
           .controls
             NioRadioGroup(v-model="filter.customOption.value")
-              NioRadioButton(:value="true" label="true")
-              NioRadioButton(:value="false" label="false")
+              NioRadioButton(
+                :value="true" 
+                label="true"
+              )
+              NioRadioButton(
+                :value="false" 
+                label="false"
+              )
 </template>
 
 <script>
@@ -25,6 +31,7 @@ import NioRadioButton from '../../../components/RadioButton'
 
 export default {
   name: 'nio-filter-properties-boolean',
+  components: { NioFilterProperty, NioRadioGroup, NioRadioButton },
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false }
@@ -53,15 +60,6 @@ export default {
       ]
     }
   },
-  mounted() {
-    this.updateValue()
-  },
-  methods: {
-    updateValue() {
-      const options = this.filter.options ? this.filter.options : this.defaultOptions
-      this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
-    }
-  },
   watch: {
     filter: {
       deep: true,
@@ -70,7 +68,15 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty, NioRadioGroup, NioRadioButton }
+  mounted() {
+    this.updateValue()
+  },
+  methods: {
+    updateValue() {
+      const options = this.filter.options ? this.filter.options : this.defaultOptions
+      this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+    }
+  }
 }
 </script>
 

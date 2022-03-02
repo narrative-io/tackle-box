@@ -16,22 +16,9 @@ export default {
     "title": { type: String, required: true },
     "description": { type: String, required: false }
   },
-  data: () => ({
-    
-  }),
-  computed: {
-    
-  },
-  mounted() {
-    
-  },
-  methods: {
-  
-  }, 
   destroyed() {
     this.$emit('destroyed')
-  },
-  components: { }
+  }
 }
 </script>
 

@@ -8,8 +8,14 @@
       .nio-h3.text-primary-lightest {{ option.name }}
     template(v-slot:amount)
       .nio-jumbo-1.text-primary-dark ${{ formatNumber(option.amount) }}
-    template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-      slot(:name="name" v-bind="data") 	
+    template(
+      v-for="(index, name) in $scopedSlots" 
+      v-slot:[name]="data"
+    )
+      slot(
+        v-bind="data"
+        :name="name" 
+      ) 	
 </template>
 
 <script>
@@ -19,10 +25,11 @@ import numeral from 'numeral'
 
 export default {
   name: 'nio-budget-option',
+  components: { NioOptionsGridItem },
   props: {
     "option": { type: Object, required: true },
-		"selected": { type: Boolean, required: false, default: false },
-		"disabled": { type: Boolean, required: false, default: false }
+    "selected": { type: Boolean, required: false, default: false },
+    "disabled": { type: Boolean, required: false, default: false }
   },
   methods: {
     formatNumber(number) {
@@ -37,8 +44,7 @@ export default {
   },
   destroyed() {
     this.$emit('destroyed')
-  },
-  components: { NioOptionsGridItem }
+  }
 }
 </script>
 

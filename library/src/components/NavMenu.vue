@@ -5,8 +5,8 @@
       v-list(nav dense)
         NavMenuItem(
           v-for="item in navGroup.items.filter(item => !item.hidden && !itemHidden(item))" 
-          :label="item.label"
           :key="item.label"
+          :label="item.label"
           :icon="item.icon"
           :hidden="item.hidden ? true : itemHidden(item)"
           :locked="item.locked ? true : itemLocked(item)"
@@ -22,15 +22,19 @@ import NavMenuItem from './NavMenuItem'
 
 export default {
   name: 'nio-nav-menu',
+  components: { NavMenuItem },
   props: {
     "navItems": { type: Array, required: false, default: []},
     "hideItems": { type: Object, required: false, default: {} },
     "lockItems": {type: Object, required: false, default: {} },
     "activeItemName": { type: String, required: false }
   },
-  data: () => ({
-    
-  }),
+  mounted() {	
+    this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
+  },
   methods: {
     navItemClicked(item) {
       if (item.event) {
@@ -44,14 +48,7 @@ export default {
     itemLocked(item) {
       return this.lockItems[item.name]
     }
-  },
-  mounted() {	
-    this.$emit('mounted')
-  },
-  destroyed() {
-    this.$emit('destroyed')
-  },
-  components: { NavMenuItem }
+  }
 }
 </script>
 

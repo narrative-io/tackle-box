@@ -1,11 +1,11 @@
 <template lang="pug">
   .nio-filter-properties.string-limited-include-exclude
     NioFilterProperty(
+      v-bind:value.sync="filter.value"
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
-      :customOptionLoading="customOptionLoading"
-      :joinOption="filter.joinOption"
-      v-bind:value.sync="filter.value"
+      :custom-option-loading="customOptionLoading"
+      :join-option="filter.joinOption"
     )
       template(v-slot:custom-option)
         .string-limited-custom
@@ -14,8 +14,14 @@
               v-model="filter.customOption.value.listType" 
               :value="filter.customOption.value.listType"
             )
-              NioRadioButton(value="include" label="Include")
-              NioRadioButton(value="exclude" label="Exclude")
+              NioRadioButton(
+                value="include" 
+                label="Include"
+              )
+              NioRadioButton(
+                value="exclude" 
+                label="Exclude"
+              )
           .filter-selection    
             .custom-text(
               v-if="filter.customOption.value.listType"
@@ -31,11 +37,11 @@
                 .heading.nio-h5.text-primary-darker Exclusion list
                 .description.nio-p.text-primary-dark {{ listTypeDescription }}
             NioAutocomplete(
-              :multiple="filter.customOption.config.multiple"
               v-if="filter.customOption.config.items.length > 0 && filter.customOption.config.searchable"
               v-model="filter.customOption.value.items" 
               :items="filter.customOption.config.items"
               :label="filter.customOption.config.selectLabel ? filter.customOption.config.selectLabel : 'Select'"
+              :multiple="filter.customOption.config.multiple"
               item-text="label"
               item-value="value"
               selection-pills
@@ -52,11 +58,11 @@
                 span.v-select__selection.more(v-if="index === 2 && filter.customOption.value.items.length === 3") (+{{ filter.customOption.value.items.length - 2 }} other)
                 span.v-select__selection.more(v-if="index === 2 && filter.customOption.value.items.length > 3 ") (+{{ filter.customOption.value.items.length - 2 }} others)
             NioSelect(
-              :multiple="filter.customOption.config.multiple"
               v-if="filter.customOption.config.items.length > 0 && !filter.customOption.config.searchable"
               v-model="filter.customOption.value.items" 
               :items="filter.customOption.config.items"
               :label="filter.customOption.config.selectLabel ? filter.customOption.config.selectLabel : 'Select'"
+              :multiple="filter.customOption.config.multiple"
               item-text="label"
               item-value="value"
               selection-pills
@@ -85,6 +91,7 @@ import NioPill from '../../Pill'
 
 export default {
   name: 'nio-filter-properties-string-limited',
+  components: { NioFilterProperty, NioSelect, NioAutocomplete, NioRadioGroup, NioRadioButton, NioPill },
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false }
@@ -121,15 +128,6 @@ export default {
       ]
     }
   },
-  mounted() {
-    this.updateValue()
-  },
-  methods: {
-    updateValue() {
-      const options = this.filter.options ? this.filter.options : this.defaultOptions
-      this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
-    }
-  },
   watch: {
     filter: {
       deep: true,
@@ -138,7 +136,15 @@ export default {
       }
     }
   },
-  components: { NioFilterProperty, NioSelect, NioAutocomplete, NioRadioGroup, NioRadioButton, NioPill }
+  mounted() {
+    this.updateValue()
+  },
+  methods: {
+    updateValue() {
+      const options = this.filter.options ? this.filter.options : this.defaultOptions
+      this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
+    }
+  }  
 }
 </script>
 

@@ -1,12 +1,18 @@
 <template lang="pug">
     v-radio.nio-radio-button(
-      :ripple="false"
+      ref="nio-radio-button-ref"
       v-bind="$attrs"
       v-on="$listeners" 
-      ref="nio-radio-button-ref"
+      :ripple="false"
     )
-      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data")
+      template(
+        v-for="(index, name) in $scopedSlots" 
+        v-slot:[name]="data"
+      )
+        slot(
+          v-bind="data"
+          :name="name" 
+        )
       slot     
 </template>
 

@@ -16,11 +16,11 @@
                   .nest-spacer(v-for="index in nest")
                   .nio-slat-image
                     v-menu(
-                      open-on-hover
-                      open-on-click
+                      :open-delay="250"
                       :content-class="makeTooltipContentClass(properties[propertyName].type)"
                       right
-                      :open-delay="250"
+                      open-on-hover
+                      open-on-click
                     ) 
                       template(v-slot:activator="{ on, attrs }")
                         div(
@@ -46,23 +46,23 @@
                 .property-settings(v-if="!hideIndicators && !isArrayDescendant && disableInteractions && properties[propertyName].type !== 'object' && properties[propertyName].type !=='array'")
                   .pills-container
                     NioPill(
-                      list-item
-                      prepend-icon
                       :iconName="properties[propertyName].deliverable ? 'utility-check-circle' : 'utility-times-circle'"
                       :iconColor="properties[propertyName].deliverable ? '#43B463' : '#AEB9E8'"
                       :class="properties[propertyName].deliverable ? '' : 'negative'"
-                    ) Deliverable
-                    NioPill(
                       list-item
                       prepend-icon
+                    ) Deliverable
+                    NioPill(
                       :iconName="properties[propertyName].filterable ? 'utility-check-circle' : 'utility-times-circle'"
                       :iconColor="properties[propertyName].filterable ? '#43B463' : '#AEB9E8'"
                       :class="properties[propertyName].filterable ? '' : 'negative'"
+                      list-item
+                      prepend-icon
                     ) Filterable
                 .property-actions.potential-join-target(v-else-if="!hideIndicators && !disableInteractions && (isArrayDescendant && properties[propertyName].is_join_key)")
                   NioSwitch(
-                    @click.stop=""
                     v-model="alwaysTrue"
+                    @click.stop=""
                     disabled
                     @update="updateRootPayload(properties[propertyName], 'filterable', $event)"
                   ) 
@@ -74,14 +74,14 @@
                   )
                 .property-actions(v-else-if="!hideIndicators && !disableInteractions && !isArrayDescendant && !properties[propertyName].isArrayItems")
                   NioSwitch(
-                    @click.stop=""
                     v-model="properties[propertyName].deliverable"
+                    @click.stop=""
                     @update="updateRootPayload(properties[propertyName], 'deliverable', $event)"
                   )
                   .nio-p-small.text-primary-dark Deliverable
                   NioSwitch(
-                    @click.stop=""
                     v-model="properties[propertyName].filterable"
+                    @click.stop=""
                     @update="updateRootPayload(properties[propertyName], 'filterable', $event)"
                   ) 
                   .nio-p-small.text-primary-dark Filterable
@@ -90,12 +90,13 @@
                 .nest-spacer(v-for="index in nest")
                 SchemaProperties(
                   :properties="properties[propertyName].properties ? properties[propertyName].properties : { items: {...properties[propertyName].items, isArrayItems: true}} "
-                  @updatePayload="updatePayload"
-                  :disableInteractions="disableInteractions"
+                  :disable-interactions="disableInteractions"
                   :nest="nest + 1"
-                  :showExportedOnly="showExportedOnly"
-                  :hideIndicators="hideIndicators"
-                  :isArrayDescendant="isArrayDescendant || Boolean(properties[propertyName].items)"
+                  :show-exported-only="showExportedOnly"
+                  :hide-indicators="hideIndicators"
+                  :is-array-descendant="isArrayDescendant || Boolean(properties[propertyName].items)"
+                  @updatePayload="updatePayload"
+
                 )
               .property-details(
                 v-else 
@@ -129,6 +130,7 @@ import NioSwitch from '../../components/Switch'
 import NioTooltip from '../../components/Tooltip'
 
 export default {
+  components: { SchemaProperties: () => import('./SchemaProperties.vue'), NioExpansionPanels, NioExpansionPanel, NioIcon, NioPill, NioSwitch, NioTooltip },
   props: {
     "properties": { type: Object, required: false, default: null},
     "disableInteractions": { type: Boolean, required: false, default: false },
@@ -179,8 +181,7 @@ export default {
     dataTypeIconName(dataType) {
       return getDataTypeIconName(dataType)
     }
-  },
-  components: { SchemaProperties: () => import('./SchemaProperties.vue'), NioExpansionPanels, NioExpansionPanel, NioIcon, NioPill, NioSwitch, NioTooltip }
+  }
 }
 </script>
 

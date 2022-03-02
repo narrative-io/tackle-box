@@ -1,17 +1,15 @@
 <template lang="pug">
   .nio-filter-properties.string-limited
     NioFilterProperty(
+      v-bind:value.sync="filter.value"
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
-      :customOptionLoading="customOptionLoading"
-      v-bind:value.sync="filter.value"
+      :custom-option-loading="customOptionLoading"
     )
       template(v-slot:custom-option)
         .string-limited-custom
           .left
             NioSelect(
-              keep-alive
-              multiple
               v-if="filter.customOption.left.config.items.length > 0"
               v-model="filter.customOption.left.value" 
               :value="filter.customOption.left.value"
@@ -21,12 +19,13 @@
               item-value="value"
               item-disabled="disabled"
               selection-pills
+              keep-alive
+              multiple
             )
             .validation-error.nio-p-small.text-error(v-if="!leftValid") {{ filter.customOption.mapping.value ? 'You must choose at least 1 value to map from' : 'You must select at least 1 value' }} 
           NioCheckbox(v-model="filter.customOption.mapping.value" :label="filter.customOption.mapping.label ? filter.customOption.mapping.label : 'Map to:'") 
           .right
             NioSelect(
-              multiple
               v-if="filter.customOption.right.config.items.length > 0"
               v-model="filter.customOption.right.value" 
               :value="filter.customOption.right.value"
@@ -37,6 +36,7 @@
               item-value="value"
               item-disabled="disabled"
               selection-pills
+              multiple
             )
             .validation-error.nio-p-small.text-error(v-if="!rightValid && leftValid") You must choose at least 1 value to map to
 </template>
@@ -49,6 +49,7 @@ import NioCheckbox from '../../Checkbox'
 
 export default {
   name: 'nio-filter-properties-mapping',
+  components: { NioFilterProperty, NioSelect, NioCheckbox },
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false }
@@ -77,6 +78,14 @@ export default {
           value: 'custom'
         }
       ]
+    }
+  },
+  watch: {
+    filter: {
+      deep: true,
+      handler() {
+        this.updateValue()
+      }
     }
   },
   mounted() {
@@ -119,16 +128,7 @@ export default {
       this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
       this.validate()
     }
-  },
-  watch: {
-    filter: {
-      deep: true,
-      handler() {
-        this.updateValue()
-      }
-    }
-  },
-  components: { NioFilterProperty, NioSelect, NioCheckbox }
+  }
 }
 </script>
 

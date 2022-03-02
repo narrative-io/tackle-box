@@ -3,10 +3,16 @@
     NioFilter(
       v-for="filter in filters"
       :filter="filter"
-      :filterObjCustomOptionLoading="!filter.customOption || filter.customOption.loading"
+      :filter-obj-custom-option-loading="!filter.customOption || filter.customOption.loading"
     )
-      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data")
+      template(
+        v-for="(index, name) in $scopedSlots" 
+        v-slot:[name]="data"
+      )
+        slot(
+          v-bind="data"
+          :name="name" 
+        )
 </template>
 
 <script>
@@ -15,6 +21,7 @@ import NioFilter from './Filter'
 
 export default {
   name: 'nio-filter-group',
+  components: { NioFilter },
   props: {
     "filters": { type: Array, required: true },
   },
@@ -26,15 +33,14 @@ export default {
       return this.filters.find(filter => !filter.valid) === undefined
     }
   },
-  mounted() {
-    this.$emit('validChanged', this.valid)
-  },
   watch: {
     valid(val) {
       this.$emit('validChanged', this.valid)
     }
   },
-  components: { NioFilter }
+  mounted() {
+    this.$emit('validChanged', this.valid)
+  }
 }
 </script>
 

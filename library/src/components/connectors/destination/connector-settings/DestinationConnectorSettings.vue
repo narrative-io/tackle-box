@@ -7,11 +7,10 @@
           .description.nio-p.text-primary-dark The name used to identify your bucket during profile management and checkout processes.
         .filter-value
           NioTextField(
-            label="Profile Name"
             v-model="localModel.name"
             :rules="[rules.required]"
+            label="Profile Name"
             validate-on-blur
-            
           )
       .description.filter
         .title-description
@@ -19,9 +18,9 @@
           .description.nio-p.text-primary-dark A short description of this profile.
         .filter-value
           NioTextarea(
-            label="Profile Description"
             v-model="localModel.description"
             :rules="[rules.required]"
+            label="Profile Description"
             validate-on-blur
           )
       slot(name="settings-controls")
@@ -36,6 +35,7 @@ import NioTextarea from '../../../Textarea'
 
 export default {
   name: 'nio-destination-connector-settings',
+  components: { NioTextField, NioTextarea },
   props: {
     "model": { required: true }
   },
@@ -52,17 +52,6 @@ export default {
       required: function(value) { return !!value || 'Required' }
     }
   }),
-  computed: {
-    
-  },
-  mounted() {
-    this.localModel = this.model
-  },
-  methods: {
-    update() {
-      this.$emit('update', this.localModel)
-    }
-  }, 
   watch: {
     localModel: {
       deep: true,
@@ -77,10 +66,17 @@ export default {
       }
     }
   },
+  mounted() {
+    this.localModel = this.model
+  },
   destroyed() {
     this.$emit('destroyed')
   },
-  components: { NioTextField, NioTextarea }
+  methods: {
+    update() {
+      this.$emit('update', this.localModel)
+    }
+  }
 }
 </script>
 

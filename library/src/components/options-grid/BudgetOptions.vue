@@ -4,8 +4,8 @@
       slot
     .nio-custom-budget
       NioDivider(
-        horizontal-or 
         v-if="hasCustomBudget"
+        horizontal-or 
       )
       NioButton(
         v-if="hasCustomBudget && !customBudgetVisible"
@@ -14,15 +14,15 @@
       ) Set a custom budget
       .custom-budget-form(v-if="hasCustomBudget && customBudgetVisible")
         .custom-budget-entry
-          nio-text-field(
-            prepend
-            solo
-            iconName="utility-dollar-sign"
-            iconColor="#415298"
-            :iconSize="12"
+          NioTextField(
+            v-model="customBudget"
+            :icon-size="12"
+            icon-name="utility-dollar-sign"
+            icon-color="#415298"
             type="number"
             placeholder="Enter budget"
-            v-model="customBudget"
+            prepend
+            solo
           )
           .custom-budget-error.text-error.nio-p-small
             span(v-if="customBudget !== null && minBudgetError") Minimum ${{ formatNumber(customBudgetMin) }} budget required
@@ -55,6 +55,7 @@ import numeral from 'numeral'
 
 export default {
   name: 'nio-budget-options',
+  components: { NioOptionsGrid, NioDivider, NioButton, NioTextField, NioIcon },
   props: {
     "forecast": { type: Object, required: false },
     "customBudgetMin": { type: Number, required: false },
@@ -69,7 +70,21 @@ export default {
     customBudgetValid: false,
     minBudgetError: false,
     maxBudgetError: false
-  }),  
+  }),
+  watch: {
+    customBudget(val) {
+      this.minBudgetError = this.customBudgetMin && this.customBudget < this.customBudgetMin ? true : false
+      this.maxBudgetError = !this.minBudgetError && this.customBudgetMax && this.customBudget > this.customBudgetMax ? true : false
+      if (this.minBudgetError || this.maxBudgetError) {
+        this.customBudgetValid = false
+        this.$emit('customBudgetValidChanged', false)
+      } else {
+        this.customBudgetValid = true
+        this.$emit('customBudgetValidChanged', true)
+      }
+      this.$emit('customBudgetChanged', val)
+    }
+  },  
   methods: {
     formatNumber(number) {
       return numeral(number).format('0,0')
@@ -97,22 +112,7 @@ export default {
   },
   destroyed() {
     this.$emit('destroyed')
-  },
-  watch: {
-    customBudget(val) {
-      this.minBudgetError = this.customBudgetMin && this.customBudget < this.customBudgetMin ? true : false
-      this.maxBudgetError = !this.minBudgetError && this.customBudgetMax && this.customBudget > this.customBudgetMax ? true : false
-      if (this.minBudgetError || this.maxBudgetError) {
-        this.customBudgetValid = false
-        this.$emit('customBudgetValidChanged', false)
-      } else {
-        this.customBudgetValid = true
-        this.$emit('customBudgetValidChanged', true)
-      }
-      this.$emit('customBudgetChanged', val)
-    }
-  },
-  components: { NioOptionsGrid, NioDivider, NioButton, NioTextField, NioIcon }
+  }
 }
 </script>
 

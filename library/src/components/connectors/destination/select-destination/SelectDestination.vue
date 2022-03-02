@@ -39,10 +39,10 @@
               NioSelect(
                 v-model="destination.selectedProfile"
                 :items="destination.profiles"
+                :item-disabled="profileDisabled"
                 label="App Profile"
                 item-text="name"
                 item-value="id"
-                :item-disabled="profileDisabled"
                 @change="setDisabledProfiles"
               )
           //- we'll use unique templates for each connector app until quick_settings contract gets solidified and is able to be generic enough to render programatically
@@ -53,10 +53,10 @@
             .filter-value
               NioTextField(
                 v-model="destination.quickSettings[0].value"
-                @input="globalValidateQuickSettings($event)"
-                label="Choose Prefix"
                 :rules="[validateQuickSetting(setting)]"
+                label="Choose Prefix"
                 validate-on-blur
+                @input="globalValidateQuickSettings($event)"
               )     
           NioButton.remove-profile(
             v-if="canDeleteProfile(destination)"
@@ -71,7 +71,11 @@
     .connectors-cta
       h3.nio-h3.text-primary-darker Connect to more destinations
       p.nio-p.text-primary-dark.description Install destination connectors to streamline your data delivery.
-      NioButton(normal-tertiary-append iconName="utility-chevron-right" @click="learnMore") Learn more about apps and connectors
+      NioButton(
+        normal-tertiary-append 
+        icon-name="utility-chevron-right" 
+        @click="learnMore"
+      ) Learn more about apps and connectors
 </template>	  
 
 <script>
@@ -88,6 +92,7 @@ import { makeDestinationOptions } from '../../../../modules/app/destinations/des
 
 export default {
   name: 'nio-select-destination',
+  components: { NioButton, NioTextField, NioExpansionPanels, NioExpansionPanel, NioSwitch, NioImageTile, NioSelect },
   props: {
     destinations: { type: Array, required: true }
   },
@@ -96,10 +101,10 @@ export default {
       loading: true,
       openPanels: []
     }
-	},
-	mounted() {
-		this.globalValidateQuickSettings()
-	},
+  },
+  mounted() {
+    this.globalValidateQuickSettings()
+  },
   methods: {
     globalValidateQuickSettings() {
       let valid = true
@@ -208,8 +213,7 @@ export default {
     getThemeColor(colorName) {
       return getThemeColor(colorName)
     }
-  },
-  components: { NioButton, NioTextField, NioExpansionPanels, NioExpansionPanel, NioSwitch, NioImageTile, NioSelect }
+  }
 }
 </script>
 

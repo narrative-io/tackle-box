@@ -1,7 +1,7 @@
 <template lang="pug">
   v-expansion-panel.nio-filter(
-    :key="filter.name"
     v-if="!solo"
+    :key="filter.name"
   )
     v-expansion-panel-header
       template(
@@ -19,8 +19,14 @@
         :tooltip="filter.tooltip"
         :filter="filter"
       )
-        template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-          slot(:name="name" v-bind="data")   
+        template(
+          v-for="(index, name) in $scopedSlots" 
+          v-slot:[name]="data"
+        )
+          slot(
+            v-bind="data"
+            :name="name" 
+          )   
     v-expansion-panel-content(eager)
       template(
         v-if="hasScopedSlot(`filter-body-custom-${filter.name}`)"
@@ -32,7 +38,7 @@
       NioFilterBody(
         v-else
         :filter="filter"
-        :customOptionLoading="customOptionLoading || filterObjCustomOptionLoading"
+        :custom-option-loading="customOptionLoading || filterObjCustomOptionLoading"
         @valueChanged="handleValueChange($event)"
       )
   .nio-filter.solo(
@@ -48,11 +54,17 @@
     NioFilterBody(
       v-else
       :filter="filter"
-      :customOptionLoading="customOptionLoading || filterObjCustomOptionLoading"
+      :custom-option-loading="customOptionLoading || filterObjCustomOptionLoading"
       @valueChanged="handleValueChange($event)" 
     )
-      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data")   
+      template(
+        v-for="(index, name) in $scopedSlots" 
+        v-slot:[name]="data"
+      )
+        slot(
+          v-bind="data"
+          :name="name" 
+        )   
 </template>
 
 <script>
@@ -62,6 +74,7 @@ import NioFilterBody from './FilterBody'
 
 export default {
   name: 'nio-filter',
+  components: { NioFilterHeader, NioFilterBody },
   props: {
     "filter": { type: Object, required: true },
     "solo": { type: Boolean, required: false, default: false },
@@ -78,8 +91,7 @@ export default {
     hasScopedSlot(slotName) {
       return this.$scopedSlots[slotName] !== undefined
     }
-  },
-  components: { NioFilterHeader, NioFilterBody }
+  }
 }
 </script>
 

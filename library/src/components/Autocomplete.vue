@@ -1,30 +1,39 @@
 <template lang="pug">
     v-autocomplete.nio-autocomplete(
-      :items="items"
+      ref="nio-autocomplete-ref"
       :model="model"
-      :class="{ 'selection-pills': selectionPills, 'attached': attachAttr }"
-      :attach="attachAttr ? node : undefined"
-      :menu-props="{contentClass: 'nio-select-menu', offsetY: !attachAttr ? true : false, nudgeBottom: !attachAttr ? 10 : undefined  }"
-      :searchInput.sync="searchInput"
-      outlined
       v-bind="$attrs"
       v-on="$listeners"
-      @input="updateModel($event)"
-      ref="nio-autocomplete-ref"
+      :items="items"
       :item-value="valueKey"
       :item-text="textKey"
       :value="value"
+      :class="{ 'selection-pills': selectionPills, 'attached': attachAttr }"
+      :attach="attachAttr ? node : undefined"
+      :menu-props="{contentClass: 'nio-select-menu', offsetY: !attachAttr ? true : false, nudgeBottom: !attachAttr ? 10 : undefined  }"
+      :search-input.sync="searchInput"
+      outlined
+      @input="updateModel($event)"   
     )
       template(v-slot:append)
         svg(style="width:24px;height:24px" viewBox="0 0 24 24")
           path(fill="#425290" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z")
-      template(v-slot:selection="{ item, index }" v-if="selectionPills")
+      template(
+        v-if="selectionPills"
+        v-slot:selection="{ item, index }" 
+      )
         NioPill(
           :text="textKey ? item[textKey] : item"
           selected-value
         )    
-      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data")    
+      template(
+        v-for="(index, name) in $scopedSlots" 
+        v-slot:[name]="data"
+      )
+        slot(
+          v-bind="data"
+          :name="name" 
+        )    
       slot  
 </template>
 
@@ -34,6 +43,7 @@ import NioPill from './Pill'
 
 export default {
   name: 'nio-autocomplete',
+  components: { NioPill },
   props: {
     "model": { required: false },
     "rules": { required: false },
@@ -52,6 +62,17 @@ export default {
     value: null,
     searchInput: null
   }),
+  mounted() {	
+    this.applyHelperAttributes()
+    this.applyKeys()
+    this.updateModel(this.model)
+    this.value = this.model
+    this.$emit('mounted')
+    this.node = this.$refs['nio-autocomplete-ref'].$vnode.elm
+  },
+  destroyed() {
+    this.$emit('destroyed')
+  },
   methods: {
     applyHelperAttributes() {
       const attributes = this.$el.attributes
@@ -86,19 +107,7 @@ export default {
       this.searchInput = null
       this.$emit('update', event)
     }
-  },
-  mounted() {	
-    this.applyHelperAttributes()
-    this.applyKeys()
-    this.updateModel(this.model)
-    this.value = this.model
-    this.$emit('mounted')
-    this.node = this.$refs['nio-autocomplete-ref'].$vnode.elm
-  },
-  destroyed() {
-    this.$emit('destroyed')
-  },
-  components: { NioPill }
+  }
 }
 </script>
 

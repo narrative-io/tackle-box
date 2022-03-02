@@ -26,6 +26,7 @@ import NioDivider from './Divider'
 
 export default {
   name: 'nio-tabs',
+  components: { NioDivider },
   props: {
     "model": { required: true },
     "tabs": { type: Array, required: true }
@@ -37,9 +38,9 @@ export default {
   data: () => ({
     localModel: 0
   }),
-  methods: {
-    change(val) {
-      this.$emit('update', val)
+  watch: {
+    model(val) {
+      this.localModel = val
     }
   },
   mounted() {	
@@ -48,13 +49,12 @@ export default {
   },
   destroyed() {
     this.$emit('destroyed')
-  },
-  watch: {
-    model(val) {
-      this.localModel = val
+  },  
+  methods: {
+    change(val) {
+      this.$emit('update', val)
     }
-  },
-  components: { NioDivider }
+  }  
 }
 </script>
 

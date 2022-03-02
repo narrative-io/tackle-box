@@ -1,12 +1,12 @@
 <template lang="pug">
   .nio-filter-properties.event-timestamp
     NioFilterProperty(
+      v-bind:value.sync="filter.value.dateRange"
       :title="filter.text.dateRange.title ? filter.text.dateRange.title : '' "
       :description="filter.text.dateRange.description ? filter.text.dateRange.description : ''"
       :options="defaultOptions.dateRange"
-      :customOptionLoading="customOptionLoading"
-      :joinOption="filter.joinOption"
-      v-bind:value.sync="filter.value.dateRange"
+      :custom-option-loading="customOptionLoading"
+      :join-option="filter.joinOption"
     )
       template(v-slot:custom-option)
         .date-range-custom
@@ -24,10 +24,10 @@
           )
         .validation-error.nio-p-small.text-error(v-if="!valid") Start date must be later than stop date
     NioFilterProperty(
+      v-bind:value.sync="filter.value.rollingLookback"
       :title="filter.text.rollingLookback.title ? filter.text.rollingLookback.title : ''"
       :description="filter.text.rollingLookback.description ? filter.text.rollingLookback.description : ''"
       :options="defaultOptions.rollingLookback"
-      v-bind:value.sync="filter.value.rollingLookback"
     )
       template(v-slot:custom-option)
         .rolling-lookback-custom
@@ -60,6 +60,7 @@ import NioSelect from '../../Select'
 
 export default {
   name: 'nio-filter-properties-event-timestamp',
+  components: { NioFilterProperty, NioDateField, NioTextField, NioSelect },
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false }
@@ -108,6 +109,17 @@ export default {
       return this.filter.customOption.dateRange.config ? this.filter.customOption.dateRange.config.stopMax : undefined 
     }
   },
+  watch: {
+    filter: {
+      deep: true,
+      handler() {
+        this.updateValue()
+      }
+    }  
+  },
+  mounted() {
+    this.updateValue()
+  },
   methods: {
     validate() {
       if (this.filter.value.dateRange === 'custom') {
@@ -136,19 +148,7 @@ export default {
       ])
       this.validate()
     }
-  },
-  watch: {
-    filter: {
-      deep: true,
-      handler() {
-        this.updateValue()
-      }
-    }  
-  },
-  mounted() {
-    this.updateValue()
-  },
-  components: { NioFilterProperty, NioDateField, NioTextField, NioSelect }
+  }
 }
 </script>
 

@@ -12,17 +12,21 @@
         NioTooltip(
           v-if="option.tooltip"
           :message="option.tooltip"
+          :open-delay="250"
+          content-class="nio-filter-option-tooltip"
           nudge-top
           open-on-hover
-          content-class="nio-filter-option-tooltip"
-          :open-delay="250"
         )
         .option-selected-pointer(v-if="(value === 'custom' && option.value === 'custom') || (value === 'join' && option.value === 'join')")
     .custom-option(
       v-if="value === 'custom'"
     )  
       .option-content.loading(v-if="customOptionLoading")
-        v-progress-circular.progress(size="40" indeterminate color="#1438F5")
+        v-progress-circular.progress(
+          size="40" 
+          color="#1438F5"
+          indeterminate 
+        )
       .option-content(v-else)
         slot(name="custom-option")
     .join-option(
@@ -30,7 +34,7 @@
     )  
       .option-content
         NioFilterJoinOption(
-          :joinOption="joinOption"
+          :join-option="joinOption"
         )
 </template>
 
@@ -41,6 +45,7 @@ import NioTooltip from '../Tooltip'
 
 export default {
   name: 'nio-filter-property',
+  components: { NioFilterJoinOption, NioTooltip },
   props: {
     "heading": { type: String, required: false },
     "description": { type: String, required: true },
@@ -49,9 +54,6 @@ export default {
     "customOptionLoading": { type: Boolean, required: false, default: false },
     "joinOption": { type: Object, required: false}
   },
-  data: () => ({
-    
-  }),	
   model: {
     prop: "value",
     event: "update"
@@ -72,8 +74,7 @@ export default {
     update(value) {
       this.$emit('update:value', value)
     }
-  },
-  components: { NioFilterJoinOption, NioTooltip }
+  }
 }
 </script>
 

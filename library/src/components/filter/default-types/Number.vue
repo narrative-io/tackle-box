@@ -1,11 +1,11 @@
 <template lang="pug">
   .nio-filter-properties.number
     NioFilterProperty(
+      v-bind:value.sync="filter.value"
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
-      :customOptionLoading="customOptionLoading"
-      :joinOption="filter.joinOption"
-      v-bind:value.sync="filter.value"
+      :custom-option-loading="customOptionLoading"
+      :join-option="filter.joinOption"
     )
       template(v-slot:custom-option)
         .number-custom
@@ -18,16 +18,16 @@
             .controls
               .inputs
                 NioTextField.min-field(
-                  type="number"
-                  label="Minimum value"
                   v-model.number="filter.customOption.value[0]"
                   :value="filter.customOption.value[0]"
+                  type="number"
+                  label="Minimum value"
                 )
                 NioTextField.max-field(
-                  type="number"
-                  label="Maximum value"
                   v-model.number="filter.customOption.value[1]"
                   :value="filter.customOption.value[1]"
+                  type="number"
+                  label="Maximum value"
                 )
               .result.nio-p.text-primary-dark.nio-bold
                 span(v-if="filter.customOption.value[0] && filter.customOption.value[1]") Include values between {{ filter.customOption.value[0] }} and {{ filter.customOption.value[1] }} (inclusive)
@@ -38,13 +38,13 @@
             .validation-error.nio-p-small.text-error(v-else-if="!valid") Must include min and/or max value
           NioSlider(
             v-else
+            v-model="filter.customOption.value"
             :currency="filter.customOption.config.currency"
             :prepend="filter.customOption.config.currency && !filter.customOption.config.range"
             :range="filter.customOption.config.range"
             :step="filter.customOption.config.stepSize"
             :min="filter.customOption.config.min"
             :max="filter.customOption.config.max"
-            v-model="filter.customOption.value"
           )
           .nio-p.text-primary-dark.units(v-if="filter.customOption.config.units") {{ filter.customOption.config.units }}
 </template>
@@ -57,6 +57,7 @@ import NioTextField from '../../TextField'
 
 export default {
   name: 'nio-filter-properties-number',
+  components: { NioFilterProperty, NioSlider, NioTextField },
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false }
@@ -85,6 +86,14 @@ export default {
           value: 'custom',
         }
       ]
+    }
+  },
+  watch: {
+    filter: {
+      deep: true,
+      handler() {
+        this.updateValue()
+      }
     }
   },
   mounted() {
@@ -131,16 +140,7 @@ export default {
         this.filter.valid = false
       }
     }
-  },
-  watch: {
-    filter: {
-      deep: true,
-      handler() {
-        this.updateValue()
-      }
-    }
-  },
-  components: { NioFilterProperty, NioSlider, NioTextField }
+  }
 }
 </script>
 

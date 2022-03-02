@@ -1,19 +1,10 @@
 <template lang="pug">
-	.nio-nav-bar
+  .nio-nav-bar
 </template>
 
 <script>
   export default {
     name: 'nio-nav-bar',
-    props: {
-     
-    },
-    data: () => ({
-      
-    }),
-    methods: {
-    
-    },
     mounted() {	
       this.$emit('mounted')
     },

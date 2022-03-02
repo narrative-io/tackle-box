@@ -1,7 +1,11 @@
 <template lang="pug">
   .nio-subscription-destinations
     .loading(v-if="!subscriptionDestinations")
-      v-progress-circular.progress(size="24" indeterminate color="#1438F5")
+      v-progress-circular.progress(
+        size="24" 
+        color="#1438F5"
+        indeterminate 
+      )
     template(v-else)
       .destination(
         v-for="destination of subscriptionDestinations"
@@ -28,6 +32,7 @@ import { getSubscriptionDestinations } from '../../../../modules/app/destination
 
 export default {
   name: 'nio-subscription-destinations',
+  components: { NioImageTile },
   props: {
     destinations: { type: Array, required: false },
     subscriptionId: { type: String, required: false },
@@ -66,8 +71,7 @@ export default {
         this.subscriptionDestinations = destinations
       })
     }
-  },
-  components: { NioImageTile }
+  }
 }
 </script>
 

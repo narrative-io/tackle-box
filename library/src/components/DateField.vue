@@ -3,32 +3,32 @@
       v-menu(
         v-model="datepickerVisible"
         :close-on-content-click="false"
-        transition="scale-transition"
-        bottom
-        nudge-bottom="60"
         :min-width="datepickerWidth"
         :max-width="datepickerWidth"
+        transition="scale-transition"
+        nudge-bottom="60"
+        bottom
       )
         template(v-slot:activator="{ on }")
           NioTextField(
             ref="nio-date-ref"
-            readonly
-            :label="$attrs.label ? $attrs.label : 'Select date'"
             v-model="localModel"
             v-on="on"
-            append
-            iconName="utility-chevron-down"
-            iconColor="#4F64AF"
             v-bind="$attrs"
+            :label="$attrs.label ? $attrs.label : 'Select date'"
+            icon-name="utility-chevron-down"
+            icon-color="#4F64AF"
+            readonly
+            append
             @click:append="showDatepicker"
           )
         v-date-picker(
-          full-width
-          locale="en-in"
+          :value="localModel"
           :min="min"
           :max="max"
-          :value="localModel"
+          locale="en-in"
           no-title
+          full-width
           @input="handleDateInput($event)"
         )  
 </template>
@@ -39,6 +39,7 @@ import NioTextField from './TextField'
 
 export default {
   name: 'nio-date-field',
+  components: { NioTextField },
   props: {
     "model": { required: false },
     "min": { required: false },
@@ -53,15 +54,9 @@ export default {
     datepickerWidth: 300,
     localModel: null
   }),
-  methods: {
-    handleDateInput(val) {
-      this.$emit('update', val)
-    },
-    textFieldResize(val) {
-      this.datepickerWidth = val
-    },
-    showDatepicker() {
-      this.datepickerVisible = true
+  watch: {
+    model(val) {
+      this.localModel = val
     }
   },
   mounted() {	
@@ -72,15 +67,20 @@ export default {
     resizeObserver.observe(this.$refs['nio-date-ref'].$vnode.elm)
     this.$emit('mounted')
   },
-  watch: {
-    model(val) {
-      this.localModel = val
-    }
-  },
   destroyed() {
     this.$emit('destroyed')
   },
-  components: { NioTextField }
+  methods: {
+    handleDateInput(val) {
+      this.$emit('update', val)
+    },
+    textFieldResize(val) {
+      this.datepickerWidth = val
+    },
+    showDatepicker() {
+      this.datepickerVisible = true
+    }
+  }
 }
 </script>
 

@@ -1,15 +1,16 @@
 <template lang="pug">
     v-text-field.nio-text-field(
-      :class="{'small': smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr, 'currency': currencyAttr }"
-      outlined 
-      flat
-      :solo="soloAttr || smallAttr || prependAttr || currencyAttr"
-      @input="update($event)"
+      ref="nio-text-field-ref"
       v-model="tempModel"
-      :rules="rules ? rules : parsedRules"
       v-bind="$attrs"
       v-on="$listeners"
-      ref="nio-text-field-ref"
+      :class="{'small': smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr, 'currency': currencyAttr }"
+      :solo="soloAttr || smallAttr || prependAttr || currencyAttr"
+      :rules="rules ? rules : parsedRules"
+      outlined 
+      flat
+      @input="update($event)"
+
     )
       template(
         v-if="prependAttr || prependIconAttr || currencyAttr"
@@ -19,10 +20,10 @@
           NioIcon(name="utility-dollar-sign" :size="14")
         NioIcon(
           v-else-if="iconName || prependIconAttr"
-          @click="clickPrepend"
           :name="prependIconAttr ? prependIconAttr : iconName"
           :color="iconColor ? iconColor : defaultIconColor"
           :size="iconSize ? iconSize : defaultIconSize"
+          @click="clickPrepend"
         )
       template(
         v-if="appendAttr"
@@ -30,13 +31,19 @@
       )
         NioIcon(
           v-if="iconName"
-          @click="clickAppend"
           :name="iconName"
           :color="iconColor ? iconColor : defaultIconColor"
           :size="iconSize ? iconSize : defaultIconSize"
+          @click="clickAppend"
         )
-      template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-        slot(:name="name" v-bind="data")   
+      template(
+        v-for="(index, name) in $scopedSlots" 
+        v-slot:[name]="data"
+      )
+        slot(
+          v-bind="data"
+          :name="name" 
+        )
       slot  
 </template>
 
@@ -47,10 +54,11 @@ import NioIcon from './icon/Icon'
 
 export default {
   name: 'nio-text-field',
+  components: { VTextField, NioIcon },
   props: {
     "model": { required: false },
-		"rules": { required: false },
-		"rulesWithContext": { required: false },
+    "rules": { required: false },
+    "rulesWithContext": { required: false },
     "iconName": { type: String, required: false, default: null },
     "iconColor": { type: String, required: false },
     "iconSize": { type: Number, required: false }
@@ -71,6 +79,26 @@ export default {
     defaultIconColor: '#1438F5',
     defaultIconSize: 16
   }),
+  watch: {
+    rules() {
+      this.parseRules()
+    },
+    tempModel(val) {
+      this.update(val)
+    },
+    model(val) {
+      this.tempModel = val
+    }
+  },
+  mounted() {	
+    this.tempModel = this.model
+    this.parseRules()
+    this.applyHelperAttributes()
+    this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
+  },
   methods: {
     update(val) {
       this.$emit('update', val)
@@ -81,22 +109,22 @@ export default {
     parseRules() {
       if (this.rulesWithContext) {
         this.rulesWithContext.map((rule, index) => {
-					const paramNames = this.getParamNames(rule)
-					let func = rule.toString()
-					let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
+          const paramNames = this.getParamNames(rule)
+          let func = rule.toString()
+          let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
           this.parsedRules[index] = new Function(paramNames[0], funcBody)
-				});
+        });
       }
-		},
-		getParamNames(func) {
-			var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
-			var ARGUMENT_NAMES = /([^\s,]+)/g;
-			var fnStr = func.toString().replace(STRIP_COMMENTS, '');
-			var result = fnStr.slice(fnStr.indexOf('(')+1, fnStr.indexOf(')')).match(ARGUMENT_NAMES);
-			if(result === null)
-				result = [];
-			return result;
-		},
+    },
+    getParamNames(func) {
+      var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
+      var ARGUMENT_NAMES = /([^\s,]+)/g;
+      var fnStr = func.toString().replace(STRIP_COMMENTS, '');
+      var result = fnStr.slice(fnStr.indexOf('(')+1, fnStr.indexOf(')')).match(ARGUMENT_NAMES);
+      if(result === null)
+        result = [];
+      return result;
+    },
     applyHelperAttributes() {
       const attributes = this.$el.attributes
       if (attributes.getNamedItem('append')) {
@@ -125,33 +153,12 @@ export default {
       }  
     },
     clickAppend() {
-			this.$emit('click:append')
+      this.$emit('click:append')
     },
     clickPrepend() {
       this.$emit('click:prepend')
     }
-  },
-  mounted() {	
-    this.tempModel = this.model
-    this.parseRules()
-    this.applyHelperAttributes()
-    this.$emit('mounted')
-  },
-  destroyed() {
-    this.$emit('destroyed')
-  },
-  watch: {
-    rules() {
-      this.parseRules()
-    },
-    tempModel(val) {
-      this.update(val)
-    },
-    model(val) {
-      this.tempModel = val
-    }
-  },
-  components: { VTextField, NioIcon }
+  }
 }
 </script>
 

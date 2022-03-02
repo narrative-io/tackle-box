@@ -16,13 +16,13 @@ import NioCard from '../components/Card'
 
 export default {
   name: 'nio-card-grid-item',
+  components: { NioCard },
   mounted() {	
     this.$emit('mounted')
   },
   destroyed() {
     this.$emit('destroyed')
-  },
-  components: { NioCard }
+  }
 }
 </script>
 

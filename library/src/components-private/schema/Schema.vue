@@ -13,11 +13,11 @@
             .header-summary
               .nio-slat-image
                 v-menu(
+                  :content-class="makeTooltipContentClass(attribute.type)"
+                  :open-delay="250"
                   open-on-hover
                   open-on-click
-                  :content-class="makeTooltipContentClass(attribute.type)"
                   right
-                  :open-delay="250"
                 ) 
                   template(v-slot:activator="{ on, attrs }")
                     div(
@@ -38,29 +38,29 @@
             .property-settings(v-if="!hideIndicators && attributes")
               .pills-container(v-if="disableInteractions && attribute.type !== 'object' && attribute.type !=='array'")
                 NioPill(
-                  list-item
-                  prepend-icon
                   :iconName="attribute.deliverable ? 'utility-check-circle' : 'utility-times-circle'"
                   :iconColor="attribute.deliverable ? '#43B463' : '#AEB9E8'"
                   :class="attribute.deliverable ? '' : 'negative'"
-                ) Deliverable
-                NioPill(
                   list-item
                   prepend-icon
+                ) Deliverable
+                NioPill(
                   :iconName="attribute.filterable ? 'utility-check-circle' : 'utility-times-circle'"
                   :iconColor="attribute.filterable ? '#43B463' : '#AEB9E8'"
                   :class="attribute.filterable ? '' : 'negative'"
+                  list-item
+                  prepend-icon
                 ) Filterable
               .property-actions(v-else-if="!disableInteractions")
                 NioSwitch(
-                  @click.stop=""
                   v-model="attribute.deliverable"
+                  @click.stop=""
                   @update="updateRootPayload(attribute, 'deliverable', $event)"
                 )
                 .nio-p-small.text-primary-dark Deliverable
                 NioSwitch(
-                  @click.stop=""
                   v-model="attribute.filterable"
+                  @click.stop=""
                   @update="updateRootPayload(attribute, 'filterable', $event)"
                 ) 
                 .nio-p-small.text-primary-dark Filterable  
@@ -68,12 +68,12 @@
           .display-row.display-table(v-if="attribute.properties || attribute.items")
             NioSchemaProperties(
               :key="index"
-              :disableInteractions="disableInteractions"
+              :disable-interactions="disableInteractions"
               :properties="attribute.properties ? attribute.properties : { items: {...attribute.items, isArrayItems: true }}"
               :nest="1"
-              :hideIndicators="hideIndicators || !attributes ? true : false"
-              :showExportedOnly="!attributes || showExportedOnly"
-              :isArrayDescendant="Boolean(attribute.items)"
+              :hide-indicators="hideIndicators || !attributes ? true : false"
+              :show-exportedOnly="!attributes || showExportedOnly"
+              :is-array-descendant="Boolean(attribute.items)"
             )
           .property-details(
             v-else 
@@ -107,6 +107,7 @@ import NioSwitch from '../../components/Switch'
 
 export default {
   name: 'nio-schema',
+  components: { NioSchemaProperties, NioExpansionPanels, NioExpansionPanel, NioIcon, NioPill, NioSwitch },
   props: {
     "attributes": { type: Array, required: false },
     "datasets": { type: Array, required: false },
@@ -165,8 +166,7 @@ export default {
       }
       setSelectionRecursively(property, selectionType, value)
     }
-  },
-  components: { NioSchemaProperties, NioExpansionPanels, NioExpansionPanel, NioIcon, NioPill, NioSwitch }
+  }
 }
 </script>
 

@@ -2,14 +2,14 @@
   .image-title-subtitle-slot
     NioIconFramer.nio-slat-image(
       v-if="iconName"
-      :iconName="iconName"
+      :icon-name="iconName"
       small
     )
     NioImageTile.nio-slat-image(
       v-else-if="imgSrc"
       :src="imgSrc"
       :size="imageSize ? imageSize : size"
-      :imgBackground="imgBackground"
+      :img-background="imgBackground"
     )
     .nio-slat-title-subtitle
       .nio-slat-title
@@ -26,6 +26,7 @@ import NioImageTile from '../../../ImageTile'
 
 export default {
   name: 'image-title-subtitle-slot',
+  components: { NioSlat, NioIconFramer, NioImageTile },
   props: {
     "imgSrc": { type: String, required: false },
     "iconName": { type: String, required: false },
@@ -48,8 +49,7 @@ export default {
     click() {
       this.$emit('click')
     }
-  },
-  components: { NioSlat, NioIconFramer, NioImageTile }
+  }
 }
 </script>
 

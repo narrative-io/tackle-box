@@ -5,20 +5,20 @@
     NioDivider(horizontal-solo)
     .nio-step-content-actions(v-if="!isLastStep")
       NioButton(
+        :disabled="isFirstStep"
         normal-secondary 
         @click="previousStep"
-        :disabled="isFirstStep"
       ) {{ previousStepLabel }}
       NioButton(
+        :disabled="!valid"
         normal-primary 
         @click="nextStep"
-        :disabled="!valid"
       ) {{ nextStepLabel }}
     .nio-step-content-actions.final-step(v-if="isLastStep")
       NioButton(
+        :disabled="!valid"
         normal-primary 
         @click="submit"
-        :disabled="!valid"
       ) {{ finalStepLabel }}
 </template>
 
@@ -29,19 +29,16 @@ import NioDivider from '../Divider'
 
 export default {
   name: 'nio-step-content',
+  components: { NioButton, NioDivider },
   props: {
     "stepName": { type: String, required: true },
-		"complete": { type: Boolean, required: false, default: false },
+    "complete": { type: Boolean, required: false, default: false },
     "valid": { type: Boolean, required: false, default: true },
     "isFirstStep": { type: Boolean, required: false, default: false },
-		"isLastStep": { type: Boolean, required: false, default: false },
-		"nextStepLabel": { type: String, required: true},
-		"previousStepLabel": { type: String, required: true },
-		"finalStepLabel": { type: String, required: true }
-  },
-  data: () => ({
-  }),
-  mounted() {
+    "isLastStep": { type: Boolean, required: false, default: false },
+    "nextStepLabel": { type: String, required: true},
+    "previousStepLabel": { type: String, required: true },
+    "finalStepLabel": { type: String, required: true }
   },
   methods: {
     previousStep() {
@@ -49,12 +46,11 @@ export default {
     },
     nextStep() {
       this.$emit('nextStep')
-		},
-		submit() {
-			this.$emit('submit')
-		}
-  },
-  components: { NioButton, NioDivider }
+    },
+    submit() {
+      this.$emit('submit')
+    }
+  }
 }
 </script>
 

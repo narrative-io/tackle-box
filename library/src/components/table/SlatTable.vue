@@ -3,11 +3,11 @@
     NioSlatTableHeader(
       v-if="!listingPlain"
       :modules="orderedHeaderModules"
-      :sortOptions="sortOptions"
-      :selectionType="multiSelect ? 'multiSelect' : 'singleSelect'"
-      :allSelected="allSelected"
-      :selectedCount="multiSelect ? selection.length : selection ? 1 : 0"
-      :numItems="computedItems ? computedItems.length : 0"
+      :sort-options="sortOptions"
+      :selection-type="multiSelect ? 'multiSelect' : 'singleSelect'"
+      :all-selected="allSelected"
+      :selected-count="multiSelect ? selection.length : selection ? 1 : 0"
+      :num-items="computedItems ? computedItems.length : 0"
       :pagination="pagination"
       @searchChange="searchChange($event)"
       @sortChange="sortChange($event)"
@@ -17,12 +17,12 @@
         slot(:name="name" v-bind="data")   
     v-data-table(
       v-if="headers && computedItems"
-      item-key="id"
-      hide-default-header
-      hide-default-footer
       :headers="headers"
       :items-per-page="500"
       :items="pagination ? paginatedItems : computedItems"
+      item-key="id"
+      hide-default-header
+      hide-default-footer
     )
       template(
         v-slot:item="{ item, expand, isExpanded, index }"    
@@ -38,8 +38,8 @@
             @click.stop
           )
             NioRadioGroup(
-              v-model="selection"
               v-if="singleSelect"
+              v-model="selection"
             )
               NioRadioButton(
                 :value="item.id"
@@ -51,12 +51,15 @@
               :key="item.id"
             )
           td.slat-cell.custom-slat-cell(v-if="customSlatCell")
-            slot(name="custom-slat-cell" v-bind:item="item")
+            slot(
+              v-bind:item="item"
+              name="custom-slat-cell" 
+            )
           td.slat-cell(v-else)
             NioImageTitleSubtitleSlot(
-              :imgSrc="item.slat.image"
               :size="dense ? 'small' : 'normal'"
-              :imgBackground="item.slat.imageBackground ? item.slat.imageBackground : 'none'"
+              :img-src="item.slat.image"
+              :img-background="item.slat.imageBackground ? item.slat.imageBackground : 'none'"
             )
               template(v-slot:title) {{ item.slat.title }}
               template(v-slot:subtitle) {{ item.slat.subtitle }}
@@ -85,9 +88,9 @@
               )
               v-menu(
                 v-if="action === 'menu'"
-                contentClass="nio-slat-table-item-menu"
-                left
+                content-class="nio-slat-table-item-menu"
                 nudgeBottom="20"
+                left
               )
                 template(v-slot:activator="{ on, attrs }")
                   .activator(v-on="on")
@@ -99,20 +102,23 @@
             slot(name="custom-action" v-bind:item="item" v-if="action === 'custom'")
       template(v-slot:expanded-item="{ headers, item }")
         td.expanded-row(:colspan="numColumns") 
-          slot(name="item-expanded" v-bind:item="item")
+          slot(
+            v-bind:item="item"
+            name="item-expanded" 
+          )
       template(v-slot:body.append v-if="actions")      
         tr.actions-row(v-if="actions && numColumns")    
           NioSlatTableActions(
-            :colSpan="numColumns"
+            :col-span="numColumns"
           )
             template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
               slot(:name="name" v-bind="data") 
       template(v-slot:footer v-if="pagination")
         NioSlatTablePagination(
-          :itemsPerPageOptions="itemsPerPageOptions"
-          :itemsPerPage="itemsPerPage"
-          :numItems="computedItems.length"
-          :currentPage="currentPage"
+          :items-per-page-options="itemsPerPageOptions"
+          :items-per-page="itemsPerPage"
+          :num-items="computedItems.length"
+          :current-page="currentPage"
           @itemsPerPageChange="itemsPerPageChange($event)"
           @nextPage="nextPage"
           @prevPage="prevPage"
@@ -144,6 +150,18 @@ import Fuse from 'fuse.js'
 
 export default {
   name: 'nio-slat-table',
+  components: {
+    NioImageTitleSubtitleSlot, 
+    NioCheckbox, 
+    NioRadioButton, 
+    NioRadioGroup, 
+    NioIcon, 
+    NioSlatTableHeader, 
+    NioSlatTableActions, 
+    NioSlatTablePagination,
+    NioSelect,
+    NioButton
+  },
   props: {
     "items": { type: Array, required: true },
     "columns": { type: Array, required: true },
@@ -189,6 +207,26 @@ export default {
     listingPlain: false,
     expandedItemIds: []
   }),
+  watch: {
+    selection(val) {
+      const value = this.multiSelect ? this.items.filter(item => val.includes(item.id)) : this.items.find(item => item.id === val)
+      if (value.length === this.computedItems.length) {
+        this.allSelected = true
+      } else {
+        this.allSelected = false
+      }
+      this.$emit('selectionChanged', value)
+    },
+    staticColumns(val) {
+      this.getNumColumns()
+    },
+    items: {
+      deep: true,
+      handler(val) {
+        this.computeItems()
+      }
+    }
+  },
   mounted() {
     this.applyHelperAttributes()
     this.itemsPerPage = this.initialItemsPerPage
@@ -438,38 +476,6 @@ export default {
         )
       })
     }
-  },
-  watch: {
-    selection(val) {
-      const value = this.multiSelect ? this.items.filter(item => val.includes(item.id)) : this.items.find(item => item.id === val)
-      if (value.length === this.computedItems.length) {
-        this.allSelected = true
-      } else {
-        this.allSelected = false
-      }
-      this.$emit('selectionChanged', value)
-    },
-    staticColumns(val) {
-      this.getNumColumns()
-    },
-    items: {
-      deep: true,
-      handler(val) {
-        this.computeItems()
-      }
-    }
-  },
-  components: {
-    NioImageTitleSubtitleSlot, 
-    NioCheckbox, 
-    NioRadioButton, 
-    NioRadioGroup, 
-    NioIcon, 
-    NioSlatTableHeader, 
-    NioSlatTableActions, 
-    NioSlatTablePagination,
-    NioSelect,
-    NioButton
   }
 }
 </script>

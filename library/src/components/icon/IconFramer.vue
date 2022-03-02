@@ -1,8 +1,8 @@
 <template lang="pug">
   div.nio-icon-framer(
-    @click="click"
     :class="[`nio-${size}`]"
     :style="backgroundColor ? `background-color: ${backgroundColor}` : ''"
+    @click="click"
   )
     NioIcon(
       v-if="iconName"
@@ -19,6 +19,7 @@ import { getThemeColor } from '../../modules/app/theme/theme'
 
 export default {
   name: 'nio-icon-framer',
+  components: { NioIcon },
   props: {
     "iconName": { type: String, required: true },
     "iconColor": { type: String, required: false },
@@ -39,12 +40,14 @@ export default {
         default:
           return 32
       }
-    },
-
+    }
   },
   mounted() {
     this.applyHelperAttributes()
     this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
   },
   methods: {
     applyHelperAttributes() {
@@ -61,15 +64,11 @@ export default {
     },	
     click() {
       this.$emit('click')
-		},
-		getThemeColor(colorName) {
-			return getThemeColor(colorName)
-		}
-  }, 
-  destroyed() {
-    this.$emit('destroyed')
-  },
-  components: { NioIcon }
+    },
+    getThemeColor(colorName) {
+      return getThemeColor(colorName)
+    }
+  }  
 }
 </script>
 

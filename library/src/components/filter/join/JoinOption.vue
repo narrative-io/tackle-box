@@ -2,24 +2,30 @@
   .nio-filter-join-option
     .join-type
       NioRadioGroup(v-model="joinOption.value.joinType")
-        NioRadioButton(value="include" label="Inculde")
-        NioRadioButton(value="exclude" label="Exclude")
+        NioRadioButton(
+          value="include" 
+          label="Inculde"
+        )
+        NioRadioButton(
+          value="exclude" 
+          label="Exclude"
+        )
     NioDivider(horizontal-solo)
     .select-dataset
       NioSelect(
-        :items="joinOption.config.datasets"
         v-model="joinOption.value.selectedDataset"
+        :items="joinOption.config.datasets"
         item-text="name"
         item-value="id"
         label="Dataset to Join"
       )
     .join-message
       NioAlert(
-        warning
         :visible="true"
+        :dismissable="false"
         messageTitle="Joining datasets: "
         message="To perform a join, you’ll need to upload your dataset to Dataset Manager so you can pick it from the Dataset to Join menu."
-        :dismissable="false"
+        warning
       )
 </template>
 
@@ -33,6 +39,7 @@ import NioAlert from '../../Alert'
 
 export default {
   name: 'nio-filter-join-option',
+  components: { NioSelect, NioRadioGroup, NioRadioButton, NioDivider, NioAlert },
   props: {
     "joinOption": { type: Object, required: true }
   },
@@ -40,8 +47,7 @@ export default {
     if (!this.joinOption.value.selectedDataset) {
       this.joinOption.value.selectedDataset = this.joinOption.config.datasets[0].id
     }
-  },
-  components: { NioSelect, NioRadioGroup, NioRadioButton, NioDivider, NioAlert }
+  }
 }
 </script>
 

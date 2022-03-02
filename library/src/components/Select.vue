@@ -1,22 +1,28 @@
 <template lang="pug">
   v-select.nio-select(
+    ref="nio-select-ref"
+    v-model="tempModel"
+    v-bind="$attrs"
+    v-on="$listeners"
     :items="items"
     :class="{ small: smallAttr, 'hide-selections': hideSelections, 'selection-pills': selectionPills, 'fluid-width': fluidWidthAttr }"
     :solo="smallAttr"
-    v-model="tempModel"
     :menu-props="{contentClass: 'nio-select-menu', offsetY: true, nudgeBottom: 10  }"
-    outlined
     :attach="attach ? node : undefined"
-    v-bind="$attrs"
-    v-on="$listeners"
-    @input="updateModel($event)"
-    ref="nio-select-ref"
     :item-value="valueKey"
     :item-text="textKey"
     :id="elementId"
+    outlined
+    @input="updateModel($event)"
   )
-    template(v-for="(index, name) in $scopedSlots" v-slot:[name]="data")
-      slot(:name="name" v-bind="data") 
+    template(
+      v-for="(index, name) in $scopedSlots" 
+      v-slot:[name]="data"
+    )
+      slot(
+        v-bind="data"
+        :name="name" 
+      )
     template(v-slot:append)
       svg(style="width:24px;height:24px" viewBox="0 0 24 24")
         path(fill="#425290" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z")
@@ -37,6 +43,7 @@ import NioPill from './Pill'
 
 export default {
   name: 'nio-select',
+  components: { NioPill },
   props: {
     "model": { required: false },
     "rules": { required: false },
@@ -57,11 +64,36 @@ export default {
     textKey: null,
     valueKey: null,
     value: null,
-		fluidWidthAttr: false,
-		tempModel: null
+    fluidWidthAttr: false,
+    tempModel: null
   }),
+  watch: {
+    items(val) {
+      this.applyKeys()
+    },
+    model: {
+      deep: true,
+      handler(val) {
+        this.tempModel = val
+      }
+    }
+  },
+  mounted() {
+    this.tempModel = this.model
+    this.node = this.$refs['nio-select-ref'].$vnode.elm
+    this.applyHelperAttributes()
+    this.applyKeys()
+    if (this.fluidWidthAttr) {
+      this.updateInternalElements()
+    }
+    this.$emit('mounted')
+    
+  },
+  destroyed() {
+    this.$emit('destroyed')
+  },
   methods: {
-		hasScopedSlot(slotName) {
+    hasScopedSlot(slotName) {
       return this.$scopedSlots[slotName] !== undefined
     },
     applyKeys() {
@@ -130,42 +162,16 @@ export default {
               .find(child => child.classList.includes('v-select__slot')).children
               .find(child => child.nodeName === "LABEL")
             if (labelEl) {
-							setTimeout(() => {
-								const labelWidth = parseInt(window.getComputedStyle(labelEl).width.replace('px', ''))
-								this.node.style['width'] = `${labelWidth + 55}px`
-							}, 10);
+              setTimeout(() => {
+                const labelWidth = parseInt(window.getComputedStyle(labelEl).width.replace('px', ''))
+                this.node.style['width'] = `${labelWidth + 55}px`
+              }, 10);
             }
           }
         })
       }
     }
-  },
-  mounted() {
-    this.tempModel = this.model
-    this.node = this.$refs['nio-select-ref'].$vnode.elm
-    this.applyHelperAttributes()
-    this.applyKeys()
-    if (this.fluidWidthAttr) {
-			this.updateInternalElements()
-		}
-    this.$emit('mounted')
-    
-  },
-  destroyed() {
-    this.$emit('destroyed')
-  },
-  watch: {
-    items(val) {
-      this.applyKeys()
-		},
-		model: {
-      deep: true,
-      handler(val) {
-				this.tempModel = val
-      }
-    }
-  },
-  components: { NioPill }
+  }
 }
 </script>
 

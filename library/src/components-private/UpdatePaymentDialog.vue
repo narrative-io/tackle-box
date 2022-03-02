@@ -1,7 +1,7 @@
 <template lang="pug">
   .nio-update-payment-dialog(ref="dialog")
     NioIconFramer(
-      iconName="display-warning"
+      icon-name="display-warning"
     )
     h3.nio-h3.text-primary-darker Waiting for updated payment method
     p.nio-p.text-primary-dark Update your payment method in the new window. Click cancel to go back.
@@ -18,27 +18,23 @@ import NioButton from '../components/Button'
 import NioIconFramer from '../components/icon/IconFramer'
 
 export default {
+  components: { NioButton, NioIconFramer },
   mounted() {
     this.prevPaymentMethod = this.paymentMethod
     parent.postMessage({
       name: 'updatingPaymentMethod',
       payload: null
-		},"*")
-		setTimeout(() => {
-			this.$emit('cancel')
-		}, 300000); // allow 5 minutes before closing dialog
-  },
-  computed: {
-    paymentMethod() { 
-      return this.nioPaymentMethod
-    },
+    },"*")
+    setTimeout(() => {
+      this.$emit('cancel')
+    }, 300000); // allow 5 minutes before closing dialog
   },
   data: () => ({
     prevPaymentMethod: null
-  }),	
-  methods: {
-    cancel() {
-      this.$emit('cancel')
+  }),
+  computed: {
+    paymentMethod() { 
+      return this.nioPaymentMethod
     }
   },
   watch: {
@@ -47,13 +43,17 @@ export default {
         this.cancel()
       }
     }
-  },
-  components: { NioButton, NioIconFramer }
+  },	
+  methods: {
+    cancel() {
+      this.$emit('cancel')
+    }
+  }  
 };
 </script>
 
 <style lang="sass" scoped>
 
-	@import "../styles-private/_update-payment-dialog"
+  @import "../styles-private/_update-payment-dialog"
 
 </style>

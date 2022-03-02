@@ -4,12 +4,12 @@
   )
     input(
       ref="fsFileInput" 
+      :multiple="multiple" 
       id="getFile" 
       type="file" 
       tabindex="-1" 
-      :multiple="multiple" 
-      @change="handleFilesChange"
       style="display: none;"
+      @change="handleFilesChange"
     )
     .selected-file
       .file-details(v-if="currentState === 'selected'")
@@ -21,8 +21,8 @@
     ) {{ actionLabel }}
   .nio-file-chooser(
     v-else
-    :class="`state-${ currentState.toLowerCase() }`"
     ref="fsDroppable" 
+    :class="`state-${ currentState.toLowerCase() }`"
     @dragenter.stop.prevent="isDragEnter = true" 
     @dragover.stop.prevent="() => {}" 
     @dragleave.stop.prevent="isDragEnter = false" 
@@ -30,37 +30,37 @@
   )
     input(
       ref="fsFileInput" 
+      :multiple="multiple" 
       id="getFile" 
       type="file" 
       tabindex="-1" 
-      :multiple="multiple" 
-      @change="handleFilesChange"
       style="display: none;"
+      @change="handleFilesChange"
     )
     NioIconFramer(
       v-if="currentState === 'initial'"
-      iconName="display-upload" 
+      icon-name="display-upload" 
     )
     NioIconFramer(
       v-if="currentState === 'selected'"
-      iconName="display-file" 
+      icon-name="display-file" 
     )
     NioIconFramer(
       v-if="currentState === 'error'"
-      iconName="display-warning" 
+      icon-name="display-warning" 
     )
     NioIconFramer(
       v-if="currentState === 'success'"
-      iconName="display-download" 
+      icon-name="display-download" 
     )
     .graphic(v-if="currentState === 'inProgress'")
       .progress
         v-progress-circular#nio-file-chooser-progress(
           :value="percentComplete"
+          :indeterminate="indeterminate"
           rotate="270"
           width="1"
           color="#415298"
-          :indeterminate="indeterminate"
         )
         .nio-p.text-primary-dark.nio-bold(v-if="!indeterminate") {{ percentComplete }}%
     .details
@@ -73,8 +73,8 @@
       .selected-file(v-if="currentState === 'selected'")
         .nio-p.text-primary-dark <strong>{{ filename }}</strong> {{ readableFilesize }}
         NioButton(
+          icon-name="utility-times"
           caution-icon-small
-          iconName="utility-times"
           @click="cancelSelection"
         )
       .nio-p.text-primary-dark(v-else)
@@ -95,21 +95,21 @@
           .right
     .actions
       NioButton(
-        key="1"
         v-if="currentState === 'initial'"
+        key="1"
         normal-secondary 
         @click="browseClicked"
       ) Browse Files
       NioButton(
-        key="2"
         v-if="currentState === 'selected'"
+        key="2"
         normal-primary
         @click="actionClicked"
         :disabled="!valid"
       ) {{ actionLabel }}
       NioButton(
-        key="4"
         v-if="currentState === 'inProgress'"
+        key="4"
         caution-outlined
         @click="cancelClicked"
       ) Cancel
@@ -132,6 +132,7 @@ import NioTextField from './TextField'
 
 export default {
   name: 'nio-file-chooser',
+  components: { NioButton, NioIconFramer, NioTextField },
   props: {
     variant: { type: String, required: false, default: 'default' },
     instructions: { type: String, required: false, default: "Choose a file" },
@@ -160,6 +161,26 @@ export default {
     errorType: null,
     f: false
   }),
+  computed: {
+    readableFilesize() {
+      var i = Math.floor( Math.log(this.filesize) / Math.log(1024) );
+      return ( this.filesize / Math.pow(1024, i) ).toFixed(0) * 1 + ['B', 'KB', 'MB', 'GB', 'TB'][i];
+    }
+  },
+  watch: {
+    state(val) {
+      this.currentState = val
+    },
+    currentState(val) {
+      this.$emit('stateChanged', val)
+    }
+  },
+  mounted() {	
+    this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
+  },
   methods: {
     browseClicked() {
       this.$emit('browseClicked')
@@ -230,28 +251,7 @@ export default {
       // clear selected files
       this.$refs.fsFileInput.value = "";
     }
-  },
-  computed: {
-    readableFilesize() {
-      var i = Math.floor( Math.log(this.filesize) / Math.log(1024) );
-      return ( this.filesize / Math.pow(1024, i) ).toFixed(0) * 1 + ['B', 'KB', 'MB', 'GB', 'TB'][i];
-    }
-  },
-  mounted() {	
-    this.$emit('mounted')
-  },
-  destroyed() {
-    this.$emit('destroyed')
-  },
-  watch: {
-    state(val) {
-      this.currentState = val
-    },
-    currentState(val) {
-      this.$emit('stateChanged', val)
-    }
-  },
-  components: { NioButton, NioIconFramer, NioTextField }
+  }
 }
 
 </script>

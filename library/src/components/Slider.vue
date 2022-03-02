@@ -4,15 +4,15 @@
   )
     .min(v-if="range")
       NioTextField.input-min(
+        :model="currency ? parseFloat(model[0]).toFixed(2) : model[0]"
         :currency="currency"
+        :class="{'prepend-field': !range && prepend}"
+        type="number"
         hide-details
         small
         solo
-        type="number"
         @keyup.native="applyMinModel($event)"
         @update="updateMinModel($event)"
-        :model="currency ? parseFloat(model[0]).toFixed(2) : model[0]"
-        :class="{'prepend-field': !range && prepend}"
       )
       .min-apply-message.nio-p.text-primary-dark(v-if="showMinApplyMsg") press enter to apply
     v-slider(
@@ -31,12 +31,12 @@
     )
     .max
       NioTextField.input-max(
+        :model="range ? currency ? parseFloat(model[1]).toFixed(2) : model[1] : currency ? parseFloat(model).toFixed(2) : model"
         :currency="currency"
+        type="number"
         hide-details
         small
         solo
-        type="number"
-        :model="range ? currency ? parseFloat(model[1]).toFixed(2) : model[1] : currency ? parseFloat(model).toFixed(2) : model"
         @keyup.native="applyMaxModel($event)"
         @update="updateMaxModel($event)"
       )
@@ -50,6 +50,7 @@ import NioTextField from './TextField'
 
 export default {
   name: 'nio-slider',
+  components: { NioTextField },
   props: {
     model: { required: true },
     value: { required: false },
@@ -115,13 +116,13 @@ export default {
     },
     applyMinModel() {
       if (event.key == "Enter") {
-				this.showMinApplyMsg = false
+        this.showMinApplyMsg = false
         this.$emit('update', [this.minModel, this.model[1]])
       }
     },
     applyMaxModel(val) {
       if (event.key == "Enter") {
-				this.showMaxApplyMsg = false
+        this.showMaxApplyMsg = false
         if (this.range) {
           this.$emit('update', [this.model[0], this.maxModel])
         } else {
@@ -129,8 +130,7 @@ export default {
         }
       }
     }	
-  },
-  components: { NioTextField }
+  }
 }
 </script>
 
