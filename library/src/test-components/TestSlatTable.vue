@@ -22,11 +22,13 @@
       :searchableProps="['orderName', 'orderNumber']"
       :headerModules="['search']"
     )
+    h3 ['search'] Search on 2 chars
     NioSlatTable(
       v-if="columns && items"
       :items="items"
       :columns="columns"
       :searchConfig="searchOptions"
+      :min-chars-to-search="2"
       key="2013"
       :searchableProps="['orderName', 'orderNumber']"
       :headerModules="['search']"

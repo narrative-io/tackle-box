@@ -174,7 +174,8 @@ export default {
     "headerModules": { type: Array, required: false },
     "searchConfig": { type: Object, required: false },
     "customSlatCell": { type: Boolean, required: false, default: false },
-    "noResultsText": { type: String, required: false, default: 'No items found' }
+    "noResultsText": { type: String, required: false, default: 'No items found' },
+    "minCharsToSearch": { type: Number, required: false, default: 3 }
   },
   data: () => ({
     multiSelect: false,
@@ -303,7 +304,7 @@ export default {
         computedItems.push(computedItem)
       })
       // apply search
-      if (this.showHeaderModules.search && this.searchTerm && this.searchTerm.length > 2) {
+      if (this.showHeaderModules.search && this.searchTerm && this.searchTerm.length >= this.minCharsToSearch) {
         const searchOptions = this.searchConfig ? this.searchConfig : this.searchOptions
         if (this.showHeaderModules.search) {
           searchOptions.keys = this.searchableProps			
