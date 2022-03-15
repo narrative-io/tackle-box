@@ -241,7 +241,7 @@ export default {
     },
     makeFilterValue(filter) {
       if (filter === 'include_only_if_not_null_filter') {
-        return 'Include if present'
+        return 'Optional Attribute'
       } else if (Object.keys(filter).length > 0) {
         return 'Custom'
       }
