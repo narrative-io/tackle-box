@@ -257,8 +257,13 @@ let getJoinOptionsByPath = (path, parentAttribute, datasets) => {
 			}			
 		} else if (!targetProperty.type !== 'object' && targetProperty.type !== 'array') { // if it's a primitive and is_join_key = true, return all datasets that have mappings to parentAttribute and path
 			result.attributeId = parentAttribute.id
-			result.field = `${parentAttribute.name}.${stringPath}`
-			result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id && hasPropertyMappingForPath(mapping, stringPath)))		
+			if (stringPath.length === 0) {
+				result.field = `${parentAttribute.name}`
+				result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id))
+			} else {
+				result.field = `${parentAttribute.name}.${stringPath}`
+				result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id && hasPropertyMappingForPath(mapping, stringPath)))		
+			}
 		} 
 	}
 	if (result.datasets && result.datasets.length > 0) {

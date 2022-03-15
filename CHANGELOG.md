@@ -129,3 +129,4 @@ Restructured codebase to conform to the Vue Style Guide
 
 v0.4.6
 Added 'pending' status to condition to display certain subscriptio properties in **NioBuyerStudioSubscription**
+Allow primitive attributes with **is_join_key** to return joinable datasets in attributeModule.getJoinOptionsByPath 
