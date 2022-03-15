@@ -126,3 +126,6 @@ Added **NioBuyerStudioSubscription** component
 Added **NioSelectedPaymentMethod** component
 Added optional **noResultsData** prop to **NioSlatTable**
 Restructured codebase to conform to the Vue Style Guide
+
+v0.4.6
+Added 'pending' status to condition to display certain subscriptio properties in **NioBuyerStudioSubscription**
