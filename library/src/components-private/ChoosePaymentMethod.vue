@@ -68,7 +68,6 @@ export default {
       this.computeHeaders()
     },
     selectionChanged() {
-			console.log(this.paymentMethod)
       this.$emit('paymentMethodChanged', {
         imageSrc: this.computeImgSrc(this.paymentMethod),
         title: this.computeTitle(this.paymentMethod)
