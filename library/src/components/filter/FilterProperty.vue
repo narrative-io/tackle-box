@@ -27,8 +27,8 @@
           color="#1438F5"
           indeterminate 
         )
-      .option-content(v-else-if="$scopedSlots[`filter-properties-custom-${filterName}`]")
-        slot(:name="`filter-properties-custom-${filterName}`")
+      .option-content(v-else-if="filter && $scopedSlots[`filter-properties-custom-${filter.name}`]")
+        slot(:name="`filter-properties-custom-${filter.name}`" v-bind="filter")
       .option-content(v-else)
         slot(name="custom-option")
     .join-option(
@@ -49,7 +49,7 @@ export default {
   name: 'nio-filter-property',
   components: { NioFilterJoinOption, NioTooltip },
   props: {
-    "filterName": { type: String, required: false },
+    "filter": { type: Object, required: false },
     "heading": { type: String, required: false },
     "description": { type: String, required: true },
     "options": { type: Array, required: true },

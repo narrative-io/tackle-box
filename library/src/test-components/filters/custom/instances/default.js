@@ -13,7 +13,10 @@ const Default = {
 			label: "Custom",
 			value: 'custom',
 		}
-	]
+	],
+	customOption: {
+		value: 'test'
+	}
 }
 
 export default Default

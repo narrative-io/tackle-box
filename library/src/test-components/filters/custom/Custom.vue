@@ -3,8 +3,12 @@
   div
     h1 Custom
     NioFilterGroup(:filters="filters")
-      template(v-slot:filter-properties-custom-custom)
-        .test HI
+      template(v-slot:filter-properties-custom-custom="filter")
+        .value {{ filter }}
+        .test
+          v-text-field(
+            v-model="filter.customOption.value"
+          )
 </template>
 
 <script>
@@ -27,8 +31,13 @@ export default {
   mounted() {
     this.activeFilterName = this.filters[0].name
   },
-  methods: {
-    
+  watch: {
+    filters: {
+      deep: true,
+      handler: function(val) {
+        console.log(val)
+      }
+    }
   }
 };
 </script>
