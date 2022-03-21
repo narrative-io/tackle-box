@@ -41,6 +41,14 @@
         :custom-option-loading="customOptionLoading || filterObjCustomOptionLoading"
         @valueChanged="handleValueChange($event)"
       )
+        template(
+          v-for="(index, name) in $scopedSlots" 
+          v-slot:[name]="data"
+        )
+          slot(
+            v-bind="data"
+            :name="name" 
+          )   
   .nio-filter.solo(
     v-else
   )

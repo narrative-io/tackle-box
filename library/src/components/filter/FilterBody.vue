@@ -1,5 +1,19 @@
 <template lang="pug">
   .nio-filter-body
+    template(v-if="filter.type === 'custom'")
+      NioFilterPropertiesCustom(
+        :filter="filter"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
+      )
+        template(
+          v-for="(index, name) in $scopedSlots" 
+          v-slot:[name]="data"
+        )
+          slot(
+            v-bind="data"
+            :name="name" 
+          )   
     template(v-if="filter.type === 'object'")
       NioFilterPropertiesObject(
         :filter="filter"
@@ -71,6 +85,7 @@
 <script>
 
 import NioFilterProperty from './FilterProperty'
+import NioFilterPropertiesCustom from './default-types/Custom'
 import NioFilterPropertiesObject from './default-types/Object'
 import NioFilterPropertiesArray from './default-types/Array'
 import NioFilterPropertiesNumber from './default-types/Number'
@@ -86,6 +101,7 @@ export default {
   name: 'nio-filter-body',
   components: { 
     NioFilterProperty, 
+    NioFilterPropertiesCustom,
     NioFilterPropertiesObject,
     NioFilterPropertiesArray,
     NioFilterPropertiesNumber,

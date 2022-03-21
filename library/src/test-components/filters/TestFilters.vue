@@ -1,5 +1,6 @@
 <template lang="pug">
   .test-filters
+    Custom
     Object
     Array
     StringLimited
@@ -14,6 +15,7 @@
 
 <script>
 
+import Custom from './custom/Custom'
 import Object from './object/Object'
 import Array from './array/Array'
 import StringLimited from './string-limited/StringLimited'
@@ -27,6 +29,7 @@ import Boolean from './boolean/Boolean'
 
 export default {
   components: {
+    Custom,
     Object,
     Array,
     StringLimited,

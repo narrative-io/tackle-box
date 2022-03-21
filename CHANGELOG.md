@@ -131,3 +131,4 @@ v0.4.6
 Added 'pending' status to condition to display certain subscriptio properties in **NioBuyerStudioSubscription**
 Allow primitive attributes with **is_join_key** to return joinable datasets in attributeModule.getJoinOptionsByPath 
 Added **minCharsToSearch** optional prop to activate **NioSlatTableSearch** on specified number of characters
+Added **custom** filter type with custom filter property slot defeined by **filter-properties-custom-${filterName}**
