@@ -300,5 +300,6 @@ export {
   makeSelected,
   makeSelectedFromSchemaPreset,
 	isExportable,
-	getJoinOptionsByPath
+	getJoinOptionsByPath,
+	makeDotDelimitedPropertyPath
 }
