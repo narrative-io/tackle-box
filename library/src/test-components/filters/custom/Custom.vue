@@ -9,6 +9,14 @@
           v-text-field(
             v-model="filter.customOption.value"
           )
+      template
+        v-expansion-panel.test-filter(
+          key="test"
+        )
+          v-expansion-panel-header
+            .header-test Test Header
+          v-expansion-panel-content
+            .body-test Test Body
 </template>
 
 <script>
@@ -43,5 +51,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
- 
+@import '../../../styles/mixins/filter/_filter'
+
+.test-filter
+  +nio-filter
 </style>

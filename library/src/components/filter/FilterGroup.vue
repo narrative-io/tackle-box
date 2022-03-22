@@ -13,6 +13,7 @@
           v-bind="data"
           :name="name" 
         )
+    slot
 </template>
 
 <script>
