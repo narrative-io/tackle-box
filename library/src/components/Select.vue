@@ -7,7 +7,7 @@
     :items="items"
     :class="{ small: smallAttr, 'hide-selections': hideSelections, 'selection-pills': selectionPills, 'fluid-width': fluidWidthAttr }"
     :solo="smallAttr"
-    :menu-props="{contentClass: 'nio-select-menu', offsetY: true, nudgeBottom: 10  }"
+    :menu-props="{contentClass: contentClass, offsetY: true, nudgeBottom: 10 }"
     :attach="attach ? node : undefined"
     :item-value="valueKey"
     :item-text="textKey"
@@ -47,7 +47,8 @@ export default {
   props: {
     "model": { required: false },
     "rules": { required: false },
-    "items": { required: true }
+		"items": { required: true },
+		"additionalContentClass": { type: String, required: false }
   },
   model: {
     prop: "model",
@@ -65,7 +66,8 @@ export default {
     valueKey: null,
     value: null,
     fluidWidthAttr: false,
-    tempModel: null
+		tempModel: null,
+		contentClass: 'nio-select-menu'
   }),
   watch: {
     items(val) {
@@ -85,9 +87,11 @@ export default {
     this.applyKeys()
     if (this.fluidWidthAttr) {
       this.updateInternalElements()
-    }
+		}
+    if (this.additionalContentClass) {
+			this.contentClass += ` ${this.additionalContentClass}`
+		}
     this.$emit('mounted')
-    
   },
   destroyed() {
     this.$emit('destroyed')
