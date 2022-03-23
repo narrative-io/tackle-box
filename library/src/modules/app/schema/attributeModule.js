@@ -289,6 +289,23 @@ function makeDotDelimitedPropertyPath(path) {
 	return stringPath
 }
 
+function areSamePaths(path1, path2) {
+	if (path1.length !== path2.length) {
+		return false
+	}
+	return path1.filter((element1, index) => {
+		const element2 = path2[index]
+		if (element2) {
+			if (index === 0) {
+				return element1.id === element2.id
+			} else {
+				return element1 === element2
+			}
+		}
+		return false
+	}).length === path1.length
+}
+
 export {
   makePathString,
   getAttributeFromPath,
@@ -301,5 +318,6 @@ export {
   makeSelectedFromSchemaPreset,
 	isExportable,
 	getJoinOptionsByPath,
-	makeDotDelimitedPropertyPath
+	makeDotDelimitedPropertyPath,
+	areSamePaths
 }

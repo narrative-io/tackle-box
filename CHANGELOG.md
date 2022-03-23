@@ -134,3 +134,4 @@ Added **minCharsToSearch** optional prop to activate **NioSlatTableSearch** on s
 Added **custom** filter type with custom filter property slot defeined by **filter-properties-custom-${filterName}**
 Added default slot to **NioFilterGroup**
 Export *makeDotDelimitedPropertyPath** function in **attributeModule.js**
+added **areSamePaths** function to **attributeModule** exports
