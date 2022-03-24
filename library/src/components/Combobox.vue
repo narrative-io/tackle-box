@@ -1,20 +1,22 @@
 <template lang="pug">
   .nio-combobox
-    .input-element-wrapper(
-      v-for="(element, index) of localModel"
-    )
-      input(
-        v-if="isTextElement(element)"
-        v-model="localModel[index]"
-        type="text"
-        @input="handleCusrsorChange($event, index)" 
-        @click="handleCusrsorChange($event, index)"
-        @keyup="handleCusrsorChange($event, index)"
+    .input-elements
+      .input-element-wrapper(
+        v-for="(element, index) of localModel"
       )
-      NioPill(
-        v-else
-        tag
-      ) {{ element.label }}
+        input(
+          v-if="isTextElement(element)"
+          v-model="localModel[index]"
+          type="text"
+          @input="handleCusrsorChange($event, index)" 
+          @click="handleCusrsorChange($event, index)"
+          @keyup="handleCusrsorChange($event, index)"
+          :style="{ width: `${Math.max(localModel[index].length, 1)}ch`}"
+        )
+        NioPill(
+          v-else
+          tag
+        ) {{ element.label }}
     NioButton(
       normal-secondary
       @click="addTagElement"
@@ -38,22 +40,42 @@ export default {
   },
   data: () => ({
     localModel: [''],
-    cursorPosition: {
-      elementIndex: 0,
+    cursor: {
+      index: 0,
       position: 0 
-    }
+    },
+    testIndex: 0
   }),
   watch: {
     localModel(val) {
+
+    },
+    cursorPosition(val) {
       console.log(val)
     }
   },
   methods: {
     addTagElement() {
-      this.localModel.push({
-        label: "test",
+      const newElement = {
+        label: String(this.testIndex),
         value: "stuff"
-      })
+      }
+      if (this.cursor.position === 0 ) {
+        this.localModel.splice(this.cursor.index, 0, newElement)
+      } else if (this.cursor.position === this.localModel[this.cursor.index].length) {
+        this.localModel.splice(this.cursor.index + 1, 0, newElement)
+        this.localModel.splice(this.cursor.index + 2, 0 , '')
+      } else { // cXc cCNCc
+        const charsBeforeBreak = this.localModel[this.cursor.index].substring(0, this.cursor.position)
+        console.log(charsBeforeBreak)
+        const charsAfterBreak = this.localModel[this.cursor.index].substring(this.cursor.position)
+        console.log(charsAfterBreak)
+
+        this.localModel.splice(this.cursor.index, 1, charsBeforeBreak)
+        this.localModel.splice(this.cursor.index + 1, 0, newElement)
+        this.localModel.splice(this.cursor.index + 2, 0, charsAfterBreak)
+      }
+      this.testIndex++
     },
     isTextElement(element) {
       if (element.label) {
@@ -62,8 +84,8 @@ export default {
       return true
     },
     handleCusrsorChange(event, index) {
-      this.cursorPosition = {
-        elementIndex: index,
+      this.cursor = {
+        index: index,
         position: event.target.selectionStart
       }
     }
