@@ -202,6 +202,11 @@
               .nio-p.text-primary-darker.nio-bold Subscriptions
             template(v-slot:content) 
               TestSubscriptions
+          NioExpansionPanel(:key="36")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Combobox
+            template(v-slot:content) 
+              TesCombobox
 </template>
 
 <script>
@@ -245,6 +250,7 @@ import TestOverflowMenu from './test-components/TestOverflowMenu'
 import TestConnectors from './test-components/TestConnectors'
 import TestSchema from './test-components/schema/TestSchema'
 import TestSubscriptions from './test-components/TestSubscriptions'
+import TestCombobox from './test-components/TestCombobox'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -288,6 +294,7 @@ export default {
     TestConnectors,
     TestSchema,
     TestSubscriptions,
+    TestCombobox,
     NioExpansionPanels,
     NioExpansionPanel,
   },
