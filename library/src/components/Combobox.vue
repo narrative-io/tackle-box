@@ -5,8 +5,11 @@
     )
       input(
         v-if="isTextElement(element)"
-        type="text"
         v-model="localModel[index]"
+        type="text"
+        @input="handleCusrsorChange($event, index)" 
+        @click="handleCusrsorChange($event, index)"
+        @keyup="handleCusrsorChange($event, index)"
       )
       NioPill(
         v-else
@@ -34,7 +37,11 @@ export default {
     prop: "model"
   },
   data: () => ({
-    localModel: ['']
+    localModel: [''],
+    cursorPosition: {
+      elementIndex: 0,
+      position: 0 
+    }
   }),
   watch: {
     localModel(val) {
@@ -53,6 +60,12 @@ export default {
         return false
       }
       return true
+    },
+    handleCusrsorChange(event, index) {
+      this.cursorPosition = {
+        elementIndex: index,
+        position: event.target.selectionStart
+      }
     }
   },
   mounted() {
