@@ -1,6 +1,8 @@
 <template lang="pug">
   .test-color-picker
-    NioCombobox
+    NioCombobox(
+      v-model="model"
+    )
 </template>
 
 <script>
@@ -12,6 +14,7 @@ export default {
     NioCombobox
   },
   data: () => ({
+    model: ''
   }),
   mounted() {
    

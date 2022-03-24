@@ -206,7 +206,7 @@
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Combobox
             template(v-slot:content) 
-              TesCombobox
+              TestCombobox
 </template>
 
 <script>
