@@ -48,6 +48,7 @@ import NioColorPicker from './components/ColorPicker'
 import NioChoosePaymentMethod from './components-private/ChoosePaymentMethod'
 import NioSelectedPaymentMethod from './components-private/SelectedPaymentMethod'
 import NioOverflowMenu from './components/OverflowMenu'
+import NioCombobox from './components/Combobox'
 
 import NioSelectDestination from './components/connectors/destination/select-destination/SelectDestination'
 import NioSubscriptionDestinations from './components/connectors/destination/subscription-destinations/SubscriptionDestinations'
@@ -121,6 +122,7 @@ const Components = {
 	NioChoosePaymentMethod,
 	NioSelectedPaymentMethod,
 	NioOverflowMenu,
+	NioCombobox,
 	NioSelectDestination,
 	NioSubscriptionDestinations,
 	NioSubscriptionFileDownload,
@@ -180,6 +182,7 @@ Vue.component("NioColorPicker", NioColorPicker)
 Vue.component("NioChoosePaymentMethod", NioChoosePaymentMethod)
 Vue.component("NioSelectedPaymentMethod", NioSelectedPaymentMethod)
 Vue.component("NioOverflowMenu", NioOverflowMenu)
+Vue.component("NioCombobox", NioCombobox)
 Vue.component("NioSelectDestination", NioSelectDestination)
 Vue.component("NioSubscriptionDestinations", NioSubscriptionDestinations)
 Vue.component("NioDestinationConnectorSettings", NioDestinationConnectorSettings)
@@ -238,6 +241,7 @@ export { NioColorPicker }
 export { NioChoosePaymentMethod }
 export { NioSelectedPaymentMethod }
 export { NioOverflowMenu }
+export { NioCombobox }
 export { NioSelectDestination }
 export { NioSubscriptionDestinations }
 export { NioDestinationConnectorSettings }
