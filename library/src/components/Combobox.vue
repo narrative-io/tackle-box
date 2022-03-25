@@ -4,19 +4,34 @@
       .input-element-wrapper(
         v-for="(element, index) of localModel"
       )
-        input(
-          v-if="isTextElement(element)"
-          v-model="localModel[index]"
-          type="text"
-          @input="handleCusrsorChange($event, index)" 
-          @click="handleCusrsorChange($event, index)"
-          @keyup="handleCusrsorChange($event, index)"
-          :style="{ width: `${Math.max(localModel[index].length, 1)}ch`}"
-        )
-        NioPill(
-          v-else
-          tag
-        ) {{ element.label }}
+        template(v-if="isTextElement(element)")
+          input(
+            v-if="isTextElement(element)"
+            v-model="localModel[index]"
+            type="text"
+            @input="handleCusrsorChange($event, index)" 
+            @click="handleCusrsorChange($event, index)"
+            @keyup="handleCusrsorChange($event, index)"
+            :style="{ width: `${Math.max(localModel[index].length, 1)}ch`}"
+          )
+          v-menu(v-if="items")
+            template(v-slot:activator="{ on, attrs }")
+              NioButton(
+                normal-icon 
+                iconName="utility-plus"
+                v-bind="attrs"
+                v-on="on"
+                @click="showTagOptions"
+              )
+            v-list
+              v-list-item(
+                v-for="(item, index) in items"
+                :key="index"
+              ) {{ item.label }}
+        template(v-else)
+          NioPill(
+            tag
+          ) {{ element.label }}
     NioButton(
       normal-secondary
       @click="addTagElement"
@@ -34,6 +49,7 @@ export default {
   components: { NioButton, NioPill },
   props: {
     "model": { required: false },
+    "items": { type: Array, required: false },
   },
   model: {
     prop: "model"
@@ -55,6 +71,9 @@ export default {
     }
   },
   methods: {
+    showTagOptions() {
+
+    },
     addTagElement() {
       const newElement = {
         label: String(this.testIndex),
@@ -65,12 +84,9 @@ export default {
       } else if (this.cursor.position === this.localModel[this.cursor.index].length) {
         this.localModel.splice(this.cursor.index + 1, 0, newElement)
         this.localModel.splice(this.cursor.index + 2, 0 , '')
-      } else { // cXc cCNCc
+      } else {
         const charsBeforeBreak = this.localModel[this.cursor.index].substring(0, this.cursor.position)
-        console.log(charsBeforeBreak)
         const charsAfterBreak = this.localModel[this.cursor.index].substring(this.cursor.position)
-        console.log(charsAfterBreak)
-
         this.localModel.splice(this.cursor.index, 1, charsBeforeBreak)
         this.localModel.splice(this.cursor.index + 1, 0, newElement)
         this.localModel.splice(this.cursor.index + 2, 0, charsAfterBreak)
