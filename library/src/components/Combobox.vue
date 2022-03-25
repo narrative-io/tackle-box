@@ -41,6 +41,7 @@
               tag
             ) {{ element.label }}
     .outside-input-elements(@click="handleClickOutsideInputs")
+      .test index: {{cursor.index}} position: {{ cursor.position}}
 </template>
 
 <script>
@@ -97,16 +98,36 @@ export default {
       }
     },
     isTextElement(element) {
-      if (element.label) {
+      if (element.value) {
         return false
       }
       return true
     },
     handleCusrsorChange(event, index) {
       this.active = true
-      this.cursor = {
-        index: index,
-        position: event.target.selectionStart
+      if (event instanceof KeyboardEvent && event.code === 'Backspace' && this.cursor.position === 0 && this.cursor.index > 0) {
+        if (this.localModel[index].length === 0) {
+          this.localModel.splice(index - 1, 2)
+        } else {
+          this.localModel.splice(index - 1, 1)
+        }
+        this.cursor.index = this.cursor.index - 1
+        while (this.cursor.index > 0) {
+          this.cursor.index = this.cursor.index - 1
+          if (!this.localModel[this.cursor.index].value) {
+            const inputElement = this.$refs[`nio-combobox-input-${this.cursor.index}`]
+            if (inputElement[0]) {
+              this.cursor.position = this.localModel[this.cursor.index].length
+              this.setCaretPosition(inputElement[0], this.localModel[this.cursor.index].length)
+            }
+            break
+          } 
+        }
+      } else {
+        this.cursor = {
+          index: index,
+          position: event.target.selectionStart
+        }
       }
     },
     handleClick() {
