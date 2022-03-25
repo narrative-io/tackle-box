@@ -1,9 +1,14 @@
 <template lang="pug">
-  .test-color-picker
+  .test-combobox
+    h6 Items:
+    p {{ items}}
     NioCombobox(
       v-model="model"
       :items="items"
+      @computedValueChanged="updateValue($event)"
     )
+    h6 Computed value:
+    p {{ computedValue }}
 </template>
 
 <script>
@@ -29,14 +34,26 @@ export default {
         label: 'Gender',
         value: 'declared_gender'
       }
-    ]
+    ],
+    computedValue: ''
   }),
   mounted() {
    
+  },
+  methods: {
+    updateValue(val) {
+      this.computedValue = val
+    }
   },
   components: { NioCombobox }
 };
 </script>
 
 <style lang="sass" scoped>
+  .test-combobox
+    padding: 24px 16px
+    .nio-combobox
+      margin: 48px auto 0px auto
+    h6
+      margin-top: 48px
 </style>

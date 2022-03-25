@@ -70,9 +70,14 @@ export default {
   }),
   watch: {
     localModel(val) {
-
+      let result = ''
+      val.map(element => {
+        element.value ? result += element.value : result += element
+      })
+      this.$emit('computedValueChanged', result)
     },
     cursorPosition(val) {
+
     }
   },
   methods: {
@@ -97,6 +102,14 @@ export default {
         this.localModel.splice(this.cursor.index + 2, 0, charsAfterBreak)
         this.cursor.index = this.cursor.index + 3  
       }
+      this.$nextTick(() => {
+        const inputElement = this.$refs[`nio-combobox-input-${this.cursor.index}`]
+        if (inputElement[0]) {
+          this.cursor.position = 0
+          this.setCaretPosition(inputElement[0], this.cursor.position)
+        }
+      })
+     
     },
     isTextElement(element) {
       if (element.value) {
@@ -205,8 +218,6 @@ export default {
       }
     },
     setCaretPosition(elem, caretPos) {
-      console.log(elem)
-      console.log(caretPos)
       if (elem != null) {
         if(elem.createTextRange) {
           var range = elem.createTextRange();
