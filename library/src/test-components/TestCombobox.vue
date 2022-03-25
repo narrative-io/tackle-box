@@ -10,6 +10,8 @@
     )
     h6 Computed value:
     p {{ computedValue }}
+    h6 model
+    p {{ model }}
 </template>
 
 <script>
@@ -39,7 +41,9 @@ export default {
     computedValue: ''
   }),
   mounted() {
-   
+   setTimeout(() => {
+     this.model = ['stuff']
+   }, 500);
   },
   methods: {
     updateValue(val) {

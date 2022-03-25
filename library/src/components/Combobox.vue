@@ -30,7 +30,6 @@
                   iconName="utility-plus"
                   v-bind="attrs"
                   v-on="on"
-                  @click="showTagOptions"
                 )
               v-list
                 v-list-item(
@@ -61,7 +60,8 @@ export default {
     "placeholder": { type: String, required: false }
   },
   model: {
-    prop: "model"
+    prop: "model",
+    event: "update"
   },
   data: () => ({
     localModel: [''],
@@ -78,15 +78,24 @@ export default {
         element.value ? result += element.value : result += element
       })
       this.$emit('computedValueChanged', result)
+      this.$emit('update', val)
     },
-    cursorPosition(val) {
-
+    model(val) {
+      if (val && val.length > 0) {
+        this.localModel = this.model
+      }
     }
   },
+  mounted() {
+    if (this.model && this.model.length > 0) {
+      this.localModel = this.model
+    }
+    this.$emit('mounted')
+  },
+  destroyed() {
+    this.$emit('destroyed')
+  },
   methods: {
-    showTagOptions() {
-
-    },
     addTagElement(item) {
       const newElement = item
       if (this.cursor.position === 0 ) {
@@ -244,12 +253,6 @@ export default {
         }
       }
     }
-  },
-  mounted() {
-    this.$emit('mounted')
-  },
-  destroyed() {
-    this.$emit('destroyed')
   }
 }
 </script>
