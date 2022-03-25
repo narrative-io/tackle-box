@@ -1,8 +1,8 @@
 <template lang="pug">
   .nio-combobox(
-    @click="handleClick"
-    :class="{active: active}"
     v-click-outside="handleClickOutside"
+    :class="{active: active}"
+    @click="handleClick"
   )
     .placeholder(v-if="placeholder && !active && localModel.length === 1 && localModel[0] === ''")
       .nio-p.text-primary-dark {{ placeholder }}
@@ -16,20 +16,20 @@
               :ref="`nio-combobox-input-${index}`"
               v-if="isTextElement(element)"
               v-model="localModel[index]"
+              :style="{ width: `${Math.max(localModel[index].length, 1)}ch`}"
               type="text"
               @input="handleCusrsorChange($event, index)" 
               @click="handleCusrsorChange($event, index)"
               @keyup="handleCusrsorChange($event, index)"
-              :style="{ width: `${Math.max(localModel[index].length, 1)}ch`}"
             )
             v-menu(v-if="active && items && cursor.index === index")
               template(v-slot:activator="{ on, attrs }")
                 NioButton(
-                  normal-icon 
-                  :style="{ left: `${Math.max(cursor.position, 1) + 1}ch`}"
-                  iconName="utility-plus"
                   v-bind="attrs"
                   v-on="on"
+                  :style="{ left: `${Math.max(cursor.position, 1) + 1}ch`}"
+                  iconName="utility-plus"
+                  normal-icon 
                 )
               v-list
                 v-list-item(
