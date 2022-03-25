@@ -5,6 +5,7 @@
     NioCombobox(
       v-model="model"
       :items="items"
+      placeholder="Type some text"
       @computedValueChanged="updateValue($event)"
     )
     h6 Computed value:

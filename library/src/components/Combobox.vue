@@ -4,6 +4,8 @@
     :class="{active: active}"
     v-click-outside="handleClickOutside"
   )
+    .placeholder(v-if="placeholder && !active && localModel.length === 1 && localModel[0] === ''")
+      .nio-p.text-primary-dark {{ placeholder }}
     .input-elements-wrapper
       .input-elements
         .input-element-wrapper(
@@ -24,7 +26,7 @@
               template(v-slot:activator="{ on, attrs }")
                 NioButton(
                   normal-icon 
-                  :style="{ left: `${Math.max(cursor.position, 1) + 2}ch`}"
+                  :style="{ left: `${Math.max(cursor.position, 1) + 1}ch`}"
                   iconName="utility-plus"
                   v-bind="attrs"
                   v-on="on"
@@ -56,6 +58,7 @@ export default {
   props: {
     "model": { required: false },
     "items": { type: Array, required: false },
+    "placeholder": { type: String, required: false }
   },
   model: {
     prop: "model"
@@ -104,7 +107,6 @@ export default {
       }
       this.$nextTick(() => {
         let inputElement
-        console.log(this.cursor.index)
         while ((!inputElement || !inputElement[0]) && this.cursor.index < this.localModel.length) {
           if (!this.localModel[this.cursor.index].value) {
             inputElement = this.$refs[`nio-combobox-input-${this.cursor.index}`]
