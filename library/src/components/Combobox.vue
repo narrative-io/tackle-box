@@ -100,16 +100,23 @@ export default {
         this.localModel.splice(this.cursor.index, 1, charsBeforeBreak)
         this.localModel.splice(this.cursor.index + 1, 0, newElement)
         this.localModel.splice(this.cursor.index + 2, 0, charsAfterBreak)
-        this.cursor.index = this.cursor.index + 3  
+        this.cursor.index = this.cursor.index + 2  
       }
       this.$nextTick(() => {
-        const inputElement = this.$refs[`nio-combobox-input-${this.cursor.index}`]
-        if (inputElement[0]) {
+        let inputElement
+        console.log(this.cursor.index)
+        while ((!inputElement || !inputElement[0]) && this.cursor.index < this.localModel.length) {
+          if (!this.localModel[this.cursor.index].value) {
+            inputElement = this.$refs[`nio-combobox-input-${this.cursor.index}`]
+          } else {
+            this.cursor.index++
+          }
+        }
+        if (inputElement && inputElement[0]) {
           this.cursor.position = 0
           this.setCaretPosition(inputElement[0], this.cursor.position)
         }
       })
-     
     },
     isTextElement(element) {
       if (element.value) {
