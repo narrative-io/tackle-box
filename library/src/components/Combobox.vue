@@ -41,7 +41,8 @@
               tag
             ) {{ element.label }}
     .outside-input-elements(@click="handleClickOutsideInputs")
-      .test index: {{cursor.index}} position: {{ cursor.position}} modelLength: {{ localModel.length}}
+      //- Leave for debugging
+      //- .test index: {{cursor.index}} position: {{ cursor.position}} modelLength: {{ localModel.length}}
 </template>
 
 <script>
@@ -123,6 +124,35 @@ export default {
             break
           } 
         }
+        if (this.localModel[this.cursor.index + 1] && !this.localModel[this.cursor.index + 1].value) {
+          const position = this.localModel[this.cursor.index].length
+          this.localModel[this.cursor.index] = this.localModel[this.cursor.index] + this.localModel[this.cursor.index + 1]
+          this.localModel.splice(this.cursor.index + 1, 1)
+          const inputElement = this.$refs[`nio-combobox-input-${this.cursor.index}`]
+          if (inputElement[0]) {
+            this.cursor.position = position
+            setTimeout(() => {
+              this.setCaretPosition(inputElement[0], this.cursor.position)
+              
+            }, 100);
+          }
+        }
+
+
+      } else if (event instanceof KeyboardEvent && event.code === 'ArrowLeft' && this.cursor.position === 0 && this.cursor.index > 0) {
+        this.cursor.index = this.cursor.index - 1
+        while (this.cursor.index > 0) {
+          if (!this.localModel[this.cursor.index].value) {
+            break
+          } else {
+            this.cursor.index = this.cursor.index - 1
+          }
+        }
+        const inputElement = this.$refs[`nio-combobox-input-${this.cursor.index}`]
+        if (inputElement[0]) {
+          this.cursor.position = this.localModel[this.cursor.index].length
+          this.setCaretPosition(inputElement[0], this.cursor.position)
+        }
       } else if (event instanceof KeyboardEvent && event.code === 'ArrowRight' && this.cursor.position === this.localModel[this.cursor.index].length && this.cursor.index < this.localModel.length - 1) {
         this.cursor.index++
         while (this.cursor.index < this.localModel.length) {
@@ -175,6 +205,8 @@ export default {
       }
     },
     setCaretPosition(elem, caretPos) {
+      console.log(elem)
+      console.log(caretPos)
       if (elem != null) {
         if(elem.createTextRange) {
           var range = elem.createTextRange();
