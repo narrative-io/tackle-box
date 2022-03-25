@@ -5,21 +5,30 @@
   border: 1px solid $c-primary-lighter
   border-radius: 0.5rem
   height: 54px
+  display: flex
+
   &.active
     border-color: $c-primary
-  .input-elements
-    display: flex
-    justify-content: flex-start
+  .input-elements-wrapper
     margin-top: 12px
     margin-left: 16px
-    .input-element-wrapper
-      position: relative
-      input
-        font-family: monospace
-        &:active
-          width: auto
-      .nio-button
-        position: absolute
-        top: -35px
+    .input-elements
+      display: flex
+      justify-content: flex-start
+      flex-grow: 0
+      flex-shrink: 0
+      .input-element-wrapper
+        position: relative
+        input
+          font-family: monospace
+          &:focus
+            outline: none
+          &:active
+            width: auto
+        .nio-button
+          position: absolute
+          top: -35px
+.outside-input-elements
+  flex-grow: 2
 .nio-combobox
   +nio-combobox 
