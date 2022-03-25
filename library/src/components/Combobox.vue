@@ -1,11 +1,16 @@
 <template lang="pug">
-  .nio-combobox
+  .nio-combobox(
+    @click="handleClick"
+    :class="{active: active}"
+    v-click-outside="handleClickOutside"
+  )
     .input-elements
       .input-element-wrapper(
         v-for="(element, index) of localModel"
       )
         template(v-if="isTextElement(element)")
           input(
+            :ref="`nio-combobox-input-${index}`"
             v-if="isTextElement(element)"
             v-model="localModel[index]"
             type="text"
@@ -14,10 +19,11 @@
             @keyup="handleCusrsorChange($event, index)"
             :style="{ width: `${Math.max(localModel[index].length, 1)}ch`}"
           )
-          v-menu(v-if="items")
+          v-menu(v-if="items && cursor.index === index")
             template(v-slot:activator="{ on, attrs }")
               NioButton(
                 normal-icon 
+                :style="{ left: `${Math.max(cursor.position, 1) + 2}ch`}"
                 iconName="utility-plus"
                 v-bind="attrs"
                 v-on="on"
@@ -27,16 +33,12 @@
               v-list-item(
                 v-for="(item, index) in items"
                 :key="index"
+                @click="addTagElement(item)"
               ) {{ item.label }}
         template(v-else)
           NioPill(
             tag
           ) {{ element.label }}
-    NioButton(
-      normal-secondary
-      @click="addTagElement"
-    ) Add
-    .test {{ localModel }}
 </template>
 
 <script>
@@ -60,7 +62,7 @@ export default {
       index: 0,
       position: 0 
     },
-    testIndex: 0
+    active: false
   }),
   watch: {
     localModel(val) {
@@ -74,24 +76,24 @@ export default {
     showTagOptions() {
 
     },
-    addTagElement() {
-      const newElement = {
-        label: String(this.testIndex),
-        value: "stuff"
-      }
+    addTagElement(item) {
+      const newElement = item
       if (this.cursor.position === 0 ) {
-        this.localModel.splice(this.cursor.index, 0, newElement)
+        this.localModel.splice(this.cursor.index, 0, '')
+        this.localModel.splice(this.cursor.index + 1, 0, newElement)
+        this.cursor.index = this.cursor.index + 2  
       } else if (this.cursor.position === this.localModel[this.cursor.index].length) {
         this.localModel.splice(this.cursor.index + 1, 0, newElement)
         this.localModel.splice(this.cursor.index + 2, 0 , '')
+        this.cursor.index = this.cursor.index + 2  
       } else {
         const charsBeforeBreak = this.localModel[this.cursor.index].substring(0, this.cursor.position)
         const charsAfterBreak = this.localModel[this.cursor.index].substring(this.cursor.position)
         this.localModel.splice(this.cursor.index, 1, charsBeforeBreak)
         this.localModel.splice(this.cursor.index + 1, 0, newElement)
         this.localModel.splice(this.cursor.index + 2, 0, charsAfterBreak)
+        this.cursor.index = this.cursor.index + 3  
       }
-      this.testIndex++
     },
     isTextElement(element) {
       if (element.label) {
@@ -104,10 +106,44 @@ export default {
         index: index,
         position: event.target.selectionStart
       }
+    },
+    handleClick() {
+      if (!this.active) {
+        this.cursor = {
+          index: this.localModel.length - 1,
+          position: this.localModel[this.localModel.length - 1].length
+        }
+        const inputElement = this.$refs[`nio-combobox-input-${this.cursor.index}`]
+        if (inputElement[0]) {
+          this.setCaretPosition(inputElement[0], this.localModel[this.localModel.length - 1].length)
+        }
+      }
+      this.active = true
+    },
+    handleClickOutside() {
+      this.active = false
+      
+    },
+    setCaretPosition(elem, caretPos) {
+      if(elem != null) {
+        if(elem.createTextRange) {
+          var range = elem.createTextRange();
+          range.move('character', caretPos);
+          range.select()
+        }
+        else {
+          if(elem.selectionStart) {
+            elem.focus()
+            elem.setSelectionRange(caretPos, caretPos)
+          }
+          else {
+            elem.focus()
+          }
+        }
+      }
     }
   },
   mounted() {
-    // this.localModel = this.model
     this.$emit('mounted')
   },
   destroyed() {

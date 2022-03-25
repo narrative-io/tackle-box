@@ -1,14 +1,25 @@
-=nio-combobox 
-	.input-elements
-		padding: 8px
-		background-color: #EEE
-		display: flex
-		justify-content: flex-start
-		.input-element-wrapper
-			input
-				background-color: #DDD
-				font-family: monospace
-				&:active
-					width: auto
+@import '../global/_colors'
+  
+=nio-combobox
+  background-color: $c-white
+  border: 1px solid $c-primary-lighter
+  border-radius: 0.5rem
+  height: 54px
+  &.active
+    border-color: $c-primary
+  .input-elements
+    display: flex
+    justify-content: flex-start
+    margin-top: 12px
+    margin-left: 16px
+    .input-element-wrapper
+      position: relative
+      input
+        font-family: monospace
+        &:active
+          width: auto
+      .nio-button
+        position: absolute
+        top: -35px
 .nio-combobox
-	+nio-combobox 
+  +nio-combobox 
