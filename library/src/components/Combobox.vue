@@ -41,7 +41,7 @@
               tag
             ) {{ element.label }}
     .outside-input-elements(@click="handleClickOutsideInputs")
-      .test index: {{cursor.index}} position: {{ cursor.position}}
+      .test index: {{cursor.index}} position: {{ cursor.position}} modelLength: {{ localModel.length}}
 </template>
 
 <script>
@@ -118,10 +118,26 @@ export default {
             const inputElement = this.$refs[`nio-combobox-input-${this.cursor.index}`]
             if (inputElement[0]) {
               this.cursor.position = this.localModel[this.cursor.index].length
-              this.setCaretPosition(inputElement[0], this.localModel[this.cursor.index].length)
+              this.setCaretPosition(inputElement[0], this.cursor.position)
             }
             break
           } 
+        }
+      } else if (event instanceof KeyboardEvent && event.code === 'ArrowRight' && this.cursor.position === this.localModel[this.cursor.index].length && this.cursor.index < this.localModel.length - 1) {
+        this.cursor.index++
+        while (this.cursor.index < this.localModel.length) {
+          if (this.localModel[this.cursor.index].value) {
+            this.cursor.index++
+          } else {
+            break
+          }
+        }
+        const inputElement = this.$refs[`nio-combobox-input-${this.cursor.index}`]
+        if (inputElement[0]) {
+          if (!this.localModel[this.cursor.index].value) {
+            this.cursor.position = 0
+            this.setCaretPosition(inputElement[0], this.cursor.position)
+          }
         }
       } else {
         this.cursor = {
@@ -139,7 +155,7 @@ export default {
           }
           const inputElement = this.$refs[`nio-combobox-input-${this.cursor.index}`]
           if (inputElement[0]) {
-            this.setCaretPosition(inputElement[0], this.localModel[this.localModel.length - 1].length)
+            this.setCaretPosition(inputElement[0], this.cursor.position)
           }
         }
         this.active = true
@@ -155,7 +171,7 @@ export default {
       }
       const inputElement = this.$refs[`nio-combobox-input-${this.cursor.index}`]
       if (inputElement[0]) {
-        this.setCaretPosition(inputElement[0], this.localModel[this.localModel.length - 1].length)
+        this.setCaretPosition(inputElement[0], this.cursor.position)
       }
     },
     setCaretPosition(elem, caretPos) {
