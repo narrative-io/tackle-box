@@ -39,6 +39,7 @@
       NioSourceOption(
         v-for="option of sourceOptions"
         :option="option"
+        :key="option.name"
         :selected="selectedSourceOption && selectedSourceOption.name === option.name"
         @selected="sourceSelectionChanged($event)"
       )
