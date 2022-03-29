@@ -95,6 +95,16 @@
       selection-pills
       key="9"
     )
+    NioSelect(
+      label="Preferred Data Regions"
+      v-model="nullSelection"
+      :items="items"
+      multiple 
+      selection-pills
+      key="10"
+      :rules="[rules.required]"
+    )
+
     
 </template>
 
@@ -117,6 +127,7 @@ export default {
       'your mom'
     ],
     selectedItems: ['apple'],
+    nullSelection: null,
     selectedRegions: [ {
       name: 'US',
       value: 1
@@ -140,7 +151,16 @@ export default {
         name: 'G',
         value: 4
       }
-    ]  
+    ],
+    rules: {
+      required: function(value) { 
+        if (!value || !value.length > 0) {
+          return 'Required'
+        } else {
+          return true
+        }
+      }
+    }  
   }),
   mounted() {
     setTimeout(() => {

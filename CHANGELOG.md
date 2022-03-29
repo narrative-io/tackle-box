@@ -137,3 +137,4 @@ Export *makeDotDelimitedPropertyPath** function in **attributeModule.js**
 Added **areSamePaths** function to **attributeModule** exports
 Added **additionalContentClass** optional prop to **NioTextField**
 Added **NioCombobox** component
+Added rules option to **NioSelect**

@@ -12,6 +12,7 @@
     :item-value="valueKey"
     :item-text="textKey"
     :id="elementId"
+    :rules="rules ? rules : parsedRules"
     outlined
     @input="updateModel($event)"
   )
@@ -35,7 +36,6 @@
       )
 </template>
 
-
 <script>
 
 import { text } from '../plugins/fontawesome-svg-core'
@@ -47,8 +47,9 @@ export default {
   props: {
     "model": { required: false },
     "rules": { required: false },
-		"items": { required: true },
-		"additionalContentClass": { type: String, required: false }
+    "items": { required: true },
+    "rulesWithContext": { required: false },
+    "additionalContentClass": { type: String, required: false }
   },
   model: {
     prop: "model",
@@ -66,8 +67,9 @@ export default {
     valueKey: null,
     value: null,
     fluidWidthAttr: false,
-		tempModel: null,
-		contentClass: 'nio-select-menu'
+    tempModel: null,
+    contentClass: 'nio-select-menu',
+    parsedRules: []
   }),
   watch: {
     items(val) {
@@ -78,25 +80,39 @@ export default {
       handler(val) {
         this.tempModel = val
       }
+    },
+    rules() {
+      this.parseRules()
     }
   },
   mounted() {
     this.tempModel = this.model
+    this.parseRules()
     this.node = this.$refs['nio-select-ref'].$vnode.elm
     this.applyHelperAttributes()
     this.applyKeys()
     if (this.fluidWidthAttr) {
       this.updateInternalElements()
-		}
+    }
     if (this.additionalContentClass) {
-			this.contentClass += ` ${this.additionalContentClass}`
-		}
+      this.contentClass += ` ${this.additionalContentClass}`
+    }
     this.$emit('mounted')
   },
   destroyed() {
     this.$emit('destroyed')
   },
   methods: {
+    parseRules() {
+      if (this.rulesWithContext) {
+        this.rulesWithContext.map((rule, index) => {
+          const paramNames = this.getParamNames(rule)
+          let func = rule.toString()
+          let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
+          this.parsedRules[index] = new Function(paramNames[0], funcBody)
+        });
+      }
+    },
     hasScopedSlot(slotName) {
       return this.$scopedSlots[slotName] !== undefined
     },
