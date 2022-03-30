@@ -2,6 +2,7 @@
   v-expansion-panel.nio-filter(
     v-if="!solo"
     :key="filter.name"
+    :class="{'filter-disabled': filter.disabled}"
   )
     v-expansion-panel-header
       template(

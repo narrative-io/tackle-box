@@ -6,6 +6,7 @@ const Multiple = {
 	title: "Multiple",
 	description: "Description",
 	value: "default",
+	disabled: true,
 	options: [
 		{
 			label: `All filter values`,

@@ -138,3 +138,6 @@ Added **areSamePaths** function to **attributeModule** exports
 Added **additionalContentClass** optional prop to **NioTextField**
 Added **NioCombobox** component
 Added rules option to **NioSelect**
+
+v0.4.7
+Added ability to set filter to disabled

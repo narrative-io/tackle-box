@@ -1,17 +1,25 @@
 @import '../../global/_colors'
 
 =nio-filter
+  &.filter-disabled
+    border-bottom: 0.0625rem solid $c-primary-lighter
   .v-expansion-panel-header
     padding: 0rem
-
+  &.filter-disabled .v-expansion-panel-header
+    opacity: 0.20
+    pointer-events: none
   ::v-deep .v-expansion-panel-header__icon
     display: none
   ::v-deep .v-expansion-panel-header--active .nio-filter-header
     background-color: $c-canvas
   ::v-deep .v-expansion-panel-content__wrap
     padding: 0rem
-  &:not(:last-child)
-    border-bottom: 0.0625rem solid $c-primary-lighter
+  &:not(.filter-disabled)
+    &:not(:last-child)
+      border-bottom: 0.0625rem solid $c-primary-lighter
+  &.filter-disabled + .nio-filter:before 
+    box-shadow: none
+    border-top: 0.0625rem solid $c-primary-lighter
   &:after
     border: none
 .nio-filter

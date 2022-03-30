@@ -5,7 +5,8 @@ const Single = {
   type: "stringLimited",
   title: "Default",
   description: "Description",
-  value: "default",
+	value: "default",
+	disabled: true,
   options: [
     {
       label: `All filter values`,
