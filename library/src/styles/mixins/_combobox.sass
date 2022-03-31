@@ -1,42 +1,49 @@
 @import '../global/_colors'
   
 =nio-combobox
-  background-color: $c-white
-  border: 1px solid $c-primary-lighter
-  border-radius: 0.5rem
-  height: 54px
-  display: flex
-  position: relative
-  &.active
-    border-color: $c-primary
-  .placeholder
-    position: absolute
-    left: 12px
-    bottom: 17px
-    .nio-p
-      font-size: 0.875rem
-      font-weight: 200
-  .input-elements-wrapper
-    margin-top: 12px
-    margin-left: 16px
-    .input-elements
-      display: flex
-      justify-content: flex-start
-      flex-grow: 0
-      flex-shrink: 0
-      .input-element-wrapper
-        position: relative
-        input
-          font-family: monospace
-          color: $c-primary-darker
-          &:focus
-            outline: none
-          &:active
-            width: auto
-        .nio-button
-          position: absolute
-          top: -35px
+  overflow-x: scroll
+  padding-top: 22px
+  transform: translateY(-22px)
+  .contents-wrapper
+    background-color: $c-white
+    border: 1px solid $c-primary-lighter
+    border-radius: 0.5rem
+    height: 54px
+    display: flex
+    position: relative
+    &.active
+      border-color: $c-primary
+    .placeholder
+      position: absolute
+      left: 12px
+      bottom: 17px
+      .nio-p
+        font-size: 0.875rem
+        font-weight: 200
+    .input-elements-wrapper
+      margin-top: 12px
+      margin-left: 16px
+      position: relative
+      .input-elements
+        display: flex
+        justify-content: flex-start
+        flex-grow: 0
+        flex-shrink: 0
+        .input-element-wrapper
+          position: relative
+          input
+            font-family: monospace
+            color: $c-primary-darker
+            &:focus
+              outline: none
+            &:active
+              width: auto
+          .nio-button
+            position: absolute
+            top: -35px
 .outside-input-elements
   flex-grow: 2
+::v-deep .nio-pill-content
+  white-space: nowrap
 .nio-combobox
   +nio-combobox 

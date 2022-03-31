@@ -1,49 +1,52 @@
 <template lang="pug">
   .nio-combobox(
-    v-click-outside="handleClickOutside"
-    :class="{active: active}"
-    @click="handleClick"
   )
-    .placeholder(v-if="placeholder && !active && localModel.length === 1 && localModel[0] === ''")
-      .nio-p.text-primary-dark {{ placeholder }}
-    .input-elements-wrapper
-      .input-elements
-        .input-element-wrapper(
-          v-for="(element, index) of localModel"
-        )
-          template(v-if="isTextElement(element)")
-            input(
-              :ref="`nio-combobox-input-${index}`"
-              v-if="isTextElement(element)"
-              v-model="localModel[index]"
-              :style="{ width: `${Math.max(localModel[index].length, 1)}ch`}"
-              type="text"
-              @input="handleCusrsorChange($event, index)" 
-              @click="handleCusrsorChange($event, index)"
-              @keyup="handleCusrsorChange($event, index)"
-            )
-            v-menu(v-if="active && items && cursor.index === index")
-              template(v-slot:activator="{ on, attrs }")
-                NioButton(
-                  v-bind="attrs"
-                  v-on="on"
-                  :style="{ left: `${Math.max(cursor.position, 1) + 1}ch`}"
-                  iconName="utility-plus"
-                  normal-icon 
-                )
-              v-list
-                v-list-item(
-                  v-for="(item, index) in items"
-                  :key="index"
-                  @click="addTagElement(item)"
-                ) {{ item.label }}
-          template(v-else)
-            NioPill(
-              tag
-            ) {{ element.label }}
-    .outside-input-elements(@click="handleClickOutsideInputs")
-      //- Leave for debugging
-      //- .test index: {{cursor.index}} position: {{ cursor.position}} modelLength: {{ localModel.length}}
+    .contents-wrapper
+      .placeholder(
+        v-if="placeholder && !active && localModel.length === 1 && localModel[0] === ''"
+         :class="{active: active}"
+        v-click-outside="handleClickOutside"
+        @click="handleClick"
+      )
+        .nio-p.text-primary-dark {{ placeholder }}
+      .input-elements-wrapper
+        .input-elements
+          .input-element-wrapper(
+            v-for="(element, index) of localModel"
+          )
+            template(v-if="isTextElement(element)")
+              input(
+                :ref="`nio-combobox-input-${index}`"
+                v-if="isTextElement(element)"
+                v-model="localModel[index]"
+                :style="{ width: `${Math.max(localModel[index].length, 1)}ch`}"
+                type="text"
+                @input="handleCusrsorChange($event, index)" 
+                @click="handleCusrsorChange($event, index)"
+                @keyup="handleCusrsorChange($event, index)"
+              )
+              v-menu(v-if="active && items && cursor.index === index")
+                template(v-slot:activator="{ on, attrs }")
+                  NioButton(
+                    v-bind="attrs"
+                    v-on="on"
+                    :style="{ left: `${menuOffset}ch`}"
+                    iconName="utility-plus"
+                    normal-icon 
+                  )
+                v-list
+                  v-list-item(
+                    v-for="(item, index) in items"
+                    :key="index"
+                    @click="addTagElement(item)"
+                  ) {{ item.label }}
+            template(v-else)
+              NioPill(
+                tag
+              ) {{ element.label }}
+      .outside-input-elements(@click="handleClickOutsideInputs")
+        //- Leave for debugging
+        //- .test index: {{cursor.index}} position: {{ cursor.position}} modelLength: {{ localModel.length}}
 </template>
 
 <script>
@@ -71,6 +74,11 @@ export default {
     },
     active: false
   }),
+  computed: {
+    menuOffset() {
+      return Math.max((1.2 * this.cursor.position), 1) + 1
+    }
+  },
   watch: {
     localModel(val) {
       let result = ''

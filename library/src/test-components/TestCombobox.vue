@@ -2,12 +2,13 @@
   .test-combobox
     h6 Items:
     p {{ items}}
-    NioCombobox(
-      v-model="model"
-      :items="items"
-      placeholder="Type some text"
-      @computedValueChanged="updateValue($event)"
-    )
+    .wrapper
+      NioCombobox(
+        v-model="model"
+        :items="items"
+        placeholder="Type some text"
+        @computedValueChanged="updateValue($event)"
+      )
     h6 Computed value:
     p {{ computedValue }}
     h6 model
@@ -57,8 +58,10 @@ export default {
 <style lang="sass" scoped>
   .test-combobox
     padding: 24px 16px
+    .wrapper
+      height: 76px
+      outline: 1px solid black
     .nio-combobox
-      margin: 48px auto 0px auto
     h6
       margin-top: 48px
 </style>
