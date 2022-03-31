@@ -60,7 +60,7 @@ export default {
     padding: 24px 16px
     .wrapper
       height: 76px
-      outline: 1px solid black
+      // outline: 1px solid black
     .nio-combobox
     h6
       margin-top: 48px

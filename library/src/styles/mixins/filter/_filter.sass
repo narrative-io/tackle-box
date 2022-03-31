@@ -3,6 +3,9 @@
 =nio-filter
   &.filter-disabled
     border-bottom: 0.0625rem solid $c-primary-lighter
+    ::v-deep .nio-filter-body
+      opacity: 0.20
+      pointer-events: none
   .v-expansion-panel-header
     padding: 0rem
   &.filter-disabled .v-expansion-panel-header

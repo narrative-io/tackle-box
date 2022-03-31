@@ -6,7 +6,6 @@ const Single = {
   title: "Default",
   description: "Description",
 	value: "default",
-	disabled: true,
   options: [
     {
       label: `All filter values`,

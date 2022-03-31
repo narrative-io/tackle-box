@@ -2,6 +2,7 @@
   div
     h1 StringLimited
     NioFilterGroup(:filters="filters")
+    NioButton(@click="setDisabled") Set disabled
 </template>
 
 <script>
@@ -17,11 +18,13 @@ import IncludeExclude from './instances/IncludeExclude'
 import IncludeExcludeCustomText from './instances/IncludeExcludeCustomText'
 import Searchable from './instances/Searchable'
 import Join from './instances/Join'
+import NioButton from '../../../components/Button'
 
 export default {
   components: {
     NioFilterGroup,
-    NioFilter
+    NioFilter,
+    NioButton
   },
   data: () => ({
     activeFilterName: null,
@@ -41,7 +44,9 @@ export default {
     this.activeFilterName = this.filters[0].name
   },
   methods: {
-    
+    setDisabled() {
+      this.filters[0].disabled = true
+    }
   }
 };
 </script>
