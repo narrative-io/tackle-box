@@ -141,10 +141,21 @@
           :open-api-token="openApiToken"
           :open-api-base-url="openApiBaseUrl"
         )   
-    .display-row.display-table
-      .display-column
-        .nio-h4.text-primary-darker Delivery Cadence
-        .nio-p.text-primary-dark {{ makeCadence(subscription) }}
+    .split-row
+      .display-row.display-table
+        .display-column
+          .nio-h4.text-primary-darker Delivery Cadence
+          .nio-p.text-primary-dark {{ makeCadence(subscription) }}
+      .display-row.display-table.frequency
+        .display-column
+          .nio-h4.text-primary-darker Frequency Filter
+          .selected-filter-value 
+            NioIcon(
+              name="utility-check-circle"
+              color="#43B463"
+              size="14"
+            )
+            .text.nio-p.text-primary-darker {{ makeFrequencyFilter(subscription) }}
     .subscription-footer
       .subscription-actions(v-if="subscription.status !== 'archived'")
         NioButton(
@@ -240,7 +251,9 @@ export default {
       return `${numeral((microcents / 1000000) * 1000 / 100).format('$0.00')}`
     },
     makeFilterValue(filter) {
-      if (filter === 'include_only_if_not_null_filter') {
+      if (filter && filter.expressions && filter.expressions.length > 0) {
+        return 'Custom Spark SQL'
+      } else if (filter === 'include_only_if_not_null_filter') {
         return 'Optional Attribute'
       } else if (Object.keys(filter).length > 0) {
         return 'Custom'
@@ -281,6 +294,12 @@ export default {
         default:
           return 'Weekly'
       }
+    },
+    makeFrequencyFilter(subscription) {
+      if (subscription.details.data_rules && subscription.details.data_rules.frequency_filter) {
+        return "Custom"
+      } 
+      return "Include all values"
     },
     findExportedFields(subscription, attributes, type) {
       const results = []
