@@ -62,6 +62,7 @@ export default {
       height: 76px
       // outline: 1px solid black
     .nio-combobox
+      width: 400px
     h6
       margin-top: 48px
 </style>
