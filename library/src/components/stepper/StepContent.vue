@@ -38,7 +38,8 @@ export default {
     "isLastStep": { type: Boolean, required: false, default: false },
     "nextStepLabel": { type: String, required: true},
     "previousStepLabel": { type: String, required: true },
-    "finalStepLabel": { type: String, required: true }
+    "finalStepLabel": { type: String, required: true },
+    "loading": { type: Boolean, required: false, default: false }
   },
   methods: {
     previousStep() {

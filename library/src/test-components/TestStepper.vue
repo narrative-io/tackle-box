@@ -8,6 +8,7 @@
       @nextStep="nextStep"
       @previousStep="previousStep"
       @submit="submit"
+      :loading="loading"
     )
       NioStep(
         stepName="source test"
@@ -94,6 +95,7 @@ export default {
     steps: ['source test', 'match', 'destination test stuff', 'budget', 'payment', 'confirmation'],
     currentStep: 'source test',
     completedSteps: [],
+    loading: false,
     valid: {
       'source test': false,
       match: false,
@@ -120,6 +122,10 @@ export default {
       this.currentStep = this.steps[this.steps.indexOf(this.currentStep) - 1]
     },
     submit() {
+      this.loading = true
+      window.setTimeout(() => {
+        this.loading = false
+      }, 5000)
       console.log('submit')
     }
   }
