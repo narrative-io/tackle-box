@@ -16,7 +16,7 @@
       ) {{ nextStepLabel }}
     .nio-step-content-actions.final-step(v-if="isLastStep")
       NioButton(
-        :disabled="!valid"
+        :disabled="!valid || loading"
         normal-primary 
         @click="submit"
       ) {{ finalStepLabel }}

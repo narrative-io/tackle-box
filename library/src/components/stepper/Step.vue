@@ -29,6 +29,7 @@
       @previousStep="previousStep"
       @nextStep="nextStep"
       @submit="submit"
+      :loading="loading"
     ) 
       template(
         v-for="(index, name) in $scopedSlots" 
@@ -98,6 +99,9 @@ export default {
     },
     stepClass() {
       return `nio-step-name-${toKebabCase(this.stepName)}`
+    },
+    loading() {
+      return this.$parent.$parent.loading
     }
   },
   mounted() {
