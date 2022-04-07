@@ -122,10 +122,6 @@ export default {
       this.currentStep = this.steps[this.steps.indexOf(this.currentStep) - 1]
     },
     submit() {
-      this.loading = true
-      window.setTimeout(() => {
-        this.loading = false
-      }, 5000)
       console.log('submit')
     }
   }
