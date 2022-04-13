@@ -25,6 +25,7 @@ export default {
   components: { NioFilter },
   props: {
     "filters": { type: Array, required: true },
+    "panels": {type: Number}
   },
   data: () => ({
     model: null
@@ -41,6 +42,7 @@ export default {
   },
   mounted() {
     this.$emit('validChanged', this.valid)
+    this.model = this.panels
   }
 }
 </script>

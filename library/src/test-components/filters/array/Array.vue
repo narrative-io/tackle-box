@@ -2,7 +2,7 @@
 <template lang="pug">
   div
     h1 Array
-    NioFilterGroup(:filters="filters")
+    NioFilterGroup(:filters="filters", :panels="0")
 </template>
 
 <script>
