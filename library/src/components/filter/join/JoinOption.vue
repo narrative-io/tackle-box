@@ -4,7 +4,7 @@
       NioRadioGroup(v-model="joinOption.value.joinType")
         NioRadioButton(
           value="include" 
-          label="Inculde"
+          label="Include"
         )
         NioRadioButton(
           value="exclude" 
