@@ -137,7 +137,8 @@ export default {
     "nest": { type: Number, required: true},
     "hideIndicators": { type: Boolean, required: false, default: false },
     "showExportedOnly": { type: Boolean, required: false, default: false },
-    "isArrayDescendant": { type: Boolean, required: false, default: false } // temparary fix to disable controls on all descendants of array properties until filters are supported in the backend
+    "isArrayDescendant": { type: Boolean, required: false, default: false }, // temparary fix to disable controls on all descendants of array properties until filters are supported in the backend
+    "hideOptionalAttributes": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     openPanels: [],

@@ -8,7 +8,7 @@
         v-for="(attribute, index) of computeAttributes"
         :key="index"
       )
-        template(v-slot:header) 
+        template(v-slot:header)
           .header-content
             .header-summary
               .nio-slat-image
@@ -74,6 +74,7 @@
               :hide-indicators="hideIndicators || !attributes ? true : false"
               :show-exportedOnly="!attributes || showExportedOnly"
               :is-array-descendant="Boolean(attribute.items)"
+              :hide-optional-attributes="hideOptionalAttributes"
             )
           .property-details(
             v-else 
@@ -114,7 +115,8 @@ export default {
     "columnSets": { type: Array, required: false },
     "disableInteractions": { type: Boolean, required: false, default: false },
     "hideIndicators": { type: Boolean, required: false, default: false },
-    "showExportedOnly": { type: Boolean, required: false, default: false }
+    "showExportedOnly": { type: Boolean, required: false, default: false },
+    "hideOptionalAttributes": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     openPanels: []
