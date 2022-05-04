@@ -118,6 +118,11 @@
                             v-for="value of properties[propertyName].enum"
                           ) {{ value }}
                       .nio-p.text-primary-dark(v-else) Any value   
+          .show-optional-properties-wrapper(v-if="optionalPropertiesHidden")
+            .show-optional-properties(
+              @click="optionalPropertiesHidden = false"
+            ) 
+              .nio-p.text-primary-darker.nio-bold Show Optional Properties
 </template>
 
 <script>

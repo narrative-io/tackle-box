@@ -7,7 +7,24 @@
   width: 100%
   padding-top: 0rem
   .v-expansion-panel.hidden
-    background-color: red
+    display: none
+  .show-optional-properties-wrapper
+    display: flex
+    padding-top: 24px
+    padding-bottom: 24px
+    width: 100%
+    border-top: 1px solid $c-primary-lighter
+    .show-optional-properties
+      height: 48px
+      background-color: $c-canvas-darker
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 100%
+
+      &:hover
+        cursor: pointer
+        opacity: 0.8
   .nest-spacer
     width: 1.5rem
     flex-shrink: 0
