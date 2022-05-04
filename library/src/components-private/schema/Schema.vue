@@ -74,7 +74,8 @@
               :hide-indicators="hideIndicators || !attributes ? true : false"
               :show-exportedOnly="!attributes || showExportedOnly"
               :is-array-descendant="Boolean(attribute.items)"
-              :hide-optional-attributes="hideOptionalAttributes"
+              :hide-optional-properties="hideOptionalProperties"
+              :required-property-names="attribute.required"
             )
           .property-details(
             v-else 
@@ -116,7 +117,7 @@ export default {
     "disableInteractions": { type: Boolean, required: false, default: false },
     "hideIndicators": { type: Boolean, required: false, default: false },
     "showExportedOnly": { type: Boolean, required: false, default: false },
-    "hideOptionalAttributes": { type: Boolean, required: false, default: false }
+    "hideOptionalProperties": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     openPanels: []

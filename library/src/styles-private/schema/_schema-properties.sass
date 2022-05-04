@@ -4,19 +4,21 @@
 @import "./_schema-property-details"
 
 =nio-schema-properties
-	width: 100%
-	padding-top: 0rem
-	.nest-spacer
-		width: 1.5rem
-		flex-shrink: 0
-	.nio-slat-title.is-array-items
-		color: $c-primary-light
-	.schema-details
-		+nio-schema-property-details
-	.display-row
-		+nio-display-row
-	.property-details
-		+nio-schema-property-details
+  width: 100%
+  padding-top: 0rem
+  .v-expansion-panel.hidden
+    background-color: red
+  .nest-spacer
+    width: 1.5rem
+    flex-shrink: 0
+  .nio-slat-title.is-array-items
+    color: $c-primary-light
+  .schema-details
+    +nio-schema-property-details
+  .display-row
+    +nio-display-row
+  .property-details
+    +nio-schema-property-details
 
 .nio-schema-properties
-	+nio-schema-properties
+  +nio-schema-properties

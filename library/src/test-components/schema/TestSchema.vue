@@ -12,6 +12,7 @@
     
     NioSchema(
       :attributes="attributes"
+      :hide-optional-properties="true"
     )
     NioSchema(
       :attributes="attributes"

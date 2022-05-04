@@ -9,6 +9,7 @@
           NioExpansionPanel(
             v-for="(propertyName, index) of computedProperties"
             :key="index"
+            :class="{ hidden: isHidden(propertyName) }"
           )
             template(v-slot:header) 
               .header-content
@@ -138,11 +139,13 @@ export default {
     "hideIndicators": { type: Boolean, required: false, default: false },
     "showExportedOnly": { type: Boolean, required: false, default: false },
     "isArrayDescendant": { type: Boolean, required: false, default: false }, // temparary fix to disable controls on all descendants of array properties until filters are supported in the backend
-    "hideOptionalAttributes": { type: Boolean, required: false, default: false }
+    "hideOptionalProperties": { type: Boolean, required: false, default: false },
+    "requiredPropertyNames": { type: Array, required: false }
   },
   data: () => ({
     openPanels: [],
-    alwaysTrue: true
+    alwaysTrue: true,
+    optionalPropertiesHidden: false
   }),
   computed: {
     slatWidth() {
@@ -160,6 +163,11 @@ export default {
       } else {
         return Object.keys(this.properties)
       }
+    }
+  },
+  mounted() {
+    if (this.hideOptionalProperties) {
+      this.optionalPropertiesHidden = true
     }
   },
   methods: {
@@ -181,6 +189,12 @@ export default {
     },
     dataTypeIconName(dataType) {
       return getDataTypeIconName(dataType)
+    },
+    isHidden(propertyName) {
+      if (this.hideOptionalProperties && this.optionalPropertiesHidden && this.requiredPropertyNames) {
+        return !this.requiredPropertyNames.includes(propertyName)
+      }
+      return false
     }
   }
 }
