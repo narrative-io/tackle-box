@@ -140,7 +140,7 @@ export default {
   props: {
     "properties": { type: Object, required: false, default: null},
     "disableInteractions": { type: Boolean, required: false, default: false },
-    "nest": { type: Number, required: true},
+    "nest": { type: Number, required: true },
     "hideIndicators": { type: Boolean, required: false, default: false },
     "showExportedOnly": { type: Boolean, required: false, default: false },
     "isArrayDescendant": { type: Boolean, required: false, default: false }, // temparary fix to disable controls on all descendants of array properties until filters are supported in the backend
@@ -157,6 +157,8 @@ export default {
       return `${ 500 - 24 * this.nest }px`
     },
     computedProperties() {
+      console.log(this.properties)
+      console.log(this.requiredPropertyNames)
       let keys
       if (this.hideOptionalProperties && this.requiredPropertyNames && this.requiredPropertyNames.length > 0) {
         const tempKeys = Object.keys(this.properties)
@@ -182,6 +184,9 @@ export default {
     }
   },
   mounted() {
+    console.log("properties", this.properties)
+    console.log("hideOptionalProperties", this.hideOptionalProperties)
+    console.log("requiredPropertyNames", this.requiredPropertyNames)
     if (this.hideOptionalProperties) {
       this.optionalPropertiesHidden = true
     }

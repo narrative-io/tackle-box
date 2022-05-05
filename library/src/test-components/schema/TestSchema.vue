@@ -9,15 +9,21 @@
     //-   :hideIndicators="true"
     //-   :showExportedOnly="true"
     //- )
-    
-    NioSchema(
-      :attributes="attributes"
+    NioSchemaProperties(
+      v-if="attributes[0]"
+      :properties="attributes[0].properties"
       :hide-optional-properties="true"
+      :required-property-names="attributes[0].required"
+      :nest="1"
     )
-    NioSchema(
-      :attributes="attributes"
-      :disableInteractions="true"
-    )
+    //- NioSchema(
+    //-   :attributes="attributes"
+    //-   :hide-optional-properties="true"
+    //- )
+    //- NioSchema(
+    //-   :attributes="attributes"
+    //-   :disableInteractions="true"
+    //- )
     .schema-paths
       NioPrettySchemaPath(
         v-for="path of testSchemaPaths"
@@ -28,6 +34,7 @@
 <script>
 
 import NioSchema from '../../components-private/schema/Schema'
+import NioSchemaProperties from '../../components-private/schema/SchemaProperties'
 import NioPrettySchemaPath from '../../components-private/schema/PrettySchemaPath'
 import { AllAttributes } from '../../modules/app/schema/tests/testAttributes'
 import { replacePropertyRefs } from '../../modules/app/schema/attributeModule'
@@ -35,7 +42,8 @@ import { replacePropertyRefs } from '../../modules/app/schema/attributeModule'
 export default {
   components: {
     NioSchema,
-    NioPrettySchemaPath
+    NioPrettySchemaPath,
+    NioSchemaProperties
   },
   data: () => ({
     testSchemaPaths: [
