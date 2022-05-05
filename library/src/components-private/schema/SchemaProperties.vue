@@ -157,8 +157,6 @@ export default {
       return `${ 500 - 24 * this.nest }px`
     },
     computedProperties() {
-      console.log(this.properties)
-      console.log(this.requiredPropertyNames)
       let keys
       if (this.hideOptionalProperties && this.requiredPropertyNames && this.requiredPropertyNames.length > 0) {
         const tempKeys = Object.keys(this.properties)
@@ -168,7 +166,6 @@ export default {
       } else {
         keys = Object.keys(this.properties)
       }
-
 
       if (this.showExportedOnly) {
         const exportable = []
@@ -184,9 +181,6 @@ export default {
     }
   },
   mounted() {
-    console.log("properties", this.properties)
-    console.log("hideOptionalProperties", this.hideOptionalProperties)
-    console.log("requiredPropertyNames", this.requiredPropertyNames)
     if (this.hideOptionalProperties) {
       this.optionalPropertiesHidden = true
     }

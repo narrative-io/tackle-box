@@ -192,16 +192,16 @@ const OptionalRequiredFlat = {
 }
 
 const AllAttributes = [
-  // Primitive,
-  // ArrayItemsPrimitive,
-  // ObjectChildPrimitive,
-  // ObjectChildArray,
-  // ObjectChildObject,
-  // ArrayChildObject,
-  // ArrayChildArray,
-  // ObjectObjectSiblings,
-  // ObjectArraySiblings,
-  // ArrayArraySiblings,
+  Primitive,
+  ArrayItemsPrimitive,
+  ObjectChildPrimitive,
+  ObjectChildArray,
+  ObjectChildObject,
+  ArrayChildObject,
+  ArrayChildArray,
+  ObjectObjectSiblings,
+  ObjectArraySiblings,
+  ArrayArraySiblings,
   OptionalRequiredFlat
 ]
 
