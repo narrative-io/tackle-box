@@ -157,16 +157,27 @@ export default {
       return `${ 500 - 24 * this.nest }px`
     },
     computedProperties() {
+      let keys
+      if (this.hideOptionalProperties && this.requiredPropertyNames && this.requiredPropertyNames.length > 0) {
+        const tempKeys = Object.keys(this.properties)
+        const requiredKeys = tempKeys.filter(key => this.requiredPropertyNames.includes(key))
+        const optionalKeys = tempKeys.filter(key => !this.requiredPropertyNames.includes(key))
+        keys = [...requiredKeys, ...optionalKeys]
+      } else {
+        keys = Object.keys(this.properties)
+      }
+
+
       if (this.showExportedOnly) {
         const exportable = []
-        Object.keys(this.properties).map(key => {
+        keys.map(key => {
           if (isExportable(this.properties[key])) {
             exportable.push(key)
           }
         })
         return exportable
       } else {
-        return Object.keys(this.properties)
+        return keys
       }
     }
   },
