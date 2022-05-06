@@ -122,7 +122,7 @@
             .show-optional-properties(
               @click="optionalPropertiesHidden = false"
             ) 
-              .nio-p.text-primary-darker.nio-bold Show Optional Properties
+              .nio-p.text-primary-darker.nio-bold Additional properties are available for this attribute. Would you like to add these?
 </template>
 
 <script>
@@ -206,7 +206,7 @@ export default {
       return getDataTypeIconName(dataType)
     },
     isHidden(propertyName) {
-      if (this.hideOptionalProperties && this.optionalPropertiesHidden && this.requiredPropertyNames) {
+      if (this.requiredPropertyNames && this.requiredPropertyNames.length > 0 && this.hideOptionalProperties && this.optionalPropertiesHidden && this.requiredPropertyNames) {
         return !this.requiredPropertyNames.includes(propertyName)
       }
       return false

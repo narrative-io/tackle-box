@@ -184,9 +184,9 @@ const OptionalRequiredFlat = {
     }
   },
   required: [
-    "requiredAttribute1",
-    "requiredAttribute2",
-    "requiredAttribute3",
+    // "requiredAttribute1",
+    // "requiredAttribute2",
+    // "requiredAttribute3",
     "requiredAttribute4"
   ]
 }
