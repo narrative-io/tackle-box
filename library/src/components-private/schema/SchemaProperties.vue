@@ -118,7 +118,7 @@
                             v-for="value of properties[propertyName].enum"
                           ) {{ value }}
                       .nio-p.text-primary-dark(v-else) Any value   
-          .show-optional-properties-wrapper(v-if="optionalPropertiesHidden")
+          .show-optional-properties-wrapper(v-if="optionalPropertiesHidden && showHiddenPropertyControls")
             .show-optional-properties(
               @click="optionalPropertiesHidden = false"
             ) 
@@ -178,6 +178,9 @@ export default {
       } else {
         return keys
       }
+    },
+    showHiddenPropertyControls() {
+      return this.requiredPropertyNames && this.requiredPropertyNames.length > 0
     }
   },
   mounted() {
@@ -206,7 +209,7 @@ export default {
       return getDataTypeIconName(dataType)
     },
     isHidden(propertyName) {
-      if (this.requiredPropertyNames && this.requiredPropertyNames.length > 0 && this.hideOptionalProperties && this.optionalPropertiesHidden && this.requiredPropertyNames) {
+      if (this.requiredPropertyNames && this.requiredPropertyNames.length > 0 && this.hideOptionalProperties && this.optionalPropertiesHidden) {
         return !this.requiredPropertyNames.includes(propertyName)
       }
       return false
