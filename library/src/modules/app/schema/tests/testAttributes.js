@@ -151,6 +151,46 @@ const ArrayArraySiblings = {
   }
 }
 
+const OptionalRequiredFlat = {
+  description: "To test hiding optional properties by default",
+  display_name: "Test Hiding Optional Properties",
+  id: 10,
+  name: "testHidingOptionalProperties",
+  type: "object",
+  properties: {
+    requiredAttribute1: {
+      type: "string"
+    },
+    requiredAttribute2: {
+      type: "string"
+    },
+    optionalAttribute1: {
+      type: "string"
+    },
+    optionalAttribute2: {
+      type: "string"
+    },
+    requiredAttribute3: {
+      type: "string"
+    },
+    optionalAttribute3: {
+      type: "string"
+    },
+    optionalAttribute4: {
+      type: "string"
+    },
+    requiredAttribute4: {
+      type: "string"
+    }
+  },
+  required: [
+    // "requiredAttribute1",
+    // "requiredAttribute2",
+    // "requiredAttribute3",
+    "requiredAttribute4"
+  ]
+}
+
 const AllAttributes = [
   Primitive,
   ArrayItemsPrimitive,
@@ -161,7 +201,8 @@ const AllAttributes = [
   ArrayChildArray,
   ObjectObjectSiblings,
   ObjectArraySiblings,
-  ArrayArraySiblings
+  ArrayArraySiblings,
+  OptionalRequiredFlat
 ]
 
 export {
@@ -175,5 +216,6 @@ export {
   ObjectObjectSiblings,
   ObjectArraySiblings,
   ArrayArraySiblings,
-  AllAttributes
+  AllAttributes,
+  OptionalRequiredFlat
 }

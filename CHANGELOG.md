@@ -141,3 +141,4 @@ Added rules option to **NioSelect**
 
 v0.4.7
 Added ability to set filter to disabled
+Added optional **hideOptionalProperties** prop to **NioSchemaProperties**

@@ -29,11 +29,13 @@ let getAttributeFromPath = (path, attribute) => {
   }
 }
 
-let setSelectionRecursively = (property, selectionType, value) => {
+let setSelectionRecursively = (property, selectionType, value, excludeOptional, requiredPropertyNames) => {
   property[selectionType] = value
   if (property.properties) {
     Object.keys(property.properties).forEach(childPropertyName => {
-      setSelectionRecursively(property.properties[childPropertyName], selectionType, value)
+      if (!value || !(excludeOptional && requiredPropertyNames && !requiredPropertyNames.includes(childPropertyName))) {
+        setSelectionRecursively(property.properties[childPropertyName], selectionType, value)
+      } 
     })
   } else if (property.items) {
     setSelectionRecursively(property.items, selectionType, value)
