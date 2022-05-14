@@ -1,7 +1,9 @@
-let getForecast = async (params, openApi, forecastType) => {
+import axios from 'axios'
+
+let getForecast = async (params, forecastType, openApiBaseUrl, requestHeaders) => {
   const endTime = Number(new Date()) + 6000000 // 60 minute timeout
   const payload = { details: params }
-  const result = await fetchForecast(payload, forecastType, endTime, openApi)
+  const result = await fetchForecast(payload, forecastType, endTime, openApiBaseUrl, requestHeaders)
   return result
 }
 
@@ -9,13 +11,13 @@ let timeout = (ms) => {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-let fetchForecast = async (payload, endpoint, endTime, openApi) => {
+let fetchForecast = async (payload, endpoint, endTime, openApiBaseUrl, requestHeaders) => {
 	try {
 		let response
 		if (payload.details) {
-			response = await openApi.post(`data-shops/subscriptions/${endpoint}`, payload)			
+			response = await axios.post(`${openApiBaseUrl}/data-shops/subscriptions/${endpoint}`, payload, requestHeaders)			
 		} else {
-			response = await openApi.get(`data-shops/subscriptions/${endpoint}/${payload.id}`)
+			response = await axios.get(`${openApiBaseUrl}data-shops/subscriptions/${endpoint}/${payload.id}`, requestHeaders)
 		}
 		if (Number(new Date()) < endTime && response && (response.data === null || (response.status === 404))) { // TODO remove once 404 issue is fixed
 			await timeout(1000)
