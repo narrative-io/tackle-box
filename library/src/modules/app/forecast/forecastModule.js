@@ -17,11 +17,11 @@ let fetchForecast = async (payload, endpoint, endTime, openApiBaseUrl, requestHe
 		if (payload.details) {
 			response = await axios.post(`${openApiBaseUrl}/data-shops/subscriptions/${endpoint}`, payload, requestHeaders)			
 		} else {
-			response = await axios.get(`${openApiBaseUrl}data-shops/subscriptions/${endpoint}/${payload.id}`, requestHeaders)
+			response = await axios.get(`${openApiBaseUrl}/data-shops/subscriptions/${endpoint}/${payload.id}`, requestHeaders)
 		}
 		if (Number(new Date()) < endTime && response && (response.data === null || (response.status === 404))) { // TODO remove once 404 issue is fixed
 			await timeout(1000)
-			return await fetchForecast({ id: payload.id }, endpoint, endTime, openApi)
+			return await fetchForecast({ id: payload.id }, endpoint, endTime, openApiBaseUrl, requestHeaders)
 		} else if (!response || !response.data) {
 			return Promise.resolve({
 				state: 'failed'
@@ -31,7 +31,7 @@ let fetchForecast = async (payload, endpoint, endTime, openApiBaseUrl, requestHe
 		} else {
 			if (Number(new Date()) < endTime && (response.data.state == 'pending' || response.data.state === 'running')) {
 				await timeout(1000)
-				return await fetchForecast({ id: response.data.id }, endpoint, endTime, openApi)
+				return await fetchForecast({ id: response.data.id }, endpoint, endTime, openApiBaseUrl, requestHeaders)
 			} else {
 				return Promise.resolve({
 					state: 'failed'
