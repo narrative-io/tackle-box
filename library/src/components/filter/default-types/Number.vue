@@ -111,7 +111,7 @@ export default {
           this.setValid(false)
           this.minNotLossThanMax = false
         } else if (this.filter.customOption.value[0] && this.filter.customOption.value[1]) {
-          if (this.filter.customOption.value[0] >= this.filter.customOption.value[1]) {
+          if (this.filter.customOption.value[0] >  this.filter.customOption.value[1]) {
             this.minNotLossThanMax = true
             this.setValid(false)
           } else {
