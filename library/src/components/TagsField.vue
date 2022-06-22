@@ -3,6 +3,7 @@
     v-combobox(
       ref="nio-tags-field-ref"
       v-model="tempModel"
+      :search-input.sync="search"
       v-bind="$attrs"
       v-on="$listeners"
       :label="label"
@@ -11,7 +12,6 @@
       flat
       multiple
       @input="updateModel($event)"
-      @paste="onPaste"
     )
       template(v-slot:append v-if="items")
         svg(style="width:24px;height:24px" viewBox="0 0 24 24")
@@ -45,7 +45,6 @@
 import NioPill from './Pill'
 import { makeRandomId } from '@/modules/helpers'
 import { getThemeColor } from '@/modules/app/theme/theme'
-import numeral from 'numeral'
 
 export default {
     name: 'nio-tags-field',
@@ -62,7 +61,8 @@ export default {
       selectionsVisible: null,
       tempModel: [],
       integerError: false,
-      floatError: false
+      floatError: false,
+      search: null
     }),
     model: {
       prop: "model",
@@ -153,17 +153,8 @@ export default {
           })
         })
       },
-      onPaste(e) { 
-          function unique(value, index, self) {
-            return self.indexOf(value) === index;
-          }
-          var clipboardData, pastedData;
-          e.stopPropagation();
-          e.preventDefault();
-          clipboardData = e.clipboardData || window.clipboardData;
-          pastedData = clipboardData.getData('Text');
-          const splitValue = pastedData.split(',').map(val => val.trim())
-          this.updateModel([...this.tempModel, ...splitValue].filter(unique))
+      unique(value, index, self) {
+        return self.indexOf(value) === index;
       },
       clear(index) {
         this.tempModel.splice(index, 1)
