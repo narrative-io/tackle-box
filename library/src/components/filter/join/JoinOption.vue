@@ -1,7 +1,9 @@
 <template lang="pug">
   .nio-filter-join-option
-    .join-type
-      NioRadioGroup(v-model="joinOption.value.joinType")
+    .join-type(v-if="!(selectedDatasetObj && selectedDatasetObj.format === 'geometry')")
+      NioRadioGroup(
+        v-model="joinOption.value.joinType"
+      )
         NioRadioButton(
           value="include" 
           label="Include"
@@ -9,7 +11,14 @@
         NioRadioButton(
           value="exclude" 
           label="Exclude"
+          :disabled="selectedDatasetObj && selectedDatasetObj.format === 'geometry'"
         )
+    .geometry-join-type(v-if="selectedDatasetObj && selectedDatasetObj.format === 'geometry'")
+      NioSelect(
+        v-model="joinOption.value.geometryType"
+        :items="geometryTypes"
+        label="Geometry join type"
+      )
     NioDivider(horizontal-solo)
     .select-dataset
       NioSelect(
@@ -42,6 +51,26 @@ export default {
   components: { NioSelect, NioRadioGroup, NioRadioButton, NioDivider, NioAlert },
   props: {
     "joinOption": { type: Object, required: true }
+  },
+  data: () => ({
+    geometryTypes: ['Intersects', 'Contains'],
+  }),
+  computed: {
+    selectedDatasetObj() {
+      return this.joinOption.config.datasets.find(dataset => dataset.id === this.joinOption.value.selectedDataset)
+    }
+  },
+  watch: {
+    joinOption: {
+      deep: true,
+      handler() {
+        if (this.selectedDatasetObj) {
+          if (this.selectedDatasetObj.format === 'geometry') {
+            this.joinOption.value.joinType === 'inclusion'
+          }
+        }
+      }
+    }
   },
   mounted() {
     if (!this.joinOption.value.selectedDataset) {

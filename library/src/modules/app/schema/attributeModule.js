@@ -136,13 +136,20 @@ let getReadableType = (property) => {
       return 'Boolean'
     case 'array':
       return 'Array'
+    case 'binary':
+      switch (property.format) {
+        case 'geometry':
+          return 'Location Geometry'      
+        default:
+          return 'Binary Data'
+      }
     default:
       return null
   }
 } 
 
-let getDataTypeIconName = (dataType) => {
-  switch (dataType) {
+let getDataTypeIconName = (property) => {
+  switch (property.type) {
     case 'string':
       return 'utility-font'
     case 'object':
@@ -157,6 +164,13 @@ let getDataTypeIconName = (dataType) => {
       return 'utility-clock'
     case 'boolean':
       return 'utility-switch'
+    case 'binary':
+      switch (property.format) {
+        case 'geometry':
+          return 'utility-location-arrow'      
+        default:
+          return 'utility-location-arrow'      
+      }
     default:
       return 'utility-font'
   }
@@ -236,76 +250,82 @@ let hasExportableChild = (attribute) => {
 }
 
 let getJoinOptionsByPath = (path, parentAttribute, datasets) => {
-	const result = {}
-	const targetProperty = getAttributeFromPath(path, parentAttribute)
-	const pathCopy = deepCopy(path)
-	pathCopy.shift()
-	let stringPath = makeDotDelimitedPropertyPath(pathCopy)
-	if (targetProperty.is_join_key) {
-		if (pathCopy.includes('items') && pathCopy.lastIndexOf('items') !== pathCopy.length - 1) { // there's an array somewhere in the path and it's not the last path element
-			const arrayPath = deepCopy(pathCopy)
-			arrayPath.length = pathCopy.lastIndexOf('items') + 1 // remove everything from items to the end of the path
-			const arrayItemsAttribute = getAttributeFromPath(arrayPath, parentAttribute)
-			if (arrayItemsAttribute.id || Object.keys(arrayItemsAttribute).includes('id')) { // if it's a ref'd attribute, which it must be since we can't specify paths nested inside an array
-				arrayPath.pop()
-				result.parentAttribute = {
-					attributeId: parentAttribute.id,
-					path: `${parentAttribute.name}.${makeDotDelimitedPropertyPath(arrayPath)}`
-				}
-				const arrayChildrenPath = makeDotDelimitedPropertyPath(deepCopy(pathCopy).filter((value, index, arr) => index > pathCopy.lastIndexOf('items'))) // get the tail end of the path after array.items
-				result.attributeId = arrayItemsAttribute.id
-				result.field = `${arrayItemsAttribute.name}.${arrayChildrenPath}`
-				result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === result.attributeId && hasPropertyMappingForPath(mapping, arrayChildrenPath)))		
-			}			
-		} else if (!targetProperty.type !== 'object' && targetProperty.type !== 'array') { // if it's a primitive and is_join_key = true, return all datasets that have mappings to parentAttribute and path
-			result.attributeId = parentAttribute.id
-			if (stringPath.length === 0) {
-				result.field = `${parentAttribute.name}`
-				result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id))
-			} else {
-				result.field = `${parentAttribute.name}.${stringPath}`
-				result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id && hasPropertyMappingForPath(mapping, stringPath)))		
-			}
-		} 
-	}
-	if (result.datasets && result.datasets.length > 0) {
-		return result
-	}
-	return null
+  const result = {}
+  const targetProperty = getAttributeFromPath(path, parentAttribute)
+  const pathCopy = deepCopy(path)
+  pathCopy.shift()
+  let stringPath = makeDotDelimitedPropertyPath(pathCopy)
+  if (targetProperty.is_join_key) {
+    if (pathCopy.includes('items') && pathCopy.lastIndexOf('items') !== pathCopy.length - 1) { // there's an array somewhere in the path and it's not the last path element
+      const arrayPath = deepCopy(pathCopy)
+      arrayPath.length = pathCopy.lastIndexOf('items') + 1 // remove everything from items to the end of the path
+      const arrayItemsAttribute = getAttributeFromPath(arrayPath, parentAttribute)
+      if (arrayItemsAttribute.id || Object.keys(arrayItemsAttribute).includes('id')) { // if it's a ref'd attribute, which it must be since we can't specify paths nested inside an array
+        arrayPath.pop()
+        result.parentAttribute = {
+          attributeId: parentAttribute.id,
+          path: `${parentAttribute.name}.${makeDotDelimitedPropertyPath(arrayPath)}`
+        }
+        const arrayChildrenPath = makeDotDelimitedPropertyPath(deepCopy(pathCopy).filter((value, index, arr) => index > pathCopy.lastIndexOf('items'))) // get the tail end of the path after array.items
+        result.attributeId = arrayItemsAttribute.id
+        result.field = `${arrayItemsAttribute.name}.${arrayChildrenPath}`
+        result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === result.attributeId && hasPropertyMappingForPath(mapping, arrayChildrenPath)))		
+      }			
+    } else if (!targetProperty.type !== 'object' && targetProperty.type !== 'array') { // if it's a primitive and is_join_key = true, return all datasets that have mappings to parentAttribute and path
+      result.attributeId = parentAttribute.id
+      if (stringPath.length === 0) {
+        result.field = `${parentAttribute.name}`
+        result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id))
+      } else {
+        result.field = `${parentAttribute.name}.${stringPath}`
+        result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id && hasPropertyMappingForPath(mapping, stringPath, targetProperty)))		
+      }
+    } 
+  }
+  if (result.datasets && result.datasets.length > 0) {
+    return result
+  }
+  return null
 }
 
-function hasPropertyMappingForPath(mapping, stringPath) {
-	const mappingToPath = mapping.mapping.property_mappings.find(propertyMapping => propertyMapping.path === stringPath)
-	return mappingToPath !== undefined
+function hasPropertyMappingForPath(mapping, stringPath, targetProperty) {
+  const mappingToPath = mapping.mapping.property_mappings.find(propertyMapping => propertyMapping.path === stringPath)
+  if (targetProperty && targetProperty.type === 'binary' ) {
+    if (targetProperty.format === 'geometry') {
+      return mappingToPath !== undefined
+    }
+    return false // other formats not supported at this time, adjust accordingly here
+  }
+  return mappingToPath !== undefined
 }
 
 function makeDotDelimitedPropertyPath(path) {
-	const pathCopy = deepCopy(path)
-	let stringPath = ''
-	pathCopy.filter(el => el.length).forEach((el, index) => {
-		if (index > 0) {
-			stringPath += '.'
-		}
-		stringPath += el
-	})
-	return stringPath
+  const pathCopy = deepCopy(path)
+  let stringPath = ''
+  pathCopy.filter(el => el.length).forEach((el, index) => {
+    if (index > 0) {
+      stringPath += '.'
+    }
+    stringPath += el
+  })
+  return stringPath
 }
 
 function areSamePaths(path1, path2) {
-	if (path1.length !== path2.length) {
-		return false
-	}
-	return path1.filter((element1, index) => {
-		const element2 = path2[index]
-		if (element2) {
-			if (index === 0) {
-				return element1.id === element2.id
-			} else {
-				return element1 === element2
-			}
-		}
-		return false
-	}).length === path1.length
+  if (path1.length !== path2.length) {
+    return false
+  }
+  return path1.filter((element1, index) => {
+    const element2 = path2[index]
+    if (element2) {
+      if (index === 0) {
+        return element1.id === element2.id
+      } else {
+        return element1 === element2
+      }
+    }
+    return false
+  }).length === path1.length
 }
 
 export {
@@ -318,8 +338,8 @@ export {
   replacePropertyRefs,
   makeSelected,
   makeSelectedFromSchemaPreset,
-	isExportable,
-	getJoinOptionsByPath,
-	makeDotDelimitedPropertyPath,
-	areSamePaths
+  isExportable,
+  getJoinOptionsByPath,
+  makeDotDelimitedPropertyPath,
+  areSamePaths
 }

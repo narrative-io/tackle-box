@@ -74,6 +74,7 @@
       NioIcon(name="utility-brackets")
       NioIcon(name="utility-archive")
       NioIcon(name="utility-ellipsis-vertical")
+      NioIcon(name="utility-location-arrow")
 </template>
 
 <script>

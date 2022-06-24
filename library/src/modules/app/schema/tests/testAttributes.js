@@ -162,7 +162,8 @@ const OptionalRequiredFlat = {
       type: "string"
     },
     requiredAttribute2: {
-      type: "string"
+      type: "binary",
+      format: "geometry"     
     },
     optionalAttribute1: {
       type: "string"
@@ -191,6 +192,16 @@ const OptionalRequiredFlat = {
   ]
 }
 
+const BinaryPrimitive = {
+  description: "Binary Primitive Property",
+  display_name: "Binary Primitive Property",
+  id: 10,
+  name: "binaryPrimitive",
+  type: "binary",
+  format: "geometry"
+}
+
+
 const AllAttributes = [
   Primitive,
   ArrayItemsPrimitive,
@@ -202,7 +213,8 @@ const AllAttributes = [
   ObjectObjectSiblings,
   ObjectArraySiblings,
   ArrayArraySiblings,
-  OptionalRequiredFlat
+  OptionalRequiredFlat,
+  BinaryPrimitive
 ]
 
 export {
@@ -217,5 +229,6 @@ export {
   ObjectArraySiblings,
   ArrayArraySiblings,
   AllAttributes,
-  OptionalRequiredFlat
+  OptionalRequiredFlat,
+  BinaryPrimitive
 }

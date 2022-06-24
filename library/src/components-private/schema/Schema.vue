@@ -25,7 +25,7 @@
                       v-on="on"
                     )
                       NioIcon(
-                        :name="dataTypeIconName(attribute.type)"
+                        :name="dataTypeIconName(attribute)"
                         :size="24"
                         color="#AEB9E8"
                       )
@@ -160,8 +160,8 @@ export default {
     getPropertyType(property) {
       return getReadableType(property)
     },
-    dataTypeIconName(dataType) {
-      return getDataTypeIconName(dataType)
+    dataTypeIconName(property) {
+      return getDataTypeIconName(property)
     },
     updateRootPayload(property, selectionType, value) {
       if (selectionType === 'deliverable') {
