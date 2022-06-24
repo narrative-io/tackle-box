@@ -35,7 +35,8 @@ const BinaryGeometryJoin = {
 		},
 		value: {
 			joinType: 'include',
-			selectedDataset: null
+			selectedDataset: null,
+      geometryType: 'Intersects'
 		}
 	}
 }

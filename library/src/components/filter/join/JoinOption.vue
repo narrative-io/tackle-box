@@ -1,7 +1,9 @@
 <template lang="pug">
   .nio-filter-join-option
-    .join-type
-      NioRadioGroup(v-model="joinOption.value.joinType")
+    .join-type(v-if="!(selectedDatasetObj && selectedDatasetObj.format === 'geometry')")
+      NioRadioGroup(
+        v-model="joinOption.value.joinType"
+      )
         NioRadioButton(
           value="include" 
           label="Include"
@@ -11,6 +13,12 @@
           label="Exclude"
           :disabled="selectedDatasetObj && selectedDatasetObj.format === 'geometry'"
         )
+    .geometry-join-type(v-if="selectedDatasetObj && selectedDatasetObj.format === 'geometry'")
+      NioSelect(
+        v-model="joinOption.value.geometryType"
+        :items="geometryTypes"
+        label="Geometry join type"
+      )
     NioDivider(horizontal-solo)
     .select-dataset
       NioSelect(
@@ -44,6 +52,9 @@ export default {
   props: {
     "joinOption": { type: Object, required: true }
   },
+  data: () => ({
+    geometryTypes: ['Intersects', 'Contains'],
+  }),
   computed: {
     selectedDatasetObj() {
       return this.joinOption.config.datasets.find(dataset => dataset.id === this.joinOption.value.selectedDataset)
@@ -53,7 +64,6 @@ export default {
     joinOption: {
       deep: true,
       handler() {
-        console.log(this.selectedDatasetOb)
         if (this.selectedDatasetObj) {
           if (this.selectedDatasetObj.format === 'geometry') {
             this.joinOption.value.joinType === 'inclusion'
