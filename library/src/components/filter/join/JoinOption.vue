@@ -9,6 +9,7 @@
         NioRadioButton(
           value="exclude" 
           label="Exclude"
+          :disabled="selectedDatasetObj && selectedDatasetObj.format === 'geometry'"
         )
     NioDivider(horizontal-solo)
     .select-dataset
@@ -42,6 +43,24 @@ export default {
   components: { NioSelect, NioRadioGroup, NioRadioButton, NioDivider, NioAlert },
   props: {
     "joinOption": { type: Object, required: true }
+  },
+  computed: {
+    selectedDatasetObj() {
+      return this.joinOption.config.datasets.find(dataset => dataset.id === this.joinOption.value.selectedDataset)
+    }
+  },
+  watch: {
+    joinOption: {
+      deep: true,
+      handler() {
+        console.log(this.selectedDatasetOb)
+        if (this.selectedDatasetObj) {
+          if (this.selectedDatasetObj.format === 'geometry') {
+            this.joinOption.value.joinType === 'inclusion'
+          }
+        }
+      }
+    }
   },
   mounted() {
     if (!this.joinOption.value.selectedDataset) {

@@ -294,7 +294,7 @@ function hasPropertyMappingForPath(mapping, stringPath, targetProperty) {
     if (targetProperty.format === 'geometry') {
       return mappingToPath !== undefined
     }
-    return false
+    return false // other formats not supported at this time, adjust accordingly here
   }
   return mappingToPath !== undefined
 }

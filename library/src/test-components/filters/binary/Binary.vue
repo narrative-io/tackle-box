@@ -9,7 +9,8 @@
 
 import NioFilterGroup from '@/components/filter/FilterGroup'
 import NioFilter from '@/components/filter/Filter'
-import Default from './instances/default'
+import BinaryGeometry from './instances/geometry'
+import BinaryGeometryJoin from './instances/geometryJoin'
 
 export default {
   components: {
@@ -19,7 +20,8 @@ export default {
   data: () => ({
     activeFilterName: null,
     filters: [
-      Default
+      BinaryGeometry,
+      BinaryGeometryJoin
     ]
   }),
   mounted() {

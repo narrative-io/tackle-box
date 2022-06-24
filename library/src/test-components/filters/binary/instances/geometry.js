@@ -1,7 +1,7 @@
-const Default = { 
-	name: "Binary",
+const Geometry = { 
+	name: "Binary Geometry",
 	type: "binary",
-	title: "Default",
+	title: "Binary Geometry",
 	description: "Default description",
 	value: 'default',
 	options: [
@@ -16,4 +16,4 @@ const Default = {
 	]
 }
 
-export default Default
+export default Geometry
