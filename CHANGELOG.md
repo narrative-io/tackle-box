@@ -143,3 +143,4 @@ v0.4.7
 Added ability to set filter to disabled
 Added optional **hideOptionalProperties** prop to **NioSchemaProperties**
 Added **forecastModule** to encapsulate forecasting API calls for all apps and DSM
+Fixed bug in **NioTagsField** regarding pasting from clipboard
