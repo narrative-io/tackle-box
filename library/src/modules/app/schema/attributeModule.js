@@ -278,7 +278,7 @@ let getJoinOptionsByPath = (path, parentAttribute, datasets) => {
 				result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id))
 			} else {
 				result.field = `${parentAttribute.name}.${stringPath}`
-				result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id && hasPropertyMappingForPath(mapping, stringPath)))		
+				result.datasets = datasets.filter(dataset => dataset.mappings && dataset.mappings.find(mapping => mapping.attribute_id === parentAttribute.id && hasPropertyMappingForPath(mapping, stringPath, targetProperty)))		
 			}
 		} 
 	}
@@ -288,9 +288,15 @@ let getJoinOptionsByPath = (path, parentAttribute, datasets) => {
 	return null
 }
 
-function hasPropertyMappingForPath(mapping, stringPath) {
+function hasPropertyMappingForPath(mapping, stringPath, targetProperty) {
 	const mappingToPath = mapping.mapping.property_mappings.find(propertyMapping => propertyMapping.path === stringPath)
-	return mappingToPath !== undefined
+  if (targetProperty && targetProperty.type === 'binary' ) {
+    if (targetProperty.format === 'geometry') {
+      return mappingToPath !== undefined
+    }
+    return false
+  }
+  return mappingToPath !== undefined
 }
 
 function makeDotDelimitedPropertyPath(path) {

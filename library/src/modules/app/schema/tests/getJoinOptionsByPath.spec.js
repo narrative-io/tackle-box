@@ -54,6 +54,13 @@ const allAttributes = [
 		name: 'primitive_join',
 		type: 'string',
 		is_join_key: true
+	},
+  {
+		id: 4, 
+		name: 'primitive_join',
+		type: 'binary',
+    format: 'geometry',
+		is_join_key: true
 	}
 ]
 
@@ -136,11 +143,25 @@ const datasets = [
 	},
 	{
 		id: 4,
-		name: 'Dataset 1',
+		name: 'Dataset 4',
 		mappings: [
 			{
 				attribute_id: 3,
 				dataset_id: 4,
+				mapping: {
+					type: "value_mapping"
+				},
+				status: "active"
+			}
+		]
+	},
+  {
+		id: 5,
+		name: 'Dataset 5',
+		mappings: [
+			{
+				attribute_id: 4,
+				dataset_id: 5,
 				mapping: {
 					type: "value_mapping"
 				},
@@ -232,6 +253,22 @@ describe("getJoinableDatasets", function() {
 			field: 'primitive_join',
 			datasets: [
 				datasets.find(dataset => dataset.id === 4),
+			]
+		}
+    expect(actual).toEqual(expected)
+	})
+  it("Binary with is_join_key", function() {
+		const targetPath = [
+			{
+				id: 4
+			}
+		]
+		const actual = getJoinOptionsByPath(targetPath, findAttributeById(4), datasets)
+		const expected = {
+			attributeId: 4,
+			field: 'primitive_join',
+			datasets: [
+				datasets.find(dataset => dataset.id === 5),
 			]
 		}
     expect(actual).toEqual(expected)
