@@ -71,7 +71,7 @@
             ) Include timestamps on or before {{ filter.customOption.value.end.timestamp }}
             span(
               v-if="filter.customOption.value.start.enabled && filter.customOption.value.end.enabled"
-            ) Include timestamps from {{ filter.customOption.value.start.timestamp }} to {{ filter.customOption.value.end.timestamp }} (inclusive)
+            ) Include timestamps from {{ filter.customOption.value.start.timestamp }} to {{ filter.customOption.value.end.timestamp }} (exclusive)
           .validation-error.nio-p-small.text-error(v-if="!valid && dateRangeError") Start date must be later than stop date
           .validation-error.nio-p-small.text-error(v-else-if="!valid && rollingLookbackError") Rolling lookback value must be greater than 0
 </template>
@@ -144,7 +144,7 @@ export default {
   methods: {
     validate() {
       if (this.filter.value === 'custom') {
-        if (Date.parse(this.filter.customOption.value.start.timestamp) >= Date.parse(this.filter.customOption.value.end.timestamp)) {
+        if (Date.parse(this.filter.customOption.value.start.timestamp) > Date.parse(this.filter.customOption.value.end.timestamp)) {
           this.dateRangeError = true
         } else {
           this.dateRangeError = false
