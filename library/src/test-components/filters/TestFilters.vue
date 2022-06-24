@@ -11,6 +11,7 @@
     Frequency
     Mapping
     Boolean
+    Binary
 </template>
 
 <script>
@@ -26,6 +27,7 @@ import Number from './number/Number'
 import Frequency from './frequency/Frequency'
 import Mapping from './mapping/Mapping'
 import Boolean from './boolean/Boolean'
+import Binary from './binary/Binary'
 
 export default {
   components: {
@@ -39,7 +41,8 @@ export default {
     Number,
     Frequency,
     Mapping,
-    Boolean
+    Boolean,
+    Binary
   }
 }
 </script>

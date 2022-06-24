@@ -74,6 +74,12 @@
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )      
+    template(v-else-if="filter.type === 'binary'")
+      NioFilterPropertiesBinary(
+        :filter="filter"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
+      )      
     template(v-else)
       slot(
         :filter="filter" 
@@ -96,6 +102,7 @@ import NioFilterPropertiesStringLimited from './default-types/StringLimited'
 import NioFilterPropertiesMapping from './default-types/Mapping'
 import NioFilterPropertiesFrequency from './default-types/Frequency'
 import NioFilterPropertiesBoolean from './default-types/Boolean'
+import NioFilterPropertiesBinary from './default-types/Binary'
 
 export default {
   name: 'nio-filter-body',
@@ -111,7 +118,8 @@ export default {
     NioFilterPropertiesStringLimited,
     NioFilterPropertiesMapping,
     NioFilterPropertiesFrequency,
-    NioFilterPropertiesBoolean
+    NioFilterPropertiesBoolean,
+    NioFilterPropertiesBinary,
   },
   props: {
     "filter": { type: Object, required: true },
