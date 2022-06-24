@@ -25,7 +25,7 @@
                       v-on="on"
                     )
                       NioIcon(
-                        :name="dataTypeIconName(attribute.type)"
+                        :name="dataTypeIconName(attribute)"
                         :size="24"
                         color="#AEB9E8"
                       )

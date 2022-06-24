@@ -137,7 +137,12 @@ let getReadableType = (property) => {
     case 'array':
       return 'Array'
     case 'binary':
-      return property.format
+      switch (property.format) {
+        case 'geometry':
+          return 'Location Geometry'      
+        default:
+          return 'Binary Data'
+      }
     default:
       return null
   }
