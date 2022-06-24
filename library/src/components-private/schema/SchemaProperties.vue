@@ -29,7 +29,7 @@
                           v-on="on"
                         )
                           NioIcon(
-                            :name="dataTypeIconName(properties[propertyName].type)"
+                            :name="dataTypeIconName(properties[propertyName])"
                             :size="24"
                             color="#AEB9E8"
                           )
@@ -97,7 +97,6 @@
                   :hide-indicators="hideIndicators"
                   :is-array-descendant="isArrayDescendant || Boolean(properties[propertyName].items)"
                   @updatePayload="updatePayload"
-
                 )
               .property-details(
                 v-else 
@@ -205,8 +204,8 @@ export default {
     updatePayload(event) {
       this.$emit('updatePayload')
     },
-    dataTypeIconName(dataType) {
-      return getDataTypeIconName(dataType)
+    dataTypeIconName(property) {
+      return getDataTypeIconName(property)
     },
     isHidden(propertyName) {
       if (this.requiredPropertyNames && this.requiredPropertyNames.length > 0 && this.hideOptionalProperties && this.optionalPropertiesHidden) {

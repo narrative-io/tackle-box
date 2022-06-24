@@ -136,13 +136,15 @@ let getReadableType = (property) => {
       return 'Boolean'
     case 'array':
       return 'Array'
+    case 'binary':
+      return property.format
     default:
       return null
   }
 } 
 
-let getDataTypeIconName = (dataType) => {
-  switch (dataType) {
+let getDataTypeIconName = (property) => {
+  switch (property.type) {
     case 'string':
       return 'utility-font'
     case 'object':
@@ -157,6 +159,13 @@ let getDataTypeIconName = (dataType) => {
       return 'utility-clock'
     case 'boolean':
       return 'utility-switch'
+    case 'binary':
+      switch (property.format) {
+        case 'geometry':
+          return 'utility-location-arrow'      
+        default:
+          return 'utility-location-arrow'      
+      }
     default:
       return 'utility-font'
   }
