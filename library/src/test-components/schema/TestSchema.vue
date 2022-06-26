@@ -28,6 +28,7 @@
       NioPrettySchemaPath(
         v-for="path of testSchemaPaths"
         :path="path"
+        :key="path.id"
       )
 </template>
 
