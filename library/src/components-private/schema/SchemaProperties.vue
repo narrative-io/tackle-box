@@ -75,11 +75,12 @@
                   )
                 .property-actions(v-else-if="!hideIndicators && !disableInteractions && !isArrayDescendant && !properties[propertyName].isArrayItems")
                   NioSwitch(
+                    v-if="properties[propertyName].type !== 'binary'"
                     v-model="properties[propertyName].deliverable"
                     @click.stop=""
                     @update="updateRootPayload(properties[propertyName], 'deliverable', $event)"
                   )
-                  .nio-p-small.text-primary-dark Deliverable
+                  .nio-p-small.text-primary-dark(v-if="attribute.type !== 'binary'") Deliverable
                   NioSwitch(
                     v-model="properties[propertyName].filterable"
                     @click.stop=""
