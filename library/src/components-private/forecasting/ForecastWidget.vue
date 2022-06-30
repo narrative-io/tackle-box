@@ -14,10 +14,16 @@
         .matched.nio-h4.text-white 3.5 million rows matched*
         .scanned.nio-h4.text-primary-light 5 million rows scanned
       .results-graphic
+        v-progress-linear(
+          intdeterminate
+          v-if="state === 'running'"
+          :color="progressColor"
+        )
       .results-annotation.nio-h4.text-primary-light *Estimated matched rows based on applied filters
     .call-to-action
       NioButton(
         normal-secondary
+        @click="runForecast"
       ) Scan Data
 </template>
 
@@ -26,6 +32,7 @@
 import NioPill from '@/components/Pill'
 import NioTooltip from '@/components/Tooltip'
 import NioButton from '@/components/Button'
+import { getThemeColor } from '@/modules/app/theme/theme'
 
 export default {
   components: { NioPill, NioTooltip, NioButton },
@@ -33,11 +40,21 @@ export default {
   props: {
   
   },
+  data: () => ({
+    state: 'initial'
+  }),
   computed: {
-    
+    progressColor() {
+      return getThemeColor('primaryDark')
+    }
   },
   methods: {
-   
+    runForecast() {
+      this.state = 'running'
+    },
+    forecastCompleted() {
+      this.state = 'completed'
+    }
   }
 };
 </script>
