@@ -33,25 +33,53 @@ import NioPill from '@/components/Pill'
 import NioTooltip from '@/components/Tooltip'
 import NioButton from '@/components/Button'
 import { getThemeColor } from '@/modules/app/theme/theme'
+import axios from 'axios'
+import { getForecast } from '@/modules/app/forecast/forecastModule'
 
 export default {
   components: { NioPill, NioTooltip, NioButton },
   name: 'nio-forecast-widget',
   props: {
-  
+    openApiToken: { type: String, required: true },
+    openApiBaseUrl: { type: String, required: true }
   },
   data: () => ({
-    state: 'initial'
+    state: 'initial',
+    reqHeaders: null,
+    forecastResult: null,
+    costForecastResult: null
   }),
   computed: {
     progressColor() {
       return getThemeColor('primaryDark')
     }
   },
+  mounted() {
+    this.reqHeaders = {
+      headers: {
+        'Authorization': `Bearer ${this.openApiToken}`
+      }
+    }
+  },
   methods: {
     runForecast() {
       this.state = 'running'
+      axios.get(`${this.openApiBaseUrl}/data-shops/subscriptions/${this.subscription.id}/deliveries`, this.reqHeaders).then(resp => {
+        this.fileDeliveries = resp.data.records
+        this.loading = false
+      })
+
+
+      this.forecastResults = 'loading'
+      this.costForecastResults = 'loading'
+      getForecast(this.forecastParams, 'forecasts', this.openApiBaseUrl, this.openApiToken).then(res => {
+        this.forecastResults = res
+      })
+      getForecast(this.forecastParams, 'cost-forecasts', this.openApiBaseUrl, this.openApiToken).then(res => {
+        this.costForecastResults = res
+      })
     },
+    
     forecastCompleted() {
       this.state = 'completed'
     }
