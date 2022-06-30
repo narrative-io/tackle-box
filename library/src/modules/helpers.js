@@ -1,3 +1,4 @@
+import numeral from 'numeral'
 
 export function makeRandomId() {
 	let result = ''
@@ -26,8 +27,28 @@ export function getParamNames(func) {
 	return result;
 }
 
+export function formatNumber(number) {
+  if (isNaN(number))
+    return 0
+  if (number) {
+    if (Math.abs(number) > 1000)
+      return numeral(number).format('0.0a')
+    else 
+    return numeral(number).format('0,0')
+  }
+  else return number
+}
+
+export function formatNumberVerbose(number) {
+  if (number > 0) {
+    return this.formatNumber(number).replace('m', ' Million').replace('b', ' Billion').replace('b', ' Billion').replace('t', ' Trillion') + ' Rows'
+  }
+}
+
 export default {
 	makeRandomId,
 	toKebabCase,
-	getParamNames
+	getParamNames,
+  formatNumber,
+  formatNumberVerbose
 }

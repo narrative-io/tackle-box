@@ -1,7 +1,7 @@
 <template lang="pug">
   .nio-forecast-widget
     .heading
-      .nio-h3.text-white Volume Estimator
+      .nio-h3.text-white Volume Estimator {{ state }}
         NioTooltip.array-join-target(
           message=""
           content-class=""
@@ -15,7 +15,7 @@
         .scanned.nio-h4.text-primary-light 5 million rows scanned
       .results-graphic
         v-progress-linear(
-          intdeterminate
+          indeterminate
           v-if="state === 'running'"
           :color="progressColor"
         )
@@ -35,6 +35,7 @@ import NioButton from '@/components/Button'
 import { getThemeColor } from '@/modules/app/theme/theme'
 import axios from 'axios'
 import { getForecast } from '@/modules/app/forecast/forecastModule'
+import { formatNumberVerbose } from '@/modules/helpers'
 
 export default {
   components: { NioPill, NioTooltip, NioButton },
@@ -52,7 +53,19 @@ export default {
   computed: {
     progressColor() {
       return getThemeColor('primaryDark')
-    }
+    },
+    rowsScannedMessage() {
+      if (this.costForecastResults && this.costForecastResults.result.cost.rows === 0) {
+        return "No matching rows"
+      }
+      return `${this.formatNumberVerbose(this.costForecastResults.result.cost.rows)} rows scanned`
+    },
+    deliverableRowsMessage() {
+      if (this.forecastResults.result.rows === 0) {
+        return "No matching rows"
+      }
+      return `${this.formatNumberVerbose(this.forecastResults.result.rows)} rows matched`
+    },
   },
   mounted() {
     this.reqHeaders = {
@@ -64,22 +77,21 @@ export default {
   methods: {
     runForecast() {
       this.state = 'running'
-      axios.get(`${this.openApiBaseUrl}/data-shops/subscriptions/${this.subscription.id}/deliveries`, this.reqHeaders).then(resp => {
-        this.fileDeliveries = resp.data.records
-        this.loading = false
-      })
-
-
-      this.forecastResults = 'loading'
-      this.costForecastResults = 'loading'
-      getForecast(this.forecastParams, 'forecasts', this.openApiBaseUrl, this.openApiToken).then(res => {
-        this.forecastResults = res
-      })
-      getForecast(this.forecastParams, 'cost-forecasts', this.openApiBaseUrl, this.openApiToken).then(res => {
-        this.costForecastResults = res
-      })
+      this.fetchForecast()
     },
-    
+    fetchForecast() {
+      setTimeout(() => {
+        this.forecastResult = null
+        this.costForecastResults = null
+        this.state = 'success'
+      }, 2000)
+      // getForecast(this.forecastParams, 'forecasts', this.openApiBaseUrl, this.openApiToken).then(res => {
+      //   this.forecastResults = res
+      // })
+      // getForecast(this.forecastParams, 'cost-forecasts', this.openApiBaseUrl, this.openApiToken).then(res => {
+      //   this.costForecastResults = res
+      // })
+    },
     forecastCompleted() {
       this.state = 'completed'
     }
