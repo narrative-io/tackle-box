@@ -8,7 +8,7 @@
         )
       NioPill(
         text="alpha"
-      ) 
+      )
     .results
       .results-text
         .matched.nio-h4.text-white 3.5 million rows matched*
@@ -58,13 +58,13 @@ export default {
       if (this.costForecastResults && this.costForecastResults.result.cost.rows === 0) {
         return "No matching rows"
       }
-      return `${this.formatNumberVerbose(this.costForecastResults.result.cost.rows)} rows scanned`
+      return `${formatNumberVerbose(this.costForecastResults.result.cost.rows)} rows scanned`
     },
     deliverableRowsMessage() {
       if (this.forecastResults.result.rows === 0) {
         return "No matching rows"
       }
-      return `${this.formatNumberVerbose(this.forecastResults.result.rows)} rows matched`
+      return `${formatNumberVerbose(this.forecastResults.result.rows)} rows matched`
     },
   },
   mounted() {
@@ -85,12 +85,14 @@ export default {
         this.costForecastResults = null
         this.state = 'success'
       }, 2000)
-      // getForecast(this.forecastParams, 'forecasts', this.openApiBaseUrl, this.openApiToken).then(res => {
-      //   this.forecastResults = res
-      // })
-      // getForecast(this.forecastParams, 'cost-forecasts', this.openApiBaseUrl, this.openApiToken).then(res => {
-      //   this.costForecastResults = res
-      // })
+      getForecast(this.forecastParams, 'forecasts', this.openApiBaseUrl, this.openApiToken).then(res => {
+        this.forecastResults = res
+        thie.$emit('forecastUpdated', res.data)
+      })
+      getForecast(this.forecastParams, 'cost-forecasts', this.openApiBaseUrl, this.openApiToken).then(res => {
+        this.costForecastResults = res
+        thie.$emit('costForecastUpdated', res.data)
+      })
     },
     forecastCompleted() {
       this.state = 'completed'
