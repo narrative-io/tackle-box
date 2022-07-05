@@ -207,6 +207,11 @@
               .nio-p.text-primary-darker.nio-bold Combobox
             template(v-slot:content) 
               TestCombobox
+          NioExpansionPanel(:key="37")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Forecast Widget
+            template(v-slot:content) 
+              TestForecastWidget
 </template>
 
 <script>
@@ -251,6 +256,7 @@ import TestConnectors from './test-components/TestConnectors'
 import TestSchema from './test-components/schema/TestSchema'
 import TestSubscriptions from './test-components/TestSubscriptions'
 import TestCombobox from './test-components/TestCombobox'
+import TestForecastWidget from './test-components/forecasting/TestForecastWidget'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -295,6 +301,7 @@ export default {
     TestSchema,
     TestSubscriptions,
     TestCombobox,
+    TestForecastWidget,
     NioExpansionPanels,
     NioExpansionPanel,
   },
