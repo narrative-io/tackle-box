@@ -22,6 +22,7 @@
       .results-annotation.nio-h4.text-primary-light *Estimated matched rows based on applied filters
     .call-to-action
       NioButton(
+        :disabled="state === 'running'"
         normal-secondary
         @click="runForecast"
       ) Scan Data
@@ -65,7 +66,7 @@ export default {
         return "No matching rows"
       }
       return `${formatNumberVerbose(this.forecastResults.result.rows)} rows matched`
-    },
+    }
   },
   mounted() {
     this.reqHeaders = {
