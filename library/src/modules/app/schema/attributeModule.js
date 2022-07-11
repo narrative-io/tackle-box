@@ -269,16 +269,16 @@ let getJoinOptionsByPath = (path, parentAttribute, datasets) => {
         const arrayChildrenPath = makeDotDelimitedPropertyPath(deepCopy(pathCopy).filter((value, index, arr) => index > pathCopy.lastIndexOf('items'))) // get the tail end of the path after array.items
         result.attributeId = arrayItemsAttribute.id
         result.field = `${arrayItemsAttribute.name}.${arrayChildrenPath}`
-        result.datasets = datasets.filter(dataset => getGlobalMappings(dataset).find(mapping => mapping.attribute_id === result.attributeId && hasPropertyMappingForPath(mapping, arrayChildrenPath)))		
+        result.datasets = datasets.filter(dataset => getMappings(dataset).find(mapping => mapping.attribute_id === result.attributeId && hasPropertyMappingForPath(mapping, arrayChildrenPath)))		
       }			
     } else if (!targetProperty.type !== 'object' && targetProperty.type !== 'array') { // if it's a primitive and is_join_key = true, return all datasets that have mappings to parentAttribute and path
       result.attributeId = parentAttribute.id
       if (stringPath.length === 0) {
         result.field = `${parentAttribute.name}`
-        result.datasets = datasets.filter(dataset => getGlobalMappings(dataset).find(mapping => mapping.attribute_id === parentAttribute.id))
+        result.datasets = datasets.filter(dataset => getMappings(dataset).find(mapping => mapping.attribute_id === parentAttribute.id))
       } else {
         result.field = `${parentAttribute.name}.${stringPath}`
-        result.datasets = datasets.filter(dataset => getGlobalMappings(dataset).find(mapping => mapping.attribute_id === parentAttribute.id && hasPropertyMappingForPath(mapping, stringPath, targetProperty)))		
+        result.datasets = datasets.filter(dataset => getMappings(dataset).find(mapping => mapping.attribute_id === parentAttribute.id && hasPropertyMappingForPath(mapping, stringPath, targetProperty)))		
       }
     } 
   }
@@ -288,8 +288,8 @@ let getJoinOptionsByPath = (path, parentAttribute, datasets) => {
   return null
 }
 
-function getGlobalMappings(dataset) {
-  return dataset && dataset.mappings ? dataset.mappings.filter(m => m.scope === 'global') : []
+function getMappings(dataset) {
+  return dataset && dataset.mappings ? dataset.mappings.filter(m => m.status === 'active') : []
 }
 
 function hasPropertyMappingForPath(mapping, stringPath, targetProperty) {
