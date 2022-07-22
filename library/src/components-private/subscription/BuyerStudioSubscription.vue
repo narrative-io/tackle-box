@@ -19,7 +19,7 @@
           .display-column.full-width
             .nio-h4.text-primary-darker Max cost per 1000 records
             .nio-p.text-primary-dark {{ getCPM(subscription.details.pricing.micro_cents_usd) }}
-    .display-row.display-table.included-filters(v-if="subscription.status === 'active' || subscription.status === 'kickoff' || subscription.status === 'pending'")
+    .display-row.display-table.included-filters(v-if="subscription.status === 'active' || subscription.status === 'kickoff' || subscription.status === 'pending'" )
       .display-column.full-width
         .nio-h4.text-primary-darker(style="margin-bottom: 8px") Included Filters
         .applied-filters(v-if="getAppliedFilters(subscription).length || getDatasetFilter(subscription)")
@@ -86,7 +86,7 @@
                           ) {{ value }}
                       .nio-p.text-primary-dark(v-else) Any value
     .split-row
-      .display-row.display-table(v-if="subscription.status === 'active' || subscription.status === 'kickoff' || subscription.status === 'pending'")
+      .display-row.display-table(v-if="subscription.status === 'active' || subscription.status === 'kickoff' || subscription.status === 'pending' || subscription.status === 'completed'")
         .display-column.full-width
           .nio-h4.text-primary-darker(style="margin-bottom: 8px") Deduplication
           .deduplication(v-if="subscription.details && subscription.details.data_rules && subscription.details.data_rules.deduplication")   
