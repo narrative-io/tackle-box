@@ -41,7 +41,7 @@ let makeDestinationConnectorSettings = (installation, index, openApiBaseUrl, req
           index: index,
           appId: installation.app_id,
           name: manifest.name,
-          icon: localApps.find(localApp => localApp.id === installation.app_id).icons[0],
+          icon: localApps.find(localApp => localApp.id === installation.app_id) ? localApps.find(localApp => localApp.id === installation.app_id).icons[0] : undefined,
           profiles: profiles,
           quickSettings: manifest.tiers.find(tier => tier.id === installation.tier_id).quick_settings.map(setting => {
             return {

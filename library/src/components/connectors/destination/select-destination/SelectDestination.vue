@@ -54,7 +54,7 @@
               NioTextField(
                 v-model="destination.quickSettings[0].value"
                 :rules="[validateQuickSetting(setting)]"
-                label="Choose Prefix"
+                :label="setting.display_name"
                 validate-on-blur
                 @input="globalValidateQuickSettings($event)"
               )     

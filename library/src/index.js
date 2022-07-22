@@ -49,6 +49,7 @@ import NioChoosePaymentMethod from './components-private/ChoosePaymentMethod'
 import NioSelectedPaymentMethod from './components-private/SelectedPaymentMethod'
 import NioOverflowMenu from './components/OverflowMenu'
 import NioCombobox from './components/Combobox'
+import NioForecastWidget from './components-private/forecasting/ForecastWidget'
 
 import NioSelectDestination from './components/connectors/destination/select-destination/SelectDestination'
 import NioSubscriptionDestinations from './components/connectors/destination/subscription-destinations/SubscriptionDestinations'
@@ -132,6 +133,7 @@ const Components = {
 	NioSchemaProperties,
 	NioPrettySchemaPath,
 	NioBuyerStudioSubscription,
+  NioForecastWidget,
 	FontAwesomeIcon
 }
 
@@ -192,6 +194,7 @@ Vue.component("NioSchemaProperties", NioSchemaProperties)
 Vue.component("NioPrettySchemaPath", NioPrettySchemaPath)
 Vue.component("NioBuyerStudioSubscription", NioBuyerStudioSubscription)
 Vue.component("NioSubscriptionFileDownload", NioSubscriptionFileDownload)
+Vue.component("NioForecastWidget", NioForecastWidget)
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
@@ -251,6 +254,7 @@ export { NioSchemaProperties }
 export { NioPrettySchemaPath }
 export { NioBuyerStudioSubscription }
 export { NioSubscriptionFileDownload }
+export { NioForecastWidget }
 
 export { FontAwesomeIcon }
 export { NioRouterModule }

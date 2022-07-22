@@ -53,11 +53,12 @@
                 ) Filterable
               .property-actions(v-else-if="!disableInteractions")
                 NioSwitch(
+                  v-if="attribute.type !== 'binary'"
                   v-model="attribute.deliverable"
                   @click.stop=""
                   @update="updateRootPayload(attribute, 'deliverable', $event)"
                 )
-                .nio-p-small.text-primary-dark Deliverable
+                .nio-p-small.text-primary-dark(v-if="attribute.type !== 'binary'") Deliverable
                 NioSwitch(
                   v-model="attribute.filterable"
                   @click.stop=""

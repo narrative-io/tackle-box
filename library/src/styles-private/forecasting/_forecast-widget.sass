@@ -1,0 +1,56 @@
+@import "../../styles/global/_colors"
+@import "../../styles/global/_color-helpers"
+  
+=nio-forecast-widget 
+  padding: 1.375rem 2rem
+  height: 7rem
+  display: flex
+  justify-content: space-between
+  background-color: $c-primary-darker
+  .heading
+    padding-right: 2.625rem
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    justify-content: center
+    .nio-h3
+      white-space: nowrap
+      margin-bottom: 0.75rem
+    .nio-tooltip .v-btn.activator .background-mask
+      background-color: white !important
+      width: 0.625rem
+      height: 0.625rem
+  .results
+    min-width: 21.625rem
+    flex-grow: 2
+    display: flex
+    flex-direction: column
+    justify-content: center
+    padding: 1rem
+    .results-text
+      width: 100%
+      display: flex
+      justify-content: space-between
+    .results-graphic
+      height: 0.875rem 
+      width: 100%
+      border: 0.0625rem solid $c-primary-dark
+      margin-top: 0.5rem
+      margin-bottom: 0.5rem
+      flex-shrink: 0
+      .v-progress-linear
+        width: 100%
+        height: 100% !important
+    .results-annotation
+      display: flex
+      justify-content: flex-start
+  .call-to-action
+    width: 10.5rem
+    border-left: 0.0625rem solid $c-primary-dark
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    .nio-button
+      width: 7.875rem
+.nio-forecast-widget
+  +nio-forecast-widget
