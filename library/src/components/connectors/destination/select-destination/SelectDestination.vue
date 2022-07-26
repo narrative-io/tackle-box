@@ -9,17 +9,17 @@
         :key="destination.index"
         :class="{'no-profiles': !destination.profiles || destination.profiles.length === 0}"
       )
-        template(v-slot:header) 
+        template(v-slot:header)
           NioImageTile(
             v-if="destination.name === 'Narrative Download'"
             :src="destination.icon"
             alt="Narrative Download Icon"
-          ) 
+          )
           NioImageTile(
             v-else
             :src="`data:${destination.icon.imageType};base64, ${destination.icon.image}`"
             :alt="destination.icon.altText"
-          ) 
+          )
           .destination-content
             h2.nio-h4.text-primary-darker.name {{ destination.name }}
             p.nio-p.text-primary-dark(v-if="destination.name !== 'Narrative Download' && destination.profiles.length > 1") <span class="nio-bold">Profile:</span> {{ getSelectedProfile(destination).name}}
@@ -31,11 +31,10 @@
         template(
           v-slot:content
         )
-          .control(v-if="destination.profiles && destination.profiles.length > 1")     
+          .control(v-if="destination.profiles && destination.profiles.length > 1")
             .title-description
-              .filter-title.nio-h4.text-primary-darker Subscription Description
-              .description.nio-p.text-primary-dark Enter a description for this subscription
-            .filter-value           
+              .filter-title.nio-h4.text-primary-darker Connector Profile
+            .filter-value
               NioSelect(
                 v-model="destination.selectedProfile"
                 :items="destination.profiles"
@@ -46,7 +45,7 @@
                 @change="setDisabledProfiles"
               )
           //- we'll use unique templates for each connector app until quick_settings contract gets solidified and is able to be generic enough to render programatically
-          .control(v-for="setting in destination.quickSettings")    
+          .control(v-for="setting in destination.quickSettings")
             .title-description
               .filter-title.nio-h4.text-primary-darker {{ setting.display_name }} <span class="nio-p text-primary-dark" v-if="!setting.required">(optional)</span>
               .description.nio-p.text-primary-dark {{ setting.description }}
@@ -57,26 +56,26 @@
                 :label="setting.display_name"
                 validate-on-blur
                 @input="globalValidateQuickSettings($event)"
-              )     
+              )
           NioButton.remove-profile(
             v-if="canDeleteProfile(destination)"
             caution-text
             @click="deleteProfile(destination)"
-          ) Remove this profile  
+          ) Remove this profile
           NioButton.additional-profile(
             v-if="showAddProfile(destination)"
             normal-secondary
             @click="addProfile(destination)"
-          ) Add an additional profile     
+          ) Add an additional profile
     .connectors-cta
       h3.nio-h3.text-primary-darker Connect to more destinations
       p.nio-p.text-primary-dark.description Install destination connectors to streamline your data delivery.
       NioButton(
-        normal-tertiary-append 
-        icon-name="utility-chevron-right" 
+        normal-tertiary-append
+        icon-name="utility-chevron-right"
         @click="learnMore"
       ) Learn more about apps and connectors
-</template>	  
+</template>
 
 <script>
 

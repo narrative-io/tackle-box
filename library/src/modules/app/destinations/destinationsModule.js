@@ -9,7 +9,7 @@ let makeDestinationOptions = (openApiBaseUrl, requestHeaders) => {
       icon: 'https://cdn.narrative.io/data-studio/images/narrative-placeholder-primary.svg',
       selected: true
     }]
-  
+
     axios.get(`${openApiBaseUrl}/installations?app_category=destination_connector`, requestHeaders).then(resp => {
       const connectorInstallations = resp.data.records
       Promise.all(connectorInstallations.map((installation, index) => makeDestinationConnectorSettings(installation, index + 1, openApiBaseUrl, requestHeaders))).then(settings => {
