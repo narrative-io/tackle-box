@@ -147,3 +147,4 @@ Fixed bug in **NioTagsField** regarding pasting from clipboard
 Added **Binary** filter type and added support for dataset joins for attributes of type **binary** with **format = 'geography'**
 Created **NioForecastingWidget**
 Applied constraint to dataset mapping consider only mapping with scope = 'global'
+Added new **display-XX** color from Figma Tacklebox spec
