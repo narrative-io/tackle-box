@@ -80,7 +80,7 @@
                     @click.stop=""
                     @update="updateRootPayload(properties[propertyName], 'deliverable', $event)"
                   )
-                  .nio-p-small.text-primary-dark(v-if="attribute.type !== 'binary'") Deliverable
+                  .nio-p-small.text-primary-dark(v-if="properties[propertyName].type !== 'binary'") Deliverable
                   NioSwitch(
                     v-model="properties[propertyName].filterable"
                     @click.stop=""
