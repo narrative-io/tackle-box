@@ -62,7 +62,7 @@ import NioPrettySchemaPath from './components-private/schema/PrettySchemaPath'
 
 import NioBuyerStudioSubscription from './components-private/subscription/BuyerStudioSubscription'
 import NioSubscriptionFileDownload from './components-private/subscription/SubscriptionFileDownload'
-import NioError from './components-private/NioError'
+import NioError from './components-private/Error'
 import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
 import NioHeightObserver from './modules/app/height-observer'
