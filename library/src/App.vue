@@ -212,6 +212,11 @@
               .nio-p.text-primary-darker.nio-bold Forecast Widget
             template(v-slot:content) 
               TestForecastWidget
+          NioExpansionPanel(:key="38")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Error Page
+            template(v-slot:content) 
+              TestError
 </template>
 
 <script>
@@ -257,6 +262,7 @@ import TestSchema from './test-components/schema/TestSchema'
 import TestSubscriptions from './test-components/TestSubscriptions'
 import TestCombobox from './test-components/TestCombobox'
 import TestForecastWidget from './test-components/forecasting/TestForecastWidget'
+import TestError from './test-components/TestError'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -304,6 +310,7 @@ export default {
     TestForecastWidget,
     NioExpansionPanels,
     NioExpansionPanel,
+    TestError
   },
   data: () => ({
     loggedIn: false,
