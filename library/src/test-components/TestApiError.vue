@@ -1,6 +1,6 @@
 <template lang="pug">
   TestApiError(
-    error="Discover and install apps to unlock the full potential of the Narrative Data Commerce Platform"
+    error="Some error occured here"
     @close="goBack"
   ) 
 
