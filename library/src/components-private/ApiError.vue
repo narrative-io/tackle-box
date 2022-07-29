@@ -8,7 +8,7 @@
     p.text-primary-dark.text-center.mb-0 There was an issue with this request. It's us, it's not you.
     p.text-primary-dark.text-center.mt-0.mb-5 However please reach out to support and show them the error message below.
     
-    NioTextArea.error-textarea.text-left.p-0(v-model="textError")
+    NioTextArea.error-textarea.text-left.p-0(v-model="textError" :readonly="true")
     .d-flex.justify-center.mt-5
       NioButton.copy-button(
         normal-secondary
@@ -46,7 +46,8 @@ export default {
     },
     imageUrl: {
       type: String,
-      required: true
+      required: true,
+      default: 'https://cdn.narrative.io/images/tacklebox/error.png'
     }
   },
   mounted() {
