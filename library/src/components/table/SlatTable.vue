@@ -19,7 +19,7 @@
       v-if="headers && computedItems"
       :headers="headers"
       :items-per-page="500"
-      :items="pagination ? paginatedItems : computedItems"
+      :items="pagination || progressivePagination ? paginatedItems : computedItems"
       item-key="id"
       hide-default-header
       hide-default-footer
@@ -123,6 +123,12 @@
           @nextPage="nextPage"
           @prevPage="prevPage"
         ) 
+      template(v-slot:footer v-else-if="progressivePagination && computedItems.length > progressivePaginationCount")
+        NioDivider(horizontal-solo)
+        NioButton.progressive-pagination-button(
+          normal-secondary
+          @click="incrementProgressivePagination"
+        ) {{ progressivePaginationText }}
       template(
         v-slot:no-results
       ) 
@@ -146,6 +152,7 @@ import NioSlatTableActions from './SlatTableActions'
 import NioSlatTablePagination from './SlatTablePagination'
 import NioSelect from '../Select'
 import NioButton from '../Button'
+import NioDivider from '../Divider'
 import Fuse from 'fuse.js'
 
 export default {
@@ -160,7 +167,8 @@ export default {
     NioSlatTableActions, 
     NioSlatTablePagination,
     NioSelect,
-    NioButton
+    NioButton,
+    NioDivider
   },
   props: {
     "items": { type: Array, required: true },
@@ -175,7 +183,9 @@ export default {
     "searchConfig": { type: Object, required: false },
     "customSlatCell": { type: Boolean, required: false, default: false },
     "noResultsText": { type: String, required: false, default: 'No items found' },
-    "minCharsToSearch": { type: Number, required: false, default: 3 }
+    "minCharsToSearch": { type: Number, required: false, default: 3 },
+    "externalSearchString": { type: String, required: false },
+    "progressivePaginationText": { type: String, required: false, default: 'Show more' }
   },
   data: () => ({
     multiSelect: false,
@@ -194,6 +204,8 @@ export default {
     actions: false,
     numColumns: null,
     pagination: false, 
+    progressivePagination: false,
+    progressivePaginationCount: 5,
     paginatedItems: [],
     staticColumns: [],
     itemsPerPage: 4,
@@ -226,11 +238,15 @@ export default {
       handler(val) {
         this.computeItems()
       }
+    },
+    externalSearchString(val) {
+      this.searchChange(val)
     }
   },
   mounted() {
     this.applyHelperAttributes()
     this.itemsPerPage = this.initialItemsPerPage
+    this.progressivePaginationCount = this.itemsPerPage
     if (this.showHeaderModules.sort || this.sortOptions) {
       this.selectedSortOption = this.sortOptions[0].value
     } 
@@ -304,11 +320,9 @@ export default {
         computedItems.push(computedItem)
       })
       // apply search
-      if (this.showHeaderModules.search && this.searchTerm && this.searchTerm.length >= this.minCharsToSearch) {
+      if ((this.externalSearchString || this.showHeaderModules.search) && this.searchTerm && this.searchTerm.length >= this.minCharsToSearch) {
         const searchOptions = this.searchConfig ? this.searchConfig : this.searchOptions
-        if (this.showHeaderModules.search) {
-          searchOptions.keys = this.searchableProps			
-        }	
+        searchOptions.keys = this.searchableProps			
         this.fuseInstance = new Fuse(computedItems, searchOptions)
         this.fuseInstance.search(this.searchTerm)
         computedItems = this.fuseInstance.search(this.searchTerm).map(result => result.item)
@@ -320,17 +334,19 @@ export default {
       // apply pagination 
       if (this.pagination) {
         this.paginatedItems = this.itemsPerPage === -1 ? computedItems : computedItems.slice(this.itemsPerPage * (this.currentPage - 1), this.itemsPerPage * this.currentPage)
-      }
+      } else if (this.progressivePagination) {
+        this.paginatedItems = computedItems.slice(0, this.progressivePaginationCount)
+        this.$emit('progressivePaginationCountChanged', this.paginatedItems.length)
+      } 
       this.computedItems = computedItems
+      this.$emit('computedItemsCountChanged', this.computedItems.length)
     },
     makeHeaders() {
       const headers = []
-
       headers.push({
         name: 'slat',
         value: 'slat'
-      })
-      
+      })   
       this.columns.filter(column => column.name !== "slat").forEach(column => {
         headers.push({
           name: column.name,
@@ -389,6 +405,9 @@ export default {
       }
       if (attributes.getNamedItem('pagination')) {
         this.pagination = true
+      }
+      if (attributes.getNamedItem('progressive-pagination')) {
+        this.progressivePagination = true
       }
       if (attributes.getNamedItem('listing-plain')) {
         this.singleSelect = false
@@ -450,10 +469,19 @@ export default {
     applyPagination(page) {
       this.$emit('paginationPageChanged', page)
       this.currentPage = page
-      if (this.itemsPerPage === -1) {
-        this.paginatedItems = this.computedItems
-      } else {
-        this.paginatedItems = this.computedItems.slice(this.currentPage * this.itemsPerPage - this.itemsPerPage, this.currentPage * this.itemsPerPage)
+      if (this.pagination) {
+        if (this.itemsPerPage === -1) {
+          this.paginatedItems = this.computedItems
+        } else {
+          this.paginatedItems = this.computedItems.slice(this.currentPage * this.itemsPerPage - this.itemsPerPage, this.currentPage * this.itemsPerPage)
+        }
+      } 
+    },
+    incrementProgressivePagination() {
+      if (this.progressivePagination) {
+        this.progressivePaginationCount += this.itemsPerPage
+        this.paginatedItems = this.computedItems.slice(0, this.progressivePaginationCount)
+        this.$emit('progressivePaginationCountChanged', this.paginatedItems.length)
       }
     },
     sortByKey(items, key, order = 'ascending') {
