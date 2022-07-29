@@ -14,7 +14,7 @@
         normal-secondary
         @click="copyToClipboard('tagKey')" ) {{ textCopied.tagKey ? 'Copied to clipboard!' : 'Copy' }}
 
-      a.mail-to(href="mailto:support@narrative.io")
+      a.mail-to(:href="mailTo")
         NioButton.ml-5(
           normal-secondary
         ) Mail to support@narrative.io 
@@ -53,6 +53,11 @@ export default {
   },
   mounted() {
     this.textError = this.error
+  },
+  computed: {
+    mailTo() {
+      return `mailto:support@narrative.io?subject=Help!%20There was an error with my order&body=Hi Narrative support team,%0DI've encountered an error while while making my order. Please help.%0D"${this.error}"`;
+    }
   },
   methods: {
     close() {
