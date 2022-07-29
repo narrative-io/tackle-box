@@ -12,9 +12,14 @@
       :columns="columns"
       key="1"
       :searchableProps="['orderName', 'orderNumber']"
-      :headerModules="['count']"
       :external-search-string="externalSearchString"
+      progressive-pagination
+      @progressivePaginationCountChanged="progressivePaginationCount = $event"
+      @computedItemsCountChanged="computedItemsCount = $event"
     )
+      template(v-slot:custom-header-element)
+        .test Pagination: {{ progressivePaginationCount }}
+        .test Computed Items: {{ computedItemsCount }}
     h2 Header modules
     h3 ['sort']
     //- NioSlatTable(
@@ -105,9 +110,6 @@
       key="9"
       footer-actions
       pagination
-      search-sort-header
-      :searchableProps="['orderName']"
-      :sortOptions="sortOptions"
       @paginationPageChanged="paginationPageChanged($event)"
     )
       template(v-slot:custom-header-element)
@@ -284,7 +286,9 @@ export default {
         name: 'Chris Woodward',
         expiration: '01/2021'
       }
-    ]
+    ],
+    progressivePaginationCount: null,
+    computedItemsCount: null
   }),
   methods: {
     paginationPageChanged(page) {
