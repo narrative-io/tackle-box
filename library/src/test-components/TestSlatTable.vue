@@ -1,5 +1,20 @@
 <template lang="pug">
   .test-slat-table
+    h2 External Search String
+    NioTextField(
+      v-model="externalSearchString"
+      placeholder="Search"
+      search-small-subdued
+    )
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      key="1"
+      :searchableProps="['orderName', 'orderNumber']"
+      :headerModules="['count']"
+      :external-search-string="externalSearchString"
+    )
     h2 Header modules
     h3 ['sort']
     //- NioSlatTable(
@@ -18,7 +33,7 @@
       v-if="columns && items"
       :items="items"
       :columns="columns"
-      key="201"
+      key="2"
       :searchableProps="['orderName', 'orderNumber']"
       :headerModules="['search']"
     )
@@ -29,7 +44,7 @@
       :columns="columns"
       :searchConfig="searchOptions"
       :min-chars-to-search="2"
-      key="2013"
+      key="3"
       :searchableProps="['orderName', 'orderNumber']"
       :headerModules="['search']"
     )
@@ -38,7 +53,7 @@
       v-if="columns && items"
       :items="items"
       :columns="columns"
-      key="202"
+      key="4"
       :headerModules="['count']"
     )
     h3 ['selected']
@@ -47,7 +62,7 @@
       :items="items"
       :columns="columns"
       multi-select
-      key="203"
+      key="5"
       :headerModules="['selected']"
     )
     h3 ['selected', 'sort']
@@ -56,7 +71,7 @@
       :items="items"
       :columns="columns"
       multi-select
-      key="204"
+      key="6"
       :headerModules="['selected', 'sort']"
       :sortOptions="sortOptions"
     )
@@ -66,7 +81,7 @@
       :items="items"
       :columns="columns"
       multi-select
-      key="205"
+      key="7"
       :headerModules="['search', 'sort']"
       :searchableProps="['orderName', 'orderNumber']"
       :sortOptions="sortOptions"
@@ -78,7 +93,7 @@
       :columns="columns"
       :sortOptions="sortOptions"
       sort-header
-      key="7"
+      key="8"
     )
     NioSlatTable(
       v-if="columns && items"
@@ -87,7 +102,7 @@
       action="expand"
       multi-select
       dense-rows
-      key="5"
+      key="9"
       footer-actions
       pagination
       search-sort-header
@@ -107,7 +122,7 @@
       listing-plain
       :items="items"
       :columns="plainColumns"
-      key="101"
+      key="10"
       action="custom"
     )
       template(v-slot:custom-action="slotProps") 
@@ -117,7 +132,7 @@
       v-if="items && smallHeaders"
       :items="items"
       :columns="smallHeaders"
-      key="20"
+      key="11"
       action="custom"
     )
       template(v-slot:custom-action="slotProps") 
@@ -144,7 +159,7 @@
       :items="items"
       :columns="columns"
       action="expand"
-      key="1"
+      key="13"
       pagination
       search-sort-header
       @itemExpanded="itemExpanded($event)"
@@ -163,7 +178,7 @@
       single-select
       @selectionChanged="selectionChanged($event)"
       action="menu"
-      key="2"
+      key="14"
       footer-actions
       selected-header
     )
@@ -181,6 +196,7 @@
       :items="items"
       :columns="columns"
       action="expand"
+      key="15"
       @itemClicked="itemClicked($event)"
       @selectionChanged="selectionChanged($event)"
     )
@@ -193,14 +209,14 @@
       @selectionChanged="selectionChanged($event)"
       @itemClicked="itemClicked($event)"
       action="link"
-      key="4"
+      key="16"
     )
     NioSlatTable(
       v-if="columns && items"
       :items="items"
       :columns="columns"
       @selectionChanged="selectionChanged($event)"
-      key="9"
+      key="17"
     )
     NioSlatTable(
       v-if="columns && items"
@@ -208,7 +224,7 @@
       :columns="columns"
       @selectionChanged="selectionChanged($event)"
       pagination
-      key="6"
+      key="18"
     )
     NioSlatTable(
       v-if="columns && items"
@@ -216,14 +232,14 @@
       :columns="columns"
       @selectionChanged="selectionChanged($event)"
       count-header
-      key="8"
+      key="19"
     )
     NioSlatTable(
       v-if="columns && items"
       :items="items"
       :columns="columns"
       action="expand"
-      key="201113"
+      key="20"
       customSlatCell
     )
       template(v-slot:custom-slat-cell="slotProps")
@@ -235,6 +251,7 @@
 
 import NioSlatTable from '../components/table/SlatTable'
 import NioButton from '../components/Button'
+import NioTextField from '../components/TextField'
 import { VButton, VExpansionPanels, VExpansionPanel } from 'vuetify'
 import { testItems } from './mocks/slatTableItems'
 import { testSortOptions } from './mocks/slatTableSortOptions'
@@ -243,6 +260,7 @@ export default {
   components: {
     NioSlatTable,
     NioButton,
+    NioTextField,
     VButton,
     VExpansionPanels,
     VExpansionPanel
@@ -256,6 +274,7 @@ export default {
     searchOptions: {
       findAllMatches: true
     }, 
+    externalSearchString: '',
     headers: null,
     smallHeaders: null,
     paymentMethods: [

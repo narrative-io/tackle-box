@@ -195,12 +195,24 @@ const OptionalRequiredFlat = {
 const BinaryPrimitive = {
   description: "Binary Primitive Property",
   display_name: "Binary Primitive Property",
-  id: 10,
+  id: 11,
   name: "binaryPrimitive",
   type: "binary",
   format: "geometry"
 }
 
+const ObjectChildBinary = {
+  description: "description",
+  display_name: "Object with Binary child",
+  id: 12,
+  name: "ObjectChildBinary",
+  type: "object",
+  properties: {
+    primitive_property: {
+      $ref: BinaryPrimitive.id
+    }
+  }
+}
 
 const AllAttributes = [
   Primitive,
@@ -214,7 +226,8 @@ const AllAttributes = [
   ObjectArraySiblings,
   ArrayArraySiblings,
   OptionalRequiredFlat,
-  BinaryPrimitive
+  BinaryPrimitive,
+  ObjectChildBinary
 ]
 
 export {
@@ -230,5 +243,6 @@ export {
   ArrayArraySiblings,
   AllAttributes,
   OptionalRequiredFlat,
-  BinaryPrimitive
+  BinaryPrimitive,
+  ObjectChildBinary
 }

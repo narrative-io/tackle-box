@@ -175,7 +175,8 @@ export default {
     "searchConfig": { type: Object, required: false },
     "customSlatCell": { type: Boolean, required: false, default: false },
     "noResultsText": { type: String, required: false, default: 'No items found' },
-    "minCharsToSearch": { type: Number, required: false, default: 3 }
+    "minCharsToSearch": { type: Number, required: false, default: 3 },
+    "externalSearchString": { type: String, required: false } 
   },
   data: () => ({
     multiSelect: false,
@@ -226,6 +227,9 @@ export default {
       handler(val) {
         this.computeItems()
       }
+    },
+    externalSearchString(val) {
+      this.searchChange(val)
     }
   },
   mounted() {
@@ -304,11 +308,9 @@ export default {
         computedItems.push(computedItem)
       })
       // apply search
-      if (this.showHeaderModules.search && this.searchTerm && this.searchTerm.length >= this.minCharsToSearch) {
+      if ((this.externalSearchString || this.showHeaderModules.search) && this.searchTerm && this.searchTerm.length >= this.minCharsToSearch) {
         const searchOptions = this.searchConfig ? this.searchConfig : this.searchOptions
-        if (this.showHeaderModules.search) {
-          searchOptions.keys = this.searchableProps			
-        }	
+        searchOptions.keys = this.searchableProps			
         this.fuseInstance = new Fuse(computedItems, searchOptions)
         this.fuseInstance.search(this.searchTerm)
         computedItems = this.fuseInstance.search(this.searchTerm).map(result => result.item)
