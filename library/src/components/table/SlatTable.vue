@@ -246,6 +246,7 @@ export default {
   mounted() {
     this.applyHelperAttributes()
     this.itemsPerPage = this.initialItemsPerPage
+    this.progressivePaginationCount = this.itemsPerPage
     if (this.showHeaderModules.sort || this.sortOptions) {
       this.selectedSortOption = this.sortOptions[0].value
     } 
