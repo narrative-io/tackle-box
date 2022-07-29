@@ -468,11 +468,13 @@ export default {
     applyPagination(page) {
       this.$emit('paginationPageChanged', page)
       this.currentPage = page
-      if (this.itemsPerPage === -1) {
-        this.paginatedItems = this.computedItems
-      } else {
-        this.paginatedItems = this.computedItems.slice(this.currentPage * this.itemsPerPage - this.itemsPerPage, this.currentPage * this.itemsPerPage)
-      }
+      if (this.pagination) {
+        if (this.itemsPerPage === -1) {
+          this.paginatedItems = this.computedItems
+        } else {
+          this.paginatedItems = this.computedItems.slice(this.currentPage * this.itemsPerPage - this.itemsPerPage, this.currentPage * this.itemsPerPage)
+        }
+      } 
     },
     incrementProgressivePagination() {
       if (this.progressivePagination) {

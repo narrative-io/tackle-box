@@ -150,3 +150,4 @@ Applied constraint to dataset mapping consider only mapping with scope = 'global
 Added new **display-XX** color from Figma Tacklebox spec
 Added test attribute for geometry property child of object attribute
 Added **external-search-string** optional prop for **NioSlatTable** 
+Added optional progressive pagination feature to **NioSlatTable**
