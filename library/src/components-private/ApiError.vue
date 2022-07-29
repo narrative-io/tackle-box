@@ -1,5 +1,5 @@
 <template lang="pug">
-  .container.pt-5.pb-10.error-page
+  .api-error-page.container.pt-5.pb-10
     .d-flex.justify-end
       nio-button(caution-text @click="close") Close
     .d-flex.justify-center
@@ -71,16 +71,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.error-page
-  .error-text
-    align-self: flex-start
-  ::v-deep .v-input__slot
-    textarea
-      min-height: 400px
-      resize: none
-  .mail-to
-    text-decoration: none
-  .error-image
-    max-width: 50%
-    margin: 0 auto
+  @import '../styles-private/_api_error.sass'  
 </style>

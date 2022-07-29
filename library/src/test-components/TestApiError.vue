@@ -1,5 +1,5 @@
 <template lang="pug">
-  TestError(
+  TestApiError(
     error="test"
     imageUrl="/error.png"
     @close="goBack"
@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import TestError from '../components-private/Error'
+import TestApiError from '../components-private/ApiError'
 import NioButton from '../components/Button'
 export default {
   components: {
-    TestError,
+    TestApiError,
     NioButton
   },
   methods: {

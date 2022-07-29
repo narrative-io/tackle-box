@@ -216,7 +216,7 @@
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Error Page
             template(v-slot:content) 
-              TestError
+              TestApiError
 </template>
 
 <script>
@@ -262,7 +262,7 @@ import TestSchema from './test-components/schema/TestSchema'
 import TestSubscriptions from './test-components/TestSubscriptions'
 import TestCombobox from './test-components/TestCombobox'
 import TestForecastWidget from './test-components/forecasting/TestForecastWidget'
-import TestError from './test-components/TestError'
+import TestApiError from './test-components/TestApiError'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -310,7 +310,7 @@ export default {
     TestForecastWidget,
     NioExpansionPanels,
     NioExpansionPanel,
-    TestError
+    TestApiError
   },
   data: () => ({
     loggedIn: false,
