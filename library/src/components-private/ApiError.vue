@@ -42,11 +42,12 @@ export default {
   props: {
     error: {
       type: String,
+      required: true,
       default: 'Unknown Error'
     },
     imageUrl: {
       type: String,
-      required: true,
+      required: false,
       default: 'https://cdn.narrative.io/images/tacklebox/error.png'
     }
   },
