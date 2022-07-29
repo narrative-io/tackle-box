@@ -62,7 +62,7 @@ import NioPrettySchemaPath from './components-private/schema/PrettySchemaPath'
 
 import NioBuyerStudioSubscription from './components-private/subscription/BuyerStudioSubscription'
 import NioSubscriptionFileDownload from './components-private/subscription/SubscriptionFileDownload'
-
+import NioApiError from './components-private/ApiError'
 import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
 import NioHeightObserver from './modules/app/height-observer'
@@ -137,6 +137,7 @@ const Components = {
 	FontAwesomeIcon
 }
 
+Vue.component("NioApiError", NioApiError)
 Vue.component("NioButton", NioButton)
 Vue.component("NioTextField", NioTextField)
 Vue.component("NioSelect", NioSelect)
@@ -198,6 +199,7 @@ Vue.component("NioForecastWidget", NioForecastWidget)
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
+export { NioApiError }
 export { NioButton }
 export { NioTextField }
 export { NioSelect }
