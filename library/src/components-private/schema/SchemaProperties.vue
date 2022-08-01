@@ -1,5 +1,8 @@
 <template lang="pug">
-  .nio-schema-properties(v-if="computedProperties")
+  .nio-schema-properties(
+    v-if="computedProperties"
+    :class="[`nest-${nest}`]"
+  )
     .display-row.display-table 
       .display-column.properties
         NioExpansionPanels(
