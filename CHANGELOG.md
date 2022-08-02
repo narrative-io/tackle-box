@@ -152,3 +152,4 @@ Added test attribute for geometry property child of object attribute
 Added **external-search-string** optional prop for **NioSlatTable** 
 Added optional progressive pagination feature to **NioSlatTable**
 Added **nest-{nest-level}** class to NioSchemaProperties to aid in targeting styling
+Add handling for apps to accept custom parameters oon intitialization

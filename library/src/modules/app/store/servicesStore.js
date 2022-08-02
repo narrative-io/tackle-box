@@ -10,7 +10,8 @@ export default {
     paymentMethodLoading: false,
     invoiceAuthorized: false,
     user: null,
-    tier: null
+    tier: null,
+    customAppParameters: null
   },
   mutations: {
     [ServicesMutations.SET_USER] (state, val) {
@@ -33,6 +34,9 @@ export default {
     },
     [ServicesMutations.SET_INVOICE_AUTHORIZED] (state, val) {
       state.invoiceAuthorized = val
+    },
+    [ServicesMutations.SET_CUSTOM_APP_PARAMETERS] (state, val) {
+      state.customAppParameters = val
     }
   },
   actions: {
@@ -56,6 +60,9 @@ export default {
     },
     [ServicesMutations.SET_INVOICE_AUTHORIZED] ({ commit, dispatch, state }, value) {
       commit(ServicesMutations.SET_INVOICE_AUTHORIZED, value)
+    },
+    [ServicesMutations.SET_CUSTOM_APP_PARAMETERS] ({ commit, dispatch, state }, value) {
+      commit(ServicesMutations.SET_CUSTOM_APP_PARAMETERS, value)
     }
   },
   getters: {
@@ -65,6 +72,7 @@ export default {
     paymentMethodLoading: state => state.paymentMethodLoading,
     invoiceAuthorized: state => state.invoiceAuthorized,
     user: state => state.user,
-    tier: state => state.tier
+    tier: state => state.tier,
+    customAppParameters: state => state.customAppParameters
   }
 }

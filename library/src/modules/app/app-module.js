@@ -17,6 +17,12 @@ export default {
 			nioTier: 'tier'
 		})
 	},	
+  created() {
+    parent.postMessage({
+      name: 'fetchCustomParameters',
+      payload: null
+    },"*")
+  },
   methods: {
     nioInitializeApplication: (app) => {
       if (window.addEventListener) {
@@ -58,6 +64,9 @@ export default {
           routerModule.setRegisteredPath(evt.data.payload)
           this.$router.push(evt.data.payload)
           break;	
+        case 'customParametersFetched':
+          this.$store.dispatch('nioServices/SET_CUSTOM_APP_PARAMETRS', evt.data.payload)
+          break;
         default:
           break;
       }	
