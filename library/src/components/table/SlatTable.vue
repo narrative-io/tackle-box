@@ -29,7 +29,7 @@
       )
         tr(
           :key="item.id"
-          :class="{'selected': itemSelected(item), 'expanded': expandedItemIds.includes(item.id)}"
+          :class="[makeItemIdClass(item.id), {'selected': itemSelected(item), 'expanded': expandedItemIds.includes(item.id)}]"
           @click="handleItemClick(item, expand, isExpanded, index)"
         )
           td.selection-cell(
@@ -185,7 +185,8 @@ export default {
     "noResultsText": { type: String, required: false, default: 'No items found' },
     "minCharsToSearch": { type: Number, required: false, default: 3 },
     "externalSearchString": { type: String, required: false },
-    "progressivePaginationText": { type: String, required: false, default: 'Show more' }
+    "progressivePaginationText": { type: String, required: false, default: 'Show more' },
+    "itemIdClass": { type: Boolean, required: false, default: false },
   },
   data: () => ({
     multiSelect: false,
@@ -504,6 +505,9 @@ export default {
           (order === 'descending') ? (comparison * -1) : comparison
         )
       })
+    },
+    makeItemIdClass(itemId) {
+      return this.itemIdClass ? `nio-slat-table-item-id-${itemId}` : ''
     }
   }
 }

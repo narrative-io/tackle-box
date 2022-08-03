@@ -11,6 +11,7 @@
       :items="items"
       :columns="columns"
       key="1"
+      item-id-class
       :searchableProps="['orderName', 'orderNumber']"
       :external-search-string="externalSearchString"
       progressive-pagination
