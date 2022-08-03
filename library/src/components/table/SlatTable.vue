@@ -20,6 +20,7 @@
       :headers="headers"
       :items-per-page="500"
       :items="pagination || progressivePagination ? paginatedItems : computedItems"
+      :expanded.sync="expandedItems"
       item-key="id"
       hide-default-header
       hide-default-footer
@@ -187,6 +188,7 @@ export default {
     "externalSearchString": { type: String, required: false },
     "progressivePaginationText": { type: String, required: false, default: 'Show more' },
     "itemIdClass": { type: Boolean, required: false, default: false },
+    "initialOpenItemIds": { type: Array, required: false }
   },
   data: () => ({
     multiSelect: false,
@@ -219,7 +221,8 @@ export default {
     fuseInstance: null,
     allSelected: false,
     listingPlain: false,
-    expandedItemIds: []
+    expandedItemIds: [],
+    expandedItems: []
   }),
   watch: {
     selection(val) {
@@ -242,6 +245,10 @@ export default {
     },
     externalSearchString(val) {
       this.searchChange(val)
+    },
+    expandedItemIds(val) {
+      const items = this.pagination || this.progressivePagination ? this.paginatedItems : this.computedItems
+      this.expandedItems = items.filter(item => val.includes(item.id))
     }
   },
   mounted() {
@@ -254,6 +261,9 @@ export default {
     this.makeHeaders()
     this.computeItems()
     this.initSelections()
+    if (this.initialOpenItemIds) {
+      this.expandedItemIds = this.initialOpenItemIds
+    }
   },
   methods: {
     handleItemClick(item, expandFn, isExpanded, index) {

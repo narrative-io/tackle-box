@@ -1,5 +1,24 @@
 <template lang="pug">
   .test-slat-table
+    NioSlatTable(
+      v-if="columns && items"
+      :items="items"
+      :columns="columns"
+      action="expand"
+      :initialOpenItemIds="initialOpenItems"
+      multi-select
+      dense-rows
+      key="9"
+      footer-actions
+      pagination
+      @paginationPageChanged="paginationPageChanged($event)"
+    )
+      template(v-slot:custom-header-element)
+        .test Test Custom Header
+      template(v-slot:footer-actions)
+        NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
+        NioButton(normal-primary-append iconName="utility-plus") New Item
+      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}  
     h2 External Search String
     NioTextField(
       v-model="externalSearchString"
@@ -101,24 +120,6 @@
       sort-header
       key="8"
     )
-    NioSlatTable(
-      v-if="columns && items"
-      :items="items"
-      :columns="columns"
-      action="expand"
-      multi-select
-      dense-rows
-      key="9"
-      footer-actions
-      pagination
-      @paginationPageChanged="paginationPageChanged($event)"
-    )
-      template(v-slot:custom-header-element)
-        .test Test Custom Header
-      template(v-slot:footer-actions)
-        NioButton(normal-secondary-prepend iconName="utility-chevron-left") Back
-        NioButton(normal-primary-append iconName="utility-plus") New Item
-      template(v-slot:item-expanded="slotProps") {{ slotProps.item }}  
     h2 Listing plain
     NioSlatTable(
       v-if="items && plainColumns"
@@ -162,6 +163,7 @@
       :items="items"
       :columns="columns"
       action="expand"
+      :initialOpenItemIds="initialOpenItems"
       key="13"
       pagination
       search-sort-header
@@ -289,7 +291,8 @@ export default {
       }
     ],
     progressivePaginationCount: null,
-    computedItemsCount: null
+    computedItemsCount: null,
+    initialOpenItems: [3]
   }),
   methods: {
     paginationPageChanged(page) {
