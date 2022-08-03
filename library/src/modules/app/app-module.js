@@ -14,11 +14,19 @@ export default {
 			nioPaymentMethodLoading: 'paymentMethodLoading',
 			nioInvoiceAuthorized: 'invoiceAuthorized',
 			nioUser: 'user',
-			nioTier: 'tier'
+			nioTier: 'tier',
+      nioCustomAppParameters: 'customAppParameters'
 		})
 	},	
+  mounted() {
+    
+  },
   methods: {
     nioInitializeApplication: (app) => {
+      parent.postMessage({
+        name: 'fetchCustomParameters',
+        payload: null
+      },"*")
       if (window.addEventListener) {
         window.addEventListener("message", app.nioHandleMessage, false);
       } else {
@@ -58,6 +66,9 @@ export default {
           routerModule.setRegisteredPath(evt.data.payload)
           this.$router.push(evt.data.payload)
           break;	
+        case 'customParametersFetched':
+          this.$store.dispatch('nioServices/SET_CUSTOM_APP_PARAMETERS', evt.data.payload)
+          break;
         default:
           break;
       }	
