@@ -123,7 +123,7 @@
           @itemsPerPageChange="itemsPerPageChange($event)"
           @nextPage="nextPage"
           @prevPage="prevPage"
-        ) 
+        )
       template(v-slot:footer v-else-if="progressivePagination && computedItems.length > progressivePaginationCount")
         NioDivider(horizontal-solo)
         NioButton.progressive-pagination-button(
@@ -247,8 +247,13 @@ export default {
       this.searchChange(val)
     },
     expandedItemIds(val) {
+      if (this.pagination && val.length > 0) {
+        const firstOpenItemPage = Math.floor(this.items.findIndex(item => item.id === val[0]) / this.itemsPerPage) + 1
+        this.applyPagination(firstOpenItemPage)
+      }
       const items = this.pagination || this.progressivePagination ? this.paginatedItems : this.computedItems
       this.expandedItems = items.filter(item => val.includes(item.id))
+
     }
   },
   mounted() {

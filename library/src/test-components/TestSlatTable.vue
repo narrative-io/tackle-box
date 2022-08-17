@@ -292,7 +292,7 @@ export default {
     ],
     progressivePaginationCount: null,
     computedItemsCount: null,
-    initialOpenItems: [3]
+    initialOpenItems: [7]
   }),
   methods: {
     paginationPageChanged(page) {
