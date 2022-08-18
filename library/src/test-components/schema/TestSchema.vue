@@ -19,6 +19,7 @@
     NioSchema(
       :attributes="attributes"
       :hide-optional-properties="true"
+      expanded-by-default
     )
     NioSchema(
       :attributes="attributes"
