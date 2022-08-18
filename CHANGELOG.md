@@ -146,12 +146,9 @@ Added **forecastModule** to encapsulate forecasting API calls for all apps and D
 Fixed bug in **NioTagsField** regarding pasting from clipboard
 Added **Binary** filter type and added support for dataset joins for attributes of type **binary** with **format = 'geography'**
 Created **NioForecastingWidget**
-Applied constraint to dataset mapping consider only mapping with scope = 'global'
 Added new **display-XX** color from Figma Tacklebox spec
 Added test attribute for geometry property child of object attribute
 Added **external-search-string** optional prop for **NioSlatTable** 
 Added optional progressive pagination feature to **NioSlatTable**
 Added **nest-{nest-level}** class to NioSchemaProperties to aid in targeting styling
-Add handling for apps to accept custom parameters oon intitialization
-Add optional **itemIdClass** prop to NioDataTable to attach itemId as class for each table row
-Added optional **initialOpenItems** prop to NioSlatTable
+Add handling for apps to accept custom parameters on intitialization
