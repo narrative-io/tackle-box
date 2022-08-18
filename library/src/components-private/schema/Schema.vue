@@ -1,7 +1,7 @@
 <template lang="pug">
   .nio-schema
     NioExpansionPanels.root-panels(
-      v-if="computeAttributes"
+      v-if="openPanels"
       v-model="openPanels"
       multiple
     )
@@ -124,7 +124,7 @@ export default {
     "expandedByDefault": { type: Boolean, required: false, default: false }
   },
   data: () => ({
-    openPanels: [],
+    openPanels: null,
     openPanelsInitialized: false
   }),	
   computed: {
@@ -160,15 +160,24 @@ export default {
   },
   watch: {
     computeAttributes(val) {
-      if (this.expandedByDefault && !this.openPanelsInitialized && val && val.length) {
-        this.initializeOpenPanels()
-        this.openPanelsInitialized = true
-      }
+      this.initializeOpenPanels(val)
+    }
+  },
+  mounted() {
+    if (this.computeAttributes) {
+      this.initializeOpenPanels(this.computeAttributes)
     }
   },
   methods: {
-    initializeOpenPanels() {
-      this.openPanels = Array.from(Array(this.computeAttributes.length).keys())
+    initializeOpenPanels(attributes) {
+      if (!this.openPanelsInitialized && attributes && attributes.length) {
+        if (this.expandedByDefault) {
+          this.openPanels = Array.from(Array(attributes.length).keys())      
+        } else {
+          this.openPanels = []
+        }
+        this.openPanelsInitialized = true
+      }
     },
     makeTooltipContentClass(attributeType) {
       return `nio-field-type-tooltip ${attributeType}`
