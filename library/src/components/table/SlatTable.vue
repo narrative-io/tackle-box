@@ -255,7 +255,6 @@ export default {
       }
       const items = this.pagination || this.progressivePagination ? this.paginatedItems : this.computedItems
       this.expandedItems = items.filter(item => val.includes(item.id))
-
     }
   },
   mounted() {
@@ -268,8 +267,10 @@ export default {
     this.makeHeaders()
     this.computeItems()
     this.initSelections()
-    if (this.initialOpenItemIds) {
+    if (this.initialOpenItemIds && this.initialOpenItemIds.length > 0) {
       this.expandedItemIds = this.initialOpenItemIds
+    } else {
+      this.initialOpenItemsInit = true
     }
   },
   methods: {
