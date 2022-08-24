@@ -8,6 +8,7 @@
         NioExpansionPanels(
           multiple
           v-model="openPanels"
+          v-if="openPanels"
         )
           NioExpansionPanel(
             v-for="(propertyName, index) of computedProperties"
@@ -100,6 +101,7 @@
                   :show-exported-only="showExportedOnly"
                   :hide-indicators="hideIndicators"
                   :is-array-descendant="isArrayDescendant || Boolean(properties[propertyName].items)"
+                  :expanded-by-default="expandedByDefault"
                   @updatePayload="updatePayload"
                 )
               .property-details(
@@ -148,10 +150,11 @@ export default {
     "showExportedOnly": { type: Boolean, required: false, default: false },
     "isArrayDescendant": { type: Boolean, required: false, default: false }, // temparary fix to disable controls on all descendants of array properties until filters are supported in the backend
     "hideOptionalProperties": { type: Boolean, required: false, default: false },
-    "requiredPropertyNames": { type: Array, required: false }
+    "requiredPropertyNames": { type: Array, required: false },
+    "expandedByDefault": { type: Boolean, required: false, default: false }
   },
   data: () => ({
-    openPanels: [],
+    openPanels: null,
     alwaysTrue: true,
     optionalPropertiesHidden: false
   }),
@@ -187,6 +190,11 @@ export default {
     }
   },
   mounted() {
+    if (this.expandedByDefault) {
+      this.openPanels = Array.from(Array(this.computedProperties.length).keys())
+    } else {
+      this.openPanels = []
+    }
     if (this.hideOptionalProperties) {
       this.optionalPropertiesHidden = true
     }
