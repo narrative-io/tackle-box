@@ -153,3 +153,4 @@ Added optional progressive pagination feature to **NioSlatTable**
 Added **nest-{nest-level}** class to NioSchemaProperties to aid in targeting styling
 Add handling for apps to accept custom parameters on intitialization
 Added optional **expandedByDefault** prop to **NioExpansionPanels**
+Added **utility-download** icon
