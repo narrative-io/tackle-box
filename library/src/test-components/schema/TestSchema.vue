@@ -74,7 +74,6 @@ export default {
   methods: {
     makeAttributes() {
       this.attributes = this.testAttributes.map(attribute => replacePropertyRefs(attribute, this.testAttributes))
-      console.log({attr: this.attributes})
     }
   }
 };
