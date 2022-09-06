@@ -1,9 +1,11 @@
 <template lang="pug">
   .test-attributes-schema
-    //- NioSchema(
-    //-   :datasets="fields.datasets"
-    //-   :columnSets="fields.data_rules.column_sets"
-    //- )
+
+    NioSchema(
+      :datasets="fields.datasets"
+      :columnSets="fields.data_rules.column_sets"
+      expanded-by-default
+    )
     //- NioSchema(
     //-   :attributes="attributes"
     //-   :hideIndicators="true"
@@ -19,6 +21,7 @@
     NioSchema(
       :attributes="attributes"
       :hide-optional-properties="true"
+      expanded-by-default
     )
     NioSchema(
       :attributes="attributes"

@@ -1,6 +1,7 @@
 <template lang="pug">
   .nio-schema
     NioExpansionPanels.root-panels(
+      v-if="openPanels"
       v-model="openPanels"
       multiple
     )
@@ -77,6 +78,7 @@
               :is-array-descendant="Boolean(attribute.items)"
               :hide-optional-properties="hideOptionalProperties"
               :required-property-names="attribute.required"
+              :expanded-by-default="expandedByDefault"
             )
           .property-details(
             v-else 
@@ -118,10 +120,12 @@ export default {
     "disableInteractions": { type: Boolean, required: false, default: false },
     "hideIndicators": { type: Boolean, required: false, default: false },
     "showExportedOnly": { type: Boolean, required: false, default: false },
-    "hideOptionalProperties": { type: Boolean, required: false, default: false }
+    "hideOptionalProperties": { type: Boolean, required: false, default: false },
+    "expandedByDefault": { type: Boolean, required: false, default: false }
   },
   data: () => ({
-    openPanels: []
+    openPanels: null,
+    openPanelsInitialized: false
   }),	
   computed: {
     computeAttributes() {
@@ -154,7 +158,27 @@ export default {
       }
     }
   },
+  watch: {
+    computeAttributes(val) {
+      this.initializeOpenPanels(val)
+    }
+  },
+  mounted() {
+    if (this.computeAttributes) {
+      this.initializeOpenPanels(this.computeAttributes)
+    }
+  },
   methods: {
+    initializeOpenPanels(attributes) {
+      if (!this.openPanelsInitialized && attributes && attributes.length) {
+        if (this.expandedByDefault) {
+          this.openPanels = Array.from(Array(attributes.length).keys())      
+        } else {
+          this.openPanels = []
+        }
+        this.openPanelsInitialized = true
+      }
+    },
     makeTooltipContentClass(attributeType) {
       return `nio-field-type-tooltip ${attributeType}`
     },

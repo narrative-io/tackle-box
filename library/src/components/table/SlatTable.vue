@@ -222,7 +222,8 @@ export default {
     allSelected: false,
     listingPlain: false,
     expandedItemIds: [],
-    expandedItems: []
+    expandedItems: [],
+    initialOpenItemsInit: false
   }),
   watch: {
     selection(val) {
@@ -247,13 +248,13 @@ export default {
       this.searchChange(val)
     },
     expandedItemIds(val) {
-      if (this.pagination && val.length > 0) {
+      if (this.pagination && val.length > 0 && !this.initialOpenItemsInit) {
         const firstOpenItemPage = Math.floor(this.items.findIndex(item => item.id === val[0]) / this.itemsPerPage) + 1
         this.applyPagination(firstOpenItemPage)
+        this.initialOpenItemsInit = true
       }
       const items = this.pagination || this.progressivePagination ? this.paginatedItems : this.computedItems
       this.expandedItems = items.filter(item => val.includes(item.id))
-
     }
   },
   mounted() {
@@ -266,8 +267,10 @@ export default {
     this.makeHeaders()
     this.computeItems()
     this.initSelections()
-    if (this.initialOpenItemIds) {
+    if (this.initialOpenItemIds && this.initialOpenItemIds.length > 0) {
       this.expandedItemIds = this.initialOpenItemIds
+    } else {
+      this.initialOpenItemsInit = true
     }
   },
   methods: {
