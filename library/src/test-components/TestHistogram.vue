@@ -1,10 +1,10 @@
 <template lang="pug">
-NioHistogram(:options="options")
+  NioHistogram(:options="options")
 </template>
 
 
 <script>
-import NioHistogram from "../components/Histogram";
+import NioHistogram from "../components/Histogram"
 export default {
   components: {
     NioHistogram,

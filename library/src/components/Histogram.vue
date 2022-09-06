@@ -1,10 +1,10 @@
 <template lang="pug">
-ag-charts-vue(:options="fullOptions")
+  ag-charts-vue(:options="fullOptions")
 </template>
 
 
 <script>
-import { AgChartsVue } from "ag-charts-vue";
+import { AgChartsVue } from "ag-charts-vue"
 export default {
   components: {
     AgChartsVue,
@@ -94,9 +94,10 @@ export default {
     this.fullOptions = {
       ...this.defaultOptions,
       ...this.options,
-      series: Array.isArray(this.options.series) ? this.options.series.map(s => ({...this.defaultSeries, ...s})) : []
+      series: Array.isArray(this.options.series)
+        ? this.options.series.map((s) => ({ ...this.defaultSeries, ...s }))
+        : [],
     };
-    console.log("here",this.options.series, this.fullOptions);
   },
 };
 </script>
