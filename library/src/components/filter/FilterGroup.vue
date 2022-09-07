@@ -25,7 +25,8 @@ export default {
   components: { NioFilter },
   props: {
     "filters": { type: Array, required: true },
-    "panels": {type: Number}
+    "panels": { type: Number },
+    "summary": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     model: null
