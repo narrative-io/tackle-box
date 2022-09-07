@@ -11,30 +11,27 @@
     &.included-filters
       width: 100%
       .applied-filters
-        ::v-deep .v-expansion-panel-header
+        +nio-slat-group
+        width: 100%
+        border-radius: 0.5rem
+        & > .applied-filter + .applied-filter
+          border-top: 0.0625rem solid $c-primary-lighter
+        .applied-filter
           display: flex
           justify-content: space-between
-        // +nio-slat-group
-        // width: 100%
-        // border-radius: 0.5rem
-        // & > .applied-filter + .applied-filter
-        //   border-top: 0.0625rem solid $c-primary-lighter
-        // .applied-filter
-        //   display: flex
-        //   justify-content: space-between
-        //   padding: 0rem 2rem
-        //   align-items: center
-        //   height: 3.25rem
-        //   background-color: $c-white
-        //   .selected-filter-value
-        //     display: flex
-        //     align-items: center
-        //     background: $c-white
-        //     border: 0.0625rem solid $c-primary-lighter
-        //     border-radius: 6.25rem
-        //     padding: 0.25rem 1rem 0.25rem 0.75rem
-        //     .text
-        //       margin-left: 0.5rem
+          padding: 0rem 2rem
+          align-items: center
+          height: 3.25rem
+          background-color: $c-white
+          .selected-filter-value
+            display: flex
+            align-items: center
+            background: $c-white
+            border: 0.0625rem solid $c-primary-lighter
+            border-radius: 6.25rem
+            padding: 0.25rem 1rem 0.25rem 0.75rem
+            .text
+              margin-left: 0.5rem
     .attributes
       width: 100%
       position: relative

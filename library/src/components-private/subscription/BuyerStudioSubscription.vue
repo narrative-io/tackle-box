@@ -22,46 +22,32 @@
     .display-row.display-table.included-filters(v-if="subscription.status === 'active' || subscription.status === 'kickoff' || subscription.status === 'pending'" )
       .display-column.full-width
         .nio-h4.text-primary-darker(style="margin-bottom: 8px") Included Filters
-        .applied-filters(v-if="appliedFilters(subscription).length || getDatasetFilter(subscription)")
-          NioExpansionPanels(
-            multiple
+        .applied-filters(v-if="getAppliedFilters(subscription).length || getDatasetFilter(subscription)")
+          .applied-filter(
+            v-for="filter of getAppliedFilters(subscription)"
           )
-            NioExpansionPanel(
-              v-for="(filter, index) of appliedFilters(subscription)"
-              :key="index"
+            NioPrettySchemaPath(:path="filter.path" :displayOnly="true")
+            .selected-filter-value 
+              NioIcon(
+                name="utility-check-circle"
+                color="#43B463"
+                size="14"
+              )
+              .text.nio-p.text-primary-darker {{ makeFilterValue(filter.filter) }}
+          .applied-filter.join-filter(v-if="getDatasetFilter(subscription)")
+            NioPrettySchemaPath(
+              :path="getDatasetFilter(subscription).path" 
+              :displayOnly="true"
             )
-              template(v-slot:header) 
-                NioPrettySchemaPath(:path="field.path" :displayOnly="true")
-                .applied-filter(
-                  v-for="filter of appliedFilters(subscription)"
-                )
-                  NioPrettySchemaPath(:path="filter.path" :displayOnly="true")
-                  .selected-filter-value 
-                    NioIcon(
-                      name="utility-check-circle"
-                      color="#43B463"
-                      size="14"
-                    )
-                    .text.nio-p.text-primary-darker {{ makeFilterValue(filter.filter) }}
-            NioExpansionPanel(
-              v-if="getDatasetFilter(subscription)"
-              :key="appliedFilters && appliedFilter.length ? appliedFilters(subscription).length : 0"
-            )
-              template(v-slot:header) 
-                .applied-filter.join-filter
-                  NioPrettySchemaPath(
-                    :path="getDatasetFilter(subscription).path" 
-                    :displayOnly="true"
-                  )
-                  .selected-filter-value 
-                    NioIcon(
-                      name="utility-check-circle"
-                      color="#43B463"
-                      size="14"
-                    )
-                    .text.nio-p.text-primary-darker Join to Dataset
-              template(v-slot:content)
+            .selected-filter-value 
+              NioIcon(
+                name="utility-check-circle"
+                color="#43B463"
+                size="14"
+              )
+              .text.nio-p.text-primary-darker Join to Dataset
             //- .text.nio-p.text-primary-darker.nio-bold Dataset Name:
+
             //- .text.nio-p.text-primary-darker Dataset Name: {{ getDatasetById(getDatasetFilter(subscription).dataset_id).name }}
         .nio-p.text-primary-dark.empty(v-else) No filters applied
     .display-row.display-table(v-if="subscription.status === 'active' || subscription.status === 'kickoff' || subscription.status === 'pending'")
@@ -199,11 +185,6 @@ export default {
   data: () => ({
     filesVisible: false
   }),	
-  computed: 
-    appliedFilters() {
-      return this.findExportedFields(this.subscription, this.attributes, 'filterable')
-    }
-  },
   methods: {
     computeBudget(item) {
       return `${item.budget.amount.currency === 'USD' ? '$' : ''}${numeral(item.budget.amount.value.toFixed(2)).format('0,0')} ${item.budget.amount.currency !== 'USD' ? item.budget.amount.currency : ''}`
@@ -249,6 +230,9 @@ export default {
     },
     getDatasetById(id) {
       return this.datasets.find(dataset => dataset.id === id)
+    },
+    getAppliedFilters(subscription) {
+      return this.findExportedFields(subscription, this.attributes, 'filterable')
     },
     getExportedFields(subscription) {
       return this.findExportedFields(subscription, this.attributes, 'deliverable')
