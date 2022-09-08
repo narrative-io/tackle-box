@@ -23,7 +23,8 @@ export default {
   components: { NioFilterProperty },
   props: {
     "filter": { type: Object, required: true },
-    "customOptionLoading": { type: Boolean, required: false, default: false }
+    "customOptionLoading": { type: Boolean, required: false, default: false },
+    "summary": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     description: 'Select the data to include'

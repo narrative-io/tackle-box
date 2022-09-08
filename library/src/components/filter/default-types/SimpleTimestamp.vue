@@ -89,7 +89,8 @@ export default {
   components: { NioFilterProperty, NioDateField, NioCheckbox, NioTextField, NioSelect },
   props: {
     "filter": { type: Object, required: true },
-    "customOptionLoading": { type: Boolean, required: false, default: false }
+    "customOptionLoading": { type: Boolean, required: false, default: false },
+    "summary": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     valid: true,
