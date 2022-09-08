@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-body
+  .nio-filter-body(:class="{'summary': summary}")
     template(v-if="filter.type === 'custom'")
       NioFilterPropertiesCustom(
         :filter="filter"
@@ -123,7 +123,8 @@ export default {
   },
   props: {
     "filter": { type: Object, required: true },
-    "customOptionLoading": { type: Boolean, required: false, default: false }
+    "customOptionLoading": { type: Boolean, required: false, default: false },
+    "summary": { type: Boolean, required: false, default: false }
   },
   computed: {
     defaultOptions() {

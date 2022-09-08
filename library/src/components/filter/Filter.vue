@@ -2,7 +2,7 @@
   v-expansion-panel.nio-filter(
     v-if="!solo"
     :key="filter.name"
-    :class="{'filter-disabled': filter.disabled}"
+    :class="{'filter-disabled': filter.disabled, 'summary': summary}"
   )
     v-expansion-panel-header
       template(
@@ -19,6 +19,7 @@
         :value="value"
         :tooltip="filter.tooltip"
         :filter="filter"
+        :summary="summary"
       )
         template(
           v-for="(index, name) in $scopedSlots" 
@@ -40,6 +41,7 @@
         v-else
         :filter="filter"
         :custom-option-loading="customOptionLoading || filterObjCustomOptionLoading"
+        :summary="summary"
         @valueChanged="handleValueChange($event)"
       )
         template(
@@ -86,6 +88,7 @@ export default {
   components: { NioFilterHeader, NioFilterBody },
   props: {
     "filter": { type: Object, required: true },
+    "summary": { type: Boolean, required: false, default: false },
     "solo": { type: Boolean, required: false, default: false },
     "customOptionLoading": { type: Boolean, required: false, default: false },
     "filterObjCustomOptionLoading": { type: Boolean, required: false, default: false }

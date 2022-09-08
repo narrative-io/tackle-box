@@ -2,6 +2,7 @@
   v-expansion-panels.nio-filter-group(accordion v-model="model")
     NioFilter(
       v-for="filter in filters"
+      :summary="summary"
       :filter="filter"
       :filter-obj-custom-option-loading="!filter.customOption || filter.customOption.loading"
     )
