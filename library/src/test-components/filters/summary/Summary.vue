@@ -12,6 +12,10 @@
 import NioFilterGroup from '@/components/filter/FilterGroup'
 import NioFilter from '@/components/filter/Filter'
 import Boolean from './instances/Boolean'
+import StringLimited from './instances/StringLimited'
+import StringMany from './instances/StringMany'
+import Number from './instances/Number'
+import SimpleTimestamp from './instances/SimpleTimestamp'
 
 export default {
   components: {
@@ -21,7 +25,11 @@ export default {
   data: () => ({
     activeFilterName: null,
     filters: [
-      ...Boolean
+      ...Boolean,
+      ...StringLimited,
+      ...StringMany,
+      ...Number,
+      ...SimpleTimestamp
     ]
   }),
   mounted() {
