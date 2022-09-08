@@ -66,6 +66,7 @@
       v-else
       :filter="filter"
       :custom-option-loading="customOptionLoading || filterObjCustomOptionLoading"
+      :summary="summary"
       @valueChanged="handleValueChange($event)" 
     )
       template(

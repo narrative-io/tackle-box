@@ -24,11 +24,16 @@
                 value="exclude" 
                 label="Exclude"
               )
-            .textarea
+            .tags-field(v-if="summary")
+              NioTagsField(
+                v-model="filter.customOption.value.manualEntry"
+                label="Specified values"
+              )
+            .textarea(v-else)       
               NioTextarea(
                 v-model="filter.customOption.value.manualEntry"
               )
-              .instructions.nio-p.text-primary-dark Enter each value on a separate line
+              .instructions.nio-p.text-primary-dark Enter each value on a separate line {{ summary }}
           NioTabs(
             :tabs="tabs"
             v-model="activeTab"
@@ -73,7 +78,7 @@
                   value="exclude" 
                   label="Exclude"
                 )
-              .textarea
+              .textarea      
                 NioTextarea(
                   v-model="filter.customOption.value.manualEntry"
                 )
@@ -89,13 +94,23 @@ import NioSlatTable from '../../table/SlatTable'
 import NioRadioGroup from '../../RadioGroup'
 import NioRadioButton from '../../RadioButton'
 import NioTextarea from '../../Textarea'
+import NioTagsField from '../../TagsField'
 
 export default {
   name: 'nio-filter-properties-string-many',
-  components: { NioFilterProperty, NioTabs, NioSlatTable, NioRadioGroup, NioRadioButton, NioTextarea },
+  components: { 
+    NioFilterProperty, 
+    NioTabs, 
+    NioSlatTable, 
+    NioRadioGroup, 
+    NioRadioButton, 
+    NioTextarea,
+    NioTagsField
+  },
   props: {
     "filter": { type: Object, required: true },
-    "customOptionLoading": { type: Boolean, required: false, default: false }
+    "customOptionLoading": { type: Boolean, required: false, default: false },
+    "summary": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     initialListItems: [],

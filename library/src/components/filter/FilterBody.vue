@@ -16,66 +16,77 @@
           )   
     template(v-if="filter.type === 'object'")
       NioFilterPropertiesObject(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )
     template(v-if="filter.type === 'array'")
       NioFilterPropertiesArray(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )
     template(v-if="filter.type === 'number'")
       NioFilterPropertiesNumber(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'eventTimestamp'")
       NioFilterPropertiesEventTimestamp(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'simpleTimestamp'")
       NioFilterPropertiesSimpleTimestamp(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'stringMany'")
       NioFilterPropertiesStringMany(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       ) 
     template(v-else-if="filter.type === 'stringLimited'")
       NioFilterPropertiesStringLimited(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'mapping'")
       NioFilterPropertiesMapping(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )  
     template(v-else-if="filter.type === 'frequency'")
       NioFilterPropertiesFrequency(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )      
     template(v-else-if="filter.type === 'boolean'")
       NioFilterPropertiesBoolean(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )      
     template(v-else-if="filter.type === 'binary'")
       NioFilterPropertiesBinary(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
