@@ -8,7 +8,7 @@
       :join-option="filter.joinOption"
     )
       template(v-slot:custom-option)
-        .string-many-custom
+        .string-many-custom(:class="{'summary': summary}")
           .manual-entry-only(
             v-if="filter.customOption.config.manualEntryOnly"
           )
