@@ -6,6 +6,7 @@
 <script>
 import { AgChartsVue } from "ag-charts-vue"
 export default {
+  name: 'nio-histogram',
   components: {
     AgChartsVue,
   },
