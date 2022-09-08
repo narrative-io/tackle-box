@@ -9,8 +9,8 @@
     )
       template(v-slot:custom-option)
         .boolean-custom
-          .heading.nio-h5.text-primary-darker Choose value
-          .description.nio-p.text-primary-dark Set which boolean value you want to include.
+          .heading.nio-h5.text-primary-darker {{ summary ? 'Selected value' : 'Choose value' }}
+          .description.nio-p.text-primary-dark {{ summary ? 'Only include records which contain this value.' : 'Set which boolean value you want to include.' }}
           .controls
             NioRadioGroup(v-model="filter.customOption.value")
               NioRadioButton(

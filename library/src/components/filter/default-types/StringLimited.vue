@@ -8,7 +8,7 @@
       :join-option="filter.joinOption"
     )
       template(v-slot:custom-option)
-        .string-limited-custom
+        .string-limited-custom(:class="{'summary': summary}")
           .list-type(v-if="filter.customOption.value.listType")
             NioRadioGroup(
               v-model="filter.customOption.value.listType" 
@@ -22,7 +22,12 @@
                 value="exclude" 
                 label="Exclude"
               )
-          .filter-selection    
+          .filter-selection.summary(v-if="summary")
+            NioTagsField(
+              v-model="formattedSelections"
+              label="Specified values"
+            )
+          .filter-selection(v-else)
             .custom-text(
               v-if="filter.customOption.value.listType"
             )
@@ -88,10 +93,19 @@ import NioAutocomplete from '../../Autocomplete'
 import NioRadioGroup from '../../RadioGroup'
 import NioRadioButton from '../../RadioButton'
 import NioPill from '../../Pill'
+import NioTagsField from '../../TagsField'
 
 export default {
   name: 'nio-filter-properties-string-limited',
-  components: { NioFilterProperty, NioSelect, NioAutocomplete, NioRadioGroup, NioRadioButton, NioPill },
+  components: { 
+    NioFilterProperty, 
+    NioSelect, 
+    NioAutocomplete, 
+    NioRadioGroup, 
+    NioRadioButton, 
+    NioPill,
+    NioTagsField
+  },
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false },
@@ -127,6 +141,14 @@ export default {
           value: 'custom'
         }
       ]
+    },
+    formattedSelections() {
+      if (this.filter.customOption.value.items && this.filter.customOption.value.items.length > 0) {
+        return this.filter.customOption.value.items.map(item => {
+          return item.label ? item.label : item
+        })
+      }
+      return []
     }
   },
   watch: {

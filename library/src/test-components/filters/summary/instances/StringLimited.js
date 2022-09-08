@@ -22,6 +22,8 @@ const Default = {
   ],
   customOption: {
     config: {
+      searchable: true,
+      multiple: true,
       items: LimitedItems
     },
     value: {
@@ -52,10 +54,12 @@ const CustomSingle = {
   ],
   customOption: {
     config: {
+      searchable: true,
+      multiple: true,
       items: LimitedItems
     },
     value: {
-      items: [LimitedItems[0]]
+      items: ['value 1']
     }	
   }
 }
@@ -82,10 +86,25 @@ const CustomMultiple = {
   ],
   customOption: {
     config: {
+      searchable: true,
+      multiple: true,
       items: LimitedItems
     },
     value: {
-      items: [LimitedItems[0], LimitedItems[1]]
+      items: [
+        'value 1',
+        'value 2',
+        'value 3',
+        'value 4',
+        'value 5',
+        'value 6',
+        'value 7',
+        'value 8',
+        'value 9',
+        'value 10',
+        'value 11',
+        'value 12'
+      ]
     }	
   }
 }
