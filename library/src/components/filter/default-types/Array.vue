@@ -6,6 +6,7 @@
       :options="filter.options ? filter.options : defaultOptions"
       :join-option="filter.joinOption"
       :custom-option-loading="false"
+      :summary="summary"
     )
 </template>
 

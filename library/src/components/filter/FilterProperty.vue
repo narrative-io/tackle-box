@@ -1,6 +1,6 @@
 <template lang="pug">
-  .nio-filter-property
-    .heading-description
+  .nio-filter-property(:class="{'summary': summary}")
+    .heading-description(v-if="!summary")
       .heading.nio-h5.text-primary-darker(v-if="heading") {{ heading }}
       .description.nio-p.text-primary-dark(:class="{'centered': !heading}") {{ description }}
     .options

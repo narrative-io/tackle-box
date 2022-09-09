@@ -6,6 +6,7 @@
       :options="filter.options ? filter.options : defaultOptions"
       :custom-option-loading="customOptionLoading"
       :join-option="filter.joinOption"
+      :summary="summary"
     )
       template(v-slot:custom-option)
         //- .binary-custom

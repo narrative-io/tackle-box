@@ -6,6 +6,7 @@
       :options="filter.options ? filter.options : defaultOptions"
       :custom-option-loading="false"
       :filter="filter"
+      :summary="summary"
     )
       template(
         v-for="(index, name) in $scopedSlots" 

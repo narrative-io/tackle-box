@@ -5,6 +5,7 @@
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
       :custom-option-loading="customOptionLoading"
+      :summary="summary"
     )
       template(v-slot:custom-option)
         .string-limited-custom

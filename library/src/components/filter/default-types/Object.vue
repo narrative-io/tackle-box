@@ -5,6 +5,7 @@
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
       :custom-option-loading="false"
+      :summary="summary"
     )
 </template>
 

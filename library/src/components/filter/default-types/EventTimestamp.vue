@@ -7,6 +7,7 @@
       :options="defaultOptions.dateRange"
       :custom-option-loading="customOptionLoading"
       :join-option="filter.joinOption"
+      :summary="summary"
     )
       template(v-slot:custom-option)
         .date-range-custom
