@@ -9,7 +9,7 @@
     )
       template(v-slot:custom-option)
         .simple-timestamp-custom
-          .instructions.nio-p.text-primary-dark Select the data to include
+          .instructions.nio-p.text-primary-dark(v-if="!summary") Select the data to include
           .timestamps
             .start(
               :class="{'disabled': !filter.customOption.value.start.enabled}"
@@ -17,12 +17,14 @@
               .controls
                 NioCheckbox(
                   v-model="filter.customOption.value.start.enabled"
-                  label="Set a start date"
+                  :label="summary ? 'Start date' : 'Set a start date'"
                 ) 
               NioDateField(
+                v-if="!summary || filter.customOption.value.start.enabled"
                 v-model="filter.customOption.value.start.timestamp"
                 :min="startMinDate"
                 :max="startMaxDate"
+                :label="summary ? 'Selected date' : 'Select date'"
               )
             .end(
               :class="{'disabled': !filter.customOption.value.end.enabled}"
@@ -30,17 +32,19 @@
               .controls
                 NioCheckbox(
                   v-model="filter.customOption.value.end.enabled"
-                  label="Set an end date"
+                  :label="summary ? 'End date' : 'Set an end date'"
                 )
               NioDateField(
+                v-if="!summary || filter.customOption.value.end.enabled"
                 v-model="filter.customOption.value.end.timestamp"
                 :min="startMinDate"
                 :max="startMaxDate"
+                :label="summary ? 'Selected date' : 'Select date'"
               )
           .recency
             NioCheckbox.inclusive(
               v-model="filter.customOption.value.recency.enabled"
-              label="Add a rolling lookback window"
+              :label="summary ? 'Lookback window' : 'Add a rolling lookback window'"
             )
             .rolling-lookback-custom(v-if="filter.customOption.value.recency.enabled")
               .nio-p.text-primary-dark Include timestamps from 
