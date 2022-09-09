@@ -31,10 +31,10 @@
                   label="Maximum value"
                 )
               .result.nio-p.text-primary-dark.nio-bold
-                span(v-if="filter.customOption.value[0] && filter.customOption.value[1]") Include values between {{ filter.customOption.value[0] }} and {{ filter.customOption.value[1] }} (inclusive)
-                span(v-if="!filter.customOption.value[0] && filter.customOption.value[1]") Include values less than or equal to {{ filter.customOption.value[1] }}
-                span(v-if="filter.customOption.value[0] && !filter.customOption.value[1]") Include values greater than or equal to {{ filter.customOption.value[0] }}
-                span(v-if="!filter.customOption.value[0] && !filter.customOption.value[1]") Include all values
+                span(v-if="hasMin && hasMax") Include values between {{ filter.customOption.value[0] }} and {{ filter.customOption.value[1] }} (inclusive)
+                span(v-if="!hasMin && hasMax") Include values less than or equal to {{ filter.customOption.value[1] }}
+                span(v-if="hasMin && !hasMax") Include values greater than or equal to {{ filter.customOption.value[0] }}
+                span(v-if="!hasMin && !hasMax") Include all values
             .validation-error.nio-p-small.text-error(v-if="!summary && minNotLossThanMax") Max value must be greater than or equal to min value  
             .validation-error.nio-p-small.text-error(v-else-if="!summary && !valid") Must include min and/or max value
           NioSlider(
@@ -70,6 +70,12 @@ export default {
     minNotLossThanMax: false
   }),	
   computed: {
+    hasMin() {
+      return this.filter.customOption.value[0] && this.filter.customOption.value[0] !== ' '
+    },
+    hasMax() {
+      return this.filter.customOption.value[1] && this.filter.customOption.value[1] !== ' '
+    },
     defaultOptions() {
       if (!this.filter) {
         return []
