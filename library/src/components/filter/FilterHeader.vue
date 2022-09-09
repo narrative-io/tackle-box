@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-header
+  .nio-filter-header(:class="{'summary': summary}")
     .title-description
       template(
         v-if="hasScopedSlot(`filter-header-name-custom`)"
