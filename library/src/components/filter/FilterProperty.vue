@@ -36,6 +36,7 @@
     )  
       .option-content
         NioFilterJoinOption(
+          :summary="summary"
           :join-option="joinOption"
         )
 </template>
@@ -55,7 +56,8 @@ export default {
     "options": { type: Array, required: true },
     "value": { type: String, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false },
-    "joinOption": { type: Object, required: false}
+    "joinOption": { type: Object, required: false},
+    "summary": { type: Boolean, required: false, default: false }
   },
   model: {
     prop: "value",
