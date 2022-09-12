@@ -90,6 +90,13 @@
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
+      )     
+    template(v-else-if="filter.type === 'spark'")
+      NioFilterPropertiesSpark(
+        :summary="summary"
+        :filter="filter"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
       )      
     template(v-else)
       slot(
@@ -114,6 +121,7 @@ import NioFilterPropertiesMapping from './default-types/Mapping'
 import NioFilterPropertiesFrequency from './default-types/Frequency'
 import NioFilterPropertiesBoolean from './default-types/Boolean'
 import NioFilterPropertiesBinary from './default-types/Binary'
+import NioFilterPropertiesSpark from './default-types/Spark.vue'
 
 export default {
   name: 'nio-filter-body',
@@ -131,6 +139,7 @@ export default {
     NioFilterPropertiesFrequency,
     NioFilterPropertiesBoolean,
     NioFilterPropertiesBinary,
+    NioFilterPropertiesSpark
   },
   props: {
     "filter": { type: Object, required: true },

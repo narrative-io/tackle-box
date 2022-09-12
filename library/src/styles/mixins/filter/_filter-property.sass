@@ -272,5 +272,16 @@
         left: 0rem
         bottom: -1.25rem
         
+      .spark-custom
+        ::v-deep .values
+          display: block
+          display: flex
+          flex-direction: column
+          align-items: flex-start
+          .nio-pill + .nio-pill
+            margin-top: 8px
+        ::v-deep .nio-h4
+          margin-bottom: 12px
+        
 .nio-filter-property
   +nio-filter-property 

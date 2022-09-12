@@ -17,6 +17,7 @@ import StringMany from './instances/StringMany'
 import Number from './instances/Number'
 import SimpleTimestamp from './instances/SimpleTimestamp'
 import Join from './instances/Join'
+import Spark from './instances/Spark'
 
 export default {
   components: {
@@ -31,7 +32,8 @@ export default {
       ...StringMany,
       ...Number,
       ...SimpleTimestamp,
-      ...Join
+      ...Join,
+      ...Spark
     ]
   }),
   mounted() {
