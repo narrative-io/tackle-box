@@ -17,13 +17,7 @@ const Default = {
 			label: 'Custom',
 			value: 'custom',
 		}
-	],
-	customOption: {
-		config: {
-			unconstrained: true
-		},
-		value: [null, null]
-	}
+	]
 }
 
 const CustomMinOnly = { 

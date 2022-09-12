@@ -105,7 +105,7 @@ export default {
     }
   },
   mounted() {
-    if (this.summary && this.filter.customOption && this.filter.customOption.config && this.filter.customOption.config.unconstrained) {
+    if (this.summary && this.filter.customOption && this.filter.customOption && this.filter.customOption.config && this.filter.customOption.config.unconstrained) {
       if (this.filter.customOption.value && !this.filter.customOption.value[0]) {
         this.filter.customOption.value[0] = ' '
       }
@@ -122,7 +122,7 @@ export default {
       this.validate()
     },
     validate() {
-      if (this.filter.customOption.config.unconstrained && this.filter.value === 'custom') {
+      if (this.filter.customOption && this.filter.customOption.config && this.filter.customOption.config.unconstrained && this.filter.value === 'custom') {
         if (!this.filter.customOption.value[0] && !this.filter.customOption.value[1]) {
           this.setValid(false)
           this.minNotLossThanMax = false
