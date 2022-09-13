@@ -17,15 +17,7 @@ const Default = {
 			label: 'Custom',
 			value: 'custom',
 		}
-	],
-	customOption: {
-		config: {
-			manualEntryOnly: true
-		},
-		value: {
-			manualEntry: null
-		}
-	}
+	]
 }
 
 const CustomSingleEntry = {
@@ -58,7 +50,6 @@ const CustomSingleEntry = {
 		}
 	}
 }
-
 
 const CustomMultipleEntry = {
 	name: "stringMany",

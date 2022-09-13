@@ -21,40 +21,7 @@ const Default = {
 			value: 'custom',
 		}
 	],
-	value: "default",
-	customOption: {
-		config: {
-			periodOptions: [
-				{
-					label: 'Days',
-					value: 'day'
-				},
-				{
-					label: 'Weeks',
-					value: 'week'
-				},
-				{
-					label: 'Months',
-					value: 'month'
-				}
-			]  
-		},
-		value: {
-			recency: {
-				enabled: false,
-				period: 'day',
-				value: 30
-			},
-			start: {
-				enabled: true,
-				timestamp: "2021-02-24",
-			},
-			end: {
-				enabled: true,
-				timestamp: "2021-03-21"
-			} 
-		}
-	}
+	value: "default"
 }
 
 const CustomStartEnd = {

@@ -19,17 +19,7 @@ const Default = {
       label: 'Custom',
       value: 'custom',
     }
-  ],
-  customOption: {
-    config: {
-      searchable: true,
-      multiple: true,
-      items: LimitedItems
-    },
-    value: {
-      items: [LimitedItems[0]]
-    }	
-  }
+  ]
 }
 
 const CustomSingle = {

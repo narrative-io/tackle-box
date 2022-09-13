@@ -17,10 +17,7 @@ const Boolean = {
 			label: 'Custom',
 			value: 'custom',
 		}
-	],
-	customOption: {
-		value: ''
-	}
+	]
 }
 
 const BooleanRequired = { 

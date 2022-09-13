@@ -9,7 +9,9 @@
       :summary="summary"
     )
       template(v-slot:custom-option)
-        .string-limited-custom(:class="{'summary': summary}")
+        .string-limited-custom(
+          :class="{'summary': summary}"
+        )
           .list-type(v-if="filter.customOption.value.listType")
             NioRadioGroup(
               v-model="filter.customOption.value.listType" 

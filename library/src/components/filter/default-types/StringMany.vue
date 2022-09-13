@@ -11,7 +11,7 @@
       template(v-slot:custom-option)
         .string-many-custom(:class="{'summary': summary}")
           .manual-entry-only(
-            v-if="filter.customOption.config.manualEntryOnly"
+            v-if="filter.customOption && filter.customOption.config.manualEntryOnly"
           )
             NioRadioGroup(
               v-if="filter.customOption.value.listType"
@@ -158,7 +158,7 @@ export default {
     }
   },
   mounted() {
-    if (!this.filter.customOption.config.manualEntryOnly) {
+    if (this.filter.customOption && !this.filter.customOption.config.manualEntryOnly) {
       this.initialListItems = this.filter.customOption.value.items.length ? this.filter.customOption.value.items.map(item => item.id) : []
     }
     this.updateValue()

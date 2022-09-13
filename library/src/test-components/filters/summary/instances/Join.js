@@ -36,18 +36,7 @@ const GeometryJoin = {
       selectedDataset: 1,
       geometryType: 'Contains'
     }
-  },
-	customOption: {
-		config: {
-			list: {
-				items: [],
-			}
-		},
-		value: {
-			items: [],
-			manualEntry: null
-		}
-	}
+  }
 }
 
 const NonGeometryJoin = {
@@ -87,18 +76,7 @@ const NonGeometryJoin = {
       joinType: 'include',
       selectedDataset: 1
     }
-  },
-	customOption: {
-		config: {
-			list: {
-				items: [],
-			}
-		},
-		value: {
-			items: [],
-			manualEntry: null
-		}
-	}
+  }
 }
 
 export default [
