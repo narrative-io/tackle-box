@@ -11,19 +11,17 @@
     &.included-filters
       width: 100%
       .applied-filters
-        +nio-slat-group
         width: 100%
+        border: none
         border-radius: 0.5rem
-        & > .applied-filter + .applied-filter
-          border-top: 0.0625rem solid $c-primary-lighter
-        .applied-filter
+        .nio-filter-group
+          border-radius: 0.5rem
+        .v-expansion-panel-header
           display: flex
           justify-content: space-between
-          padding: 0rem 2rem
-          align-items: center
-          height: 3.25rem
-          background-color: $c-white
           .selected-filter-value
+            flex-grow: 0
+            margin-right: 32px
             display: flex
             align-items: center
             background: $c-white
@@ -35,7 +33,6 @@
     .attributes
       width: 100%
       position: relative
-      min-height: 8rem
       .nio-expansion-panels
         border-radius: 0.5rem 
         overflow: hidden
@@ -53,15 +50,29 @@
     .mobile-message
       display: none
   .frequency
-    .selected-filter-value
+    .filter-value
       display: flex
-      align-items: center
-      background: $c-white
-      border: 0.0625rem solid $c-primary-lighter
-      border-radius: 6.25rem
-      padding: 0.25rem 1rem 0.25rem 0.75rem
-      .text
-        margin-left: 0.5rem
-
+      flex-direction: column
+      align-items: flex-start
+      .nio-p
+        margin-bottom: 4px
+      .selected-filter-value
+        display: flex
+        align-items: center
+        background: $c-white
+        border: 0.0625rem solid $c-primary-lighter
+        border-radius: 6.25rem
+        padding: 0.25rem 1rem 0.25rem 0.75rem
+        margin-bottom: 12px
+        .text
+          margin-left: 0.5rem
+          transform: translate(0px, 2px)
+      .frequency-fields
+        margin-top: 12px
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+  .nio-pill + .nio-pill
+    margin-top: 8px !important
 .nio-buyer-studio-subscription
   +nio-buyer-studio-subscription 
