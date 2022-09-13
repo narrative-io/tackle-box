@@ -24,7 +24,6 @@ const joinOption = {
 let makeSummaryFilterGroup = (subscription, attributes, datasets) => {
   let filters = []
   const dataRules = subscription.details.data_rules
-
   if (dataRules.attributes && dataRules.attributes.length > 0) {
     dataRules.attributes.forEach(attribute => {
       if (attribute.fields && attribute.fields.length > 0) {
@@ -115,7 +114,6 @@ let makePathFromDatasetFilter = (filter, attributes) => {
 }
 
 let makeFilter = (filter, path, attribute) => {
-  console.log("FILTER: ", filter)
   const filterObj = {
     name: toCamelCase(makePathString(path).replaceAll('->', '')),
     title: '',
@@ -145,7 +143,6 @@ let makeFilter = (filter, path, attribute) => {
     }  
   }
 
-  console.log(filterObj)
   return filterObj
 }
 
@@ -174,7 +171,6 @@ let makeFilterDetails = (filterObj, filter, attribute) => {
     case 'array':
       break;
     case 'string':
-      console.log(filter)
       if (attribute.enum) {
         filterObj.customOption = {
           config: {
@@ -212,7 +208,7 @@ let makeFilterDetails = (filterObj, filter, attribute) => {
         config: {
           unconstrained: true
         },
-        value: [filter.min?.value ? parseInt(filter.min.value) : null, filter.max?.value ? parseInt(filter.max.value) : null]
+        value: [filter.min && filter.min.value ? parseInt(filter.min.value) : null, filter.max && filter.max.value ? parseInt(filter.max.value) : null]
       }
       break;
     case 'double':
@@ -220,7 +216,7 @@ let makeFilterDetails = (filterObj, filter, attribute) => {
         config: {
           unconstrained: true
         },
-        value: [filter.min?.value ? parseFloat(filter.min.value) : null, filter.max?.value ? parseFloat(filter.max.value) : null]
+        value: [filter.min && filter.min.value ? parseFloat(filter.min.value) : null, filter.max && filter.max.value ? parseFloat(filter.max.value) : null]
       }
       break;
     case 'boolean':

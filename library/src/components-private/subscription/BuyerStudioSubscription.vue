@@ -65,8 +65,8 @@
                       .nio-p.text-primary-dark(v-if="field.property.enum") 
                         .pills
                           NioPill(
-                            tag
                             v-for="value of field.property.enum"
+                            tag
                           ) {{ value }}
                       .nio-p.text-primary-dark(v-else) Any value
     .split-row
@@ -77,8 +77,8 @@
             .nio-p.text-primary-dark Buy only unique records <span class="nio-bold">every {{ makeReadablePeriod(subscription.details.data_rules.deduplication.period) }}</span> based on these data points:
               .pills(v-if="sellerCompanies")
                 NioPill(
-                  tag
                   v-for="dataPoint of makeDeduplication(subscription.details.data_rules.deduplication)"
+                  tag
                 ) {{ makeDataPointPath(dataPoint) }}
           .no-deduplication(v-else)
             .nio-p.text-primary-dark.empty Buy all data points     
@@ -89,8 +89,8 @@
             .pills(v-if="sellerCompanies")
               template(v-for="companyId of subscription.details.company_constraint.company_ids")
                 NioPill(
-                  tag
                   v-if="getCompanyNameById(companyId)"
+                  tag
                 ) {{ getCompanyNameById(companyId) }}
           .nio-p.text-primary-dark.empty(v-else) Buy from all sellers
     .split-row
@@ -165,7 +165,6 @@
 import numeral from 'numeral'
 import { getReadableType, getAttributeFromPath } from '@/modules/app/schema/attributeModule'
 import { makeSummaryFilterGroup } from './filtersSummary'
-
 import NioFilterGroup from '../../components/filter/FilterGroup'
 import NioPrettySchemaPath from '../schema/PrettySchemaPath'
 import NioExpansionPanels from '../../components/ExpansionPanels'
@@ -286,7 +285,6 @@ export default {
         frequencyFilter.max = filter.max_inclusive
         if (filter.attribute_references && filter.attribute_references.length > 0) {
           frequencyFilter.fields = filter.attribute_references.reduce((acc, attributeRef) => {
-            console.log(attributeRef.column_names.map(column => column.replace('.', ' > ')))
             return [
               ...acc, 
               ...attributeRef.column_names.map(column => column.replace('.', ' > '))
