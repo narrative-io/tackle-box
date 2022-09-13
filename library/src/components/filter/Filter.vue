@@ -3,6 +3,7 @@
     v-if="!solo"
     :key="filter.name"
     :class="{'filter-disabled': filter.disabled, 'summary': summary}"
+    :disabled="summary && filter.value !== 'custom'"
   )
     v-expansion-panel-header
       template(

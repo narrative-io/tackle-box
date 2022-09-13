@@ -17,6 +17,9 @@
     background-color: $c-canvas
   ::v-deep .v-expansion-panel-content__wrap
     padding: 0rem
+  &.v-expansion-panel--disabled.summary
+    ::v-deep .nio-filter-header .action
+      display: none
   &:not(.filter-disabled)
     &:not(:last-child)
       border-bottom: 0.0625rem solid $c-primary-lighter
