@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-join-option
+  .nio-filter-join-option(:class="{'summary': summary}")
     .join-type(v-if="!(selectedDatasetObj && selectedDatasetObj.format === 'geometry')")
       NioRadioGroup(
         v-model="joinOption.value.joinType"
@@ -28,7 +28,7 @@
         item-value="id"
         label="Dataset to Join"
       )
-    .join-message
+    .join-message(v-if="!summary")
       NioAlert(
         :visible="true"
         :dismissable="false"
@@ -50,7 +50,8 @@ export default {
   name: 'nio-filter-join-option',
   components: { NioSelect, NioRadioGroup, NioRadioButton, NioDivider, NioAlert },
   props: {
-    "joinOption": { type: Object, required: true }
+    "joinOption": { type: Object, required: true },
+    "summary": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     geometryTypes: ['Intersects', 'Contains'],

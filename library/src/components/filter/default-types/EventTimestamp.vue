@@ -7,6 +7,7 @@
       :options="defaultOptions.dateRange"
       :custom-option-loading="customOptionLoading"
       :join-option="filter.joinOption"
+      :summary="summary"
     )
       template(v-slot:custom-option)
         .date-range-custom
@@ -63,7 +64,8 @@ export default {
   components: { NioFilterProperty, NioDateField, NioTextField, NioSelect },
   props: {
     "filter": { type: Object, required: true },
-    "customOptionLoading": { type: Boolean, required: false, default: false }
+    "customOptionLoading": { type: Boolean, required: false, default: false },
+    "summary": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     valid: true

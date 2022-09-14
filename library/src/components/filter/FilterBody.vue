@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-body
+  .nio-filter-body(:class="{'summary': summary}")
     template(v-if="filter.type === 'custom'")
       NioFilterPropertiesCustom(
         :filter="filter"
@@ -16,66 +16,84 @@
           )   
     template(v-if="filter.type === 'object'")
       NioFilterPropertiesObject(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )
     template(v-if="filter.type === 'array'")
       NioFilterPropertiesArray(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )
     template(v-if="filter.type === 'number'")
       NioFilterPropertiesNumber(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'eventTimestamp'")
       NioFilterPropertiesEventTimestamp(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'simpleTimestamp'")
       NioFilterPropertiesSimpleTimestamp(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'stringMany'")
       NioFilterPropertiesStringMany(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       ) 
     template(v-else-if="filter.type === 'stringLimited'")
       NioFilterPropertiesStringLimited(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'mapping'")
       NioFilterPropertiesMapping(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )  
     template(v-else-if="filter.type === 'frequency'")
       NioFilterPropertiesFrequency(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )      
     template(v-else-if="filter.type === 'boolean'")
       NioFilterPropertiesBoolean(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
       )      
     template(v-else-if="filter.type === 'binary'")
       NioFilterPropertiesBinary(
+        :summary="summary"
+        :filter="filter"
+        :custom-option-looading="customOptionLoading"
+        @valueChanged="valueChanged($event)"
+      )     
+    template(v-else-if="filter.type === 'spark'")
+      NioFilterPropertiesSpark(
+        :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
         @valueChanged="valueChanged($event)"
@@ -103,6 +121,7 @@ import NioFilterPropertiesMapping from './default-types/Mapping'
 import NioFilterPropertiesFrequency from './default-types/Frequency'
 import NioFilterPropertiesBoolean from './default-types/Boolean'
 import NioFilterPropertiesBinary from './default-types/Binary'
+import NioFilterPropertiesSpark from './default-types/Spark.vue'
 
 export default {
   name: 'nio-filter-body',
@@ -120,10 +139,12 @@ export default {
     NioFilterPropertiesFrequency,
     NioFilterPropertiesBoolean,
     NioFilterPropertiesBinary,
+    NioFilterPropertiesSpark
   },
   props: {
     "filter": { type: Object, required: true },
-    "customOptionLoading": { type: Boolean, required: false, default: false }
+    "customOptionLoading": { type: Boolean, required: false, default: false },
+    "summary": { type: Boolean, required: false, default: false }
   },
   computed: {
     defaultOptions() {

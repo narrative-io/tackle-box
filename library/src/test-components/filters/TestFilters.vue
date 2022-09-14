@@ -1,5 +1,6 @@
 <template lang="pug">
   .test-filters
+    Summary
     Custom
     Object
     Array
@@ -28,6 +29,7 @@ import Frequency from './frequency/Frequency'
 import Mapping from './mapping/Mapping'
 import Boolean from './boolean/Boolean'
 import Binary from './binary/Binary'
+import Summary from './summary/Summary.vue'
 
 export default {
   components: {
@@ -42,7 +44,8 @@ export default {
     Frequency,
     Mapping,
     Boolean,
-    Binary
+    Binary,
+    Summary
   }
 }
 </script>

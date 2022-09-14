@@ -1,6 +1,6 @@
 <template lang="pug">
-  .nio-filter-property
-    .heading-description
+  .nio-filter-property(:class="{'summary': summary}")
+    .heading-description(v-if="!summary")
       .heading.nio-h5.text-primary-darker(v-if="heading") {{ heading }}
       .description.nio-p.text-primary-dark(:class="{'centered': !heading}") {{ description }}
     .options
@@ -36,6 +36,7 @@
     )  
       .option-content
         NioFilterJoinOption(
+          :summary="summary"
           :join-option="joinOption"
         )
 </template>
@@ -55,7 +56,8 @@ export default {
     "options": { type: Array, required: true },
     "value": { type: String, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false },
-    "joinOption": { type: Object, required: false}
+    "joinOption": { type: Object, required: false},
+    "summary": { type: Boolean, required: false, default: false }
   },
   model: {
     prop: "value",

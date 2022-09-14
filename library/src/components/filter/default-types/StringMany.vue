@@ -6,11 +6,12 @@
       :options="filter.options ? filter.options : defaultOptions"
       :custom-option-loading="customOptionLoading"
       :join-option="filter.joinOption"
+      :summary="summary"
     )
       template(v-slot:custom-option)
-        .string-many-custom
+        .string-many-custom(:class="{'summary': summary}")
           .manual-entry-only(
-            v-if="filter.customOption.config.manualEntryOnly"
+            v-if="filter.customOption && filter.customOption.config.manualEntryOnly"
           )
             NioRadioGroup(
               v-if="filter.customOption.value.listType"
@@ -24,11 +25,16 @@
                 value="exclude" 
                 label="Exclude"
               )
-            .textarea
+            .tags-field(v-if="summary")
+              NioTagsField(
+                v-model="filter.customOption.value.manualEntry"
+                label="Specified values"
+              )
+            .textarea(v-else)       
               NioTextarea(
                 v-model="filter.customOption.value.manualEntry"
               )
-              .instructions.nio-p.text-primary-dark Enter each value on a separate line
+              .instructions.nio-p.text-primary-dark Enter each value on a separate line {{ summary }}
           NioTabs(
             :tabs="tabs"
             v-model="activeTab"
@@ -73,7 +79,7 @@
                   value="exclude" 
                   label="Exclude"
                 )
-              .textarea
+              .textarea      
                 NioTextarea(
                   v-model="filter.customOption.value.manualEntry"
                 )
@@ -89,13 +95,23 @@ import NioSlatTable from '../../table/SlatTable'
 import NioRadioGroup from '../../RadioGroup'
 import NioRadioButton from '../../RadioButton'
 import NioTextarea from '../../Textarea'
+import NioTagsField from '../../TagsField'
 
 export default {
   name: 'nio-filter-properties-string-many',
-  components: { NioFilterProperty, NioTabs, NioSlatTable, NioRadioGroup, NioRadioButton, NioTextarea },
+  components: { 
+    NioFilterProperty, 
+    NioTabs, 
+    NioSlatTable, 
+    NioRadioGroup, 
+    NioRadioButton, 
+    NioTextarea,
+    NioTagsField
+  },
   props: {
     "filter": { type: Object, required: true },
-    "customOptionLoading": { type: Boolean, required: false, default: false }
+    "customOptionLoading": { type: Boolean, required: false, default: false },
+    "summary": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     initialListItems: [],
@@ -142,7 +158,7 @@ export default {
     }
   },
   mounted() {
-    if (!this.filter.customOption.config.manualEntryOnly) {
+    if (this.filter.customOption && !this.filter.customOption.config.manualEntryOnly) {
       this.initialListItems = this.filter.customOption.value.items.length ? this.filter.customOption.value.items.map(item => item.id) : []
     }
     this.updateValue()

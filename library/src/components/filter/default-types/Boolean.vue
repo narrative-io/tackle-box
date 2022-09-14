@@ -6,11 +6,12 @@
       :options="filter.options ? filter.options : defaultOptions"
       :custom-option-loading="customOptionLoading"
       :join-option="filter.joinOption"
+      :summary="summary"
     )
       template(v-slot:custom-option)
         .boolean-custom
-          .heading.nio-h5.text-primary-darker Choose value
-          .description.nio-p.text-primary-dark Set which boolean value you want to include.
+          .heading.nio-h5.text-primary-darker {{ summary ? 'Selected value' : 'Choose value' }}
+          .description.nio-p.text-primary-dark {{ summary ? 'Only include records which contain this value.' : 'Set which boolean value you want to include.' }}
           .controls
             NioRadioGroup(v-model="filter.customOption.value")
               NioRadioButton(
@@ -34,7 +35,8 @@ export default {
   components: { NioFilterProperty, NioRadioGroup, NioRadioButton },
   props: {
     "filter": { type: Object, required: true },
-    "customOptionLoading": { type: Boolean, required: false, default: false }
+    "customOptionLoading": { type: Boolean, required: false, default: false },
+    "summary": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     description: 'Select the data to include'

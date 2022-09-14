@@ -142,8 +142,6 @@ export default {
           this.tempModel = tempModelCopy && tempModelCopy.length ? tempModelCopy : []
           this.$emit('update', tempModelCopy)
         }
-      
-
       },
       addPasteListener() {
         this.$nextTick(() => {

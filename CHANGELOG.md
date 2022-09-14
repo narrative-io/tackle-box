@@ -154,3 +154,6 @@ Added **nest-{nest-level}** class to NioSchemaProperties to aid in targeting sty
 Add handling for apps to accept custom parameters on intitialization
 Added optional **expandedByDefault** prop to **NioExpansionPanels**
 Added **utility-download** icon
+
+v0.5.0
+Added optional **summary*** prop to **NioFilterGroup** and descendant components to enable non-interactable display of filter settings for listing pages

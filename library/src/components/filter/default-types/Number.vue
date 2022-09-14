@@ -6,6 +6,7 @@
       :options="filter.options ? filter.options : defaultOptions"
       :custom-option-loading="customOptionLoading"
       :join-option="filter.joinOption"
+      :summary="summary"
     )
       template(v-slot:custom-option)
         .number-custom
@@ -13,8 +14,8 @@
           .unconstrained-controls(
             v-if="filter.customOption.config.unconstrained"
           )
-            .heading.nio-h5.text-primary-darker Set which values you want to include.
-            .description.nio-p.text-primary-dark Enter the minimum and/or maximum values. Leave blank for no contraint to minimum or maximum value.
+            .heading.nio-h5.text-primary-darker(v-if="!summary") Set which values you want to include.
+            .description.nio-p.text-primary-dark(v-if="!summary") Enter the minimum and/or maximum values. Leave blank for no contraint to minimum or maximum value.
             .controls
               .inputs
                 NioTextField.min-field(
@@ -30,12 +31,12 @@
                   label="Maximum value"
                 )
               .result.nio-p.text-primary-dark.nio-bold
-                span(v-if="filter.customOption.value[0] && filter.customOption.value[1]") Include values between {{ filter.customOption.value[0] }} and {{ filter.customOption.value[1] }} (inclusive)
-                span(v-if="!filter.customOption.value[0] && filter.customOption.value[1]") Include values less than or equal to {{ filter.customOption.value[1] }}
-                span(v-if="filter.customOption.value[0] && !filter.customOption.value[1]") Include values greater than or equal to {{ filter.customOption.value[0] }}
-                span(v-if="!filter.customOption.value[0] && !filter.customOption.value[1]") Include all values
-            .validation-error.nio-p-small.text-error(v-if="minNotLossThanMax") Max value must be greater than or equal to min value  
-            .validation-error.nio-p-small.text-error(v-else-if="!valid") Must include min and/or max value
+                span(v-if="hasMin && hasMax") Include values between {{ filter.customOption.value[0] }} and {{ filter.customOption.value[1] }} (inclusive)
+                span(v-if="!hasMin && hasMax") Include values less than or equal to {{ filter.customOption.value[1] }}
+                span(v-if="hasMin && !hasMax") Include values greater than or equal to {{ filter.customOption.value[0] }}
+                span(v-if="!hasMin && !hasMax") Include all values
+            .validation-error.nio-p-small.text-error(v-if="!summary && minNotLossThanMax") Max value must be greater than or equal to min value  
+            .validation-error.nio-p-small.text-error(v-else-if="!summary && !valid") Must include min and/or max value
           NioSlider(
             v-else
             v-model="filter.customOption.value"
@@ -60,7 +61,8 @@ export default {
   components: { NioFilterProperty, NioSlider, NioTextField },
   props: {
     "filter": { type: Object, required: true },
-    "customOptionLoading": { type: Boolean, required: false, default: false }
+    "customOptionLoading": { type: Boolean, required: false, default: false },
+    "summary": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     description: 'Select the data to include',
@@ -68,6 +70,12 @@ export default {
     minNotLossThanMax: false
   }),	
   computed: {
+    hasMin() {
+      return this.filter.customOption.value[0] && this.filter.customOption.value[0] !== ' '
+    },
+    hasMax() {
+      return this.filter.customOption.value[1] && this.filter.customOption.value[1] !== ' '
+    },
     defaultOptions() {
       if (!this.filter) {
         return []
@@ -97,6 +105,14 @@ export default {
     }
   },
   mounted() {
+    if (this.summary && this.filter.customOption && this.filter.customOption && this.filter.customOption.config && this.filter.customOption.config.unconstrained) {
+      if (this.filter.customOption.value && !this.filter.customOption.value[0]) {
+        this.filter.customOption.value[0] = ' '
+      }
+      if (this.filter.customOption.value && !this.filter.customOption.value[1]) {
+        this.filter.customOption.value[1] = ' '
+      }
+    }
     this.updateValue()
   },
   methods: {
@@ -106,7 +122,7 @@ export default {
       this.validate()
     },
     validate() {
-      if (this.filter.customOption.config.unconstrained && this.filter.value === 'custom') {
+      if (this.filter.customOption && this.filter.customOption.config && this.filter.customOption.config.unconstrained && this.filter.value === 'custom') {
         if (!this.filter.customOption.value[0] && !this.filter.customOption.value[1]) {
           this.setValid(false)
           this.minNotLossThanMax = false
