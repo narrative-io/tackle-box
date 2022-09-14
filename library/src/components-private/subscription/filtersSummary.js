@@ -198,7 +198,7 @@ let makeFilterDetails = (filterObj, filter, attribute) => {
           },
           value: {
             listType: filter.type,
-            manualEntry: filter.list.sort()
+            manualEntry: filter.list.sort().filter(val => val.length && val.length > 0)
           }
         }
       }
