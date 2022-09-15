@@ -61,7 +61,8 @@ export default {
       "items": { required: false, default: null},
       "dataType": { required: false, default: 'string'},
       "maxHeight": { type: Number, required: false },
-      "disabled": { type: Boolean, required: false, default: false }
+      "disabled": { type: Boolean, required: false, default: false },
+      "checkScrollId": { type: String, required: false }
     },
     data: () => ({
       elementId: null,
@@ -85,21 +86,18 @@ export default {
     watch: {
       model(val) {
         this.updateTempModel(val)
-        this.$nextTick(() => {
-          this.height = this.$refs[this.ref].offsetHeight
-          console.log(this.height)
-          console.log(this.maxHeight)
-          if (this.maxHeight && this.height === this.maxHeight) {
-            this.$refs[this.ref].style.overflowY = 'scroll'
-            
-          }
-        })
+        this.checkScroll()
+      },
+      checkScrollId() {
+        this.checkScrollDelayed()
       }
     },
     mounted() {	
+      window.onresize = this.checkScroll
       this.elementId = makeRandomId()
       this.tempModel = this.model
       this.checkHeight()
+      this.checkScroll()
       this.addPasteListener()
       this.$emit('mounted') 
     },
@@ -107,6 +105,28 @@ export default {
       this.$emit('destroyed')
     },
     methods: {
+      async checkScrollDelayed() {
+        // this is really hacky, but it will work for now
+        let i = 10
+        while(i > 0) {
+          await this.checkScrollAsync()
+          i--
+        }
+      },
+      async checkScrollAsync() {
+        setTimeout(() => {
+          this.checkScroll()
+          return Promise.resolve()
+        }, 200)
+      },
+      checkScroll() {
+        this.$nextTick(() => {
+          this.height = this.$refs[this.ref].offsetHeight
+          if (this.maxHeight && this.height === this.maxHeight) {
+            this.$refs[this.ref].style.overflowY = 'scroll'
+          }
+        })
+      },
       clearIconColor() {
         return getThemeColor('primaryLight')
       },

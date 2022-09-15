@@ -28,6 +28,8 @@
           .filter-selection.summary(v-if="summary")
             NioTagsField(
               v-model="formattedSelections"
+              :disabled="true"
+              :max-height="500"
               label="Specified values"
             )
           .filter-selection(v-else)
