@@ -99,7 +99,6 @@ import NioRadioGroup from '../../RadioGroup'
 import NioRadioButton from '../../RadioButton'
 import NioTextarea from '../../Textarea'
 import NioTagsField from '../../TagsField'
-import { makeRandomId } from '@/modules/helpers'
 
 export default {
   name: 'nio-filter-properties-string-many',

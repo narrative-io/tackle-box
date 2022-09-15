@@ -62,6 +62,7 @@
         :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
+        :panel-idempotency="panelIdempotency"
         @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'mapping'")
