@@ -1,5 +1,10 @@
 <template lang="pug">
-  .nio-tags-field(:id="elementId" :class="{'no-items': !items}")
+  .nio-tags-field(
+    :id="elementId" 
+    :class="{'no-items': !items, 'disabled': disabled}"
+    :style="{maxHeight: maxHeight ? maxHeight + 'px' : 'auto'}"
+    :ref="ref"
+  )
     v-combobox(
       ref="nio-tags-field-ref"
       v-model="tempModel"
@@ -12,6 +17,7 @@
       flat
       multiple
       @input="updateModel($event)"
+      :disabled="disabled"
     )
       template(v-slot:append v-if="items")
         svg(style="width:24px;height:24px" viewBox="0 0 24 24")
@@ -53,7 +59,9 @@ export default {
       "label": { type: String, required: false, default: 'Add tags'},
       "model": { required: true },
       "items": { required: false, default: null},
-      "dataType": { required: false, default: 'string'}
+      "dataType": { required: false, default: 'string'},
+      "maxHeight": { type: Number, required: false },
+      "disabled": { type: Boolean, required: false, default: false }
     },
     data: () => ({
       elementId: null,
@@ -62,15 +70,30 @@ export default {
       tempModel: [],
       integerError: false,
       floatError: false,
-      search: null
+      search: null,
+      height: null
     }),
     model: {
       prop: "model",
       event: "update"
     },
+    computed: {
+      ref() {
+        return `nio-tags-field-${this.elementId}-ref`
+      }
+    },
     watch: {
       model(val) {
         this.updateTempModel(val)
+        this.$nextTick(() => {
+          this.height = this.$refs[this.ref].offsetHeight
+          console.log(this.height)
+          console.log(this.maxHeight)
+          if (this.maxHeight && this.height === this.maxHeight) {
+            this.$refs[this.ref].style.overflowY = 'scroll'
+            
+          }
+        })
       }
     },
     mounted() {	
