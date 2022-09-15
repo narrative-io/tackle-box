@@ -76,6 +76,7 @@
       NioIcon(name="utility-ellipsis-vertical")
       NioIcon(name="utility-location-arrow")
       NioIcon(name="utility-download")
+      NioIcon(name="utility-percent")
 </template>
 
 <script>

@@ -111,7 +111,8 @@ const NioIconLibrary = {
 	"utility-archive": ["fas", "archive"],
 	"utility-ellipsis-vertical": ["fas", "ellipsis-v"],
   "utility-location-arrow": ["fas", "location-arrow"],
-  "utility-download": ["fas", "download"]
+  "utility-download": ["fas", "download"],
+  "utility-percent": ["fas", "percent"]
 }
 
 export { NioIconLibrary }
