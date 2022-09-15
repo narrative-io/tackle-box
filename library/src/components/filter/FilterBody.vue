@@ -54,6 +54,7 @@
         :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
+        :panel-idempotency="panelIdempotency"
         @valueChanged="valueChanged($event)"
       ) 
     template(v-else-if="filter.type === 'stringLimited'")
@@ -61,6 +62,7 @@
         :summary="summary"
         :filter="filter"
         :custom-option-looading="customOptionLoading"
+        :panel-idempotency="panelIdempotency"
         @valueChanged="valueChanged($event)"
       )
     template(v-else-if="filter.type === 'mapping'")
@@ -144,7 +146,8 @@ export default {
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false },
-    "summary": { type: Boolean, required: false, default: false }
+    "summary": { type: Boolean, required: false, default: false },
+    "panelIdempotency": { type: String, required: false, default: null }
   },
   computed: {
     defaultOptions() {

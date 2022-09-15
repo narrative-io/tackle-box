@@ -4,6 +4,7 @@
     :key="filter.name"
     :class="{'filter-disabled': filter.disabled, 'summary': summary}"
     :disabled="summary && filter.value !== 'custom' && filter.value !== 'join'"
+    @change="panelChange"
   )
     v-expansion-panel-header
       template(
@@ -43,6 +44,7 @@
         :filter="filter"
         :custom-option-loading="customOptionLoading || filterObjCustomOptionLoading"
         :summary="summary"
+        :panel-idempotency="panelIdempotency"
         @valueChanged="handleValueChange($event)"
       )
         template(
@@ -68,6 +70,7 @@
       :filter="filter"
       :custom-option-loading="customOptionLoading || filterObjCustomOptionLoading"
       :summary="summary"
+      :panel-idempotency="panelIdempotency"
       @valueChanged="handleValueChange($event)" 
     )
       template(
@@ -84,6 +87,7 @@
 
 import NioFilterHeader from './FilterHeader'
 import NioFilterBody from './FilterBody'
+import { makeRandomId } from '../../modules/helpers'
 
 export default {
   name: 'nio-filter',
@@ -96,7 +100,8 @@ export default {
     "filterObjCustomOptionLoading": { type: Boolean, required: false, default: false }
   },
   data: () => ({
-    value: null
+    value: null,
+    panelIdempotency: null
   }),	
   methods: {
     handleValueChange(newValue) {
@@ -104,6 +109,9 @@ export default {
     },
     hasScopedSlot(slotName) {
       return this.$scopedSlots[slotName] !== undefined
+    },
+    panelChange() {
+      this.panelIdempotency = makeRandomId()      
     }
   }
 }

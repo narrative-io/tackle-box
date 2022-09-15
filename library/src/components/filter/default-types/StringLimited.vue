@@ -28,6 +28,9 @@
           .filter-selection.summary(v-if="summary")
             NioTagsField(
               v-model="formattedSelections"
+              :disabled="true"
+              :max-height="500"
+              :check-scroll-id="panelIdempotency"
               label="Specified values"
             )
           .filter-selection(v-else)
@@ -112,7 +115,8 @@ export default {
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false },
-    "summary": { type: Boolean, required: false, default: false }
+    "summary": { type: Boolean, required: false, default: false },
+    "panelIdempotency": { type: String, required: false, default: null }
   },
   data: () => ({
     description: 'Select the data to include'

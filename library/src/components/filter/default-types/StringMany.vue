@@ -28,6 +28,9 @@
             .tags-field(v-if="summary")
               NioTagsField(
                 v-model="filter.customOption.value.manualEntry"
+                :disabled="true"
+                :max-height="500"
+                :check-scroll-id="panelIdempotency"
                 label="Specified values"
               )
             .textarea(v-else)       
@@ -111,7 +114,8 @@ export default {
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false },
-    "summary": { type: Boolean, required: false, default: false }
+    "summary": { type: Boolean, required: false, default: false },
+    "panelIdempotency": { type: String, required: false, default: null }
   },
   data: () => ({
     initialListItems: [],

@@ -215,12 +215,6 @@
               margin-bottom: 3px
           ::v-deep .v-select__selection + .v-select__selection
             margin-left: 4px
-        &.summary
-          ::v-deep .nio-tags-field
-            margin-bottom: 0px
-            width: 100%
-            .nio-icon
-              display: none
 
       .frequency-custom
         & > .description
@@ -283,5 +277,12 @@
         ::v-deep .nio-h4
           margin-bottom: 12px
         
+  .summary
+    ::v-deep .nio-tags-field
+      margin-bottom: 0px
+      width: 100%
+      pointer-events: all
+      .nio-icon
+        display: none
 .nio-filter-property
   +nio-filter-property 
