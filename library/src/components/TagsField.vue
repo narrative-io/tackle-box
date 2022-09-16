@@ -121,7 +121,7 @@ export default {
       },
       checkScroll() {
         this.$nextTick(() => {
-          this.height = this.$refs[this.ref].offsetHeight
+          this.height = this.$refs[this.ref] ? this.$refs[this.ref].offsetHeight : 0
           if (this.maxHeight && this.height === this.maxHeight) {
             this.$refs[this.ref].style.overflowY = 'scroll'
           }
