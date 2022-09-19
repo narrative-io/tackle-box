@@ -1,5 +1,5 @@
 <template lang="pug">
-  NioJsonViewer(:json="testJson")
+  NioJsonViewer(:json="testJson", :defaultExpand="true")
 </template>
 
 <script>

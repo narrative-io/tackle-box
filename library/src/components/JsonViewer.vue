@@ -13,7 +13,7 @@
         .mt-0.mb-0(v-for="[key, value], i in getChildren(json)" :key="depth + key")
           .d-flex(v-if="!isObjectOrArray(value)")
             p.ml-3.mt-0.mb-0.key {{ key }} :
-            p.ml-3.mt-0.mb-0.value(:class="{[getType(value)]: true}") {{ formatValueForType(value) }},
+            p.ml-3.mt-0.mb-0.value(:class="{[getType(value)]: true}") {{ formatValueForType(value) }}{{ length - 1  !== i  ? ',' : ''}}
 
           div.ml-3.mt-0.mb-0(v-if="isObjectOrArray(value)")
             JsonViewer(:json="value" :parentKey="key" :depth="depth + 1")
@@ -22,7 +22,7 @@
         .mt-0.mb-0(v-for="value, i in getChildren(json)")
           .d-flex(v-if="!isObjectOrArray(value)")
             p.ml-3.mt-0.mb-0.key {{ i }} :
-            p.nio-p.mt-0.mb-0.value(v-if="!isObjectOrArray(value)") {{ value }},
+            p.nio-p.mt-0.mb-0.value(v-if="!isObjectOrArray(value)") {{ value }}{{ length - 1  !== i  ? ',' : ''}}
 
           div.ml-3.mt-0.mb-0(v-if="isObjectOrArray(value)")
             JsonViewer(:json="value", :parentKey="i" :depth="depth + 1")
@@ -69,7 +69,7 @@ export default {
   },
   data() {
     return {
-      expanded: true
+      expanded: this.defaultExpand,
     }
   },
   props: {
@@ -84,6 +84,10 @@ export default {
     parentKey: {
       type: [String, Number],
       default: 'root'
+    },
+    defaultExpand: {
+      type: Boolean,
+      default: true
     }
   }
 }
