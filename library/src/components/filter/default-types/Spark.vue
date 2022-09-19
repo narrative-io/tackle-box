@@ -1,30 +1,34 @@
 <template lang="pug">
-  .nio-filter-properties.boolean
+  .nio-filter-properties.spark
     NioFilterProperty(
       v-bind:value.sync="filter.value"
       :description="description"
       :options="filter.options ? filter.options : defaultOptions"
       :custom-option-loading="false"
-      :filter="filter"
-      :summary="summary"
+      :summary="true"
     )
-      template(
-        v-for="(index, name) in $scopedSlots" 
-        v-slot:[name]="data"
-      )
-        slot(
-          v-bind="data"
-          :name="name" 
-        )   
+      template(v-slot:custom-option)
+        .spark-custom
+          p.nio-h4.text-primary-darker Custom Spark SQL query:
+          .values
+            NioPill(
+              v-for="expression in filter.expressions"
+              tag 
+              :text="expression"
+            )
 </template>
 
 <script>
 
 import NioFilterProperty from '../FilterProperty'
+import NioPill from '../../Pill.vue'
 
 export default {
-  name: 'nio-filter-properties-object',
-  components: { NioFilterProperty },
+  name: 'nio-filter-properties-spark',
+  components: { 
+    NioFilterProperty,
+    NioPill
+  },
   props: {
     "filter": { type: Object, required: true },
     "customOptionLoading": { type: Boolean, required: false, default: false },

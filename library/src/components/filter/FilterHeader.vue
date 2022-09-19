@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-filter-header
+  .nio-filter-header(:class="{'summary': summary}")
     .title-description
       template(
         v-if="hasScopedSlot(`filter-header-name-custom`)"
@@ -43,7 +43,8 @@ export default {
      "description": { type: String, required: false, default: null },
      "value": { type: Array, required: false, default: null},
      "tooltip": { type: Object, required: false },
-     "filter": { type: Object, required: false}
+     "filter": { type: Object, required: false},
+     "summary": { type: Boolean, required: false, default: false }
   },
   data: () => ({
     

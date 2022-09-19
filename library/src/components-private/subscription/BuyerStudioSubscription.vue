@@ -19,38 +19,22 @@
           .display-column.full-width
             .nio-h4.text-primary-darker Max cost per 1000 records
             .nio-p.text-primary-dark {{ getCPM(subscription.details.pricing.micro_cents_usd) }}
-    .display-row.display-table.included-filters(v-if="subscription.status === 'active' || subscription.status === 'kickoff' || subscription.status === 'pending'" )
+    .display-row.display-table.included-filters
       .display-column.full-width
         .nio-h4.text-primary-darker(style="margin-bottom: 8px") Included Filters
-        .applied-filters(v-if="getAppliedFilters(subscription).length || getDatasetFilter(subscription)")
-          .applied-filter(
-            v-for="filter of getAppliedFilters(subscription)"
+        .applied-filters(v-if="appliedFilters && appliedFilters.length > 0")
+          NioFilterGroup(
+            v-if="appliedFilters"
+            :filters="appliedFilters"
+            :summary="true"
           )
-            NioPrettySchemaPath(:path="filter.path" :displayOnly="true")
-            .selected-filter-value 
-              NioIcon(
-                name="utility-check-circle"
-                color="#43B463"
-                size="14"
+            template(v-slot:filter-header-name-custom="slotProps")
+              NioPrettySchemaPath(
+                :path="slotProps.filter.customTitle"
+                display-only
               )
-              .text.nio-p.text-primary-darker {{ makeFilterValue(filter.filter) }}
-          .applied-filter.join-filter(v-if="getDatasetFilter(subscription)")
-            NioPrettySchemaPath(
-              :path="getDatasetFilter(subscription).path" 
-              :displayOnly="true"
-            )
-            .selected-filter-value 
-              NioIcon(
-                name="utility-check-circle"
-                color="#43B463"
-                size="14"
-              )
-              .text.nio-p.text-primary-darker Join to Dataset
-            //- .text.nio-p.text-primary-darker.nio-bold Dataset Name:
-
-            //- .text.nio-p.text-primary-darker Dataset Name: {{ getDatasetById(getDatasetFilter(subscription).dataset_id).name }}
         .nio-p.text-primary-dark.empty(v-else) No filters applied
-    .display-row.display-table(v-if="subscription.status === 'active' || subscription.status === 'kickoff' || subscription.status === 'pending'")
+    .display-row.display-table
       .display-column.full-width
         .nio-h4.text-primary-darker(style="margin-bottom: 8px") Deliverable attributes
         .attributes
@@ -81,8 +65,8 @@
                       .nio-p.text-primary-dark(v-if="field.property.enum") 
                         .pills
                           NioPill(
-                            tag
                             v-for="value of field.property.enum"
+                            tag
                           ) {{ value }}
                       .nio-p.text-primary-dark(v-else) Any value
     .split-row
@@ -93,8 +77,8 @@
             .nio-p.text-primary-dark Buy only unique records <span class="nio-bold">every {{ makeReadablePeriod(subscription.details.data_rules.deduplication.period) }}</span> based on these data points:
               .pills(v-if="sellerCompanies")
                 NioPill(
-                  tag
                   v-for="dataPoint of makeDeduplication(subscription.details.data_rules.deduplication)"
+                  tag
                 ) {{ makeDataPointPath(dataPoint) }}
           .no-deduplication(v-else)
             .nio-p.text-primary-dark.empty Buy all data points     
@@ -105,8 +89,8 @@
             .pills(v-if="sellerCompanies")
               template(v-for="companyId of subscription.details.company_constraint.company_ids")
                 NioPill(
-                  tag
                   v-if="getCompanyNameById(companyId)"
+                  tag
                 ) {{ getCompanyNameById(companyId) }}
           .nio-p.text-primary-dark.empty(v-else) Buy from all sellers
     .split-row
@@ -149,13 +133,25 @@
       .display-row.display-table.frequency
         .display-column
           .nio-h4.text-primary-darker Frequency Filter
-          .selected-filter-value 
-            NioIcon(
-              name="utility-check-circle"
-              color="#43B463"
-              size="14"
-            )
-            .text.nio-p.text-primary-darker {{ makeFrequencyFilter(subscription) }}
+          .filter-value(v-if="frequencyFilter")
+            .selected-filter-value
+              NioIcon(
+                name="utility-check-circle"
+                color="#43B463"
+                size="14"
+              )
+              .text.nio-p.text-prim-darker {{ frequencyFilter.value }}
+            template(v-if="frequencyFilter.value === 'Custom'")
+              .nio-p.text-primary-dark Only receive a record that appears 
+              .nio-p.text-primary-dark At least a minimum of <span class="nio-bold text-primary-darker">{{ frequencyFilter.min }}</span> times
+              .nio-p.text-primary-dark Up to a maximum of <span class="nio-bold text-primary-darker">{{ frequencyFilter.max }}</span> times
+              .nio-p.text-primary-dark For these data points:
+              .selected-details
+                .frequency-fields
+                  NioPill(
+                    v-for="field of frequencyFilter.fields"
+                    tag
+                  ) {{ field }}
     .subscription-footer
       .subscription-actions(v-if="subscription.status !== 'archived'")
         NioButton(
@@ -167,24 +163,48 @@
 <script>
 
 import numeral from 'numeral'
-import { getReadableType, replacePropertyRefs, getAttributeFromPath } from '@/modules/app/schema/attributeModule'
+import { getReadableType, getAttributeFromPath } from '@/modules/app/schema/attributeModule'
+import { makeSummaryFilterGroup } from './filtersSummary'
+import NioFilterGroup from '../../components/filter/FilterGroup'
+import NioPrettySchemaPath from '../schema/PrettySchemaPath'
+import NioExpansionPanels from '../../components/ExpansionPanels'
+import NioExpansionPanel from '../../components/ExpansionPanel'
+import NioPill from '../../components/Pill'
+import NioButton from '../../components/Button'
+import NioIcon from '../../components/icon/Icon'
 import NioSubscriptionDestinations from '../../components/connectors/destination/subscription-destinations/SubscriptionDestinations'
 import NioSubscriptionFileDownload from './SubscriptionFileDownload'
-import NioButton from '../../components/Button'
 
 export default {
   name: 'nio-buyer-studio-subscription',
-  components: { NioSubscriptionDestinations, NioSubscriptionFileDownload, NioButton }, 
+  components: {
+    NioFilterGroup,
+    NioPrettySchemaPath,
+    NioExpansionPanels,
+    NioExpansionPanel,
+    NioPill,
+    NioButton,
+    NioIcon,
+    NioSubscriptionDestinations,
+    NioSubscriptionFileDownload
+  },
   props: {
     subscription: { type: Object, required: true },
     attributes: { type: Array, required: true },
+    datasets: { type: Array, required: true },
     sellerCompanies: { type: Array, required: true },
     openApiToken: { type: String, required: true },
     openApiBaseUrl: { type: String, required: true }
   },
   data: () => ({
-    filesVisible: false
+    filesVisible: false,
+    appliedFilters: null,
+    frequencyFilter: null
   }),	
+  mounted() {
+    this.appliedFilters = makeSummaryFilterGroup(this.subscription, this.attributes, this.datasets)
+    this.makeFrequencyFilter()
+  },
   methods: {
     computeBudget(item) {
       return `${item.budget.amount.currency === 'USD' ? '$' : ''}${numeral(item.budget.amount.value.toFixed(2)).format('0,0')} ${item.budget.amount.currency !== 'USD' ? item.budget.amount.currency : ''}`
@@ -192,47 +212,8 @@ export default {
     getPropertyType(property) {
       return getReadableType(property)
     },
-    getDatasetFilter(subscription) {
-      let filter
-      if (subscription && subscription.details) {
-        filter = subscription.details.data_rules.dataset_filter
-      }
-      if (filter) {
-        filter.path = this.makePathFromDatasetFilter(filter)
-      }
-      return filter
-    },
-    makePathFromDatasetFilter(filter) {
-      const path = []
-      const targetPath = filter.attribute.field.split('.')
-      let baseAttribute
-      let parsedPath
-      if (filter.parent) {
-        const parentPath = filter.parent.field.split('.')
-        targetPath.shift()
-        parsedPath = [...parentPath, ...targetPath]
-        baseAttribute = this.attributes.find(attribute => attribute.id === filter.parent.attribute_id)
-      } else {
-        parsedPath = targetPath
-        baseAttribute = this.attributes.find(attribute => attribute.id === filter.attribute.attribute_id)
-      }
-      path.push({
-        id: baseAttribute.id,
-        displayName: baseAttribute.display_name
-      })
-      parsedPath.shift()
-      if (parsedPath.length > 0) {
-        parsedPath.forEach(property => {
-          path.push(property)
-        })
-      }
-      return path
-    },
     getDatasetById(id) {
       return this.datasets.find(dataset => dataset.id === id)
-    },
-    getAppliedFilters(subscription) {
-      return this.findExportedFields(subscription, this.attributes, 'filterable')
     },
     getExportedFields(subscription) {
       return this.findExportedFields(subscription, this.attributes, 'deliverable')
@@ -295,11 +276,25 @@ export default {
           return 'Weekly'
       }
     },
-    makeFrequencyFilter(subscription) {
-      if (subscription.details.data_rules && subscription.details.data_rules.frequency_filter) {
-        return "Custom"
-      } 
-      return "Include all values"
+    makeFrequencyFilter() {
+      const frequencyFilter = {}
+      if (this.subscription.details.data_rules && this.subscription.details.data_rules.frequency_filter) {
+        const filter = this.subscription.details.data_rules.frequency_filter
+        frequencyFilter.value = 'Custom'
+        frequencyFilter.min = filter.min_inclusive
+        frequencyFilter.max = filter.max_inclusive
+        if (filter.attribute_references && filter.attribute_references.length > 0) {
+          frequencyFilter.fields = filter.attribute_references.reduce((acc, attributeRef) => {
+            return [
+              ...acc, 
+              ...attributeRef.column_names.map(column => column.replace('.', ' > '))
+            ]
+          }, [])
+        }
+      } else {
+        frequencyFilter.value = 'Include all values'
+      }
+      this.frequencyFilter = frequencyFilter
     },
     findExportedFields(subscription, attributes, type) {
       const results = []
@@ -355,5 +350,7 @@ export default {
 </script>
 
 <style lang="sass">
-  @import "../../styles-private/subscription/_buyer-studio-subscription"
+
+@import "../../styles-private/subscription/_buyer-studio-subscription"
+
 </style>

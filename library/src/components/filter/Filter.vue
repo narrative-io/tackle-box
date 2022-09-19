@@ -2,7 +2,9 @@
   v-expansion-panel.nio-filter(
     v-if="!solo"
     :key="filter.name"
-    :class="{'filter-disabled': filter.disabled}"
+    :class="{'filter-disabled': filter.disabled, 'summary': summary}"
+    :disabled="summary && filter.value !== 'custom' && filter.value !== 'join'"
+    @change="panelChange"
   )
     v-expansion-panel-header
       template(
@@ -19,6 +21,7 @@
         :value="value"
         :tooltip="filter.tooltip"
         :filter="filter"
+        :summary="summary"
       )
         template(
           v-for="(index, name) in $scopedSlots" 
@@ -40,6 +43,8 @@
         v-else
         :filter="filter"
         :custom-option-loading="customOptionLoading || filterObjCustomOptionLoading"
+        :summary="summary"
+        :panel-idempotency="panelIdempotency"
         @valueChanged="handleValueChange($event)"
       )
         template(
@@ -64,6 +69,8 @@
       v-else
       :filter="filter"
       :custom-option-loading="customOptionLoading || filterObjCustomOptionLoading"
+      :summary="summary"
+      :panel-idempotency="panelIdempotency"
       @valueChanged="handleValueChange($event)" 
     )
       template(
@@ -80,18 +87,21 @@
 
 import NioFilterHeader from './FilterHeader'
 import NioFilterBody from './FilterBody'
+import { makeRandomId } from '../../modules/helpers'
 
 export default {
   name: 'nio-filter',
   components: { NioFilterHeader, NioFilterBody },
   props: {
     "filter": { type: Object, required: true },
+    "summary": { type: Boolean, required: false, default: false },
     "solo": { type: Boolean, required: false, default: false },
     "customOptionLoading": { type: Boolean, required: false, default: false },
     "filterObjCustomOptionLoading": { type: Boolean, required: false, default: false }
   },
   data: () => ({
-    value: null
+    value: null,
+    panelIdempotency: null
   }),	
   methods: {
     handleValueChange(newValue) {
@@ -99,6 +109,9 @@ export default {
     },
     hasScopedSlot(slotName) {
       return this.$scopedSlots[slotName] !== undefined
+    },
+    panelChange() {
+      this.panelIdempotency = makeRandomId()      
     }
   }
 }

@@ -45,7 +45,43 @@
                 @change="setDisabledProfiles"
               )
           //- we'll use unique templates for each connector app until quick_settings contract gets solidified and is able to be generic enough to render programatically
-          .control(v-for="setting in destination.quickSettings")
+          template(v-if="destination.appId === 11")
+            .control.advertisers
+              .title-description
+                .filter-title.nio-h4.text-primary-darker Advertisers
+                .description.nio-p.text-primary-dark Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              .filter-value
+                NioTagsField(
+                  v-model="destination.quickSettings[0].value"
+                  :rules="[validateQuickSetting(destination.quickSettings[0])]"
+                  label="Advertiser IDs"
+                  validate-on-blur
+                )
+            .control.revenue-share
+              .title-description
+                .filter-title.nio-h4.text-primary-darker Revenue Share
+                .description.nio-p.text-primary-dark Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              .filter-value
+                NioTextField.small-input(
+                  v-model="destination.quickSettings[1].value"
+                  :rules="[validateQuickSetting(destination.quickSettings[1])]"
+                  type="number"
+                  validate-on-blur
+                )
+            .control.cpm-cap
+              .title-description
+                .filter-title.nio-h4.text-primary-darker CPM Cap
+                .description.nio-p.text-primary-dark Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              .filter-value
+                NioTextField.small-input(
+                  v-model="destination.quickSettings[2].value"
+                  :rules="[validateQuickSetting(destination.quickSettings[2])]"
+                  type="number"
+                  prepend
+                  currency
+                  validate-on-blur
+                )
+          .control(v-else v-for="setting in destination.quickSettings")
             .title-description
               .filter-title.nio-h4.text-primary-darker {{ setting.display_name }} <span class="nio-p text-primary-dark" v-if="!setting.required">(optional)</span>
               .description.nio-p.text-primary-dark {{ setting.description }}
@@ -82,8 +118,9 @@
 import NioButton from '../../../Button'
 import NioExpansionPanels from '../../../ExpansionPanels'
 import NioExpansionPanel from '../../../ExpansionPanel'
-import NioTextField from '../../../TextField'
 import NioImageTile from '../../../ImageTile'
+import NioTagsField from '../../../TagsField'
+import NioTextField from '../../../TextField'
 import NioSwitch from '../../../Switch'
 import NioSelect from '../../../Select'
 import { getThemeColor } from '../../../../modules/app/theme/theme'
@@ -91,7 +128,7 @@ import { makeDestinationOptions } from '../../../../modules/app/destinations/des
 
 export default {
   name: 'nio-select-destination',
-  components: { NioButton, NioTextField, NioExpansionPanels, NioExpansionPanel, NioSwitch, NioImageTile, NioSelect },
+  components: { NioButton, NioTagsField, NioTextField, NioExpansionPanels, NioExpansionPanel, NioSwitch, NioImageTile, NioSelect },
   props: {
     destinations: { type: Array, required: true }
   },
@@ -116,7 +153,7 @@ export default {
                 valid = false
               }
             })
-          }    
+          }
         }
       })
       this.$emit('validChanged', valid)
@@ -125,11 +162,42 @@ export default {
       const regex = new RegExp(String.raw`${setting.schema.pattern}`)
       if (!setting.value) {
         return setting.schema.required ? 'Required' : true
+      } else if (setting.schema.type === "array") {
+        // NB: we don't bother recursively validating array elements in this hacky implementation
+        return this.validateArray(setting)
+      } else if (setting.schema.type === "number") {
+        return this.validateNumber(setting)
       } else if (regex && !regex.test(setting.value)) {
         return 'Invalid entry'
       } else {
         return true
       }
+    },
+    validateArray(setting) {
+      const minItems = setting.schema.minItems
+      const maxItems = setting.schema.maxItems
+      if (minItems !== undefined && minItems !== null && setting.value.length < minItems) {
+        return `Invalid length: at least ${minItems} items required`
+      }
+      if (maxItems !== undefined && maxItems !== null && setting.value.length > maxItems) {
+        return `Invalid length: at most ${maxItems} items allowed`
+      }
+      return true
+    },
+    validateNumber(setting) {
+      const min = setting.schema.minimum
+      const max = setting.schema.maximum
+      const value = Number(setting.value)
+      if (value === undefined || value === null) {
+        return `Invalid value: must be a number`
+      }
+      if (min !== undefined && min !== null && value < min) {
+        return `Invalid value: minimum is ${setting.schema.minimum}`
+      }
+      if (max !== undefined && max !== null && value > max) {
+        return `Invalid value: maximum is ${setting.schema.maximum}`
+      }
+      return true
     },
     openPanel(destination) {
       if (destination.selected) {
@@ -218,4 +286,10 @@ export default {
 
 <style lang="sass" scoped>
 @import '../../../../styles/mixins/connectors/destination/select-destination/_select-destination'
+
+.control
+  .filter-value
+    .nio-text-field.small-input
+      min-width: 140px
+      width: 25% !important
 </style>
