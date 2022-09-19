@@ -16,7 +16,7 @@
             p.ml-3.mt-0.mb-0.value(:class="{[getType(value)]: true}") {{ formatValueForType(value) }}{{ length - 1  !== i  ? ',' : ''}}
 
           div.ml-3.mt-0.mb-0(v-if="isObjectOrArray(value)")
-            JsonViewer(:json="value" :parentKey="key" :depth="depth + 1")
+            JsonViewer(:json="value" :parentKey="key" :depth="depth + 1" :defaultExpand="defaultExpand")
 
       div.mt-0.mb-0(v-if="isArray(json)")
         .mt-0.mb-0(v-for="value, i in getChildren(json)")
@@ -25,7 +25,7 @@
             p.nio-p.mt-0.mb-0.value(v-if="!isObjectOrArray(value)") {{ value }}{{ length - 1  !== i  ? ',' : ''}}
 
           div.ml-3.mt-0.mb-0(v-if="isObjectOrArray(value)")
-            JsonViewer(:json="value", :parentKey="i" :depth="depth + 1")
+            JsonViewer(:json="value", :parentKey="i" :depth="depth + 1" :defaultExpand="defaultExpand")
 
 
 
