@@ -217,6 +217,11 @@
               .nio-p.text-primary-darker.nio-bold Error Page
             template(v-slot:content) 
               TestApiError
+          NioExpansionPanel(:key="39")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Json Viewer
+            template(v-slot:content) 
+              TestJsonViewer
 </template>
 
 <script>
@@ -263,6 +268,7 @@ import TestSubscriptions from './test-components/TestSubscriptions'
 import TestCombobox from './test-components/TestCombobox'
 import TestForecastWidget from './test-components/forecasting/TestForecastWidget'
 import TestApiError from './test-components/TestApiError'
+import TestJsonViewer from './test-components/TestJsonViewer'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -310,7 +316,8 @@ export default {
     TestForecastWidget,
     NioExpansionPanels,
     NioExpansionPanel,
-    TestApiError
+    TestApiError,
+    TestJsonViewer
   },
   data: () => ({
     loggedIn: false,

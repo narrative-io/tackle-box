@@ -1,0 +1,22 @@
+@import '../global/_colors'
+
+=json-viewer
+  font-family: 'Consolas', monospace
+  font-weight: 600
+  font-size: 14px
+  .key 
+    color: $c-aqua-light
+  .value
+    &.number
+      color:  $c-octopus-light
+    &.string 
+      color: $c-seagreen-light
+    color: $c-seagreen-light
+  .expander
+    color: $c-primary-darker
+    cursor: pointer
+  .details
+    color: $c-display-7
+
+.json-viewer
+  +json-viewer
