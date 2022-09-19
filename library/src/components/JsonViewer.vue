@@ -1,5 +1,5 @@
 <template lang="pug">
-  .json-viewer.mb-0.mt-0(v-if="json")
+  .nio-json-viewer.mb-0.mt-0(v-if="json")
     
     p.mt-0.mb-0(v-if="isObjectOrArray(json)") 
       span.expander.mr-1(@click="expanded= !expanded") {{ expanded ? '&#9660' : '&#9658'}}
@@ -9,23 +9,33 @@
       span.details(v-else) [] {{length}} items
 
     .content(v-if="expanded")
-      div(v-if="isObject(json)")
+      .mt-0.mb-0(v-if="isObject(json)")
         .mt-0.mb-0(v-for="[key, value], i in getChildren(json)" :key="depth + key")
           .d-flex(v-if="!isObjectOrArray(value)")
             p.ml-3.mt-0.mb-0.key {{ key }} :
             p.ml-3.mt-0.mb-0.value(:class="{[getType(value)]: true}") {{ formatValueForType(value) }}{{ length - 1  !== i  ? ',' : ''}}
 
-          div.ml-3.mt-0.mb-0(v-if="isObjectOrArray(value)")
-            JsonViewer(:json="value" :parentKey="key" :depth="depth + 1" :defaultExpand="defaultExpand")
+          .ml-3.mt-0.mb-0(v-if="isObjectOrArray(value)")
+            JsonViewer(
+              :json="value",
+              :parentKey="key",
+              :depth="depth + 1",
+              :defaultExpand="defaultExpand"
+            )
 
-      div.mt-0.mb-0(v-if="isArray(json)")
+      .mt-0.mb-0(v-if="isArray(json)")
         .mt-0.mb-0(v-for="value, i in getChildren(json)")
           .d-flex(v-if="!isObjectOrArray(value)")
             p.ml-3.mt-0.mb-0.key {{ i }} :
             p.nio-p.mt-0.mb-0.value(v-if="!isObjectOrArray(value)") {{ value }}{{ length - 1  !== i  ? ',' : ''}}
 
-          div.ml-3.mt-0.mb-0(v-if="isObjectOrArray(value)")
-            JsonViewer(:json="value", :parentKey="i" :depth="depth + 1" :defaultExpand="defaultExpand")
+          .ml-3.mt-0.mb-0(v-if="isObjectOrArray(value)")
+            JsonViewer(
+              :json="value",
+              :parentKey="i",
+              :depth="depth + 1",
+              :defaultExpand="defaultExpand"
+            )
 
 
 
