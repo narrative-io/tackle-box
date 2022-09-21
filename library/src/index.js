@@ -49,6 +49,7 @@ import NioChoosePaymentMethod from './components-private/ChoosePaymentMethod'
 import NioSelectedPaymentMethod from './components-private/SelectedPaymentMethod'
 import NioOverflowMenu from './components/OverflowMenu'
 import NioCombobox from './components/Combobox'
+import NioHistogram from './components/Histogram'
 import NioForecastWidget from './components-private/forecasting/ForecastWidget'
 
 import NioSelectDestination from './components/connectors/destination/select-destination/SelectDestination'
@@ -124,6 +125,7 @@ const Components = {
 	NioSelectedPaymentMethod,
 	NioOverflowMenu,
 	NioCombobox,
+	NioHistogram,
 	NioSelectDestination,
 	NioSubscriptionDestinations,
 	NioSubscriptionFileDownload,
@@ -137,6 +139,7 @@ const Components = {
 	FontAwesomeIcon
 }
 
+Vue.component("NioHistogram", NioHistogram)
 Vue.component("NioApiError", NioApiError)
 Vue.component("NioButton", NioButton)
 Vue.component("NioTextField", NioTextField)
@@ -199,6 +202,7 @@ Vue.component("NioForecastWidget", NioForecastWidget)
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
+export { NioHistogram }
 export { NioApiError }
 export { NioButton }
 export { NioTextField }
