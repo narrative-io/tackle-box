@@ -15,7 +15,8 @@ export default {
 			nioInvoiceAuthorized: 'invoiceAuthorized',
 			nioUser: 'user',
 			nioTier: 'tier',
-      nioCustomAppParameters: 'customAppParameters'
+      nioCustomAppParameters: 'customAppParameters',
+      nioAppInstallationId: 'appInstallationId'
 		})
 	},	
   mounted() {
@@ -68,6 +69,9 @@ export default {
           break;	
         case 'customParametersFetched':
           this.$store.dispatch('nioServices/SET_CUSTOM_APP_PARAMETERS', evt.data.payload)
+          break;
+        case 'appInstallationIdFetched':
+          this.$store.dispatch('nioService/SET_APP_INSTALLATION_ID', evt.data.payload)
           break;
         default:
           break;

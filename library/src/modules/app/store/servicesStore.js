@@ -11,7 +11,8 @@ export default {
     invoiceAuthorized: false,
     user: null,
     tier: null,
-    customAppParameters: null
+    customAppParameters: null,
+    appInstallationId: null
   },
   mutations: {
     [ServicesMutations.SET_USER] (state, val) {
@@ -36,6 +37,9 @@ export default {
       state.invoiceAuthorized = val
     },
     [ServicesMutations.SET_CUSTOM_APP_PARAMETERS] (state, val) {
+      state.customAppParameters = val
+    },
+    [ServicesMutations.SET_APP_INSTALLATION_ID] (state, val) {
       state.customAppParameters = val
     }
   },
@@ -63,6 +67,9 @@ export default {
     },
     [ServicesMutations.SET_CUSTOM_APP_PARAMETERS] ({ commit, dispatch, state }, value) {
       commit(ServicesMutations.SET_CUSTOM_APP_PARAMETERS, value)
+    },
+    [ServicesMutations.SET_APP_INSTALLATION_ID] ({ commit, dispatch, state }, value) {
+      commit(ServicesMutations.SET_APP_INSTALLATION_ID, value)
     }
   },
   getters: {
@@ -73,6 +80,7 @@ export default {
     invoiceAuthorized: state => state.invoiceAuthorized,
     user: state => state.user,
     tier: state => state.tier,
-    customAppParameters: state => state.customAppParameters
+    customAppParameters: state => state.customAppParameters,
+    appInstallationId: state => state.appInstallationId
   }
 }
