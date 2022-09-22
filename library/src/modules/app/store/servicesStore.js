@@ -40,7 +40,7 @@ export default {
       state.customAppParameters = val
     },
     [ServicesMutations.SET_APP_INSTALLATION_ID] (state, val) {
-      state.customAppParameters = val
+      state.appInstallationId = val
     }
   },
   actions: {
