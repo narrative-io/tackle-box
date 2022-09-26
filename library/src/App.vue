@@ -222,6 +222,11 @@
               .nio-p.text-primary-darker.nio-bold Histogram
             template(v-slot:content) 
               TestHistogram
+          NioExpansionPanel(:key="40")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Data Stream Offers
+            template(v-slot:content) 
+              TestDataStreamOffers
 </template>
 
 <script>
@@ -269,6 +274,7 @@ import TestCombobox from './test-components/TestCombobox'
 import TestForecastWidget from './test-components/forecasting/TestForecastWidget'
 import TestApiError from './test-components/TestApiError'
 import TestHistogram from './test-components/TestHistogram.vue'
+import TestDataStreamOffers from './test-components/connectors/offers/TestDataStreamOffers'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -317,7 +323,8 @@ export default {
     NioExpansionPanels,
     NioExpansionPanel,
     TestApiError,
-    TestHistogram
+    TestHistogram,
+    TestDataStreamOffers
   },
   data: () => ({
     loggedIn: false,
