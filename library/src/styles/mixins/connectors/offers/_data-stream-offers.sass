@@ -1,26 +1,61 @@
 @import '../../filter/_filter-group'
   
 =nio-data-stream-offers 
-  ::v-deep .v-expansion-panel-header
-    display: flex
-    align-items: center
-    height: 86px
-    .nio-image-tile
-      width: 48px !important
-      height: 48px !important
-      flex-grow: 0
-      flex-shrink: 0
-    .offer-content
+  border-radius: 12px
+  border: 1px solid $c-primary-lighter
+  overflow: hidden
+  ::v-deep .v-expansion-panel--active.v-item--active
+    border-top: none
+  ::v-deep .v-expansion-panel
+    border-top: none !important
+    &:not(:first-child)::after
+      border-top: none
+    .v-expansion-panel-header
       display: flex
       flex-direction: column
-      justify-content: center
-      align-items: flex-start
-      margin-left: 1.5rem
-      .nio-p
-        margin-bottom: 0rem
-  ::v-deep .v-expansion-panel-content__wrap
-    .offer-detail
-      +nio-filter-group
+      background-color: $c-white
+      padding-top: 0px
+      padding-bottom: 0px
+      &.v-expansion-panel-header--active
+        border-bottom: none
+      .v-expansion-panel-header__icon
+        display: none
+      .header-content
+        width: 100%
+        display: flex
+        justify-content: space-between
+        align-items: center
+        height: 86px
+        .offer-header-details
+          display: flex
+          align-items: center
+          .nio-image-tile
+            width: 48px !important
+            height: 48px !important
+            flex-grow: 0
+            flex-shrink: 0
+          .offer-content
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: flex-start
+            margin-left: 1.5rem
+            .nio-p
+              margin-bottom: 0rem
+        .offer-header-controls
+          width: 48px
+          flex-grow: 0
+          flex-shrink: 0
+      .nio-divider
+        height: 1px
+    .v-expansion-panel-content__wrap
+      padding-bottom: 0px
+      .nio-divider
+        height: 1px
+        margin-top: 16px
+      .offer-detail
+        +nio-filter-group
+  
 
 .nio-data-stream-offers
   +nio-data-stream-offers 

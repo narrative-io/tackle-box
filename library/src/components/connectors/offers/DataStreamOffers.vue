@@ -4,20 +4,25 @@
       v-for="offer of offers"
     )
       template(v-slot:header) 
-        NioImageTile(
-          v-if="offer.icon.src"
-          :src="offer.icon.src"
-          :alt="offer.icon.alt"
-          :imgBackground="offer.icon.background"
-        )
-        NioImageTile(
-          v-else-if="offer.icon.imageType && offer.icon.image"
-          :src="`data:${offer.icon.imageType};base64, ${offer.icon.image}`"
-          :alt="offer.icon.alt"
-        )
-        .offer-content
-          h4.nio-h4.text-primary-darker.name {{ offer.name }}
-          p.nio-p.text-primary-dark(v-if="offer.description") {{ offer.description }}
+        .header-content
+          .offer-header-details
+            NioImageTile(
+              v-if="offer.icon.src"
+              :src="offer.icon.src"
+              :alt="offer.icon.alt"
+              :imgBackground="offer.icon.background"
+            )
+            NioImageTile(
+              v-else-if="offer.icon.imageType && offer.icon.image"
+              :src="`data:${offer.icon.imageType};base64, ${offer.icon.image}`"
+              :alt="offer.icon.alt"
+            )
+            .offer-content
+              h4.nio-h4.text-primary-darker.name {{ offer.name }}
+              p.nio-p.text-primary-dark(v-if="offer.description") {{ offer.description }}
+          .offer-header-controls
+            NioSwitch()
+        NioDivider(horizontal-solo)
       template(v-slot:content)
         template(v-if="offer.detailType === 'PriceDetail'")
           NioOfferPriceDetail(
@@ -27,6 +32,7 @@
           NioOfferTTD3PDetail(
             @update="modelChanged(offer, $event)"
           )
+        NioDivider(horizontal-solo)
 </template>
 
 <script>
@@ -34,6 +40,8 @@
 import NioExpansionPanels from '../../ExpansionPanels'
 import NioExpansionPanel from '../../ExpansionPanel'
 import NioImageTile from '../../ImageTile'
+import NioSwitch from '../../Switch'
+import NioDivider from '../../Divider'
 import LocalApps from '../../../modules/app/destinations/localApps'
 import NioOfferPriceDetail from './offer-details/PriceDetail'
 import NioOfferTTD3PDetail from './offer-details/TTD3PDetail'
@@ -44,6 +52,8 @@ export default {
     NioExpansionPanels,
     NioExpansionPanel,
     NioImageTile,
+    NioSwitch,
+    NioDivider,
     NioOfferPriceDetail,
     NioOfferTTD3PDetail
   },
