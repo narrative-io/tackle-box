@@ -64,7 +64,6 @@
       flex-shrink: 0
       width: 40px
       height: 100%
-      background-color: red
       margin: 0
       margin-left: 0px !important
       overflow: hidden
@@ -75,6 +74,25 @@
       background-color: $c-canvas-darker
       border-top-left-radius: 0.5rem
       border-bottom-left-radius: 0.5rem
+      border-right: 1px solid $c-primary-lighter
+      svg
+        color: $c-primary-dark
+        margin-left: 3px			
+  &.percent
+    ::v-deep .v-input__append-inner
+      flex-shrink: 0
+      width: 40px
+      height: 100%
+      margin: 0
+      margin-left: 0px !important
+      overflow: hidden
+      transform: translateY(0)
+      display: flex
+      justify-content: center
+      align-items: center
+      background-color: $c-canvas-darker
+      border-top-right-radius: 0.5rem
+      border-bottom-right-radius: 0.5rem
       border-right: 1px solid $c-primary-lighter
       svg
         color: $c-primary-dark
