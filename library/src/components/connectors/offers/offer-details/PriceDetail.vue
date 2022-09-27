@@ -8,7 +8,7 @@
       .description.nio-p.text-primary-dark Set a price for every 1000 records of raw data.
     .filter-value
       NioSlider(
-        v-model="price"
+        v-model="localPrice"
         :min="0.00"
         :max="100"
         :step="0.05"
@@ -23,12 +23,18 @@ import NioSlider from '../../../Slider'
 
 export default {
   components: { NioSlider },
+  props: { 
+    price: { type: Number, required: true }
+  },
   data: () => ({
-    price: 1
+    localPrice: 1
   }),
   watch: {
+    localPrice() {
+      this.$emit('update', this.localPrice)
+    },
     price() {
-      this.$emit('update', this.price)
+      this.localPrice = this.price
     }
   },
   methods: {

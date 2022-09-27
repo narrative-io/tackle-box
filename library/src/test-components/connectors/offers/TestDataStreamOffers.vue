@@ -1,6 +1,8 @@
 <template lang="pug">
   .test-data-stream-offers
-    NioDataStreamOffers
+    NioDataStreamOffers(
+      @offersChanged="offersChanged($event)"
+    )
 </template>
 
 <script>
@@ -14,7 +16,9 @@ export default {
   data: () => ({
   }),
   methods: {
-    
+    offersChanged(val) {
+      console.log(val)
+    }
   }
 };
 </script>

@@ -1,5 +1,8 @@
 <template lang="pug">
-  NioExpansionPanels.nio-data-stream-offers
+  NioExpansionPanels.nio-data-stream-offers(
+    v-model="openPanels"
+    v-if="offers && offers.length > 0"
+  )
     NioExpansionPanel(
       v-for="offer of offers"
     )
@@ -21,15 +24,21 @@
               h4.nio-h4.text-primary-darker.name {{ offer.name }}
               p.nio-p.text-primary-dark(v-if="offer.description") {{ offer.description }}
           .offer-header-controls
-            NioSwitch()
+            NioSwitch(
+              v-model="offer.active"
+              @click.stop
+              @change="toggleOffer(offer, $event)"
+            )
         NioDivider(horizontal-solo)
       template(v-slot:content)
         template(v-if="offer.detailType === 'PriceDetail'")
           NioOfferPriceDetail(
+            :price="offer.value"
             @update="modelChanged(offer, $event)"
           )
         template(v-if="offer.detailType === 'TTD-3P-Detail'")
           NioOfferTTD3PDetail(
+            :model="offer.value"
             @update="modelChanged(offer, $event)"
           )
         NioDivider(horizontal-solo)
@@ -58,8 +67,18 @@ export default {
     NioOfferTTD3PDetail
   },
   data: () => ({
-    offers: null
+    offers: null,
+    openPanels: [0]
   }),
+  watch: {
+    offers: {
+      deep: true,
+      handler(val) {
+        console.log(val)
+        this.$emit('offersChanged', this.offers)
+      }
+    }
+  },
   mounted() {	
     this.makeOffers()
   },
@@ -68,45 +87,34 @@ export default {
       this.offers = [
         {
           name: 'Data Stream Marketplace',
+          active: true,
           description: 'Sell this dataset on app.narrative.io.',
           detailType: 'PriceDetail',
           icon: {
             src: 'https://cdn.narrative.io/data-studio/images/narrative-placeholder-primary.svg',
             alt: 'Data Stream Marketplace icon'
-          }
+          },
+          value: 1
         },
         {
           name: 'Data Shops',
+          active: false,
           description: 'Sell this dataset on your Data Shop',
           detailType: 'PriceDetail',
           icon: {
             src: 'https://cdn.narrative.io/data-studio/images/narrative-placeholder-primary.svg',
             alt: 'Data Stream Marketplace icon'
-          }
+          },
+          value: 1
         },
         ...this.makeTTDOffers()
       ]
-    },
-    updatePayload() {
-      this.$emit('stepPayloadChanged', {
-        visibility: {
-          marketplace: this.visibility.marketplace,
-          dataShop: this.visibility.dataShop
-        },
-        price: {
-          marketplace: this.price.marketplace,
-          dataShop: this.price.dataShop
-        },
-        license: {
-          licenses: this.license.licenses,
-          period: this.license.period
-        }
-      })
     },
     makeTTDOffers() {
       const ttdApp = LocalApps.find(app => app.id === 11)
       return [{
         name: 'The TradeDesk - 3rd Party Data',
+        active: false,
         description: 'Post data stream to The TradeDesk as 3rd party data.',
         detailType: 'TTD-3P-Detail',
         icon: {
@@ -122,11 +130,16 @@ export default {
       }]
     },
     modelChanged(offer, value) {
-      console.log("offer changed")
-      console.log("offer", offer)
-      console.log("value", value)
       const targetOffer = this.offers.find(currOffer => currOffer.name === offer.name)
       targetOffer.value = value
+    },
+    toggleOffer(offer, value) {
+      const offerIndex = this.offers.findIndex(currOffer => currOffer.name === offer.name)
+      if (value && !this.openPanels.includes(offerIndex)) {
+        this.openPanels.push(offerIndex)
+      } else if (!value && this.openPanels.includes(offerIndex)) {
+        this.openPanels = this.openPanels.filter(panel => panel !== offerIndex)
+      }
     }
   }
 }
