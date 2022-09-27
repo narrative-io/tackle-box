@@ -20,9 +20,13 @@
           p.nio-p.text-primary-dark(v-if="offer.description") {{ offer.description }}
       template(v-slot:content)
         template(v-if="offer.detailType === 'PriceDetail'")
-          NioOfferPriceDetail 
+          NioOfferPriceDetail(
+            @update="modelChanged(offer, $event)"
+          )
         template(v-if="offer.detailType === 'TTD-3P-Detail'")
-          NioOfferTTD3PDetail
+          NioOfferTTD3PDetail(
+            @update="modelChanged(offer, $event)"
+          )
 </template>
 
 <script>
@@ -91,7 +95,6 @@ export default {
     },
     makeTTDOffers() {
       const ttdApp = LocalApps.find(app => app.id === 11)
-      console.log(ttdApp)
       return [{
         name: 'The TradeDesk - 3rd Party Data',
         description: 'Post data stream to The TradeDesk as 3rd party data.',
@@ -100,8 +103,20 @@ export default {
           imageType: ttdApp.icons[0].imageType,
           image: ttdApp.icons[0].image,
           alt: ttdApp.icons[0].altText
+        },
+        value: {
+          partnerIds: [],
+          revenueCap: 0,
+          cpm: 0.00
         }
       }]
+    },
+    modelChanged(offer, value) {
+      console.log("offer changed")
+      console.log("offer", offer)
+      console.log("value", value)
+      const targetOffer = this.offers.find(currOffer => currOffer.name === offer.name)
+      targetOffer.value = value
     }
   }
 }

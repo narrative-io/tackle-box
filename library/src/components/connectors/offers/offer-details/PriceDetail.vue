@@ -14,7 +14,6 @@
         :step="0.05"
         currency
         prepend
-        @update="update"
       )
 </template>
 
@@ -27,10 +26,13 @@ export default {
   data: () => ({
     price: 1
   }),
-  methods: {
-    update() {
-
+  watch: {
+    price() {
+      this.$emit('update', this.price)
     }
+  },
+  methods: {
+
   }
 }
 

@@ -5,8 +5,11 @@
     +nio-filter-header
     .nio-text-field
       width: 200px
+      ::v-deep .v-input__slot
+        border-width: 1px
     .nio-tags-field
       width: 100%
+
   & > .detail-module + .detail-module
     border-top: 1px solid $c-primary-lighter
 

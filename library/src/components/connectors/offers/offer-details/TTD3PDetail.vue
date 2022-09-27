@@ -6,7 +6,7 @@
         .description.nio-p.text-primary-dark Define the partner IDs that this Data Stream will be shared with.
       .filter-value
         NioTagsField(
-          v-model="partnerIds"
+          v-model="model.partnerIds"
           :rules="[validatePartnerIds]"
           label="Partner IDs"
           placeholder="Enter IDs"
@@ -18,7 +18,7 @@
         .description.nio-p.text-primary-dark Cras justo odio, dapibus ac facilisis in.
       .filter-value
         NioTextField(
-          v-model="revenueCap"
+          v-model="model.revenueCap"
           :rules="[validateRevenueCap]"
           placeholder="Revenue Share"
           type="number"
@@ -31,7 +31,7 @@
         .description.nio-p.text-primary-dark Cras justo odio, dapibus ac facilisis in.
       .filter-value
         NioTextField(
-          v-model="cpm"
+          v-model="model.cpm"
           :rules="[validateCPM]"
           placeholder="Cost Per Thousand Records"
           type="number"
@@ -51,10 +51,20 @@ export default {
     NioTextField
   },
   data: () => ({
-    partnerIds: [],
-    revenueCap: 0,
-    cpm: 0.00
+    model: {
+      partnerIds: [],
+      revenueCap: 0,
+      cpm: 0.00
+    }
   }),
+  watch: {
+    model: {
+      deep: true,
+      handler() {
+        this.$emit('update', this.model)
+      }
+    }
+  },
   methods: {
     validatePartnerIds(value) {
       if (value.length > 0) {
