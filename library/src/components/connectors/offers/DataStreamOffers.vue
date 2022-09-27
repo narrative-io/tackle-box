@@ -19,11 +19,10 @@
           h4.nio-h4.text-primary-darker.name {{ offer.name }}
           p.nio-p.text-primary-dark(v-if="offer.description") {{ offer.description }}
       template(v-slot:content)
-        .offer-detail
-          template(v-if="offer.detailType === 'PriceDetail'")
-            NioOfferPriceDetail 
-          template(v-if="offer.detailType === 'TTD-3P-Detail'")
-            NioOfferTTD3PDetail
+        template(v-if="offer.detailType === 'PriceDetail'")
+          NioOfferPriceDetail 
+        template(v-if="offer.detailType === 'TTD-3P-Detail'")
+          NioOfferTTD3PDetail
 </template>
 
 <script>
