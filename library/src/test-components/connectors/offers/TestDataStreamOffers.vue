@@ -1,5 +1,5 @@
 <template lang="pug">
-  .test-select-destination
+  .test-data-stream-offers
     NioDataStreamOffers
 </template>
 
@@ -9,14 +9,12 @@ import NioDataStreamOffers from '../../../components/connectors/offers/DataStrea
 
 export default {
   components: {
-    NioSelectDestination
+    NioDataStreamOffers
   },
   data: () => ({
   }),
   methods: {
-    validChanged(val) {
-      console.log(val)
-    }
+    
   }
 };
 </script>
