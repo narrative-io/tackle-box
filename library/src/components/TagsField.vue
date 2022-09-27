@@ -13,6 +13,7 @@
       v-on="$listeners"
       :label="label"
       :items="items ? items : []"
+      :rules="rules ? rules : parsedRules"   
       outlined 
       flat
       multiple
@@ -62,7 +63,9 @@ export default {
       "dataType": { required: false, default: 'string'},
       "maxHeight": { type: Number, required: false },
       "disabled": { type: Boolean, required: false, default: false },
-      "checkScrollId": { type: String, required: false }
+      "checkScrollId": { type: String, required: false },
+      "rules": { required: false },
+      "rulesWithContext": { required: false }
     },
     data: () => ({
       elementId: null,
@@ -72,7 +75,8 @@ export default {
       integerError: false,
       floatError: false,
       search: null,
-      height: null
+      height: null,
+      parsedRules: []
     }),
     model: {
       prop: "model",
@@ -90,6 +94,9 @@ export default {
       },
       checkScrollId() {
         this.checkScrollDelayed()
+      },
+      rules() {
+        this.parseRules()
       }
     },
     mounted() {	
@@ -99,12 +106,23 @@ export default {
       this.checkHeight()
       this.checkScroll()
       this.addPasteListener()
+      this.parseRules()
       this.$emit('mounted') 
     },
     destroyed() {
       this.$emit('destroyed')
     },
     methods: {
+      parseRules() {
+        if (this.rulesWithContext) {
+        this.rulesWithContext.map((rule, index) => {
+          const paramNames = this.getParamNames(rule)
+          let func = rule.toString()
+          let funcBody = func.slice(func.indexOf("{") + 1, func.lastIndexOf("}"))
+          this.parsedRules[index] = new Function(paramNames[0], funcBody)
+        });
+      }
+      },
       async checkScrollDelayed() {
         // this is really hacky, but it will work for now
         let i = 10

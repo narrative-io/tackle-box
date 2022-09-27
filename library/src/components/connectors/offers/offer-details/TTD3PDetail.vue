@@ -7,7 +7,10 @@
       .filter-value
         NioTagsField(
           v-model="partnerIds"
-          placeholder="Partner IDs"
+          :rules="[validatePartnerIds]"
+          label="Partner IDs"
+          placeholder="Enter IDs"
+          validate-on-blur
         )
     .revenue-cap.detail-module
       .title-description
@@ -16,8 +19,11 @@
       .filter-value
         NioTextField(
           v-model="revenueCap"
+          :rules="[validateRevenueCap]"
           placeholder="Revenue Share"
+          type="number"
           percent
+          validate-on-blur
         )
     .cpm.detail-module
       .title-description
@@ -26,7 +32,11 @@
       .filter-value
         NioTextField(
           v-model="cpm"
+          :rules="[validateCPM]"
+          placeholder="Cost Per Thousand Records"
+          type="number"
           currency
+          validate-on-blur
         )
 </template>
 
@@ -46,7 +56,32 @@ export default {
     cpm: 0.00
   }),
   methods: {
-
+    validatePartnerIds(value) {
+      if (value.length > 0) {
+        return true
+      }
+      return 'Please enter at least one partner ID'
+    },
+    validateRevenueCap(value) {
+      if (!value || value.trim().length === 0) {
+        return ' '
+      } else if (value < 0) {
+        return 'cannot be less than 0'
+      } else if (value > 100) {
+        return 'cannot be greater than 100'
+      } else {
+        return true
+      }
+    },
+    validateCPM(value) {
+      if (!value || value.trim().length === 0) {
+        return ' '
+      } else if (value < 0) {
+        return 'cannot be less than 0'
+      } else {
+        return true
+      }
+    }
   }
   
 }

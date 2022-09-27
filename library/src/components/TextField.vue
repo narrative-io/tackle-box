@@ -10,7 +10,6 @@
       outlined 
       flat
       @input="update($event)"
-
     )
       template(
         v-if="prependAttr || prependIconAttr || currencyAttr"

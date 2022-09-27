@@ -5,7 +5,7 @@
   +nio-select
   height: unset
   border: 0.0625rem solid
-  border-color: $c-primary-lighter
+  border-color: rgba(0, 0, 0, 0)
   border-radius: 0.5rem
   overflow: hidden
   ::v-deep .v-text-field__details
@@ -17,6 +17,10 @@
       box-shadow: 0rem 0rem 0.0625rem $c-primary-dark
       .nio-pill-content
         color: $c-primary 
+  ::v-deep .v-input
+    border: 0.0625rem solid
+    border-color: $c-primary-lighter
+    border-radius: 0.5rem
   ::v-deep .v-input__slot 
     background-color: white
     border: none
@@ -54,6 +58,23 @@
     position: absolute
     top: 0.5rem
     right: 1rem
+  ::v-deep .v-input.error--text
+    border: 0.0625rem solid
+    border-color: $c-error
+    border-radius: 0.5rem
+  ::v-deep .error--text 
+    label.v-label.v-label--active
+      color: $c-error !important
+    .v-select__slot
+      border-color: $c-error !important
+    ::v-deep label, ::v-deep .v-label--active, ::v-deep .v-messages__message
+      color: $c-error !important
+    ::v-deep .v-text-field__details
+      position: absolute
+      overflow: visible
+      bottom: -2rem
+      left: 0rem
+      padding-left: 0rem
   &.disabled
     ::v-deep .nio-icon
       display: none
