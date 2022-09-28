@@ -66,6 +66,9 @@ export default {
     NioOfferPriceDetail,
     NioOfferTTD3PDetail
   },
+  props: {
+    destinations: { type: Array, required: false } 
+  },
   data: () => ({
     offers: null,
     openPanels: [0]
@@ -74,7 +77,6 @@ export default {
     offers: {
       deep: true,
       handler(val) {
-        console.log(val)
         this.$emit('offersChanged', this.offers)
       }
     }
@@ -111,23 +113,31 @@ export default {
       ]
     },
     makeTTDOffers() {
-      const ttdApp = LocalApps.find(app => app.id === 11)
-      return [{
-        name: 'The TradeDesk - 3rd Party Data',
-        active: false,
-        description: 'Post data stream to The TradeDesk as 3rd party data.',
-        detailType: 'TTD-3P-Detail',
-        icon: {
-          imageType: ttdApp.icons[0].imageType,
-          image: ttdApp.icons[0].image,
-          alt: ttdApp.icons[0].altText
-        },
-        value: {
-          partnerIds: [],
-          revenueCap: 0,
-          cpm: 0.00
+      const ttdDestination = this.destinations ? this.destinations.find(destination => destination.app_id === 11) : null
+      if (ttdDestination && ttdDestination.eligibility && ttdDestination.eligibility.type === 'eligible') {
+        const ttdApp = LocalApps.find(app => app.id === 11)
+        const ttdProfile = ttdDestination.profiles.find(profile => profile.name === 'Narrative TTD 3p Custom Connector')
+        if (ttdProfile) {
+          return [{
+            name: 'The TradeDesk - 3rd Party Data',
+            profileId: ttdProfile.id,
+            active: false,
+            description: 'Post data stream to The TradeDesk as 3rd party data.',
+            detailType: 'TTD-3P-Detail',
+            icon: {
+              imageType: ttdApp.icons[0].imageType,
+              image: ttdApp.icons[0].image,
+              alt: ttdApp.icons[0].altText
+            },
+            value: {
+              partnerIds: [],
+              revenueCap: 0,
+              cpm: 0.00
+            }
+          }]
         }
-      }]
+      }
+      return []
     },
     modelChanged(offer, value) {
       const targetOffer = this.offers.find(currOffer => currOffer.name === offer.name)
