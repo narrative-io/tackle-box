@@ -119,7 +119,7 @@ export default {
         const ttdProfile = ttdDestination.profiles.find(profile => profile.name === 'Narrative TTD 3p Custom Connector')
         if (ttdProfile) {
           return [{
-            name: 'The TradeDesk - 3rd Party Data',
+            name: 'Narrative TTD 3p Custom Connector',
             profileId: ttdProfile.id,
             active: false,
             description: 'Post data stream to The TradeDesk as 3rd party data.',

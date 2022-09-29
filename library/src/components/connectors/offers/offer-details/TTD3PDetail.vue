@@ -18,8 +18,8 @@
         .description.nio-p.text-primary-dark Cras justo odio, dapibus ac facilisis in.
       .filter-value
         NioTextField(
-          v-model="localModel.revenueCap"
-          :rules="[validateRevenueCap]"
+          v-model="localModel.revenueShare"
+          :rules="[validateRevenueShare]"
           placeholder="Revenue Share"
           type="number"
           percent
@@ -31,8 +31,8 @@
         .description.nio-p.text-primary-dark Cras justo odio, dapibus ac facilisis in.
       .filter-value
         NioTextField(
-          v-model="localModel.cpm"
-          :rules="[validateCPM]"
+          v-model="localModel.cpmCap"
+          :rules="[validateCpmCap]"
           placeholder="Cost Per Thousand Records"
           type="number"
           currency
@@ -56,8 +56,8 @@ export default {
   data: () => ({
     localModel: {
       partnerIds: [],
-      revenueCap: 0,
-      cpm: 0.00
+      revenueShare: 0,
+      cpmCap: 0.00
     }
   }),
   watch: {
@@ -81,7 +81,7 @@ export default {
       }
       return 'Please enter at least one partner ID'
     },
-    validateRevenueCap(value) {
+    validateRevenueShare(value) {
       if (!value || value.trim().length === 0) {
         return ' '
       } else if (value < 0) {
@@ -92,7 +92,7 @@ export default {
         return true
       }
     },
-    validateCPM(value) {
+    validateCpmCap(value) {
       if (!value || value.trim().length === 0) {
         return ' '
       } else if (value < 0) {
