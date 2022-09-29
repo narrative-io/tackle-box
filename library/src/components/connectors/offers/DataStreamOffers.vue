@@ -21,7 +21,7 @@
               :alt="offer.icon.alt"
             )
             .offer-content
-              h4.nio-h4.text-primary-darker.name {{ offer.name }}
+              h4.nio-h4.text-primary-darker.name {{ offer.displayName }}
               p.nio-p.text-primary-dark(v-if="offer.description") {{ offer.description }}
           .offer-header-controls
             NioSwitch(
@@ -88,7 +88,8 @@ export default {
     makeOffers() {
       this.offers = [
         {
-          name: 'Data Stream Marketplace',
+          name: 'data_streams_market',
+          displayName: 'Data Stream Marketplace',
           active: true,
           description: 'Sell this dataset on app.narrative.io.',
           detailType: 'PriceDetail',
@@ -99,7 +100,8 @@ export default {
           value: 1
         },
         {
-          name: 'Data Shops',
+          name: 'data_shop',
+          displayName: 'Data Shops',
           active: false,
           description: 'Sell this dataset on your Data Shop',
           detailType: 'PriceDetail',
@@ -120,6 +122,7 @@ export default {
         if (ttdProfile) {
           return [{
             name: 'Narrative TTD 3p Custom Connector',
+            displayName: 'The TradeDesk - 3rd Party Data',
             profileId: ttdProfile.id,
             active: false,
             description: 'Post data stream to The TradeDesk as 3rd party data.',
@@ -131,8 +134,8 @@ export default {
             },
             value: {
               partnerIds: [],
-              revenueCap: 0,
-              cpm: 0.00
+              revenueShare: 0,
+              cpmCap: 0.00
             }
           }]
         }
