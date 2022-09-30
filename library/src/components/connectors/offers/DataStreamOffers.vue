@@ -39,6 +39,7 @@
         template(v-if="offer.detailType === 'TTD-3P-Detail'")
           NioOfferTTD3PDetail(
             :model="offer.value"
+            @validChanged="validChanged(offer, $event)"
             @update="modelChanged(offer, $event)"
           )
         NioDivider(horizontal-solo)
@@ -97,7 +98,8 @@ export default {
             src: 'https://cdn.narrative.io/data-studio/images/narrative-placeholder-primary.svg',
             alt: 'Data Stream Marketplace icon'
           },
-          value: 1
+          value: 1,
+          valid: true
         },
         {
           name: 'data_shop',
@@ -109,7 +111,8 @@ export default {
             src: 'https://cdn.narrative.io/data-studio/images/narrative-placeholder-primary.svg',
             alt: 'Data Stream Marketplace icon'
           },
-          value: 1
+          value: 1,
+          valid: true
         },
         ...this.makeTTDOffers()
       ]
@@ -136,7 +139,8 @@ export default {
               partnerIds: [],
               revenueShare: 0,
               cpmCap: 0.00
-            }
+            },
+            valid: false
           }]
         }
       }
@@ -145,6 +149,10 @@ export default {
     modelChanged(offer, value) {
       const targetOffer = this.offers.find(currOffer => currOffer.name === offer.name)
       targetOffer.value = value
+    },
+    validChanged(offer, value) {
+      const targetOffer = this.offers.find(currOffer => currOffer.name === offer.name)
+      targetOffer.valid = value
     },
     toggleOffer(offer, value) {
       const offerIndex = this.offers.findIndex(currOffer => currOffer.name === offer.name)

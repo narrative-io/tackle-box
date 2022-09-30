@@ -9,7 +9,7 @@
     .filter-value
       NioSlider(
         v-model="localPrice"
-        :min="0.00"
+        :min="0"
         :max="100"
         :step="0.05"
         currency
@@ -31,10 +31,10 @@ export default {
   }),
   watch: {
     localPrice() {
-      this.$emit('update', this.localPrice)
+      this.$emit('update', parseFloat(this.localPrice))
     },
     price() {
-      this.localPrice = this.price
+      this.localPrice = parseFloat(this.price)
     }
   },
   methods: {

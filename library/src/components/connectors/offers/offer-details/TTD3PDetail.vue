@@ -58,12 +58,14 @@ export default {
       partnerIds: [],
       revenueShare: 0,
       cpmCap: 0.00
-    }
+    },
+    valid: false
   }),
   watch: {
     localModel: {
       deep: true,
       handler() {
+        this.validate()
         this.$emit('update', this.localModel)
       }
     },
@@ -72,6 +74,9 @@ export default {
       handler() {
         this.localModel = this.model
       }
+    },
+    valid() {
+      this.$emit('validChanged', this.valid)
     }
   },
   methods: {
@@ -85,7 +90,7 @@ export default {
       if (!value || value.trim().length === 0) {
         return ' '
       } else if (value < 0) {
-        return 'cannot be less than 0'
+        return 'cannot be less than zero'
       } else if (value > 100) {
         return 'cannot be greater than 100'
       } else {
@@ -96,9 +101,19 @@ export default {
       if (!value || value.trim().length === 0) {
         return ' '
       } else if (value < 0) {
-        return 'cannot be less than 0'
+        return 'cannot be less than zero'
       } else {
         return true
+      }
+    },
+    validate() {
+      const partnerIdsValid = this.validatePartnerIds(this.localModel.partnerIds)
+      const revenueShareValid = this.validateRevenueShare(this.localModel.revenueShare)
+      const cpmCapValid = this.validateCpmCap(this.localModel.cpmCap)
+      if (!partnerIdsValid.length && !revenueShareValid.length && !cpmCapValid.length) {
+        this.valid = true
+      } else {
+        this.valid = false
       }
     }
   }
