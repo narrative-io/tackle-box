@@ -2,9 +2,6 @@
   .nio-offer-price-detail.offer-detail
     .title-description
       .filter-title.nio-h4.text-primary-darker Cost Per Thousand
-        //- NioTooltip(
-        //-   :data="tooltips.cost"
-        //- )
       .description.nio-p.text-primary-dark Set a price for every 1000 records of raw data.
     .filter-value
       NioSlider(
@@ -36,9 +33,6 @@ export default {
     price() {
       this.localPrice = parseFloat(this.price)
     }
-  },
-  methods: {
-
   }
 }
 
