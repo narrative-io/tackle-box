@@ -128,7 +128,7 @@ export default {
             displayName: 'The TradeDesk - 3rd Party Data',
             profileId: ttdProfile.id,
             active: false,
-            description: 'Post data stream to The TradeDesk as 3rd party data.',
+            description: 'Share this Data Stream with The TradeDesk as a 3rd Party audience.',
             detailType: 'TTD-3P-Detail',
             icon: {
               imageType: ttdApp.icons[0].imageType,

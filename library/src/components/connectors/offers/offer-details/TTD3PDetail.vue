@@ -3,7 +3,7 @@
     .partner-ids.detail-module
       .title-description
         .filter-title.nio-h4.text-primary-darker Partner IDs
-        .description.nio-p.text-primary-dark Define the partner IDs that this Data Stream will be shared with.
+        .description.nio-p.text-primary-dark Define The TradeDesk Partner IDs that are eligible to purchase this 3rd Party audience in The TradeDesk marketplace.
       .filter-value
         NioTagsField(
           v-model="localModel.partnerIds"
@@ -15,7 +15,7 @@
     .revenue-cap.detail-module
       .title-description
         .filter-title.nio-h4.text-primary-darker Revenue Share
-        .description.nio-p.text-primary-dark Cras justo odio, dapibus ac facilisis in.
+        .description.nio-p.text-primary-dark Percent of media cost to be charged to the buyer in The TradeDesk marketplace.
       .filter-value
         NioTextField(
           v-model="localModel.revenueShare"
@@ -28,7 +28,7 @@
     .cpm.detail-module
       .title-description
         .filter-title.nio-h4.text-primary-darker CPM Cap
-        .description.nio-p.text-primary-dark Cras justo odio, dapibus ac facilisis in.
+        .description.nio-p.text-primary-dark CPM cap on media cost. Note that all audiences in The TradeDesk marketplace are hybrid-priced (percent of media with a CPM cost).
       .filter-value
         NioTextField(
           v-model="localModel.cpmCap"
