@@ -4,13 +4,12 @@
       v-model="tempModel"
       v-bind="$attrs"
       v-on="$listeners"
-      :class="{'small': smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr, 'currency': currencyAttr }"
-      :solo="soloAttr || smallAttr || prependAttr || currencyAttr"
+      :class="{'small': smallAttr, 'prepend-icon-small': smallAttr && prependIconAttr, 'currency': currencyAttr, 'percent': percentAttr}"
+      :solo="soloAttr || smallAttr || prependAttr || currencyAttr || percentAttr"
       :rules="rules ? rules : parsedRules"
       outlined 
       flat
       @input="update($event)"
-
     )
       template(
         v-if="prependAttr || prependIconAttr || currencyAttr"
@@ -26,11 +25,13 @@
           @click="clickPrepend"
         )
       template(
-        v-if="appendAttr"
+        v-if="appendAttr || percentAttr"
         v-slot:append
       )
+        .percent(v-if="percentAttr")
+          NioIcon(name="utility-percent" :size="14")
         NioIcon(
-          v-if="iconName"
+          v-else-if="iconName"
           :name="iconName"
           :color="iconColor ? iconColor : defaultIconColor"
           :size="iconSize ? iconSize : defaultIconSize"
@@ -76,6 +77,7 @@ export default {
     soloAttr: false,
     smallAttr: false,
     currencyAttr: false,
+    percentAttr: false,
     defaultIconColor: '#1438F5',
     defaultIconSize: 16
   }),
@@ -150,6 +152,9 @@ export default {
       }
       if (attributes.getNamedItem('currency')) {
         this.currencyAttr = true
+      }  
+      if (attributes.getNamedItem('percent')) {
+        this.percentAttr = true
       }  
     },
     clickAppend() {

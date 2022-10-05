@@ -1,0 +1,68 @@
+@import '../../filter/_filter-group'
+  
+=nio-data-stream-offers 
+  border-radius: 0.75rem
+  border: 0.0625rem solid $c-primary-lighter
+  overflow: hidden
+  ::v-deep .v-expansion-panel--active.v-item--active
+    border-top: none
+  ::v-deep .v-expansion-panel
+    border-top: none !important
+    &:not(:first-child)::after
+      border-top: none
+    .v-expansion-panel-header
+      display: flex
+      flex-direction: column
+      background-color: $c-white
+      padding: 0rem 1.5rem
+      .nio-divider
+        height: 0.0625rem
+      &.v-expansion-panel-header--active
+        border-bottom: none
+        .nio-divider
+          display: none
+      .v-expansion-panel-header__icon
+        display: none
+      .header-content
+        width: 100%
+        display: flex
+        justify-content: space-between
+        align-items: center
+        height: 5.375rem
+        .offer-header-details
+          display: flex
+          align-items: center
+          .nio-image-tile
+            width: 3rem !important
+            height: 3rem !important
+            flex-grow: 0
+            flex-shrink: 0
+          .offer-content
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: flex-start
+            margin-left: 1.5rem
+            .nio-p
+              margin-bottom: 0rem
+        .offer-header-controls
+          width: 3rem
+          flex-grow: 0
+          flex-shrink: 0
+      
+    .v-expansion-panel-content__wrap
+      padding: 0rem 1.5rem
+      .nio-divider
+        height: 0.0625rem
+        margin-top: 1rem
+      .offer-detail
+        +nio-filter-group
+    &:last-child 
+      .v-expansion-panel-content__wrap 
+        padding-bottom: 1.5rem
+      .nio-divider
+        display: none
+      
+
+.nio-data-stream-offers
+  +nio-data-stream-offers 

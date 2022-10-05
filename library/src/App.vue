@@ -224,10 +224,14 @@
               TestHistogram
           NioExpansionPanel(:key="40")
             template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Data Stream Offers
+            template(v-slot:content) 
+              TestDataStreamOffers
+          NioExpansionPanel(:key="41")
+            template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Json Viewer
             template(v-slot:content) 
-              TestJsonViewer
-              
+              TestJsonViewer              
 </template>
 
 <script>
@@ -276,6 +280,7 @@ import TestForecastWidget from './test-components/forecasting/TestForecastWidget
 import TestApiError from './test-components/TestApiError'
 import TestJsonViewer from './test-components/TestJsonViewer'
 import TestHistogram from './test-components/TestHistogram.vue'
+import TestDataStreamOffers from './test-components/connectors/offers/TestDataStreamOffers'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -325,6 +330,7 @@ export default {
     NioExpansionPanel,
     TestApiError,
     TestHistogram,
+    TestDataStreamOffers
     TestJsonViewer
   },
   data: () => ({

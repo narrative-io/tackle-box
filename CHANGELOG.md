@@ -158,3 +158,6 @@ Added **utility-download** icon
 v0.5.0
 Added optional **summary*** prop to **NioFilterGroup** and descendant components to enable non-interactable display of filter settings for listing pages
 Added **utility-percent** icon
+
+v0.6.0 
+Added **NioDataStreamOffers** component
