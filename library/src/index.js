@@ -51,6 +51,7 @@ import NioOverflowMenu from './components/OverflowMenu'
 import NioCombobox from './components/Combobox'
 import NioHistogram from './components/Histogram'
 import NioForecastWidget from './components-private/forecasting/ForecastWidget'
+import NioJsonViewer from "./components/JsonViewer.vue"
 
 import NioSelectDestination from './components/connectors/destination/select-destination/SelectDestination'
 import NioSubscriptionDestinations from './components/connectors/destination/subscription-destinations/SubscriptionDestinations'
@@ -79,6 +80,7 @@ Vue.use(Vuetify)
 Vue.mixin(AppModule)
 
 const Components = {
+	NioJsonViewer,
 	NioButton,
 	NioTextField,
 	NioSelect,
@@ -203,9 +205,11 @@ Vue.component("NioPrettySchemaPath", NioPrettySchemaPath)
 Vue.component("NioBuyerStudioSubscription", NioBuyerStudioSubscription)
 Vue.component("NioSubscriptionFileDownload", NioSubscriptionFileDownload)
 Vue.component("NioForecastWidget", NioForecastWidget)
+Vue.component("NioJsonViewer", NioJsonViewer)
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
+export { NioJsonViewer }
 export { NioHistogram }
 export { NioApiError }
 export { NioButton }

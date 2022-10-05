@@ -1,0 +1,23 @@
+@import '../global/_colors'
+
+=nio-json-viewer
+  font-family: 'Consolas', monospace
+  font-weight: 600
+  font-size: 14px
+  .key 
+    color: $c-aqua-light
+  .value
+    &.number
+      color:  $c-octopus-light
+    &.string 
+      color: $c-seagreen-light
+    color: $c-seagreen-light
+  .expander
+    font-size: 12px
+    color: $c-primary-darker
+    cursor: pointer
+  .details
+    color: $c-display-7
+
+.nio-json-viewer
+  +nio-json-viewer

@@ -227,6 +227,11 @@
               .nio-p.text-primary-darker.nio-bold Data Stream Offers
             template(v-slot:content) 
               TestDataStreamOffers
+          NioExpansionPanel(:key="41")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Json Viewer
+            template(v-slot:content) 
+              TestJsonViewer              
 </template>
 
 <script>
@@ -273,6 +278,7 @@ import TestSubscriptions from './test-components/TestSubscriptions'
 import TestCombobox from './test-components/TestCombobox'
 import TestForecastWidget from './test-components/forecasting/TestForecastWidget'
 import TestApiError from './test-components/TestApiError'
+import TestJsonViewer from './test-components/TestJsonViewer'
 import TestHistogram from './test-components/TestHistogram.vue'
 import TestDataStreamOffers from './test-components/connectors/offers/TestDataStreamOffers'
 import { setTheme } from './modules/app/theme/theme'
@@ -325,6 +331,7 @@ export default {
     TestApiError,
     TestHistogram,
     TestDataStreamOffers
+    TestJsonViewer
   },
   data: () => ({
     loggedIn: false,
