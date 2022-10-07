@@ -13,8 +13,9 @@
     .split-row
       .display-row.display-table
         .display-column
-          .nio-h4.text-primary-darker Monthly Budget
-          .nio-p.text-primary-dark {{ computeBudget(subscription) }}  
+          .nio-h4.text-primary-darker Budget
+          .nio-p.text-primary-dark(v-if="budgetSummary") {{ budgetSummary.budget }}  
+          .nio-p.text-primary-dark(v-if="budgetSummary") {{ budgetSummary.delivery }}  
       .display-row.price-cap
           .display-column.full-width
             .nio-h4.text-primary-darker Max cost per 1000 records
@@ -174,6 +175,7 @@ import NioButton from '../../components/Button'
 import NioIcon from '../../components/icon/Icon'
 import NioSubscriptionDestinations from '../../components/connectors/destination/subscription-destinations/SubscriptionDestinations'
 import NioSubscriptionFileDownload from './SubscriptionFileDownload'
+import { makeBudgetSummary } from './budget'
 
 export default {
   name: 'nio-buyer-studio-subscription',
@@ -201,14 +203,26 @@ export default {
     appliedFilters: null,
     frequencyFilter: null
   }),	
+  
+  computed: {
+    budgetAmount() {
+      return this.subscription.budget && this.subscription.budget.amount ? this.subscription.budget.amount.value : null
+    },
+    budgetCadence() {
+      return this.subscription.budget && this.subscription.budget.period ? this.subscription.budget.period.type : null
+    },
+    deliveryCadence() {
+      return this.subscription.cadence
+    },
+    budgetSummary() {
+      return makeBudgetSummary(this.budgetAmount, this.budgetCadence, this.deliveryCadence)
+    }
+  },
   mounted() {
     this.appliedFilters = makeSummaryFilterGroup(this.subscription, this.attributes, this.datasets)
     this.makeFrequencyFilter()
   },
   methods: {
-    computeBudget(item) {
-      return `${item.budget.amount.currency === 'USD' ? '$' : ''}${numeral(item.budget.amount.value.toFixed(2)).format('0,0')} ${item.budget.amount.currency !== 'USD' ? item.budget.amount.currency : ''}`
-    },
     getPropertyType(property) {
       return getReadableType(property)
     },

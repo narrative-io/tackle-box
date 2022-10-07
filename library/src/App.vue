@@ -330,7 +330,7 @@ export default {
     NioExpansionPanel,
     TestApiError,
     TestHistogram,
-    TestDataStreamOffers
+    TestDataStreamOffers,
     TestJsonViewer
   },
   data: () => ({
