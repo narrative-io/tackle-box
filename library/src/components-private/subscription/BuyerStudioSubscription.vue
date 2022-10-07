@@ -13,7 +13,7 @@
     .split-row
       .display-row.display-table
         .display-column
-          .nio-h4.text-primary-darker Monthly Budget
+          .nio-h4.text-primary-darker Budget
           .nio-p.text-primary-dark {{ computeBudget(subscription) }}  
       .display-row.price-cap
           .display-column.full-width
@@ -207,7 +207,7 @@ export default {
   },
   methods: {
     computeBudget(item) {
-      return `${item.budget.amount.currency === 'USD' ? '$' : ''}${numeral(item.budget.amount.value.toFixed(2)).format('0,0')} ${item.budget.amount.currency !== 'USD' ? item.budget.amount.currency : ''}`
+      return `${item.budget.amount.currency === 'USD' ? '$' : ''}${numeral(item.budget.amount.value.toFixed(2)).format('0,0')} ${item.budget.amount.currency !== 'USD' ? item.budget.amount.currency : ''} ${item.budget.period.type === 'calendar_monthly' ? ' per month' : 'per day'}`
     },
     getPropertyType(property) {
       return getReadableType(property)

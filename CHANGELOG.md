@@ -161,3 +161,6 @@ Added **utility-percent** icon
 
 v0.6.0 
 Added **NioDataStreamOffers** component
+
+v0.6.1
+Update **NioBuyerStudioSubscription** for budget cadence
