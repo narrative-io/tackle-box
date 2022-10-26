@@ -125,10 +125,10 @@ export default {
         if (ttdProfile) {
           return [{
             name: 'Narrative TTD 3p Custom Connector',
-            displayName: 'The TradeDesk - 3rd Party Data',
+            displayName: 'The Trade Desk - 3rd Party Data',
             profileId: ttdProfile.id,
             active: false,
-            description: 'Share this Data Stream with The TradeDesk as a 3rd Party audience.',
+            description: 'Share this Data Stream with The Trade Desk as a 3rd Party audience.',
             detailType: 'TTD-3P-Detail',
             icon: {
               imageType: ttdApp.icons[0].imageType,

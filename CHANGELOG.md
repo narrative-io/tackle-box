@@ -164,3 +164,6 @@ Added **NioDataStreamOffers** component
 
 v0.6.1
 Update **NioBuyerStudioSubscription** for budget cadence
+
+v0.6.2
+Update The Trade Desk branding copy
