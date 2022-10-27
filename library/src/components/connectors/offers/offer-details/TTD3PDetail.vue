@@ -15,7 +15,7 @@
     .revenue-cap.detail-module
       .title-description
         .filter-title.nio-h4.text-primary-darker Revenue Share
-        .description.nio-p.text-primary-dark Percent of media cost to be charged to the buyer in The Trade Desk marketplace.
+        .description.nio-p.text-primary-dark Percent of media cost to be charged to the buyer when this data is utilized within The TradeDesk marketplace.
       .filter-value
         NioTextField(
           v-model="localModel.revenueShare"
