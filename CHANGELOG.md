@@ -167,3 +167,5 @@ Update **NioBuyerStudioSubscription** for budget cadence
 
 v0.6.2
 Update The Trade Desk branding copy
+
+v0.6.3 Update description copy in **TTD3PDetail**
