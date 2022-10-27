@@ -118,6 +118,10 @@ export default {
             src: 'https://cdn.narrative.io/data-studio/images/narrative-placeholder-primary.svg',
             alt: 'Data Stream Marketplace icon'
           },
+          license: {
+            licenses: ['Narrative Marketplace Data Purchase Agreement'],
+            period: 30
+          },
           value: 1,
           valid: true
         },
