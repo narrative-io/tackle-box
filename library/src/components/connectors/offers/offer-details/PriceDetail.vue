@@ -13,7 +13,7 @@
           currency
           prepend
         )
-    .offer-license.filter(v-if="offerName === 'data_streams_market'")
+    .offer-license.filter(v-if="license")
       .title-description
         .filter-title.nio-h4.text-primary-darker License
           NioTooltip(
@@ -57,7 +57,7 @@ export default {
   },
   props: { 
     price: { type: Number, required: true },
-    license: { type: Object, required: true },
+    license: { type: Object, required: false },
     offerName: { type: String, required: true } 
   },
   data: () => ({
