@@ -34,6 +34,7 @@
         template(v-if="offer.detailType === 'PriceDetail'")
           NioOfferPriceDetail(
             :price="offer.value"
+            :offer-name="offer.name"
             @update="modelChanged(offer, $event)"
           )
         template(v-if="offer.detailType === 'TTD-3P-Detail'")
