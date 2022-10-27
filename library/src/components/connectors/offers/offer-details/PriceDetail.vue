@@ -30,7 +30,6 @@
           multiple 
           selection-pills
           disabled
-          @change="emitPayload"
         )
         NioSelect(
           v-model="license.period"
@@ -41,7 +40,6 @@
           key="2"
           selection-pills
           disabled
-          @change="emitPayload"
         )
 </template>
 
@@ -59,6 +57,7 @@ export default {
   },
   props: { 
     price: { type: Number, required: true },
+    license: { type: Object, required: true },
     offerName: { type: String, required: true } 
   },
   data: () => ({
@@ -70,10 +69,6 @@ export default {
       }
     ],
     licenses: ['Narrative Marketplace Data Purchase Agreement'],
-    license: {
-      licenses: ['Narrative Marketplace Data Purchase Agreement'],
-      period: 30
-    },
     tooltips:{
       license: {
         message: "Access the Narrative Marketplace Data Purchase Agreement here:",
