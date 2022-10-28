@@ -1,9 +1,9 @@
 import axios from 'axios'
 import localApps from './localApps'
 
-let makeDestinationOptions = (subscriptionType, openApiBaseUrl, requestHeaders) => {
+let makeDestinationOptions = (openApiBaseUrl, requestHeaders) => {
   return new Promise((resolve, reject) => {
-    const narrativeDownload = subscriptionType === 'Seller Studio' ? [] : [{
+    const narrativeDownload = [{
       index: 0,
       name: 'Narrative Download',
       icon: 'https://cdn.narrative.io/data-studio/images/narrative-placeholder-primary.svg',
@@ -59,15 +59,12 @@ let makeDestinationConnectorSettings = (installation, index, openApiBaseUrl, req
   })
 }
 
-let getSubscriptionDestinations = (subscriptionId, subscriptionType, openApiBaseUrl, requestHeaders) => {
+let getSubscriptionDestinations = (subscriptionId, openApiBaseUrl, requestHeaders) => {
   const	selectedDestinations = []
   return new Promise((resolve, reject) => {
     axios.get(`${openApiBaseUrl}/destinations?subscription_id=${subscriptionId}`, requestHeaders).then(resp => {
-      makeDestinationOptions(subscriptionType, openApiBaseUrl, requestHeaders).then(destinations => {   
-        const narrativeDownload = destinations.find(destination => destination.name === 'Narrative Download')
-        if (narrativeDownload) {
-          selectedDestinations.push(narrativeDownload)
-        }
+      makeDestinationOptions(openApiBaseUrl, requestHeaders).then(destinations => {     
+        selectedDestinations.push(destinations.find(destination => destination.name === 'Narrative Download'))
         resp.data.records.forEach(selectedProfile => {
           destinations.filter(destination => destination.name !== 'Narrative Download').forEach(destination => {
             const selection = destination.profiles.find(profile => profile.id === selectedProfile.profile_id)
