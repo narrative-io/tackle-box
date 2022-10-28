@@ -80,7 +80,6 @@ export default {
     offers: {
       deep: true,
       handler(val) {
-        console.log(this.offers)
         this.$emit('offersChanged', this.offers)
       }
     }

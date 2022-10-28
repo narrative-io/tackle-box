@@ -87,7 +87,6 @@ export default {
   },
   methods: {
     validatePartnerIds(value) {
-      console.log(value)
       if (value.length > 0) {
         return true
       }
