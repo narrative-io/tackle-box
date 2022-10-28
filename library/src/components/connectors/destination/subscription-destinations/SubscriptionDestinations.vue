@@ -14,7 +14,7 @@
           v-if="destination.name === 'Narrative Download'"
           :src="destination.icon"
           alt="Narrative Download Icon"
-        ) 
+        )
         NioImageTile(
           v-else
           :src="`data:${destination.icon.imageType};base64, ${destination.icon.image}`"
@@ -37,7 +37,8 @@ export default {
     destinations: { type: Array, required: false },
     subscriptionId: { type: String, required: false },
     openApiToken: { type: String, required: false },
-    openApiBaseUrl: { type: String, required: false }
+    openApiBaseUrl: { type: String, required: false },
+    subscriptionType: { type: String, required: false }
   },
   data() {
     return {
@@ -67,7 +68,7 @@ export default {
           'Authorization': `Bearer ${this.openApiToken}`
         }
       }
-      getSubscriptionDestinations(this.subscriptionId, this.openApiBaseUrl, reqHeaders).then(destinations => {
+      getSubscriptionDestinations(this.subscriptionId, this.subscriptionType, this.openApiBaseUrl, reqHeaders).then(destinations => {
         this.subscriptionDestinations = destinations
       })
     }
@@ -77,4 +78,4 @@ export default {
 
 <style lang="sass" scoped>
 @import '../../../../styles/mixins/connectors/destination/subscription-destinations/_subscription-destinations'
-</style>
+</style>d
