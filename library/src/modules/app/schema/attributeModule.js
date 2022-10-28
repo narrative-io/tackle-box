@@ -328,6 +328,22 @@ function areSamePaths(path1, path2) {
   }).length === path1.length
 }
 
+function checkChild(attribute, selectionType) {
+  if (attribute[selectionType] !== undefined) {
+    return true
+  } else {
+    if (attribute.properties) {
+      Object.keys(attribute.properties).forEach(key => {
+        console.log('Looking at ', attribute.properties[key])
+        if (attribute.properties[key] === selectionType) {
+          return true
+        }
+      })	
+    } 
+  }
+  return false
+}
+
 export {
   makePathString,
   getAttributeFromPath,
