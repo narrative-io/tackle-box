@@ -1,4 +1,4 @@
-import { checkChild } from '../attributeModule.js'
+import { checkChild, replacePropertyRefs } from '../attributeModule.js'
 import { 
   Primitive,
   ArrayItemsPrimitive,
@@ -29,42 +29,71 @@ describe("checkChild", function() {
   beforeEach(function() {
     attributes = deepCopy(AllAttributes).map(attribute => replacePropertyRefs(attribute, AllAttributes))
   });
-  it("Primitive Attribute", function() {
+  it("does not alter filterable property when checking an unselected filterable primitive attribute", function() {
+    const property = findAttributeById(Primitive.id)
+    const value = findAttributeById(Primitive.id).filterable === false
+    const selectionType = 'filterable'
+    checkChild(property, selectionType)
+    const target = findAttributeById(Primitive.id).filterable === false
+    expect(target).toEqual(value)
+  })
+  it("does not alter deliverable property when checking an unselected deliverable primitive attribute", function() {
+    const property = findAttributeById(Primitive.id)
+    const value = findAttributeById(Primitive.id).deliverable === false
+    const selectionType = 'deliverable'
+    checkChild(property, selectionType)
+    const target = findAttributeById(Primitive.id).deliverable === false
+    expect(target).toEqual(value)
+  })
+  it("does not alter filterable property when checking a selected filterable primitive attribute", function() {
     const property = findAttributeById(Primitive.id)
     const selectionType = 'filterable'
     const value = true
-
-    setSelectionRecursively(property, selectionType, value)
+    property.filterable = true
+    checkChild(property, selectionType)
     const target = findAttributeById(Primitive.id).filterable === true
-
     expect(target).toEqual(value)
   })
-  it("Object -> Primitive, target Object", function() {
+  it("does not alter deliverable property when checking a selected deliverable primitive attribute", function() {
+    const property = findAttributeById(Primitive.id)
+    const selectionType = 'deliverable'
+    const value = true
+    property.deliverable = true
+    checkChild(property, selectionType)
+    const target = findAttributeById(Primitive.id).deliverable === true
+    expect(target).toEqual(value)
+  })
+  it("sets parent filterable attribute to true if child primitive filterable property is selected", function() {
     const property = findAttributeById(ObjectChildPrimitive.id)
+    findAttributeById(ObjectChildPrimitive.id).properties.primitive_property.filterable = true
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType)
     const target = 
       findAttributeById(ObjectChildPrimitive.id).filterable === true && 
       findAttributeById(ObjectChildPrimitive.id).properties.primitive_property.filterable === true
     expect(target).toEqual(value)
   })
-  it("Object -> Primitive, target Primitive", function() {
-    const property = findAttributeById(ObjectChildPrimitive.id).properties.primitive_property
-    const selectionType = 'filterable'
+  it("sets parent deliverable attribute to true if child primitive deliverable property is selected", function() {
+    const property = findAttributeById(ObjectChildPrimitive.id)
+    findAttributeById(ObjectChildPrimitive.id).properties.primitive_property.deliverable = true
+    const selectionType = 'deliverable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
-    const target = findAttributeById(ObjectChildPrimitive.id).properties.primitive_property.filterable === true
+    checkChild(property, selectionType)
+    const target = 
+      findAttributeById(ObjectChildPrimitive.id).deliverable === true && 
+      findAttributeById(ObjectChildPrimitive.id).properties.primitive_property.deliverable === true
     expect(target).toEqual(value)
   })
-  it("Object[1] -> Object[11] -> Primitive, target Object[1]", function() {
+  it("Object[1] -> Object[2] -> Primitive(true), target Object[1]", function() {
     const property = findAttributeById(ObjectChildObject.id)
+    findAttributeById(ObjectChildObject.id).properties.object.properties.primitive.filterable = true
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType)
     const target = 
       findAttributeById(ObjectChildObject.id).filterable === true &&
       findAttributeById(ObjectChildObject.id).properties.object.filterable === true && 
@@ -72,13 +101,15 @@ describe("checkChild", function() {
       
     expect(target).toEqual(value)
   })
-  it("Object[1] -> Object[11] -> Primitive, target Object[2]", function() {
+  it("Object[1] -> Object[2] -> Primitive(true), target Object[2] ", function() {
     const property = findAttributeById(ObjectChildObject.id).properties.object
+    findAttributeById(ObjectChildObject.id).properties.object.properties.primitive.filterable = true
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType)
     const target = 
+      findAttributeById(ObjectChildObject.id).filterable === false &&
       findAttributeById(ObjectChildObject.id).properties.object.filterable === true && 
       findAttributeById(ObjectChildObject.id).properties.object.properties.primitive.filterable === true
       
@@ -86,10 +117,11 @@ describe("checkChild", function() {
   })
   it("Array -> Primitive, target Array", function() {
     const property = findAttributeById(ArrayItemsPrimitive.id)
+    findAttributeById(ArrayItemsPrimitive.id).items.filterable = true
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType)
     const target = 
       findAttributeById(ArrayItemsPrimitive.id).filterable === true && 
       findAttributeById(ArrayItemsPrimitive.id).items.filterable === true
@@ -101,7 +133,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType)
     const target = 
       findAttributeById(ArrayItemsPrimitive.id).items.filterable === true
       
@@ -112,7 +144,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType, value)
     const target = 
       findAttributeById(ObjectChildArray.id).filterable === true
       findAttributeById(ObjectChildArray.id).properties.array.filterable === true
@@ -125,7 +157,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType, value)
     const target = 
       findAttributeById(ObjectChildArray.id).properties.array.filterable === true
       findAttributeById(ObjectChildArray.id).properties.array.items.filterable === true
@@ -137,7 +169,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType, value)
     const target = 
       findAttributeById(ObjectChildArray.id).properties.array.items.filterable === true
       
@@ -159,7 +191,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType, value)
     const target = 
       findAttributeById(ObjectArraySiblings.id).filterable === true
       findAttributeById(ObjectArraySiblings.id).items.filterable === true
@@ -175,7 +207,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType, value)
     const target = 
       findAttributeById(ObjectArraySiblings.id).items.filterable === true
       findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === true
@@ -190,7 +222,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType, value)
     const target = 
       findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === true
       findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === true
@@ -202,7 +234,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType, value)
     const target = 
       findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === true
       findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === true
@@ -214,7 +246,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType, value)
     const target = 
       findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === true
       
@@ -225,7 +257,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    setSelectionRecursively(property, selectionType, value)
+    checkChild(property, selectionType, value)
     const target = 
       findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === true
       
