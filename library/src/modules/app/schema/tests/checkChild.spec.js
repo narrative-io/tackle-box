@@ -128,7 +128,7 @@ describe("checkChild", function() {
       
     expect(target).toEqual(value)
   })
-  it("Object -> Array -> Primitive, target Object", function() {
+  it("Object -> Array -> Primitive(true), target Object", function() {
     const property = findAttributeById(ObjectChildArray.id)
     property.properties.array.items.filterable = true
     const selectionType = 'filterable'
@@ -142,27 +142,31 @@ describe("checkChild", function() {
       
     expect(target).toEqual(value)
   })
-  it("Object -> Array -> Primitive, target Array", function() {
+  it("Object -> Array -> Primitive(true), target Array", function() {
     const property = findAttributeById(ObjectChildArray.id).properties.array
-    pr
+    property.items.filterable = true
     const selectionType = 'filterable'
     const value = true
 
     checkChild(property, selectionType, value)
     const target = 
+      findAttributeById(ObjectChildArray.id).filterable === false
       findAttributeById(ObjectChildArray.id).properties.array.filterable === true 
       findAttributeById(ObjectChildArray.id).properties.array.items.filterable === true
       
     expect(target).toEqual(value)
   })
-  it("Object -> Array -> Primitive, target Primitive", function() {
-    const property = findAttributeById(ObjectChildArray.id).properties.array.items
+  it("Object -> Array(true) -> Primitive, target Object", function() {
+    const property = findAttributeById(ObjectChildArray.id)
+    property.properties.array.filterable = true
     const selectionType = 'filterable'
     const value = true
 
     checkChild(property, selectionType, value)
     const target = 
-      findAttributeById(ObjectChildArray.id).properties.array.items.filterable === true
+      findAttributeById(ObjectChildArray.id).filterable === true
+      findAttributeById(ObjectChildArray.id).properties.array.filterable === true 
+      findAttributeById(ObjectChildArray.id).properties.array.items.filterable === false
       
     expect(target).toEqual(value)
   })
@@ -173,12 +177,13 @@ describe("checkChild", function() {
           Primitive[111]
         ) + (
         Array[12] -> 
-          Primitive[121]
+          Primitive[121] (true)
         )
       ), 
-    target Object[1]	
+    target Array	
   `, function() {
     const property = findAttributeById(ObjectArraySiblings.id)
+    property.items.properties.array_ref.items.filterable = true
     const selectionType = 'filterable'
     const value = true
 
@@ -187,7 +192,7 @@ describe("checkChild", function() {
       findAttributeById(ObjectArraySiblings.id).filterable === true
       findAttributeById(ObjectArraySiblings.id).items.filterable === true
       findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === true
+      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === false
       findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === true
       findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === true
       
