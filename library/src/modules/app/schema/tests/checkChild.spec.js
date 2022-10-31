@@ -63,61 +63,61 @@ describe("checkChild", function() {
     const target = findAttributeById(Primitive.id).deliverable === true
     expect(target).toEqual(value)
   })
-  it("sets parent filterable attribute to true if child primitive filterable property is selected", function() {
+  it("Object -> Primitive(filterable = true), target Object", function() {
     const property = findAttributeById(ObjectChildPrimitive.id)
-    findAttributeById(ObjectChildPrimitive.id).properties.primitive_property.filterable = true
+    property.properties.primitive_property.filterable = true
     const selectionType = 'filterable'
     const value = true
 
     checkChild(property, selectionType)
     const target = 
-      findAttributeById(ObjectChildPrimitive.id).filterable === true && 
+      findAttributeById(ObjectChildPrimitive.id).filterable === true 
       findAttributeById(ObjectChildPrimitive.id).properties.primitive_property.filterable === true
     expect(target).toEqual(value)
   })
-  it("sets parent deliverable attribute to true if child primitive deliverable property is selected", function() {
+  it("Object -> Primitive(deliverable = true), target Object", function() {
     const property = findAttributeById(ObjectChildPrimitive.id)
-    findAttributeById(ObjectChildPrimitive.id).properties.primitive_property.deliverable = true
+    property.properties.primitive_property.deliverable = true
     const selectionType = 'deliverable'
     const value = true
 
     checkChild(property, selectionType)
     const target = 
-      findAttributeById(ObjectChildPrimitive.id).deliverable === true && 
+      findAttributeById(ObjectChildPrimitive.id).deliverable === true 
       findAttributeById(ObjectChildPrimitive.id).properties.primitive_property.deliverable === true
     expect(target).toEqual(value)
   })
   it("Object[1] -> Object[2] -> Primitive(true), target Object[1]", function() {
     const property = findAttributeById(ObjectChildObject.id)
-    findAttributeById(ObjectChildObject.id).properties.object.properties.primitive.filterable = true
+    property.properties.object.properties.primitive.filterable = true
     const selectionType = 'filterable'
     const value = true
 
     checkChild(property, selectionType)
     const target = 
-      findAttributeById(ObjectChildObject.id).filterable === true &&
-      findAttributeById(ObjectChildObject.id).properties.object.filterable === true && 
+      findAttributeById(ObjectChildObject.id).filterable === true 
+      findAttributeById(ObjectChildObject.id).properties.object.filterable === true 
       findAttributeById(ObjectChildObject.id).properties.object.properties.primitive.filterable === true
       
     expect(target).toEqual(value)
   })
   it("Object[1] -> Object[2] -> Primitive(true), target Object[2] ", function() {
     const property = findAttributeById(ObjectChildObject.id).properties.object
-    findAttributeById(ObjectChildObject.id).properties.object.properties.primitive.filterable = true
+    property.properties.primitive.filterable = true
     const selectionType = 'filterable'
     const value = true
 
     checkChild(property, selectionType)
     const target = 
-      findAttributeById(ObjectChildObject.id).filterable === false &&
-      findAttributeById(ObjectChildObject.id).properties.object.filterable === true && 
+      findAttributeById(ObjectChildObject.id).filterable === false 
+      findAttributeById(ObjectChildObject.id).properties.object.filterable === true 
       findAttributeById(ObjectChildObject.id).properties.object.properties.primitive.filterable === true
       
     expect(target).toEqual(value)
   })
-  it("Array -> Primitive, target Array", function() {
+  it("Array -> Primitive(true), target Array", function() {
     const property = findAttributeById(ArrayItemsPrimitive.id)
-    findAttributeById(ArrayItemsPrimitive.id).items.filterable = true
+    property.items.filterable = true
     const selectionType = 'filterable'
     const value = true
 
@@ -128,19 +128,9 @@ describe("checkChild", function() {
       
     expect(target).toEqual(value)
   })
-  it("Array -> Primitive, target Primitive", function() {
-    const property = findAttributeById(ArrayItemsPrimitive.id).items
-    const selectionType = 'filterable'
-    const value = true
-
-    checkChild(property, selectionType)
-    const target = 
-      findAttributeById(ArrayItemsPrimitive.id).items.filterable === true
-      
-    expect(target).toEqual(value)
-  })
   it("Object -> Array -> Primitive, target Object", function() {
     const property = findAttributeById(ObjectChildArray.id)
+    property.properties.array.items.filterable = true
     const selectionType = 'filterable'
     const value = true
 
@@ -154,12 +144,13 @@ describe("checkChild", function() {
   })
   it("Object -> Array -> Primitive, target Array", function() {
     const property = findAttributeById(ObjectChildArray.id).properties.array
+    pr
     const selectionType = 'filterable'
     const value = true
 
     checkChild(property, selectionType, value)
     const target = 
-      findAttributeById(ObjectChildArray.id).properties.array.filterable === true
+      findAttributeById(ObjectChildArray.id).properties.array.filterable === true 
       findAttributeById(ObjectChildArray.id).properties.array.items.filterable === true
       
     expect(target).toEqual(value)

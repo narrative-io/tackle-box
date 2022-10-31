@@ -364,7 +364,7 @@ function checkChild(attribute, selectionType) {
         })
       } else if (attribute.properties[child].items) {
         Object.keys(attribute.properties[child].items).forEach(grandchild => {
-          if (attribute.properties[child].items[grandchild] && grandchild === selectionType) {
+          if (grandchild === selectionType && attribute.properties[child].items[grandchild]) {
             attribute.properties[child][selectionType] = true
             attribute[selectionType] = true
             return
@@ -373,8 +373,9 @@ function checkChild(attribute, selectionType) {
       }
     })	
   } else if (attribute.items) {
+    console.log('Array items: ', attribute.items)
     Object.keys(attribute.items).forEach(child => {
-      if (attribute.items[child][selectionType]) {
+      if (child === selectionType && attribute.items[child]) {
         console.log(`${selectionType} attribute found`)
         attribute[selectionType] = true
         return
