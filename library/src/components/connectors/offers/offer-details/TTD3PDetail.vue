@@ -10,8 +10,12 @@
           :rules="[validatePartnerIds]"
           label="Partner IDs"
           placeholder="Enter IDs"
+          @blur="partnerIdsBlur"
+          @focus="partnerIdsBlurred = false"
           validate-on-blur
         )
+        .error-msg(v-if="(!localModel.partnerIds || localModel.partnerIds.length < 1) && partnerIdsBlurred")
+          p.nio-p.text-error {{ partnerIdsErrorMsg }}
     .revenue-cap.detail-module
       .title-description
         .filter-title.nio-h4.text-primary-darker Revenue Share
@@ -20,7 +24,7 @@
         NioTextField(
           v-model="localModel.revenueShare"
           :rules="[validateRevenueShare]"
-          placeholder="Revenue Share"
+          placeholder="Enter value"
           type="number"
           percent
           validate-on-blur
@@ -33,7 +37,7 @@
         NioTextField(
           v-model="localModel.cpmCap"
           :rules="[validateCpmCap]"
-          placeholder="Cost Per Thousand Records"
+          placeholder="Enter value"
           type="number"
           currency
           validate-on-blur
@@ -56,10 +60,12 @@ export default {
   data: () => ({
     localModel: {
       partnerIds: [],
-      revenueShare: 0,
-      cpmCap: 0.00
+      revenueShare: null,
+      cpmCap: null
     },
-    valid: false
+    valid: false,
+    partnerIdsErrorMsg: 'At least one Partner ID is required',
+    partnerIdsBlurred: false
   }),
   watch: {
     localModel: {
@@ -88,20 +94,20 @@ export default {
     },
     validateRevenueShare(value) {
       if (!value || value.trim().length === 0) {
-        return ' '
+        return 'Required'
       } else if (value < 0) {
-        return 'cannot be less than zero'
+        return 'Cannot be less than zero'
       } else if (value > 100) {
-        return 'cannot be greater than 100'
+        return 'Cannot be greater than 100'
       } else {
         return true
       }
     },
     validateCpmCap(value) {
       if (!value || value.trim().length === 0) {
-        return ' '
+        return 'Required'
       } else if (value < 0) {
-        return 'cannot be less than zero'
+        return 'Cannot be less than zero'
       } else {
         return true
       }
@@ -115,6 +121,9 @@ export default {
       } else {
         this.valid = false
       }
+    },
+    partnerIdsBlur() {
+      this.partnerIdsBlurred = true
     }
   }
   

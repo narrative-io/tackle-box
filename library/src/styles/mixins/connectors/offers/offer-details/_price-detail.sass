@@ -1,7 +1,14 @@
 @import '../../../filter/_filter-header'
+@import '../../../filter/_filter-group'
   
 =nio-offer-price-detail
-  +nio-filter-header
+  +nio-filter-group
+  .filter
+    +nio-filter-header
+    .title-description
+      padding-right: 2rem
+  & > .filter + .filter
+    border-top: 0.0625rem solid $c-primary-lighter
   .nio-slider
     width: 100%
 

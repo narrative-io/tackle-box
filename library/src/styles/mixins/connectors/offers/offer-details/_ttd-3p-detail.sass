@@ -9,9 +9,15 @@
       width: 12.5rem
       ::v-deep .v-input__slot
         border-width: 0.0625rem
+      ::v-deep ::placeholder
+        color: $c-primary-light !important
     .nio-tags-field
       width: 100%
-
+    .error-msg 
+      position: absolute
+      bottom: 0.125rem
+      .nio-p
+        font-size: 0.75rem
   & > .detail-module + .detail-module
     border-top: 0.0625rem solid $c-primary-lighter
 

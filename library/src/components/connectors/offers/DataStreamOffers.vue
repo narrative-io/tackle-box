@@ -34,6 +34,8 @@
         template(v-if="offer.detailType === 'PriceDetail'")
           NioOfferPriceDetail(
             :price="offer.value"
+            :offer-name="offer.name"
+            :license="offer.license"
             @update="modelChanged(offer, $event)"
           )
         template(v-if="offer.detailType === 'TTD-3P-Detail'")
@@ -98,6 +100,10 @@ export default {
             src: 'https://cdn.narrative.io/data-studio/images/narrative-placeholder-primary.svg',
             alt: 'Data Stream Marketplace icon'
           },
+          license: {
+            licenses: ['Narrative Marketplace Data Purchase Agreement'],
+            period: 30
+          },
           value: 1,
           valid: true
         },
@@ -110,6 +116,10 @@ export default {
           icon: {
             src: 'https://cdn.narrative.io/data-studio/images/narrative-placeholder-primary.svg',
             alt: 'Data Stream Marketplace icon'
+          },
+          license: {
+            licenses: ['Narrative Marketplace Data Purchase Agreement'],
+            period: 30
           },
           value: 1,
           valid: true
