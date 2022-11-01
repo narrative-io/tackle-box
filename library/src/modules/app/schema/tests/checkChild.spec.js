@@ -134,7 +134,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType, value)
+    checkChild(property, selectionType)
     const target = 
       findAttributeById(ObjectChildArray.id).filterable === true
       findAttributeById(ObjectChildArray.id).properties.array.filterable === true
@@ -148,7 +148,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType, value)
+    checkChild(property, selectionType)
     const target = 
       findAttributeById(ObjectChildArray.id).filterable === false
       findAttributeById(ObjectChildArray.id).properties.array.filterable === true 
@@ -162,7 +162,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType, value)
+    checkChild(property, selectionType)
     const target = 
       findAttributeById(ObjectChildArray.id).filterable === true
       findAttributeById(ObjectChildArray.id).properties.array.filterable === true 
@@ -187,75 +187,144 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType, value)
+    checkChild(property, selectionType)
     const target = 
       findAttributeById(ObjectArraySiblings.id).filterable === true
       findAttributeById(ObjectArraySiblings.id).items.filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === true
+      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === false
       findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === false
       findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === true
       findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === true
       
     expect(target).toEqual(value)
   })
-  it('see previous, target Object[1]', function() {
+  it(`
+  Array -> 
+    Object[1] -> (
+      Object[11] -> 
+        Primitive[111] 
+      ) + (
+      Array[12] -> 
+        Primitive[121] (true)
+      )
+    ), 
+  target Object[1]	
+`, function() {
     const property = findAttributeById(ObjectArraySiblings.id).items
+    property.properties.array_ref.items.filterable = true
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType, value)
+    checkChild(property, selectionType)
     const target = 
       findAttributeById(ObjectArraySiblings.id).items.filterable === true
+      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === false
+      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === false
+      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === true
+      
+    expect(target).toEqual(value)
+  })
+  it(`
+  Array -> 
+    Object[1] -> (
+      Object[11] -> 
+        Primitive[111] (true)
+      ) + (
+      Array[12] -> 
+        Primitive[121]
+      )
+    ), 
+  target Object[11]	
+`, function() {
+    const property = findAttributeById(ObjectArraySiblings.id).items.properties.object_ref
+    property.properties.primitive_property.filterable = true
+    const selectionType = 'filterable'
+    const value = true
+
+    checkChild(property, selectionType)
+    const target = 
+      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === false
+      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === false
       findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === true
       findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === true
       
     expect(target).toEqual(value)
   })
-  it('see previous, target Object[11]', function() {
-    const property = findAttributeById(ObjectArraySiblings.id).items.properties.object_ref
+  it(`
+  Array -> 
+    Object[1] -> (
+      Object[11] -> 
+        Primitive[111]
+      ) + (
+      Array[12] -> 
+        Primitive[121] (true)
+      )
+    ), 
+  target Array[12]	
+`, function() {
+    const property = findAttributeById(ObjectArraySiblings.id).items.properties.array_ref
+    property.items.filterable = true
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType, value)
-    const target = 
-      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === true
-      
-    expect(target).toEqual(value)
-  })
-  it('see previous, target Array[12]', function() {
-    const property = findAttributeById(ObjectArraySiblings.id).items
-    const selectionType = 'filterable'
-    const value = true
-
-    checkChild(property, selectionType, value)
+    checkChild(property, selectionType)
     const target = 
       findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === true
+      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === false
       
     expect(target).toEqual(value)
   })
-  it('see previous, target Primitive[111]', function() {
+  it(`
+  Array -> 
+    Object[1] -> (
+      Object[11] (true) -> 
+        Primitive[111]
+      ) + (
+      Array[12] -> 
+        Primitive[121]
+      )
+    ), 
+  target Array	
+`, function() {
+    const property = findAttributeById(ObjectArraySiblings.id)
+    property.items.properties.object_ref.filterable = true
+    const selectionType = 'filterable'
+    const value = true
+
+    checkChild(property, selectionType)
+    const target = 
+      findAttributeById(ObjectArraySiblings.id).filterable === true
+      findAttributeById(ObjectArraySiblings.id).items.filterable === true
+      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable = false
+      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable = false
+      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === false
+      
+    expect(target).toEqual(value)
+  })
+  it(`
+  Array -> 
+    Object[1] -> (
+      Object[11] -> 
+        Primitive[111]
+      ) + (
+      Array[12] -> 
+        Primitive[121] (true)
+      )
+    ), 
+  target Object[11]	
+`, function() {
     const property = findAttributeById(ObjectArraySiblings.id).items.properties.object_ref
+    findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable = true
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType, value)
+    checkChild(property, selectionType)
     const target = 
-      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === true
-      
-    expect(target).toEqual(value)
-  })
-  it('see previous, target Primitive[121]', function() {
-    const property = findAttributeById(ObjectArraySiblings.id).items
-    const selectionType = 'filterable'
-    const value = true
-
-    checkChild(property, selectionType, value)
-    const target = 
-      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === true
+      findAttributeById(ObjectArraySiblings.id).filterable === false
+      findAttributeById(ObjectArraySiblings.id).items.filterable === false
+      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === false
+      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === false
+      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === false
       
     expect(target).toEqual(value)
   })
