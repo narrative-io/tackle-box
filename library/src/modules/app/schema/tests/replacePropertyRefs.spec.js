@@ -206,12 +206,12 @@ describe("replacePropertyRefs", function() {
     const actual = replacePropertyRefs(attribute, attributes)
     expect(actual).toEqual(expected)
   })
-  it("Array with Object child with object and object silbing children with refs", function() {
+  it("Array with Object child with object and object sibling children with refs", function() {
     const attributes = [Primitive, ObjectChildPrimitive, ObjectObjectSiblings]
     const attribute = ObjectObjectSiblings
     const expected = {
       description: "description",
-      display_name: "Array with Object child with object and object silbing children",
+      display_name: "Array with Object child with object and object sibling children",
       id: 7,
       name: "ObjectObjectSiblings",
       type: "array",
@@ -268,12 +268,12 @@ describe("replacePropertyRefs", function() {
     const actual = replacePropertyRefs(attribute, attributes)
     expect(actual).toEqual(expected)
   })
-  it("Array with Object child with array and object silbing children with refs", function() {
+  it("Array with Object child with array and object sibling children with refs", function() {
     const attributes = [Primitive, ObjectChildPrimitive, ArrayItemsPrimitive, ObjectArraySiblings]
     const attribute = ObjectArraySiblings
     const expected = {
       description: "description",
-      display_name: "Array with Object child with array and object silbing children",
+      display_name: "Array with Object child with array and object sibling children",
       id: 8,
       name: "ObjectArraySiblings",
       type: "array",
@@ -328,12 +328,12 @@ describe("replacePropertyRefs", function() {
     const actual = replacePropertyRefs(attribute, attributes)
     expect(actual).toEqual(expected)
   })
-  it("Array with Object child with array and array silbing children with refs", function() {
+  it("Array with Object child with array and array sibling children with refs", function() {
     const attributes = [Primitive, ArrayItemsPrimitive, ArrayArraySiblings]
     const attribute = ArrayArraySiblings
     const expected = {
       description: "description",
-      display_name: "Array with Object child with array and array silbing children",
+      display_name: "Array with Object child with array and array sibling children",
       id: 9,
       name: "ArrayArraySiblings",
       type: "array",
