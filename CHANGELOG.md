@@ -174,3 +174,6 @@ Update description copy in **TTD3PDetail**
 v0.6.4
 Add license selection to dsm and data shop offers
 Update destination validation error display
+
+v0.6.8
+Fix bug in Simple Timestamp filter not allowing custom text in filter value indicators

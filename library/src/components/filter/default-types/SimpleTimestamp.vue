@@ -180,9 +180,8 @@ export default {
       }
     },
     updateValue() {
-      this.$emit('valueChanged', [
-        this.defaultOptions.find(option => option.value === this.filter.value).label
-      ])
+      const options = this.filter.options ? this.filter.options : this.defaultOptions
+      this.$emit('valueChanged', [options.find(option => option.value === this.filter.value).label])
       this.validate()
     },
     parseLookbackValue(val) {
