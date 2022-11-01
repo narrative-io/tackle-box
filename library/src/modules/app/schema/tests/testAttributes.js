@@ -96,7 +96,7 @@ const ArrayChildArray = {
 
 const ObjectObjectSiblings = {
   description: "description",
-  display_name: "Array with Object child with object and object silbing children",
+  display_name: "Array with Object child with object and object sibling children",
   id: 7,
   name: "ObjectObjectSiblings",
   type: "array",
@@ -115,7 +115,7 @@ const ObjectObjectSiblings = {
 
 const ObjectArraySiblings = {
   description: "description",
-  display_name: "Array with Object child with array and object silbing children",
+  display_name: "Array with Object child with array and object sibling children",
   id: 8,
   name: "ObjectArraySiblings",
   type: "array",
@@ -134,7 +134,7 @@ const ObjectArraySiblings = {
 
 const ArrayArraySiblings = {
   description: "description",
-  display_name: "Array with Object child with array and array silbing children",
+  display_name: "Array with Object child with array and array sibling children",
   id: 9,
   name: "ArrayArraySiblings",
   type: "array",
