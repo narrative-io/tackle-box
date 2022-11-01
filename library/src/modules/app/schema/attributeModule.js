@@ -328,24 +328,7 @@ function areSamePaths(path1, path2) {
   }).length === path1.length
 }
 
-// const recursivelyCheckChildren = (attribute, selectionType) => {
-//   let foundSelected = false
-  
-//   if (attribute[selectionType]) return true
-//   else if (!attribute.properties) return false
-//   else {
-//     Object.keys(attribute.properties).forEach(child => {
-//       foundSelected = recursivelyCheckChildren(attribute.properties[child])
-//       return foundSelected
-//     })
-//   }
-// }
-// if (attribute[selectionType]) return
-// else if (attribute.properties) {
-//   Object.keys(attribute.properties).forEach(key => {
-//     attribute[selectionType] = recursivelyCheckChildren(attribute.properties[key])
-//   })	
-// } else return 
+// TODO: refactor function (maybe run recursively/while loop with a stack)
 function checkChild(attribute, selectionType) {
   if (attribute[selectionType]) return 
   else if (attribute.properties) {
