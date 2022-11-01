@@ -152,6 +152,23 @@
                     v-for="field of frequencyFilter.fields"
                     tag
                   ) {{ field }}
+    .split-row
+      .display-row.display-table
+        .display-column
+          .nio-h4.text-primary-darker Re-scan Data?
+          .nio-p.text-primary-dark {{ subscription.read_once ? 'No' : 'Yes' }}
+      .display-row.display-table.ingestion-timestamp
+        .display-column
+          .nio-h4.text-primary-darker Ingestion Timestamp Filter
+          .filter-value(v-if="ingestionTimestampFilter")
+            .selected-filter-value
+              NioIcon(
+                name="utility-check-circle"
+                color="#43B463"
+                size="14"
+              )
+              .text.nio-p.text-prim-darker {{ ingestionTimestampFilter.value }}
+            template(v-if="ingestionTimestampFilter.value === 'Custom'")
     .subscription-footer
       .subscription-actions(v-if="subscription.status !== 'archived'")
         NioButton(
@@ -199,7 +216,8 @@ export default {
   data: () => ({
     filesVisible: false,
     appliedFilters: null,
-    frequencyFilter: null
+    frequencyFilter: null,
+    ingestionTimestampFilter: null
   }),	
   mounted() {
     this.appliedFilters = makeSummaryFilterGroup(this.subscription, this.attributes, this.datasets)
@@ -295,6 +313,12 @@ export default {
         frequencyFilter.value = 'Include all values'
       }
       this.frequencyFilter = frequencyFilter
+    },
+    makeIngestionTimestampFilter() {
+      const ingestionTimestampFilter = {}
+      if (this.subscription.details.data_rules && this.subscription.details.data_rules.ingestion_timestamp_filter) {
+
+      }
     },
     findExportedFields(subscription, attributes, type) {
       const results = []
