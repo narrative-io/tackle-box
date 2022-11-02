@@ -214,6 +214,67 @@ const ObjectChildBinary = {
   }
 }
 
+const DeeplyNestedLevelsWithSiblings = {
+  description: 'Deeply nested levels with slblings',
+  display_name: 'Deeply nested levels with slblings',
+  id: 13,
+  name: 'eeplyNestedLevelsWithSiblings',
+  type: 'object',
+  properties: {
+    primitive_property: {
+      $ref: Primitive.id
+    },
+    primitive_property2: {
+      $ref: Primitive.id
+    },
+    object_property: {
+      type: 'object',
+      properties: {
+        primitive_property: {
+          $ref: Primitive.id
+        },
+        primitive_property2: {
+          $ref: Primitive.id
+        },
+        object_property: {
+          type: 'object',
+          properties: {
+            primitive_property: {
+              $ref: Primitive.id
+            },
+            primitive_property2: {
+              $ref: Primitive.id
+            },
+          }
+        },
+      }
+    },
+    object_property2: {
+      type: 'object',
+      properties: {
+        primitive_property: {
+          $ref: Primitive.id
+        },
+        primitive_property2: {
+          $ref: Primitive.id
+        },
+        object_property: {
+          type: 'object',
+          properties: {
+            primitive_property: {
+              $ref: Primitive.id
+            },
+            primitive_property2: {
+              $ref: Primitive.id
+            },
+          }
+        },
+      }
+    }
+  }
+
+}
+
 const AllAttributes = [
   Primitive,
   ArrayItemsPrimitive,
@@ -227,7 +288,8 @@ const AllAttributes = [
   ArrayArraySiblings,
   OptionalRequiredFlat,
   BinaryPrimitive,
-  ObjectChildBinary
+  ObjectChildBinary,
+  DeeplyNestedLevelsWithSiblings
 ]
 
 export {
@@ -244,5 +306,6 @@ export {
   AllAttributes,
   OptionalRequiredFlat,
   BinaryPrimitive,
-  ObjectChildBinary
+  ObjectChildBinary,
+  DeeplyNestedLevelsWithSiblings
 }
