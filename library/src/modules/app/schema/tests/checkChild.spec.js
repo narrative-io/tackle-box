@@ -115,33 +115,6 @@ describe("checkChild", function() {
       
     expect(target).toEqual(value)
   })
-  it("Array -> Primitive(true), target Array", function() {
-    const property = findAttributeById(ArrayItemsPrimitive.id)
-    property.items.filterable = true
-    const selectionType = 'filterable'
-    const value = true
-
-    checkChild(property, selectionType)
-    const target = 
-      findAttributeById(ArrayItemsPrimitive.id).filterable === true && 
-      findAttributeById(ArrayItemsPrimitive.id).items.filterable === true
-      
-    expect(target).toEqual(value)
-  })
-  it("Object -> Array -> Primitive(true), target Object", function() {
-    const property = findAttributeById(ObjectChildArray.id)
-    property.properties.array.items.filterable = true
-    const selectionType = 'filterable'
-    const value = true
-
-    checkChild(property, selectionType)
-    const target = 
-      findAttributeById(ObjectChildArray.id).filterable === true
-      findAttributeById(ObjectChildArray.id).properties.array.filterable === true
-      findAttributeById(ObjectChildArray.id).properties.array.items.filterable === true
-      
-    expect(target).toEqual(value)
-  })
   it("Object -> Array -> Primitive(true), target Array", function() {
     const property = findAttributeById(ObjectChildArray.id).properties.array
     property.items.filterable = true
@@ -171,60 +144,6 @@ describe("checkChild", function() {
     expect(target).toEqual(value)
   })
   it(`
-    Array -> 
-      Object[1] -> (
-        Object[11] -> 
-          Primitive[111]
-        ) + (
-        Array[12] -> 
-          Primitive[121] (true)
-        )
-      ), 
-    target Array	
-  `, function() {
-    const property = findAttributeById(ObjectArraySiblings.id)
-    property.items.properties.array_ref.items.filterable = true
-    const selectionType = 'filterable'
-    const value = true
-
-    checkChild(property, selectionType)
-    const target = 
-      findAttributeById(ObjectArraySiblings.id).filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === false
-      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === false
-      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === true
-      
-    expect(target).toEqual(value)
-  })
-  it(`
-  Array -> 
-    Object[1] -> (
-      Object[11] -> 
-        Primitive[111] 
-      ) + (
-      Array[12] -> 
-        Primitive[121] (true)
-      )
-    ), 
-  target Object[1]	
-`, function() {
-    const property = findAttributeById(ObjectArraySiblings.id).items
-    property.properties.array_ref.items.filterable = true
-    const selectionType = 'filterable'
-    const value = true
-
-    checkChild(property, selectionType)
-    const target = 
-      findAttributeById(ObjectArraySiblings.id).items.filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === false
-      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === false
-      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === true
-      
-    expect(target).toEqual(value)
-  })
-  it(`
   Array -> 
     Object[1] -> (
       Object[11] -> 
@@ -247,57 +166,6 @@ describe("checkChild", function() {
       findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === false
       findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === true
       findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === true
-      
-    expect(target).toEqual(value)
-  })
-  it(`
-  Array -> 
-    Object[1] -> (
-      Object[11] -> 
-        Primitive[111]
-      ) + (
-      Array[12] -> 
-        Primitive[121] (true)
-      )
-    ), 
-  target Array[12]	
-`, function() {
-    const property = findAttributeById(ObjectArraySiblings.id).items.properties.array_ref
-    property.items.filterable = true
-    const selectionType = 'filterable'
-    const value = true
-
-    checkChild(property, selectionType)
-    const target = 
-      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.filterable === false
-      
-    expect(target).toEqual(value)
-  })
-  it(`
-  Array -> 
-    Object[1] -> (
-      Object[11] (true) -> 
-        Primitive[111]
-      ) + (
-      Array[12] -> 
-        Primitive[121]
-      )
-    ), 
-  target Array	
-`, function() {
-    const property = findAttributeById(ObjectArraySiblings.id)
-    property.items.properties.object_ref.filterable = true
-    const selectionType = 'filterable'
-    const value = true
-
-    checkChild(property, selectionType)
-    const target = 
-      findAttributeById(ObjectArraySiblings.id).filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.filterable === true
-      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable = false
-      findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable = false
-      findAttributeById(ObjectArraySiblings.id).items.properties.object_ref.properties.primitive_property.filterable === false
       
     expect(target).toEqual(value)
   })

@@ -330,143 +330,17 @@ function areSamePaths(path1, path2) {
 
 // TODO: refactor function (maybe run recursively/while loop with a stack)
 function checkChild(attribute, selectionType) {
-  if (attribute[selectionType]) return 
-  else if (attribute.properties) {
-    Object.keys(attribute.properties).forEach(child => {
-      if (attribute.properties[child][selectionType]) {
-        attribute[selectionType] = true
-        return
-      } else if (attribute.properties[child].properties) {
-        Object.keys(attribute.properties[child].properties).forEach(grandchild => {
-          if (attribute.properties[child].properties[grandchild][selectionType]) {
-            attribute.properties[child][selectionType] = true
-            attribute[selectionType] = true
-            return
-          } else if (attribute.properties[child].properties[grandchild].properties) {
-            Object.keys(attribute.properties[child].properties[grandchild].properties).forEach(greatGrandchild => {
-              if (attribute.properties[child].properties[grandchild].properties[greatGrandchild][selectionType]) {
-                attribute.properties[child].properties[grandchild][selectionType] = true
-                attribute.properties[child][selectionType] = true
-                attribute[selectionType] = true
-                return
-              }
-            })
-          } else if (attribute.properties[child].properties[grandchild].items) {
-            if (attribute.properties[child].properties[grandchild].items[selectionType]) {
-              attribute.properties[child].properties[grandchild][selectionType] = true
-              attribute.properties[child][selectionType] = true
-              attribute[selectionType] = true
-              return
-            } else {
-              Object.keys(attribute.properties[child].properties[grandchild].items).forEach(greatGrandchild => {
-                if (attribute.properties[child].properties[grandchild].items[greatGrandchild][selectionType]) {
-                  attribute.properties[child].properties[grandchild].items[selectionType] = true
-                  attribute.properties[child].properties[grandchild][selectionType] = true
-                  attribute.properties[child][selectionType] = true
-                  attribute[selectionType] = true
-                  return 
-                }
-              })
-            }
-          }
-        })
-      } else if (attribute.properties[child].items) {
-        if (attribute.properties[child].items[selectionType]) {
-          attribute.properties[child][selectionType] = true
-          attribute[selectionType] = true
-          return
-        } else {
-          Object.keys(attribute.properties[child].items).forEach(grandchild => {
-            if (attribute.properties[child].items[grandchild][selectionType]) {
-              attribute.properties[child].items[selectionType] = true
-              attribute.properties[child][selectionType] = true
-              attribute[selectionType] = true
-            }
-            if (grandchild === 'properties') {
-              Object.keys(attribute.properties[child].items[grandchild]).forEach(greatGrandchild => {
-                if (attribute.properties[child].items[grandchild][greatGrandchild][selectionType]) {
-                  attribute.properties[child].items[selectionType] = true
-                  attribute.properties[child][selectionType] = true
-                  attribute[selectionType] = true
-                  return
-                }
-              })
-            } else if (attribute.properties[child].items[grandchild].items) {
-              if (attribute.properties[child].items[grandchild].items[selectionType]) {
-                attribute.properties[child].items[grandchild][selectionType] = true
-                attribute.properties[child].items[selectionType] = true
-                attribute.properties[child][selectionType] = true
-                attribute[selectionType] = true
-                return
-              } else {
-                Object.keys(attribute.properties[child].items[grandchild].items).forEach(greatGrandchild => {
-                  if (attribute.properties[child].items[grandchild].items[greatGrandchild][selectionType]) {
-                    attribute.properties[child].items[grandchild].items[selectionType] = true
-                    attribute.properties[child].items[grandchild][selectionType] = true
-                    attribute.properties[child].items[selectionType] = true
-                    attribute.properties[child][selectionType] = true
-                    attribute[selectionType] = true
-                    return
-                  }
-                })
-              }
-            }
-          })
-        } 
-      }
-    })	
-  } else if (attribute.items) {
-    if (attribute.items[selectionType]) {
-      attribute[selectionType] = true
-      return
-    } else {
-      Object.keys(attribute.items).forEach(child => {
-        if (attribute.items[child][selectionType]) {
-          attribute.items[selectionType] = true
-          attribute[selectionType] = true
-          return
-        }
-        if (child === 'properties') {
-          Object.keys(attribute.items[child]).forEach(grandchild => {
-            if (attribute.items[child][grandchild][selectionType]) {
-              attribute.items[selectionType] = true
-              attribute[selectionType] = true
-              return
-            } else if (attribute.items[child][grandchild].properties) {
-              Object.keys(attribute.items[child][grandchild].properties).forEach(greatGrandchild => {
-                if (attribute.items[child][grandchild].properties[greatGrandchild][selectionType]) {
-                  attribute.items[child][grandchild][selectionType] = true
-                  attribute.items[selectionType] = true
-                  attribute[selectionType] = true
-                  return
-                }
-              })
-            } else if (attribute.items[child][grandchild].items) {
-              if (attribute.items[child][grandchild].items[selectionType]) {
-                attribute.items[child][grandchild][selectionType] = true
-                attribute.items[selectionType] = true
-                attribute[selectionType] = true
-                return
-              } else {
-                Object.keys(attribute.items[child][grandchild].items).forEach(greatGrandchild => {
-                  if (attribute.items[child][grandchild].items[greatGrandchild][selectionType]) {
-                    attribute.items[child][grandchild].items[selectionType] = true
-                    attribute.items[child][grandchild][selectionType] = true
-                    attribute.items[selectionType] = true
-                    attribute[selectionType] = true
-                    return
-                  }
-                })
-              }
-            }
-          })
-        } 
-      })
-    }
-  }
+  if (!attribute.properties) return attribute[selectionType] ? true : false
   else {
-    attribute[selectionType] = false
-    return
+    const key = Object.keys(attribute.properties)
+    
+    if (key.find(child => checkChild(attribute.properties[child],selectionType))) {
+      attribute[selectionType] = true
+      return true
+    } else {
+      attribute[selectionType] = false
+      return false
+    }
   }
 }
 
