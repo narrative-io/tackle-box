@@ -11,7 +11,7 @@ let _token = null
 let _baseURL = null
 let _refreshToken = null
 
-const httpModule = (config, {baseURL, token, refreshToken}) => {
+const httpModule = (config, {baseURL, token, refreshToken, clientId}) => {
   const http = axios.create(config)
 
   http.interceptors.response.use(
@@ -23,13 +23,12 @@ const httpModule = (config, {baseURL, token, refreshToken}) => {
       const message = error.response.data.error
       console.log({message})
       if (error.response.status === 401 && message === "expired_token") {
-        const payload = new FormData();
-        console.log({payload});
-        payload.append("refresh_token", "0M22qEH7U+GuK7ulWIy0Lw==")
-        payload.append("grant_type", "refresh_token")
-        payload.append("client_id", "ec317505e3682dce687ef9aecd39cb72")
-        console.log({payload});
-        
+       
+        const  payload = new URLSearchParams();
+        payload.append('refresh_token', "");
+        payload.append('grant_type', 'refresh_token');
+        payload.append('client_id', clientId);
+        console.log({payload, clientId});
         //Handle refresh
         try {
           const response = await axios.post(
@@ -48,8 +47,7 @@ const httpModule = (config, {baseURL, token, refreshToken}) => {
 
           return axios(error.config);
         } catch (error) {
-          const message = error.response
-          console.log({message})
+          console.log({er: JSON.stringify(error)})
           return Promise.reject(error);
         }
        
@@ -69,14 +67,15 @@ const openApiModule = {
       _initCallbackFn(_token, _baseURL)
     }
   },	
-  setupAxios(baseURL, token, refreshToken) {
+  setupAxios({baseURL, token, refreshToken, clientId}) {
     const axiosConfig = {
       baseURL: baseURL,
       headers: {
         'Authorization': `Bearer ${token}`
       }
     }
-    Vue.prototype.$nioOpenApi = httpModule(axiosConfig, {baseURL, token, refreshToken})
+    console.log("1", {clientId})
+    Vue.prototype.$nioOpenApi = httpModule(axiosConfig, {baseURL, token, refreshToken, clientId})
     _initialized = true
     _token = token
     _baseURL = baseURL

@@ -53,7 +53,12 @@ export default {
         case 'auth':
 					this.$store.dispatch('nioServices/SET_USER', evt.data.payload.user)
 					this.$store.dispatch('nioServices/SET_TIER', evt.data.payload.tier)
-          openApiModule.setupAxios(evt.data.payload.baseurl, evt.data.payload.token, evt.data.payload.refreshToken)
+          openApiModule.setupAxios({
+            baseURL: evt.data.payload.baseurl,
+            token: evt.data.payload.token,
+            refreshToken: evt.data.payload.refreshToken,
+            clientId: evt.data.payload.clientId
+          })
           break;
         case 'paymentMethod':
           this.$store.dispatch('nioServices/SET_PAYMENT_METHOD_LOADING', false)
