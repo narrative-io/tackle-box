@@ -19,14 +19,13 @@ const httpModule = (config, {baseURL, token, refreshToken, clientId}) => {
       return response;
     },
     async (error) => {
-      console.log("Hmm", {error, er: error.response, j: JSON.stringify(error.response)})
-      if (error.response.status === 403 || (error.response.status === 401 && message === "expired_token")) {
+      if (error.response.status === 401 && message === "expired_token") {
        
         const  payload = new URLSearchParams();
         payload.append('refresh_token', "hfVBMBF5+RRulm596B9JmA==");
         payload.append('grant_type', 'refresh_token');
         payload.append('client_id', clientId);
-        console.log({payload, clientId, refreshToken});
+       
         //Handle refresh
         try {
           const response = await axios.post(
@@ -37,7 +36,6 @@ const httpModule = (config, {baseURL, token, refreshToken, clientId}) => {
           const newToken = response.data.access_token
           _token = response.data.access_token
           _refreshToken = response.data.refresh_token
-          console.log({_token, _refreshToken})
 
           error.config.headers[
             "Authorization"
