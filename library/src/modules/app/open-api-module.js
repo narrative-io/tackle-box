@@ -25,10 +25,10 @@ const httpModule = (config, {baseURL, token, refreshToken, clientId}) => {
       if (error.response.status === 401 && message === "expired_token") {
        
         const  payload = new URLSearchParams();
-        payload.append('refresh_token', "");
+        payload.append('refresh_token', "UAu1ndbO0Ej1KetbjBphPA==");
         payload.append('grant_type', 'refresh_token');
         payload.append('client_id', clientId);
-        console.log({payload, clientId});
+        console.log({payload, clientId, refreshToken});
         //Handle refresh
         try {
           const response = await axios.post(
