@@ -19,13 +19,11 @@ const httpModule = (config, {baseURL, token, refreshToken, clientId}) => {
       return response;
     },
     async (error) => {
-      console.log({error, er: error.response, j: JSON.stringify(error.response)})
-      const message = error.response.data.error
-      console.log({message})
-      if (error.response.status === 401 && message === "expired_token") {
+      console.log("Hmm", {error, er: error.response, j: JSON.stringify(error.response)})
+      if (error.response.status === 403 || (error.response.status === 401 && message === "expired_token")) {
        
         const  payload = new URLSearchParams();
-        payload.append('refresh_token', "UAu1ndbO0Ej1KetbjBphPA==");
+        payload.append('refresh_token', "hfVBMBF5+RRulm596B9JmA==");
         payload.append('grant_type', 'refresh_token');
         payload.append('client_id', clientId);
         console.log({payload, clientId, refreshToken});
@@ -74,7 +72,6 @@ const openApiModule = {
         'Authorization': `Bearer ${token}`
       }
     }
-    console.log("1", {clientId})
     Vue.prototype.$nioOpenApi = httpModule(axiosConfig, {baseURL, token, refreshToken, clientId})
     _initialized = true
     _token = token
