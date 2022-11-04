@@ -22,7 +22,7 @@ const httpModule = (config, {baseURL, token, refreshToken, clientId}) => {
       if (error.response.status === 401 && message === "expired_token") {
        
         const  payload = new URLSearchParams();
-        payload.append('refresh_token', "hfVBMBF5+RRulm596B9JmA==");
+        payload.append('refresh_token', refreshToken);
         payload.append('grant_type', 'refresh_token');
         payload.append('client_id', clientId);
        
@@ -43,7 +43,6 @@ const httpModule = (config, {baseURL, token, refreshToken, clientId}) => {
 
           return axios(error.config);
         } catch (error) {
-          console.log({er: JSON.stringify(error)})
           return Promise.reject(error);
         }
        
