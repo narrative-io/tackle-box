@@ -56,12 +56,14 @@
                 NioSwitch(
                   v-if="attribute.type !== 'binary'"
                   v-model="attribute.deliverable"
+                  :check-descendant="checkIfDescendantSelected(attribute,'deliverable')"
                   @click.stop=""
                   @update="updateRootPayload(attribute, 'deliverable', $event)"
                 )
                 .nio-p-small.text-primary-dark(v-if="attribute.type !== 'binary'") Deliverable
                 NioSwitch(
                   v-model="attribute.filterable"
+                  :check-descendant="checkIfDescendantSelected(attribute,'filterable')"
                   @click.stop=""
                   @update="updateRootPayload(attribute, 'filterable', $event)"
                 ) 
@@ -102,7 +104,7 @@
 
 <script>
 
-import { setSelectionRecursively, getReadableType, replacePropertyRefs, getDataTypeIconName, isExportable } from '../../modules/app/schema/attributeModule'
+import { setSelectionRecursively, getReadableType, replacePropertyRefs, getDataTypeIconName, isExportable, checkIfDescendantSelected } from '../../modules/app/schema/attributeModule'
 import NioSchemaProperties from './SchemaProperties'
 import NioExpansionPanels from '../../components/ExpansionPanels'
 import NioExpansionPanel from '../../components/ExpansionPanel'
@@ -169,6 +171,7 @@ export default {
     }
   },
   methods: {
+    checkIfDescendantSelected: checkIfDescendantSelected,
     initializeOpenPanels(attributes) {
       if (!this.openPanelsInitialized && attributes && attributes.length) {
         if (this.expandedByDefault) {
