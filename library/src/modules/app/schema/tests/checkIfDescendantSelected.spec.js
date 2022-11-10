@@ -1,4 +1,4 @@
-import { checkChild, replacePropertyRefs } from '../attributeModule.js'
+import { checkIfDescendantSelected, replacePropertyRefs } from '../attributeModule.js'
 import { 
   Primitive,
   ArrayItemsPrimitive,
@@ -25,7 +25,7 @@ let log = (arg) => {
   return JSON.stringify(arg, null, 4)
 }
 
-describe("checkChild", function() {
+describe("checkIfDescendantSelected", function() {
   beforeEach(function() {
     attributes = deepCopy(AllAttributes).map(attribute => replacePropertyRefs(attribute, AllAttributes))
   });
@@ -33,7 +33,7 @@ describe("checkChild", function() {
     const property = findAttributeById(Primitive.id)
     const value = findAttributeById(Primitive.id).filterable === false
     const selectionType = 'filterable'
-    checkChild(property, selectionType)
+    checkIfDescendantSelected(property, selectionType)
     const target = findAttributeById(Primitive.id).filterable === false
     expect(target).toEqual(value)
   })
@@ -41,7 +41,7 @@ describe("checkChild", function() {
     const property = findAttributeById(Primitive.id)
     const value = findAttributeById(Primitive.id).deliverable === false
     const selectionType = 'deliverable'
-    checkChild(property, selectionType)
+    checkIfDescendantSelected(property, selectionType)
     const target = findAttributeById(Primitive.id).deliverable === false
     expect(target).toEqual(value)
   })
@@ -50,7 +50,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
     property.filterable = true
-    checkChild(property, selectionType)
+    checkIfDescendantSelected(property, selectionType)
     const target = findAttributeById(Primitive.id).filterable === true
     expect(target).toEqual(value)
   })
@@ -59,7 +59,7 @@ describe("checkChild", function() {
     const selectionType = 'deliverable'
     const value = true
     property.deliverable = true
-    checkChild(property, selectionType)
+    checkIfDescendantSelected(property, selectionType)
     const target = findAttributeById(Primitive.id).deliverable === true
     expect(target).toEqual(value)
   })
@@ -69,7 +69,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType)
+    checkIfDescendantSelected(property, selectionType)
     const target = 
       findAttributeById(ObjectChildPrimitive.id).filterable === true 
       findAttributeById(ObjectChildPrimitive.id).properties.primitive_property.filterable === true
@@ -81,7 +81,7 @@ describe("checkChild", function() {
     const selectionType = 'deliverable'
     const value = true
 
-    checkChild(property, selectionType)
+    checkIfDescendantSelected(property, selectionType)
     const target = 
       findAttributeById(ObjectChildPrimitive.id).deliverable === true 
       findAttributeById(ObjectChildPrimitive.id).properties.primitive_property.deliverable === true
@@ -93,7 +93,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType)
+    checkIfDescendantSelected(property, selectionType)
     const target = 
       findAttributeById(ObjectChildObject.id).filterable === true 
       findAttributeById(ObjectChildObject.id).properties.object.filterable === true 
@@ -107,7 +107,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType)
+    checkIfDescendantSelected(property, selectionType)
     const target = 
       findAttributeById(ObjectChildObject.id).filterable === false 
       findAttributeById(ObjectChildObject.id).properties.object.filterable === true 
@@ -121,7 +121,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType)
+    checkIfDescendantSelected(property, selectionType)
     const target = 
       findAttributeById(ObjectChildArray.id).filterable === false
       findAttributeById(ObjectChildArray.id).properties.array.filterable === true 
@@ -135,7 +135,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType)
+    checkIfDescendantSelected(property, selectionType)
     const target = 
       findAttributeById(ObjectChildArray.id).filterable === true
       findAttributeById(ObjectChildArray.id).properties.array.filterable === true 
@@ -160,7 +160,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType)
+    checkIfDescendantSelected(property, selectionType)
     const target = 
       findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.filterable === false
       findAttributeById(ObjectArraySiblings.id).items.properties.array_ref.items.filterable === false
@@ -186,7 +186,7 @@ describe("checkChild", function() {
     const selectionType = 'filterable'
     const value = true
 
-    checkChild(property, selectionType)
+    checkIfDescendantSelected(property, selectionType)
     const target = 
       findAttributeById(ObjectArraySiblings.id).filterable === false
       findAttributeById(ObjectArraySiblings.id).items.filterable === false

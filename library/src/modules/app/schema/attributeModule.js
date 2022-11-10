@@ -329,12 +329,12 @@ function areSamePaths(path1, path2) {
 }
 
 // TODO: refactor function (maybe run recursively/while loop with a stack)
-function checkChild(attribute, selectionType) {
+function checkIfDescendantSelected(attribute, selectionType) {
   if (!attribute.properties) return attribute[selectionType] ? true : false
   else {
     const key = Object.keys(attribute.properties)
     
-    if (key.find(child => checkChild(attribute.properties[child],selectionType))) {
+    if (key.find(child => checkIfDescendantSelected(attribute.properties[child],selectionType))) {
       attribute[selectionType] = true
       return true
     } else {
@@ -358,5 +358,5 @@ export {
   getJoinOptionsByPath,
   makeDotDelimitedPropertyPath,
   areSamePaths,
-  checkChild
+  checkIfDescendantSelected
 }
