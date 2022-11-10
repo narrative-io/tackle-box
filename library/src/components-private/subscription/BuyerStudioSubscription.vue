@@ -69,6 +69,14 @@
                             tag
                           ) {{ value }}
                       .nio-p.text-primary-dark(v-else) Any value
+    .display-row.display-table
+      .display-column.full-width
+        .nio-h4.text-primary-darker(style="margin-bottom: 8px") Ingestion Timestamp Filer
+        .ingestion-timestamp-filter(v-if="ingestionTimestampFilter")
+          NioFilterGroup(
+            :filters="[ingestionTimestampFilter]"
+            :summary="true"
+          )
     .split-row
       .display-row.display-table(v-if="subscription.status === 'active' || subscription.status === 'kickoff' || subscription.status === 'pending' || subscription.status === 'completed'")
         .display-column.full-width
@@ -157,18 +165,6 @@
         .display-column
           .nio-h4.text-primary-darker Re-scan Data?
           .nio-p.text-primary-dark {{ subscription.read_once ? 'No' : 'Yes' }}
-      .display-row.display-table.ingestion-timestamp
-        .display-column
-          .nio-h4.text-primary-darker Ingestion Timestamp Filter
-          .filter-value(v-if="ingestionTimestampFilter")
-            .selected-filter-value
-              NioIcon(
-                name="utility-check-circle"
-                color="#43B463"
-                size="14"
-              )
-              .text.nio-p.text-prim-darker {{ ingestionTimestampFilter.value }}
-            template(v-if="ingestionTimestampFilter.value === 'Custom'")
     .subscription-footer
       .subscription-actions(v-if="subscription.status !== 'archived'")
         NioButton(
@@ -181,7 +177,7 @@
 
 import numeral from 'numeral'
 import { getReadableType, getAttributeFromPath } from '@/modules/app/schema/attributeModule'
-import { makeSummaryFilterGroup } from './filtersSummary'
+import { makeSummaryFilterGroup, attachSimpleTimestampFilterDetails } from './filtersSummary'
 import NioFilterGroup from '../../components/filter/FilterGroup'
 import NioPrettySchemaPath from '../schema/PrettySchemaPath'
 import NioExpansionPanels from '../../components/ExpansionPanels'
@@ -222,6 +218,7 @@ export default {
   mounted() {
     this.appliedFilters = makeSummaryFilterGroup(this.subscription, this.attributes, this.datasets)
     this.makeFrequencyFilter()
+    this.makeIngestionTimestampFilter()
   },
   methods: {
     computeBudget(item) {
@@ -315,10 +312,29 @@ export default {
       this.frequencyFilter = frequencyFilter
     },
     makeIngestionTimestampFilter() {
-      const ingestionTimestampFilter = {}
-      if (this.subscription.details.data_rules && this.subscription.details.data_rules.ingestion_timestamp_filter) {
-
+      const filterObj =  {
+        name: "ingestionTimestamp",
+        type: "simpleTimestamp",
+        title: "Ingestion Timestamp",
+        options: [
+          {
+            label: 'No ingestion filter',
+            value: 'default',
+          },
+          {
+            label: "Custom",
+            value: 'custom',
+          }
+        ]     
       }
+      if (this.subscription.details.data_rules && this.subscription.details.data_rules.ingestion_timestamp_filter) {
+        filter = this.subscription.details.data_rules.ingestion_timestamp_filter
+        filterObj.value = 'custom'
+        attachSimpleTimestampFilterDetails(filterObj, filter)
+      } else {
+        filterObj.value = 'default'
+      }
+      this.ingestionTimestampFilter = filterObj
     },
     findExportedFields(subscription, attributes, type) {
       const results = []
