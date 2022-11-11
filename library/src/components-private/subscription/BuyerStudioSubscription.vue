@@ -33,7 +33,11 @@
                 :path="slotProps.filter.customTitle"
                 display-only
               )
-        .nio-p.text-primary-dark.empty(v-else) No filters applied
+        .ingestion-timestamp-filter(v-if="ingestionTimestampFilter")
+          NioFilterGroup(
+            :filters="[ingestionTimestampFilter]"
+            :summary="true"
+          )
     .display-row.display-table
       .display-column.full-width
         .nio-h4.text-primary-darker(style="margin-bottom: 8px") Deliverable attributes
@@ -69,14 +73,6 @@
                             tag
                           ) {{ value }}
                       .nio-p.text-primary-dark(v-else) Any value
-    .display-row.display-table
-      .display-column.full-width
-        .nio-h4.text-primary-darker(style="margin-bottom: 8px") Ingestion Timestamp Filer
-        .ingestion-timestamp-filter(v-if="ingestionTimestampFilter")
-          NioFilterGroup(
-            :filters="[ingestionTimestampFilter]"
-            :summary="true"
-          )
     .split-row
       .display-row.display-table(v-if="subscription.status === 'active' || subscription.status === 'kickoff' || subscription.status === 'pending' || subscription.status === 'completed'")
         .display-column.full-width
@@ -328,9 +324,8 @@ export default {
         ]     
       }
       if (this.subscription.details.data_rules && this.subscription.details.data_rules.ingestion_timestamp_filter) {
-        filter = this.subscription.details.data_rules.ingestion_timestamp_filter
         filterObj.value = 'custom'
-        attachSimpleTimestampFilterDetails(filterObj, filter)
+        attachSimpleTimestampFilterDetails(filterObj, this.subscription.details.data_rules.ingestion_timestamp_filter)
       } else {
         filterObj.value = 'default'
       }
