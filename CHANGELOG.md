@@ -180,3 +180,7 @@ Fix bug in Simple Timestamp filter not allowing custom text in filter value indi
 
 v0.6.9
 Added function to attribute module to check if children attributes are selected
+
+v0.6.10
+Add ingestion timestamp filter summary to **NioBuyerStudioSubscription**
+

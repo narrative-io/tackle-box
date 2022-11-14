@@ -226,52 +226,56 @@ let makeFilterDetails = (filterObj, filter, attribute) => {
       }
       break;
     case 'timestamptz':
-      let recencyPeriod, recencyValue
-      if (filter.recency) {
-        let recency = filter.recency.substring(1)
-        recencyPeriod = recency.substring(recency.length - 1)
-        recencyValue = parseInt(recency.substring(0, recency.length - 1))
-      }
-      filterObj.customOption = {
-        config: {
-          periodOptions: [
-            {
-              label: 'Day(s)',
-              value: 'D'
-            },
-            {
-              label: 'Week(s)',
-              value: 'W'
-            },
-            {
-              label: 'Month(s)',
-              value: 'M'
-            }
-          ]  
-        },
-        value: {
-          recency: {
-            enabled: filter.recency ? true : false,
-            period: filter.recency && recencyPeriod ? recencyPeriod : null,
-            value: filter.recency && recencyValue ? recencyValue : null
-          },
-          start: {
-            enabled: filter.from ? true : false,
-            inclusive: filter.from && filter.from.type === 'inclusive' ? true : false,
-            timestamp: filter.from && filter.from.value ? filter.from.value : null
-          },
-          end: {
-            enabled: filter.to ? true : false,
-            inclusive: filter.to && filter.to.type === 'inclusive' ? true : false,
-            timestamp: filter.to && filter.to.value ? filter.to.value : null,
-          } 
-        }
-      }
+      attachSimpleTimestampFilterDetails(filterObj, filter)
       break;
     case 'binary':
       break;
     default:
       break;
+  }
+}
+
+let attachSimpleTimestampFilterDetails = (filterObj, filter) => {
+  let recencyPeriod, recencyValue
+  if (filter.recency) {
+    let recency = filter.recency.substring(1)
+    recencyPeriod = recency.substring(recency.length - 1)
+    recencyValue = parseInt(recency.substring(0, recency.length - 1))
+  }
+  filterObj.customOption = {
+    config: {
+      periodOptions: [
+        {
+          label: 'Day(s)',
+          value: 'D'
+        },
+        {
+          label: 'Week(s)',
+          value: 'W'
+        },
+        {
+          label: 'Month(s)',
+          value: 'M'
+        }
+      ]  
+    },
+    value: {
+      recency: {
+        enabled: filter.recency ? true : false,
+        period: filter.recency && recencyPeriod ? recencyPeriod : null,
+        value: filter.recency && recencyValue ? recencyValue : null
+      },
+      start: {
+        enabled: filter.from ? true : false,
+        inclusive: filter.from && filter.from.type === 'inclusive' ? true : false,
+        timestamp: filter.from && filter.from.value ? filter.from.value : null
+      },
+      end: {
+        enabled: filter.to ? true : false,
+        inclusive: filter.to && filter.to.type === 'inclusive' ? true : false,
+        timestamp: filter.to && filter.to.value ? filter.to.value : null,
+      } 
+    }
   }
 }
 
@@ -322,5 +326,6 @@ let makeFilterOptions = (filterObj, attribute) => {
 }
 
 export {
-  makeSummaryFilterGroup
+  makeSummaryFilterGroup,
+  attachSimpleTimestampFilterDetails
 }

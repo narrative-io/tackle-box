@@ -10,7 +10,7 @@
         margin-top: 1rem
     &.included-filters
       width: 100%
-      .applied-filters
+      .applied-filters, .ingestion-timestamp-filter
         width: 100%
         border: none
         border-radius: 0.5rem
@@ -30,6 +30,15 @@
             padding: 0.25rem 1rem 0.25rem 0.75rem
             .text
               margin-left: 0.5rem
+      .ingestion-timestamp-filter 
+        margin-top: 1rem
+        .nio-filter-group
+          .filter-title
+            font-weight: 400
+            color: $c-primary-dark
+            font-size: 0.875rem
+            line-height: 1.25rem
+            letter-spacing: 0.025rem
     .attributes
       width: 100%
       position: relative

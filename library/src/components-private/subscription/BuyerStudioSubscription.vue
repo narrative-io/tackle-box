@@ -33,7 +33,11 @@
                 :path="slotProps.filter.customTitle"
                 display-only
               )
-        .nio-p.text-primary-dark.empty(v-else) No filters applied
+        .ingestion-timestamp-filter(v-if="ingestionTimestampFilter")
+          NioFilterGroup(
+            :filters="[ingestionTimestampFilter]"
+            :summary="true"
+          )
     .display-row.display-table
       .display-column.full-width
         .nio-h4.text-primary-darker(style="margin-bottom: 8px") Deliverable attributes
@@ -152,6 +156,11 @@
                     v-for="field of frequencyFilter.fields"
                     tag
                   ) {{ field }}
+    .split-row
+      .display-row.display-table
+        .display-column
+          .nio-h4.text-primary-darker Re-scan Data?
+          .nio-p.text-primary-dark {{ subscription.read_once ? 'No' : 'Yes' }}
     .subscription-footer
       .subscription-actions(v-if="subscription.status !== 'archived'")
         NioButton(
@@ -164,7 +173,7 @@
 
 import numeral from 'numeral'
 import { getReadableType, getAttributeFromPath } from '@/modules/app/schema/attributeModule'
-import { makeSummaryFilterGroup } from './filtersSummary'
+import { makeSummaryFilterGroup, attachSimpleTimestampFilterDetails } from './filtersSummary'
 import NioFilterGroup from '../../components/filter/FilterGroup'
 import NioPrettySchemaPath from '../schema/PrettySchemaPath'
 import NioExpansionPanels from '../../components/ExpansionPanels'
@@ -199,11 +208,13 @@ export default {
   data: () => ({
     filesVisible: false,
     appliedFilters: null,
-    frequencyFilter: null
+    frequencyFilter: null,
+    ingestionTimestampFilter: null
   }),	
   mounted() {
     this.appliedFilters = makeSummaryFilterGroup(this.subscription, this.attributes, this.datasets)
     this.makeFrequencyFilter()
+    this.makeIngestionTimestampFilter()
   },
   methods: {
     computeBudget(item) {
@@ -295,6 +306,30 @@ export default {
         frequencyFilter.value = 'Include all values'
       }
       this.frequencyFilter = frequencyFilter
+    },
+    makeIngestionTimestampFilter() {
+      const filterObj =  {
+        name: "ingestionTimestamp",
+        type: "simpleTimestamp",
+        title: "Ingestion Timestamp",
+        options: [
+          {
+            label: 'No ingestion filter',
+            value: 'default',
+          },
+          {
+            label: "Custom",
+            value: 'custom',
+          }
+        ]     
+      }
+      if (this.subscription.details.data_rules && this.subscription.details.data_rules.ingestion_timestamp_filter) {
+        filterObj.value = 'custom'
+        attachSimpleTimestampFilterDetails(filterObj, this.subscription.details.data_rules.ingestion_timestamp_filter)
+      } else {
+        filterObj.value = 'default'
+      }
+      this.ingestionTimestampFilter = filterObj
     },
     findExportedFields(subscription, attributes, type) {
       const results = []
