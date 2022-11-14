@@ -328,6 +328,22 @@ function areSamePaths(path1, path2) {
   }).length === path1.length
 }
 
+// TODO: refactor function (maybe run recursively/while loop with a stack)
+function checkIfDescendantSelected(attribute, selectionType) {
+  if (!attribute.properties) return attribute[selectionType] ? true : false
+  else {
+    const key = Object.keys(attribute.properties)
+    
+    if (key.find(child => checkIfDescendantSelected(attribute.properties[child],selectionType))) {
+      attribute[selectionType] = true
+      return true
+    } else {
+      attribute[selectionType] = false
+      return false
+    }
+  }
+}
+
 export {
   makePathString,
   getAttributeFromPath,
@@ -341,5 +357,6 @@ export {
   isExportable,
   getJoinOptionsByPath,
   makeDotDelimitedPropertyPath,
-  areSamePaths
+  areSamePaths,
+  checkIfDescendantSelected
 }
