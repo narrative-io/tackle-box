@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-forecasting-widget
+  .nio-forecast-widget
     .d-flex
       .title-description.mr-16
         .filter-title.nio-h4.text-primary-darker Data Forecast 
@@ -93,6 +93,7 @@ import numeral from 'numeral'
 import { getThemeColor } from '@/modules/app/theme/theme'
 
 export default {
+  name: 'nio-forecast-widget',
   mounted() {
     this.updateDefaultOption();
   },
