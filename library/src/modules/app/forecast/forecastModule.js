@@ -1,8 +1,7 @@
 import axios from 'axios'
 
-let getForecast = async (params, forecastType, openApiBaseUrl, requestHeaders) => {
+let getForecast = async (payload, forecastType, openApiBaseUrl, requestHeaders) => {
   const endTime = Number(new Date()) + 6000000 // 60 minute timeout
-  const payload = { details: params }
   const result = await fetchForecast(payload, forecastType, endTime, openApiBaseUrl, requestHeaders)
   return result
 }
