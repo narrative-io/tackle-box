@@ -26,6 +26,12 @@ const openApiModule = {
     _token = token
     _baseURL = baseURL
     _initCallbackFn(token, baseURL)
+  },
+  getToken() {
+    return _token
+  },
+  getBaseUrl() {
+    return _baseURL
   }
 }
 
