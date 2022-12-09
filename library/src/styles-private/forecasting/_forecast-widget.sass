@@ -5,9 +5,13 @@
 =nio-forecast-widget 
   display: block !important
   .data-point
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    width: 28.125rem
+    border-top:  1px solid $c-primary-lighter
     &:last-child
       border-bottom:  1px solid $c-primary-lighter
-    border-top:  1px solid $c-primary-lighter
   .full-width 
     width: 100%
   +nio-filter-header
