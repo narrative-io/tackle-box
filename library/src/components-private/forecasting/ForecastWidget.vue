@@ -41,7 +41,7 @@
                   .nio-h3.text-primary-darker {{ deliverableRows }}
                   .nio-h5.text-primary-light {{ forecastCost }}
         NioDivider(horizontal-solo)
-        .group-by-forecast
+        .group-by-forecast(v-if="!disableGroupBy")
           NioCheckbox(
             v-model="enableGrouping"
             label="Group results by attribute"
@@ -99,7 +99,8 @@ export default {
     forecastParams: { type: Object, required: false },
     filters: {type: Array, default: () => []},
     openApiBaseUrl: { type: String, required: true },
-    openApiToken: { type: String, required: true }
+    openApiToken: { type: String, required: true },
+    disableGroupBy: { type: Boolean, default: false }
   },
   data() {
     return {
