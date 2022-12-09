@@ -79,7 +79,6 @@
                   ) Previous
                 NioButton(container, @click.prevent="goNext()")
                   NioIcon(name="utility-chevron-right", :size="16", color="#AEB9E8") Next
-
             NioButton.mt-4(normal-tertiary v-if="groupResult.length" @click="toggleResults = !toggleResults") {{toggleResults ? 'Hide' : 'Show'}} grouped results
     NioDivider(horizontal-solo)
     .d-flex.justify-end
@@ -184,14 +183,17 @@ export default {
     this.updateDefaultOption();
   },
   methods: {
-    generateForecast({enableGrouping, groupBy}) {
+    generateForecast() {
       this.forecastResults = 'loading'
       this.costForecastResults = 'loading'
       const dimensions = {
         "distinct_counts": [],
-        "group_by": groupBy
+        "group_by": this.groupBy
       }
-      const payload = { details: this.forecastParams, ...(enableGrouping && {dimensions}) }
+      const payload = { details: this.forecastParams }
+      if (this.enableGrouping && dimensions) {
+        payload.dimensions = dimensions
+      }
       let headers = {
         'Authorization': `Bearer ${this.openApiToken}`
       }
