@@ -91,11 +91,15 @@
 
 import numeral from 'numeral'
 import { getThemeColor } from '@/modules/app/theme/theme'
+import { getForecast } from '@/modules/app/forecast/forecastModule'
 
 export default {
   name: 'nio-forecast-widget',
-  mounted() {
-    this.updateDefaultOption();
+  props: {
+    forecastParams: { type: Object, required: false },
+    filters: {type: Array, default: () => []},
+    openApiBaseUrl: { type: String, required: true },
+    openApiToken: { type: String, required: true }
   },
   data() {
     return {
@@ -106,15 +110,10 @@ export default {
       page: 0,
       perPage: 5,
       currentGroup: [],
+      forecastResults: null,
+      costForecastResults: null
     }
-  },
-  props: {
-    forecastParams: { type: Object, required: false },
-    forecastResults: { type: String | Object, required: true},
-    costForecastResults: { type: String | Object, required: true},
-    forecastStale: { type: Boolean, required: false, default: false },
-    filters: {type: Array, default: () => []}
-  },
+  }, 
   watch: {
     forecastResults(val) {
       let result = (val?.result?.datasets || []).filter(({group}) => group)
@@ -177,7 +176,28 @@ export default {
         this.costForecastResults.state !== 'completed'
     }
   },
+  mounted() {
+    this.updateDefaultOption();
+  },
   methods: {
+    generateForecast({enableGrouping, groupBy}) {
+      this.forecastResults = 'loading'
+      this.costForecastResults = 'loading'
+      const dimensions = {
+        "distinct_counts": [],
+        "group_by": groupBy
+      }
+      const payload = { details: this.forecastParams, ...(enableGrouping && {dimensions}) }
+      let headers = {
+        'Authorization': `Bearer ${this.openApiToken}`
+      }
+      getForecast(payload, 'forecasts', this.openApiBaseUrl, {headers: headers}).then(res => {
+        this.forecastResults = res
+      })
+      getForecast(payload, 'cost-forecasts', this.openApiBaseUrl, {headers: headers}).then(res => {
+        this.costForecastResults = res
+      })
+    },
     resetState() {
       this.currentGroup = []
       this.groupResult = []
@@ -188,9 +208,6 @@ export default {
       if(!this.selectOptions?.length) return
       const [option] = this.selectOptions
       this.groupBy = option.value
-    },
-    generateForecast() {
-      this.$emit('generateForecast', {enableGrouping: this.enableGrouping, groupBy: this.groupBy})
     },
     formatNumber(number) {
       if (isNaN(number))
