@@ -40,7 +40,10 @@
                 .result-value(v-else)
                   .nio-h3.text-primary-darker {{ deliverableRows }}
                   .nio-h5.text-primary-light {{ forecastCost }}
-        NioDivider(horizontal-solo)
+        NioDivider(
+          v-if="!disableGroupBy"
+          horizontal-solo
+        )
         .group-by-forecast(v-if="!disableGroupBy")
           NioCheckbox(
             v-model="enableGrouping"
