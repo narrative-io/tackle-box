@@ -193,9 +193,11 @@ export default {
       }
       getForecast(payload, 'forecasts', this.openApiBaseUrl, {headers: headers}).then(res => {
         this.forecastResults = res
+        this.$emit('forecastComplete', res)
       })
       getForecast(payload, 'cost-forecasts', this.openApiBaseUrl, {headers: headers}).then(res => {
         this.costForecastResults = res
+        this.$emit('costForecastComplete', res)
       })
     },
     resetState() {
