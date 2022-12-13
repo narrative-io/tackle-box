@@ -184,7 +184,7 @@ export default {
   },
   methods: {
     generateForecast() {
-      this.$emit('forecast-started')
+      this.$emit('forecastStarted')
       this.forecastResults = 'loading'
       this.costForecastResults = 'loading'
       const dimensions = {
