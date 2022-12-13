@@ -8,6 +8,7 @@
             :background-color="getThemeColor('primaryDark')"
           )
         .description.nio-p.text-primary-dark Press the Generate Forecast button to scan providers' available datasets that meet your order's criteria and receive an estimate of the quantity of data you will receive.
+        .description.nio-p.text-warning(v-if="forecastParamsStale && hasForecasted") <strong>Forecast stale:</strong> The forecast is based on a previous configuration and needs to be regenerated in order to reflect your current selections.
       .d-flex.flex-column.full-width  
         .filter-value-container.full-width
           .filter-value
@@ -84,7 +85,7 @@
     .d-flex.justify-end
       NioButton(
       normal-secondary
-      :disabled="!forecastParams || forecastResults === 'loading' || costForecastResults === 'loading'"
+      :disabled="!canForecast"
       @click="generateForecast"
     ) Generate Forecast
 </template>
@@ -102,7 +103,8 @@ export default {
     filters: {type: Array, default: () => []},
     openApiBaseUrl: { type: String, required: true },
     openApiToken: { type: String, required: true },
-    disableGroupBy: { type: Boolean, default: false }
+    disableGroupBy: { type: Boolean, default: false },
+    forecastParamsStale: { type: Boolean, default: false }
   },
   data() {
     return {
@@ -114,7 +116,8 @@ export default {
       perPage: 5,
       currentGroup: [],
       forecastResults: null,
-      costForecastResults: null
+      costForecastResults: null,
+      hasForecasted: false
     }
   }, 
   watch: {
@@ -131,6 +134,9 @@ export default {
     groupBy(prev, val) {
       if(prev === val) return
       this.resetState()
+    },
+    canForecast() {
+      return forecastParams && (this.forecastParamsStale || !hasForecasted) && !(forecastResults === 'loading' || costForecastResults === 'loading')
     }
   },
   computed: {
@@ -185,6 +191,7 @@ export default {
   methods: {
     generateForecast() {
       this.$emit('forecastStarted')
+      this.hasForecasted = true
       this.forecastResults = 'loading'
       this.costForecastResults = 'loading'
       const dimensions = {
