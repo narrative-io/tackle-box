@@ -1,5 +1,5 @@
 <template lang="pug">
-  .nio-forecast-widget
+  .nio-forecast-widget(v-if="openApiBaseUrl && openApiToken")
     .d-flex
       .title-description.mr-16
         .filter-title.nio-h4.text-primary-darker Data Forecast 
@@ -8,7 +8,6 @@
             :background-color="getThemeColor('primaryDark')"
           )
         .description.nio-p.text-primary-dark Press the Generate Forecast button to scan providers' available datasets that meet your order's criteria and receive an estimate of the quantity of data you will receive.
-        .description.nio-p.text-warning(v-if="forecastParamsStale && hasForecasted") <strong>Forecast stale:</strong> The forecast is based on a previous configuration and needs to be regenerated in order to reflect your current selections.
       .d-flex.flex-column.full-width  
         .filter-value-container.full-width
           .filter-value
@@ -40,7 +39,7 @@
                   .nio-h3.text-primary-light Not Available
                 .result-value(v-else)
                   .nio-h3.text-primary-darker {{ deliverableRows }}
-                  .nio-h5.text-primary-light {{ forecastCost }}
+                  .nio-h5.text-primary-light(v-if="!hideDataCost") {{ forecastCost }}
         NioDivider(
           v-if="!disableGroupBy"
           horizontal-solo
@@ -82,7 +81,9 @@
                   NioIcon(name="utility-chevron-right", :size="16", color="#AEB9E8") Next
             NioButton.mt-4(normal-tertiary v-if="groupResult.length" @click="toggleResults = !toggleResults") {{toggleResults ? 'Hide' : 'Show'}} grouped results
     NioDivider(horizontal-solo)
-    .d-flex.justify-end
+    .actions
+      .forecast-stale-message
+        .nio-p.text-warning(v-if="forecastParamsStale && hasForecasted") <strong>Configuration changeed:</strong> regenerate for accurate results.
       NioButton(
       normal-secondary
       :disabled="!canForecast"
@@ -101,10 +102,11 @@ export default {
   props: {
     forecastParams: { type: Object, required: false },
     filters: {type: Array, default: () => []},
-    openApiBaseUrl: { type: String, required: true },
-    openApiToken: { type: String, required: true },
+    openApiBaseUrl: { type: String, required: false },
+    openApiToken: { type: String, required: false },
     disableGroupBy: { type: Boolean, default: false },
-    forecastParamsStale: { type: Boolean, default: false }
+    forecastParamsStale: { type: Boolean, default: false },
+    hideDataCost: { type: Boolean, default: false }
   },
   data() {
     return {
@@ -134,12 +136,12 @@ export default {
     groupBy(prev, val) {
       if(prev === val) return
       this.resetState()
-    },
-    canForecast() {
-      return forecastParams && (this.forecastParamsStale || !hasForecasted) && !(forecastResults === 'loading' || costForecastResults === 'loading')
     }
   },
   computed: {
+    canForecast() {
+      return this.forecastParams && (this.forecastParamsStale || !this.hasForecasted) && !(this.forecastResults === 'loading' || this.costForecastResults === 'loading')
+    },
     showResults() {
       return this.forecastResults !== 'loading' && this.toggleResults
     },
