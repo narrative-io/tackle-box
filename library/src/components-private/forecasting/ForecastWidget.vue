@@ -83,7 +83,7 @@
     NioDivider(horizontal-solo)
     .actions
       .forecast-stale-message
-        .nio-p.text-warning(v-if="forecastParamsStale && hasForecasted") <strong>Configuration changeed:</strong> regenerate for accurate results.
+        .nio-p.text-warning(v-if="forecastParamsStale && hasForecasted") <strong>Configuration changed:</strong> Please click "Generate Forecast" to get updated results.
       NioButton(
       normal-secondary
       :disabled="!canForecast"
