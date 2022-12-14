@@ -83,7 +83,7 @@
     NioDivider(horizontal-solo)
     .actions
       .forecast-stale-message
-        .nio-p.text-warning(v-if="forecastParamsStale && hasForecasted") <strong>Configuration changed:</strong> Please click "Generate Forecast" to get updated results.
+        .nio-p.text-warning(v-if="!hideStaleForecastMessage && forecastParamsStale && hasForecasted") <strong>Configuration changed:</strong> Please click "Generate Forecast" to get updated results.
       NioButton(
       normal-secondary
       :disabled="!canForecast"
@@ -106,6 +106,7 @@ export default {
     openApiToken: { type: String, required: false },
     disableGroupBy: { type: Boolean, default: false },
     forecastParamsStale: { type: Boolean, default: false },
+    hideStaleForecastMessage: { type: Boolean, default: false },
     hideDataCost: { type: Boolean, default: false }
   },
   data() {
