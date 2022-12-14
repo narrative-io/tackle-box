@@ -1,56 +1,74 @@
 @import "../../styles/global/_colors"
 @import "../../styles/global/_color-helpers"
+@import '../../styles/mixins/filter/_filter-header'
   
 =nio-forecast-widget 
-  padding: 1.375rem 2rem
-  height: 7rem
-  display: flex
-  justify-content: space-between
-  background-color: $c-primary-darker
-  .heading
-    padding-right: 2.625rem
-    display: flex
-    flex-direction: column
-    align-items: flex-start
-    justify-content: center
-    .nio-h3
+  display: block !important
+  .data-point
+    border-top:  1px solid $c-primary-lighter
+    .nio-p
       white-space: nowrap
-      margin-bottom: 0.75rem
-    .nio-tooltip .v-btn.activator .background-mask
-      background-color: white !important
-      width: 0.625rem
-      height: 0.625rem
-  .results
-    min-width: 21.625rem
-    flex-grow: 2
-    display: flex
-    flex-direction: column
-    justify-content: center
-    padding: 1rem
-    .results-text
-      width: 100%
-      display: flex
-      justify-content: space-between
-    .results-graphic
-      height: 0.875rem 
-      width: 100%
-      border: 0.0625rem solid $c-primary-dark
-      margin-top: 0.5rem
-      margin-bottom: 0.5rem
-      flex-shrink: 0
-      .v-progress-linear
-        width: 100%
-        height: 100% !important
-    .results-annotation
-      display: flex
-      justify-content: flex-start
-  .call-to-action
-    width: 10.5rem
-    border-left: 0.0625rem solid $c-primary-dark
-    display: flex
-    justify-content: flex-end
-    align-items: center
+      overflow: hidden
+      text-overflow: ellipsis
+      width: 26rem
+    &:last-child
+      border-bottom:  1px solid $c-primary-lighter
+  .full-width 
+    width: 100%
+  +nio-filter-header
+  padding: 24px 32px
+  background-color: $c-canvas
+  border: 1px solid $c-primary-lighter
+  border-radius: 0.75rem
+  .title-description
+    .description
+      width: 320px
     .nio-button
-      width: 7.875rem
+      margin-top: 16px
+      &.nio-button.v-btn.nio-button-secondary:disabled.theme--light.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined)
+        background-color: white !important
+    .nio-pill
+      transform: translateY(-4px)
+      margin-left: 2px
+  .filter-value
+    display: flex
+    width: 100%
+    min-height: 75px
+    flex-direction: row
+    & > * + * 
+      margin-top: 0px
+    .module
+      display: flex
+      flex-direction: row
+      height: 100%
+      width: 50%
+      .nio-divider
+        height: 100%
+      .module-content
+        display: flex
+        flex-direction: column
+        align-items: left
+        .nio-h6
+          margin-bottom: 8px
+        .result-value
+          position: relative
+          .nio-h3
+            margin-bottom: 6px
+          .nio-h5
+            white-space: nowrap
+          .v-progress-circular
+            position: absolute
+            left: 50%
+            top: 50%
+            margin-top: 8px
+            margin-left: -16px
+            z-index: 2
+    &.delivered-data .module-content
+      padding-left: 16px
+  .actions
+    display: flex
+    justify-content: space-between
+    align-items: center
+  
 .nio-forecast-widget
   +nio-forecast-widget
