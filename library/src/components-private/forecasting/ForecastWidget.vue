@@ -147,8 +147,9 @@ export default {
       return this.forecastResults !== 'loading' && this.toggleResults
     },
     selectOptions() {
-      const result = this.filters.filter(filter => filter.value === "ifPresent").map(({path}) =>  {
+      const result = this.filters.filter(filter => filter.value === "ifPresent" || filter.value === "custom").map(({path}) =>  {
         const [title, value = ''] = path
+        console.log("option path", path)
         const optionValue = `${title?.name}${value ? `.${value}` : ''}`
         return {label: title.displayName, value: optionValue}
       })
