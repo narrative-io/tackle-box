@@ -96,6 +96,7 @@
 import numeral from 'numeral'
 import { getThemeColor } from '@/modules/app/theme/theme'
 import { getForecast } from '@/modules/app/forecast/forecastModule'
+import { makeDotDelimitedPropertyPath } from '../../modules/app/schema/attributeModule';
 
 export default {
   name: 'nio-forecast-widget',
@@ -148,10 +149,15 @@ export default {
     },
     selectOptions() {
       const result = this.filters.filter(filter => filter.value === "ifPresent" || filter.value === "custom").map(({path}) =>  {
-        const [title, value = ''] = path
-        console.log("option path", path)
-        const optionValue = `${title?.name}${value ? `.${value}` : ''}`
-        return {label: title.displayName, value: optionValue}
+        let optionValue = `${path[0].name}${path.length > 1 ? '.' : ''}${makeDotDelimitedPropertyPath(path)}`
+        let optionLabel = ''
+        path.forEach((pathElement, index) => {
+          if (index > 0) {
+            optionLabel += ' > '
+          }
+          optionLabel += index === 0 ? pathElement.displayName : pathElement
+        })
+        return {label: optionLabel, value: optionValue}
       })
       return result
     },
