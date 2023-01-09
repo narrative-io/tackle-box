@@ -184,3 +184,5 @@ Added function to attribute module to check if children attributes are selected
 v0.6.10
 Add ingestion timestamp filter summary to **NioBuyerStudioSubscription**
 
+0.7.4 
+Fix group-by nested path display
