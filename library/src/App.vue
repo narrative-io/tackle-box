@@ -231,7 +231,12 @@
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Json Viewer
             template(v-slot:content) 
-              TestJsonViewer              
+              TestJsonViewer        
+          NioExpansionPanel(:key="42")
+            template(v-slot:header) 
+              .nio-p.text-primary-darker.nio-bold Copy to Clipboard
+            template(v-slot:content) 
+              TestCopyToClipboard        
 </template>
 
 <script>
@@ -281,6 +286,7 @@ import TestApiError from './test-components/TestApiError'
 import TestJsonViewer from './test-components/TestJsonViewer'
 import TestHistogram from './test-components/TestHistogram.vue'
 import TestDataStreamOffers from './test-components/connectors/offers/TestDataStreamOffers'
+import TestCopyToClipboard from './test-components/TestCopyToClipboard.vue'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -331,7 +337,8 @@ export default {
     TestApiError,
     TestHistogram,
     TestDataStreamOffers,
-    TestJsonViewer
+    TestJsonViewer,
+    TestCopyToClipboard
   },
   data: () => ({
     loggedIn: false,
