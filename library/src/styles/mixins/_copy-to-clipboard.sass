@@ -1,4 +1,15 @@
+@import '../global/_colors'
+  
 =nio-copy-to-clipboard 
+  .copy-to-clipboard-button
+    height: 1.1875rem !important
+    min-width: unset !important
+    opacity: 0.6
+    ::v-deep .v-btn__content
+      color: $c-primary-dark
+      font-weight: normal
+    &.copied ::v-deep .v-btn__content
+      color: $c-success
 
 .nio-copy-to-clipboard
   +nio-copy-to-clipboard
