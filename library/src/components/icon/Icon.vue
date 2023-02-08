@@ -68,6 +68,9 @@ import { faEllipsisV } from './fa-icons/ellipsis-vertical'
 import { faLocationArrow } from './fa-icons/location-arrow'
 import { faDownload } from './fa-icons/download'
 import { faPercent } from './fa-icons/percent'
+import { faFolder } from './fa-icons/folder'
+import { faFile } from './fa-icons/file'
+import { faUpload } from './fa-icons/upload'
  
 export default {
   name: 'nio-icon',
@@ -135,6 +138,9 @@ export default {
     library.add(faLocationArrow)
     library.add(faDownload)
     library.add(faPercent)
+    library.add(faFolder)
+    library.add(faFile)
+    library.add(faUpload)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },

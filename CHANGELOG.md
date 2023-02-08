@@ -186,3 +186,6 @@ Add ingestion timestamp filter summary to **NioBuyerStudioSubscription**
 
 0.7.4 
 Fix group-by nested path display
+
+0.7.5 
+Added three new icons
