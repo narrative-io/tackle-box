@@ -79,6 +79,7 @@
       NioIcon(name="utility-percent")
       NioIcon(name="utility-folder")
       NioIcon(name="utility-file")
+      NioIcon(name="utility-upload")
 </template>
 
 <script>

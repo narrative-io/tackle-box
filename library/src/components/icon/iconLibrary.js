@@ -115,6 +115,7 @@ const NioIconLibrary = {
   "utility-percent": ["fas", "percent"],
   "utility-folder": ["fas", "folder"],
   "utility-file": ["far", "file"],
+  "utility-upload": ["fas", "upload"],
 }
 
 export { NioIconLibrary }
