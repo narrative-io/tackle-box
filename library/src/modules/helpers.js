@@ -41,7 +41,7 @@ export function formatNumber(number) {
 
 export function formatNumberVerbose(number) {
   if (number > 0) {
-    return this.formatNumber(number).replace('m', ' Million').replace('b', ' Billion').replace('b', ' Billion').replace('t', ' Trillion') + ' Rows'
+    return formatNumber(number).replace('m', ' Million').replace('b', ' Billion').replace('b', ' Billion').replace('t', ' Trillion')
   }
 }
 
