@@ -41,6 +41,7 @@
         template(v-if="offer.detailType === 'TTD-3P-Detail'")
           NioOfferTTD3PDetail(
             :model="offer.value"
+            :taxonomy="ttdTaxonomy"
             @validChanged="validChanged(offer, $event)"
             @update="modelChanged(offer, $event)"
           )
@@ -70,7 +71,8 @@ export default {
     NioOfferTTD3PDetail
   },
   props: {
-    destinations: { type: Array, required: false } 
+    destinations: { type: Array, required: false },
+    ttdTaxonomy: { type: Array, required: false}
   },
   data: () => ({
     offers: null,
@@ -146,9 +148,20 @@ export default {
               alt: ttdApp.icons[0].altText
             },
             value: {
-              partnerIds: [],
-              revenueShare: 0,
-              cpmCap: 0.00
+              selectedTaxonomyElement: null,
+              rateCards: {
+                system: {
+                  active: false,
+                  revenueShare: 0,
+                  cpmCap: 0.00
+                },
+                advertiserPartner: {
+                  active: false,
+                  ids: [],
+                  revenueShare: 0,
+                  cpmCap: 0.00
+                }
+              }
             },
             valid: false
           }]
