@@ -1,6 +1,6 @@
 <template lang="pug">
   .nio-offer-ttd-3p-detail.offer-detail
-    .taxonomy-elements.module
+    .taxonomy-elements.detail-module
       .title-description
         .filter-title.nio-h4.text-primary-darker Taxonomy Container
         .description.nio-p.text-primary-dark Select a container from your The Trade Desk taxonomy in which a new segment will be created for this Data Stream.
@@ -9,8 +9,9 @@
           v-if="taxonomy && taxonomy.length > 0"
           v-model="localModel.selectedTaxonomyElement"
           :items="taxonomy"
-          value="provider_element_id"
-          label="display_name"
+          label="Select a container"
+          item-value="provider_element_id"
+          item-text="display_name"
         )
     //- .partner-ids.detail-module
     //-   .title-description
