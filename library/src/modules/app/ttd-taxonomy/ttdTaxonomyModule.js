@@ -190,6 +190,10 @@ let fullPathText = (fullText) => {
   return fullText.replace(regex, " > ")
 }
 
+let itemIsContainer = (item) => {
+  return !item.buyable
+}
+
 export {
   getExistingTTDTaxonomy,
   attachFullPathsToTaxonomy,
@@ -197,5 +201,6 @@ export {
   computeItemFullPath,
   replaceIdsWithUUIDs,
   fullPathText,
+  itemIsContainer, 
   RateTypeToItemKeyMapping,
 }

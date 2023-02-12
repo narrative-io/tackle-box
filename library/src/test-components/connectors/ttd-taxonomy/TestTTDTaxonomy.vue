@@ -16,7 +16,7 @@ export default {
   }),
   async mounted() {
     try {
-      const resp = getExistingTTDTaxonomy(headers, baseUrl, companyId)
+      const resp = await getExistingTTDTaxonomy(headers, baseUrl, companyId)
       console.log(resp)
     } catch (error) {
       console.log("ERROR: ", error)
