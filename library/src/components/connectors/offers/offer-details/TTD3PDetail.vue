@@ -10,8 +10,8 @@
           v-model="localModel.selectedTaxonomyElement"
           :items="taxonomy"
           label="Select a container"
-          item-value="provider_element_id"
-          item-text="display_name"
+          item-value="id"
+          item-text="displayName"
         )
     //- .partner-ids.detail-module
     //-   .title-description

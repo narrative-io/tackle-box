@@ -66,10 +66,10 @@ let getExistingTTDTaxonomy = async (headers, baseUrl, companyId) => {
   try {
     taxonomyData = await fetchTaxonomy(headers, baseUrl)
     if (!taxonomyData || taxonomyData.length === 0) {
-      return Promise.resolve(undefined)
+      return Promise.resolve()
     }
   } catch (e) {
-    return Promise.resolve(undefined)
+    return Promise.resolve()
   }  
   try {
     taxonomyRateDetails = await fetchTaxonomyRateDetails(taxonomyData, headers, baseUrl)
@@ -127,7 +127,7 @@ let fetchTaxonomy = async (headers, baseUrl) => {
     if (resp.status === 200 && resp.data && resp.data.length > 0) {
       return Promise.resolve(resp.data)
     } 
-    return Promise.reject(resp)
+    return Promise.reject()
   } catch (error) {
     console.log(error)
     return Promise.reject(error)
@@ -144,7 +144,7 @@ let fetchTaxonomyRateDetails = async (taxonomyData, headers, baseUrl) => {
       page_size: 1000 // TODO either paginate or fetch all
     }
     const resp = await axios.post(`${baseUrl}/data-rates/query`, body, headers)
-    if (resp.status === 200 && resp.data?.result?.length > 0) {
+    if (resp.status === 200 && resp.data && resp.data.result && resp.data.result.length > 0) {
       return Promise.resolve(resp.data.result)
     } 
     return Promise.resolve([])
