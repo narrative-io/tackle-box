@@ -13,48 +13,7 @@
           item-value="id"
           item-text="displayName"
         )
-    //- .partner-ids.detail-module
-    //-   .title-description
-    //-     .filter-title.nio-h4.text-primary-darker Partner IDs
-    //-     .description.nio-p.text-primary-dark Define The Trade Desk Partner IDs that are eligible to purchase this 3rd Party audience in The Trade Desk marketplace.
-    //-   .filter-value
-    //-     NioTagsField(
-    //-       v-model="localModel.partnerIds"
-    //-       :rules="[validatePartnerIds]"
-    //-       label="Partner IDs"
-    //-       placeholder="Enter IDs"
-    //-       @blur="partnerIdsBlur"
-    //-       @focus="partnerIdsBlurred = false"
-    //-       validate-on-blur
-    //-     )
-    //-     .error-msg(v-if="(!localModel.partnerIds || localModel.partnerIds.length < 1) && partnerIdsBlurred")
-    //-       p.nio-p.text-error {{ partnerIdsErrorMsg }}
-    //- .revenue-cap.detail-module
-    //-   .title-description
-    //-     .filter-title.nio-h4.text-primary-darker Revenue Share
-    //-     .description.nio-p.text-primary-dark Percent of media cost to be charged to the buyer when this data is utilized within The TradeDesk marketplace.
-    //-   .filter-value
-    //-     NioTextField(
-    //-       v-model="localModel.revenueShare"
-    //-       :rules="[validateRevenueShare]"
-    //-       placeholder="Enter value"
-    //-       type="number"
-    //-       percent
-    //-       validate-on-blur
-    //-     )
-    //- .cpm.detail-module
-    //-   .title-description
-    //-     .filter-title.nio-h4.text-primary-darker CPM Cap
-    //-     .description.nio-p.text-primary-dark CPM cap on media cost. Note that all audiences in The Trade Desk marketplace are hybrid-priced (percent of media with a CPM cost).
-    //-   .filter-value
-    //-     NioTextField(
-    //-       v-model="localModel.cpmCap"
-    //-       :rules="[validateCpmCap]"
-    //-       placeholder="Enter value"
-    //-       type="number"
-    //-       currency
-    //-       validate-on-blur
-    //-     )
+   
 </template>
 
 <script>
@@ -62,12 +21,14 @@
 import NioTagsField from '../../../../components/TagsField'
 import NioTextField from '../../../../components/TextField'
 import NioAutocomplete from '../../../../components/Autocomplete'
+import TTDRateCardDetails from '../../common/ttd-connector/TTDRateCardDetails.vue'
 
 export default {
   components: { 
     NioTagsField,
     NioTextField,
-    NioAutocomplete
+    NioAutocomplete,
+    TTDRateCardDetails
   },
   props: { 
     model: { type: Object, required: true },

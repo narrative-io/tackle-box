@@ -1,0 +1,48 @@
+@import '../../../../global/_colors'
+
+=nio-ttd-rate-card-details
+  width: 100%
+  .rate-card
+    width: 100%
+    margin-top: 1.5rem
+    padding: 1.5rem
+    outline: 0.0625rem solid $c-primary-lighter
+    border-radius: 0.5rem
+    &.selected
+      outline: 0.0938rem solid $c-primary
+    .nio-text-field, .nio-textarea, .nio-radio-button
+      margin-bottom: 0rem
+    .rate-card-header
+      display: flex
+      justify-content: space-between
+      align-items: center
+    .rate-card-body
+      .textarea-heading
+        margin-bottom: 0.5rem
+      ::v-deep .v-text-field__details
+        display: none
+      .details
+        padding: 1rem
+        outline: 0.0625rem solid $c-primary-lighter
+        border-radius: 0.5rem
+        .rate-card-ids
+          pointer-events: all
+      .not-buyable-message
+        font-size: 0.75rem
+        margin-top: 1rem
+        line-height: 0.75rem     
+    .split-row
+      display: flex
+      justify-content: space-between
+      align-items: center
+      .nio-h4 
+        white-space: nowrap
+      .nio-text-field
+        width: 8.75rem
+        flex-grow: 0
+        flex-shrink: 0
+  
+
+.nio-ttd-rate-card-details
+  +nio-ttd-rate-card-details
+  
