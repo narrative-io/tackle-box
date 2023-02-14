@@ -117,7 +117,6 @@ let getExistingTTDTaxonomy = async (headers, baseUrl, companyId) => {
       messages: [error]
     })
   }
-  replaceIdsWithUUIDs(convertedTaxonomy)
   return Promise.resolve(convertedTaxonomy.sort((a,b) => a.fullPath.localeCompare(b.fullPath)))
 }
 
