@@ -1,8 +1,9 @@
 <template lang="pug">
   .test-data-stream-offers
     NioDataStreamOffers(
-      v-if="TTD3P"
+      v-if="TTD3P && taxonomy"
       :destinations="TTD3P"
+      :ttd-taxonomy="taxonomy"
       @offersChanged="offersChanged($event)"
     )
 </template>
@@ -11,16 +12,25 @@
 
 import NioDataStreamOffers from '../../../components/connectors/offers/DataStreamOffers'
 import TTD3P from './mock-destinations/TTD-3P'
+import { getExistingTTDTaxonomy } from '@/modules/app/ttd-taxonomy/ttdTaxonomyModule'
+import { headers, baseUrl, companyId} from './auth'
 
 export default {
   components: {
     NioDataStreamOffers
   },
   data: () => ({
-    TTD3P: TTD3P
+    TTD3P: TTD3P,
+    taxonomy: null
   }),
-  mounted() {
-    console.log(TTD3P)
+  async mounted() {
+    try {
+      this.taxonomy = await getExistingTTDTaxonomy(headers, baseUrl, companyId)
+     
+    } catch (error) {
+      console.log("ERROR: ", error)
+      this.error = error
+    }
   },
   methods: {
     offersChanged(val) {

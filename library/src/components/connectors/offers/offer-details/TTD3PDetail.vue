@@ -61,11 +61,13 @@
 
 import NioTagsField from '../../../../components/TagsField'
 import NioTextField from '../../../../components/TextField'
+import NioAutocomplete from '../../../../components/Autocomplete'
 
 export default {
   components: { 
     NioTagsField,
-    NioTextField
+    NioTextField,
+    NioAutocomplete
   },
   props: { 
     model: { type: Object, required: true },

@@ -1,5 +1,5 @@
-const token = 'XXX'
-const companyId = 365
+const token = 'J0yjil5IKg/bIS3GMNICeA=='
+const companyId = 1
 const headers = {
   headers: {
     'Authorization': `Bearer ${token}`

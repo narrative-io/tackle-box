@@ -237,11 +237,6 @@
               .nio-p.text-primary-darker.nio-bold Copy to Clipboard
             template(v-slot:content) 
               TestCopyToClipboard      
-          NioExpansionPanel(:key="43")
-            template(v-slot:header) 
-              .nio-p.text-primary-darker.nio-bold TTD Taxonomy
-            template(v-slot:content) 
-              TestTTDTaxonomy        
 </template>
 
 <script>
@@ -292,7 +287,6 @@ import TestJsonViewer from './test-components/TestJsonViewer'
 import TestHistogram from './test-components/TestHistogram.vue'
 import TestDataStreamOffers from './test-components/connectors/offers/TestDataStreamOffers'
 import TestCopyToClipboard from './test-components/TestCopyToClipboard.vue'
-import TestTTDTaxonomy from './test-components/connectors/ttd-taxonomy/TestTTDTaxonomy.vue'
 import { setTheme } from './modules/app/theme/theme'
 
 export default {
@@ -344,8 +338,7 @@ export default {
     TestHistogram,
     TestDataStreamOffers,
     TestJsonViewer,
-    TestCopyToClipboard,
-    TestTTDTaxonomy
+    TestCopyToClipboard
   },
   data: () => ({
     loggedIn: false,
