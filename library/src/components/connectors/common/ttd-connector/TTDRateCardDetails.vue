@@ -26,20 +26,23 @@
           :as-pill="true"
         )
       .rate-card-body(v-if="rateCard.type === 'system'")
-        .not-buyable-message.nio-p.text-coral-light(v-if="!item.buyable") This node is not buyable, so this rate card will not be applied to this node, but rather to all descendant nodes. (if applicable)
+        .not-buyable-message.nio-p.text-coral-light(v-if="!item.buyable") This element is not buyable, so this rate card will not be applied to this node, but rather to all descendant nodes. (if applicable)
         NioDivider(horizontal-solo)
         .split-row
           .nio-h4.text-primary-darker Revenue Share
           NioTextField.small-input(
             v-model="rateCard.system.revenueShare"
+            :rules="[rules.validateRevenueShare]"
             type="number"
             percent
+            validate-on-blur
           )
         NioDivider(horizontal-solo)
         .split-row
           .nio-h4.text-primary-darker CPM Cap
           NioTextField.small-input(
             v-model="rateCard.system.cpmCap"
+            :rules="[rules.validateCpmCap]"
             type="number"
             prepend
             currency
@@ -66,13 +69,15 @@
           .textarea-heading.nio-h4.text-primary-darker Advertiser IDs (one per line)
           NioTextarea.rate-card-ids(
             v-model="rateCard.advertiser.ids"
-            disabled
+            :rules="[rules.validateIds]"
+            validate-on-blur
           )
           NioDivider(horizontal-solo)
           .split-row
             .nio-h4.text-primary-darker Revenue Share
             NioTextField.small-input(
               v-model="rateCard.advertiser.revenueShare"
+              :rules="[rules.validateRevenueShare]"
               type="number"
               percent
             )
@@ -81,9 +86,11 @@
             .nio-h4.text-primary-darker CPM Cap
             NioTextField.small-input(
               v-model="rateCard.advertiser.cpmCap"
+              :rules="[rules.validateCpmCap]"
               type="number"
               prepend
               currency
+              validate-on-blur
             )
         NioCheckbox(
           v-model="rateCard.partner.enabled"
@@ -93,24 +100,29 @@
           .textarea-heading.nio-h4.text-primary-darker Partner IDs (one per line)
           NioTextarea.rate-card-ids(
             v-model="rateCard.partner.ids"
-            disabled
+            :rules="[rules.validateIds]"
+            validate-on-blur
           )
           NioDivider(horizontal-solo)
           .split-row
             .nio-h4.text-primary-darker Revenue Share
             NioTextField.small-input(
               v-model="rateCard.partner.revenueShare"
+              :rules="[rules.validateRevenueShare]"
               type="number"
               percent
+              validate-on-blur
             )
           NioDivider(horizontal-solo)
           .split-row
             .nio-h4.text-primary-darker CPM Cap
             NioTextField.small-input(
               v-model="rateCard.partner.cpmCap"
+              :rules="[rules.validateCpmCap]"
               type="number"
               prepend
               currency
+              validate-on-blur
             )     
 </template>
 
@@ -137,12 +149,46 @@ export default {
     
   },
   watch: {
-   
+    rateCard: {
+      deep: true,
+      handler() {
+        this.validateRateCard()
+      }
+    }
   },
   mounted() {
+
   },
   methods: {
-  
+    validateRateCard() {
+      return true
+    },
+    validateIds(value) {
+      if (value.length > 0) {
+        return true
+      }
+      return 'Please enter at least one ID'
+    },
+    validateRevenueShare(value) {
+      if (!value || value.trim().length === 0) {
+        return 'Required'
+      } else if (value < 0) {
+        return 'Cannot be less than zero'
+      } else if (value > 100) {
+        return 'Cannot be greater than 100'
+      } else {
+        return true
+      }
+    },
+    validateCpmCap(value) {
+      if (!value || value.trim().length === 0) {
+        return 'Required'
+      } else if (value < 0) {
+        return 'Cannot be less than zero'
+      } else {
+        return true
+      }
+    }
   }
 };
 </script>

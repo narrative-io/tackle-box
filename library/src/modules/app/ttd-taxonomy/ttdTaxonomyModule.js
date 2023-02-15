@@ -193,6 +193,44 @@ let itemIsContainer = (item) => {
   return !item.buyable
 }
 
+let makeRateCardForElement = (item) => {
+  return {
+    type: computeRateCardType(item),
+    system: item.systemRateCard ? item.systemRateCard : {
+      revenueShare: null,
+      cpmCap: null,
+    },
+    advertiser: item.advertiserRateCard ? {
+      ...item.advertiserRateCard,
+      enabled: true
+    } : {
+      enabled: false,
+      revenueShare: null,
+      cpmCap: null,
+      ids: null
+    },
+    partner: item.partnerRateCard ? {
+      ...item.partnerRateCard,
+      enabled: true
+    } : {
+      enabled: false,
+      revenueShare: null,
+      cpmCap: null,
+      ids: null
+    }
+  }
+}
+
+let computeRateCardType = (item) => {
+  if (item.advertiserRateCard || item.partnerRateCard) {
+    return 'advertiserPartner'
+  } else if (item.systemRateCard) {
+    return 'system'
+  } else {
+    return 'inherited'
+  }
+}
+
 export {
   getExistingTTDTaxonomy,
   attachFullPathsToTaxonomy,
@@ -202,4 +240,6 @@ export {
   fullPathText,
   itemIsContainer, 
   RateTypeToItemKeyMapping,
+  makeRateCardForElement,
+  computeRateCardType
 }
