@@ -13,6 +13,7 @@
           item-value="id"
           item-text="displayName"
           return-object
+          small
         )
           template(v-slot:item="{ item }")
             .item-container(:style="{width: '500px', display: 'flex', justifyContent: 'space-between'}")
@@ -26,9 +27,8 @@
           :item="localModel.selectedTaxonomyElement"
           :rate-card="localModel.rateCard"
           :buyable="true"
+          @rateCardChanged="rateCardChanged($event)"
         )
-        
-   
 </template>
 
 <script>
@@ -58,7 +58,6 @@ export default {
       prevSelectedTaxonomyElement: null,
       rateCard: null
     },
-    valid: false,
     partnerIdsErrorMsg: 'At least one ID is required',
     partnerIdsBlurred: false
   }),
@@ -67,7 +66,6 @@ export default {
       deep: true,
       handler() {
         this.initRateCard()
-        this.validate()
         this.$emit('update', this.localModel)
       }
     },
@@ -76,37 +74,23 @@ export default {
       handler() {
         this.localModel = this.model
       }
-    },
-    valid() {
-      this.$emit('validChanged', this.valid)
-    }
-  },
-  mounted() {
-    if (this.taxonomy && this.taxonomy.length > 0) {
-
     }
   },
   methods: {
-    initRateCard() {
-      
+    initRateCard() { 
       if (!this.localModel.prevSelectedTaxonomyElement || this.localModel.selectedTaxonomyElement.id !== this.localModel.prevSelectedTaxonomyElement.id) {
         this.localModel.prevSelectedTaxonomyElement = this.localModel.selectedTaxonomyElement
         this.localModel.rateCard = makeRateCardForItem(this.localModel.selectedTaxonomyElement)
       }
     },
-    validate() {
-      return Boolean(this.localModel.selectedTaxonomyElement)
-      // const partnerIdsValid = this.validatePartnerIds(this.localModel.partnerIds)
-      // const revenueShareValid = this.validateRevenueShare(this.localModel.revenueShare)
-      // const cpmCapValid = this.validateCpmCap(this.localModel.cpmCap)
-      // if (!partnerIdsValid.length && !revenueShareValid.length && !cpmCapValid.length) {
-      //   this.valid = true
-      // } else {
-      //   this.valid = false
-      // }
-    },
-    partnerIdsBlur() {
-      this.partnerIdsBlurred = true
+    rateCardChanged(rateCard) {
+      if (!rateCard) {
+        this.$emit('validChanged', false)
+      } else {
+        this.localModel.rateCard = rateCard
+        this.$emit('update', this.localModel)
+        this.$emit('validChanged', true)
+      }
     }
   }
   

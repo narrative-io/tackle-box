@@ -31,7 +31,6 @@ export default {
   },
   computed: {
     isRootNode() {
-      console.log(PathDelimiter)
       return this.item.fullPath.split(PathDelimiter).length === 1
     }
   }

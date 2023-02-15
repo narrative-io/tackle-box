@@ -202,18 +202,18 @@ let makeRateCardForItem = (item) => {
     },
     advertiser: item && item.advertiserRateCard ? {
       ...item.advertiserRateCard,
-      enabled: true
+      active: true
     } : {
-      enabled: false,
+      active: false,
       revenueShare: null,
       cpmCap: null,
       ids: ''
     },
     partner: item && item.partnerRateCard ? {
       ...item.partnerRateCard,
-      enabled: true
+      active: true
     } : {
-      enabled: false,
+      active: false,
       revenueShare: null,
       cpmCap: null,
       ids: ''

@@ -62,10 +62,10 @@
         .not-buyable-message.nio-p.text-coral-light(v-if="!item.buyable") This node is not buyable, so this rate card will not be applied to this node, but rather to all descendant nodes. (if applicable)
         NioDivider(horizontal-solo)
         NioCheckbox(
-          v-model="localRateCard.advertiser.enabled"
+          v-model="localRateCard.advertiser.active"
           label="Advertiser Rate Card"
         ) 
-        .details(v-if="localRateCard.advertiser.enabled")
+        .details(v-if="localRateCard.advertiser.active")
           .textarea-heading.nio-h4.text-primary-darker Advertiser IDs (one per line)
           NioTextarea.rate-card-ids(
             v-model="localRateCard.advertiser.ids"
@@ -93,10 +93,10 @@
               validate-on-blur
             )
         NioCheckbox(
-          v-model="localRateCard.partner.enabled"
+          v-model="localRateCard.partner.active"
           label="Partner Rate Card"
         ) 
-        .details(v-if="localRateCard.partner.enabled")
+        .details(v-if="localRateCard.partner.active")
           .textarea-heading.nio-h4.text-primary-darker Partner IDs (one per line)
           NioTextarea.rate-card-ids(
             v-model="localRateCard.partner.ids"
@@ -174,11 +174,16 @@ export default {
         this.initRateCard()
       }
     },
+    localRateCard: {
+      deep: true,
+      handler() {
+        this.validateRateCard()
+      }
+    },
     rateCard: {
       deep: true,
       handler() {
-        console.log(this.rateCard)
-        this.validateRateCard()
+        this.localRateCard = this.rateCard
       }
     }
   },
@@ -188,10 +193,36 @@ export default {
   methods: {
     initRateCard() {
       this.localRateCard = JSON.parse(JSON.stringify(this.rateCard))
-      console.log(this.localRateCard)
     },
     validateRateCard() {
-      return true
+      const keys = ['system', 'partner', 'advertiser']
+      const valid = !keys.some(key => {
+        const revenueShareValid = this.validateRevenueShare(this.localRateCard[key].revenueShare)
+        const cpmCapValid = this.validateCpmCap(this.localRateCard[key].cpmCap)
+        let idsValid = true
+        if (key === 'partner' || key === 'advertiser') {
+          if (this.localRateCard.type !== 'advertiserPartner' || !this.localRateCard[key].active) {
+            return false
+          } else {
+            idsValid = this.validateIds(this.localRateCard[key].ids)
+          }
+        } else if (key === 'system') {
+          if (this.localRateCard.type !== 'system') {
+            return false
+          }
+        }
+        if (!idsValid.length && !revenueShareValid.length && !cpmCapValid.length) {
+          return false
+        } else {
+          return true
+        }        
+      })
+      if (valid) {
+        this.$emit('rateCardChanged', this.localRateCard)
+      } else {
+        this.$emit('rateCardChanged', null)
+      }
+      
     },
     validateIds(value) {
       if (value && value.length > 0) {

@@ -1,5 +1,6 @@
 <template lang="pug">
   .test-data-stream-offers
+    .valid Valid:  {{ valid }}
     NioDataStreamOffers(
       v-if="TTD3P && taxonomy"
       :destinations="TTD3P"
@@ -21,21 +22,37 @@ export default {
   },
   data: () => ({
     TTD3P: TTD3P,
-    taxonomy: null
+    taxonomy: null,
+    offers: null
   }),
+  computed: {
+    valid() {
+      return !this.offers.find(offer => offer.active && !offer.valid)
+    },
+    noneSelected() {
+      return !this.offers.find(offer => offer.active)
+    },
+    valid() {
+      return this.offers &&  !this.offers.find(offer => offer.active && !offer.valid)
+    }
+  },
   async mounted() {
     try {
-      this.taxonomy = await getExistingTTDTaxonomy(headers, baseUrl, companyId)
-     
+      const ttdTaxonomyResp = await getExistingTTDTaxonomy(headers, baseUrl, companyId)
+      if (ttdTaxonomyResp && ttdTaxonomyResp.length > 0) {
+        this.taxonomy = ttdTaxonomyResp.filter(item => !item.buyable)
+      }
     } catch (error) {
       console.log("ERROR: ", error)
       this.error = error
     }
   },
   methods: {
-    offersChanged(val) {
-      console.log(val)
-    }
+    offersChanged(offers) {
+      console.log(offers)
+      this.offers = offers
+    },
+    
   }
 };
 </script>
