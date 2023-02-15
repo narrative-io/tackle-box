@@ -233,6 +233,8 @@ let computeRateCardType = (item) => {
 }
 
 export {
+  PathDelimiter,
+  RateTypeToItemKeyMapping,
   getExistingTTDTaxonomy,
   attachFullPathsToTaxonomy,
   attachRateCardsToTaxonomy,
@@ -240,7 +242,6 @@ export {
   replaceIdsWithUUIDs,
   fullPathText,
   itemIsContainer, 
-  RateTypeToItemKeyMapping,
   makeRateCardForItem,
   computeRateCardType
 }

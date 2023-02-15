@@ -14,6 +14,13 @@
           item-text="displayName"
           return-object
         )
+          template(v-slot:item="{ item }")
+            .item-container(:style="{width: '500px', display: 'flex', justifyContent: 'space-between'}")
+              .item-name {{ item.displayName }}
+              NioTTDRateCardSummary(
+                :item="item"
+                :as-pill="false"
+              )
         NioTTDRateCardDetails(
           v-if="localModel.selectedTaxonomyElement && localModel.rateCard"
           :item="localModel.selectedTaxonomyElement"
@@ -30,6 +37,7 @@ import NioTagsField from '../../../../components/TagsField'
 import NioTextField from '../../../../components/TextField'
 import NioAutocomplete from '../../../../components/Autocomplete'
 import NioTTDRateCardDetails from '../../common/ttd-connector/TTDRateCardDetails.vue'
+import NioTTDRateCardSummary from '../../common/ttd-connector/TTDRateCardSummary'
 import { makeRateCardForItem, itemIsContainer } from '@/modules/app/ttd-taxonomy/ttdTaxonomyModule'
 
 export default {
@@ -37,7 +45,8 @@ export default {
     NioTagsField,
     NioTextField,
     NioAutocomplete,
-    NioTTDRateCardDetails
+    NioTTDRateCardDetails,
+    NioTTDRateCardSummary
   },
   props: { 
     model: { type: Object, required: true },
