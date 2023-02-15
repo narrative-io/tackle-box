@@ -1,38 +1,38 @@
 <template lang="pug">  
   NioRadioGroup.nio-ttd-rate-card-details(
-    v-if="rateCard"
-    v-model="rateCard.type"
+    v-if="localRateCard"
+    v-model="localRateCard.type"
   )
-    .rate-card.inherit(:class="{'selected': rateCard.type === 'inherited'}")
+    .rate-card.inherit(:class="{'selected': localRateCard.type === 'inherited'}")
       .rate-card-header
         NioRadioButton(
           label="Inherited from Parent"
           value="inherited"
         )
         NioTTDRateCardSummary(
-          v-if="rateCard.type === 'inherited'"
+          v-if="localRateCard.type === 'inherited'"
           :item="item"
           :as-pill="true"
         )
-    .rate-card.system(:class="{'selected': rateCard.type === 'system'}")
+    .rate-card.system(:class="{'selected': localRateCard.type === 'system'}")
       .rate-card-header
         NioRadioButton(
           label="System Rate Card"
           value="system"
         )
         NioTTDRateCardSummary(
-          v-if="rateCard.type === 'system'"
+          v-if="localRateCard.type === 'system'"
           :item="item"
           :as-pill="true"
         )
-      .rate-card-body(v-if="rateCard.type === 'system'")
+      .rate-card-body(v-if="localRateCard.type === 'system'")
         .not-buyable-message.nio-p.text-coral-light(v-if="!item.buyable") This element is not buyable, so this rate card will not be applied to this node, but rather to all descendant nodes. (if applicable)
         NioDivider(horizontal-solo)
         .split-row
           .nio-h4.text-primary-darker Revenue Share
           NioTextField.small-input(
-            v-model="rateCard.system.revenueShare"
-            :rules="[rules.validateRevenueShare]"
+            v-model="localRateCard.system.revenueShare"
+            :rules="[validateRevenueShare]"
             type="number"
             percent
             validate-on-blur
@@ -41,43 +41,43 @@
         .split-row
           .nio-h4.text-primary-darker CPM Cap
           NioTextField.small-input(
-            v-model="rateCard.system.cpmCap"
-            :rules="[rules.validateCpmCap]"
+            v-model="localRateCard.system.cpmCap"
+            :rules="[validateCpmCap]"
             type="number"
             prepend
             currency
           )      
-    .rate-card.advertizer-partner(:class="{'selected': rateCard.type === 'advertiserPartner'}")
+    .rate-card.advertizer-partner(:class="{'selected': localRateCard.type === 'advertiserPartner'}")
       .rate-card-header
         NioRadioButton(
           label="Advertiser/Partner Rate Card"
           value="advertiserPartner"
         )
         NioTTDRateCardSummary(
-          v-if="rateCard.type === 'advertiserPartner'"
+          v-if="localRateCard.type === 'advertiserPartner'"
           :item="item"
           :as-pill="true"
         )
-      .rate-card-body(v-if="rateCard.type === 'advertiserPartner'")
+      .rate-card-body(v-if="localRateCard.type === 'advertiserPartner'")
         .not-buyable-message.nio-p.text-coral-light(v-if="!item.buyable") This node is not buyable, so this rate card will not be applied to this node, but rather to all descendant nodes. (if applicable)
         NioDivider(horizontal-solo)
         NioCheckbox(
-          v-model="rateCard.advertiser.enabled"
+          v-model="localRateCard.advertiser.enabled"
           label="Advertiser Rate Card"
         ) 
-        .details(v-if="rateCard.advertiser.enabled")
+        .details(v-if="localRateCard.advertiser.enabled")
           .textarea-heading.nio-h4.text-primary-darker Advertiser IDs (one per line)
           NioTextarea.rate-card-ids(
-            v-model="rateCard.advertiser.ids"
-            :rules="[rules.validateIds]"
+            v-model="localRateCard.advertiser.ids"
+            :rules="[validateIds]"
             validate-on-blur
           )
           NioDivider(horizontal-solo)
           .split-row
             .nio-h4.text-primary-darker Revenue Share
             NioTextField.small-input(
-              v-model="rateCard.advertiser.revenueShare"
-              :rules="[rules.validateRevenueShare]"
+              v-model="localRateCard.advertiser.revenueShare"
+              :rules="[validateRevenueShare]"
               type="number"
               percent
             )
@@ -85,30 +85,30 @@
           .split-row
             .nio-h4.text-primary-darker CPM Cap
             NioTextField.small-input(
-              v-model="rateCard.advertiser.cpmCap"
-              :rules="[rules.validateCpmCap]"
+              v-model="localRateCard.advertiser.cpmCap"
+              :rules="[validateCpmCap]"
               type="number"
               prepend
               currency
               validate-on-blur
             )
         NioCheckbox(
-          v-model="rateCard.partner.enabled"
+          v-model="localRateCard.partner.enabled"
           label="Partner Rate Card"
         ) 
-        .details(v-if="rateCard.partner.enabled")
+        .details(v-if="localRateCard.partner.enabled")
           .textarea-heading.nio-h4.text-primary-darker Partner IDs (one per line)
           NioTextarea.rate-card-ids(
-            v-model="rateCard.partner.ids"
-            :rules="[rules.validateIds]"
+            v-model="localRateCard.partner.ids"
+            :rules="[validateIds]"
             validate-on-blur
           )
           NioDivider(horizontal-solo)
           .split-row
             .nio-h4.text-primary-darker Revenue Share
             NioTextField.small-input(
-              v-model="rateCard.partner.revenueShare"
-              :rules="[rules.validateRevenueShare]"
+              v-model="localRateCard.partner.revenueShare"
+              :rules="[validateRevenueShare]"
               type="number"
               percent
               validate-on-blur
@@ -117,8 +117,8 @@
           .split-row
             .nio-h4.text-primary-darker CPM Cap
             NioTextField.small-input(
-              v-model="rateCard.partner.cpmCap"
-              :rules="[rules.validateCpmCap]"
+              v-model="localRateCard.partner.cpmCap"
+              :rules="[validateCpmCap]"
               type="number"
               prepend
               currency
@@ -129,10 +129,29 @@
 <script>
 
 import NioTTDRateCardSummary from './TTDRateCardSummary'
+import NioRadioGroup from '@/components/RadioGroup'
+import NioRadioButton from '@/components/RadioButton'
+import NioDivider from '@/components/Divider'
+import NioCheckbox from '@/components/Checkbox'
+import NioTextField from '@/components/TextField'
+import NioTextarea from '@/components/Textarea'
+
  
 export default {
-  components: { NioTTDRateCardSummary },
+  components: { 
+    NioRadioGroup,
+    NioRadioButton,
+    NioDivider,
+    NioCheckbox,
+    NioTextField,
+    NioTextarea,
+    NioTTDRateCardSummary 
+  },
   props: {
+    item: {
+      type: Object,
+      required: true
+    },
     rateCard: {
       type: Object,
       required: true
@@ -143,28 +162,39 @@ export default {
     }
   },
   data: () => ({
-    
+    localRateCard: null
   }),
   computed: {
     
   },
   watch: {
+    item: {
+      deep: true,
+      handler() {
+        this.initRateCard()
+      }
+    },
     rateCard: {
       deep: true,
       handler() {
+        console.log(this.rateCard)
         this.validateRateCard()
       }
     }
   },
   mounted() {
-
+    this.initRateCard()
   },
   methods: {
+    initRateCard() {
+      this.localRateCard = JSON.parse(JSON.stringify(this.rateCard))
+      console.log(this.localRateCard)
+    },
     validateRateCard() {
       return true
     },
     validateIds(value) {
-      if (value.length > 0) {
+      if (value && value.length > 0) {
         return true
       }
       return 'Please enter at least one ID'

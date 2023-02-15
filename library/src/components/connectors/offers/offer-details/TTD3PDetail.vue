@@ -12,7 +12,15 @@
           label="Select a container"
           item-value="id"
           item-text="displayName"
+          return-object
         )
+        NioTTDRateCardDetails(
+          v-if="localModel.selectedTaxonomyElement && localModel.rateCard"
+          :item="localModel.selectedTaxonomyElement"
+          :rate-card="localModel.rateCard"
+          :buyable="true"
+        )
+        
    
 </template>
 
@@ -21,14 +29,15 @@
 import NioTagsField from '../../../../components/TagsField'
 import NioTextField from '../../../../components/TextField'
 import NioAutocomplete from '../../../../components/Autocomplete'
-import TTDRateCardDetails from '../../common/ttd-connector/TTDRateCardDetails.vue'
+import NioTTDRateCardDetails from '../../common/ttd-connector/TTDRateCardDetails.vue'
+import { makeRateCardForItem, itemIsContainer } from '@/modules/app/ttd-taxonomy/ttdTaxonomyModule'
 
 export default {
   components: { 
     NioTagsField,
     NioTextField,
     NioAutocomplete,
-    TTDRateCardDetails
+    NioTTDRateCardDetails
   },
   props: { 
     model: { type: Object, required: true },
@@ -37,12 +46,8 @@ export default {
   data: () => ({
     localModel: {
       selectedTaxonomyElement: null,
-      rateCard: {
-        active: false,
-        partnerIds: [],
-        revenueShare: null,
-        cpmCap: null
-      }  
+      prevSelectedTaxonomyElement: null,
+      rateCard: null
     },
     valid: false,
     partnerIdsErrorMsg: 'At least one ID is required',
@@ -52,6 +57,7 @@ export default {
     localModel: {
       deep: true,
       handler() {
+        this.initRateCard()
         this.validate()
         this.$emit('update', this.localModel)
       }
@@ -72,30 +78,11 @@ export default {
     }
   },
   methods: {
-    validatePartnerIds(value) {
-      if (value.length > 0) {
-        return true
-      }
-      return 'Please enter at least one partner ID'
-    },
-    validateRevenueShare(value) {
-      if (!value || value.trim().length === 0) {
-        return 'Required'
-      } else if (value < 0) {
-        return 'Cannot be less than zero'
-      } else if (value > 100) {
-        return 'Cannot be greater than 100'
-      } else {
-        return true
-      }
-    },
-    validateCpmCap(value) {
-      if (!value || value.trim().length === 0) {
-        return 'Required'
-      } else if (value < 0) {
-        return 'Cannot be less than zero'
-      } else {
-        return true
+    initRateCard() {
+      
+      if (!this.localModel.prevSelectedTaxonomyElement || this.localModel.selectedTaxonomyElement.id !== this.localModel.prevSelectedTaxonomyElement.id) {
+        this.localModel.prevSelectedTaxonomyElement = this.localModel.selectedTaxonomyElement
+        this.localModel.rateCard = makeRateCardForItem(this.localModel.selectedTaxonomyElement)
       }
     },
     validate() {

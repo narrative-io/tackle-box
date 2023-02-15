@@ -1,4 +1,4 @@
-@import '../../../../global/_colors'
+@import "../../../../styles/global/_colors"
 
 =nio-ttd-rate-card-details
   width: 100%
@@ -19,14 +19,16 @@
     .rate-card-body
       .textarea-heading
         margin-bottom: 0.5rem
-      ::v-deep .v-text-field__details
-        display: none
       .details
         padding: 1rem
         outline: 0.0625rem solid $c-primary-lighter
         border-radius: 0.5rem
         .rate-card-ids
           pointer-events: all
+        .nio-text-field
+          margin-bottom: 32px
+          ::v-deep .v-input__slot
+            border-width: 1px !important
       .not-buyable-message
         font-size: 0.75rem
         margin-top: 1rem

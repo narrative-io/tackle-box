@@ -193,35 +193,36 @@ let itemIsContainer = (item) => {
   return !item.buyable
 }
 
-let makeRateCardForElement = (item) => {
+let makeRateCardForItem = (item) => {
   return {
     type: computeRateCardType(item),
-    system: item.systemRateCard ? item.systemRateCard : {
+    system: item && item.systemRateCard ? item.systemRateCard : {
       revenueShare: null,
       cpmCap: null,
     },
-    advertiser: item.advertiserRateCard ? {
+    advertiser: item && item.advertiserRateCard ? {
       ...item.advertiserRateCard,
       enabled: true
     } : {
       enabled: false,
       revenueShare: null,
       cpmCap: null,
-      ids: null
+      ids: ''
     },
-    partner: item.partnerRateCard ? {
+    partner: item && item.partnerRateCard ? {
       ...item.partnerRateCard,
       enabled: true
     } : {
       enabled: false,
       revenueShare: null,
       cpmCap: null,
-      ids: null
+      ids: ''
     }
   }
 }
 
 let computeRateCardType = (item) => {
+  if (!item) return 'inherited'
   if (item.advertiserRateCard || item.partnerRateCard) {
     return 'advertiserPartner'
   } else if (item.systemRateCard) {
@@ -240,6 +241,6 @@ export {
   fullPathText,
   itemIsContainer, 
   RateTypeToItemKeyMapping,
-  makeRateCardForElement,
+  makeRateCardForItem,
   computeRateCardType
 }
