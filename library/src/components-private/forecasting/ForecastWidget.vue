@@ -13,7 +13,8 @@
           .filter-value
             .observed-data.module
               .module-content
-                .nio-h6.text-primary-darker Data Scanned
+                .nio-h6.text-primary-darker(v-if="appType === 'buyer'") Estimated Processing Cost
+                .nio-h6.text-primary-darker(v-else) Data Scanned
                 .result-value(v-if="costForecastResults === 'loading'")
                   v-progress-circular.progress(
                     size="32" 
@@ -23,7 +24,8 @@
                 .result-value(v-else-if="costForecastResults === null || costForecastError")
                   .nio-h3.text-primary-light Not Available
                 .result-value(v-else)
-                  .nio-h3.text-primary-darker {{ rowsScanned }}
+                  .nio-h3.text-primary-darker(v-if="appType === 'buyer'") {{ processingCost }}
+                  .nio-h3.text-primary-darker(v-else) {{ rowsScanned }}
                   .nio-h5.text-primary-light {{ sizeScanned }}
             .delivered-data.module
               //- NioDivider(vertical-solo)
@@ -105,6 +107,8 @@ export default {
     filters: {type: Array, default: () => []},
     openApiBaseUrl: { type: String, required: false },
     openApiToken: { type: String, required: false },
+    appType: { type: String, required: false, default: 'default' },
+    processingRate: { type: Number, required: false, default: 5 },
     disableGroupBy: { type: Boolean, default: false },
     forecastParamsStale: { type: Boolean, default: false },
     hideStaleForecastMessage: { type: Boolean, default: false },
@@ -167,11 +171,17 @@ export default {
       }
       return this.formatNumberVerbose(this.costForecastResults.result.cost.rows)
     },
+    processingCost() {
+      if (this.costForecastResults.result?.cost?.size === 0) {
+        return ""
+      }
+      return this.formatCurrencyNoCents(this.costForecastResults.result.cost.size * this.processingRate / 1000000000)
+    },
     sizeScanned() {
       if (this.costForecastResults.result?.cost?.size === 0) {
         return ""
       }
-      return this.readableSize(this.costForecastResults.result.cost.size)
+      return this.readableSize(this.costForecastResults.result.cost.size)˜
     },
     deliverableRows() {
       if (this.forecastResults.result.rows === 0) {

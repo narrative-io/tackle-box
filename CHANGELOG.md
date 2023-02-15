@@ -189,3 +189,7 @@ Fix group-by nested path display
 
 0.7.6
 Added three new icons
+
+0.7.7-beta-0
+Added conditional rendering to Forecast Widget for Buyer Studio Processing Costs
+Added processing rate property so forecast processing cost adjusts depending on the customer
