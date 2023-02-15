@@ -1,4 +1,4 @@
-const token = 'J0yjil5IKg/bIS3GMNICeA=='
+const token = 'XX'
 const companyId = 1
 const headers = {
   headers: {

@@ -26,7 +26,7 @@
           :as-pill="true"
         )
       .rate-card-body(v-if="localRateCard.type === 'system'")
-        .not-buyable-message.nio-p.text-coral-light(v-if="!item.buyable") This element is not buyable, so this rate card will not be applied to this node, but rather to all descendant nodes. (if applicable)
+        .not-buyable-message.nio-p.text-coral-light(v-if="!buyable && !item.buyable") This element is not buyable, so this rate card will not be applied to this node, but rather to all descendant nodes. (if applicable)
         NioDivider(horizontal-solo)
         .split-row
           .nio-h4.text-primary-darker Revenue Share
@@ -59,7 +59,7 @@
           :as-pill="true"
         )
       .rate-card-body(v-if="localRateCard.type === 'advertiserPartner'")
-        .not-buyable-message.nio-p.text-coral-light(v-if="!item.buyable") This node is not buyable, so this rate card will not be applied to this node, but rather to all descendant nodes. (if applicable)
+        .not-buyable-message.nio-p.text-coral-light(v-if="!buyable && !item.buyable") This node is not buyable, so this rate card will not be applied to this node, but rather to all descendant nodes. (if applicable)
         NioDivider(horizontal-solo)
         NioCheckbox(
           v-model="localRateCard.advertiser.active"
@@ -158,15 +158,13 @@ export default {
     },
     buyable: {
       type: Boolean,
-      required: false
+      required: false,
+      default: false
     }
   },
   data: () => ({
     localRateCard: null
   }),
-  computed: {
-    
-  },
   watch: {
     item: {
       deep: true,
