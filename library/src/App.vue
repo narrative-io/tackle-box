@@ -236,7 +236,7 @@
             template(v-slot:header) 
               .nio-p.text-primary-darker.nio-bold Copy to Clipboard
             template(v-slot:content) 
-              TestCopyToClipboard        
+              TestCopyToClipboard      
 </template>
 
 <script>
