@@ -71,6 +71,46 @@ let getExistingTTDTaxonomy = async (headers, baseUrl, companyId) => {
   return Promise.resolve(sortTaxonomyByFullPath(convertedTaxonomy, true))
 }
 
+let fetchTaxonomy = async (headers, baseUrl) => {
+  try {
+    const resp = await axios.get(`${baseUrl}/taxonomy`, headers)
+    if (resp.status === 200 && resp.data && resp.data.length > 0) {
+      return Promise.resolve(resp.data)
+    } 
+    return Promise.reject()
+  } catch (error) {
+    console.log(error)
+    return Promise.reject(error)
+  }
+}
+
+let fetchTaxonomyRateDetails = async (taxonomyData, headers, baseUrl) => {
+  try {
+    const rateLevels = ["Partner", "Advertiser", "System"]
+    const body = {
+      provider_element_ids: taxonomyData.map(item => item.provider_element_id),
+      include_inherited_rates: false,
+      page_start_index: 0,
+      page_size: 1000 // TODO either paginate or fetch all
+    }
+    const reqBodies = rateLevels.map(rateLevel => {
+      return {
+        ...body,
+        rate_level: rateLevel
+      }
+    })
+    const responses = await Promise.all(
+      reqBodies.map(body => {
+        return axios.post(`${baseUrl}/data-rates/query`, body, headers)
+      })
+    )
+    return Promise.resolve(responses.flatMap(resp => resp.data.result))
+  } catch(error) {
+    console.log(error)
+    return Promise.reject(error)
+  }
+}
+
 let attachFullPathsToTaxonomy = async (taxonomy) => {
   try {
     taxonomy.forEach(item => {
@@ -229,39 +269,6 @@ let replaceIdsWithUUIDs = (taxonomy) => {
       }    
     }
   })
-}
-
-let fetchTaxonomy = async (headers, baseUrl) => {
-  try {
-    const resp = await axios.get(`${baseUrl}/taxonomy`, headers)
-    if (resp.status === 200 && resp.data && resp.data.length > 0) {
-      return Promise.resolve(resp.data)
-    } 
-    return Promise.reject()
-  } catch (error) {
-    console.log(error)
-    return Promise.reject(error)
-  }
-}
-
-let fetchTaxonomyRateDetails = async (taxonomyData, headers, baseUrl) => {
-  try {
-    const body = {
-      rate_level: "Partner",
-      provider_element_ids: taxonomyData.map(item => item.provider_element_id),
-      include_inherited_rates: false,
-      page_start_index: 0,
-      page_size: 1000 // TODO either paginate or fetch all
-    }
-    const resp = await axios.post(`${baseUrl}/data-rates/query`, body, headers)
-    if (resp.status === 200 && resp.data && resp.data.result && resp.data.result.length > 0) {
-      return Promise.resolve(resp.data.result)
-    } 
-    return Promise.resolve([])
-  } catch(error) {
-    console.log(error)
-    return Promise.reject(error)
-  }
 }
 
 let fullPathText = (fullText) => {
