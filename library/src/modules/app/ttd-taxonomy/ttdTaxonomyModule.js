@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid'
 import axios from 'axios'
+import { formatCurrency } from '../../../modules/helpers'
 
 const RateTypeToItemKeyMapping = {
   "Partner": "partnerRateCard",
