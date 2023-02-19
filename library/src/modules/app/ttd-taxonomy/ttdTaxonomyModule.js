@@ -98,7 +98,7 @@ let attachTaxonomyEffectivePrices = (taxonomy) => {
 }
 
 let computeItemEffectivePrice = (item, parentBin) => {
-  const parentElement = parentBin?.find(parentElement => parentElement.id === item.parentElementId)
+  const parentElement = parentBin ? parentBin.find(parentElement => parentElement.id === item.parentElementId) : null
   if (item.partnerRateCard || item.advertiserRateCard || item.systemRateCard) {
     let rateCardPropertyName = null
     if (item.partnerRateCard) {
@@ -109,7 +109,7 @@ let computeItemEffectivePrice = (item, parentBin) => {
       rateCardPropertyName = 'systemRateCard'
     }
     return `${item[rateCardPropertyName].revenueShare}% / ${formatCurrency(item[rateCardPropertyName].cpmCap)}`
-  } else if (parentElement?.effectivePrice) {
+  } else if (parentElement && parentElement.effectivePrice) {
     return parentElement.effectivePrice
   } 
 }
