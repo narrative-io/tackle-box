@@ -25,6 +25,48 @@ let attachFullPathsToTaxonomy = async (taxonomy) => {
   } 
 }
 
+let sortTaxonomyByFullPath = (taxonomy) => {
+  const pathBins = []
+  taxonomy.forEach(item => {
+    const parsedPath = item.fullPath.split(PathDelimiter)
+    if (pathBins[parsedPath.length - 1]) {
+      pathBins[parsedPath.length - 1].push([item])
+    } else {
+      pathBins[parsedPath.length - 1] = [[item]]
+    }
+  })
+  const reversedBins = pathBins.reverse()
+  reversedBins.forEach((bin, index) => {
+    bin.forEach(list => {
+      const highestPathInList = list[0].fullPath.split(PathDelimiter)
+      const parentPathOfHighestPath = highestPathInList.slice(0, -1)
+      const parentBin = reversedBins[index + 1]
+      if (parentBin) {
+        parentBin.forEach(parentList => {
+          const parentItem = parentList[0]
+          if (areSamePaths(parentPathOfHighestPath, parentItem.fullPath.split(PathDelimiter))) {
+            parentList.push(...list.flatMap(item => item))
+          }
+        })
+      }
+    })
+  })
+  return pathBins[pathBins.length - 1].flatMap((item) => item)
+}
+
+let areSamePaths = (path1, path2) => {
+  if (path1.length !== path2.length) {
+    return false
+  }
+  return path1.filter((element1, index) => {
+    const element2 = path2[index]
+    if (element2) {
+      return element1 === element2      
+    }
+    return false
+  }).length === path1.length
+}
+
 let computeItemFullPath = (item, taxonomy, path = '',) => {
   if (item.parentElementId === 'ROOT') {
     return path.length > 0 ? `${item.displayName}${PathDelimiter}${path}` : item.displayName
@@ -117,7 +159,7 @@ let getExistingTTDTaxonomy = async (headers, baseUrl, companyId) => {
       messages: [error]
     })
   }
-  return Promise.resolve(convertedTaxonomy.sort((a,b) => a.fullPath.localeCompare(b.fullPath)))
+  return Promise.resolve(sortTaxonomyByFullPath(convertedTaxonomy))
 }
 
 let fetchTaxonomy = async (headers, baseUrl) => {
@@ -236,6 +278,8 @@ export {
   PathDelimiter,
   RateTypeToItemKeyMapping,
   getExistingTTDTaxonomy,
+  sortTaxonomyByFullPath,
+  areSamePaths,
   attachFullPathsToTaxonomy,
   attachRateCardsToTaxonomy,
   computeItemFullPath,
