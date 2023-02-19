@@ -26,15 +26,7 @@ let attachFullPathsToTaxonomy = async (taxonomy) => {
 }
 
 let sortTaxonomyByFullPath = (taxonomy) => {
-  const pathBins = []
-  taxonomy.forEach(item => {
-    const parsedPath = item.fullPath.split(PathDelimiter)
-    if (pathBins[parsedPath.length - 1]) {
-      pathBins[parsedPath.length - 1].push([item])
-    } else {
-      pathBins[parsedPath.length - 1] = [[item]]
-    }
-  })
+  const pathBins = makeTaxonomyBinsByPathLength(taxonomy, true)
   const reversedBins = pathBins.reverse()
   reversedBins.forEach((bin, index) => {
     bin.forEach(list => {
@@ -52,6 +44,20 @@ let sortTaxonomyByFullPath = (taxonomy) => {
     })
   })
   return pathBins[pathBins.length - 1].flatMap((item) => item)
+}
+
+let makeTaxonomyBinsByPathLength = (taxonomy, itemAsArray = false) => {
+  const pathBins = [] // TODO Refactor bin creation into own function and export
+  taxonomy.forEach(item => {
+    const parsedPath = item.fullPath.split(PathDelimiter)
+    const itemToAdd = itemAsArray ? [item] : item
+    if (pathBins[parsedPath.length - 1]) {
+      pathBins[parsedPath.length - 1].push(itemToAdd)
+    } else {
+      pathBins[parsedPath.length - 1] = [itemToAdd]
+    }
+  })
+  return pathBins
 }
 
 let areSamePaths = (path1, path2) => {
@@ -79,6 +85,33 @@ let computeItemFullPath = (item, taxonomy, path = '',) => {
       return computeItemFullPath(parentElement, taxonomy, path)
     }
   }
+}
+
+let attachTaxonomyEffectivePrices = (taxonomy) => {
+  const bins = makeTaxonomyBinsByPathLength(taxonomy)
+  bins.forEach((bin, binIndex) => {
+    const parentBin = bins[binIndex - 1]
+    bin.forEach((item) => {
+      item.effectivePrice = computeItemEffectivePrice(item, parentBin)
+    })
+  })
+}
+
+let computeItemEffectivePrice = (item, parentBin) => {
+  const parentElement = parentBin?.find(parentElement => parentElement.id === item.parentElementId)
+  if (item.partnerRateCard || item.advertiserRateCard || item.systemRateCard) {
+    let rateCardPropertyName = null
+    if (item.partnerRateCard) {
+      rateCardPropertyName = 'partnerRateCard'
+    } else if (item.advertiserRateCard) {
+      rateCardPropertyName = 'advertiserRateCard'
+    } else if (item.systemRateCard) {
+      rateCardPropertyName = 'systemRateCard'
+    }
+    return `${item[rateCardPropertyName].revenueShare}% / ${formatCurrency(item[rateCardPropertyName].cpmCap)}`
+  } else if (parentElement?.effectivePrice) {
+    return parentElement.effectivePrice
+  } 
 }
 
 let replaceIdsWithUUIDs = (taxonomy) => {
@@ -159,7 +192,7 @@ let getExistingTTDTaxonomy = async (headers, baseUrl, companyId) => {
       messages: [error]
     })
   }
-  return Promise.resolve(sortTaxonomyByFullPath(convertedTaxonomy))
+  return Promise.resolve(sortTaxonomyByFullPath(convertedTaxonomy, true))
 }
 
 let fetchTaxonomy = async (headers, baseUrl) => {
@@ -279,6 +312,9 @@ export {
   RateTypeToItemKeyMapping,
   getExistingTTDTaxonomy,
   sortTaxonomyByFullPath,
+  makeTaxonomyBinsByPathLength,
+  attachTaxonomyEffectivePrices,
+  computeItemEffectivePrice,
   areSamePaths,
   attachFullPathsToTaxonomy,
   attachRateCardsToTaxonomy,

@@ -59,11 +59,27 @@ export function toCamelCase(string) {
   return result;
 }
 
+export function formatCurrency(number) {
+  if (Math.abs(number) > 1000)
+    return numeral(number).format('$0,0.00a')
+  else
+    return numeral(number).format('$0.00')
+}
+
+export function formatCurrencyNoCents(number) {
+  if (Math.abs(number) > 1000)
+    return numeral(number).format('$0,0')
+  else
+    return numeral(number).format('$0')
+}
+
 export default {
   makeRandomId,
   toKebabCase,
   getParamNames,
   formatNumber,
   formatNumberVerbose,
-  toCamelCase
+  toCamelCase,
+  formatCurrency,
+  formatCurrencyNoCents
 }
