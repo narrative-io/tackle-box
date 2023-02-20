@@ -3,9 +3,10 @@
     v-if="item.effectivePrice"
     :class="[{'pill': asPill, 'not-buyable': !item.buyable}]"
   )
-    .content.nio-p {{ item.effectivePrice }}
+    .content
+      .nio-p {{ item.effectivePrice }}
     .mask(v-if="asPill")
-  .taxonomy-rate-card.root.nio-p.text-primary-dark(
+  .nio-ttd-rate-card-summary.root.nio-p.text-primary-dark(
     v-else-if="isRootNode"
   ) ROOT
 </template>

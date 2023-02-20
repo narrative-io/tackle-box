@@ -1,17 +1,15 @@
 @import '../../../../global/_colors'
   
 =nio-ttd-rate-card-summary
-  height: 1.1875rem
   overflow: hidden
+  color: $c-seagreen-light
+  border-radius: 0.375rem
   position: relative
-  padding: 0rem 0.5rem
-  display: flex
-  justify-content: center
-  align-items: center
-  color: $c-coral-light
-  &.root 
-    justify-content: flex-start
-    padding-left: 0rem
+  display: inline-block 
+  .content   
+    display: flex
+    justify-content: center
+    align-items: center
   .mask
     position: absolute
     width: 100%
@@ -19,13 +17,17 @@
     top: 0
     left: 0
     opacity: 0.1
-    background-color: $c-coral-light
+    background-color: $c-seagreen-light
   &.pill
     border-radius: 0.375rem
+    .content
+      padding: 0rem 0.5rem
+      height: 1.1875rem
   &.not-buyable
-    color: $c-coral-light
-    opacity: 0.4
-    border: 1px solid $c-coral-light
+    color: $c-seagreen-light
+    opacity: 0.5
+    &.pill
+      border: 0.0625rem solid $c-seagreen-light
     .mask 
       background-color: white
 .nio-ttd-rate-card-summary 

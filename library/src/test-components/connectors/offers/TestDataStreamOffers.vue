@@ -7,18 +7,41 @@
       :ttd-taxonomy="taxonomy"
       @offersChanged="offersChanged($event)"
     )
+    NioTTDRateCardSummary(
+      :item="{buyable: true, fullPath: 'OnenioNextChild>Two', effectivePrice: '10% / $2.00'}"
+    )
+    NioTTDRateCardSummary(
+      :item="{buyable: false, fullPath: 'OnenioNextChild>Two', effectivePrice: '10% / $2.00'}"
+    )
+    NioTTDRateCardSummary(
+      :item="{buyable: true, fullPath: 'OnenioNextChild>Two', effectivePrice: '10% / $2.00'}"
+      asPill
+    )
+    NioTTDRateCardSummary(
+      :item="{buyable: false, fullPath: 'OnenioNextChild>Two', effectivePrice: '10% / $2.00'}"
+      asPill
+    )
+    NioTTDRateCardSummary(
+      :item="{buyable: false, fullPath: 'One'}"
+    )
+    NioTTDRateCardSummary(
+      :item="{buyable: false, fullPath: 'One'}"
+      asPill
+    )
 </template>
 
 <script>
 
 import NioDataStreamOffers from '../../../components/connectors/offers/DataStreamOffers'
+import NioTTDRateCardSummary from '../../../components/connectors/common/ttd-connector/TTDRateCardSummary'
 import TTD3P from './mock-destinations/TTD-3P'
 import { getExistingTTDTaxonomy } from '@/modules/app/ttd-taxonomy/ttdTaxonomyModule'
 import { headers, baseUrl, companyId} from './auth'
 
 export default {
   components: {
-    NioDataStreamOffers
+    NioDataStreamOffers,
+    NioTTDRateCardSummary
   },
   data: () => ({
     TTD3P: TTD3P,
@@ -33,7 +56,7 @@ export default {
       return !this.offers.find(offer => offer.active)
     },
     valid() {
-      return this.offers &&  !this.offers.find(offer => offer.active && !offer.valid)
+      return this.offers && !this.offers.find(offer => offer.active && !offer.valid)
     }
   },
   async mounted() {
