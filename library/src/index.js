@@ -71,6 +71,9 @@ import NioRouterModule from './modules/app/router-module'
 import NioOpenApiModule from './modules/app/open-api-module'
 import NioHeightObserver from './modules/app/height-observer'
 
+import NioTTDRateCardDetails from './components/connectors/common/ttd-connector/TTDRateCardDetails'
+import NioTTDRateCardSummary from './components/connectors/common/ttd-connector/TTDRateCardSummary'
+
 import { FontAwesomeIcon } from './plugins/vue-fontawesome'
 
 import { setTheme } from './modules/app/theme/theme'
@@ -141,6 +144,8 @@ const Components = {
 	NioBuyerStudioSubscription,
   NioForecastWidget,
   NioCopyToClipboard,
+  NioTTDRateCardDetails,
+  NioTTDRateCardSummary,
 	FontAwesomeIcon
 }
 
@@ -210,6 +215,9 @@ Vue.component("NioSubscriptionFileDownload", NioSubscriptionFileDownload)
 Vue.component("NioForecastWidget", NioForecastWidget)
 Vue.component("NioJsonViewer", NioJsonViewer)
 
+Vue.component("NioTTDRateCardDetails", NioTTDRateCardDetails)
+Vue.component("NioTTDRateCardSummary", NioTTDRateCardSummary)
+
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
 export { NioJsonViewer }
@@ -274,6 +282,8 @@ export { NioBuyerStudioSubscription }
 export { NioSubscriptionFileDownload }
 export { NioForecastWidget }
 export { NioCopyToClipboard }
+export { NioTTDRateCardDetails }
+export { NioTTDRateCardSummary }
 
 export { FontAwesomeIcon }
 export { NioRouterModule }

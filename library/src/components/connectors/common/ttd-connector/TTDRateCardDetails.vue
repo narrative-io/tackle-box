@@ -136,7 +136,6 @@ import NioCheckbox from '@/components/Checkbox'
 import NioTextField from '@/components/TextField'
 import NioTextarea from '@/components/Textarea'
 
- 
 export default {
   components: { 
     NioRadioGroup,
@@ -229,20 +228,22 @@ export default {
       return 'Please enter at least one ID'
     },
     validateRevenueShare(value) {
-      if (!value || value.trim().length === 0) {
+      const stringVal = value ? String(value).trim() : null
+      if (!stringVal || stringVal.length === 0) {
         return 'Required'
-      } else if (value < 0) {
+      } else if (parseFloat(stringVal) < 0) {
         return 'Cannot be less than zero'
-      } else if (value > 100) {
+      } else if (parseFloat(stringVal) > 100) {
         return 'Cannot be greater than 100'
       } else {
         return true
       }
     },
     validateCpmCap(value) {
-      if (!value || value.trim().length === 0) {
+      const stringVal = value ? String(value).trim() : null
+      if (!stringVal || stringVal.length === 0) {
         return 'Required'
-      } else if (value < 0) {
+      } else if (parseFloat(stringVal) < 0) {
         return 'Cannot be less than zero'
       } else {
         return true
