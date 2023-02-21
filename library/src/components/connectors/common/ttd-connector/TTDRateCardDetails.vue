@@ -17,7 +17,7 @@
     .rate-card.system(:class="{'selected': localRateCard.type === 'system'}")
       .rate-card-header
         NioRadioButton(
-          label="System Rate Card"
+          label="Open Market Rate Card"
           value="system"
         )
         NioTTDRateCardSummary(
@@ -50,7 +50,7 @@
     .rate-card.advertizer-partner(:class="{'selected': localRateCard.type === 'advertiserPartner'}")
       .rate-card-header
         NioRadioButton(
-          label="Advertiser/Partner Rate Card"
+          label="Custom Rate Card"
           value="advertiserPartner"
         )
         NioTTDRateCardSummary(
