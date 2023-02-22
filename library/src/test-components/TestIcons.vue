@@ -80,6 +80,7 @@
       NioIcon(name="utility-folder")
       NioIcon(name="utility-file")
       NioIcon(name="utility-upload")
+      NioIcon(name="utility-folder-tree")
 </template>
 
 <script>

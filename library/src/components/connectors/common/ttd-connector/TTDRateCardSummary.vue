@@ -1,11 +1,12 @@
 <template lang="pug">
   .nio-ttd-rate-card-summary(
-    v-if="item.effectivePrice && item.buyable"
-    :class="[{'pill': asPill}, type]"
+    v-if="item.effectivePrice"
+    :class="[{'pill': asPill, 'not-buyable': !item.buyable}]"
   )
-    .content {{ item.effectivePrice }}
+    .content
+      .nio-p {{ item.effectivePrice }}
     .mask(v-if="asPill")
-  .taxonomy-rate-card.root.nio-p.text-primary-dark(
+  .nio-ttd-rate-card-summary.root.nio-p.text-primary-dark(
     v-else-if="isRootNode"
   ) ROOT
 </template>
