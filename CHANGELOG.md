@@ -190,5 +190,5 @@ Fix group-by nested path display
 0.7.6
 Added three new icons
 
-0.7.7
+0.7.7/0.7.8
 Additions related to The Trade Desk Taxonomy
