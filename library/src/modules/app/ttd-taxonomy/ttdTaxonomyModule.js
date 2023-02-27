@@ -10,7 +10,6 @@ const RateTypeToItemKeyMapping = {
 
 const PathDelimiter = "nioChild>"
 
-
 let getExistingTTDTaxonomy = async (headers, baseUrl, companyId) => {
   let taxonomyData, taxonomyRateDetails
   try {
@@ -47,7 +46,7 @@ let getExistingTTDTaxonomy = async (headers, baseUrl, companyId) => {
       buyable: item.buyable,
       displayName: item.display_name,
       description: item.description,
-      effectivePrice: null, // TODO
+      effectivePrice: item.effective_price,
       fullPath: null,
       audience_size: null,
       receivedIdsCount: item.received_ids_count,
@@ -88,10 +87,10 @@ let fetchTaxonomyRateDetails = async (taxonomyData, headers, baseUrl) => {
   try {
     const rateLevels = ["Partner", "Advertiser", "System"]
     const body = {
-      provider_element_ids: taxonomyData.map(item => item.provider_element_id),
-      include_inherited_rates: false,
+      provider_element_ids: null,
+      include_inherited_rates: true,
       page_start_index: 0,
-      page_size: 1000 // TODO either paginate or fetch all
+      page_size: 5000 
     }
     const reqBodies = rateLevels.map(rateLevel => {
       return {
@@ -134,6 +133,7 @@ let attachRateCardsToTaxonomy = (taxonomyData, taxonomyRateDetails) => {
       if (!taxonomyItem) {
         throw new Error(`Could not find taxonomy item with provider_element_id = ${rateDetail.provider_element_id}`)
       }
+      attachExistingItemEffectivePrice(taxonomyItem, rateDetail)
       if (taxonomyItem[RateTypeToItemKeyMapping[rateDetail.rate_level]]) {
         if (rateDetail.rate_level === 'Partner') {
           taxonomyItem[RateTypeToItemKeyMapping[rateDetail.rate_level]].ids.push(rateDetail.partnerId)
@@ -221,13 +221,14 @@ let areSamePaths = (path1, path2) => {
   }).length === path1.length
 }
 
-
 let attachTaxonomyEffectivePrices = (taxonomy) => {
   const bins = makeTaxonomyBinsByPathLength(taxonomy)
   bins.forEach((bin, binIndex) => {
     const parentBin = bins[binIndex - 1]
     bin.forEach((item) => {
-      item.effectivePrice = computeItemEffectivePrice(item, parentBin)
+      if (!item.effectivePrice) {
+        item.effectivePrice = computeItemEffectivePrice(item, parentBin)
+      }
     })
   })
 }
@@ -243,10 +244,18 @@ let computeItemEffectivePrice = (item, parentBin) => {
     } else if (item.systemRateCard) {
       rateCardPropertyName = 'systemRateCard'
     }
-    return `${item[rateCardPropertyName].revenueShare}% / ${formatCurrency(item[rateCardPropertyName].cpmCap)}`
+    return `${item[rateCardPropertyName].revenueShare * 100}% / ${formatCurrency(item[rateCardPropertyName].cpmCap)}`
   } else if (parentElement && parentElement.effectivePrice) {
     return parentElement.effectivePrice
   } 
+}
+
+let attachExistingItemEffectivePrice = (item, rateDetail) => {
+  if (rateDetail && rateDetail.percent_of_media_cost_rate && rateDetail.cpm_rate && rateDetail.cpm_rate.amount) {
+    item.effective_price = `${rateDetail.percent_of_media_cost_rate * 100}% / ${formatCurrency(rateDetail.cpm_rate.amount)}`
+  } else {
+    item.effective_price = null
+  }
 }
 
 let replaceIdsWithUUIDs = (taxonomy) => {
