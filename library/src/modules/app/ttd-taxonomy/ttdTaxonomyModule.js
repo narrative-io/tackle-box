@@ -221,19 +221,19 @@ let areSamePaths = (path1, path2) => {
   }).length === path1.length
 }
 
-let attachTaxonomyEffectivePrices = (taxonomy) => {
+let attachTaxonomyEffectivePrices = (taxonomy, fromUpload) => {
   const bins = makeTaxonomyBinsByPathLength(taxonomy)
   bins.forEach((bin, binIndex) => {
     const parentBin = bins[binIndex - 1]
     bin.forEach((item) => {
       if (!item.effectivePrice) {
-        item.effectivePrice = computeItemEffectivePrice(item, parentBin)
+        item.effectivePrice = computeItemEffectivePrice(item, parentBin, fromUpload)
       }
     })
   })
 }
 
-let computeItemEffectivePrice = (item, parentBin) => {
+let computeItemEffectivePrice = (item, parentBin, fromUpload) => {
   const parentElement = parentBin ? parentBin.find(parentElement => parentElement.id === item.parentElementId) : null
   if (item.partnerRateCard || item.advertiserRateCard || item.systemRateCard) {
     let rateCardPropertyName = null
@@ -244,7 +244,12 @@ let computeItemEffectivePrice = (item, parentBin) => {
     } else if (item.systemRateCard) {
       rateCardPropertyName = 'systemRateCard'
     }
-    return `${item[rateCardPropertyName].revenueShare * 100}% / ${formatCurrency(item[rateCardPropertyName].cpmCap)}`
+    if (fromUpload) {
+      return `${item[rateCardPropertyName].revenueShare * 1}% / ${formatCurrency(item[rateCardPropertyName].cpmCap)}`
+    } else {
+      return `${item[rateCardPropertyName].revenueShare * 100}% / ${formatCurrency(item[rateCardPropertyName].cpmCap)}`
+    }
+    
   } else if (parentElement && parentElement.effectivePrice) {
     return parentElement.effectivePrice
   } 
