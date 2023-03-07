@@ -173,13 +173,13 @@ export default {
     },
     processingCost() {
       if (this.costForecastResults.result?.cost?.size === 0) {
-        return ""
+        return "N/A"
       }
       return this.formatCurrencyNoCents(this.costForecastResults.result.cost.size * this.processingRate / 1000000000)
     },
     sizeScanned() {
       if (this.costForecastResults.result?.cost?.size === 0) {
-        return ""
+        return "0 B"
       }
       return this.readableSize(this.costForecastResults.result.cost.size)
     },
