@@ -181,7 +181,7 @@ export default {
       if (this.costForecastResults.result?.cost?.size === 0) {
         return ""
       }
-      return this.readableSize(this.costForecastResults.result.cost.size)˜
+      return this.readableSize(this.costForecastResults.result.cost.size)
     },
     deliverableRows() {
       if (this.forecastResults.result.rows === 0) {
