@@ -71,6 +71,7 @@ import { faPercent } from './fa-icons/percent'
 import { faFolder } from './fa-icons/folder'
 import { faFile } from './fa-icons/file'
 import { faUpload } from './fa-icons/upload'
+import { faFolderTree } from './fa-icons/folder-tree'
  
 export default {
   name: 'nio-icon',
@@ -141,6 +142,7 @@ export default {
     library.add(faFolder)
     library.add(faFile)
     library.add(faUpload)
+    library.add(faFolderTree)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },

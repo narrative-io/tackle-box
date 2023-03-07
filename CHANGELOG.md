@@ -190,6 +190,8 @@ Fix group-by nested path display
 0.7.6
 Added three new icons
 
-0.7.7-beta-0
-Added conditional rendering to Forecast Widget for Buyer Studio Processing Costs
-Added processing rate property so forecast processing cost adjusts depending on the customer
+0.7.7/0.7.8
+Additions related to The Trade Desk Taxonomy
+
+0.7.9
+Reconfigure TTD Taxonomy data_rates calls to request inherited rates, don't send full list of ids
