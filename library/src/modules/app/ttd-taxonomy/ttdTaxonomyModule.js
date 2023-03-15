@@ -90,7 +90,7 @@ let fetchTaxonomyRateDetails = async (taxonomyData, headers, baseUrl) => {
       provider_element_ids: null,
       include_inherited_rates: true,
       page_start_index: 0,
-      page_size: 5000 
+      page_size: 5000 // TODO either paginate or fetch all
     }
     const reqBodies = rateLevels.map(rateLevel => {
       return {
