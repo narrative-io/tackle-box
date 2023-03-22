@@ -88,7 +88,7 @@ let fetchTaxonomyRateDetails = async (taxonomyData, headers, baseUrl) => {
     const rateLevels = ["Partner", "Advertiser", "System"]
     const body = {
       provider_element_ids: null,
-      include_inherited_rates: true,
+      include_inherited_rates: false,
       page_start_index: 0,
       page_size: 5000 // TODO either paginate or fetch all
     }
