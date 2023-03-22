@@ -196,5 +196,8 @@ Additions related to The Trade Desk Taxonomy
 0.7.9
 Reconfigure TTD Taxonomy data_rates calls to request inherited rates, don't send full list of ids
 
-0.7.11-beta.1
+0.7.11
 Added processing rate prop to ForecastWidget, added default messages for processing size and number of rows scanned
+
+0.7.13
+Calculate existing TTD Taxonomy effective prices in browser
