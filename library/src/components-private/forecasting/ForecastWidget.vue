@@ -83,18 +83,23 @@
                   NioIcon(name="utility-chevron-right", :size="16", color="#AEB9E8") Next
             NioButton.mt-4(normal-tertiary v-if="groupResult.length" @click="toggleResults = !toggleResults") {{toggleResults ? 'Hide' : 'Show'}} grouped results
     NioDivider(horizontal-solo)
+    .fingerprint(v-if="fingerprint")
+      NioIcon(
+        name="utility-fingerprint"
+        ref="fingerprint"
+        @click="copyFingerprint"
+      )
     .actions
       .forecast-stale-message
         .nio-p.text-warning(v-if="!hideStaleForecastMessage && forecastParamsStale && hasForecasted") <strong>Configuration changed:</strong> Please click "Generate Forecast" to get updated results.
       NioButton(
-      normal-secondary
-      :disabled="!canForecast"
-      @click="generateForecast"
-    ) Generate Forecast
+        normal-secondary
+        :disabled="!canForecast"
+        @click="generateForecast"
+      ) Generate Forecast
 </template>
 
 <script>
-
 import numeral from 'numeral'
 import { getThemeColor } from '@/modules/app/theme/theme'
 import { getForecast } from '@/modules/app/forecast/forecastModule'
@@ -110,6 +115,7 @@ export default {
     appType: { type: String, required: false, default: 'default' },
     processingRate: { type: Number, required: false, default: 5 },
     disableGroupBy: { type: Boolean, default: false },
+    fingerprint: { type: String, required: false },
     forecastParamsStale: { type: Boolean, default: false },
     hideStaleForecastMessage: { type: Boolean, default: false },
     hideDataCost: { type: Boolean, default: false }
@@ -222,6 +228,9 @@ export default {
       if (this.enableGrouping && dimensions) {
         payload.dimensions = dimensions
       }
+      if (this.fingerprint) {
+        payload.fingerprint = this.fingerprint
+      }
       let headers = {
         'Authorization': `Bearer ${this.openApiToken}`
       }
@@ -290,6 +299,9 @@ export default {
       }
       this.page += 1
       this.currentGroup = [...this.paginate(this.groupResult, this.page, this.perPage)]
+    },
+    copyFingerprint() {
+      navigator.clipboard.writeText(this.fingerprint)
     }
   }
 };

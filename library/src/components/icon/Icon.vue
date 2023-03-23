@@ -72,6 +72,7 @@ import { faFolder } from './fa-icons/folder'
 import { faFile } from './fa-icons/file'
 import { faUpload } from './fa-icons/upload'
 import { faFolderTree } from './fa-icons/folder-tree'
+import { faFingerprint } from './fa-icons/fingerprint'
  
 export default {
   name: 'nio-icon',
@@ -143,6 +144,7 @@ export default {
     library.add(faFile)
     library.add(faUpload)
     library.add(faFolderTree)
+    library.add(faFingerprint)
     this.icon = this.iconLibrary[this.name]
     this.$emit('mounted')
   },

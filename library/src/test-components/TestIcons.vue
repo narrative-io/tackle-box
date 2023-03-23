@@ -81,6 +81,7 @@
       NioIcon(name="utility-file")
       NioIcon(name="utility-upload")
       NioIcon(name="utility-folder-tree")
+      NioIcon(name="utility-fingerprint")
 </template>
 
 <script>
