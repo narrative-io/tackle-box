@@ -83,11 +83,11 @@
                   NioIcon(name="utility-chevron-right", :size="16", color="#AEB9E8") Next
             NioButton.mt-4(normal-tertiary v-if="groupResult.length" @click="toggleResults = !toggleResults") {{toggleResults ? 'Hide' : 'Show'}} grouped results
     NioDivider(horizontal-solo)
-    .fingerprint(v-if="fingerprint")
-      NioIcon(
-        name="utility-fingerprint"
+    .fingerprint(v-if="fingerprint && hasForecasted")
+      NioCopyToClipboard(
+        :icon-name="'utility-fingerprint'"
+        :text="fingerprint"
         ref="fingerprint"
-        @click="copyFingerprint"
       )
     .actions
       .forecast-stale-message
@@ -100,13 +100,16 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid'
 import numeral from 'numeral'
 import { getThemeColor } from '@/modules/app/theme/theme'
 import { getForecast } from '@/modules/app/forecast/forecastModule'
 import { makeDotDelimitedPropertyPath } from '../../modules/app/schema/attributeModule';
+import NioCopyToClipboard from '../../components/CopyToClipboard.vue';
 
 export default {
   name: 'nio-forecast-widget',
+  components: { NioCopyToClipboard },
   props: {
     forecastParams: { type: Object, required: false },
     filters: {type: Array, default: () => []},
@@ -115,7 +118,6 @@ export default {
     appType: { type: String, required: false, default: 'default' },
     processingRate: { type: Number, required: false, default: 5 },
     disableGroupBy: { type: Boolean, default: false },
-    fingerprint: { type: String, required: false },
     forecastParamsStale: { type: Boolean, default: false },
     hideStaleForecastMessage: { type: Boolean, default: false },
     hideDataCost: { type: Boolean, default: false }
@@ -131,6 +133,7 @@ export default {
       currentGroup: [],
       forecastResults: null,
       costForecastResults: null,
+      fingerprint: null,
       hasForecasted: false
     }
   }, 
@@ -218,6 +221,7 @@ export default {
     generateForecast() {
       this.$emit('forecastStarted')
       this.hasForecasted = true
+      this.fingerprint = uuidv4()
       this.forecastResults = 'loading'
       this.costForecastResults = 'loading'
       const dimensions = {
@@ -228,12 +232,10 @@ export default {
       if (this.enableGrouping && dimensions) {
         payload.dimensions = dimensions
       }
-      if (this.fingerprint) {
-        payload.fingerprint = this.fingerprint
-      }
       let headers = {
         'Authorization': `Bearer ${this.openApiToken}`
       }
+      payload.fingerprint = this.fingerprint
       getForecast(payload, 'forecasts', this.openApiBaseUrl, {headers: headers}).then(res => {
         this.forecastResults = res
         this.$emit('forecastComplete', res)
@@ -299,9 +301,6 @@ export default {
       }
       this.page += 1
       this.currentGroup = [...this.paginate(this.groupResult, this.page, this.perPage)]
-    },
-    copyFingerprint() {
-      navigator.clipboard.writeText(this.fingerprint)
     }
   }
 };
