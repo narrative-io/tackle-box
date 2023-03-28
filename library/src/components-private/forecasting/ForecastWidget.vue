@@ -83,20 +83,21 @@
                   NioIcon(name="utility-chevron-right", :size="16", color="#AEB9E8") Next
             NioButton.mt-4(normal-tertiary v-if="groupResult.length" @click="toggleResults = !toggleResults") {{toggleResults ? 'Hide' : 'Show'}} grouped results
     NioDivider(horizontal-solo)
-    .fingerprint(v-if="fingerprint && hasForecasted")
-      NioCopyToClipboard(
-        :icon-name="'utility-fingerprint'"
-        :text="fingerprint"
-        ref="fingerprint"
-      )
-    .actions
-      .forecast-stale-message
-        .nio-p.text-warning(v-if="!hideStaleForecastMessage && forecastParamsStale && hasForecasted") <strong>Configuration changed:</strong> Please click "Generate Forecast" to get updated results.
-      NioButton(
-        normal-secondary
-        :disabled="!canForecast"
-        @click="generateForecast"
-      ) Generate Forecast
+    .widget-footer
+      .actions
+        .forecast-stale-message
+          .nio-p.text-warning(v-if="!hideStaleForecastMessage && forecastParamsStale && hasForecasted") <strong>Configuration changed:</strong> Please click "Generate Forecast" to get updated results.
+        NioButton(
+          normal-secondary
+          :disabled="!canForecast"
+          @click="generateForecast"
+        ) Generate Forecast
+      .fingerprint(v-if="fingerprint && hasForecasted")
+        NioCopyToClipboard(
+          :icon-name="'utility-fingerprint'"
+          :text="fingerprint"
+          ref="fingerprint"
+        )
 </template>
 
 <script>
@@ -236,6 +237,7 @@ export default {
         'Authorization': `Bearer ${this.openApiToken}`
       }
       payload.fingerprint = this.fingerprint
+      
       getForecast(payload, 'forecasts', this.openApiBaseUrl, {headers: headers}).then(res => {
         this.forecastResults = res
         this.$emit('forecastComplete', res)
