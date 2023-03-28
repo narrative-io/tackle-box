@@ -201,3 +201,6 @@ Added processing rate prop to ForecastWidget, added default messages for process
 
 0.7.13
 Calculate existing TTD Taxonomy effective prices in browser
+
+0.7.14
+Added fingerprint prop, icon, and copy functionality to ForecastWidget

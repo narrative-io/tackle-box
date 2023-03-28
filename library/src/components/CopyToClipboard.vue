@@ -1,22 +1,36 @@
 <template lang="pug">
-  .nio-copy-to-clipboard
+  .nio-copy-to-clipboard(v-if="text")
     NioButton.copy-to-clipboard-button(
-      v-if="text"
+      v-if="iconName"
+      container
+      :class="{copied: textCopied}"
+      @click="copyToClipboard"      
+    )
+      .nio-p.text-primary-dark(v-if="textCopied") Fingerprint copied
+      NioIcon(
+        v-else
+        :name="iconName"
+        :style="{fontSize: size ? `${size}px` : '24px'}"
+      )
+    NioButton.copy-to-clipboard-button(
+      v-else
       :class="{copied: textCopied}"
       normal-tertiary
       @click="copyToClipboard"
-    ) {{ textCopied ? 'Copied to clipboard!' : 'Copy' }} 
+    ) {{ textCopied ? 'Copied to clipboard!' : 'Copy' }}
+
 </template>
 
 <script>
-
+import NioIcon from './icon/Icon'
 import NioButton from './Button.vue'
 
 export default {
   name: 'nio-copy-to-clipboard',
-  components: { NioButton },
+  components: { NioIcon, NioButton },
   props: {
     text: { type: String | Object, required: true },
+    iconName: { type: String, required: false }
   },
   data() {
     return {

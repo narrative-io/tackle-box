@@ -117,6 +117,7 @@ const NioIconLibrary = {
   "utility-file": ["far", "file"],
   "utility-upload": ["fas", "upload"],
   "utility-folder-tree": ["fas", "folder-tree"],
+	"utility-fingerprint": ["fas", "fingerprint"]
 }
 
 export { NioIconLibrary }
