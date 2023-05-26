@@ -104,6 +104,7 @@
           .subscription-destinations
             NioSubscriptionDestinations(
               :subscription-id="subscription.id"
+              :output-dataset-id="outputDatasetId"
               :open-api-token="openApiToken"
               :open-api-base-url="openApiBaseUrl"
             )
@@ -211,6 +212,11 @@ export default {
     frequencyFilter: null,
     ingestionTimestampFilter: null
   }),	
+  computed: {
+    outputDatasetId() {
+      return this.subscription.output?.dataset_id
+    }
+  },
   mounted() {
     this.appliedFilters = makeSummaryFilterGroup(this.subscription, this.attributes, this.datasets)
     this.makeFrequencyFilter()

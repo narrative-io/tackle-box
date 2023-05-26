@@ -204,3 +204,6 @@ Calculate existing TTD Taxonomy effective prices in browser
 
 0.7.14
 Added fingerprint prop, icon, and copy functionality to ForecastWidget
+
+0.7.19
+Added output.dataset_id to support to NioSubscriptionDestinations and NioBuyerStudioSubscription
