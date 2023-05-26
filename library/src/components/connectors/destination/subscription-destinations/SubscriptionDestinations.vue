@@ -35,6 +35,7 @@ export default {
   components: { NioImageTile },
   props: {
     destinations: { type: Array, required: false },
+    outputDatasetId: { type: Number, required: false},
     subscriptionId: { type: String, required: false },
     openApiToken: { type: String, required: false },
     openApiBaseUrl: { type: String, required: false }
@@ -62,12 +63,13 @@ export default {
       }
     },
     getDestinations() {
+      console.log("get destinations", this.subscriptionId, this.outputDatasetId)
       let reqHeaders = {
         headers: {
           'Authorization': `Bearer ${this.openApiToken}`
         }
       }
-      getSubscriptionDestinations(this.subscriptionId, this.openApiBaseUrl, reqHeaders).then(destinations => {
+      getSubscriptionDestinations(this.subscriptionId, this.outputDatasetId, this.openApiBaseUrl, reqHeaders).then(destinations => {
         this.subscriptionDestinations = destinations
       })
     }
