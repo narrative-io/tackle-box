@@ -73,10 +73,13 @@
             flex-direction: column
             justify-content: center
             .nio-slat-title
-              white-space: pre-wrap
-              // margin-left: -4px
+              white-space: normal !important
+              word-break: break-word
+              overflow-wrap: break-word
             .nio-slat-subtitle
-              white-space: pre-wrap
+              white-space: normal !important
+              word-break: break-word
+              overflow-wrap: break-word
               margin-top: 0.25rem
         .property-settings
           .pills-container
@@ -99,31 +102,31 @@
                       opacity: 1
               .nio-pill-content
                 display: flex
-        .property-actions
-          display: flex
-          justify-content: flex-end
-          align-items: center
-          width: unset
-          padding-right: 26px
-          .nio-tooltip
-            position: absolute
-            top: 26px
-            right: 24px
-          .nio-switch
-            margin-bottom: 0px
-            margin-top: -2px
-            width: 50px
-            margin-left: 16px
-            .v-input__slot
-              margin-bottom: 0px
-            .v-messages
-              display: none
-          & > .nio-switch + .nio-switch
-            margin-left: 8px
-          .nio-p-small
-            margin-left: 4px
-          &.potential-join-target
-            .nio-switch
-              opacity: 0.4
+  ::v-deep .property-actions
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    width: unset
+    padding-right: 26px
+    .nio-tooltip
+      position: absolute
+      top: 26px
+      right: 24px
+    .nio-switch
+      margin-bottom: 0px
+      margin-top: -2px
+      width: 50px
+      margin-left: 16px
+      .v-input__slot
+        margin-bottom: 0px
+      .v-messages
+        display: none
+    & > .nio-switch + .nio-switch
+      margin-left: 8px
+    .nio-p-small
+      margin-left: 4px
+    &.potential-join-target
+      .nio-switch
+        opacity: 0.4
   .display-row + .display-row
     margin-top: 0px

@@ -160,7 +160,7 @@ export default {
   }),
   computed: {
     slatWidth() {
-      return `${ 500 - 24 * this.nest }px`
+      return `${ 575 - 24 * this.nest }px`
     },
     computedProperties() {
       let keys
