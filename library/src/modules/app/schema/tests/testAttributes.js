@@ -1,5 +1,5 @@
 const Primitive = {
-  description: "description",
+  description: "iab_demographic_household_data_life_stage_multi_generation_household_empty_nest_adults_children_left_home",
   display_name: "Ref Primitive",
   id: 0,
   name: "ref_primitive",
