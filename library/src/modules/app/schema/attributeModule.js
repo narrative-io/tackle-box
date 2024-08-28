@@ -289,6 +289,9 @@ let getJoinOptionsByPath = (path, parentAttribute, datasets) => {
 }
 
 function hasPropertyMappingForPath(mapping, stringPath, targetProperty) {
+  if (mapping.status !== 'active') {
+    return false
+  }
   const mappingToPath = mapping.mapping.property_mappings.find(propertyMapping => propertyMapping.path === stringPath)
   if (targetProperty && targetProperty.type === 'binary' ) {
     if (targetProperty.format === 'geometry') {
